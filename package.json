@@ -1,0 +1,23 @@
+{
+  "name": "camdenmaps",
+  "version": "1.0.0",
+  "description": "Camden.gov.uk",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test "
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/foundersandcoders/camdenmaps.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/foundersandcoders/camdenmaps/issues"
+  },
+  "homepage": "https://github.com/foundersandcoders/camdenmaps",
+  "dependencies": {
+    "hapi": "^7.5.2",
+    "hapi-swagger": "^0.5.0"
+  }
+}
