@@ -1,0 +1,15 @@
+language: node_js
+
+node_js:
+    - 0.10.32
+
+before_install:
+    - npm install -g gulp
+
+install:
+    - npm install
+
+script:
+    - gulp ci
+
+
