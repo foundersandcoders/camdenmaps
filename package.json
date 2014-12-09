@@ -23,6 +23,8 @@
   "devDependencies": {
     "gulp": "^3.8.10",
     "gulp-eslint": "^0.2.0",
-    "gulp-watch": "^3.0.0"
+    "gulp-lab": "^1.0.4",
+    "gulp-watch": "^3.0.0",
+    "lab": "^5.1.0"
   }
 }

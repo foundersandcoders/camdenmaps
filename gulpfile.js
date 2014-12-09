@@ -3,7 +3,8 @@
 //load gulp and plugins
 var gulp = require("gulp"),
     eslint = require("gulp-eslint"),
-    watch = require("gulp-watch");
+    watch = require("gulp-watch"),
+    lab = require("gulp-lab");
 
 //arrays of files to watch for testing and linting
 var serverFiles = [];
@@ -19,7 +20,9 @@ gulp.task("lint", function () {
 });
 
 gulp.task("test-unit", function () {
-
+    console.log(lab);
+    return gulp.src("./test/unit")
+        .pipe(lab());
 });
 
 gulp.task("test-acc", function () {
@@ -31,7 +34,7 @@ gulp.task("build", function () {
 });
 
 //only run if lint passes
-gulp.task("default", ["lint"], function () {
+gulp.task("default", ["lint", "test-unit"], function () {
   
   //task for test
   //test: lab for server, protractor for e2e angular, karma for unit angular
