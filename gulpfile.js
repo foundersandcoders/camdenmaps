@@ -1,3 +1,5 @@
+"use strict";
+
 //load gulp and plugins
 var gulp = require("gulp"),
     eslint = require("gulp-eslint"),
@@ -14,6 +16,18 @@ gulp.task("lint", function () {
          .pipe(eslint())
          .pipe(eslint.format())
          .pipe(eslint.failOnError());
+});
+
+gulp.task("test-unit", function () {
+
+});
+
+gulp.task("test-acc", function () {
+
+});
+
+gulp.task("build", function () {
+
 });
 
 //only run if lint passes
@@ -37,3 +51,7 @@ gulp.task("default", ["lint"], function () {
   //compiling: gulp-sass
 
 });
+
+gulp.task("save", ["default"]);
+
+gulp.task("ci", ["default"]);
