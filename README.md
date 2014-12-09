@@ -4,4 +4,6 @@ camdenmaps
 
 [![Build Status](https://travis-ci.org/foundersandcoders/camdenmaps.svg?branch=master)](https://travis-ci.org/foundersandcoders/camdenmaps)
 
+[![Code Climate](https://codeclimate.com/github/foundersandcoders/camdenmaps/badges/gpa.svg)](https://codeclimate.com/github/foundersandcoders/camdenmaps)
+
 maps.camden.gov.uk site
