@@ -14,8 +14,7 @@ script:
 
 branches:
     only:
-        - build
-    
+        - master
 
 after_script:
     - cat lcov.info | codeclimate
