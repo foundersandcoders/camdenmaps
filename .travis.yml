@@ -12,6 +12,11 @@ install:
 script:
     - gulp ci
 
+branches:
+    only:
+        - build
+    
+
 after_script:
     - cat lcov.info | codeclimate
 
