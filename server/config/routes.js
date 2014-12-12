@@ -9,28 +9,30 @@
 //  Search by streetname
 //
 //************************************************
+(function () {
+    "use strict";
 
-var RoutesConfig = require("./routesConfig.js");
+    var RoutesConfig = require("./routesConfig.js");
 
-module.exports = [
-/* EXAMPLE **************************************
-*    { 
-*        method:    ":METHOD", 
-*        path:      ":PATH", 
-*        handlers:  ":HANDLERS" 
-*    }
-*/
-    {
-        method: "GET",
-        path: "/",
-        config: RoutesConfig.getHome
-    },
+    module.exports = [
+    /* EXAMPLE **************************************
+    *    { 
+    *        method:    ":METHOD", 
+    *        path:      ":PATH", 
+    *        handlers:  ":HANDLERS" 
+    *    }
+    */
+        {
+            method: "GET",
+            path: "/",
+            config: RoutesConfig.getHome
+        },
 
-//Where's My Nearest Routes *********************
-    {
-        method: "GET",
-        path: "/services/{service}",
-        config: RoutesConfig.nearest.services 
+    //Where's My Nearest Routes *********************
+        {
+            method: "GET",
+            path: "/services/{service}",
+            config: RoutesConfig.nearest.services 
     },
     {
         method: "GET",
@@ -43,3 +45,4 @@ module.exports = [
         config: RoutesConfig.nearest.servicesAndLocations 
     }
 ];
+}());
