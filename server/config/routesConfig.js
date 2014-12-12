@@ -4,31 +4,44 @@
 *   Use: Imported by routes.js
 *
 ************************************************/
-var Config = require("./serverConfig.js");
-var MapConfig = require("./mapConfig.js");
+(function () {
+    "use strict";
 
-module.exports = {
-    nearest: {
-        services: {
-            handler: {
-                proxy: {
-                    mapUri: MapConfig.servicesMapper            
-                }
+    var Config = require("./serverConfig.js");
+    var MapConfig = require("./mapConfig.js");
+    var faketoe = require("faketoe");
+
+    module.exports = {
+        getHome: {
+            handler: function (req, res) {
+                res("GO SOMEWHERE");
             }
         },
-        locations: {
-            handler: {
-                proxy: {
-                    mapUri: MapConfig.locationsMapper
+        nearest: {
+            services: {
+                handler: {
+                    proxy: {
+                        mapUri: MapConfig.servicesMapper,
+                        onResponse: Config.convertToXml   
+                    }
                 }
-            }
-        },
-        servicesAndLocations: {
-            handler: {
-                proxy: {
-                    mapUri: MapConfig.servicesAndLocationsMapper
+            },
+            locations: {
+                handler: {
+                    proxy: {
+                        mapUri: MapConfig.locationsMapper,
+                        onResponse: Config.convertToXml
+                    }
+                }
+            },
+            servicesAndLocations: {
+                handler: {
+                    proxy: {
+                        mapUri: MapConfig.servicesAndLocationsMapper,
+                        onResponse: Config.convertToXml
+                    }
                 }
             }
         }
     }
-}
+}());

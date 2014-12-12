@@ -20,6 +20,12 @@ module.exports = [
 *        handlers:  ":HANDLERS" 
 *    }
 */
+    {
+        method: "GET",
+        path: "/",
+        config: RoutesConfig.getHome
+    },
+
 //Where's My Nearest Routes *********************
     {
         method: "GET",
