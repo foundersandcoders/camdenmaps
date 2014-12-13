@@ -4,7 +4,7 @@
   "description": "Camden.gov.uk",
   "main": "index.js",
   "scripts": {
-    "test": "npm test "
+    "test": "echo 'hello'"
   },
   "repository": {
     "type": "git",
