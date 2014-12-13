@@ -17,7 +17,7 @@ before_install:
 
 language: node_js
 
-#script: 
+# script: 
 #    - gulp ci
 
 install: 
