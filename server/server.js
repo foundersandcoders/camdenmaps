@@ -6,22 +6,33 @@
 ************************************************/
 
 //import routes, controllers, plugins, config, and modules
-var Hapi = require("hapi");
-var Config = require("../server/config/serverConfig.js");
-var Routes = require("../server/config/routes.js");
+var hapi = require("hapi");
+var config = require("../server/config/serverConfig.js");
+var routes = require("../server/config/routes.js");
 
 var internals = {};
 
-//server config
-var server = new Hapi.Server(Config.server.port, Config.server.host);
+//create server
+var server = new hapi.Server();
+
+//add connection
+server.connection({
+    port: config.server.port,
+    host: config.server.host,
+    labels: ["api"]
+});
 
 //route server
-server.route(Routes);
+server.route(routes);
 
 //server start if not testing
 if(!module.parent) {
-    server.start(function(){
-        console.log("Server running on " + Config.server.host + ":" + Config.server.port);
+    server.start(function(err){
+        if (err) {
+            throw err;
+        } else {
+            console.log("Server running on " + config.server.host + ":" + config.server.port);
+        }
     });
 }
 
