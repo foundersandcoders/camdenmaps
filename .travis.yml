@@ -22,6 +22,7 @@ language: node_js
 
 install: 
     - npm install
-deploy: 
+deploy:
+    provider: heroku 
     api_key: 
         secure: f9Y+fhjYSyJBNtml6TgaQJbUyouhAVSXcEEL1YGPKb0ioJls9C/y5oNaOszgA5+BzyqHHmgXkd8G6Rgg6/qZ2kq2g8gyoYINAiCNR0mXYNGtJtVdpLKY7YWqe37UfL6PbbKoI+fkh7gKQyEjuKLonQ181JGPeJQHHSdvARmAu0M=
