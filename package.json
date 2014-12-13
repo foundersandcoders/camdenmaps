@@ -18,8 +18,7 @@
   "homepage": "https://github.com/foundersandcoders/camdenmaps",
   "dependencies": {
     "faketoe": "^2.0.2",
-    "hapi": "^7.5.2",
-    "hapi-swagger": "^0.5.0"
+    "hapi": "^8.0.0"
   },
   "devDependencies": {
     "gulp": "^3.8.10",
