@@ -33,16 +33,22 @@
             method: "GET",
             path: "/services/{service}",
             config: RoutesConfig.nearest.services 
-    },
-    {
-        method: "GET",
-        path: "/locations/{postcode}",
-        config: RoutesConfig.nearest.locations 
-    },
-    {
-        method: "GET",
-        path: "/services/{service}/locations/{postcode}",
-        config: RoutesConfig.nearest.servicesAndLocations 
-    }
-];
+        },
+        {
+            method: "GET",
+            path: "/locations/{postcode}",
+            config: RoutesConfig.nearest.locations 
+        },
+        {
+            method: "GET",
+            path: "/services/{service}/locations/{postcode}",
+            config: RoutesConfig.nearest.servicesAndLocations 
+        }
+    //Catchall for assets *****************************
+        {
+            method: "GET",
+            path: "/{file*}",
+            config: RoutesConfig.staticFiles
+        }
+    ];
 }());
