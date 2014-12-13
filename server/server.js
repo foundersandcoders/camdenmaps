@@ -17,8 +17,7 @@ var server = new hapi.Server();
 
 //add connection
 server.connection({
-    port: config.server.port,
-    host: config.server.host,
+    port: process.env.PORT || config.server.port,
     labels: ["api"]
 });
 
