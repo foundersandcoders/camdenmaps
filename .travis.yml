@@ -5,10 +5,6 @@ branches:
 node_js: 
     - 0.10.32
 
-deploy: 
-    api_key: 
-        secure: f9Y+fhjYSyJBNtml6TgaQJbUyouhAVSXcEEL1YGPKb0ioJls9C/y5oNaOszgA5+BzyqHHmgXkd8G6Rgg6/qZ2kq2g8gyoYINAiCNR0mXYNGtJtVdpLKY7YWqe37UfL6PbbKoI+fkh7gKQyEjuKLonQ181JGPeJQHHSdvARmAu0M=
-
 addons: 
     code-climate: 
         repo-token: 3b3b855c93bf2d870a29b319ba03b5ad0edaf79fd7a6d94e038d49c6cb2a7d95
@@ -21,8 +17,11 @@ before_install:
 
 language: node_js
 
-script: 
-    - gulp ci
+#script: 
+#    - gulp ci
 
 install: 
     - npm install
+deploy: 
+    api_key: 
+        secure: f9Y+fhjYSyJBNtml6TgaQJbUyouhAVSXcEEL1YGPKb0ioJls9C/y5oNaOszgA5+BzyqHHmgXkd8G6Rgg6/qZ2kq2g8gyoYINAiCNR0mXYNGtJtVdpLKY7YWqe37UfL6PbbKoI+fkh7gKQyEjuKLonQ181JGPeJQHHSdvARmAu0M=
