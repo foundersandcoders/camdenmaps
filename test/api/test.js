@@ -14,7 +14,7 @@
         expect = require("code").expect,
         options = {
             method: "GET",
-            url: "/services/police%20station/locations/nw1%200jh"
+            url: "/services/police%20station/locations/NW1%200JH"
         };
 
 
@@ -34,7 +34,7 @@
             it("statusCode is 200 okay", function (done) {
 
                 server.inject(options, function(response) {
-                    expect(response.statusCode).to.equal(200)
+                    expect(response.statusCode).to.equal(200);
                     done();
                 });
 
@@ -42,25 +42,18 @@
 
         });
 
-        describe("Given that the api returns an xml sample", function () {
-            it("then faketoe converts it to a JSON object", function (done) {
+        describe("Given that api call is made", function () {
 
-                // var parser = faketoe.createParser(function (error, result) {
-                //     if (error) return error;
+            it("then result is a json object", function (done) {
 
-                //     return result;
-                // });
-                
-                // var got =  Fs.createReadStream(xml).pipe(parser);
+                server.inject(options, function(response) {
+                    expect(response.payload).to.equal(json);
+                    done();
+                });
 
-                    server.inject(options, function(response) {
-                        console.log(response);
-                        console.log(response.result);
-                    })
             });
+        });
 
-        
+    });
 
-        })
-    })
 }());
