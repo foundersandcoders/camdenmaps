@@ -20,3 +20,5 @@ To include gov.uk sass files in our project simple import!
 @import '_conditionals';
 @import '_typography';
 ```
+
+For more information on using gov.uk styles see documentation here: https://github.com/alphagov/govuk_frontend_toolkit
