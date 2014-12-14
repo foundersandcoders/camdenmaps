@@ -21,6 +21,7 @@
     "hapi": "^8.0.0"
   },
   "devDependencies": {
+    "code": "^1.2.1",
     "gulp": "^3.8.10",
     "gulp-eslint": "^0.2.0",
     "gulp-lab": "^1.0.4",
