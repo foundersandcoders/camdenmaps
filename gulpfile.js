@@ -8,7 +8,7 @@
         lab = require("gulp-lab"),
         protractor = require("gulp-protractor"),
         sass = require("gulp-sass"),
-        uglify = require("gulp-uglify");
+        ngAnnotate = require("gulp-ng-annotate");
 
     //file arrays
     var serverFiles = ["./server/*.js", "./server/**/*.js"],
@@ -57,14 +57,14 @@
 
     //task for sassing development
     gulp.task("sass-dev", function () {
-        gulp.src("./server/public/css/main.scss")
+        return gulp.src("./server/public/css/main.scss")
             .pipe(sass())
             .pipe(gulp.dest("./server/public/css/stylesheet.css"));
     });
 
     //task for sassing production
     gulp.task("sass-production", function () {
-        gulp.src("./server/public/css/main.scss")
+        return gulp.src("./server/public/css/main.scss")
             .pipe(sass({
                 outputStyle: "compressed"
             }))
@@ -72,13 +72,15 @@
     });
 
     //task for minifying
-    gulp.task("uglify", function () {
-        
+    gulp.task("compress", function () {
+       return gulp.src(angularFiles)
+            .pipe(ngAnnotate())
+            .pipe(gulp.dest("./server/public/js"))
     });
 
     //task for travis
-    gulp.task("travis", ["lint", "sass-production", "acceptance-test", "uglify"], function () {
-        console.log("lint, sass, uglify and tests passed");
+    gulp.task("travis", ["lint", "sass-production", "acceptance-test", "compress"], function () {
+        return console.log("lint, sass, uglify and tests passed");
     });
 
     //task for when developing
