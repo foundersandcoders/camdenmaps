@@ -4,5 +4,12 @@ camdenmaps
 
 maps.camden.gov.uk site
 
+To run, use command:
 
-To run lab tests: make lab-test
+```
+node server/server.js
+```
+To run lab tests, use command: 
+```
+make lab-test
+```

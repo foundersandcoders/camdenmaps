@@ -6,9 +6,7 @@
         Fs = require('fs'),
         faketoe = require("faketoe"),
         server = require("../../server/server.js"),
-        fixtures = require("../fixtures/xml-test.js"),
-        xml = fixtures.xml,
-        json = fixtures.json,
+        fixtures = require("../fixtures/test-fixtures.js"),
         describe = lab.experiment,
         it = lab.test,
         expect = require("code").expect,
@@ -47,7 +45,7 @@
             it("then result is a json object", function (done) {
 
                 server.inject(options, function(response) {
-                    expect(response.payload).to.equal(json);
+                    expect(response.payload).to.equal(fixtures.json);
                     done();
                 });
 
