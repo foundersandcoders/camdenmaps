@@ -45,10 +45,10 @@
             config: RoutesConfig.nearest.servicesAndLocations 
         }
     //Catchall for assets *****************************
-        {
-            method: "GET",
-            path: "/{file*}",
-            config: RoutesConfig.staticFiles
-        }
+        // {
+        //     method: "GET",
+        //     path: "/{file*}",
+        //     config: RoutesConfig.staticFiles
+        // }
     ];
 }());
