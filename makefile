@@ -11,7 +11,7 @@ sass-production:
 	$(INPUT):$(OUTPUT) \
 	--style compressed \
 
-.PHONY-sass: sass-watch sass-production \
+.PHONY-sass: sass-watch sass-production
 
 lab-test:
 	@node node_modules/lab/bin/lab test/api/test.js
