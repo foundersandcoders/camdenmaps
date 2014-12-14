@@ -1,17 +1,30 @@
 <!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <title>Camden Maps</title>
+        <style>
+      .map {
+        height: 400px;
+        width: 100%;
+      }
+    </style>
     <link rel="stylesheet" style="text/css" href="./css/stylesheet.css">
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.0.0/css/ol.css" type="text/css">
+    <script src="http://openlayers.org/en/v3.0.0/build/ol.js" type="text/javascript"></script>
+    <title>Camden Maps</title>
   </head>
   <body>
 
 
 <label for="Dropdownlistfind">&nbsp;</label><select name="Dropdownlistfind" id="Dropdownlistfind" style="width:166px;"><option value="Please select">Please select</option><optgroup label="Community and living"><option value="Activity for older people">Activity for older people</option><option value="Beavers group">Beavers group</option><option value="Brownies group">Brownies group</option><option value="Charity shop">Charity shop</option><option value="Children's club">Children's club</option><option value="Citizens Advice Bureaux">Citizens Advice Bureaux</option><option value="Community Centre">Community Centre</option><option value="Connexions personal adviser">Connexions personal adviser</option><option value="Cubs group">Cubs group</option><option value="Fairtrade outlet">Fairtrade outlet</option><option value="Good neighbour scheme">Good neighbour scheme</option><option value="Guides group">Guides group</option><option value="Hall for hire">Hall for hire</option><option value="Job centre">Job centre</option><option value="Lunch club">Lunch club</option><option value="Marriage/civil partnership venue">Marriage/civil partnership venue</option><option value="Place of worship">Place of worship</option><option value="Post office">Post office</option><option value="Public toilet">Public toilet</option><option value="Scout group">Scout group</option><option value="Wifi hotspot">Wifi hotspot</option><option value="Youth club">Youth club</option></optgroup><optgroup label="Community safety"><option value="CCTV camera">CCTV camera</option><option value="Police station">Police station</option></optgroup><optgroup label="Council and democracy"><option value="Council reception point">Council reception point</option><option value="Public meeting">Public meeting</option></optgroup><optgroup label="Education"><option value="Adult education college">Adult education college</option><option value="After School Club">After School Club</option><option value="Children's centre">Children's centre</option><option value="Further education college">Further education college</option><option value="Higher education">Higher education</option><option value="Holiday play scheme">Holiday play scheme</option><option value="Independent school">Independent school</option><option value="Nursery school">Nursery school</option><option value="Parent and toddler group">Parent and toddler group</option><option value="Playgroup">Playgroup</option><option value="Primary school">Primary school</option><option value="Pupil referral unit">Pupil referral unit</option><option value="Secondary school">Secondary school</option><option value="Special school">Special school</option><option value="Training for individuals">Training for individuals</option><option value="Training for organisations">Training for organisations</option></optgroup><optgroup label="Environment"><option value="Caddy liner stockist">Caddy liner stockist</option><option value="Carton recycling point">Carton recycling point</option><option value="Listed building">Listed building</option><option value="Low carbon building">Low carbon building</option><option value="Nature reserve">Nature reserve</option><option value="Recycling and re-use centre">Recycling and re-use centre</option><option value="Recycling point">Recycling point</option></optgroup><optgroup label="Housing"><option value="Residents/tenants association">Residents/tenants association</option><option value="Sheltered housing">Sheltered housing</option></optgroup><optgroup label="Leisure"><option value="Art Gallery">Art Gallery</option><option value="Cemetery">Cemetery</option><option value="Children's library">Children's library</option><option value="Cinema">Cinema</option><option value="City farm">City farm</option><option value="Leisure centre">Leisure centre</option><option value="Library">Library</option><option value="Market">Market</option><option value="Outdoor gym">Outdoor gym</option><option value="Sport">Sport</option><option value="Swimming pool">Swimming pool</option><option value="Theatre">Theatre</option><option value="UK online centre">UK online centre</option></optgroup><optgroup label="Money"><option value="Cash Point">Cash Point</option></optgroup><optgroup label="Social care and health"><option value="Alcohol advice and support">Alcohol advice and support</option><option value="Chemist">Chemist</option><option value="Chemist (late night)">Chemist (late night)</option><option value="Day centre">Day centre</option><option value="Day centre (learning disablities)">Day centre (learning disablities)</option><option value="Day centre (mental health)">Day centre (mental health)</option><option value="Dentist">Dentist</option><option value="Drugs advice and treatment">Drugs advice and treatment</option><option value="Flu Jab">Flu Jab</option><option value="GP">GP</option><option value="Health Centre">Health Centre</option><option value="Hospital">Hospital</option><option value="NHS Trust">NHS Trust</option><option value="Optician">Optician</option><option value="Sexual health clinic">Sexual health clinic</option></optgroup><optgroup label="Transport"><option value="Bicycle shop">Bicycle shop</option><option value="Bicycle stand">Bicycle stand</option><option value="Car park">Car park</option><option value="Dropped kerb">Dropped kerb</option><option value="Grit Bin">Grit Bin</option><option value="Parking space">Parking space</option><option value="Tube station">Tube station</option></optgroup></select></span>
   <label>search by postcode or street name</label>
-    <input placeholder="NW1 0NE">
-    <input class="circle" type="button" value=">">
+  <input placeholder="NW1 0NE">
+  <input class="circle" type="button" value=">" action="">
+  
+  <div id="map" class="map"></div>
+  <script type="text/javascript" src="./map.js"></script>
+
 
 
 </html>
