@@ -3,3 +3,5 @@ node_modules/
 *.swp
 *.swo
 personalConfig.js
+npm-debug.log
+.sass-cache/
