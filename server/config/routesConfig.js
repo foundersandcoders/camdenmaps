@@ -10,11 +10,12 @@
     var Config = require("./serverConfig.js");
     var MapConfig = require("./mapConfig.js");
     var faketoe = require("faketoe");
+    var personalConfig = require("./personalConfig.js");
 
     module.exports = {
         getHome: {
             handler: function (request, reply) {
-                reply.file("/Users/emmamilner/PROJECTS/camdenmaps/server/public/views/index.html");
+                reply.file(personalConfig.emma + "/public/views/index.html");
             }
         },
         nearest: {
@@ -46,7 +47,7 @@
         staticFiles: {
             handler: {
                 directory: {
-                    path: "./public",
+                    path: personalConfig.emma + "/public",
                     listing: true,
                     index: true
                 }

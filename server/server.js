@@ -9,7 +9,7 @@
 var hapi = require("hapi");
 var config = require("../server/config/serverConfig.js");
 var routes = require("../server/config/routes.js");
-// var path = require('path');
+var path = require('path');
 
 var internals = {};
 
@@ -19,13 +19,12 @@ var server = new hapi.Server();
 //add connection
 server.connection({
     port: process.env.PORT || config.server.port,
-    labels: ["api"]
-    // ,
-    // routes: {
-    // 	files: {
-    // 		relativeTo: path.join('public', 'public')
-    // 	}
-    // }
+    labels: ["api"],
+    routes: {
+    	files: {
+    		relativeTo: path.join(__dirname, 'server')
+    	}
+    }
 });
 
 //route server
