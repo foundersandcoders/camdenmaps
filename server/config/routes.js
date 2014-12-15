@@ -25,24 +25,28 @@
         {
             method: "GET",
             path: "/",
-            config: RoutesConfig.getHome
+            config: RoutesConfig.getHome,
+            cors: true
         },
 
     //Where's My Nearest Routes *********************
         {
             method: "GET",
             path: "/services/{service}",
-            config: RoutesConfig.nearest.services 
+            config: RoutesConfig.nearest.services,
+            cors: true
         },
         {
             method: "GET",
             path: "/locations/{postcode}",
-            config: RoutesConfig.nearest.locations 
+            config: RoutesConfig.nearest.locations,
+            cors: true 
         },
         {
             method: "GET",
             path: "/services/{service}/locations/{postcode}",
-            config: RoutesConfig.nearest.servicesAndLocations 
+            config: RoutesConfig.nearest.servicesAndLocations,
+            cors: true
         }
     //Catchall for assets *****************************
         // {
