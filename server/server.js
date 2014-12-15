@@ -13,7 +13,7 @@ var routes = require("../server/config/routes.js");
 var internals = {};
 
 //create server
-var server = new hapi.Server({ cors: true });
+var server = new hapi.Server();
 
 //add connection
 server.connection({
