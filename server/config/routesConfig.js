@@ -19,6 +19,7 @@
         },
         nearest: {
             services: {
+                cors: true,
                 handler: {
                     proxy: {
                         mapUri: MapConfig.servicesMapper,
@@ -27,6 +28,7 @@
                 }
             },
             locations: {
+                cors: true,
                 handler: {
                     proxy: {
                         mapUri: MapConfig.locationsMapper,
@@ -35,12 +37,21 @@
                 }
             },
             servicesAndLocations: {
+                cors: true,
                 handler: {
                     proxy: {
                         mapUri: MapConfig.servicesAndLocationsMapper,
                         onResponse: Config.convertToXml
                     }
                 }
+            }
+        },
+        staticFiles: {
+            cors: true,
+            directory: {
+                path: "public",
+                listing: true,
+                index: true
             }
         }
     }
