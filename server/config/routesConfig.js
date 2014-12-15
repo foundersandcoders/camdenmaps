@@ -14,7 +14,7 @@
     module.exports = {
         getHome: {
             handler: function (req, res) {
-                res("GO SOMEWHERE");
+                res.file("../public/index.html");
             }
         },
         nearest: {
