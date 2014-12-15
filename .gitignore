@@ -2,3 +2,4 @@ node_modules/
 *.min.js
 *.swp
 *.swo
+map.js
