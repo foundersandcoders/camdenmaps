@@ -10,18 +10,14 @@
     var Config = require("./serverConfig.js");
     var MapConfig = require("./mapConfig.js");
     var faketoe = require("faketoe");
+    var handlers = require("../handlers/handlers.js");
 
     module.exports = {
         getHome: {
-            handler: function (req, res) {
-                res("GO SOMEWHERE");
-            }
+            handler: handlers.getHome        
         },
         nearest: {
             services: {
-                cors: {
-                    origin: ["*"]
-                },
                 handler: {
                     proxy: {
                         mapUri: MapConfig.servicesMapper,
@@ -30,9 +26,6 @@
                 }
             },
             locations: {
-                cors: {
-                    origin: ["*"]
-                },
                 handler: {
                     proxy: {
                         mapUri: MapConfig.locationsMapper,
@@ -41,9 +34,6 @@
                 }
             },
             servicesAndLocations: {
-                cors: {
-                    origin: ["*"]
-                },
                 handler: {
                     proxy: {
                         mapUri: MapConfig.servicesAndLocationsMapper,
@@ -53,14 +43,13 @@
             }
         },
         staticFiles: {
-            cors: {
-                origin: ["*"]
-            },
-            directory: {
-                path: "public",
-                listing: true,
-                index: true
+            handler: {
+                directory: {
+                    path: "../public",
+                    listing: true,
+                    index: true
+                }
             }
         }
-    }
+    };
 }());
