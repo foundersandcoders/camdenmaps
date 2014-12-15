@@ -10,11 +10,12 @@
     var Config = require("./serverConfig.js");
     var MapConfig = require("./mapConfig.js");
     var faketoe = require("faketoe");
+    var personalConfig = require("./personalConfig.js");
 
     module.exports = {
         getHome: {
             handler: function (req, res) {
-                res("GO SOMEWHERE");
+                res.file(personalConfig.emma + "/public/views/index.html");
             }
         },
         nearest: {
@@ -53,14 +54,16 @@
             }
         },
         staticFiles: {
-            cors: {
-                origin: ["*"]
-            },
-            directory: {
-                path: "public",
-                listing: true,
-                index: true
+            handler: {
+                cors: {
+                    origin: ["*"]
+                },
+                directory: {
+                    path: personalConfig.emma + "/public",
+                    listing: true,
+                    index: true
+                }
             }
         }
-    }
+    };
 }());

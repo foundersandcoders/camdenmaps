@@ -24,6 +24,11 @@
     */
         {
             method: "GET",
+            path: "/{param*}",
+            config: RoutesConfig.staticFiles
+        },
+        {
+            method: "GET",
             path: "/",
             config: RoutesConfig.getHome
         },

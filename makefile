@@ -1,5 +1,5 @@
 INPUT = ./server/public/css/main.scss
-OUTPUT = ./server/public/css/stylesheet.css
+OUTPUT = ./server/public/css/main.css
 
 sass-watch:
 	sass --watch \
