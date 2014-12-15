@@ -14,8 +14,8 @@
 
     module.exports = {
         getHome: {
-            handler: function (request, reply) {
-                reply.file(personalConfig.emma + "/public/views/index.html");
+            handler: function (req, res) {
+                res.file(personalConfig.emma + "/public/views/index.html");
             }
         },
         nearest: {
