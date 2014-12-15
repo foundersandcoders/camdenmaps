@@ -21,6 +21,7 @@ server.connection({
     port: process.env.PORT || config.server.port,
     labels: ["api"],
     routes: {
+        cors: true,
     	files: {
     		relativeTo: path.join(__dirname, 'server')
     	}
