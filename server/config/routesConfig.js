@@ -13,8 +13,8 @@
 
     module.exports = {
         getHome: {
-            handler: function (req, res) {
-                res.file("../public/index.html");
+            handler: function (request, reply) {
+                reply.file("/Users/emmamilner/PROJECTS/camdenmaps/server/public/views/index.html");
             }
         },
         nearest: {
@@ -44,11 +44,13 @@
             }
         },
         staticFiles: {
-            directory: {
-                path: "public",
-                listing: true,
-                index: true
+            handler: {
+                directory: {
+                    path: "./public",
+                    listing: true,
+                    index: true
+                }
             }
         }
-    }
+    };
 }());

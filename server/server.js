@@ -9,6 +9,7 @@
 var hapi = require("hapi");
 var config = require("../server/config/serverConfig.js");
 var routes = require("../server/config/routes.js");
+// var path = require('path');
 
 var internals = {};
 
@@ -19,10 +20,17 @@ var server = new hapi.Server();
 server.connection({
     port: process.env.PORT || config.server.port,
     labels: ["api"]
+    // ,
+    // routes: {
+    // 	files: {
+    // 		relativeTo: path.join('public', 'public')
+    // 	}
+    // }
 });
 
 //route server
 server.route(routes);
+
 
 //server start if not testing
 if(!module.parent) {
