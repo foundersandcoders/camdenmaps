@@ -32,17 +32,17 @@
         {
             method: "GET",
             path: "/services/{service}",
-            config: RoutesConfig.nearest.services 
+            config: RoutesConfig.nearest.services
         },
         {
             method: "GET",
             path: "/locations/{postcode}",
-            config: RoutesConfig.nearest.locations 
+            config: RoutesConfig.nearest.locations
         },
         {
             method: "GET",
             path: "/services/{service}/locations/{postcode}",
-            config: RoutesConfig.nearest.servicesAndLocations 
+            config: RoutesConfig.nearest.servicesAndLocations
         }
     //Catchall for assets *****************************
         // {
