@@ -20,7 +20,7 @@
             services: {
                 handler: {
                     proxy: {
-                        mapUri: MapConfig.servicesMapper,
+                        mapUri: MapConfig.nearestMapper,
                         onResponse: Config.convertToXml   
                     }
                 }
@@ -28,7 +28,7 @@
             locations: {
                 handler: {
                     proxy: {
-                        mapUri: MapConfig.locationsMapper,
+                        mapUri: MapConfig.nearestMapper,
                         onResponse: Config.convertToXml
                     }
                 }
@@ -36,7 +36,7 @@
             servicesAndLocations: {
                 handler: {
                     proxy: {
-                        mapUri: MapConfig.servicesAndLocationsMapper,
+                        mapUri: MapConfig.nearestMapper,
                         onResponse: Config.convertToXml
                     }
                 }
