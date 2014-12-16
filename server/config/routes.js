@@ -43,6 +43,11 @@
         method: "GET",
         path: "/services/{service}/locations/{postcode}",
         config: RoutesConfig.nearest.servicesAndLocations 
+    },
+    {
+        method: "GET",
+        path: "/api",
+        config: RoutesConfig.apiDocs
     }
 ];
 }());

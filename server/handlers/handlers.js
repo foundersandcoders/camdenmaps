@@ -7,6 +7,8 @@
 
     module.exports = {
         //handler: function (req, res) {  res(handlerbody)  }
-
+        showDocsHome: function showDocsHome (req, res) {
+        		res.file("../public/docs/index.html");
+        	}
     }
 }());
