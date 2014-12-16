@@ -25,7 +25,8 @@
             },
             query: {
                 service: "find=",
-                location: "area="
+                location: "area=",
+                uprn: "uprn="
             }
         },
 

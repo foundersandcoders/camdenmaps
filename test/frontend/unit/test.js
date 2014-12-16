@@ -1,20 +1,20 @@
-(function () {
-    "use strict";    
+// (function () {
+//     "use strict";    
 
-    describe("", function () {
+//     describe("", function () {
 
-        beforeEach("", function () {
-            var app = angular.module("testapp");
+//         beforeEach("", function () {
+//             var app = angular.module("testapp");
 
-            inject(function($dependencies){
+//             inject(function($dependencies){
                 
-            });
-        });
+//             });
+//         });
 
-        it("", function () {
+//         it("", function () {
 
-        });
+//         });
 
-    });
+//     });
 
-}());
+// }());

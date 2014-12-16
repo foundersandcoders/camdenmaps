@@ -24,6 +24,11 @@
     */
         {
             method: "GET",
+            path: "/{param*}",
+            config: RoutesConfig.staticFiles
+        },
+        {
+            method: "GET",
             path: "/",
             config: RoutesConfig.getHome
         },
@@ -48,6 +53,18 @@
         method: "GET",
         path: "/api",
         config: RoutesConfig.apiDocs
-    }
-];
+    },
+       
+
+        //Local Information Routes *********************
+
+        //Unsure where address information is coming from. Leaving for now.
+
+        {
+            //example uprn (for tests): 5023741
+            method: "GET",
+            path: "/local/locations/{uprn}",
+            config: RoutesConfig.local.information
+        }
+    ];
 }());
