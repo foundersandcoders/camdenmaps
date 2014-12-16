@@ -6,11 +6,11 @@ exports.config = {
   ],
 
   capabilities: {
-    'browserName': 'chrome',
+    'browserName': 'firefox',
     'platform': 'ANY'
   },
 
-  chromeOnly: true,
+  directConnect: true,
 
   baseUrl: 'http://0.0.0.0:8000/',
 
