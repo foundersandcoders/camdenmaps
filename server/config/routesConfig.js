@@ -42,6 +42,24 @@
                 }
             }
         },
+        local: {
+            // addresses: {
+            //     handler: {
+            //         proxy: {
+            //             mapUri: MapConfig.localInfoMapper,
+            //             onResponse: Config.convertToXml
+            //         }
+            //     }
+            // }
+            information: {
+                handler: {
+                    proxy: {
+                        mapUri: MapConfig.localMapper,
+                        onResponse: Config.convertToXml
+                    }
+                }
+            }
+        },
         staticFiles: {
             handler: {
                 directory: {
