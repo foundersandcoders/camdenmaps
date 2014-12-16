@@ -53,11 +53,7 @@
         //Local Information Routes *********************
 
         //Unsure where address information is coming from. Leaving for now.
-        // {
-        //     method: "GET",
-        //     path: "/addresses/{postcode}",
-        //     config: RoutesConfig.local.addresses
-        // },
+
         {
             //example uprn (for tests): 5023741
             method: "GET",
