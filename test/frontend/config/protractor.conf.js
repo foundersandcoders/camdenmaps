@@ -6,7 +6,7 @@ exports.config = {
   ],
 
   capabilities: {
-    'browserName': 'phantomjs',
+    'browserName': 'chrome',
     'platform': 'ANY'
   },
 

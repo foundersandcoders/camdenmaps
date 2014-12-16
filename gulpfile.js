@@ -6,8 +6,10 @@
         eslint = require("gulp-eslint"),
         karma = require("gulp-karma"),
         lab = require("gulp-lab"),
-        protractor = require("gulp-protractor"),
+        protractor = require("gulp-protractor").protractor,
         sass = require("gulp-sass"),
+        concat = require("gulp-concat"),
+        uglify = require("gulp-uglify"),
         ngAnnotate = require("gulp-ng-annotate");
 
     //file arrays
@@ -34,7 +36,6 @@
         return gulp.src(karmaTestFiles)
             .pipe(karma({
                 configFile: "./test/frontend/config/karma.config.js",
-                action: "watch"
             }))
             .on("error", function (err) {
                 throw err;
@@ -59,7 +60,7 @@
     gulp.task("sass-dev", function () {
         return gulp.src("./server/public/css/main.scss")
             .pipe(sass())
-            .pipe(gulp.dest("./server/public/css/stylesheet.css"));
+            .pipe(gulp.dest("./server/public/css/"));
     });
 
     //task for sassing production
@@ -68,28 +69,34 @@
             .pipe(sass({
                 outputStyle: "compressed"
             }))
-            .pipe(gulp.dest("./server/public/css/stylesheet"));
+            .pipe(gulp.dest("./server/public/css/"));
     });
 
     //task for minifying
     gulp.task("compress", function () {
        return gulp.src(angularFiles)
+            .pipe(concat('app.min.js'))
             .pipe(ngAnnotate())
-            .pipe(gulp.dest("./server/public/js"))
+            .pipe(uglify())
+            .pipe(gulp.dest("./server/public/js/"))
     });
 
     //task for travis
-    gulp.task("travis", ["lint", "sass-production", "acceptance-test", "compress"], function () {
-        return console.log("lint, sass, uglify and tests passed");
+    gulp.task("travis", ["sass-production", "acceptance-test", "compress"], function () {
+        return console.log("sass, uglify and tests passed");
     });
 
     //task for when developing
-    gulp.task("watch", ["lint", "sass-dev", "unit-test", "server-test"], function () {
+    gulp.task("file-watch",  function () {
         gulp.watch(allFiles, ["lint"]);
         gulp.watch("./server/public/css/main.scss", ["sass-dev"]);
+        console.log("gulp is watching for linting and sass changes...");
+    });
+
+    gulp.task("test-watch", function () {
         gulp.watch(karmaTestFiles, angularFiles, ["unit-test"]);
         gulp.watch(serverFiles.concat(serverTestFiles), ["server-test"]);
-        console.log("gulp is watching for changes...");
+        console.log("gulp is watching for test changes...");
     });
 
 }());
