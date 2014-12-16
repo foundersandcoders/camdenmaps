@@ -42,11 +42,19 @@
                 }
             }
         },
-        localInfo: {
-            addresses: {
+        local: {
+            // addresses: {
+            //     handler: {
+            //         proxy: {
+            //             mapUri: MapConfig.localInfoMapper,
+            //             onResponse: Config.convertToXml
+            //         }
+            //     }
+            // }
+            information: {
                 handler: {
                     proxy: {
-                        mapUri: MapConfig.nearestMapper,
+                        mapUri: MapConfig.localMapper,
                         onResponse: Config.convertToXml
                     }
                 }
