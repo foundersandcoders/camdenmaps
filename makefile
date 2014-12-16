@@ -23,3 +23,6 @@ lab-test-cov-html:
 	@node node_modules/lab/bin/lab -r html -o coverage.html test/api/test.js
 
 .PHONY-lab: test test-cov test-cov-html test/api/test.js
+
+protractor-test:
+	@node node_modules/protractor/bin/protractor test/frontend/acceptance/test.js
