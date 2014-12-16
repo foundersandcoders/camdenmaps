@@ -48,12 +48,13 @@
             method: "GET",
             path: "/services/{service}/locations/{postcode}",
             config: RoutesConfig.nearest.servicesAndLocations
+        },
+
+        //Local Information Routes *********************
+        {
+            method: "GET",
+            path: "/addresses/{postcode}",
+            config: RoutesConfig.localInfo.addresses
         }
-    //Catchall for assets *****************************
-        // {
-        //     method: "GET",
-        //     path: "/{file*}",
-        //     config: RoutesConfig.staticFiles
-        // }
     ];
 }());

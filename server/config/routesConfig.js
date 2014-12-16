@@ -42,6 +42,16 @@
                 }
             }
         },
+        localInfo: {
+            addresses: {
+                handler: {
+                    proxy: {
+                        mapUri: MapConfig.nearestMapper,
+                        onResponse: Config.convertToXml
+                    }
+                }
+            }
+        },
         staticFiles: {
             handler: {
                 directory: {
