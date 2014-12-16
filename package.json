@@ -21,6 +21,7 @@
     "hapi": "^8.0.0"
   },
   "devDependencies": {
+    "chromedriver": "^2.12.0",
     "code": "^1.2.1",
     "govuk_frontend_toolkit": "^3.1.0",
     "gulp": "^3.8.10",
