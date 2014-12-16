@@ -37,112 +37,112 @@
 
     });
 	
-	// describe("As a user, I want to be able to enter a Camden areacode so that I can find the nearest point of interest to me.", function () {
+	describe("As a user, I want to be able to enter a Camden areacode so that I can find the nearest point of interest to me.", function () {
 
- //        beforeEach("Given that", function () {
- //        	browser.get('http://www.angularjs.org');
- //        });
+        beforeEach("Given that", function () {
+        	browser.get('http://www.angularjs.org');
+        });
 
- //        it("a areacode is entered, then it is validated to ensure it is a valid Camden areacode.", function () {
+        it("a areacode is entered, then it is validated to ensure it is a valid Camden areacode.", function () {
 
- //        });
- //        it("an invalid areacode is entered, then a message informs the user that the areacode is either not correct or in Camden.", function () {
+        });
+        it("an invalid areacode is entered, then a message informs the user that the areacode is either not correct or in Camden.", function () {
 
- //        });
- //        it("a areacode and service are searched, then a list of nearby services is displayed, arranged by distance and with information about: name, address, distance from areacode.", function () {
+        });
+        it("a areacode and service are searched, then a list of nearby services is displayed, arranged by distance and with information about: name, address, distance from areacode.", function () {
 
- //        });
- //        it("an item in the list of nearby services is clicked, then the map is centered on the corresponding pin and its information box opens.", function () {
+        });
+        it("an item in the list of nearby services is clicked, then the map is centered on the corresponding pin and its information box opens.", function () {
 
- //        });
- //        it("a pin on the map is clicked, then the map centres the pin on the map and highlights it in the list and displays its information box the on map.", function () {
+        });
+        it("a pin on the map is clicked, then the map centres the pin on the map and highlights it in the list and displays its information box the on map.", function () {
 
- //        });
- //        it("the information box is displayed, then it contains contains its information for example: phone number, website, description, opening hours, (?).", function () {
+        });
+        it("the information box is displayed, then it contains contains its information for example: phone number, website, description, opening hours, (?).", function () {
 
- //        });
- //        it("a service category is not selected but areacode has been entered, then a message appears to prompt the user to select a service category.", function () {
+        });
+        it("a service category is not selected but areacode has been entered, then a message appears to prompt the user to select a service category.", function () {
 
- //        });
- //        it("the enter key is pressed, then the search criteria are submitted.", function () {
+        });
+        it("the enter key is pressed, then the search criteria are submitted.", function () {
 
- //        });
- //        it("the map is clicked and dragged, then it moves to reveal more nearby pins.", function () {
+        });
+        it("the map is clicked and dragged, then it moves to reveal more nearby pins.", function () {
 
- //        });
+        });
 
- //    });
+    });
 
-	// describe("As a user, I want to be able to enter a Camden street name so that I can find the nearest point of interest to me.", function () {
+	describe("As a user, I want to be able to enter a Camden street name so that I can find the nearest point of interest to me.", function () {
 
- //        beforeEach("Given that", function () {
- //        	browser.get('http://www.angularjs.org');
- //        });
+        beforeEach("Given that", function () {
+        	browser.get('http://www.angularjs.org');
+        });
 
- //        it("a street name is entered, then it is validated to ensure it is a valid Camden street name.", function () {
+        it("a street name is entered, then it is validated to ensure it is a valid Camden street name.", function () {
 
- //        });
- //        it("an invalid street name is entered, then a message informs the user that the street name is either not correct or in Camden.", function () {
+        });
+        it("an invalid street name is entered, then a message informs the user that the street name is either not correct or in Camden.", function () {
 
- //        });
- //        it("a street name and service are searched, then a list of nearby services is displayed, arranged by distance and with information about: name, address, distance from street name.", function () {
+        });
+        it("a street name and service are searched, then a list of nearby services is displayed, arranged by distance and with information about: name, address, distance from street name.", function () {
 
- //        });
- //        it("an item in the list of nearby services is clicked, then the map is centered on the corresponding pin and its information box opens.", function () {
+        });
+        it("an item in the list of nearby services is clicked, then the map is centered on the corresponding pin and its information box opens.", function () {
 
- //        });
- //        it("a pin on the map is clicked, then the map centres the pin on the map and highlights it in the list and displays its information box the on map.", function () {
+        });
+        it("a pin on the map is clicked, then the map centres the pin on the map and highlights it in the list and displays its information box the on map.", function () {
 
- //        });
- //        it("the information box is displayed, then it contains contains its information for example: phone number, website, description, opening hours, (?).", function () {
+        });
+        it("the information box is displayed, then it contains contains its information for example: phone number, website, description, opening hours, (?).", function () {
 
- //        });
- //        it("a service category is not selected but street name has been entered, then a message appears to prompt the user to select a service category.", function () {
+        });
+        it("a service category is not selected but street name has been entered, then a message appears to prompt the user to select a service category.", function () {
 
- //        });
- //        it("the enter key is pressed, then the search criteria are submitted.", function () {
+        });
+        it("the enter key is pressed, then the search criteria are submitted.", function () {
 
- //        });
- //        it("the map is clicked and dragged, then it moves to reveal more nearby pins.", function () {
+        });
+        it("the map is clicked and dragged, then it moves to reveal more nearby pins.", function () {
 
- //        });
+        });
 
- //    });
+    });
 	
-    // describe("As a user I want to select multiple service categories from a scolling list", function () {
+    describe("As a user I want to select multiple service categories from a scolling list", function () {
 
-    //     beforeEach("Given that", function () {
-    //     	browser.get('http://www.angularjs.org');
-    //     });
+        beforeEach("Given that", function () {
+        	browser.get('http://www.angularjs.org');
+        });
 
-    //     it("one service is selected, then the list of nearby service items are displayed as well as their corresponding pins on the map.", function () {
+        it("one service is selected, then the list of nearby service items are displayed as well as their corresponding pins on the map.", function () {
 
-    //     });
-    //     it("multiple services are selected, the list of all these nearby service items are displayed simultaneously as well as their corresponding pins on the map.", function () {
+        });
+        it("multiple services are selected, the list of all these nearby service items are displayed simultaneously as well as their corresponding pins on the map.", function () {
 
-    //     });
-    //     it("multiple services are selected, the list of services are colour coded depending on their category and this colour coding is repeated on their pins on the map.", function () {
+        });
+        it("multiple services are selected, the list of services are colour coded depending on their category and this colour coding is repeated on their pins on the map.", function () {
 
-    //     });
-    //     it("a selected service is unselected, its corresponding items and pins disappear from their corresponding displays.", function () {
+        });
+        it("a selected service is unselected, its corresponding items and pins disappear from their corresponding displays.", function () {
 
-    //     });
+        });
 
-    // });
+    });
 
-    // describe("As a user, I want to find contact information for service items so that I can contact them easily.", function () {
+    describe("As a user, I want to find contact information for service items so that I can contact them easily.", function () {
 
-    //     beforeEach("Given that", function () {
-    //     	browser.get('http://www.angularjs.org');
-    //     });
+        beforeEach("Given that", function () {
+        	browser.get('http://www.angularjs.org');
+        });
 
-    //     it("a phone number is clicked on a mobile device, the number is dialled automatically.", function () {
+        it("a phone number is clicked on a mobile device, the number is dialled automatically.", function () {
 
-    //     });
-    //     it("the service name is clicked, the service's website is opened in a new tab or window.", function () {
+        });
+        it("the service name is clicked, the service's website is opened in a new tab or window.", function () {
 
-    //     });
+        });
 
-    // });
+    });x
 
 }());
