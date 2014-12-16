@@ -38,7 +38,6 @@
         },
         localMapper: function localInfoMapper (req, cb) {
             var uprn = req.params.uprn;
-            console.log(uprn);
 
             var query = "?" + exactLocations + uprn + "&tab=m";
 
