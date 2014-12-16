@@ -7,11 +7,23 @@ maps.camden.gov.uk site
 To run, use command:
 
 ```
-node server/server.js
+npm start
 ```
-To run lab tests, use command: 
+
+
+To run acceptance tests, use command: 
 ```
-make lab-test
+npm test
+```
+
+To run server tests, use command: 
+```
+gulp server-test
+```
+
+To run unit tests, use command: 
+```
+gulp unit-test
 ```
 
 To include gov.uk sass files in our project simple import!
