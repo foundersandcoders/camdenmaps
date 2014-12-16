@@ -11,24 +11,37 @@
 (function () {
     "use strict";
 
-    var Config = require("./serverConfig.js");
+    var Config = require("./serverConfig.js"),
+        url = Config.map.url,
+        services = Config.map.query.service,
+        locations = Config.map.query.location,
+        exactLocations = Config.map.query.uprn;
 
     module.exports = {
 
-        servicesMapper: function servicesMapper (req, cb) {
-            var query = "?" + Config.map.query.service + req.params.service;
-            return cb(null, Config.map.url.nearestApi + query, { "Accept": "application/json" });
-        },
+        nearestMapper: function nearestMapper (req, cb) {
+            var service = req.params.service,
+                location = req.params.postcode;
 
-        locationsMapper: function locationsMapper (req, cb) {
-            var query = "?" + Config.map.query.location + req.params.postcode;
-            return cb(null, Config.map.url.nearestApi + query, { "Accept": "application/json" });
-        },
+            if (location === undefined) {
+                var query = "?" + services + service;
 
-        servicesAndLocationsMapper: function servicesAndLocationsMapper (req, cb) {
-            var query = "?" + Config.map.query.location + req.params.postcode + 
-                        "&" + Config.map.query.service + req.params.service;
-            return cb(null, Config.map.url.nearestApi + query, { "Accept": "application/json" });
+            } else if (service === undefined) {
+                var query = "?" + locations + location;
+
+            } else {
+                var query = "?" + locations + location + 
+                    "&" + services + service;
+
+            }
+            return cb(null, url.nearestApi + query, { "Accept": "application/json" });
+        },
+        localMapper: function localInfoMapper (req, cb) {
+            var uprn = req.params.uprn;
+
+            var query = "?" + exactLocations + uprn + "&tab=m";
+
+            return cb(null, url.nearestApi + query, { "Accept": "application/json" });
         }
     }
 

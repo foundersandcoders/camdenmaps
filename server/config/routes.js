@@ -24,6 +24,11 @@
     */
         {
             method: "GET",
+            path: "/{param*}",
+            config: RoutesConfig.staticFiles
+        },
+        {
+            method: "GET",
             path: "/",
             config: RoutesConfig.getHome
         },
@@ -32,23 +37,28 @@
         {
             method: "GET",
             path: "/services/{service}",
-            config: RoutesConfig.nearest.services 
+            config: RoutesConfig.nearest.services
         },
         {
             method: "GET",
             path: "/locations/{postcode}",
-            config: RoutesConfig.nearest.locations 
+            config: RoutesConfig.nearest.locations
         },
         {
             method: "GET",
             path: "/services/{service}/locations/{postcode}",
-            config: RoutesConfig.nearest.servicesAndLocations 
+            config: RoutesConfig.nearest.servicesAndLocations
+        },
+
+        //Local Information Routes *********************
+
+        //Unsure where address information is coming from. Leaving for now.
+
+        {
+            //example uprn (for tests): 5023741
+            method: "GET",
+            path: "/local/locations/{uprn}",
+            config: RoutesConfig.local.information
         }
-    //Catchall for assets *****************************
-        // {
-        //     method: "GET",
-        //     path: "/{file*}",
-        //     config: RoutesConfig.staticFiles
-        // }
     ];
 }());

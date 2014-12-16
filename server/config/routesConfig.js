@@ -10,49 +10,64 @@
     var Config = require("./serverConfig.js");
     var MapConfig = require("./mapConfig.js");
     var faketoe = require("faketoe");
+    var handlers = require("../handlers/handlers.js");
 
     module.exports = {
         getHome: {
-            handler: function (req, res) {
-                res("GO SOMEWHERE");
-            }
+            handler: handlers.getHome        
         },
         nearest: {
             services: {
-                cors: true,
                 handler: {
                     proxy: {
-                        mapUri: MapConfig.servicesMapper,
+                        mapUri: MapConfig.nearestMapper,
                         onResponse: Config.convertToXml   
                     }
                 }
             },
             locations: {
-                cors: true,
                 handler: {
                     proxy: {
-                        mapUri: MapConfig.locationsMapper,
+                        mapUri: MapConfig.nearestMapper,
                         onResponse: Config.convertToXml
                     }
                 }
             },
             servicesAndLocations: {
-                cors: true,
                 handler: {
                     proxy: {
-                        mapUri: MapConfig.servicesAndLocationsMapper,
+                        mapUri: MapConfig.nearestMapper,
+                        onResponse: Config.convertToXml
+                    }
+                }
+            }
+        },
+        local: {
+            // addresses: {
+            //     handler: {
+            //         proxy: {
+            //             mapUri: MapConfig.localInfoMapper,
+            //             onResponse: Config.convertToXml
+            //         }
+            //     }
+            // }
+            information: {
+                handler: {
+                    proxy: {
+                        mapUri: MapConfig.localMapper,
                         onResponse: Config.convertToXml
                     }
                 }
             }
         },
         staticFiles: {
-            cors: true,
-            directory: {
-                path: "public",
-                listing: true,
-                index: true
+            handler: {
+                directory: {
+                    path: "../public",
+                    listing: true,
+                    index: true
+                }
             }
         }
-    }
+    };
 }());

@@ -17,8 +17,8 @@ before_install:
 
 language: node_js
 
-# script: 
-#    - gulp ci
+script: 
+    - gulp travis
 
 install: 
     - npm install

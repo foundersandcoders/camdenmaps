@@ -2,3 +2,7 @@ node_modules/
 *.min.js
 *.swp
 *.swo
+personalConfig.js
+npm-debug.log
+.sass-cache/
+ 
