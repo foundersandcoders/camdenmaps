@@ -11,5 +11,5 @@
         getHome: function getHome (req, res) {
             res.file("../public/views/index.html");
         }
-    }
+    };
 }());

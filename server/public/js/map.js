@@ -6,7 +6,7 @@ function ajaxCall (url, callback) {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             callback(xmlhttp.responseText);
         }
-    }
+    };
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 }
@@ -20,7 +20,7 @@ document.getElementById("search").addEventListener("click", function (e) {
     ajaxCall("https://camdenmaps.herokuapp.com/services/" + service + "/locations/" + location,function (data) {
         console.log(data);
         document.getElementById("results").innerHTML = data;
-    })
+    });
 
 });
 
