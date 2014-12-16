@@ -10,6 +10,8 @@ exports.config = {
     'platform': 'ANY'
   },
 
+  chromeDriver: "../../../node_modules/chromedriver/bin/chromedriver",
+
   directConnect: true,
 
   baseUrl: 'http://0.0.0.0:8000/',
