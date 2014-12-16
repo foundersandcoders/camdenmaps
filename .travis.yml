@@ -1,29 +1,28 @@
-branches: 
-    only: 
-    - master
-
-node_js: 
-    - 0.10.32
-
-addons: 
-    code-climate: 
-        repo-token: 3b3b855c93bf2d870a29b319ba03b5ad0edaf79fd7a6d94e038d49c6cb2a7d95
-
-after_script: 
-    - cat lcov.info | codeclimate
-
-before_install: 
-    - npm install -g gulp
-
-language: node_js
-
 script: 
-    - gulp travis
-
+- gulp travis
+before_script:
+- bash ./scripts/sauce_connector.sh
+language: node_js
+after_script: 
+- cat lcov.info | codeclimate
+addons: 
+  code-climate: 
+    repo-token: 3b3b855c93bf2d870a29b319ba03b5ad0edaf79fd7a6d94e038d49c6cb2a7d95
+deploy: 
+  api_key: 
+    secure: f9Y+fhjYSyJBNtml6TgaQJbUyouhAVSXcEEL1YGPKb0ioJls9C/y5oNaOszgA5+BzyqHHmgXkd8G6Rgg6/qZ2kq2g8gyoYINAiCNR0mXYNGtJtVdpLKY7YWqe37UfL6PbbKoI+fkh7gKQyEjuKLonQ181JGPeJQHHSdvARmAu0M=
+  provider: heroku
+  app: camdenmaps
+branches: 
+  only: 
+  - master
+env: 
+  global: 
+   - secure: "Oa/eTqnTiR+VQ7Wv6be3yehqNn0mQ0FrU5sEGL+BM23/RcpDdrFzPaQzALOGo5g6Eq3UubBOY3udKrWNd8+yQaGm+iLYyOIdN1kRWG5VFlcOqDMTioQcc06mkcfVrN/zD7aRtw70z/iUxkTVO0MMsrDek4TKouDL7hvhGGLdikk="
+   - secure: "p/BpgDbuxJ8kvPwds0qAEsjaa0V0wRK0gVEZFXSdIkZ1la31I4cDsobVMyCYd9TiQM6LWEbXuYyhQPzkkIBN/pxBJFMhtCgFPN2pCtzS3vkHrsb+OCVwLnwW+X2i98X2krQd4HFDcC/tVPbK7hgzGOzv9nBYhWI5bUJiT20Eifc="
 install: 
-    - npm install
-deploy:
-    provider: heroku
-    app: camdenmaps 
-    api_key: 
-        secure: f9Y+fhjYSyJBNtml6TgaQJbUyouhAVSXcEEL1YGPKb0ioJls9C/y5oNaOszgA5+BzyqHHmgXkd8G6Rgg6/qZ2kq2g8gyoYINAiCNR0mXYNGtJtVdpLKY7YWqe37UfL6PbbKoI+fkh7gKQyEjuKLonQ181JGPeJQHHSdvARmAu0M=
+- npm install
+node_js: 
+- 0.10.32
+before_install: 
+- npm install -g gulp
