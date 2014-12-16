@@ -18,8 +18,7 @@ install:
 - npm install
 
 branches: 
-  only: 
-  - master
+  only: master
 
 after_script: 
 - cat lcov.info | codeclimate
