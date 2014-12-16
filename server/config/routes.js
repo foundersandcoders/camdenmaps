@@ -48,12 +48,17 @@
             method: "GET",
             path: "/services/{service}/locations/{postcode}",
             config: RoutesConfig.nearest.servicesAndLocations
+        },
+
+        //Local Information Routes *********************
+
+        //Unsure where address information is coming from. Leaving for now.
+
+        {
+            //example uprn (for tests): 5023741
+            method: "GET",
+            path: "/local/locations/{uprn}",
+            config: RoutesConfig.local.information
         }
-    //Catchall for assets *****************************
-        // {
-        //     method: "GET",
-        //     path: "/{file*}",
-        //     config: RoutesConfig.staticFiles
-        // }
     ];
 }());

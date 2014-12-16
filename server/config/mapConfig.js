@@ -14,7 +14,8 @@
     var Config = require("./serverConfig.js"),
         url = Config.map.url,
         services = Config.map.query.service,
-        locations = Config.map.query.location;
+        locations = Config.map.query.location,
+        exactLocations = Config.map.query.uprn;
 
     module.exports = {
 
@@ -35,6 +36,13 @@
             }
             return cb(null, url.nearestApi + query, { "Accept": "application/json" });
         },
+        localMapper: function localInfoMapper (req, cb) {
+            var uprn = req.params.uprn;
+
+            var query = "?" + exactLocations + uprn + "&tab=m";
+
+            return cb(null, url.nearestApi + query, { "Accept": "application/json" });
+        }
     }
 
 }());
