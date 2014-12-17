@@ -7,9 +7,9 @@ before_install:
     - npm install -g gulp
 
 addons: 
-    - code-climate: 
-        repo-token: 3b3b855c93bf2d870a29b319ba03b5ad0edaf79fd7a6d94e038d49c6cb2a7d95
-    - sauce_connect: true
+    code-climate: 
+      repo-token: 3b3b855c93bf2d870a29b319ba03b5ad0edaf79fd7a6d94e038d49c6cb2a7d95
+    sauce_connect: true
 
 script: 
     - gulp travis
