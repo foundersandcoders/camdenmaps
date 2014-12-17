@@ -1,20 +1,30 @@
+/*************************************************
+*   test.js
+*   Description: Acceptance tests are written here
+*   Use: run tests by npm test
+*
+**************************************************/
+
 (function () {
     "use strict";
+
+/**********************************************
+	Wheres my Nearest Specific Tests go here
+***********************************************/
 
     describe("As a user, I want to be able to enter a Camden postcode so that I can find the nearest point of interest to me.", function () {
 
         beforeEach("Given that", function () {
         	browser.get(baseUrl);
         });
-
         it("a postcode is entered, then it is validated to ensure it is a valid Camden postcode.", function () {
-
+        	//Need to test
         });
         it("an invalid postcode is entered, then a message informs the user that the postcode is either not correct or in Camden.", function () {
-
+        	//Need to test
         });
         it("a postcode and service are searched, then a list of nearby services is displayed, arranged by distance and with information about: name, address, distance from postcode.", function () {
-
+        	//Need to test
         });
         it("an item in the list of nearby services is clicked, then the map is centered on the corresponding pin and its information box opens.", function () {
 
@@ -112,11 +122,31 @@
     describe("As a user I want to select multiple service categories from a scolling list", function () {
 
         beforeEach("Given that", function () {
-        	browser.get('http://www.angularjs.org');
+        	browser.get();
         });
+///////////////////////////////////////////
+        it("the drop down menu for services is selected, then there are 86 services to choose from", function () {
+        	// optgroup = 10
+        	var servicesList = element.all(by.repeater('match in matches'));
 
+        	expect(servicesList.count()).toEqual(86);
+        });
+        it("the drop down menu for services is selected, then there are 10 service categories to choose from", function () {
+        	// option = 86
+        	var serviceCategories = element.all(by.repeater('match in matches'));
+
+        	expect(serviceCategories.count()).toEqual(10);
+        });
         it("one service is selected, then the list of nearby service items are displayed as well as their corresponding pins on the map.", function () {
-
+        	//helper function to select option from dropdown list
+        	var selectDropdownbyNum = function ( element, optionNum ) {
+			  	if (optionNum){
+			    	var options = element.findElements(by.tagName('option'))   
+			      	.then(function(options){
+			        	options[optionNum].click();
+			      	});
+			  	}
+			};
         });
         it("multiple services are selected, the list of all these nearby service items are displayed simultaneously as well as their corresponding pins on the map.", function () {
 
