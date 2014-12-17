@@ -126,14 +126,14 @@
         });
 ///////////////////////////////////////////
         it("the drop down menu for services is selected, then there are 86 services to choose from", function () {
-        	// optgroup = 10
-        	var servicesList = element.all(by.repeater('match in matches'));
+        	
+        	var servicesList = element.all(by.repeater('option in options'));
 
         	expect(servicesList.count()).toEqual(86);
         });
         it("the drop down menu for services is selected, then there are 10 service categories to choose from", function () {
-        	// option = 86
-        	var serviceCategories = element.all(by.repeater('match in matches'));
+
+        	var serviceCategories = element.all(by.repeater('optgroup in optgoups'));
 
         	expect(serviceCategories.count()).toEqual(10);
         });
