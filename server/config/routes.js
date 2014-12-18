@@ -54,11 +54,7 @@
         path: "/api",
         config: RoutesConfig.apiDocs
     },
-    {
-        method: "GET",
-        path: "/api/{param*}",
-        config: RoutesConfig.getApiFiles
-    },
+    
        
 
         //Local Information Routes *********************

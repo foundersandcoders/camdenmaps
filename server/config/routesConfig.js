@@ -46,13 +46,7 @@
         apiDocs: {
             handler: handlers.showDocsHome
         },
-        getApiFiles: {
-            handler: {
-                directory: {
-                    path: "/public"
-                }
-            }
-        },
+       
         local: {
             // addresses: {
             //     handler: {
