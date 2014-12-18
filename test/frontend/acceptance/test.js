@@ -8,8 +8,26 @@
 (function () {
     "use strict";
 
+
+//Below describe block subject to change
+    describe("As a user, I want to have clear call to actions when I arrive on the landing page", function () {
+
+        it("There are three call to action buttons", function() {
+            // Find your Nearest
+            // About your Neighbourhood
+            // Live Streetworks
+        });
+        it("The header loads with proper attributes", function() {
+            //Test image loads
+            //test alt test is accessible
+            //test positioning attributes are correct (?)
+        });
+
+    });
+
+
 /**********************************************
-	Wheres my Nearest Specific Tests go here
+    Wheres my Nearest Specific Tests go here
 ***********************************************/
 
     describe("As a user, I want to be able to enter a Camden postcode so that I can find the nearest point of interest to me.", function () {
@@ -22,27 +40,28 @@
         });
         it("an invalid postcode is entered, then a message informs the user that the postcode is either not correct or in Camden.", function () {
         	//Need to test
+            //load the page and find the correct text on it after an invalid postcode is entered.
         });
         it("a postcode and service are searched, then a list of nearby services is displayed, arranged by distance and with information about: name, address, distance from postcode.", function () {
         	//Need to test
         });
         it("an item in the list of nearby services is clicked, then the map is centered on the corresponding pin and its information box opens.", function () {
-
+            //Need to test
         });
         it("a pin on the map is clicked, then the map centres the pin on the map and highlights it in the list and displays its information box the on map.", function () {
-
+            //Need to test
         });
         it("the information box is displayed, then it contains contains its information for example: phone number, website, description, opening hours, (?).", function () {
-
+             //Need to test
         });
         it("a service category is not selected but postcode has been entered, then a message appears to prompt the user to select a service category.", function () {
-
+             //Need to test
         });
         it("the enter key is pressed, then the search criteria are submitted.", function () {
-
+             //Need to test
         });
         it("the map is clicked and dragged, then it moves to reveal more nearby pins.", function () {
-
+             //Need to test
         });
 
     });
@@ -54,31 +73,31 @@
         });
 
         it("a areacode is entered, then it is validated to ensure it is a valid Camden areacode.", function () {
-
+             //Need to test
         });
         it("an invalid areacode is entered, then a message informs the user that the areacode is either not correct or in Camden.", function () {
-
+             //Need to test
         });
         it("a areacode and service are searched, then a list of nearby services is displayed, arranged by distance and with information about: name, address, distance from areacode.", function () {
-
+             //Need to test
         });
         it("an item in the list of nearby services is clicked, then the map is centered on the corresponding pin and its information box opens.", function () {
-
+             //Need to test
         });
         it("a pin on the map is clicked, then the map centres the pin on the map and highlights it in the list and displays its information box the on map.", function () {
-
+             //Need to test
         });
         it("the information box is displayed, then it contains contains its information for example: phone number, website, description, opening hours, (?).", function () {
-
+             //Need to test
         });
         it("a service category is not selected but areacode has been entered, then a message appears to prompt the user to select a service category.", function () {
-
+             //Need to test
         });
         it("the enter key is pressed, then the search criteria are submitted.", function () {
-
+             //Need to test
         });
         it("the map is clicked and dragged, then it moves to reveal more nearby pins.", function () {
-
+             //Need to test
         });
 
     });
@@ -90,31 +109,31 @@
         });
 
         it("a street name is entered, then it is validated to ensure it is a valid Camden street name.", function () {
-
+             //Need to test
         });
         it("an invalid street name is entered, then a message informs the user that the street name is either not correct or in Camden.", function () {
-
+             //Need to test
         });
         it("a street name and service are searched, then a list of nearby services is displayed, arranged by distance and with information about: name, address, distance from street name.", function () {
-
+             //Need to test
         });
         it("an item in the list of nearby services is clicked, then the map is centered on the corresponding pin and its information box opens.", function () {
-
+             //Need to test
         });
         it("a pin on the map is clicked, then the map centres the pin on the map and highlights it in the list and displays its information box the on map.", function () {
-
+             //Need to test
         });
         it("the information box is displayed, then it contains contains its information for example: phone number, website, description, opening hours, (?).", function () {
-
+             //Need to test
         });
         it("a service category is not selected but street name has been entered, then a message appears to prompt the user to select a service category.", function () {
-
+             //Need to test
         });
         it("the enter key is pressed, then the search criteria are submitted.", function () {
-
+             //Need to test
         });
         it("the map is clicked and dragged, then it moves to reveal more nearby pins.", function () {
-
+             //Need to test
         });
 
     });
