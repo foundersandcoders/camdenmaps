@@ -124,15 +124,14 @@
         beforeEach("Given that", function () {
         	browser.get();
         });
-///////////////////////////////////////////
         it("the drop down menu for services is selected, then there are 86 services to choose from", function () {
-        	
+        	//won't work until we set up "ng-options"
         	var servicesList = element.all(by.repeater('option in options'));
 
         	expect(servicesList.count()).toEqual(86);
         });
         it("the drop down menu for services is selected, then there are 10 service categories to choose from", function () {
-
+        	//won't work until we set up "ng-options"
         	var serviceCategories = element.all(by.repeater('optgroup in optgoups'));
 
         	expect(serviceCategories.count()).toEqual(10);
@@ -147,6 +146,7 @@
 			      	});
 			  	}
 			};
+			expect(element(by.model('services')).$('option:checked').getText()).toEqual('Police Station');
         });
         it("multiple services are selected, the list of all these nearby service items are displayed simultaneously as well as their corresponding pins on the map.", function () {
 

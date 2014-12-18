@@ -19,6 +19,7 @@
   "homepage": "https://github.com/foundersandcoders/camdenmaps",
   "dependencies": {
     "faketoe": "^2.0.2",
+    "glue": "^2.0.0",
     "hapi": "^8.0.0"
   },
   "devDependencies": {
