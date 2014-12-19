@@ -19,9 +19,7 @@
   "homepage": "https://github.com/foundersandcoders/camdenmaps",
   "dependencies": {
     "faketoe": "^2.0.2",
-    "hapi": "^8.0.0",
-    "json2yaml": "~1.0",
-    "js-yaml": "~3.0"
+    "hapi": "^8.0.0"
   },
   "devDependencies": {
     "chromedriver": "^2.12.0",
@@ -40,6 +38,8 @@
     "jasmine-core": "^2.1.3",
     "karma-jasmine": "^0.3.2",
     "lab": "^5.1.0",
-    "protractor": "^1.5.0"
+    "protractor": "^1.5.0",
+    "json2yaml": "~1.0",
+    "js-yaml": "~3.0"
   }
 }
