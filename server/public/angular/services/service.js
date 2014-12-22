@@ -5,6 +5,9 @@
 
 (function () {
     "use strict";
-//      var serviceModule = angular.module("ServiceModule", []);
-//      serviceModule.service("ServiceName", require(importedService));
+
+    var serviceModule = angular.module("ServiceModule", []);
+
+    //serviceModule.service("ServiceName", require(importedService));
+
 }());

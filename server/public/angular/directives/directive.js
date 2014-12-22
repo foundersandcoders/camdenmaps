@@ -5,6 +5,7 @@
 
 (function () {
     "use strict";
-//      var directiveModule = angular.module("DirectiveModule", []);
-//      directiveModule.directive("DirectiveName", require(importedDirective))
+
+    var directiveModule = angular.module("DirectiveModule", []);
+    //directiveModule.directive("DirectiveName", require(importedDirective));
 }());
