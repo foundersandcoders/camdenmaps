@@ -1,5 +1,19 @@
- .map {
-	height: 500px;
-	width: 90%;
-	padding: 20px 10px;
-}
+/***********************************************
+*   MAIN SCSS FILE
+*   Description: Include all stylesheets here 
+	for mapping to css
+************************************************/
+
+
+
+
+
+
+
+//Imports for our files below
+
+@import 'base/layout',
+	'base/mobile-layout',
+	'partials/buttonsAndForms',
+	'partials/mixins',
+	'partials/typography';
