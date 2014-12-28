@@ -1,4 +1,61 @@
-.map {
-  height: 500px;
-  width: 90%;
-  padding: 20px 10px; }
+/***********************************************
+*   MAIN SCSS FILE
+*   Description: Include all stylesheets here 
+	for mapping to css
+************************************************/
+/***********************************************
+*   LAYOUT
+*   Description: Desktop Styling going here.
+************************************************/
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+/***********************************************
+*   MOBILE LAYOUT HERE
+*   Description: Mobile and tablet
+	specific styling 
+************************************************/
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+/***********************************************
+*   BUTTONS AND FORMS
+*   Description: for button and forms related
+*	mixins and variables.
+************************************************/
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+/***********************************************
+*   MIXINS
+*   Description: for general sass mixins 
+************************************************/
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+/***********************************************
+*   TYPOGRAPHY
+*   Description: for typography mixins and 
+*   variables. Use gov frontend for guidelines.
+************************************************/
+@font-face {
+  font-family: GDS-Logo;
+  src: local("HelveticaNeue"), local("Helvetica Neue"), local("Arial"), local("Helvetica"); }
+
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }

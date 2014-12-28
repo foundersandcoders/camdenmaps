@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "AAAC,IAAK;EACL,MAAM,EAAE,KAAK;EACb,KAAK,EAAE,GAAG;EACV,OAAO,EAAE,SAAS",
-"sources": ["main.scss"],
+"mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;AA2BA,aAEC;EADC,KAAK,EAAE,YAAY;;AAGrB,YAEC;EADC,KAAK,EAAE,YAAY;;ACHrB,UAMC;EALC,WAAW,EAAE,QAAQ;EACrB,GAAG,EAAE,mFAAsB;;ADJ7B,aAEC;EADC,KAAK,EAAE,YAAY;;AAGrB,YAEC;EADC,KAAK,EAAE,YAAY",
+"sources": ["../../../node_modules/govuk_frontend_toolkit/stylesheets/_conditionals.scss","../../../node_modules/govuk_frontend_toolkit/stylesheets/_font_stack.scss"],
 "names": [],
 "file": "main.css"
 }
