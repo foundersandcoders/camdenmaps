@@ -1,68 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="camden-maps">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" style="text/css" href="./css/main.css">
-    <link rel="stylesheet" href="http://openlayers.org/en/v3.0.0/css/ol.css" type="text/css">
-    <script src="http://openlayers.org/en/v3.0.0/build/ol.js" type="text/javascript"></script>
-    <title>Camden Maps</title>
-  </head>
-  <body>
-    <div id="main div">
-      <div id= "navbar">
-        <!-- Camden logo goes here -->
-      </div>
-      <div class= "row", id="obtionBar">
-        <div class ="span4",id="findMyNearest">
-          <a ui-sref="findMyNearest.list">     
-            <img src= class= "img-circl">
-          </a>
-          <h4>Find Your Nearest</h4>
-        </div>
-        <div class= "span4",id="aboutYourNeighbourhod">
-          <img>
-          <h4>About Your Neighbourhood</h4>
-        </div>
-        <div class= "span4"id="liveStreetworks">
-          <img>
-          <h4>Live Streetworks</h4>
-        </div>
-        <div ui-view>
-          <h4>Find Your Nearest</h4>
-          <div id="myCarousel" class="carousel slide">
-            <ol class="carousel-indicators">
-              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-              <li data-target="#myCarousel" data-slide-to="1"></li>
-              <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-            <!-- Carousel items -->
-            <div class="carousel-inner">
-              <div class="active item">
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
-              <div class="item">
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
-              <div class="item">
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" style="text/css" href="./css/main.css">
+        <link rel="stylesheet" href="http://openlayers.org/en/v3.0.0/css/ol.css" type="text/css">
+        <script src="http://openlayers.org/en/v3.0.0/build/ol.js" type="text/javascript"></script>
+        <title>Camden Maps</title>
+    </head>
+
+    <header>
+        <img src="../img/camdenlogo.png" alt="Camden">
+    </header>
+
+    <body>
+        <div class="container-fluid">
+            <div id="obtionBar">
+                <div class="span4",id="findMyNearest">
+                    <a ui-sref="findMyNearest.list">     
+                        <img src="../img/icons/">
+                    </a>
+                    <h4>Find Your Nearest</h4>
+                </div>
+                <div class= "span4",id="aboutYourNeighbourhod">
+                    <img src="../img/icons/">
+                    <h4>About Your Neighbourhood</h4>
+                </div>
+                <div class= "span4"id="liveStreetworks">
+                    <img src="../img/icons/">
+                    <h4>Live Streetworks</h4>
+                </div>
             </div>
-          <!-- Carousel nav -->
-            <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-            <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-          </div>
         </div>
-      </div>
-      <div id="map" class="map"></div>
-      <h2 id="results"></h2>
+        <div id="map" class="map">
+        </div>
       <!-- Angular -->
       <!--<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.js"></script>-->
       <!--UI-router-->
