@@ -4,9 +4,58 @@
 	for mapping to css
 ************************************************/
 /***********************************************
-*   LAYOUT
-*   Description: Desktop Styling going here.
+*   RESET
+*	Description: to reset or normalise
 ************************************************/
+/***********************************************
+*   TYPOGRAPHY
+*   Description: for typography mixins and 
+*   variables. Use gov frontend for guidelines.
+************************************************/
+@font-face {
+  font-family: GDS-Logo;
+  src: local("HelveticaNeue"), local("Helvetica Neue"), local("Arial"), local("Helvetica"); }
+
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+body {
+  font-family: Arial, Helvetica, Verdana, sans-serif; }
+
+h1 {
+  font-size: 1.375em; }
+
+h2 {
+  font-size: 1.25em; }
+
+h3 {
+  font-size: 1.125em; }
+
+h4 {
+  font-size: 1em; }
+
+h5 {
+  font-size: 1em;
+  font-weight: 600; }
+
+p {
+  font-size: 0.875em; }
+
+button {
+  font-size: 1em; }
+
+/***********************************************
+*   TYPOGRAPHY
+*   Description: for typography mixins and 
+*   variables. Use gov frontend for guidelines.
+************************************************/
+@font-face {
+  font-family: GDS-Logo;
+  src: local("HelveticaNeue"), local("Helvetica Neue"), local("Arial"), local("Helvetica"); }
+
 @-ms-viewport {
   width: device-width; }
 
@@ -14,19 +63,8 @@
   width: device-width; }
 
 /***********************************************
-*   MOBILE LAYOUT HERE
-*   Description: Mobile and tablet
-	specific styling 
-************************************************/
-@-ms-viewport {
-  width: device-width; }
-
-@-o-viewport {
-  width: device-width; }
-
-/***********************************************
-*   BUTTONS AND FORMS
-*   Description: for button and forms related
+*   BUTTONS 
+*   Description: for button related
 *	mixins and variables.
 ************************************************/
 @-ms-viewport {
@@ -46,6 +84,35 @@
   width: device-width; }
 
 /***********************************************
+*   HEADER
+*	Description: Header styling goes here
+************************************************/
+header {
+  border-bottom: 0.1em solid black; }
+  header div .camden-logo {
+    width: 100%;
+    height: auto;
+    margin: 0.3em 0; }
+
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+/***********************************************
+*   LAYOUT
+*   Description: Desktop Styling going here.
+************************************************/
+/***********************************************
+*   COLOURS
+*	Description: Colour variables
+************************************************/
+/***********************************************
+*   RESET
+*	Description: to reset or normalise
+************************************************/
+/***********************************************
 *   TYPOGRAPHY
 *   Description: for typography mixins and 
 *   variables. Use gov frontend for guidelines.
@@ -59,3 +126,131 @@
 
 @-o-viewport {
   width: device-width; }
+
+body {
+  font-family: Arial, Helvetica, Verdana, sans-serif; }
+
+h1 {
+  font-size: 1.375em; }
+
+h2 {
+  font-size: 1.25em; }
+
+h3 {
+  font-size: 1.125em; }
+
+h4 {
+  font-size: 1em; }
+
+h5 {
+  font-size: 1em;
+  font-weight: 600; }
+
+p {
+  font-size: 0.875em; }
+
+button {
+  font-size: 1em; }
+
+/***********************************************
+*   TYPOGRAPHY
+*   Description: for typography mixins and 
+*   variables. Use gov frontend for guidelines.
+************************************************/
+@font-face {
+  font-family: GDS-Logo;
+  src: local("HelveticaNeue"), local("Helvetica Neue"), local("Arial"), local("Helvetica"); }
+
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+#first-level-options {
+  border-bottom: 0.1em solid black;
+  background-color: #DFEEF5; }
+  #first-level-options h2 {
+    text-align: center; }
+  #first-level-options .icon {
+    width: 100%;
+    padding: 0.5em; }
+  #first-level-options #neighbourhood {
+    margin: 0.6em 0; }
+  #first-level-options h4 {
+    text-align: center; }
+
+/***********************************************
+*   MOBILE LAYOUT HERE
+*   Description: Mobile and tablet
+	specific styling 
+************************************************/
+/***********************************************
+*   COLOURS
+*	Description: Colour variables
+************************************************/
+/***********************************************
+*   RESET
+*	Description: to reset or normalise
+************************************************/
+/***********************************************
+*   TYPOGRAPHY
+*   Description: for typography mixins and 
+*   variables. Use gov frontend for guidelines.
+************************************************/
+@font-face {
+  font-family: GDS-Logo;
+  src: local("HelveticaNeue"), local("Helvetica Neue"), local("Arial"), local("Helvetica"); }
+
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+body {
+  font-family: Arial, Helvetica, Verdana, sans-serif; }
+
+h1 {
+  font-size: 1.375em; }
+
+h2 {
+  font-size: 1.25em; }
+
+h3 {
+  font-size: 1.125em; }
+
+h4 {
+  font-size: 1em; }
+
+h5 {
+  font-size: 1em;
+  font-weight: 600; }
+
+p {
+  font-size: 0.875em; }
+
+button {
+  font-size: 1em; }
+
+/***********************************************
+*   TYPOGRAPHY
+*   Description: for typography mixins and 
+*   variables. Use gov frontend for guidelines.
+************************************************/
+@font-face {
+  font-family: GDS-Logo;
+  src: local("HelveticaNeue"), local("Helvetica Neue"), local("Arial"), local("Helvetica"); }
+
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+

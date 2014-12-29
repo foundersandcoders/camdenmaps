@@ -1,0 +1,30 @@
+/***********************************************
+*   MOBILE LAYOUT HERE
+*   Description: Mobile and tablet
+	specific styling 
+************************************************/
+
+//IMPORTS FILES
+@import '../base/colours',
+	'../base/reset',
+	'../base/typography';
+
+@media (max-device-width: 480px) {
+	#first-level-options {
+		border-bottom: 0.1em solid black;
+		background-color: $light-blue;
+		h2 {
+			text-align: center;
+		}
+		.icon {
+			width: 100%;
+			padding: 0.5em;
+		}
+		#neighbourhood {
+			margin: 0.6em 0;
+		}
+		h4 {
+			text-align: center;
+		}
+	}
+}

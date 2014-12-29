@@ -12,8 +12,10 @@
 
 //Imports for our files
 
-@import 'base/layout',
-	'base/mobile-layout',
-	'partials/buttonsAndForms',
-	'partials/mixins',
-	'partials/typography';
+@import 'base/reset',
+	'base/typography',
+	'components/buttons',
+	'helpers/mixins',
+	'layout/header',
+	'layout/layout',
+	'layout/mobile-layout';
