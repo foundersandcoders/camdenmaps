@@ -18,12 +18,35 @@
 		margin: 0 auto;
 		display: block;
 		width: 6em;
-		padding: 0.5em;
 	}
 	#neighbourhood {
-		margin: 0.6em auto;
+		margin: 1.1em auto;
 	}
 	h4 {
+		text-align: center;
+	}
+}
+
+#find-your-nearest {
+	border-bottom: 0.1em solid black;
+	background-color: $dark-grey;
+	span {
+		color: $dark-grey;
+		font-size: 7em;
+		top: -0.4em;
+		position: absolute;
+	}
+	h1 {
+		color: white;
+		text-align: center;
+	}
+	.icon {
+		margin: 0 auto;
+		display: block;
+		width: 4em;
+	}
+	h4 {
+		color: white;
 		text-align: center;
 	}
 }

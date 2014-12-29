@@ -175,11 +175,29 @@ button {
   #first-level-options .icon {
     margin: 0 auto;
     display: block;
-    width: 6em;
-    padding: 0.5em; }
+    width: 6em; }
   #first-level-options #neighbourhood {
-    margin: 0.6em auto; }
+    margin: 1.1em auto; }
   #first-level-options h4 {
+    text-align: center; }
+
+#find-your-nearest {
+  border-bottom: 0.1em solid black;
+  background-color: #333333; }
+  #find-your-nearest span {
+    color: #333333;
+    font-size: 7em;
+    top: -0.4em;
+    position: absolute; }
+  #find-your-nearest h1 {
+    color: white;
+    text-align: center; }
+  #find-your-nearest .icon {
+    margin: 0 auto;
+    display: block;
+    width: 4em; }
+  #find-your-nearest h4 {
+    color: white;
     text-align: center; }
 
 /***********************************************
@@ -250,8 +268,3 @@ button {
 @-o-viewport {
   width: device-width; }
 
-@media (max-device-width: 480px) {
-  #first-level-options canvas {
-    width: 115%;
-    height: auto; }
- }
