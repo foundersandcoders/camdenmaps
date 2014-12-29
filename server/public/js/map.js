@@ -11,18 +11,19 @@ function ajaxCall (url, callback) {
     xmlhttp.send();
 }
 
-
+//below not being used at the moment
 //get element by class and add action listener that sends requests to API
-document.getElementById("search").addEventListener("click", function (e) {
-    
-    var service = document.getElementById("Dropdownlistfind").value;
-    var location = document.getElementById("postcode").value;
-    ajaxCall("https://camdenmaps.herokuapp.com/services/" + service + "/locations/" + location,function (data) {
-        console.log(data);
-        document.getElementById("results").innerHTML = data;
-    })
 
-});
+// document.getElementById("search").addEventListener("click", function (e) {
+    
+//     var service = document.getElementById("Dropdownlistfind").value;
+//     var location = document.getElementById("postcode").value;
+//     ajaxCall("https://camdenmaps.herokuapp.com/services/" + service + "/locations/" + location,function (data) {
+//         console.log(data);
+//         document.getElementById("results").innerHTML = data;
+//     })
+
+// });
 
 
 // loads the OSM map centred on Camden Town
