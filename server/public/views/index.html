@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en" ng-app="camden-maps">
     <head>
         <meta charset="utf-8">
@@ -10,28 +11,29 @@
         <title>Camden Maps</title>
     </head>
 
-    <header class="container-fluid">
-        <div class="col-xs-7 col-sm-4 col-md-3 col-lg-2">
-            <img class="camden-logo" src="../img/camdenlogo.png" alt="Camden">
-        </div>
-    </header>
-
     <body>
+
+        <header class="container-fluid">
+            <div class="col-xs-7 col-sm-4 col-md-3 col-lg-2">
+                <img class="camden-logo" src="../img/camdenlogo.png" alt="Camden">
+            </div>
+        </header>
+
         <div id="first-level-options" class="container-fluid col-xs-12">
             <div class="col-xs-12">
                 <h1>Choose one of the following options</h1>
             </div>
-            <div class="col-xs-4 col-sm-2 col-sm-offset-2" id="findMyNearest">
-                <a class="nearest-toggle" data-toggle="collapse" href="#find-your-nearest" aria-expanded="false" onclick="toggleActive('.firstLevelNearest')">    
+            <div class="col-xs-4 col-sm-2 col-sm-offset-2" id="find-your-nearest-option">
+                <a class="nearest-toggle" data-toggle="collapse" href="#find-your-nearest" aria-expanded="false" onclick="toggleActive('.first-level-nearest')">    
                     <img class="icon" src="../img/icons/find-your-nearest.svg" onerror="../img/icons/find-your-nearest.png" alt="">
-                    <h4 class="firstLevelNearest">Find Your Nearest</h4>
+                    <h4 class="first-level-nearest">Find Your Nearest</h4>
                 </a>
             </div>
-            <div class="col-xs-4 col-sm-2 col-sm-offset-1" id="aboutYourNeighbourhod">
+            <div class="col-xs-4 col-sm-2 col-sm-offset-1" id="about-your-neighbourhod">
                 <img class="icon" id="neighbourhood" src="../img/icons/your-neighbourhood.svg" onerror="../img/icons/your-neighbourhood.png" alt="">
                 <h4 class="first-level-title">About Your Neighbourhood</h4>
             </div>
-            <div class="col-xs-4 col-sm-2 col-sm-offset-1" id="liveStreetworks">
+            <div class="col-xs-4 col-sm-2 col-sm-offset-1" id="live-streetworks">
                 <img class="icon" src="../img/icons/streetworks.svg" onerror="../img/icons/streetworks.png" alt="">
                 <h4 class="first-level-title">Live Streetworks</h4>
             </div>
@@ -43,17 +45,17 @@
             <div class="col-xs-12">
                 <h1>Find Your Nearest</h1>
             </div>
-            <div class="col-xs-4 col-sm-2 col-sm-offset-2 col-" id="findMyNearest">
+            <div class="col-xs-4 col-sm-2 col-sm-offset-2">
                 <a data-toggle="collapse" href="#find-your-nearest" aria-expanded="false" aria-controls="collapseExample">    
                     <img class="icon" src="../img/nearest-categories/sports.png" alt="">
                 </a>
                 <h4>Sports</h4>
             </div>
-            <div class="col-xs-4 col-sm-2 col-sm-offset-1" id="aboutYourNeighbourhod">
+            <div class="col-xs-4 col-sm-2 col-sm-offset-1">
                 <img class="icon" id="neighbourhood" src="../img/nearest-categories/recycling.png" alt="">
                 <h4>Recycling</h4>
             </div>
-            <div class="col-xs-4 col-sm-2 col-sm-offset-1" id="liveStreetworks">
+            <div class="col-xs-4 col-sm-2 col-sm-offset-1">
                 <img class="icon" src="../img/nearest-categories/police-station.png" alt="">
                 <h4>Police Station</h4>
             </div>
