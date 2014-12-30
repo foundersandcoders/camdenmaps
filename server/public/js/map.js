@@ -24,24 +24,3 @@ document.getElementById("search").addEventListener("click", function (e) {
 
 });
 
-
-// loads the OSM map centred on Camden Town
-var map = new ol.Map({
-    target: 'map',
-    layers: [
-      new ol.layer.Tile({
-        source: new ol.source.OSM()
-      })
-    ],
-    view: new ol.View({
-        //this transforms the coordinates given from geographic (EPSC:4326) to Mercator
-        center: ol.proj.transform([-0.139991, 51.535923], "EPSG:4326", "EPSG:3857"),
-        zoom: 14
-    }),
-    controls: ol.control.defaults({
-        attributionOptions: {
-        collapsible: false
-        }
-    })
-});
-
