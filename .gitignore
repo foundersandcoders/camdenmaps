@@ -5,4 +5,5 @@ node_modules/
 personalConfig.js
 npm-debug.log
 .sass-cache/
- 
+*.css
+prep/

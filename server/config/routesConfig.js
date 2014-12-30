@@ -7,6 +7,7 @@
 (function () {
     "use strict";
 
+    var handlers = require("../handlers/handlers.js");
     var Config = require("./serverConfig.js");
     var MapConfig = require("./mapConfig.js");
     var faketoe = require("faketoe");
@@ -42,6 +43,10 @@
                 }
             }
         },
+        apiDocs: {
+            handler: handlers.showDocsHome
+        },
+       
         local: {
             // addresses: {
             //     handler: {
@@ -68,6 +73,7 @@
                     index: true
                 }
             }
+
         }
     };
 }());
