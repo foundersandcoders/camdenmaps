@@ -7,7 +7,7 @@
     "use strict";
 
     var serviceModule = angular.module("ServiceModule", []);
-
+    serviceModule.service("searchApi", require("api-search.js"));
     //serviceModule.service("ServiceName", require(importedService));
 
 }());
