@@ -30,11 +30,16 @@
 #find-your-nearest {
 	border-bottom: 0.1em solid black;
 	background-color: $dark-grey;
-	span {
-		color: $dark-grey;
-		font-size: 7em;
-		top: -0.4em;
+	.arrow-up {
+		width: 0;
+		height: 0;
+		border-left: 30px solid transparent;
+		border-right: 30px solid transparent;
+		border-bottom: 40px solid $dark-grey;
 		position: absolute;
+		top: -2em;
+    	left:50%;
+    	margin-left:-32px;
 	}
 	h1 {
 		color: white;
