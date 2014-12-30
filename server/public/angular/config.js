@@ -14,7 +14,7 @@
     function ($urlRouterProvider, $stateProvider) {
 
         //default state is /landing
-        $urlRouterProvider.otherwise("/landing");
+        $urlRouterProvider.otherwise("/");
 
         $stateProvider
             .state("root", {
@@ -37,25 +37,25 @@
             })
   
             .state("root.address-search", {
-                url: "/:service/search",
+                url: "/{service}/search",
                 templateUrl: "partials/root.address-search.html",
                 controller: "SearchController"
             })
   
             .state("root.address-found", {
-                url: "/:service/location/:address",
+                url: "/{service}/location/{address}",
                 templateUrl: "partials/root.address-found.html",
-                controller: "LocationController" 
+                controller: "LocationController"
             })
   
             .state("root.address-found.list-view", {
-                url: "/:service/location/:address/list",
+                url: "/{service}/location/{address}/list",
                 templateUrl: "partials/root.address-found.list-view.html",
                 controller: "ViewListController" 
             })
   
             .state("root.address-found.single-view", {
-                url: "/:service/location/:address/:id",
+                url: "/{service}/location/{address}/{id}",
                 templateUrl: "partials/root.address-found.single-view.html" 
                 controller: "ViewSingleController" 
             })
