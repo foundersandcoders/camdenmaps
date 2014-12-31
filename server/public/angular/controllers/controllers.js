@@ -14,4 +14,16 @@
 	        }
 	    });
 	}]);
+
+	app.controller("CustomParametersController", [ '$scope', function($scope) {
+	    angular.extend($scope, {
+	        camden: {
+	            lat: 51.535923,
+	            lng: -0.139991,
+	            zoom: 14
+	        }
+	       
+	    });
+	}]);
+
 }());

@@ -5,5 +5,5 @@
 
 (function () {
     "use strict";
-//      angular.module("MODULE NAME", [ "dependencies" ]);
+     var app = angular.module("map", ["leaflet-directive"]);
 }());

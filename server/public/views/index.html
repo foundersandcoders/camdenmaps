@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="map">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css">
     <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
-    <script src="/js/angular-leaflet-directive.min.js"></script>
+    <script src="../js/angular-leaflet-directive.min.js"></script>
+    <script src="../angular/app.js"></script>
     <title>Camden Maps</title>
   </head>
   <body>
@@ -128,7 +129,9 @@
   <input id="postcode" placeholder="NW1 0NE">
   <input id="search" type="button" value=">">
   
-  <leaflet></leaflet>
+<!--   <div ng-controller="CustomParametersController"> -->
+    <leaflet defaults="defaults" center="center" height="480px" width="640px"></leaflet>
+<!-- </div> -->
   <h2 id="results"></h2>
   <script type="text/javascript" src="./js/map.js"></script>
 
