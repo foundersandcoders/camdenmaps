@@ -7,17 +7,9 @@
     "use strict";
      var app = angular.module("map", ["leaflet-directive"]);
 
-     	app.controller("SimpleMapController", [ '$scope', function($scope) {
-	    angular.extend($scope, {
-	        defaults: {
-	            scrollWheelZoom: false
-	        }
-	    });
-	}]);
-
 	app.controller("CustomParametersController", [ '$scope', function($scope) {
 	    var regions = {
-        		london: {
+        		camdenBorough: {
 		            northEast: {
 		                lat: 51.57878,
 		                lng: -0.094538
@@ -43,12 +35,17 @@
 	            lng: -0.139991,
 	            zoom: 14
 	        },
-	        maxbounds: regions.london,
+	        maxbounds: regions.camdenBorough,
         	defaults: {
             scrollWheelZoom: false
         	}
 	        
 	    });
+
+
+
+
+
 	}]);
 
 }());
