@@ -263,32 +263,47 @@
 					  }
 					};
 
+	function lat(i){
+		return Number(fakeData.Locations.Properties.Property[i]["-Latitude"]);
+	}
+
+	function lng(i) {
+		return Number(fakeData.Locations.Properties.Property[i]["-Longitude"])
+	}
+
+	function message(i) {
+		return fakeData.Locations.Properties.Property[i]["PoI"]["-Name"] + "<br>" + fakeData.Locations.Properties.Property[i]["-BuildingName"]+ "<br>" + fakeData.Locations.Properties.Property[i]["-StreetNum"] + " " + fakeData.Locations.Properties.Property[i]["-Street"] + "<br>" + fakeData.Locations.Properties.Property[i]["-PostCode"] + "<br>" + fakeData.Locations.Properties.Property[i]["PoI"]["-Telephone"]
+	}
+
+
 	//this hard coding is for development purposes - *MUST* be changed
+	//does not work when there are two POIs at the same address
 	var firstFive = {
 		m1: {
-			lat: Number(fakeData.Locations.Properties.Property[0]["-Latitude"]),
-			lng: Number(fakeData.Locations.Properties.Property[0]["-Longitude"]),
-			message: fakeData.Locations.Properties.Property[0]["PoI"]["-Name"]
+			lat: lat(0),
+			lng: lng(0),
+			message: message(0)
+
 		},
 		m2: {
-			lat: Number(fakeData.Locations.Properties.Property[1]["-Latitude"]),
-			lng: Number(fakeData.Locations.Properties.Property[1]["-Longitude"]),
-			message: fakeData.Locations.Properties.Property[1]["PoI"]["-Name"]
+			lat: lat(1),
+			lng: lng(1),
+			message: message(1)
 		},
 		m3: {
-			lat: Number(fakeData.Locations.Properties.Property[2]["-Latitude"]),
-			lng: Number(fakeData.Locations.Properties.Property[2]["-Longitude"]),
-			message: fakeData.Locations.Properties.Property[2]["PoI"]["-Name"]
+			lat: lat(2),
+			lng: lng(2),
+			message: message(2)
 		},
 		m4: {
-			lat: Number(fakeData.Locations.Properties.Property[3]["-Latitude"]),
-			lng: Number(fakeData.Locations.Properties.Property[3]["-Longitude"]),
-			message: fakeData.Locations.Properties.Property[3]["PoI"]["-Name"]
+			lat: lat(3),
+			lng: lng(3),
+			message: message(3)
 		},
 		m5: {
-			lat: Number(fakeData.Locations.Properties.Property[4]["-Latitude"]),
-			lng: Number(fakeData.Locations.Properties.Property[4]["-Longitude"]),
-			message: fakeData.Locations.Properties.Property[4]["PoI"]["-Name"]
+			lat: lat(4),
+			lng: lng(4),
+			message: message(4)
 		}
 	};
 
