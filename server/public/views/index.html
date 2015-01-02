@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="map">
+<html lang="en" ng-app="map" class="ng-scope">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -127,13 +127,14 @@
     </select>
   <label>search by postcode or street name</label>
   <input id="postcode" placeholder="NW1 0NE">
-  <input id="search" type="button" value=">">
+
   
-<div ng-controller="CustomParametersController">
-    <leaflet defaults="defaults" center="camden" maxbounds="maxbounds" height="480px" width="640px"></leaflet>
+<div ng-controller="CustomParametersController" class="ng-scope">
+    <button id="search" ng-click="requestResults()" ng-init="results = {}"> > </button>
+    <leaflet defaults="defaults" center="camden" maxbounds="maxbounds" markers="markers" height="480px" width="640px"></leaflet>
 </div>
-  <h2 id="results"></h2>
-  <script type="text/javascript" src="./js/map.js"></script>
+  {{results}}
+<!--   <script type="text/javascript" src="./js/map.js"></script> -->
 
 
 

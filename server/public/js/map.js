@@ -20,6 +20,7 @@ document.getElementById("search").addEventListener("click", function (e) {
     ajaxCall("https://camdenmaps.herokuapp.com/services/" + service + "/locations/" + location,function (data) {
         console.log(data);
         document.getElementById("results").innerHTML = data;
+        addMarkers();
     });
 
 });
