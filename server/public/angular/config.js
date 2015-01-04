@@ -1,3 +1,4 @@
+
 /******************************************************************** 
 *   CONFIG.JS
 *   Description: Defines configuration and routes for angular app.
@@ -14,49 +15,49 @@
     function ($urlRouterProvider, $stateProvider) {
 
         //default state is /landing
-        $urlRouterProvider.otherwise("/");
+        $urlRouterProvider.otherwise("/home");
 
         $stateProvider
             .state("root", {
                 abstract: true,
-                url:"/",
-                templateUrl: "partials/root.html"
+                url:"/home",
+                templateUrl: "angular/partials/root.html",
                 controller: "RootController"
             })
 
             .state("root.landing", {
                 url: "",
-                templateUrl: "partials/root.landing.html",
+                templateUrl: "angular/partials/root.landing.html",
                 controller: "LandingController" 
             })
   
             .state("root.landing.services", {
                 url: "/services",
-                templateUrl: "partials/root.landing.services.html"
+                templateUrl: "angular/partials/root.landing.services.html",
                 controller: "ServicesController" 
             })
   
             .state("root.address-search", {
                 url: "/{service}/search",
-                templateUrl: "partials/root.address-search.html",
+                templateUrl: "angular/partials/root.address-search.html",
                 controller: "SearchController"
             })
   
             .state("root.address-found", {
                 url: "/{service}/location/{address}",
-                templateUrl: "partials/root.address-found.html",
+                templateUrl: "angular/partials/root.address-found.html",
                 controller: "LocationController"
             })
   
             .state("root.address-found.list-view", {
                 url: "/{service}/location/{address}/list",
-                templateUrl: "partials/root.address-found.list-view.html",
+                templateUrl: "angular/partials/root.address-found.list-view.html",
                 controller: "ViewListController" 
             })
   
             .state("root.address-found.single-view", {
                 url: "/{service}/location/{address}/{id}",
-                templateUrl: "partials/root.address-found.single-view.html" 
+                templateUrl: "angular/partials/root.address-found.single-view.html",
                 controller: "ViewSingleController" 
             })
 

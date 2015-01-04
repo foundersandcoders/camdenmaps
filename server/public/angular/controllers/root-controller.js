@@ -2,7 +2,6 @@
 *   ROOT-CONTROLLER.JS
 *
 ***************************/
-;(function () {
     "use strict";
 
     module.exports  [
@@ -14,4 +13,3 @@
 
         }  
     ];
-}());

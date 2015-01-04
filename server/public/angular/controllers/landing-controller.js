@@ -13,14 +13,14 @@
 
             var button, 
                 //stores function names and corresponding paths for landing-page buttons
-                buttons {
-                //for Find Your Nearest button
-                getNearest: "/services",
-                //for Live Streetworks button
-                getStreetworks: "/streetworks/search",
-                //for About Your Neighbourhood button
-                getNeighbourhood: "/neighbourhood/search"
-            };
+                buttons = {
+                    //for Find Your Nearest button
+                    getNearest: "/services",
+                    //for Live Streetworks button
+                    getStreetworks: "/streetworks/search",
+                    //for About Your Neighbourhood button
+                    getNeighbourhood: "/neighbourhood/search"
+                };
 
             //creates event handler that redirects client to newPath
             function makeRedirectHandler (newPath) {
