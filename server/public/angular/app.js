@@ -263,16 +263,21 @@
 					  }
 					};
 
+
+	//once we have real data this will need to be changed to data not fakeData
+	var root = fakeData.Locations.Properties;
+
+
 	function lat(i){
-		return Number(fakeData.Locations.Properties.Property[i]["-Latitude"]);
+		return Number(root.Property[i]["-Latitude"]);
 	}
 
 	function lng(i) {
-		return Number(fakeData.Locations.Properties.Property[i]["-Longitude"])
+		return Number(root.Property[i]["-Longitude"]);
 	}
 
 	function message(i) {
-		return fakeData.Locations.Properties.Property[i]["PoI"]["-Name"] + "<br>" + fakeData.Locations.Properties.Property[i]["-BuildingName"]+ "<br>" + fakeData.Locations.Properties.Property[i]["-StreetNum"] + " " + fakeData.Locations.Properties.Property[i]["-Street"] + "<br>" + fakeData.Locations.Properties.Property[i]["-PostCode"] + "<br>" + fakeData.Locations.Properties.Property[i]["PoI"]["-Telephone"]
+		return root.Property[i]["PoI"]["-Name"] + "<br>" + root.Property[i]["-BuildingName"] + "<br>" + root.Property[i]["-StreetNum"] + " " + root.Property[i]["-Street"] + "<br>" + root.Property[i]["-PostCode"] + "<br>" + root.Property[i]["PoI"]["-Telephone"];
 	}
 
 
