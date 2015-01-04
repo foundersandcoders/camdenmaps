@@ -8,21 +8,46 @@
 (function () {
     "use strict";
 
-
 //Below describe block subject to change
     describe("As a user, I want to have clear call to actions when I arrive on the landing page", function () {
 
-        it("There are three call to action buttons", function() {
+        beforeEach("Given that", function () {
+            browser.get(baseUrl);
+        });
+
+        it("title to be correct", function() {
+            expect(browser.getTitle()).toEqual('Camden Council: Find Your Nearest');
+
+        });
+        it("There are three call to actions with icons", function() {
             // Find your Nearest
             // About your Neighbourhood
             // Live Streetworks
-        });
-        it("The header loads with proper attributes", function() {
-            //Test image loads
-            //test alt test is accessible
-            //test positioning attributes are correct (?)
-        });
 
+        });
+        it("The header includes Camden Logo and correct alternate text", function() {
+
+            var logo = element(by.class('camden-logo'))
+            var alt = logo.attr("alt");
+
+            expect(logo.isDisplayed()).toBe(true);
+            expect(alt.toEqual('Camden');
+        });
+        it("page loads, the map renders", function() {
+            // map div and canvas exist
+
+        });
+        it("a option is clicked, services categories are revealed", function () {
+            
+            function clicktoOpen() {
+                element(by.class('nearest-toggle')).click();
+            };
+
+            var carousel = element(by.id('carousal-service-categories'))
+
+            clicktoOpen();
+            expect(carousal.isDisplayed()).toBe(true);
+        });
     });
 
 
@@ -35,6 +60,25 @@
         beforeEach("Given that", function () {
         	browser.get(baseUrl);
         });
+
+        it("a service category is clicked, services are revealed", function () {
+            
+            function clicktoOpen() {
+                element(by.class('community-and-living-toggle')).click();
+            };
+
+            var carousel = element(by.id('carousal-community-and-living'))
+
+            clicktoOpen();
+            expect(carousal.isDisplayed()).toBe(true);
+
+            
+        });
+
+
+
+
+
         it("a postcode is entered, then it is validated to ensure it is a valid Camden postcode.", function () {
         	//Need to test
         });
