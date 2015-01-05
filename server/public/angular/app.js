@@ -66,9 +66,22 @@
         .controller("ServicesController", [
             "$scope",
             "$location",
+            "$http",
             //"menu",
-            function ($scope, $location/*, menu*/) {
+            function ($http, $scope, $location/*, menu*/) {
            
+                /*************** MOVE THIS INTO SERVICe CALLED MENU *******/
+
+                $scope.menu = "HELOH";
+
+                $http.get("menu.json").success(function (data) {
+                    $scope.menu = data;
+                    console.log("HE");
+                }).error(function (data) {
+                    console.log(data);
+                });
+
+                
                 /***************** MENU STATE VARIABLES ****************/
 
                 var menu = [];
