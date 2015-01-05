@@ -20,30 +20,46 @@
 
         });
         it("There are three call to actions with icons", function() {
-            // Find your Nearest
-            // About your Neighbourhood
-            // Live Streetworks
+
+            var findYourNearest = element(by.css('find-your-nearest'));
+            var aboutYourNeighbourhood = element(by.css('about-your-neighbourhood'));
+            var liveStreetworks = element(by.css('live-streetworks'));
+
+            expect(findYourNearest.toEqual('Find Your Nearest'));
+            expect(aboutYourNeighbourhood.toEqual('About Your Neighbourhood'));
+            expect(liveStreetworks.toEqual('Live Streetworks'));
+
+            var nearestIconSrc = element(by.css('find-your-nearest')).attr("src");
+            var neighbourhoodIconSrc = element(by.css('about-your-neighbourhood')).attr("src");
+            var streetworksIconSrc = element(by.css('live-streetworks')).attr("src");
+
+            expect(nearestIconSrc.toEqual('../img/icons/find-your-nearest.svg'));
+            expect(neighbourhoodIconSrc.toEqual('../img/icons/your-neighbourhood.svg'));
+            expect(streetworksIconSrc.toEqual('../img/icons/streetworks.svg'));
 
         });
         it("The header includes Camden Logo and correct alternate text", function() {
 
-            var logo = element(by.class('camden-logo'))
+            var logo = element(by.class('camden-logo'));
             var alt = logo.attr("alt");
 
             expect(logo.isDisplayed()).toBe(true);
-            expect(alt.toEqual('Camden');
+            expect(alt.toEqual('Camden'));
         });
         it("page loads, the map renders", function() {
-            // map div and canvas exist
+
+            var canvas = element($('canvas'));
+
+            expect(canvas).isDisplayed;
 
         });
         it("a option is clicked, services categories are revealed", function () {
             
             function clicktoOpen() {
                 element(by.class('nearest-toggle')).click();
-            };
+            }
 
-            var carousel = element(by.id('carousal-service-categories'))
+            var carousel = element(by.id('carousal-service-categories'));
 
             clicktoOpen();
             expect(carousal.isDisplayed()).toBe(true);
@@ -65,9 +81,9 @@
             
             function clicktoOpen() {
                 element(by.class('community-and-living-toggle')).click();
-            };
+            }
 
-            var carousel = element(by.id('carousal-community-and-living'))
+            var carousel = element(by.id('carousal-community-and-living'));
 
             clicktoOpen();
             expect(carousal.isDisplayed()).toBe(true);
@@ -236,6 +252,6 @@
 
         });
 
-    });x
+    });
 
 }());
