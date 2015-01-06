@@ -28,7 +28,7 @@
             .state("root.landing", {
                 url: "",
                 templateUrl: "angular/partials/root.landing.html",
-                controller: "LandingController" 
+                controller: "LandingController"
             })
   
             .state("root.landing.services", {

@@ -12,8 +12,9 @@
         uglify = require("gulp-uglify"),
         ngAnnotate = require("gulp-ng-annotate"),
         sourcemaps = require("gulp-sourcemaps"),
-        source = require('vinyl-source-stream'),
-        buffer = require('vinyl-buffer'),
+        source = require("vinyl-source-stream"),
+        buffer = require("vinyl-buffer"),
+        watchify = require("watchify"),
         browserify = require("browserify");
 
     //file arrays
@@ -115,6 +116,25 @@
             entries: ["./server/public/angular/app.js"],
             debug: true
         });
+
+        var bundle = function() {
+            console.log(getBundleName());
+            return bundler
+                .bundle()
+                .pipe(source(getBundleName() + '.js'))
+                .pipe(buffer())
+                .pipe(sourcemaps.init({loadMaps: true}))
+                .pipe(uglify())
+                .pipe(sourcemaps.write('./'))
+                .pipe(gulp.dest('./server/public/js/'));
+        }
+        return bundle();
+    });
+
+
+    gulp.task("browserify-watch", function () {
+
+        var bundler = watchify(browserify("./server/public/angular/app.js", watchify.args));
 
         var bundle = function() {
             console.log(getBundleName());
