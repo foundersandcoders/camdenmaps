@@ -10,7 +10,11 @@
         sass = require("gulp-sass"),
         concat = require("gulp-concat"),
         uglify = require("gulp-uglify"),
-        ngAnnotate = require("gulp-ng-annotate");
+        ngAnnotate = require("gulp-ng-annotate"),
+        sourcemaps = require("gulp-sourcemaps"),
+        source = require('vinyl-source-stream'),
+        buffer = require('vinyl-buffer'),
+        browserify = require("browserify");
 
     //file arrays
     var serverFiles = ["./server/*.js", "./server/**/*.js"],
@@ -20,6 +24,12 @@
         protractorTestFiles = ["./test/frontend/acceptance/*.js"],
         allFiles = serverFiles.concat(angularFiles);
 
+    //Useful for js compression. Used for task browserify
+    var getBundleName = function () {
+        var version = require('./package.json').version;
+        var name = require('./package.json').name;
+        return version + '.' + name + '.' + 'min';
+    };
     //task for angular acceptance test
     gulp.task("acceptance-test", function () {
         return gulp.src(protractorTestFiles)
@@ -97,6 +107,27 @@
         gulp.watch(karmaTestFiles, angularFiles, ["unit-test"]);
         gulp.watch(serverFiles.concat(serverTestFiles), ["server-test"]);
         console.log("gulp is watching for test changes...");
+    });
+
+    gulp.task("browserify", function () {
+
+        var bundler = browserify({
+            entries: ["./server/public/angular/app.js"],
+            debug: true
+        });
+
+        var bundle = function() {
+            console.log(getBundleName());
+            return bundler
+                .bundle()
+                .pipe(source(getBundleName() + '.js'))
+                .pipe(buffer())
+                .pipe(sourcemaps.init({loadMaps: true}))
+                .pipe(uglify())
+                .pipe(sourcemaps.write('./'))
+                .pipe(gulp.dest('./server/public/js/'));
+        }
+        return bundle();
     });
 
 }());

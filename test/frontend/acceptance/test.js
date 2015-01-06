@@ -8,21 +8,62 @@
 (function () {
     "use strict";
 
-
 //Below describe block subject to change
     describe("As a user, I want to have clear call to actions when I arrive on the landing page", function () {
 
-        it("There are three call to action buttons", function() {
-            // Find your Nearest
-            // About your Neighbourhood
-            // Live Streetworks
-        });
-        it("The header loads with proper attributes", function() {
-            //Test image loads
-            //test alt test is accessible
-            //test positioning attributes are correct (?)
+        beforeEach("Given that", function () {
+            browser.get(baseUrl);
         });
 
+        it("title to be correct", function() {
+            expect(browser.getTitle()).toEqual('Camden Council: Find Your Nearest');
+
+        });
+        it("There are three call to actions with icons", function() {
+
+            var findYourNearest = element(by.css('find-your-nearest'));
+            var aboutYourNeighbourhood = element(by.css('about-your-neighbourhood'));
+            var liveStreetworks = element(by.css('live-streetworks'));
+
+            expect(findYourNearest.toEqual('Find Your Nearest'));
+            expect(aboutYourNeighbourhood.toEqual('About Your Neighbourhood'));
+            expect(liveStreetworks.toEqual('Live Streetworks'));
+
+            var nearestIconSrc = element(by.css('find-your-nearest')).attr("src");
+            var neighbourhoodIconSrc = element(by.css('about-your-neighbourhood')).attr("src");
+            var streetworksIconSrc = element(by.css('live-streetworks')).attr("src");
+
+            expect(nearestIconSrc.toEqual('../img/icons/find-your-nearest.svg'));
+            expect(neighbourhoodIconSrc.toEqual('../img/icons/your-neighbourhood.svg'));
+            expect(streetworksIconSrc.toEqual('../img/icons/streetworks.svg'));
+
+        });
+        it("The header includes Camden Logo and correct alternate text", function() {
+
+            var logo = element(by.class('camden-logo'));
+            var alt = logo.attr("alt");
+
+            expect(logo.isDisplayed()).toBe(true);
+            expect(alt.toEqual('Camden'));
+        });
+        it("page loads, the map renders", function() {
+
+            var canvas = element($('canvas'));
+
+            expect(canvas).isDisplayed;
+
+        });
+        it("a option is clicked, services categories are revealed", function () {
+            
+            function clicktoOpen() {
+                element(by.class('nearest-toggle')).click();
+            }
+
+            var carousel = element(by.id('carousal-service-categories'));
+
+            clicktoOpen();
+            expect(carousal.isDisplayed()).toBe(true);
+        });
     });
 
 
@@ -35,6 +76,25 @@
         beforeEach("Given that", function () {
         	browser.get(baseUrl);
         });
+
+        it("a service category is clicked, services are revealed", function () {
+            
+            function clicktoOpen() {
+                element(by.class('community-and-living-toggle')).click();
+            }
+
+            var carousel = element(by.id('carousal-community-and-living'));
+
+            clicktoOpen();
+            expect(carousal.isDisplayed()).toBe(true);
+
+            
+        });
+
+
+
+
+
         it("a postcode is entered, then it is validated to ensure it is a valid Camden postcode.", function () {
         	//Need to test
         });
@@ -192,6 +252,6 @@
 
         });
 
-    });x
+    });
 
 }());
