@@ -33,19 +33,15 @@
         ])
 
         .controller("LandingController", [
-            "$location",
             "$scope",
-            function ($scope, $location) {
+            function ($scope) {
                 
-
-                var button;
-                $scope.hello = [1, 2, 3, 4];
-                    //stores function names and corresponding paths for landing-page buttons
+                //stores function names and corresponding paths for landing-page buttons
                 $scope.buttons = [
                     {
                         id: "findYourNearest",
                         title: "Find Your Nearest",
-                        path: "/services",
+                        path: "root.landing.services",
                         iconUrl: "img/icons/find-your-nearest.svg"
                     },
                     {
@@ -62,21 +58,6 @@
                     }
                 ]; 
                 
-                //creates event handler that redirects client to newPath
-                function makeRedirectHandler (newPath) {
-                    return function redirectHandler() {
-                        $location.path(newPath);
-                    }
-                }
-
-                $scope.test = function test () {
-                    console.log("TESOTEUH");
-                }
-
-                //create redirectHandler for each button
-                for (var i = 0; i < $scope.buttons.length; i += 1) {
-                    $scope.buttons[i][$scope.buttons[i].id] = makeRedirectHandler($scope.buttons[i].path);
-                }
             }
         ])
 
@@ -87,7 +68,7 @@
             "$location",
             "$http",
             //"menu",
-            function ($http, $scope, $location/*, menu*/) {
+            function ($scope, $location, $http/*, menu*/) {
            
                 $scope.test = function () {
                     console.log("HEOE");
@@ -99,9 +80,9 @@
 
                 $http.get("menu.json").success(function (data) {
                     $scope.menu = data;
-                    console.log("HE");
-                }).error(function (data) {
-                    console.log(data);
+                    getCurrentItems(loadVisibleItems);
+                }).error(function (err) {
+                    console.log(err);
                 });
 
                 
@@ -120,17 +101,18 @@
                 /***************** MENU POPULATION FUNCTIONS ****************/
 
                 //loads current items based on current position
-                function getCurrentItems (done) {
-                    currentCategory = menu.filter(function menuFilter (item) {
+                function getCurrentItems () {
+                    currentCategory = $scope.menu.filter(function menuFilter (item) {
+                        console.log(item.parentId, currentPosition);
                         return item.parentId === currentPosition;
                     });
-                    done(currentIndex);
                 }
 
                 //loads visible items
                 function loadVisibleItems (start) {
                     //loads first 4 items from current category into visible
                     $scope.visibleItems = currentCategory.slice(start, start+menuSize);
+                    console.log($scope.visibleItems);
                     //adds click handlers to each visible item
                     (function addClickHandlers (index) {
                         var item = $scope.visibleItems[index];
@@ -154,7 +136,8 @@
                         } else if (item.type === "category") {
                             currentIndex = 0;
                             currentPosition = item.id;
-                            getCurrentItems(loadVisibleItems);
+                            getCurrentItems()
+                            loadVisibleItems(currentIndex);
                         }
                     }
                 }

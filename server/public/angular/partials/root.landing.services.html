@@ -1,23 +1,18 @@
 <!-- ROOT.LANDING.SERVICES BEGINS -->
+
 <div id="find-your-nearest" class="container-fluid col-xs-12">
+
     <span class="glyphicon glyphicon-arrow-up"></span>
     <div class="col-xs-12">
         <h1>Find Your Nearest</h1>
     </div>
-    <div class="col-xs-4 col-sm-2 col-sm-offset-2 col-" id="findMyNearest">
-        <a ng-click="hello()" href="#" >    
-            <img class="icon" src="../img/nearest-categories/sports.png" alt="">
+
+    <div ng-repeat="item in visibleItems" class="col-xs-4 col-sm-2 col-sm-offset-2 col-" >
+        <a ng-click="item.handler()" href="#">    
+            <img class="icon" ng-src="{{ item.img }}" alt="">
         </a>
-        <h4>Sports</h4>
+        <h4>{{ item.text }}</h4>
     </div>
-    <div class="col-xs-4 col-sm-2 col-sm-offset-1" id="aboutYourNeighbourhod">
-        <img class="icon" id="neighbourhood" src="../img/nearest-categories/recycling.png" alt="">
-        <h4>Recycling</h4>
-    </div>
-    <div class="col-xs-4 col-sm-2 col-sm-offset-1" id="liveStreetworks">
-        <img class="icon" src="../img/nearest-categories/police-station.png" alt="">
-        <h4>Police Station</h4>
-    </div>
-    <h3>{{ menu }}</h3>
+
 </div>
 <!-- ROOT.LANDING.SERVICES ENDS-->
