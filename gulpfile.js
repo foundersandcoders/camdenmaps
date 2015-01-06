@@ -99,4 +99,10 @@
         console.log("gulp is watching for test changes...");
     });
 
+    gulp.task("browserify", function () {
+        return browserify('./angular/app.js');
+            .bundle();
+            .pipe(gulp.dest('./js/'));
+    });
+
 }());
