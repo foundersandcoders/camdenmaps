@@ -4516,7 +4516,7 @@ m=k.data("$selectController")||k.parent().data("$selectController");m&&m.databou
         .config( require("./config.js") )
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CONTROLLERS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        .controller("RootController", [
+        maps.controller("RootController", [
             "$scope",
             function ($scope) {
                 
@@ -4526,7 +4526,7 @@ m=k.data("$selectController")||k.parent().data("$selectController");m&&m.databou
             }  
         ])
 
-        .controller("LandingController", [
+        maps.controller("LandingController", [
             "$location",
             "$scope",
             function ($scope, $location) {
