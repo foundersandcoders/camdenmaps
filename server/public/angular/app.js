@@ -23,7 +23,7 @@
         .config( require("./config.js") )
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CONTROLLERS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        maps.controller("RootController", [
+        .controller("RootController", [
             "$scope",
             function ($scope) {
                 
@@ -33,10 +33,10 @@
             }  
         ])
 
-        maps.controller("LandingController", [
+        .controller("LandingController", [
             "$location",
             "$scope",
-            function ($scope, $location) {
+            function ($location, $scope) {
                 
 
                 var button; 
