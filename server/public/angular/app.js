@@ -20,7 +20,6 @@
  //           require("./services/service.js")
     ])
 
-        .config( require("./config.js") )
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CONTROLLERS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         .controller("RootController", [
@@ -39,7 +38,8 @@
             function ($scope, $location) {
                 
 
-                var button; 
+                var button;
+                $scope.hello = [1, 2, 3, 4];
                     //stores function names and corresponding paths for landing-page buttons
                 $scope.buttons = [
                     {
@@ -69,13 +69,19 @@
                     }
                 }
 
+                $scope.test = function test () {
+                    console.log("TESOTEUH");
+                }
+
                 //create redirectHandler for each button
                 for (var i = 0; i < $scope.buttons.length; i += 1) {
-                    $scope[$scope.buttons[i].id] = makeRedirectHandler($scope.buttons[i].path);
+                    $scope.buttons[i][$scope.buttons[i].id] = makeRedirectHandler($scope.buttons[i].path);
                 }
             }
         ])
 
+        .config( require("./config.js") ) 
+        
         .controller("ServicesController", [
             "$scope",
             "$location",
@@ -83,6 +89,10 @@
             //"menu",
             function ($http, $scope, $location/*, menu*/) {
            
+                $scope.test = function () {
+                    console.log("HEOE");
+                }
+
                 /*************** MOVE THIS INTO SERVICe CALLED MENU *******/
 
                 $scope.menu = "HELOH";

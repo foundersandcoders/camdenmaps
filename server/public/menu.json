@@ -678,24 +678,3 @@
 		"type":"service",
 		"img":"../img/nearestservice/tubestation.png"}
 ]
-
-// So each item has:
-// a text property with the title of the item,
-
-
-// a parent ID property that says which category the item is within (0 is root),
-
-
-// an id property that is a unique identifier of an item
-// and a type property that distinguishes whether it is a service or a category
-// If we structure it like this we can:
-// Filter by parent ID to return all items within a category
-// Parse for whether something is an item is a category or a service and handle 
-// clicks differently
-// Nest categories within categories as much as we need
-// Treat the data hierarchically (as if it is a file tree) or treat it as a 
-// flat structure (by returning any item by its ID without navigating around 
-// 	the tree)
-// The text property is really the key property because it is the one we will 
-// query the API with. The other properties are control properties to help us 
-// model the menu system we discussed.

@@ -4513,7 +4513,6 @@ m=k.data("$selectController")||k.parent().data("$selectController");m&&m.databou
  //           require("./services/service.js")
     ])
 
-        .config( require("./config.js") )
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CONTROLLERS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         .controller("RootController", [
@@ -4532,7 +4531,8 @@ m=k.data("$selectController")||k.parent().data("$selectController");m&&m.databou
             function ($scope, $location) {
                 
 
-                var button; 
+                var button;
+                $scope.hello = [1, 2, 3, 4];
                     //stores function names and corresponding paths for landing-page buttons
                 $scope.buttons = [
                     {
@@ -4562,13 +4562,19 @@ m=k.data("$selectController")||k.parent().data("$selectController");m&&m.databou
                     }
                 }
 
+                $scope.test = function test () {
+                    console.log("TESOTEUH");
+                }
+
                 //create redirectHandler for each button
                 for (var i = 0; i < $scope.buttons.length; i += 1) {
-                    $scope[$scope.buttons[i].id] = makeRedirectHandler($scope.buttons[i].path);
+                    $scope.buttons[i][$scope.buttons[i].id] = makeRedirectHandler($scope.buttons[i].path);
                 }
             }
         ])
 
+        .config( require("./config.js") ) 
+        
         .controller("ServicesController", [
             "$scope",
             "$location",
@@ -4576,6 +4582,10 @@ m=k.data("$selectController")||k.parent().data("$selectController");m&&m.databou
             //"menu",
             function ($http, $scope, $location/*, menu*/) {
            
+                $scope.test = function () {
+                    console.log("HEOE");
+                }
+
                 /*************** MOVE THIS INTO SERVICe CALLED MENU *******/
 
                 $scope.menu = "HELOH";
@@ -4716,7 +4726,58 @@ m=k.data("$selectController")||k.parent().data("$selectController");m&&m.databou
             .state("root.landing", {
                 url: "",
                 templateUrl: "angular/partials/root.landing.html",
-                controller: "LandingController" 
+                //controller: ["$scope", function ($scope) {
+                //    $scope.test = function () {
+                //        console.log("HEOU");
+                //    }
+                //}]
+                //controller: "LandingController",
+                controller: [
+            "$location",
+            "$scope",
+            function ($scope, $location) {
+
+                var button;
+                $scope.hello = [1, 2, 3, 4];
+                    //stores function names and corresponding paths for landing-page buttons
+                $scope.buttons = [
+                    {
+                        id: "findYourNearest",
+                        title: "Find Your Nearest",
+                        path: "/services",
+                        iconUrl: "img/icons/find-your-nearest.svg"
+                    },
+                    {
+                        id: "aboutYourNeighbourhood",
+                        title: "About Your Neighbourhood",
+                        path: "/neighbourhood/search",
+                        iconUrl: "img/icons/your-neighbourhood.svg"
+                    },
+                    {
+                        id: "liveStreetworks",
+                        title: "Live Streetworks",
+                        path: "/streetworks/search",
+                        iconUrl: "img/icons/streetworks.svg"
+                    }
+                ]; 
+                
+                //creates event handler that redirects client to newPath
+                function makeRedirectHandler (newPath) {
+                    return function redirectHandler() {
+                        $location.path(newPath);
+                    }
+                }
+
+                $scope.test = function test () {
+                    console.log("TESOTEUH");
+                }
+
+                //create redirectHandler for each button
+                for (var i = 0; i < $scope.buttons.length; i += 1) {
+                    $scope.buttons[i][$scope.buttons[i].id] = makeRedirectHandler($scope.buttons[i].path);
+                }
+            }
+        ] 
             })
   
             .state("root.landing.services", {
