@@ -1,0 +1,57 @@
+/***********************************************
+*   LAYOUT
+*   Description: Desktop Styling going here.
+************************************************/
+
+//IMPORTS FILES
+@import '../base/colours',
+	'../base/reset',
+	'../base/typography';
+
+#first-level-options {
+	border-bottom: 0.1em solid black;
+	background-color: $light-blue;
+	h1 {
+		text-align: center;
+	}
+	.icon {
+		margin: 0 auto;
+		display: block;
+		width: 6em;
+	}
+	#neighbourhood {
+		margin: 1.1em auto;
+	}
+	h4 {
+		text-align: center;
+	}
+}
+
+#find-your-nearest {
+	border-bottom: 0.1em solid black;
+	background-color: $dark-grey;
+	.arrow-up {
+		width: 0;
+		height: 0;
+		border-left: 30px solid transparent;
+		border-right: 30px solid transparent;
+		border-bottom: 40px solid $dark-grey;
+		position: absolute;
+		top: -2em;
+    	left:50%;
+    	margin-left:-32px;
+	}
+	h1 {
+		color: white;
+		text-align: center;
+	}
+	.icon {
+		margin: 0 auto;
+		display: block;
+		width: 4em;
+	}
+	h4 {
+		color: white;
+		text-align: center;
+	}
+}

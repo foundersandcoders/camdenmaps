@@ -1,0 +1,24 @@
+<!-- ROOT.LANDING BEGINS -->
+<div id="first-level-options" class="container-fluid col-xs-12">
+
+    <!-- TODO: FIX NG-REPEAT -->
+
+    <div class="col-xs-12">
+        <h1>Choose one of the following options</h1>
+    </div>
+    
+    <div ng-repeat="button in buttons">
+        <p> {{ $index }} </p>
+        <p> HEANTUH </p>
+        <div class="col-xs-4 col-sm-2 col-sm-offset-2 col-" id="{{ button.id }}">
+            <a class="nearest-toggle" ui-sref="{{ button.path }}">    
+                <img class="icon" ng-src="{{ button.iconUrl }}" alt="">
+            </a>
+            <h4>{{ button.title }}</h4>
+        </div>
+    </div>
+
+</div>
+
+<div ui-view></div>
+<!-- ROOT.LANDING ENDS -->
