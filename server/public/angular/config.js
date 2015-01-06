@@ -14,7 +14,7 @@
     "$stateProvider",
     function ($urlRouterProvider, $stateProvider) {
 
-        //default state is /landing
+        //default state is /home
         $urlRouterProvider.otherwise("/home");
 
         $stateProvider

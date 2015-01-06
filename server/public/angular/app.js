@@ -37,18 +37,31 @@
             "$location",
             "$scope",
             function ($scope, $location) {
+                
 
-                var button, 
+                var button; 
                     //stores function names and corresponding paths for landing-page buttons
-                    buttons = {
-                        //for Find Your Nearest button
-                        getNearest: "/services",
-                        //for Live Streetworks button
-                        getStreetworks: "/streetworks/search",
-                        //for About Your Neighbourhood button
-                        getNeighbourhood: "/neighbourhood/search"
-                    };
-
+                $scope.buttons = [
+                    {
+                        id: "findYourNearest",
+                        title: "Find Your Nearest",
+                        path: "/services",
+                        iconUrl: "img/icons/find-your-nearest.svg"
+                    },
+                    {
+                        id: "aboutYourNeighbourhood",
+                        title: "About Your Neighbourhood",
+                        path: "/neighbourhood/search",
+                        iconUrl: "img/icons/your-neighbourhood.svg"
+                    },
+                    {
+                        id: "liveStreetworks",
+                        title: "Live Streetworks",
+                        path: "/streetworks/search",
+                        iconUrl: "img/icons/streetworks.svg"
+                    }
+                ]; 
+                
                 //creates event handler that redirects client to newPath
                 function makeRedirectHandler (newPath) {
                     return function redirectHandler() {
@@ -57,8 +70,8 @@
                 }
 
                 //create redirectHandler for each button
-                for (button in buttons) {
-                    $scope[button] = makeRedirectHandler(buttons[button])
+                for (var i = 0; i < $scope.buttons.length; i += 1) {
+                    $scope[$scope.buttons[i].id] = makeRedirectHandler($scope.buttons[i].path);
                 }
             }
         ])
