@@ -1,7 +1,7 @@
 INPUT = ./server/public/css/main.scss
 OUTPUT = ./server/public/css/main.css
 
-sass-watch:
+sass watch:
 	sass --watch \
 	$(INPUT):$(OUTPUT) \
 	--style expanded \
@@ -13,7 +13,7 @@ sass-production:
 
 .PHONY-sass: sass-watch sass-production
 
-lab-test:
+lab test:
 	@node node_modules/lab/bin/lab test/api/test.js
 
 lab-test-cov:
@@ -24,5 +24,5 @@ lab-test-cov-html:
 
 .PHONY-lab: test test-cov test-cov-html test/api/test.js
 
-protractor-test:
+protractor test:
 	@node node_modules/protractor/bin/protractor test/frontend/acceptance/test.js

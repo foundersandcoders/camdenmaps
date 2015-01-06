@@ -1,4 +1,6 @@
 #!/bin/bash
+
+rm /tmp/sc*.tmp
  
 set -e
  
