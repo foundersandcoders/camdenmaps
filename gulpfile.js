@@ -118,7 +118,6 @@
         });
 
         var bundle = function() {
-            console.log(getBundleName());
             return bundler
                 .bundle()
                 .pipe(source(getBundleName() + '.js'))
@@ -137,7 +136,6 @@
         var bundler = watchify(browserify("./server/public/angular/app.js", watchify.args));
 
         var bundle = function() {
-            console.log(getBundleName());
             return bundler
                 .bundle()
                 .pipe(source(getBundleName() + '.js'))
