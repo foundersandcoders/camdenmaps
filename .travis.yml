@@ -26,5 +26,3 @@ addons:
   sauce_connect: true
   code-climate: 
     repo-token: 3b3b855c93bf2d870a29b319ba03b5ad0edaf79fd7a6d94e038d49c6cb2a7d95
-before_script: 
-- bash ./scripts/sauce_connector.sh
