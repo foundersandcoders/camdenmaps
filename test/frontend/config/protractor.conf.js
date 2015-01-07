@@ -22,8 +22,8 @@ exports.config = {
 };
 
 if (process.env.TRAVIS_BUILD_NUMBER) {
-  config.seleniumAddress = 'http://localhost:4445/wd/hub';
-  config.capabilities = {
+  exports.config.seleniumAddress = 'http://localhost:4445/wd/hub';
+  exports.config.capabilities = {
     'username': process.env.SAUCE_USERNAME,
     'accessKey': process.env.SAUCE_ACCESS_KEY,
     'browserName': 'chrome',
@@ -31,6 +31,6 @@ if (process.env.TRAVIS_BUILD_NUMBER) {
     'build': process.env.TRAVIS_BUILD_NUMBER,
     'name': 'App Tests'
   }
-  config.sauceUser = process.env.SAUCE_USERNAME;
-  config.sauceKey = process.env.SAUCE_ACCESS_KEY;
+  exports.config.sauceUser = process.env.SAUCE_USERNAME;
+  exports.config.sauceKey = process.env.SAUCE_ACCESS_KEY;
 }
