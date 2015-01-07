@@ -10,7 +10,7 @@ exports.config = {
   
   capabilities: {
     'browserName': 'chrome',
-    'platform': 'ANY'
+    'platform': 'ANY',
     'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
     'build': process.env.TRAVIS_BUILD_NUMBER,
     'name': 'App Tests'
