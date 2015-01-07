@@ -26,6 +26,14 @@ To run unit tests, use command:
 gulp unit-test
 ```
 
+To convert yaml files to json, use command: 
+```
+node server/lib/yml2swagger.js server/lib/yaml server/public/output
+```
+where arg[0] is the files to be converted and arg[1] is where the file should be outputed.
+```
+
+
 To include gov.uk sass files in our project simple import!
 
 ```
