@@ -8,7 +8,7 @@
 //TODO: Find out why it only works when controllers and services are registered directly
 //TODO: Find out why controllers only work when written directly here rather than requiring (browserify not working properly)
 
-//;(function () {
+;(function () {
     "use strict";
 
     var angular = require("angular");
@@ -69,113 +69,31 @@
             "$http",
             //"menu",
             function ($scope, $location, $http/*, menu*/) {
-           
-                $scope.test = function () {
-                    console.log("HEOE");
-                }
+         
+                //TODO: Add event handlers for items
+                //TODO: Write functions that repopulate the current and visible
 
-                /*************** MOVE THIS INTO SERVICe CALLED MENU *******/
-
-                $scope.menu = "HELOH";
-
-                $http.get("menu.json").success(function (data) {
-                    $scope.menu = data;
-                    getCurrentItems(loadVisibleItems);
-                }).error(function (err) {
-                    console.log(err);
-                });
-
+                //***************** Initialize menu and variables **************
                 
-                /***************** MENU STATE VARIABLES ****************/
-
-                var menu = [];
-
-                //exposes current menu items to be displayed
+                //current position in the menu
+                var currentPosition = 0;
+                //all items in current category
+                var currentCategory = [];
+                //stores currently visible items
                 $scope.visibleItems = [];
-                //current position in menu
-                var currentPosition = 0, 
-                    currentCategory = getCurrentItems,
-                    currentIndex = 0,
-                    menuSize = 4;
-
-                /***************** MENU POPULATION FUNCTIONS ****************/
-
-                //loads current items based on current position
-                function getCurrentItems () {
-                    currentCategory = $scope.menu.filter(function menuFilter (item) {
-                        console.log(item.parentId, currentPosition);
-                        return item.parentId === currentPosition;
+                //stores full menu
+                var menu = [];
+                $http.get("menu.json")
+                    .success(function success (data) {
+                        menu = data;
+                        currentCategory = menu.filter(function (item) {
+                            return Number(item.parentId) === currentPosition
+                        });
+                        $scope.visibleItems = currentCategory.slice(0, 4);
                     });
-                }
 
-                //loads visible items
-                function loadVisibleItems (start) {
-                    //loads first 4 items from current category into visible
-                    $scope.visibleItems = currentCategory.slice(start, start+menuSize);
-                    console.log($scope.visibleItems);
-                    //adds click handlers to each visible item
-                    (function addClickHandlers (index) {
-                        var item = $scope.visibleItems[index];
-                        if (index > $scope.visibleItems.length) {
-                            return;
-                        }
-                        item.handler = returnItemClickHandler(item);
-                        addClickHandlers(index+1);
-                    }(0));
-                }
 
-                /***************** MENU CONTROL FUNCTIONS ****************/
-
-                //returns click handler for menu items
-                function returnItemClickHandler (item) {
-                    return function () {
-                        var destination;
-                        if (item.type === "service") {
-                            destination = "/" + item.text + "/search";
-                            $location.path(destination);
-                        } else if (item.type === "category") {
-                            currentIndex = 0;
-                            currentPosition = item.id;
-                            getCurrentItems()
-                            loadVisibleItems(currentIndex);
-                        }
-                    }
-                }
-                 
-                //loads next items in menu   
-                function nextItems () {
-                    if (currentIndex + menuSize > currentCategory.length) {
-                        return;
-                    } else {
-                        currentIndex += menuSize;
-                        loadVisibleItems(currentIndex);
-                    }
-                }
-
-                //returns to previous category
-                function backCategory () {
-                    currentPosition = currentCategory[0].parentId;
-                    getCurrentItems(loadVisibleItems);
-                }
-                 
-                //loads previous items in menu   
-                function prevItems () {
-                    if (currentIndex - menuSize < 0) {
-                        currentIndex = 0;
-                        loadVisibleItems(currentIndex);
-                    } else {
-                        currentIndex -= menuSize;
-                        loadVisibleItems(currentIndex);
-                    }
-                }
-
-                //bind to next button
-                $scope.next = nextItems;
-                //bind to prev button
-                $scope.prev = prevItems;
-                //bind to back button
-                $scope.back = backCategory;
-
+                           
             }
         ])
         
@@ -183,4 +101,4 @@
 //        .controller("RootController", require("./controllers/root-controller.js"))  
 //        .controller("LandingController", require("./controllers/landing-controller.js"))  
 //        .service("apiSearch", require("./services/api-search.js"));
-//    }());
+    }());
