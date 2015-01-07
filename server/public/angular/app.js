@@ -34,7 +34,9 @@
 
         .controller("LandingController", [
             "$scope",
+
             function ($scope) {
+
                 
                 //stores function names and corresponding paths for landing-page buttons
                 $scope.buttons = [
