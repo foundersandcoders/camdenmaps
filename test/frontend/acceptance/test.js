@@ -11,8 +11,8 @@
 //Below describe block subject to change
     describe("As a user, I want to have clear call to actions when I arrive on the landing page", function () {
 
-        beforeEach("Given that", function () {
-            browser.get(baseUrl);
+        beforeEach(function () {
+            browser.get("/");
         });
 
         it("title to be correct", function() {
@@ -73,9 +73,9 @@
 
     describe("As a user, I want to be able to enter a Camden postcode so that I can find the nearest point of interest to me.", function () {
 
-        beforeEach("Given that", function () {
-        	browser.get(baseUrl);
-        });
+        // beforeEach(function () {
+        //     browser.get("/");
+        // });
 
         it("a service category is clicked, services are revealed", function () {
             
@@ -128,10 +128,6 @@
 	
 	describe("As a user, I want to be able to enter a Camden areacode so that I can find the nearest point of interest to me.", function () {
 
-        beforeEach("Given that", function () {
-        	browser.get('http://www.angularjs.org');
-        });
-
         it("a areacode is entered, then it is validated to ensure it is a valid Camden areacode.", function () {
              //Need to test
         });
@@ -164,9 +160,7 @@
 
 	describe("As a user, I want to be able to enter a Camden street name so that I can find the nearest point of interest to me.", function () {
 
-        beforeEach("Given that", function () {
-        	browser.get('http://www.angularjs.org');
-        });
+        
 
         it("a street name is entered, then it is validated to ensure it is a valid Camden street name.", function () {
              //Need to test
@@ -200,9 +194,7 @@
 	
     describe("As a user I want to select multiple service categories from a scolling list", function () {
 
-        beforeEach("Given that", function () {
-        	browser.get();
-        });
+
         it("the drop down menu for services is selected, then there are 86 services to choose from", function () {
         	//won't work until we set up "ng-options"
         	var servicesList = element.all(by.repeater('option in options'));
@@ -241,9 +233,6 @@
 
     describe("As a user, I want to find contact information for service items so that I can contact them easily.", function () {
 
-        beforeEach("Given that", function () {
-        	browser.get('http://www.angularjs.org');
-        });
 
         it("a phone number is clicked on a mobile device, the number is dialled automatically.", function () {
 
