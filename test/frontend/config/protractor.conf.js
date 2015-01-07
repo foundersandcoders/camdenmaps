@@ -2,17 +2,21 @@ exports.config = {
   allScriptsTimeout: 11000,
 
   specs: [
-    '../test/frontend/acceptance/*.js'
+    './test/frontend/acceptance/*.js'
   ],
+
+  sauceUser: process.env.SAUCE_USERNAME ,
+
+  sauceKey: process.env.SAUCE_ACCESS_KEY, 
 
   capabilities: {
     'browserName': 'chrome',
     'platform': 'ANY'
   },
 
-  directConnect: true,
+  //directConnect: true,
 
-  baseUrl: 'http://0.0.0.0:8000/',
+  //baseUrl: 'http://0.0.0.0:8000/',
 
   framework: 'jasmine',
 
