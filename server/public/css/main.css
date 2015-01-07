@@ -26,8 +26,9 @@
 *   COLOURS
 *	Description: Colour variables
 ************************************************/
-body {
-  font-family: Arial, Helvetica, Verdana, sans-serif; }
+body, html {
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  height: 100%; }
 
 h1 {
   font-size: 1.375em; }
@@ -160,8 +161,9 @@ header {
 *   COLOURS
 *	Description: Colour variables
 ************************************************/
-body {
-  font-family: Arial, Helvetica, Verdana, sans-serif; }
+body, html {
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  height: 100%; }
 
 h1 {
   font-size: 1.375em; }
@@ -295,8 +297,9 @@ a {
 *   COLOURS
 *	Description: Colour variables
 ************************************************/
-body {
-  font-family: Arial, Helvetica, Verdana, sans-serif; }
+body, html {
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  height: 100%; }
 
 h1 {
   font-size: 1.375em; }
