@@ -4,7 +4,11 @@ exports.config = {
   specs: [
     '../test/frontend/acceptance/*.js'
   ],
-
+  
+  sauceUser: process.env.SAUCE_USERNAME,
+  
+  sauceKey: process.env.SAUCE_ACCESS_KEY,
+  
   capabilities: {
     'browserName': 'chrome',
     'platform': 'ANY'
