@@ -29,6 +29,7 @@
     "govuk_frontend_toolkit": "^3.1.0",
     "gulp": "^3.8.10",
     "gulp-concat": "^2.4.2",
+    "gulp-connect": "^2.2.0",
     "gulp-eslint": "^0.2.0",
     "gulp-karma": "0.0.4",
     "gulp-lab": "^1.0.4",
