@@ -31,4 +31,6 @@ if (process.env.TRAVIS_BUILD_NUMBER) {
     'build': process.env.TRAVIS_BUILD_NUMBER,
     'name': 'App Tests'
   }
+  config.sauceUser = process.env.SAUCE_USERNAME;
+  config.sauceKey = process.env.SAUCE_ACCESS_KEY;
 }
