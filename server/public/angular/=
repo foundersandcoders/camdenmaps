@@ -70,6 +70,8 @@
             //"menu",
             function ($scope, $location, $http/*, menu*/) {
          
+                //TODO: Add event handlers for items
+                //TODO: Write functions that repopulate the current and visible
 
                 //***************** Initialize menu and variables **************
                
@@ -85,9 +87,6 @@
                     menu = [];
                 //stores currently visible items
                 $scope.visibleItems = [];
-               
-               
-                //****************** Menu population functions ***************** 
                 
                 //makes visible 4 items from current category
                 function getVisibleItems(index) {
@@ -95,13 +94,14 @@
                 }
                 
                 //handler that either redirects user or opens new category 
-                function clickHandler (item) {
-                    if (item.type === "service") {
-                        var path = "/" + item.text + "/search";
+                function clickHandler () {
+                    if (currentItem.type === "service") {
+                        console.log(currentItem.text);
+                        var path = "/" + currentItem.text + "/search";
                         $location.path(path);
-                    } else if (item.type === "category") {
+                    } else if (currentItem.type === "category") {
                         currentIndex = 0;
-                        currentPosition = item.id;
+                        currentPosition = currentItem.id;
                         getCurrentCategory(currentPosition, numberOfItems);
                         getVisibleItems(currentIndex);
                     }
@@ -116,9 +116,8 @@
                 
                 //populates currentCategory with items in current position in menu
                 function getCurrentCategory(positionInMenu, amountPerPage) {
-                    currentCategory = [];
                     var fullCategory = menu.filter(function (item) {
-                        return Number(item.parentId) === Number(positionInMenu);
+                        return Number(item.parentId) === positionInMenu;
                     });
                     var i, index = 0;
                     for (i = 0; i < fullCategory.length; i += 1) {
@@ -128,8 +127,9 @@
                         } else if (!i) {
                             currentCategory[index] = [];
                         }
-                        fullCategory[i].handler = addClickHandler(fullCategory[i]);
-                        currentCategory[index].push(fullCategory[i]);
+                        var j = i;
+                        fullCategory[j].handler = addClickHandler(fullCategory[j]);
+                        currentCategory[index].push(fullCategory[j]);
                     }
                 }
                 
@@ -141,8 +141,6 @@
                         getVisibleItems(currentIndex);
                     });
 
-                //********************* Menu control functions ******************
-               
                 //loads next page of items
                 $scope.nextItems = function nextItems () {
                     if (currentIndex === currentCategory.length-1) {
@@ -175,11 +173,7 @@
                         getVisibleItems(currentIndex);
                     }
                 }
-               
-                //execute function to solve scoping issues with ng-repeat & ng-click
-                $scope.execute = function execute (fn) {
-                    fn();
-                }
+
 
             }
         ])

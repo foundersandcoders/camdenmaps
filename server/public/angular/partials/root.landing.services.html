@@ -7,12 +7,24 @@
         <h1>Find Your Nearest</h1>
     </div>
 
+    <a href="" ng-click="backOneCategory()">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+
+    <a href="" ng-click="prevItems()">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+
     <div ng-repeat="item in visibleItems" class="col-xs-4 col-sm-2 col-sm-offset-2 col-" >
-        <a ng-click="item.handler()" href="#">    
+        <a ng-click="execute(item.handler)" href="#">    
             <img class="icon" ng-src="{{ item.img }}" alt="">
         </a>
         <h4>{{ item.text }}</h4>
     </div>
+
+    <a href="" ng-click="nextItems()">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
 
 </div>
 <!-- ROOT.LANDING.SERVICES ENDS-->
