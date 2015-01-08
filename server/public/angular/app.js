@@ -74,22 +74,37 @@
                 //TODO: Write functions that repopulate the current and visible
 
                 //***************** Initialize menu and variables **************
-                
+               
+                //current index of visibleItems within currentCategory
+                var currentIndex = 0, 
+                //number of items visible in menu
+                    numberOfItems = 3,
                 //current position in the menu
-                var currentPosition = 0;
+                    currentPosition = 0,
                 //all items in current category
-                var currentCategory = [];
+                    currentCategory = [],
+                //stores full menu
+                    menu = [];
                 //stores currently visible items
                 $scope.visibleItems = [];
-                //stores full menu
-                var menu = [];
+                
+                //makes visible 4 items from current category
+                function getVisibleItems(index, number) {
+                    $scope.visibleItems = currentCategory.slice(index, index + number);
+                }
+                //populates currentCategory with items in current position in menu
+                function getCurrentCategory(positionInMenu) {
+                    currentCategory = menu.filter(function (item) {
+                        return Number(item.parentId) === positionInMenu;
+                    });
+                }
+                
+                //loads menu 
                 $http.get("menu.json")
                     .success(function success (data) {
                         menu = data;
-                        currentCategory = menu.filter(function (item) {
-                            return Number(item.parentId) === currentPosition
-                        });
-                        $scope.visibleItems = currentCategory.slice(0, 4);
+                        getCurrentCategory(currentPosition);
+                        getVisibleItems(currentIndex, numberOfItems);
                     });
 
 
