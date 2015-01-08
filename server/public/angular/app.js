@@ -8,13 +8,8 @@
 //TODO: Find out why it only works when controllers and services are registered directly
 //TODO: Find out why controllers only work when written directly here rather than requiring (browserify not working properly)
 
-<<<<<<< HEAD
 ;(function () {
     "use strict";
-=======
-//;(function () {
-    // "use strict";
->>>>>>> 07ef712dc3f10aae1298a95a7455073450183ab6
 
     var angular = require("angular");
 
