@@ -15,8 +15,7 @@ function csvJSON(err, csv){
         }
         result.push(obj);
     }
-    console.log(headers);
     console.log(JSON.stringify(result));
 }
 
-fs.readFile('../../../prep/nearestservices.csv', 'utf8', csvJSON);
+fs.readFile('./prep/nearestservices.csv', 'utf8', csvJSON);
