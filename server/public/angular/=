@@ -8,19 +8,13 @@
 //TODO: Find out why it only works when controllers and services are registered directly
 //TODO: Find out why controllers only work when written directly here rather than requiring (browserify not working properly)
 
-<<<<<<< HEAD
 ;(function () {
     "use strict";
-=======
-//;(function () {
-    // "use strict";
->>>>>>> 07ef712dc3f10aae1298a95a7455073450183ab6
 
     var angular = require("angular");
 
     angular.module("maps", [
             require("angular-ui-router"),
-            "leaflet-directive"
  //           require("./controllers/controllers.js"), 
  //           require("./directives/directive.js"), 
  //           require("./services/service.js")
@@ -40,9 +34,7 @@
 
         .controller("LandingController", [
             "$scope",
-
             function ($scope) {
-
                 
                 //stores function names and corresponding paths for landing-page buttons
                 $scope.buttons = [
@@ -69,69 +61,7 @@
             }
         ])
 
-        .controller("CustomParametersController", [ '$scope', function($scope) {
-            var regions = {
-                    camdenBorough: {
-                        northEast: {
-                            lat: 51.57878,
-                            lng: -0.094538
-                        },
-                        southWest: {
-                            lat: 51.510989,
-                            lng: -0.218649
-                        }
-                    }
-            };
-
-            $scope.setRegion = function(region) {
-                if (!region) {
-                    $scope.maxbounds = {};
-                } else {
-                    $scope.maxbounds = regions[region];
-                }
-            };
-
-            angular.extend($scope, {
-                camden: {
-                    lat: 51.535923,
-                    lng: -0.139991,
-                    zoom: 14
-                },
-                maxbounds: regions.camdenBorough,
-                defaults: {
-                scrollWheelZoom: false
-                },
-                markers: {}
-                
-            });
-
-
-            // $scope.requestResults = function () {
-
-
-            //     //vanilla js ajax call rather than using jquery
-            //     function ajaxCall (url, callback) {
-            //         var xmlhttp;
-
-            //         xmlhttp = new XMLHttpRequest();
-            //         xmlhttp.onreadystatechange = function () {
-            //             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            //                 callback(xmlhttp.responseText);
-            //             }
-            //         };
-            //         xmlhttp.open("GET", url, true);
-            //         xmlhttp.send();
-            //     }
-
-
-                //get element by class and add action listener that sends requests to API    
-                // var service = document.getElementById("Dropdownlistfind").value;
-                // var location = document.getElementById("postcode").value;
-            }
-        ])
-    
-
-        .config( require("./config.js") )
+        .config( require("./config.js") ) 
         
         .controller("ServicesController", [
             "$scope",
@@ -140,6 +70,8 @@
             //"menu",
             function ($scope, $location, $http/*, menu*/) {
          
+                //TODO: Add event handlers for items
+                //TODO: Write functions that repopulate the current and visible
 
                 //***************** Initialize menu and variables **************
                
@@ -155,9 +87,6 @@
                     menu = [];
                 //stores currently visible items
                 $scope.visibleItems = [];
-               
-               
-                //****************** Menu population functions ***************** 
                 
                 //makes visible 4 items from current category
                 function getVisibleItems(index) {
@@ -165,13 +94,14 @@
                 }
                 
                 //handler that either redirects user or opens new category 
-                function clickHandler (item) {
-                    if (item.type === "service") {
-                        var path = "/" + item.text + "/search";
+                function clickHandler () {
+                    if (currentItem.type === "service") {
+                        console.log(currentItem.text);
+                        var path = "/" + currentItem.text + "/search";
                         $location.path(path);
-                    } else if (item.type === "category") {
+                    } else if (currentItem.type === "category") {
                         currentIndex = 0;
-                        currentPosition = item.id;
+                        currentPosition = currentItem.id;
                         getCurrentCategory(currentPosition, numberOfItems);
                         getVisibleItems(currentIndex);
                     }
@@ -186,9 +116,8 @@
                 
                 //populates currentCategory with items in current position in menu
                 function getCurrentCategory(positionInMenu, amountPerPage) {
-                    currentCategory = [];
                     var fullCategory = menu.filter(function (item) {
-                        return Number(item.parentId) === Number(positionInMenu);
+                        return Number(item.parentId) === positionInMenu;
                     });
                     var i, index = 0;
                     for (i = 0; i < fullCategory.length; i += 1) {
@@ -198,8 +127,9 @@
                         } else if (!i) {
                             currentCategory[index] = [];
                         }
-                        fullCategory[i].handler = addClickHandler(fullCategory[i]);
-                        currentCategory[index].push(fullCategory[i]);
+                        var j = i;
+                        fullCategory[j].handler = addClickHandler(fullCategory[j]);
+                        currentCategory[index].push(fullCategory[j]);
                     }
                 }
                 
@@ -211,8 +141,6 @@
                         getVisibleItems(currentIndex);
                     });
 
-                //********************* Menu control functions ******************
-               
                 //loads next page of items
                 $scope.nextItems = function nextItems () {
                     if (currentIndex === currentCategory.length-1) {
@@ -245,14 +173,10 @@
                         getVisibleItems(currentIndex);
                     }
                 }
-               
-                //execute function to solve scoping issues with ng-repeat & ng-click
-                $scope.execute = function execute (fn) {
-                    fn();
-                }
+
 
             }
-        ]);
+        ])
         
         
 //        .controller("RootController", require("./controllers/root-controller.js"))  
