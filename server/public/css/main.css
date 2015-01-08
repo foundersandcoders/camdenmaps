@@ -22,8 +22,13 @@
 @-o-viewport {
   width: device-width; }
 
-body {
-  font-family: Arial, Helvetica, Verdana, sans-serif; }
+/***********************************************
+*   COLOURS
+*	Description: Colour variables
+************************************************/
+body, html {
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  height: 100%; }
 
 h1 {
   font-size: 1.375em; }
@@ -45,7 +50,13 @@ p {
   font-size: 0.875em; }
 
 button {
-  font-size: 1em; }
+  font-size: 1em;
+  border: none;
+  backgroud-color: #0000E9;
+  border-radius: 0;
+  color: white; }
+  button:hover {
+    backgroud-color: #2D389C; }
 
 a {
   text-decoration: none;
@@ -56,6 +67,15 @@ a {
   a:hover {
     text-decoration: none;
     color: black; }
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 2.5em solid transparent;
+  border-right: 2.5em solid transparent;
+  border-bottom: 3.125em solid #333333;
+  position: absolute;
+  top: -2em; }
 
 /***********************************************
 *   TYPOGRAPHY
@@ -137,8 +157,13 @@ header {
 @-o-viewport {
   width: device-width; }
 
-body {
-  font-family: Arial, Helvetica, Verdana, sans-serif; }
+/***********************************************
+*   COLOURS
+*	Description: Colour variables
+************************************************/
+body, html {
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  height: 100%; }
 
 h1 {
   font-size: 1.375em; }
@@ -160,7 +185,13 @@ p {
   font-size: 0.875em; }
 
 button {
-  font-size: 1em; }
+  font-size: 1em;
+  border: none;
+  backgroud-color: #0000E9;
+  border-radius: 0;
+  color: white; }
+  button:hover {
+    backgroud-color: #2D389C; }
 
 a {
   text-decoration: none;
@@ -171,6 +202,15 @@ a {
   a:hover {
     text-decoration: none;
     color: black; }
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 2.5em solid transparent;
+  border-right: 2.5em solid transparent;
+  border-bottom: 3.125em solid #333333;
+  position: absolute;
+  top: -2em; }
 
 /***********************************************
 *   TYPOGRAPHY
@@ -253,8 +293,13 @@ a {
 @-o-viewport {
   width: device-width; }
 
-body {
-  font-family: Arial, Helvetica, Verdana, sans-serif; }
+/***********************************************
+*   COLOURS
+*	Description: Colour variables
+************************************************/
+body, html {
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  height: 100%; }
 
 h1 {
   font-size: 1.375em; }
@@ -276,7 +321,13 @@ p {
   font-size: 0.875em; }
 
 button {
-  font-size: 1em; }
+  font-size: 1em;
+  border: none;
+  backgroud-color: #0000E9;
+  border-radius: 0;
+  color: white; }
+  button:hover {
+    backgroud-color: #2D389C; }
 
 a {
   text-decoration: none;
@@ -287,6 +338,15 @@ a {
   a:hover {
     text-decoration: none;
     color: black; }
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 2.5em solid transparent;
+  border-right: 2.5em solid transparent;
+  border-bottom: 3.125em solid #333333;
+  position: absolute;
+  top: -2em; }
 
 /***********************************************
 *   TYPOGRAPHY

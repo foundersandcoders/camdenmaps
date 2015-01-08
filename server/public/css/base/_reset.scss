@@ -4,10 +4,12 @@
 ************************************************/
 
 //IMPORTS FILES
-@import '../base/typography';
+@import '../base/typography',
+	'../base/colours';
 
-body {
+body, html {
 	font-family: $default-font;
+	height: 100%;
 }
 
 h1 {
@@ -37,6 +39,13 @@ p {
 
 button {
 	font-size: 1em;
+	border: none;
+	backgroud-color: $blue;
+	border-radius: 0;
+	color: white;
+	&:hover {
+		backgroud-color: $hover-blue;
+	}
 }
 a {
 	text-decoration: none;
@@ -50,3 +59,22 @@ a {
 		color: black;
 	}
 }
+
+.map-pointer {
+
+}
+
+.icon {
+
+}
+
+.arrow-up {
+	width: 0;
+	height: 0;
+	border-left: 2.5em solid transparent;
+	border-right: 2.5em solid transparent;
+	border-bottom: (2.5em + 2.5em/4 ) solid $dark-grey;
+	position: absolute;
+	top: -2em;
+}
+

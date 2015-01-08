@@ -5,7 +5,7 @@
         <h1>Choose one of the following options</h1>
     </div>
 
-    <div ng-repeat="button in buttons" class="col-xs-4 col-sm-2 col-sm-offset-2 col-" id="{{ button.id }}">
+    <div ng-repeat="button in buttons" class="col-xs-4 col-sm-3 col-sm-offset-1 col-" id="{{ button.id }}">
         <a class="nearest-toggle" ui-sref="{{ button.path }}">    
             <img class="icon" ng-src="{{ button.iconUrl }}" alt="">
         </a>

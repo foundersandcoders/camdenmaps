@@ -26,12 +26,23 @@ To run unit tests, use command:
 gulp unit-test
 ```
 
-To include gov.uk sass files in our project simple import!
+To run browserify, use command: 
+```
+gulp browserify
+```
+or
+```
+gulp browserify-watch
+```
+
+To include gov.uk sass files in our project simple import...
 
 ```
 @import '_conditionals';
 @import '_typography';
 ```
+
+And use!
 
 For more information on using gov.uk styles see documentation here: https://github.com/alphagov/govuk_frontend_toolkit
 
