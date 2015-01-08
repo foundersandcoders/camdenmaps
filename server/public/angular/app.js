@@ -8,13 +8,8 @@
 //TODO: Find out why it only works when controllers and services are registered directly
 //TODO: Find out why controllers only work when written directly here rather than requiring (browserify not working properly)
 
-<<<<<<< HEAD
 ;(function () {
     "use strict";
-=======
-//;(function () {
-    // "use strict";
->>>>>>> 07ef712dc3f10aae1298a95a7455073450183ab6
 
     var angular = require("angular");
 
@@ -233,12 +228,11 @@
                 }
                 //loads parent category
                 $scope.backOneCategory = function backOneCategory () {
-                    console.log(currentCategory);
-                    if (currentPosition === 0) {
+                    if (Number(currentPosition) === 0) {
                         return;
                     } else {
                         currentPosition = menu.filter(function(item){
-                            return item.id === currentPosition;
+                            return Number(item.id) === Number(currentPosition);
                         })[0].parentId;
                         currentIndex = 0;
                         getCurrentCategory(currentPosition, numberOfItems);
@@ -252,8 +246,35 @@
                 }
 
             }
-        ]);
+        ])
         
+        .controller("SearchController", [
+            "$scope",
+            "$stateParams",
+            "$location",
+            function ($scope, $stateParams, $location) {
+
+                //model for search query
+                $scope.address = "";
+                //model for error messages
+                $scope.error = "";
+                //model for service results
+                $scope.results = [];
+
+                //populate results with all services
+                $scope.results = apiSearch.search($stateParams.service);
+
+                //redirects to next state when provided with address
+                $scope.search = function search () {
+                    if ($scope.address) {
+                        var path = "/" + $stateParams.service + "/location/" + $scope.address;
+                        $location.path(path);
+                    } else {
+                        $scope.error = "Please enter an address";
+                    } 
+                }
+            }
+        ])
         
 //        .controller("RootController", require("./controllers/root-controller.js"))  
 //        .controller("LandingController", require("./controllers/landing-controller.js"))  
