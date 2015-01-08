@@ -18,6 +18,7 @@
         serverTestFiles = ["./test/api/*.js"],
         karmaTestFiles = ["./test/frontend/unit/*.js"],
         protractorTestFiles = ["./test/frontend/acceptance/*.js"],
+        sassFiles = ["./server/public/css/*.scss", "./server/public/css/*/*.scss"],
         allFiles = serverFiles.concat(angularFiles);
 
     //task for angular acceptance test
@@ -89,7 +90,7 @@
     //task for when developing
     gulp.task("file-watch",  function () {
         gulp.watch(allFiles, ["lint"]);
-        gulp.watch("./server/public/css/main.scss", ["sass-dev"]);
+        gulp.watch(sassFiles, ["sass-dev"]);
         console.log("gulp is watching for linting and sass changes...");
     });
 
