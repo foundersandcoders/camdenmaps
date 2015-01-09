@@ -41,7 +41,7 @@
             }))
             .on("error", function (err) {
                 throw err;
-            })
+            });
     });
 
     //task for angular unit test
@@ -91,7 +91,7 @@
             .pipe(concat('app.min.js'))
             .pipe(ngAnnotate())
             .pipe(uglify())
-            .pipe(gulp.dest("./server/public/js/"))
+            .pipe(gulp.dest("./server/public/js/"));
     });
 
     //task to start server
@@ -101,7 +101,7 @@
             root: "server",
             port: 9001
         });
-    })
+    });
 
     //task for travis
     gulp.task("travis",["serve"] ,function () {
@@ -112,7 +112,7 @@
             }))
             .on("error", function (err) {
                 throw err;
-            }) 
+            }) ;
     });
 
     //task for when developing
@@ -161,13 +161,8 @@
             debug: true
         });
 
-<<<<<<< HEAD
         var bundle = function() {
-=======
 
-        var bundle = function() {
-            console.log(getBundleName());
->>>>>>> dev
             return bundler
                 .bundle()
                 .pipe(source(getBundleName() + '.js'))
@@ -176,24 +171,18 @@
                 .pipe(uglify())
                 .pipe(sourcemaps.write('./'))
                 .pipe(gulp.dest('./server/public/js/'));
-        }
+        };
         return bundle();
     });
 
 
-<<<<<<< HEAD
-    gulp.task("watchify", function () {
-=======
     gulp.task("browserify-watch", function () {
->>>>>>> dev
+
 
         var bundler = watchify(browserify("./server/public/angular/app.js", watchify.args));
 
         var bundle = function() {
-<<<<<<< HEAD
-=======
-            console.log(getBundleName());
->>>>>>> dev
+
             return bundler
                 .bundle()
                 .pipe(source(getBundleName() + '.js'))
@@ -202,7 +191,7 @@
                 .pipe(uglify())
                 .pipe(sourcemaps.write('./'))
                 .pipe(gulp.dest('./server/public/js/'));
-        }
+        };
         return bundle();
     });
 
