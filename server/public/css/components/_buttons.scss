@@ -36,7 +36,12 @@
 
 #search {
 	button {
-		color: $dark-grey
+		width: 2.3em;
+		height: 2.3em;
+		span {
+			color: $dark-grey;
+			text-align: center;
+		}
 	}
 }
 

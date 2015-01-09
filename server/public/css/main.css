@@ -115,7 +115,11 @@ button {
         background-color: #2D389C; }
 
 #search button {
-  color: #333333; }
+  width: 2.3em;
+  height: 2.3em; }
+  #search button span {
+    color: #333333;
+    text-align: center; }
 
 .button {
   padding: 0; }
@@ -148,7 +152,10 @@ button {
 .search-box #postcode-input {
   padding: 0; }
   .search-box #postcode-input input {
-    width: 100%; }
+    width: 100%;
+    height: 2.3em;
+    text-align: center;
+    color: #333333; }
 
 /***********************************************
 *   MIXINS
