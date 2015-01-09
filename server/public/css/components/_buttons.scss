@@ -39,3 +39,19 @@
 		color: $dark-grey
 	}
 }
+
+.button {
+	padding: 0;
+	.list-results {
+		border-right: 0.1em white solid;
+		border-left: 0.1em white solid;
+		border-radius: 0;
+		background-color: $blue;
+		font-size: 1em;
+		color: white;
+		width: 100%;
+		&:hover {
+			background-color: $hover-blue;
+		}
+	}
+}

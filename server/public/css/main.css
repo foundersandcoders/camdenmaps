@@ -65,6 +65,9 @@ span {
   font-size: 1.5em;
   text-align: center; }
 
+button {
+  border: none; }
+
 /***********************************************
 *   TYPOGRAPHY
 *   Description: for typography mixins and 
@@ -113,6 +116,19 @@ span {
 
 #search button {
   color: #333333; }
+
+.button {
+  padding: 0; }
+  .button .list-results {
+    border-right: 0.1em white solid;
+    border-left: 0.1em white solid;
+    border-radius: 0;
+    background-color: #0000E9;
+    font-size: 1em;
+    color: white;
+    width: 100%; }
+    .button .list-results:hover {
+      background-color: #2D389C; }
 
 /***********************************************
 *   FORM
@@ -231,6 +247,9 @@ span {
   font-size: 1.5em;
   text-align: center; }
 
+button {
+  border: none; }
+
 /***********************************************
 *   TYPOGRAPHY
 *   Description: for typography mixins and 
@@ -283,6 +302,20 @@ span {
     display: block; }
   .services-and-categories .navigation-arrow {
     margin: 2.5em 0; }
+
+#result {
+  background-color: white; }
+
+#list-results {
+  text-align: left; }
+  #list-results .list-item {
+    background-color: white;
+    border-top: 0.1em black solid;
+    color: black; }
+  #list-results span {
+    right: -19.7em; }
+  #list-results h5.distance {
+    text-align: right; }
 
 /***********************************************
 *   MOBILE LAYOUT HERE
@@ -354,6 +387,9 @@ span {
   color: white;
   font-size: 1.5em;
   text-align: center; }
+
+button {
+  border: none; }
 
 /***********************************************
 *   TYPOGRAPHY

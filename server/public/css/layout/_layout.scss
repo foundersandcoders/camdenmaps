@@ -54,3 +54,22 @@
 		margin: 2.5em 0;
 	}
 }
+
+#result {
+	background-color: white;
+}
+
+#list-results {
+	text-align: left;
+	.list-item {
+		background-color: white;
+		border-top: 0.1em black solid;
+		color: black;
+	}
+	span {
+		right: -19.7em;
+	}
+	h5.distance {
+		text-align: right;
+	}
+}

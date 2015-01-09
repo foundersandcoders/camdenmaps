@@ -176,7 +176,7 @@
     });
 
 
-    gulp.task("browserify-watch", function () {
+    gulp.task("watchify", function () {
 
 
         var bundler = watchify(browserify("./server/public/angular/app.js", watchify.args));
