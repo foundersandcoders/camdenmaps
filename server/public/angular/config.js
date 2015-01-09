@@ -52,7 +52,7 @@
             .state("root.address-found.list-view", {
                 url: "/list",
                 templateUrl: "angular/partials/root.address-found.list-view.html",
-                controller: "ViewListController" 
+                controller: "ListController" 
             })
   
             .state("root.address-found.single-view", {
