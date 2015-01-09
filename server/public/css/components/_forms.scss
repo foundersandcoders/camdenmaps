@@ -4,9 +4,21 @@
 *	mixins and variables.
 ************************************************/
 
+//IMPORTS FILES
+@import '../base/colours';
+
 //Imports for Gov Files
 @import '../../../../node_modules/govuk_frontend_toolkit/stylesheets/colours',
 	//below for box shadow and other css3 functions
 	'../../../../node_modules/govuk_frontend_toolkit/stylesheets/css3',
 	//to normalise old browsers
 	'../../../../node_modules/govuk_frontend_toolkit/stylesheets/shims';
+
+.search-box {
+	#postcode-input {
+		padding: 0;
+		input {
+			width: 100%;
+		}
+	}
+}

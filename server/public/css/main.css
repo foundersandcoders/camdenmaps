@@ -30,8 +30,12 @@ body, html {
   font-family: Arial, Helvetica, Verdana, sans-serif;
   height: 100%; }
 
+.container-fluid {
+  padding: 0; }
+
 h1 {
-  font-size: 1.375em; }
+  font-size: 1.375em;
+  text-align: center; }
 
 h2 {
   font-size: 1.25em; }
@@ -49,33 +53,17 @@ h5 {
 p {
   font-size: 0.875em; }
 
-button {
-  font-size: 1em;
-  border: none;
-  backgroud-color: #0000E9;
-  border-radius: 0;
-  color: white; }
-  button:hover {
-    backgroud-color: #2D389C; }
-
 a {
-  text-decoration: none;
-  color: black; }
+  text-decoration: none; }
   a:visited {
-    text-decoration: none;
-    color: black; }
+    text-decoration: none; }
   a:hover {
-    text-decoration: none;
-    color: black; }
+    text-decoration: none; }
 
-.arrow-up {
-  width: 0;
-  height: 0;
-  border-left: 2.5em solid transparent;
-  border-right: 2.5em solid transparent;
-  border-bottom: 3.125em solid #333333;
-  position: absolute;
-  top: -2em; }
+span {
+  color: white;
+  font-size: 1.5em;
+  text-align: center; }
 
 /***********************************************
 *   TYPOGRAPHY
@@ -97,11 +85,54 @@ a {
 *   Description: for button related
 *	mixins and variables.
 ************************************************/
+/***********************************************
+*   COLOURS
+*	Description: Colour variables
+************************************************/
 @-ms-viewport {
   width: device-width; }
 
 @-o-viewport {
   width: device-width; }
+
+#buttons {
+  margin-top: 1em;
+  padding: 0; }
+  #buttons .button {
+    padding: 0; }
+    #buttons .button button {
+      border-right: 0.1em white solid;
+      border-left: 0.1em white solid;
+      border-radius: 0;
+      background-color: #0000E9;
+      font-size: 1em;
+      color: white;
+      width: 100%; }
+      #buttons .button button:hover {
+        background-color: #2D389C; }
+
+#search button {
+  color: #333333; }
+
+/***********************************************
+*   FORM
+*   Description: for form (input) related
+*	mixins and variables.
+************************************************/
+/***********************************************
+*   COLOURS
+*	Description: Colour variables
+************************************************/
+@-ms-viewport {
+  width: device-width; }
+
+@-o-viewport {
+  width: device-width; }
+
+.search-box #postcode-input {
+  padding: 0; }
+  .search-box #postcode-input input {
+    width: 100%; }
 
 /***********************************************
 *   MIXINS
@@ -119,7 +150,7 @@ a {
 ************************************************/
 header {
   border-bottom: 0.1em solid black; }
-  header div .camden-logo {
+  header div #camden-logo {
     width: 100%;
     height: auto;
     margin: 0.3em 0; }
@@ -165,8 +196,12 @@ body, html {
   font-family: Arial, Helvetica, Verdana, sans-serif;
   height: 100%; }
 
+.container-fluid {
+  padding: 0; }
+
 h1 {
-  font-size: 1.375em; }
+  font-size: 1.375em;
+  text-align: center; }
 
 h2 {
   font-size: 1.25em; }
@@ -184,33 +219,17 @@ h5 {
 p {
   font-size: 0.875em; }
 
-button {
-  font-size: 1em;
-  border: none;
-  backgroud-color: #0000E9;
-  border-radius: 0;
-  color: white; }
-  button:hover {
-    backgroud-color: #2D389C; }
-
 a {
-  text-decoration: none;
-  color: black; }
+  text-decoration: none; }
   a:visited {
-    text-decoration: none;
-    color: black; }
+    text-decoration: none; }
   a:hover {
-    text-decoration: none;
-    color: black; }
+    text-decoration: none; }
 
-.arrow-up {
-  width: 0;
-  height: 0;
-  border-left: 2.5em solid transparent;
-  border-right: 2.5em solid transparent;
-  border-bottom: 3.125em solid #333333;
-  position: absolute;
-  top: -2em; }
+span {
+  color: white;
+  font-size: 1.5em;
+  text-align: center; }
 
 /***********************************************
 *   TYPOGRAPHY
@@ -230,8 +249,6 @@ a {
 #first-level-options {
   border-bottom: 0.1em solid black;
   background-color: #DFEEF5; }
-  #first-level-options h1 {
-    text-align: center; }
   #first-level-options .icon {
     margin: 0 auto;
     display: block;
@@ -241,10 +258,16 @@ a {
   #first-level-options h4 {
     text-align: center; }
 
-#find-your-nearest {
+.services-and-categories {
   border-bottom: 0.1em solid black;
-  background-color: #333333; }
-  #find-your-nearest .arrow-up {
+  background-color: #333333;
+  color: white;
+  text-align: center; }
+  .services-and-categories #back {
+    position: absolute;
+    top: 0.3em;
+    left: 0.3em; }
+  .services-and-categories .arrow-up {
     width: 0;
     height: 0;
     border-left: 30px solid transparent;
@@ -254,16 +277,12 @@ a {
     top: -2em;
     left: 50%;
     margin-left: -32px; }
-  #find-your-nearest h1 {
-    color: white;
-    text-align: center; }
-  #find-your-nearest .icon {
+  .services-and-categories .icon {
+    width: 3em;
     margin: 0 auto;
-    display: block;
-    width: 4em; }
-  #find-your-nearest h4 {
-    color: white;
-    text-align: center; }
+    display: block; }
+  .services-and-categories .navigation-arrow {
+    margin: 2.5em 0; }
 
 /***********************************************
 *   MOBILE LAYOUT HERE
@@ -301,8 +320,12 @@ body, html {
   font-family: Arial, Helvetica, Verdana, sans-serif;
   height: 100%; }
 
+.container-fluid {
+  padding: 0; }
+
 h1 {
-  font-size: 1.375em; }
+  font-size: 1.375em;
+  text-align: center; }
 
 h2 {
   font-size: 1.25em; }
@@ -320,33 +343,17 @@ h5 {
 p {
   font-size: 0.875em; }
 
-button {
-  font-size: 1em;
-  border: none;
-  backgroud-color: #0000E9;
-  border-radius: 0;
-  color: white; }
-  button:hover {
-    backgroud-color: #2D389C; }
-
 a {
-  text-decoration: none;
-  color: black; }
+  text-decoration: none; }
   a:visited {
-    text-decoration: none;
-    color: black; }
+    text-decoration: none; }
   a:hover {
-    text-decoration: none;
-    color: black; }
+    text-decoration: none; }
 
-.arrow-up {
-  width: 0;
-  height: 0;
-  border-left: 2.5em solid transparent;
-  border-right: 2.5em solid transparent;
-  border-bottom: 3.125em solid #333333;
-  position: absolute;
-  top: -2em; }
+span {
+  color: white;
+  font-size: 1.5em;
+  text-align: center; }
 
 /***********************************************
 *   TYPOGRAPHY

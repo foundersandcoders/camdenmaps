@@ -24,5 +24,5 @@ lab-test-cov-html:
 
 .PHONY-lab: test test-cov test-cov-html test/api/test.js
 
-protractor test:
+protractor-test:
 	@node node_modules/protractor/bin/protractor test/frontend/acceptance/test.js

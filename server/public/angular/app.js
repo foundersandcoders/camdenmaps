@@ -45,19 +45,19 @@
                         id: "findYourNearest",
                         title: "Find Your Nearest",
                         path: "root.landing.services",
-                        iconUrl: "img/icons/find-your-nearest.svg"
+                        iconUrl: "img/icons/find-your-nearest.png"
                     },
                     {
                         id: "aboutYourNeighbourhood",
                         title: "About Your Neighbourhood",
                         path: "/neighbourhood/search",
-                        iconUrl: "img/icons/your-neighbourhood.svg"
+                        iconUrl: "img/icons/your-neighbourhood.png"
                     },
                     {
                         id: "liveStreetworks",
                         title: "Live Streetworks",
                         path: "/streetworks/search",
-                        iconUrl: "img/icons/streetworks.svg"
+                        iconUrl: "img/icons/streetworks.png"
                     }
                 ]; 
                 

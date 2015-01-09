@@ -42,7 +42,7 @@ function convert(filename, outputdir) {
       try {
         var js = yaml.load(data);
         var prettyJs = JSON.stringify(js, undefined, 2);
-        var outputFilename = outputdir + "/" + filename.split("/").pop().replace(".yml", "") + ".json";
+        var outputFilename = outputdir + "/" + filename.split("/").pop().replace(".yaml", "") + ".json";
         console.log("writing to " + outputFilename);
         fs.writeFile(outputFilename, prettyJs, function(err) {
           if(err) {

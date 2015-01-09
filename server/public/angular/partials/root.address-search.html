@@ -1,4 +1,4 @@
-<div id="activity-for-older-people" class="container-fluid">
+<div id="activity-for-older-people" class="container-fluid services-and-categories">
 
     <div class="col-xs-12">
         <h1>Find your Nearest...</h1>
@@ -12,14 +12,14 @@
         <h4>{{ service }}</h4>
     </div>
 
-    <div class="col-xs-12" id="search-box">
+    <div class="col-xs-12 search-box">
         
         <div id="postcode-input" class="col-xs-10">
-            <input id="postcode" placeholder="Enter a postcode or street name" ng-model="address">
+            <input placeholder="Enter a postcode or street name" ng-model="address">
         </div>
         
-        <div class="col-xs-2">
-            <button id="search" ng-click="search()">
+        <div id="search" class="col-xs-2">
+            <button ng-click="search()">
                 <span class="glyphicon glyphicon-search"></span>
             </button>
         </div>
@@ -28,11 +28,11 @@
 
     <div id="buttons" class="col-xs-12">
         
-        <div id="button" class="col-xs-6">
+        <div class="button col-xs-6">
             <button ng-click="searchAgain()" class="btn">Search again</button>
         </div>
         
-        <div id="button" class="col-xs-6">
+        <div class="button col-xs-6">
             <button ng-click="listResults()" class="btn">List results</button>
         </div>
     

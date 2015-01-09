@@ -11,9 +11,6 @@
 #first-level-options {
 	border-bottom: 0.1em solid black;
 	background-color: $light-blue;
-	h1 {
-		text-align: center;
-	}
 	.icon {
 		margin: 0 auto;
 		display: block;
@@ -27,9 +24,16 @@
 	}
 }
 
-#find-your-nearest {
+.services-and-categories {
 	border-bottom: 0.1em solid black;
 	background-color: $dark-grey;
+	color: white;
+	text-align: center;
+	#back {
+		position: absolute;
+		top: 0.3em;
+		left: 0.3em;
+	}
 	.arrow-up {
 		width: 0;
 		height: 0;
@@ -41,17 +45,12 @@
     	left:50%;
     	margin-left:-32px;
 	}
-	h1 {
-		color: white;
-		text-align: center;
-	}
 	.icon {
+		width: 3em;
 		margin: 0 auto;
 		display: block;
-		width: 4em;
 	}
-	h4 {
-		color: white;
-		text-align: center;
+	.navigation-arrow {
+		margin: 2.5em 0;
 	}
 }
