@@ -110,6 +110,29 @@
 
     });
 
+        // it("multiple services are selected, the list of all these nearby service items are displayed simultaneously as well as their corresponding pins on the map.", function () {
+
+        // });
+        // it("multiple services are selected, the list of services are colour coded depending on their category and this colour coding is repeated on their pins on the map.", function () {
+
+        // });
+        // it("a selected service is unselected, its corresponding items and pins disappear from their corresponding displays.", function () {
+
+        // });
+
+    // });
+
+    // describe("As a user, I want to find contact information for service items so that I can contact them easily.", function () {
+
+
+    //     it("a phone number is clicked on a mobile device, the number is dialled automatically.", function () {
+
+    //     });
+    //     it("the service name is clicked, the service's website is opened in a new tab or window.", function () {
+
+    //     });
+
+    // });
 
 
     //     it("a postcode is entered, then it is validated to ensure it is a valid Camden postcode.", function () {
@@ -281,54 +304,5 @@
 
  //    });
 	
-   //  describe("As a user I want to select multiple service categories from a scolling list", function () {
-
-        // it("the drop down menu for services is selected, then there are 86 services to choose from", function () {
-        // 	//won't work until we set up "ng-options"
-        // 	var servicesList = element.all(by.repeater('option in options'));
-
-   //      	expect(servicesList.count()).toEqual(86);
-   //      });
-   //      it("the drop down menu for services is selected, then there are 10 service categories to choose from", function () {
-   //      	//won't work until we set up "ng-options"
-   //      	var serviceCategories = element.all(by.repeater('optgroup in optgoups'));
-
-   //      	expect(serviceCategories.count()).toEqual(10);
-   //      });
-   //      it("one service is selected, then the list of nearby service items are displayed as well as their corresponding pins on the map.", function () {
-   //      	//helper function to select option from dropdown list
-   //      	var selectDropdownbyNum = function ( element, optionNum ) {
-			//   	if (optionNum){
-			//     	var options = element.findElements(by.tagName('option'))   
-			//       	.then(function(options){
-			//         	options[optionNum].click();
-			//       	});
-			//   	}
-			// };
-			// expect(element(by.model('services')).$('option:checked').getText()).toEqual('Police Station');
-   //      });
-        // it("multiple services are selected, the list of all these nearby service items are displayed simultaneously as well as their corresponding pins on the map.", function () {
-
-        // });
-        // it("multiple services are selected, the list of services are colour coded depending on their category and this colour coding is repeated on their pins on the map.", function () {
-
-        // });
-        // it("a selected service is unselected, its corresponding items and pins disappear from their corresponding displays.", function () {
-
-        // });
-
-    // });
-
-    // describe("As a user, I want to find contact information for service items so that I can contact them easily.", function () {
-
-
-    //     it("a phone number is clicked on a mobile device, the number is dialled automatically.", function () {
-
-    //     });
-    //     it("the service name is clicked, the service's website is opened in a new tab or window.", function () {
-
-    //     });
-
-    // });
 
 }());
