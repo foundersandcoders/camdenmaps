@@ -14,7 +14,7 @@ exports.config = {
     'platform': 'ANY'
   },
 
-  baseUrl: 'http://0.0.0.0:8080',
+  baseUrl: 'http://0.0.0.0:8080/',
 
   framework: 'jasmine',
 

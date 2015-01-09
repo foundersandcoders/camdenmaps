@@ -9,52 +9,56 @@
 
     describe("As a user, I want to have clear call to actions when I arrive on the landing page", function () {
 
-        it("title to be correct", function() {
+        it("title to be Camden Council: Find Your Nearest", function() {
+
+            browser.get('#/home');
 
             var title = browser.getTitle();
 
             expect(title).toEqual('Camden Council: Find Your Nearest');
 
         });
-        it("There are three call to actions with icons", function() {
+        describe("There are three call to actions with icons, ", function() {
 
-            var findYourNearest = element(by.css('find-your-nearest'));
-            var aboutYourNeighbourhood = element(by.css('about-your-neighbourhood'));
-            var liveStreetworks = element(by.css('live-streetworks'));
-
-            expect(findYourNearest.toEqual('Find Your Nearest'));
-            expect(aboutYourNeighbourhood.toEqual('About Your Neighbourhood'));
-            expect(liveStreetworks.toEqual('Live Streetworks'));
-
-            var nearestIconSrc = element(by.css('find-your-nearest')).attr("src");
-            var neighbourhoodIconSrc = element(by.css('about-your-neighbourhood')).attr("src");
-            var streetworksIconSrc = element(by.css('live-streetworks')).attr("src");
-
-            expect(nearestIconSrc.toEqual('../img/icons/find-your-nearest.svg'));
-            expect(neighbourhoodIconSrc.toEqual('../img/icons/your-neighbourhood.svg'));
-            expect(streetworksIconSrc.toEqual('../img/icons/streetworks.svg'));
+            it("Find your nearest, ", function () {
+                var findYourNearest = element(by.id('findYourNearest'));
+                var nearestText = findYourNearest.element(by.tagName('h4')).getText();
+                
+                expect(nearestText).toEqual('Find Your Nearest');
+            });
+            it("About Your Neighbourhood, ", function () {
+                var aboutYourNeighbourhood = element(by.id('aboutYourNeighbourhood'));
+                var neighbourhoodText = aboutYourNeighbourhood.element(by.tagName('h4')).getText();
+                
+                expect(neighbourhoodText).toEqual('About Your Neighbourhood');
+            });
+            it("and Live Streetworks", function () {
+                var liveStreetworks = element(by.id('liveStreetworks'));
+                var streetworksText = liveStreetworks.element(by.tagName('h4')).getText();
+                
+                expect(streetworksText).toEqual('Live Streetworks');
+            });
 
         });
         it("The header includes Camden Logo and correct alternate text", function() {
 
             var logo = element(by.id('camden-logo'));
-            var alt = logo.attr("alt");
+            var alt = logo.getAttribute("alt");
 
             expect(logo.isDisplayed()).toBe(true);
-            expect(alt.toEqual('Camden'));
+            expect(alt).toBe('Camden');
         });
         it("page loads, the map renders", function() {
 
-            var canvas = element($('canvas'));
+            var leaflet = element(by.css('.leaflet-tile-loaded'));
 
-            expect(canvas).isDisplayed().toBe(true);
+            expect(leaflet.isDisplayed()).toBe(true);
 
         });
         it("a option is clicked, services categories are revealed", function () {
-
                         
             element(by.id('nearest-toggle')).click();    
-            expect(element(by.id('carousal-service-categories')).isDisplayed()).toBe(true);
+            expect(element(by.id('find-your-nearest')).isDisplayed()).toBe(true);
         });
     });
 
