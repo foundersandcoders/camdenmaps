@@ -285,7 +285,8 @@ button {
   .services-and-categories #back {
     position: absolute;
     top: 0.3em;
-    left: 0.3em; }
+    left: 0.3em;
+    z-index: 1; }
   .services-and-categories .arrow-up {
     width: 0;
     height: 0;
