@@ -15,11 +15,11 @@ basePath:
 produces:
   - application/json
 paths:
-  /seveices/{service}:
+  /services/{service}:
     get:
       summary: /services/{service}
       description: |
-        The servcies endpoint returns the location of all the locations of a selected Camden Council service 
+        The services endpoint returns the location of all the locations of a selected Camden Council service 
       parameters:
         - name: service
           in: query

@@ -10,7 +10,6 @@ To run, use command:
 npm start
 ```
 
-
 To run acceptance tests, use command: 
 ```
 npm test
@@ -33,8 +32,16 @@ node server/lib/yml2swagger.js server/lib/yaml server/public/output
 where arg[0] is the files to be converted and arg[1] is where the file should be outputed.
 ```
 
+To run browserify, use command: 
+```
+gulp browserify
+```
+or
+```
+gulp browserify-watch
+```
 
-To include gov.uk sass files in our project simple import!
+To include gov.uk sass files in our project simply import to begin to use!
 
 ```
 @import '_conditionals';
@@ -42,3 +49,4 @@ To include gov.uk sass files in our project simple import!
 ```
 
 For more information on using gov.uk styles see documentation here: https://github.com/alphagov/govuk_frontend_toolkit
+

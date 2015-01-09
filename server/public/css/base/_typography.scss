@@ -1,0 +1,12 @@
+/***********************************************
+*   TYPOGRAPHY
+*   Description: for typography mixins and 
+*   variables. Use gov frontend for guidelines.
+************************************************/
+
+
+//IMPORTS FOR GOV FILES
+@import '../../../../node_modules/govuk_frontend_toolkit/stylesheets/typography';
+
+//CAMDEN FONT VARIABLE
+$default-font: Arial, Helvetica, Verdana, sans-serif;
