@@ -303,6 +303,64 @@
             }
         ])
         
+        .controller("LocationController", [
+            "$scope",
+            "$location",
+            "$stateParams",
+            "$http",
+            function ($scope, $location, $stateParams, $http) {
+                
+                //reloads $scope.results with new data based on address 
+                $http.get("/services/" + $stateParams.service + "/locations/" + $stateParams.address)
+                    .success(function success (data) {
+                        $scope.results = data;
+                    });
+
+                $scope.service = $stateParams.service;
+                $scope.address = $stateParams.address;
+
+                $scope.searchAgain = function searchAgain () {
+                    //TODO: write logic for function
+                    console.log("searching again");
+                }
+
+                $scope.listResults = function listResults () {
+                    //TODO: write logic for function
+                    var destination = "/home/"+$scope.service+"/location/"+$scope.address+"/list"; 
+                    $location.path(destination);
+                }
+            }
+        ])
+
+        .controller("ListController", [
+            "$scope",
+            "$stateParams",
+            "$location", 
+            function ($scope, $stateParams, $location) {
+        
+                //button to exit list view
+                
+
+                //handler for each result
+                function createResultsHandler (id) {
+                    return function () {
+                        var path = "/service" + $stateParams.service + 
+                            "/location/" + $stateParams.address +
+                            $stateParams.id;
+                        $location.path(path); 
+                    }
+                }
+
+                //add handler to results list
+                (function addResultsHandlers (index){
+                    if (index > $scope.results.length) {
+                        return;
+                    }
+                    $scope.results[index].createResultsHandler($scope.result.id);
+                    addResultsHandlers(index+1);
+                }(0));
+            }
+        ]) 
 //        .controller("RootController", require("./controllers/root-controller.js"))  
 //        .controller("LandingController", require("./controllers/landing-controller.js"))  
 //        .service("apiSearch", require("./services/api-search.js"));

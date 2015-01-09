@@ -50,13 +50,13 @@
             })
   
             .state("root.address-found.list-view", {
-                url: "/{service}/location/{address}/list",
+                url: "/list",
                 templateUrl: "angular/partials/root.address-found.list-view.html",
                 controller: "ViewListController" 
             })
   
             .state("root.address-found.single-view", {
-                url: "/{service}/location/{address}/{id}",
+                url: "/{id}",
                 templateUrl: "angular/partials/root.address-found.single-view.html",
                 controller: "ViewSingleController" 
             })
