@@ -10,7 +10,6 @@ To run, use command:
 npm start
 ```
 
-
 To run acceptance tests, use command: 
 ```
 npm test
@@ -42,14 +41,12 @@ or
 gulp browserify-watch
 ```
 
-To include gov.uk sass files in our project simple import...
+To include gov.uk sass files in our project simply import to begin to use!
 
 ```
 @import '_conditionals';
 @import '_typography';
 ```
-
-And use!
 
 For more information on using gov.uk styles see documentation here: https://github.com/alphagov/govuk_frontend_toolkit
 
