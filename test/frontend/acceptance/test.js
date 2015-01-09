@@ -4,6 +4,7 @@
 *   Use: run tests by npm test
 **************************************************/
 
+//Landing Tests go here.
 (function () {
     "use strict";
 
@@ -21,18 +22,21 @@
         describe("There are three call to actions with icons, ", function() {
 
             it("Find your nearest, ", function () {
+                
                 var findYourNearest = element(by.id('findYourNearest'));
                 var nearestText = findYourNearest.element(by.tagName('h4')).getText();
                 
                 expect(nearestText).toEqual('Find Your Nearest');
             });
             it("About Your Neighbourhood, ", function () {
+
                 var aboutYourNeighbourhood = element(by.id('aboutYourNeighbourhood'));
                 var neighbourhoodText = aboutYourNeighbourhood.element(by.tagName('h4')).getText();
                 
                 expect(neighbourhoodText).toEqual('About Your Neighbourhood');
             });
             it("and Live Streetworks", function () {
+
                 var liveStreetworks = element(by.id('liveStreetworks'));
                 var streetworksText = liveStreetworks.element(by.tagName('h4')).getText();
                 
@@ -55,20 +59,32 @@
             expect(leaflet.isDisplayed()).toBe(true);
 
         });
-        it("a option is clicked, services categories are revealed", function () {
-                        
-            element(by.id('nearest-toggle')).click();    
-            expect(element(by.id('find-your-nearest')).isDisplayed()).toBe(true);
-        });
     });
 
 
 // /**********************************************
-//     Wheres my Nearest Specific Tests go here
+//     Find Your Nearest Tests go here
 // ***********************************************/
 
-//     describe("As a user, I want to be able to enter a Camden postcode so that I can find the nearest point of interest to me.", function () {
+    describe("As a user, I want to be able to enter a Camden postcode so that I can find the nearest point of interest to me.", function () {
 
+        describe("Find Your Nearest option is clicked", function () {
+            it("section is revealed", function () {
+
+                browser.get('#/home');
+
+                element(by.id('nearest-toggle')).click();    
+                expect(element(by.id('find-your-nearest')).isDisplayed()).toBe(true);
+            });
+
+            it("with 10 service categories, only 3 visable", function () {
+
+                var serviceCategories = element.all(by.repeater('item in visibleItems'));
+
+                expect(serviceCategories.count()).toBe(3);
+            });
+        });
+    });
 //         it("a service category is clicked, services are revealed", function () {
             
 //             function clicktoOpen() {

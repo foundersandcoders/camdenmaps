@@ -150,7 +150,7 @@ span {
 ************************************************/
 header {
   border-bottom: 0.1em solid black; }
-  header div .camden-logo {
+  header div #camden-logo {
     width: 100%;
     height: auto;
     margin: 0.3em 0; }
@@ -261,9 +261,8 @@ span {
 .services-and-categories {
   border-bottom: 0.1em solid black;
   background-color: #333333;
-  color: white; }
-  .services-and-categories h1 {
-    text-align: center; }
+  color: white;
+  text-align: center; }
   .services-and-categories #back {
     position: absolute;
     top: 0.3em;
