@@ -86,29 +86,37 @@
         });
 
         it("back arrow is functioning", function () {
-            //Need to test
+
+            var serviceCategories = element(by.repeater('item in visibleItems'));
+            var text = serviceCategories.element(by.tagName('h4')).getText();
+
+            element(by.css('[ng-click="execute(item.handler)"]')).click();
+            element(by.css('[ng-click="backOneCategory()"]')).click();
+
+            var serviceCategories2 = element(by.repeater('item in visibleItems'));
+            var text2 = serviceCategories.element(by.tagName('h4')).getText();
+
+            expect(text).toEqual(text2);
+
         });
-        
-        describe("carousal", function () {
-            it("right arrow is clicked and go forward a page", function () {
-                //Need to test
-            });
-            it("left arrow is clicked and go back a page", function () {
-                //Need to test
-            });
-        });
+	});
 
-        it("a service category is clicked, services are revealed", function () {
-            //FAILING, Unsure how to test new services are revealed.
-    
-            element.all(by.css('[ng-click="execute(item.handler)]"')).click();
+}());
 
-            expect(carousal.isDisplayed()).toBe(true);
+        // describe("carousal", function () {
+        //     it("right arrow is clicked and go forward a page", function () {
+        //         //Need to test
+        //     });
+        //     it("left arrow is clicked and go back a page", function () {
+        //         //Need to test
+        //     });
+        // });
 
-            
-        });
+    //     it("a service category is clicked, services are revealed", function () {
+    //         //FAILING, Unsure how to test new services are revealed.
+    //     });
 
-    });
+    // });
 
         // it("multiple services are selected, the list of all these nearby service items are displayed simultaneously as well as their corresponding pins on the map.", function () {
 
@@ -136,14 +144,14 @@
 
 
     //     it("a postcode is entered, then it is validated to ensure it is a valid Camden postcode.", function () {
-    //     	//Need to test
+    //      //Need to test
     //     });
     //     it("an invalid postcode is entered, then a message informs the user that the postcode is either not correct or in Camden.", function () {
-    //     	//Need to test
+    //      //Need to test
     //         //load the page and find the correct text on it after an invalid postcode is entered.
     //     });
     //     it("a postcode and service are searched, then a list of nearby services is displayed, arranged by distance and with information about: name, address, distance from postcode.", function () {
-    //     	//Need to test
+    //      //Need to test
     //     });
     //     it("an item in the list of nearby services is clicked, then the map is centered on the corresponding pin and its information box opens.", function () {
     //         //Need to test
@@ -165,8 +173,8 @@
     //     });
 
     // });
-	
-	// describe("As a user, I want to be able to enter a Camden areacode so that I can find the nearest point of interest to me.", function () {
+    
+    // describe("As a user, I want to be able to enter a Camden areacode so that I can find the nearest point of interest to me.", function () {
 
  //        it("a areacode is entered, then it is validated to ensure it is a valid Camden areacode.", function () {
  //             //Need to test
@@ -198,7 +206,7 @@
 
  //    });
 
-	// describe("As a user, I want to be able to enter a Camden street name so that I can find the nearest point of interest to me.", function () {
+    // describe("As a user, I want to be able to enter a Camden street name so that I can find the nearest point of interest to me.", function () {
 
         
 
@@ -232,10 +240,10 @@
 
  //    });
 
-	// describe("As a user, I want to be able to enter a Camden areacode so that I can find the nearest point of interest to me.", function () {
+    // describe("As a user, I want to be able to enter a Camden areacode so that I can find the nearest point of interest to me.", function () {
 
         // beforeEach("Given that", function () {
-        // 	browser.get('http://www.angularjs.org');
+        //  browser.get('http://www.angularjs.org');
         // });
 
  //        it("a areacode is entered, then it is validated to ensure it is a valid Camden areacode.", function () {
@@ -268,10 +276,10 @@
 
  //    });
 
-	// describe("As a user, I want to be able to enter a Camden street name so that I can find the nearest point of interest to me.", function () {
+    // describe("As a user, I want to be able to enter a Camden street name so that I can find the nearest point of interest to me.", function () {
 
  //        beforeEach("Given that", function () {
- //        	browser.get('http://www.angularjs.org');
+ //         browser.get('http://www.angularjs.org');
  //        });
 
  //        it("a street name is entered, then it is validated to ensure it is a valid Camden street name.", function () {
@@ -303,6 +311,3 @@
  //        });
 
  //    });
-	
-
-}());
