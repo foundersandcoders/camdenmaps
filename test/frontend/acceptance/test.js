@@ -84,22 +84,31 @@
                 expect(serviceCategories.count()).toBe(3);
             });
         });
+
+        it("back arrow is functioning", function () {
+            //Need to test
+        });
+        
+        describe("carousal", function () {
+            it("right arrow is clicked and go forward a page", function () {
+                //Need to test
+            });
+            it("left arrow is clicked and go back a page", function () {
+                //Need to test
+            });
+        });
+
+        it("a service category is clicked, services are revealed", function () {
+            //FAILING, Unsure how to test new services are revealed.
+    
+            element.all(by.css('[ng-click="execute(item.handler)]"')).click();
+
+            expect(carousal.isDisplayed()).toBe(true);
+
+            
+        });
+
     });
-//         it("a service category is clicked, services are revealed", function () {
-            
-//             function clicktoOpen() {
-//                 element(by.class('community-and-living-toggle')).click();
-//             }
-
-//             var carousel = element(by.id('carousal-community-and-living'));
-
-//             clicktoOpen();
-//             expect(carousal.isDisplayed()).toBe(true);
-
-            
-//         });
-
-
 
 
 
