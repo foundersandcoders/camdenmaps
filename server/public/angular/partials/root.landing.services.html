@@ -1,0 +1,38 @@
+<!-- ROOT.LANDING.SERVICES BEGINS -->
+
+<div id="find-your-nearest" class="services-and-categories container-fluid col-xs-12">
+
+    <div class="col-xs-4 col-sm-3 col-sm-offset-1">
+        <div class="arrow-up"></div>
+    </div>
+
+    <a id="back" href="" ng-click="backOneCategory()">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+
+    <div class="col-xs-12">
+        <h1>Find Your Nearest</h1>
+    </div>
+
+    <div class="col-xs-1">
+        <a href="" ng-click="prevItems()">
+            <span class="navigation-arrow glyphicon glyphicon-chevron-left"></span>
+        </a>
+    </div>
+
+    <div class="col-xs-10">
+        <div ng-repeat="item in visibleItems" class="col-xs-4 col-sm-2 col-sm-offset-2 col-" >
+            <a ng-click="execute(item.handler)" href="#">    
+                <img class="icon" ng-src="{{ item.img }}" alt="">
+            </a>
+            <h4>{{ item.text }}</h4>
+        </div>
+    </div>
+
+    <div class="col-xs-1">
+        <a href="" ng-click="nextItems()">
+            <span class="navigation-arrow glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
+</div>
+<!-- ROOT.LANDING.SERVICES ENDS-->

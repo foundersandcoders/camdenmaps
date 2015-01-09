@@ -3,8 +3,9 @@
 *   Use: Registers directive with directive module and injects to core module 
 */
 
-(function () {
+;(function () {
     "use strict";
-//      var directiveModule = angular.module("DirectiveModule", []);
-//      directiveModule.directive("DirectiveName", require(importedDirective))
+
+    module.exports = angular.module("DirectiveModule", []);
+
 }());
