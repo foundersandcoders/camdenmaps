@@ -1,0 +1,41 @@
+<div id="activity-for-older-people" class="container-fluid services-and-categories">
+
+    <div class="col-xs-12">
+        <h1>Find your Nearest...</h1>
+    </div>
+
+     <div class="col-xs-2">
+         <img class="icon" ng-src="{{ iconUrl }}">
+    </div>
+
+    <div class="col-xs-10">
+        <h4>{{ service }}</h4>
+    </div>
+
+    <div class="col-xs-12 search-box">
+        
+        <div id="postcode-input" class="col-xs-10">
+            <input placeholder="Enter a postcode or street name" ng-model="address">
+        </div>
+        
+        <div id="search" class="col-xs-2">
+            <button ng-click="search()">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </div>
+    
+    </div>
+
+    <div id="buttons" class="col-xs-12">
+        
+        <div class="button col-xs-6">
+            <button ng-click="searchAgain()" class="btn">Search again</button>
+        </div>
+        
+        <div class="button col-xs-6">
+            <button ng-click="listResults()" class="btn">List results</button>
+        </div>
+    
+    </div>
+
+</div>

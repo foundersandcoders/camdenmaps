@@ -10,7 +10,13 @@
         sass = require("gulp-sass"),
         concat = require("gulp-concat"),
         uglify = require("gulp-uglify"),
-        ngAnnotate = require("gulp-ng-annotate");
+        ngAnnotate = require("gulp-ng-annotate"),
+        sourcemaps = require("gulp-sourcemaps"),
+        source = require("vinyl-source-stream"),
+        buffer = require("vinyl-buffer"),
+        watchify = require("watchify"),
+        connect = require("gulp-connect"),
+        browserify = require("browserify");
 
     //file arrays
     var serverFiles = ["./server/*.js", "./server/**/*.js"],
@@ -18,8 +24,15 @@
         serverTestFiles = ["./test/api/*.js"],
         karmaTestFiles = ["./test/frontend/unit/*.js"],
         protractorTestFiles = ["./test/frontend/acceptance/*.js"],
+        sassFiles = ["./server/public/css/*.scss", "./server/public/css/*/*.scss"],
         allFiles = serverFiles.concat(angularFiles);
 
+    //Useful for js compression. Used for task browserify
+    var getBundleName = function () {
+        var version = require('./package.json').version;
+        var name = require('./package.json').name;
+        return version + '.' + name + '.' + 'min';
+    };
     //task for angular acceptance test
     gulp.task("acceptance-test", function () {
         return gulp.src(protractorTestFiles)
@@ -28,7 +41,7 @@
             }))
             .on("error", function (err) {
                 throw err;
-            })
+            });
     });
 
     //task for angular unit test
@@ -78,12 +91,28 @@
             .pipe(concat('app.min.js'))
             .pipe(ngAnnotate())
             .pipe(uglify())
-            .pipe(gulp.dest("./server/public/js/"))
+            .pipe(gulp.dest("./server/public/js/"));
+    });
+
+    //task to start server
+    gulp.task("serve", function () {
+        console.log("starting server");
+        connect.server({
+            root: "server",
+            port: 9001
+        });
     });
 
     //task for travis
-    gulp.task("travis", ["sass-production", "acceptance-test", "compress"], function () {
-        return console.log("sass, uglify and tests passed");
+    gulp.task("travis",["serve"] ,function () {
+        console.log("sass, uglify and tests passed");
+        return gulp.src(protractorTestFiles)
+            .pipe(protractor({
+                configFile: "./test/frontend/config/protractor.conf.js"
+            }))
+            .on("error", function (err) {
+                throw err;
+            }) ;
     });
 
     //task for when developing
@@ -97,6 +126,73 @@
         gulp.watch(karmaTestFiles, angularFiles, ["unit-test"]);
         gulp.watch(serverFiles.concat(serverTestFiles), ["server-test"]);
         console.log("gulp is watching for test changes...");
+    });
+
+    gulp.task("browserify", function () {
+
+        var bundler = browserify({
+            entries: ["./server/public/angular/app.js"],
+            debug: true
+        });connect.server({
+            root: "server",
+            port: 9001
+        });
+        
+        return console.log("sass, uglify and tests passed");
+    });
+
+    //task for when developing
+    gulp.task("file-watch",  function () {
+        gulp.watch(allFiles, ["lint"]);
+        gulp.watch(sassFiles, ["sass-dev"]);
+        console.log("gulp is watching for linting and sass changes...");
+    });
+
+    gulp.task("test-watch", function () {
+        gulp.watch(karmaTestFiles, angularFiles, ["unit-test"]);
+        gulp.watch(serverFiles.concat(serverTestFiles), ["server-test"]);
+        console.log("gulp is watching for test changes...");
+    });
+
+    gulp.task("browserify", function () {
+
+        var bundler = browserify({
+            entries: ["./server/public/angular/app.js"],
+            debug: true
+        });
+
+        var bundle = function() {
+
+            return bundler
+                .bundle()
+                .pipe(source(getBundleName() + '.js'))
+                .pipe(buffer())
+                .pipe(sourcemaps.init({loadMaps: true}))
+                .pipe(uglify())
+                .pipe(sourcemaps.write('./'))
+                .pipe(gulp.dest('./server/public/js/'));
+        };
+        return bundle();
+    });
+
+
+    gulp.task("browserify-watch", function () {
+
+
+        var bundler = watchify(browserify("./server/public/angular/app.js", watchify.args));
+
+        var bundle = function() {
+
+            return bundler
+                .bundle()
+                .pipe(source(getBundleName() + '.js'))
+                .pipe(buffer())
+                .pipe(sourcemaps.init({loadMaps: true}))
+                .pipe(uglify())
+                .pipe(sourcemaps.write('./'))
+                .pipe(gulp.dest('./server/public/js/'));
+        };
+        return bundle();
     });
 
 }());
