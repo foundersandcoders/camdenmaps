@@ -1,5 +1,5 @@
 #!/bin/bash
- 
+
 set -e
  
 CONNECT_URL="https://saucelabs.com/downloads/sc-4.3-linux.tar.gz"

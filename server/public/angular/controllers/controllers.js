@@ -5,6 +5,8 @@
 
 (function () {
     "use strict";
-//      var controllerModule = angular.module("ControllerModule", []);
-//      controllerModule.controller("ControllerName", require(importedController));
+
+    var controllerModule = angular.module("ControllerModule", []);
+    //controllerModule.controller("ControllerName", require(importedController));
+
 }());

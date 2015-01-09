@@ -5,5 +5,8 @@
 
 (function () {
     "use strict";
-//      angular.module("MODULE NAME", [ "dependencies" ]);
+    
+    var app = angular.module("mapMain", ["ControllerModule", "DirectiveModule", "ServicesModule"]);
+    app.config(require("./config.js"));
+    
 }());
