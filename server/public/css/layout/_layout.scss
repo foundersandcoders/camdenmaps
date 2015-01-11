@@ -27,7 +27,7 @@
 .services-and-categories {
 	border-bottom: 0.1em solid black;
 	background-color: $dark-grey;
-	color: white;
+	color: $light-blue;
 	text-align: center;
 	#back {
 		position: absolute;
@@ -56,7 +56,9 @@
 	}
 	h4 {
 		margin-bottom: 0;
-		color: $light-blue;
+	}
+	p {
+		color: white;
 	}
 }
 
