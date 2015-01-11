@@ -73,7 +73,7 @@
 
                 browser.get('#/home');
 
-                element(by.id('nearest-toggle')).click();    
+                element(by.id('findYourNearest')).click();    
                 expect(element(by.id('find-your-nearest')).isDisplayed()).toBe(true);
             });
 
