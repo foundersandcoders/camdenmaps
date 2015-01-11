@@ -314,8 +314,16 @@ button {
     margin-bottom: 0;
     color: #DFEEF5; }
 
-#result {
-  background-color: white; }
+.result {
+  background-color: white;
+  text-align: left;
+  color: black; }
+  .result .contact {
+    text-align: center; }
+    .result .contact img {
+      width: 4em; }
+  .result a {
+    color: black; }
 
 #list-results {
   text-align: left; }

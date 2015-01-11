@@ -60,8 +60,19 @@
 	}
 }
 
-#result {
+.result {
 	background-color: white;
+	text-align: left;
+	color: black;
+	.contact {
+		text-align: center;
+		img {
+			width: 4em;
+		}
+	}
+	a {
+		color: black;
+	}
 }
 
 #list-results {
