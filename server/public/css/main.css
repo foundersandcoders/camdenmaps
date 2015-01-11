@@ -310,6 +310,9 @@ button {
     display: block; }
   .services-and-categories .navigation-arrow {
     margin: 2.5em 0; }
+  .services-and-categories h4 {
+    margin-bottom: 0;
+    color: #DFEEF5; }
 
 #result {
   background-color: white; }

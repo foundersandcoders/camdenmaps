@@ -11,7 +11,7 @@
     </a>
 
     <div class="col-xs-12">
-        <h1>Find Your Nearest</h1>
+        <h1>Find Your Nearest...</h1>
     </div>
 
     <div class="col-xs-1">
@@ -25,7 +25,8 @@
             <a ng-click="execute(item.handler)" href="#">    
                 <img class="icon" ng-src="{{ item.img }}" alt="">
             </a>
-            <h4>{{ item.text }}</h4>
+            <h4>{{ item.title }}</h4>
+            <p class="hidden-xs">{{ item.text }}</p>
         </div>
     </div>
 
