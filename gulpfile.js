@@ -16,6 +16,7 @@
         buffer = require("vinyl-buffer"),
         watchify = require("watchify"),
         connect = require("gulp-connect"),
+        shell = require("gulp-shell"),
         browserify = require("browserify");
 
     //file arrays
@@ -104,15 +105,16 @@
     });
 
     //task for travis
-    gulp.task("travis",["sass-production", "browserify", "serve", "acceptance-test"] ,function () {
+    gulp.task("travis",["sass-production", "browserify", "serve"] ,function () {
         console.log("sass, uglify and tests passed");
-        // return gulp.src(protractorTestFiles)
-        //     .pipe(protractor({
-        //         configFile: "./test/frontend/config/protractor.conf.js"
-        //     }))
-        //     .on("error", function (err) {
-        //         throw err;
-        //     }) ;
+        return gulp.src(protractorTestFiles)
+            .pipe(shell(['node_modules/protractor/bin/webdriver-manager update']))
+            .pipe(protractor({
+                configFile: "./test/frontend/config/protractor.conf.js"
+            }))
+            .on("error", function (err) {
+                throw err;
+            }) ;
     });
 
     //task for when developing
