@@ -76,6 +76,9 @@
 	a {
 		color: black;
 	}
+	p {
+		color: black;
+	}
 }
 
 #list-results {
@@ -90,5 +93,8 @@
 	}
 	h5.distance {
 		text-align: right;
+	}
+	h5, p {
+		color: black;
 	}
 }

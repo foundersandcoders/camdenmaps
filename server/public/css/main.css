@@ -326,6 +326,8 @@ button {
       width: 4em; }
   .result a {
     color: black; }
+  .result p {
+    color: black; }
 
 #list-results {
   text-align: left; }
@@ -337,6 +339,8 @@ button {
     right: -19.7em; }
   #list-results h5.distance {
     text-align: right; }
+  #list-results h5, #list-results p {
+    color: black; }
 
 /***********************************************
 *   MOBILE LAYOUT HERE
