@@ -1,9 +1,23 @@
- .map {
-	height: 500px;
-	width: 90%;
-	padding: 20px 10px;
-}
+/***********************************************
+*   MAIN SCSS FILE
+*   Description: Include all stylesheets here 
+	for mapping to css
+************************************************/
 
-.ol-attribution a {
-    color: black;
-}
+
+
+
+
+
+
+//Imports for our files
+
+@import 'base/reset',
+	'base/typography',
+	'components/buttons',
+	'components/forms',
+	'helpers/mixins',
+	'layout/header',
+	'layout/layout',
+	'layout/mobile-layout';
+

@@ -3,8 +3,10 @@
 *   Use: Registers service with service module and injects to core module 
 */
 
-(function () {
+;(function () {
     "use strict";
-//      var serviceModule = angular.module("ServiceModule", []);
-//      serviceModule.service("ServiceName", require(importedService));
+
+    module.exports = angular.module("ServiceModule", [])
+        .service("apiSearch", require("./api-search.js"));
+
 }());

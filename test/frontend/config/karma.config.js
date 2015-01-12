@@ -1,4 +1,4 @@
-(function () {
+;(function () {
     "use strict";
 
     module.exports = function (config) {
@@ -14,7 +14,7 @@
 
             // list of files / patterns to load in the browser
             files: [
-              '../bower_components/angular/angular.js',
+              '../node_modules/angular/angular.js',
               '../bower_components/angular-mocks/angular-mocks.js',
               '../test/frontend/unit/*.js',
             ],
