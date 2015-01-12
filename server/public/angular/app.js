@@ -512,26 +512,22 @@
 					}
 
 					function message(i) {
-
-						var check = function(value) {
+						//this stops undefined being returned in message
+						var check = function(value, spacing) {
 							if(value !== undefined) {
-								pointMessage += value;
+								pointMessage += (value + spacing);
 							}
 						};
 
 						var pointMessage = "";
-						
-						check(root.Property[i]["PoI"]["-Name"]);
-						check("<br>");
-						check(root.Property[i]["-BuildingName"]);
-						check("<br>");
-						check(root.Property[i]["-StreetNum"]);
-						check(" "); 
-						check(root.Property[i]["-Street"]); 
-						check("<br>");
-						check(root.Property[i]["-PostCode"]);
-						check("<br>"); 
-						check(root.Property[i]["PoI"]["-Telephone"]);
+
+						//TODO work out a sensible way to loop over this.... 
+						check(root.Property[i]["PoI"]["-Name"] || root.Property[i]["PoI"][0]["-Name"], "<br>"); 
+						check(root.Property[i]["-BuildingName"], "<br>");
+						check(root.Property[i]["-StreetNum"], " ");
+						check(root.Property[i]["-Street"], "<br>"); 
+						check(root.Property[i]["-PostCode"], "<br>");
+						check(root.Property[i]["PoI"]["-Telephone"], "");
 
 						// return PoIName + "<br>" + root.Property[i]["-BuildingName"] + "<br>" + root.Property[i]["-StreetNum"] + " " + root.Property[i]["-Street"] + "<br>" + root.Property[i]["-PostCode"] + "<br>" + root.Property[i]["PoI"]["-Telephone"];
 
@@ -540,7 +536,7 @@
 
 					//this hard coding is for development purposes - *MUST* be changed
 					//does not work when there are two POIs at the same address
-					var firstFive = {
+					var firstEight = {
 
 						m1: {
 							lat: lat(0),
@@ -567,10 +563,26 @@
 							lat: lat(4),
 							lng: lng(4),
 							message: message(4)
+						},
+						m6: {
+							lat: lat(5),
+							lng: lng(5),
+							message: message(5)
+						},
+						m7: {
+							lat: lat(6),
+							lng: lng(6),
+							message: message(6)
+						},
+						m8: {
+							lat: lat(7),
+							lng: lng(7),
+							message: message(7)
 						}
+
 					};
 
-				$scope.updateMarkers(firstFive);
+				$scope.updateMarkers(firstEight);
 
     			};
 
