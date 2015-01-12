@@ -6,10 +6,11 @@ info:
   description: Investigate and explore the Camden maps API 
   version: "1.0.0"
 # the domain of the service
-host: camdenmaps.herokuapp.com
+host: localhost:0.0.0.0:8080
 # array of all schemes that your API supports
 schemes:
   - https
+  - http
 # will be prefixed to all path
 basePath:
 produces:

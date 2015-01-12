@@ -5,19 +5,20 @@
     "description": "Investigate and explore the Camden maps API",
     "version": "1.0.0"
   },
-  "host": "camdenmaps.herokuapp.com",
+  "host": "localhost:0.0.0.0:8080",
   "schemes": [
-    "https"
+    "https",
+    "http"
   ],
   "basePath": null,
   "produces": [
     "application/json"
   ],
   "paths": {
-    "/seveices/{service}": {
+    "/services/{service}": {
       "get": {
         "summary": "/services/{service}",
-        "description": "The servcies endpoint returns the location of all the locations of a selected Camden Council service \n",
+        "description": "The services endpoint returns the location of all the locations of a selected Camden Council service \n",
         "parameters": [
           {
             "name": "service",
