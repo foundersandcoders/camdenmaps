@@ -22,7 +22,7 @@
                 });
 
             $scope.service = $stateParams.service;
-            $scope.address = $stateParams.address;
+            $scope.address = $stateParams.address.toUpperCase();
 
             $scope.searchAgain = function searchAgain () {
                 //TODO: write logic for function
