@@ -535,7 +535,7 @@
 					}
 
 					//this hard coding is for development purposes - *MUST* be changed
-					//does not work when there are two POIs at the same address
+					//only returns the first Name when there are more than one
 					var firstEight = {
 
 						m1: {
