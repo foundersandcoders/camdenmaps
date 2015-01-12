@@ -282,7 +282,8 @@ button {
   #first-level-options #neighbourhood {
     margin: 1.1em auto; }
   #first-level-options h4 {
-    text-align: center; }
+    text-align: center;
+    color: black; }
 
 .services-and-categories {
   border-bottom: 0.1em solid black;
