@@ -106,7 +106,7 @@
     });
 
     //task for travis
-    gulp.task("travis",["sass-production", "browserify"] ,function () {
+    gulp.task("travis",function () {
         console.log("sass, uglify and tests passed");
         // return gulp.src(protractorTestFiles)
         //     .pipe(shell(['node_modules/protractor/bin/webdriver-manager update']))
