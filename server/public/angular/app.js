@@ -23,6 +23,48 @@
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CONTROLLERS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+        .controller("RootController", [
+            "$scope",
+            function ($scope) {
+                
+                //initialize $scope.results at root level
+                $scope.results = [];
+
+            }  
+        ])
+
+        .controller("LandingController", [
+            "$scope",
+
+            function ($scope) {
+
+                
+                //stores function names and corresponding paths for landing-page buttons
+                $scope.buttons = [
+                    {
+                        id: "findYourNearest",
+                        title: "Find Your Nearest",
+                        path: "root.landing.services",
+                        iconUrl: "img/icons/find-your-nearest.png"
+                    },
+                    {
+                        id: "aboutYourNeighbourhood",
+                        title: "About Your Neighbourhood",
+                        path: "/neighbourhood/search",
+                        iconUrl: "img/icons/your-neighbourhood.png"
+                    },
+                    {
+                        id: "liveStreetworks",
+                        title: "Live Streetworks",
+                        path: "/streetworks/search",
+                        iconUrl: "img/icons/streetworks.png"
+                    }
+                ]; 
+                
+            }
+        ])
+
    	.controller("CustomParametersController", [ '$scope', function($scope) {
 	    var regions = {
         		camdenBorough: {
@@ -331,127 +373,21 @@
 
 
 
-                angular.extend($scope, {
-                    
+	    angular.extend($scope, {
+	                    
 
-                    markers: firstFive
+	        markers: firstFive
 
-                });
-            }();
+	    });
+    }();
 
 
 			});
 		};
 
 
-	}]);
-
-}());
-
-
-        .controller("RootController", [
-            "$scope",
-            function ($scope) {
-                
-                //initialize $scope.results at root level
-                $scope.results = [];
-
-            }  
-        ])
-
-        .controller("LandingController", [
-            "$scope",
-
-            function ($scope) {
-
-                
-                //stores function names and corresponding paths for landing-page buttons
-                $scope.buttons = [
-                    {
-                        id: "findYourNearest",
-                        title: "Find Your Nearest",
-                        path: "root.landing.services",
-                        iconUrl: "img/icons/find-your-nearest.png"
-                    },
-                    {
-                        id: "aboutYourNeighbourhood",
-                        title: "About Your Neighbourhood",
-                        path: "/neighbourhood/search",
-                        iconUrl: "img/icons/your-neighbourhood.png"
-                    },
-                    {
-                        id: "liveStreetworks",
-                        title: "Live Streetworks",
-                        path: "/streetworks/search",
-                        iconUrl: "img/icons/streetworks.png"
-                    }
-                ]; 
-                
-            }
-        ])
-
-        .controller("CustomParametersController", [ '$scope', function($scope) {
-            var regions = {
-                    camdenBorough: {
-                        northEast: {
-                            lat: 51.57878,
-                            lng: -0.094538
-                        },
-                        southWest: {
-                            lat: 51.510989,
-                            lng: -0.218649
-                        }
-                    }
-            };
-
-            $scope.setRegion = function(region) {
-                if (!region) {
-                    $scope.maxbounds = {};
-                } else {
-                    $scope.maxbounds = regions[region];
-                }
-            };
-
-            angular.extend($scope, {
-                camden: {
-                    lat: 51.535923,
-                    lng: -0.139991,
-                    zoom: 14
-                },
-                maxbounds: regions.camdenBorough,
-                defaults: {
-                scrollWheelZoom: false
-                },
-                markers: {}
-                
-            });
-
-
-            // $scope.requestResults = function () {
-
-
-            //     //vanilla js ajax call rather than using jquery
-            //     function ajaxCall (url, callback) {
-            //         var xmlhttp;
-
-            //         xmlhttp = new XMLHttpRequest();
-            //         xmlhttp.onreadystatechange = function () {
-            //             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            //                 callback(xmlhttp.responseText);
-            //             }
-            //         };
-            //         xmlhttp.open("GET", url, true);
-            //         xmlhttp.send();
-            //     }
-
-
-                //get element by class and add action listener that sends requests to API    
-                // var service = document.getElementById("Dropdownlistfind").value;
-                // var location = document.getElementById("postcode").value;
-            }
-        ])
+	}])
     
-
         .config( require("./config.js") )
         
         .controller("ServicesController", [
@@ -748,4 +684,4 @@
 //        .controller("LandingController", require("./controllers/landing-controller.js"))  
 //        .service("apiSearch", require("./services/api-search.js"));
     }());
->>>>>>> dev
+
