@@ -21,13 +21,14 @@
 	}
 	h4 {
 		text-align: center;
+		color: black;
 	}
 }
 
 .services-and-categories {
 	border-bottom: 0.1em solid black;
 	background-color: $dark-grey;
-	color: white;
+	color: $light-blue;
 	text-align: center;
 	#back {
 		position: absolute;
@@ -56,12 +57,25 @@
 	}
 	h4 {
 		margin-bottom: 0;
-		color: $light-blue;
+	}
+	p {
+		color: white;
 	}
 }
 
-#result {
+.result {
 	background-color: white;
+	text-align: left;
+	color: black;
+	.contact {
+		text-align: center;
+		img {
+			width: 4em;
+		}
+	}
+	a {
+		color: black;
+	}
 }
 
 #list-results {

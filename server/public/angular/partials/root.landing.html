@@ -8,8 +8,8 @@
     <div ng-repeat="button in buttons" class="col-xs-4 col-sm-3 col-sm-offset-1 col-">
         <a id="{{ button.id }}" ui-sref="{{ button.path }}">    
             <img class="icon" ng-src="{{ button.iconUrl }}" alt="">
+        	<h4>{{ button.title }}</h4>
         </a>
-        <h4>{{ button.title }}</h4>
     </div>
 
 </div>

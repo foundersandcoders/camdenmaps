@@ -162,7 +162,7 @@
                 //handler that either redirects user or opens new category 
                 function clickHandler (item) {
                     if (item.type === "service") {
-                        var path = "/home/" + item.text + "/search";
+                        var path = "/home/" + item.title + item.text + "/search";
                         $location.path(path);
                     } else if (item.type === "category") {
                         currentIndex = 0;

@@ -282,12 +282,13 @@ button {
   #first-level-options #neighbourhood {
     margin: 1.1em auto; }
   #first-level-options h4 {
-    text-align: center; }
+    text-align: center;
+    color: black; }
 
 .services-and-categories {
   border-bottom: 0.1em solid black;
   background-color: #333333;
-  color: white;
+  color: #DFEEF5;
   text-align: center; }
   .services-and-categories #back {
     position: absolute;
@@ -311,11 +312,20 @@ button {
   .services-and-categories .navigation-arrow {
     margin: 2.5em 0; }
   .services-and-categories h4 {
-    margin-bottom: 0;
-    color: #DFEEF5; }
+    margin-bottom: 0; }
+  .services-and-categories p {
+    color: white; }
 
-#result {
-  background-color: white; }
+.result {
+  background-color: white;
+  text-align: left;
+  color: black; }
+  .result .contact {
+    text-align: center; }
+    .result .contact img {
+      width: 4em; }
+  .result a {
+    color: black; }
 
 #list-results {
   text-align: left; }
