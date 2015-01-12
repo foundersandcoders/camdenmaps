@@ -18,7 +18,7 @@ exports.config = {
     'name': 'App Tests'
   },
 
-  baseUrl: 'http://0.0.0.0:8080/',
+  baseUrl: 'http://0.0.0.0:9001/',
 
   framework: 'jasmine',
 
