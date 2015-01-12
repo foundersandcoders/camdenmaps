@@ -4,8 +4,7 @@
   "description": "Camden.gov.uk",
   "main": "index.js",
   "scripts": {
-    "update": "./node_modules/protractor/bin/webdriver-manager update",
-    "test": "gulp acceptance-test",
+    "test": "echo 'gulp acceptance-test'",
     "start": "nodemon server/server.js"
   },
   "repository": {
