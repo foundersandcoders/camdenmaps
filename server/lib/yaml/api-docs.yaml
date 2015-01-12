@@ -16,7 +16,7 @@ basePath: /
 produces:
   - application/json
 paths:
-  /services/{service}:
+  services/{service}:
     get:
       summary: services
       description: |
@@ -27,7 +27,6 @@ paths:
           description: Camden Council run organisation 
           required: true
           type: string
-          format: uuid
         # - name: longitude
         #   in: query
         #   description: Longitude component of location.
@@ -38,14 +37,16 @@ paths:
         - services
       responses:
         200:
-          description: An array of products
+          description: An array of organisations that provide required service
           schema:
-            $ref: Service
+            type: array
+            items:
+              $ref: '#/definitions/Service'
         default:
           description: Unexpected error
           schema:
-            $ref: Error
-  /location/{postcode}:
+            $ref: '#/definitions/Error'
+  location/{postcode}:
     get:
       summary: Location of user
       description: |
@@ -81,12 +82,12 @@ paths:
         200:
           description: An array of services 
           schema:
-            $ref: AddressSearchResults
+            $ref: '#/definitions/AddressSearchResults'
         default:
           description: Unexpected error
           schema:
-            $ref: Error
-  /services/{service}/locations/{postcode}:
+            $ref: '#/definitions/Error'
+  services/{service}/locations/{postcode}:
     get:
       summary: Selected service near specified postcode
       description: |
@@ -118,8 +119,7 @@ paths:
         200:
           description: An array of selected service information
           schema:
-            $ref: Service 
-            $ref: AddressSearchResults
+            $ref: '#/definitions/AddressAndService' 
         default:
           description: Unexpected error
           schema:
@@ -203,6 +203,27 @@ definitions:
       Latitude:
         type: string
         description: latitudinal point on map
+      AddressAndService:
+        properties:
+      Area:
+        type: string
+        description: postcode 
+      East:
+        type: string
+        description: 
+      North: 
+        type: string
+        description: 
+      Longitude: 
+        type: string 
+        description: Longitudinal point on map
+      Latitude:
+        type: string
+        description: latitudinal point on map
+      poi:
+        type: array
+        items:
+          $ref: '#/definitions/Service'
   # Product:
   #   properties:
   #     product_id:

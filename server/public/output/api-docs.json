@@ -15,18 +15,17 @@
     "application/json"
   ],
   "paths": {
-    "/services/{service}": {
+    "services/{service}": {
       "get": {
-        "summary": "/services/{service}",
-        "description": "The services endpoint returns a list of organisations containing information regarding contact and location of a selected Camden Council service. \n",
+        "summary": "services",
+        "description": "The services endpoint returns a list of organisations that provdie the Camden Council point of interest selected by the user. The response includes information about contact and location. \n",
         "parameters": [
           {
             "name": "service",
             "in": "query",
             "description": "Camden Council run organisation",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           }
         ],
         "tags": [
@@ -34,24 +33,27 @@
         ],
         "responses": {
           "200": {
-            "description": "An array of products",
+            "description": "An array of organisations that provide required service",
             "schema": {
-              "$ref": "Service"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Service"
+              }
             }
           },
           "default": {
             "description": "Unexpected error",
             "schema": {
-              "$ref": "Error"
+              "$ref": "#/definitions/Error"
             }
           }
         }
       }
     },
-    "/location/{postcode}": {
+    "location/{postcode}": {
       "get": {
-        "summary": "/location/{postcode}",
-        "description": "The Location postcode endpoint returns information about laocation of Camden postcode.\n",
+        "summary": "Location of user",
+        "description": "The Location endpoint returns information about laocation of Camden postcode selected by the user.\n",
         "parameters": [
           {
             "name": "postcode",
@@ -69,22 +71,22 @@
           "200": {
             "description": "An array of services",
             "schema": {
-              "$ref": "AddressSearchResults"
+              "$ref": "#/definitions/AddressSearchResults"
             }
           },
           "default": {
             "description": "Unexpected error",
             "schema": {
-              "$ref": "Error"
+              "$ref": "#/definitions/Error"
             }
           }
         }
       }
     },
-    "/services/{service}/locations/{postcode}": {
+    "services/{service}/locations/{postcode}": {
       "get": {
         "summary": "Selected service near specified postcode",
-        "description": "The Endpoint will return a list of specified services in order of distance to the specified postcode inputed.  \n",
+        "description": "The Endpoint will return a list similar to that of services, but this endpoint will return the information in relation to a Camden postcode specified by the user.\n",
         "parameters": [
           {
             "name": "service",
@@ -109,7 +111,7 @@
           "200": {
             "description": "An array of selected service information",
             "schema": {
-              "$ref": "AddressSearchResults"
+              "$ref": "#/definitions/AddressAndService"
             }
           },
           "default": {
@@ -172,6 +174,15 @@
         "Latitude": {
           "type": "string",
           "description": "latitudinal point on map"
+        },
+        "AddressAndService": {
+          "properties": null
+        },
+        "poi": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Service"
+          }
         }
       }
     },
