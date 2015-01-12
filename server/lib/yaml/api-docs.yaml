@@ -9,10 +9,10 @@ info:
 host: localhost:0.0.0.0:8080
 # array of all schemes that your API supports
 schemes:
-  - https
   - http
+  - https
 # will be prefixed to all path
-basePath:
+basePath: /
 produces:
   - application/json
 paths:
@@ -35,14 +35,14 @@ paths:
         #   type: number
         #   format: double
       tags:
-        - Services
+        - services
       responses:
         200:
           description: An array of products
           schema:
             type: array
             items:
-              $ref: Product
+              $ref: Service
         default:
           description: Unexpected error
           schema:
@@ -85,7 +85,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: PriceEstimate
+              $ref: AddressSearchResults
         default:
           description: Unexpected error
           schema:
@@ -115,7 +115,7 @@ paths:
         #   type: string
         #   description: Unique identifier representing a specific product for a given latitude & longitude.
       tags:
-        - Services
+        - services
         - Location
       responses:
         200:
@@ -123,7 +123,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: Product
+              $ref: Service 
         default:
           description: Unexpected error
           schema:
@@ -170,6 +170,43 @@ paths:
   #         schema:
   #           $ref: Error
 definitions:
+  Service:
+    properties:
+      Name:
+        type: string
+        description: Name of service host
+      Type:
+        type: string
+        description: Description of service category
+      Telephone:
+        type: string
+        description: Contact number for servcie host
+      OpeningHours:
+        type: string
+        description: Weekly opening times of service host
+      URL:
+        type: string
+        description: URL of service host 
+      Source:
+        type: string
+        description:
+  AddressSearchResults: 
+    properties:
+      Area:
+        type: string
+        description: postcode 
+      East:
+        type: string
+        description: 
+      North: 
+        type: string
+        description: 
+      Longitude: 
+        type: string 
+        description: Longitudinal point on map
+      Latitude:
+        type: string
+        description: latitudinal point on map
   Product:
     properties:
       product_id:

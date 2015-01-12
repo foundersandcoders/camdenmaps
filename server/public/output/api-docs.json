@@ -7,10 +7,10 @@
   },
   "host": "localhost:0.0.0.0:8080",
   "schemes": [
-    "https",
-    "http"
+    "http",
+    "https"
   ],
-  "basePath": null,
+  "basePath": "/",
   "produces": [
     "application/json"
   ],
@@ -30,7 +30,7 @@
           }
         ],
         "tags": [
-          "Services"
+          "services"
         ],
         "responses": {
           "200": {
@@ -38,7 +38,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "Product"
+                "$ref": "Service"
               }
             }
           },
@@ -74,7 +74,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "PriceEstimate"
+                "$ref": "AddressSearchResults"
               }
             }
           },
@@ -108,7 +108,7 @@
           }
         ],
         "tags": [
-          "Services",
+          "services",
           "Location"
         ],
         "responses": {
@@ -117,7 +117,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "Product"
+                "$ref": "Service"
               }
             }
           },
@@ -132,6 +132,58 @@
     }
   },
   "definitions": {
+    "Service": {
+      "properties": {
+        "Name": {
+          "type": "string",
+          "description": "Name of service host"
+        },
+        "Type": {
+          "type": "string",
+          "description": "Description of service category"
+        },
+        "Telephone": {
+          "type": "string",
+          "description": "Contact number for servcie host"
+        },
+        "OpeningHours": {
+          "type": "string",
+          "description": "Weekly opening times of service host"
+        },
+        "URL": {
+          "type": "string",
+          "description": "URL of service host"
+        },
+        "Source": {
+          "type": "string",
+          "description": null
+        }
+      }
+    },
+    "AddressSearchResults": {
+      "properties": {
+        "Area": {
+          "type": "string",
+          "description": "postcode"
+        },
+        "East": {
+          "type": "string",
+          "description": null
+        },
+        "North": {
+          "type": "string",
+          "description": null
+        },
+        "Longitude": {
+          "type": "string",
+          "description": "Longitudinal point on map"
+        },
+        "Latitude": {
+          "type": "string",
+          "description": "latitudinal point on map"
+        }
+      }
+    },
     "Product": {
       "properties": {
         "product_id": {
