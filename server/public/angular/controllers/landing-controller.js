@@ -7,32 +7,30 @@
     "use strict";
 
     module.exports = [
-        "$location",
         "$scope",
-        function ($location) {
-
-            var button, 
-                //stores function names and corresponding paths for landing-page buttons
-                buttons = {
-                    //for Find Your Nearest button
-                    getNearest: "/services",
-                    //for Live Streetworks button
-                    getStreetworks: "/streetworks/search",
-                    //for About Your Neighbourhood button
-                    getNeighbourhood: "/neighbourhood/search"
-                };
-
-            //creates event handler that redirects client to newPath
-            function makeRedirectHandler (newPath) {
-                return function redirectHandler() {
-                    $location.path(newPath);
+        function ($scope) {
+            
+            //stores function names and corresponding paths for landing-page buttons
+            $scope.buttons = [
+                {
+                    id: "findYourNearest",
+                    title: "Find Your Nearest",
+                    path: "root.landing.services",
+                    iconUrl: "img/icons/find-your-nearest.png"
+                },
+                {
+                    id: "aboutYourNeighbourhood",
+                    title: "About Your Neighbourhood",
+                    path: "/neighbourhood/search",
+                    iconUrl: "img/icons/your-neighbourhood.png"
+                },
+                {
+                    id: "liveStreetworks",
+                    title: "Live Streetworks",
+                    path: "/streetworks/search",
+                    iconUrl: "img/icons/streetworks.png"
                 }
-            }
-
-            //create redirectHandler for each button
-            for (button in buttons) {
-                $scope[button] = makeRedirectHandler(buttons[button])
-            }
+            ]; 
         }
     ];
 

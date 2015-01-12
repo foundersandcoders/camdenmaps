@@ -1,20 +1,23 @@
-// (function () {
-//     "use strict";    
+;(function () {
+     "use strict";    
 
-//     describe("", function () {
+     describe("Just a walk in the park", function () {
 
-//         beforeEach("", function () {
-//             var app = angular.module("testapp");
+         beforeEach("walk", function () {
+             var app = angular.module("testapp");
+            
+             app.controller("test", require("server/public/angular/controllers/landing-controller.js"))
+             /*inject(function(){
+                 
+             });
+             */
+         });
 
-//             inject(function($dependencies){
-                
-//             });
-//         });
+         it("ehue", function (done) {
+            
+             done()
+         });
 
-//         it("", function () {
+     });
 
-//         });
-
-//     });
-
-// }());
+}());

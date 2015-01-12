@@ -2,12 +2,12 @@
     <div class="col-xs-12 button">
         <button class="list-results">List Results<span class="glyphicon glyphicon-remove"></span></button>
    </div>
-    <a ng-href="{{ '/#/home/' + service + '/location/' + address + '/' + result.name }}" ng-repeat="result in results">
+    <a ng-href="{{ '/#/home/' + service + '/location/' + address + '/' + result.PoI.Name }}" ng-repeat="result in results">
         <div class="list-item col-xs-12">
             <div class="col-xs-9">
-                <h5>{{ result.name }}</h5>
-                <p>{{ result.address }}</p>
-                <p>{{ result.city }}</p>
+                <h5>{{ result.PoI.Name }}</h5>
+                <p>{{ result.PoI.Telephone }}</p>
+                <p>{{ result.PoI.Type }}</p>
             </div>
             <div class="col-xs-3">
                 <h5 class="distance">{{ result.distance }}</h5>
