@@ -1,7 +1,6 @@
 node_modules/
 *.min.js
-*.swp
-*.swo
+*.sw*
 npm-debug.log
 .sass-cache/
 *.css

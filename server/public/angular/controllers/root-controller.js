@@ -2,9 +2,10 @@
 *   ROOT-CONTROLLER.JS
 *
 ***************************/
+;(function () {
     "use strict";
 
-    module.exports  [
+    module.exports = [
         "$scope",
         function ($scope) {
             
@@ -13,3 +14,4 @@
 
         }  
     ];
+}());

@@ -1,5 +1,5 @@
 /******************************************************************************  
-*   CONTROLLER.JS
+*   CONTROLLER/INDEX.JS
 *   Description: Defines a single angular controller
 *   Use: Registers controller with controller module and injects to core module
 *    
@@ -8,7 +8,7 @@
 ;(function () {
     "use strict";
 
-    module.exports = angular.module("ControllerModule", [])
+    angular.module("maps")
         .controller("RootController", require("./root-controller.js"))
         .controller("LandingController", require("./landing-controller.js"))
         .controller("ServicesController", require("./services-controller.js"))
