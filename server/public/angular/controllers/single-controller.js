@@ -9,7 +9,8 @@
     module.exports = [
             "$stateParams",
             "$scope",
-            function ($stateParams, $scope) {
+            "$http",
+            function ($stateParams, $scope, $http) {
 
                 //TODO: Do some DATA CLEANING so data is standardized before it reaches us
 
@@ -22,7 +23,18 @@
                     });
                 */
 
-                //selects item from results with matching {id}
+                $http.get("/services/" + $stateParams.service + "/locations/" + $stateParams.address)
+                    .success(function success (data) {
+                        $scope.updateResults(data.Locations.Properties.Property);
+                        
+                        //selects item from results with matching {id}
+                        $scope.result = $scope.results.filter(function (result) {
+                            return result.PoI.Name === $stateParams.id;
+                        })[0];
+                    });
+
+              
+                 //selects item from results with matching {id}
                 $scope.result = $scope.results.filter(function (result) {
                     return result.PoI.Name === $stateParams.id;
                 })[0];

@@ -18,6 +18,11 @@
         "$http",
         function ($scope, $stateParams, $location, $http) {
 
+            $http.get("/services/" + $stateParams.service)
+                .success(function success (services) {
+                    $scope.updateResults(services.Locations.Properties.Property);
+                });
+
             //model for search query
             $scope.address = "";
             //model for error messages
@@ -55,12 +60,12 @@
 
             $scope.searchAgain = function searchAgain () {
                 //TODO: write logic for function
-                console.log("searching again");
+                $location.path("/home");
             }
 
             $scope.listResults = function listResults () {
                 //TODO: write logic for function
-                console.log("listing results");
+                console.log($scope.results);
             }
 
         }
