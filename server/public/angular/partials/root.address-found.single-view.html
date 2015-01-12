@@ -3,20 +3,19 @@
     <div class="result col-xs-12">
         <div class="col-xs-10">
             <a href="link-to-url">
-                <h5>Name of result</h5>
+                <h5>{{ result.PoI.Name }}</h5>
             </a>
-            <p>House Number and street Name</p>
-            <p>London, Postcode</p>
-            <p>Phone Number</p>
-            <p>email</p>
+            <p>{{ result.StreetNum + " " + result.Street }}</p>
+            <p>London, {{result.Postcode}}</p>
+            <p>{{ result.PoI.Telephone }}</p>
+            <p>{{ result.PoI.URL }}</p>
             <br>
             <h5>Opening Hours</h5>
-            <p>hours</p>
+            <p>{{ result.PoI.OpeningHours }}</p>
         </div>
 
         <div class="col-xs-2">
-            <h4> {{ currentDisplay }} </h4>
-            <h5>distance</h5>
+            <h5>{{ result.Distance }}</h5>
         </div>
 
         <div class="contact col-xs-12">

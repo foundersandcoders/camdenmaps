@@ -18,7 +18,7 @@
             //reloads $scope.results with new data based on address 
             $http.get("/services/" + $stateParams.service + "/locations/" + $stateParams.address)
                 .success(function success (data) {
-                    $scope.results = data;
+                    $scope.updateResults(data.Locations.Properties.Property);
                 });
 
             $scope.service = $stateParams.service;
