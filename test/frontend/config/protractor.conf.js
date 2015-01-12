@@ -18,7 +18,7 @@ exports.config = {
     'name': 'App Tests'
   },
 
-  baseUrl: 'http://0.0.0.0:9001/wd/hub',
+  baseUrl: 'http://0.0.0.0:9001/',
 
   framework: 'jasmine',
 
