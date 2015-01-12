@@ -4,7 +4,7 @@
   "description": "Camden.gov.uk",
   "main": "index.js",
   "scripts": {
-    "test": "echo'gulp acceptance-test'",
+    "test": "gulp acceptance-test",
     "start": "nodemon server/server.js"
   },
   "repository": {

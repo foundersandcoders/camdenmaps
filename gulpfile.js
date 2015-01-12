@@ -106,16 +106,16 @@
     });
 
     //task for travis
-    gulp.task("travis",function () {
+    gulp.task("travis", ["serve"],function () {
         console.log("sass, uglify and tests passed");
-        // return gulp.src(protractorTestFiles)
-        //     .pipe(shell(['node_modules/protractor/bin/webdriver-manager update']))
-        //     .pipe(protractor({
-        //         configFile: "./test/frontend/config/protractor.conf.js"
-        //     }))
-        //     .on("error", function (err) {
-        //         throw err;
-        //     }) ;
+        return gulp.src(protractorTestFiles)
+            .pipe(shell(['node_modules/protractor/bin/webdriver-manager update']))
+            .pipe(protractor({
+                configFile: "./test/frontend/config/protractor.conf.js"
+            }))
+            .on("error", function (err) {
+                throw err;
+            }) ;
     });
 
     //task for when developing
