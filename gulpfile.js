@@ -104,15 +104,15 @@
     });
 
     //task for travis
-    gulp.task("travis",["sass-production", "browserify", "serve"] ,function () {
+    gulp.task("travis",["sass-production", "browserify", "serve", "acceptance-test"] ,function () {
         console.log("sass, uglify and tests passed");
-        return gulp.src(protractorTestFiles)
-            .pipe(protractor({
-                configFile: "./test/frontend/config/protractor.conf.js"
-            }))
-            .on("error", function (err) {
-                throw err;
-            }) ;
+        // return gulp.src(protractorTestFiles)
+        //     .pipe(protractor({
+        //         configFile: "./test/frontend/config/protractor.conf.js"
+        //     }))
+        //     .on("error", function (err) {
+        //         throw err;
+        //     }) ;
     });
 
     //task for when developing
