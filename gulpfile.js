@@ -99,16 +99,18 @@
     //task to start server
     gulp.task("serve", function () {
         console.log("starting server");
+
         connect.server({
-            root: "server",
-            port: 9001
+            port: 8080,
+            livereload: true
         });
     });
 
     //task for travis
-    gulp.task("travis", ["serve"],function () {
+    gulp.task("travis", function () {
         console.log("sass, uglify and tests passed");
         return gulp.src(protractorTestFiles)
+            .pipe(shell(['npm start']))
             .pipe(shell(['node_modules/protractor/bin/webdriver-manager update']))
             .pipe(protractor({
                 configFile: "./test/frontend/config/protractor.conf.js"
