@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "gulp acceptance-test",
-    "start": "nodemon server/server.js",
-    "postinstall": "node_modules/protractor/bin/webdriver-manager"
+    "start": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
