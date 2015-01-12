@@ -104,7 +104,7 @@
     });
 
     //task for travis
-    gulp.task("travis",["serve"] ,function () {
+    gulp.task("travis",["sass-production", "browserify", "serve"] ,function () {
         console.log("sass, uglify and tests passed");
         return gulp.src(protractorTestFiles)
             .pipe(protractor({
