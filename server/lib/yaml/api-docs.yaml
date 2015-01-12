@@ -18,9 +18,9 @@ produces:
 paths:
   /services/{service}:
     get:
-      summary: /services/{service}
+      summary: services
       description: |
-        The services endpoint returns a list of organisations containing information regarding contact and location of a selected Camden Council service. 
+        The services endpoint returns a list of organisations that provdie the Camden Council point of interest selected by the user. The response includes information about contact and location. 
       parameters:
         - name: service
           in: query
@@ -47,9 +47,9 @@ paths:
             $ref: Error
   /location/{postcode}:
     get:
-      summary: /location/{postcode}
+      summary: Location of user
       description: |
-        The Location postcode endpoint returns information about laocation of Camden postcode.
+        The Location endpoint returns information about laocation of Camden postcode selected by the user.
       parameters:
         - name: postcode
           in: query
@@ -90,7 +90,7 @@ paths:
     get:
       summary: Selected service near specified postcode
       description: |
-        The Endpoint will return a list of specified services in order of distance to the specified postcode inputed.  
+        The Endpoint will return a list similar to that of services, but this endpoint will return the information in relation to a Camden postcode specified by the user.
       parameters:
         - name: service
           in: query
