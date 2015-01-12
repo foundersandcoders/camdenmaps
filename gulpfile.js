@@ -109,8 +109,8 @@
     //task for travis
     gulp.task("travis", function () {
         console.log("sass, uglify and tests passed");
+        shell(['npm start']));
         return gulp.src(protractorTestFiles)
-            .pipe(shell(['npm start']))
             .pipe(shell(['node_modules/protractor/bin/webdriver-manager update']))
             .pipe(protractor({
                 configFile: "./test/frontend/config/protractor.conf.js"
