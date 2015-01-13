@@ -20,7 +20,7 @@ paths:
     get:
       summary: services
       description: |
-        The services endpoint returns a list of organisations that provdie the Camden Council point of interest selected by the user. The response includes information about contact and location. 
+        The services endpoint returns a list of organisations that provide the Camden Council point of interest selected by the user. The response includes information about contact and location. 
       parameters:
         - name: service
           in: path
