@@ -6,7 +6,7 @@ info:
   description: Investigate and explore the Camden maps API 
   version: "1.0.0"
 # the domain of the service
-host: localhost:0.0.0.0:8080
+host: localhost:8080
 # array of all schemes that your API supports
 schemes:
   - http
@@ -23,7 +23,7 @@ paths:
         The services endpoint returns a list of organisations that provdie the Camden Council point of interest selected by the user. The response includes information about contact and location. 
       parameters:
         - name: service
-          in: query
+          in: path
           description: Camden Council run organisation 
           required: true
           type: string
@@ -53,7 +53,7 @@ paths:
         The Location endpoint returns information about laocation of Camden postcode selected by the user.
       parameters:
         - name: postcode
-          in: query
+          in: path
           description: Camden postcode
           required: true
           type: string
@@ -80,7 +80,7 @@ paths:
         - Location
       responses:
         200:
-          description: An array of services 
+          description: An array containing information about location 
           schema:
             $ref: '#/definitions/AddressSearchResults'
         default:
@@ -94,12 +94,12 @@ paths:
         The Endpoint will return a list similar to that of services, but this endpoint will return the information in relation to a Camden postcode specified by the user.
       parameters:
         - name: service
-          in: query
+          in: path
           description: Select a Camden service 
           required: true
           type: string
         - name: postcode
-          in: query
+          in: path
           description: Camden postcode
           required: true
           type: string
@@ -215,7 +215,7 @@ definitions:
         type: string
         description: 
       Longitude: 
-        type: string 
+        type: string  
         description: Longitudinal point on map
       Latitude:
         type: string
