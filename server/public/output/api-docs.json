@@ -5,7 +5,7 @@
     "description": "Investigate and explore the Camden maps API",
     "version": "1.0.0"
   },
-  "host": "localhost:0.0.0.0:8080",
+  "host": "localhost:8080",
   "schemes": [
     "http",
     "https"
@@ -22,7 +22,7 @@
         "parameters": [
           {
             "name": "service",
-            "in": "query",
+            "in": "path",
             "description": "Camden Council run organisation",
             "required": true,
             "type": "string"
@@ -57,7 +57,7 @@
         "parameters": [
           {
             "name": "postcode",
-            "in": "query",
+            "in": "path",
             "description": "Camden postcode",
             "required": true,
             "type": "string",
@@ -69,7 +69,7 @@
         ],
         "responses": {
           "200": {
-            "description": "An array of services",
+            "description": "An array containing information about location",
             "schema": {
               "$ref": "#/definitions/AddressSearchResults"
             }
@@ -90,14 +90,14 @@
         "parameters": [
           {
             "name": "service",
-            "in": "query",
+            "in": "path",
             "description": "Select a Camden service",
             "required": true,
             "type": "string"
           },
           {
             "name": "postcode",
-            "in": "query",
+            "in": "path",
             "description": "Camden postcode",
             "required": true,
             "type": "string"
