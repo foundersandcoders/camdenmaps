@@ -8,7 +8,7 @@
         karma = require("gulp-karma"),
         lab = require("gulp-lab"),
         protractor = require("gulp-protractor").protractor,
-        sass = require("gulp-sass"),
+        // sass = require("gulp-sass"),
         concat = require("gulp-concat"),
         uglify = require("gulp-uglify"),
         ngAnnotate = require("gulp-ng-annotate"),
@@ -73,20 +73,20 @@
     });
 
     //task for sassing development
-    gulp.task("sass-dev", function () {
-        return gulp.src("./server/public/css/main.scss")
-            .pipe(sass())
-            .pipe(gulp.dest("./server/public/css/"));
-    });
+    // gulp.task("sass-dev", function () {
+    //     return gulp.src("./server/public/css/main.scss")
+    //         .pipe(sass())
+    //         .pipe(gulp.dest("./server/public/css/"));
+    // });
 
-    //task for sassing production
-    gulp.task("sass-production", function () {
-        return gulp.src("./server/public/css/main.scss")
-            .pipe(sass({
-                outputStyle: "compressed"
-            }))
-            .pipe(gulp.dest("./server/public/css/"));
-    });
+    // //task for sassing production
+    // gulp.task("sass-production", function () {
+    //     return gulp.src("./server/public/css/main.scss")
+    //         .pipe(sass({
+    //             outputStyle: "compressed"
+    //         }))
+    //         .pipe(gulp.dest("./server/public/css/"));
+    // });
 
     //task for minifying
     gulp.task("compress", function () {
