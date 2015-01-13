@@ -1,6 +1,7 @@
 (function(){
     "use strict";
 
+
     //import modules
     var gulp = require("gulp"),
         eslint = require("gulp-eslint"),
@@ -16,6 +17,7 @@
         buffer = require("vinyl-buffer"),
         watchify = require("watchify"),
         shell = require ("gulp-shell"),
+        nodemon = require("gulp-nodemon"),
         browserify = require("browserify");
 
     //file arrays
@@ -94,26 +96,24 @@
             .pipe(gulp.dest("./server/public/js/"));
     });
 
-    //task to start server
-    gulp.task("serve", function () {
-        console.log("starting server");
-        connect.server({
-            root: "server",
-            port: 9001
-        });
+    //task for travis
+    gulp.task("travis", ["sass-production", "browserify"], function () {
+        nodemon({ script: 'server/server.js'})
+        .on('start', function () {
+            return gulp.src(protractorTestFiles)
+                .pipe(protractor({
+                    configFile: "./test/frontend/config/protractor.conf.js"
+                }))
+                .on("error", function (err) {
+                    throw err;
+                })
+                .on('end', function () {
+                    process.exit();
+                })
+        })
+        
     });
 
-    //task for travis
-    gulp.task("travis",["serve"] ,function () {
-        console.log("sass, uglify and tests passed");
-        return gulp.src(protractorTestFiles)
-            .pipe(protractor({
-                configFile: "./test/frontend/config/protractor.conf.js"
-            }))
-            .on("error", function (err) {
-                throw err;
-            }) ;
-    });
 
     //task for when developing
     gulp.task("file-watch",  function () {
@@ -128,6 +128,7 @@
         console.log("gulp is watching for test changes...");
     });
 
+<<<<<<< HEAD
     gulp.task("browserify", function () {
 
         var bundler = browserify({
@@ -146,6 +147,8 @@
         "node server/lib/yml2swagger.js server/lib/yaml server/public/output"
     ]));
 
+=======
+>>>>>>> dev
     //task for when developing
     gulp.task("file-watch",  function () {
         gulp.watch(allFiles, ["lint"]);
