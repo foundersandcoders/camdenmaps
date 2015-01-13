@@ -59,18 +59,18 @@
                 } else {
                     $scope.error = "Please enter an address";
                 } 
-            }
+            };
 
             $scope.searchAgain = function searchAgain () {
                 //TODO: write logic for function
                 $location.path("/home");
-            }
+            };
 
             $scope.listResults = function listResults () {
                 //TODO: write logic for function
                 console.log($scope.results);
-                var destination = "/home/"+$scope.service+"/location/"+$scope.address+"/list"; 
-            }
+                // var destination = "/home/"+$scope.service+"/location/"+$scope.address+"/list"; 
+            };
 
         }
     ];

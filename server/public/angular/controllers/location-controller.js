@@ -15,7 +15,8 @@
         "$http",
         function ($scope, $location, $stateParams, $http) {
 
-
+            $scope.service = $stateParams.service;
+            $scope.address = $stateParams.address.toUpperCase();
             
             //reloads $scope.results with new data based on address 
             $http.get("/services/" + $stateParams.service + "/locations/" + $stateParams.address)
@@ -24,15 +25,27 @@
                     console.log('panda');
                 });
 
-            $scope.service = $stateParams.service;
-            $scope.address = $stateParams.address.toUpperCase();
+
+
+            $scope.searchAgain = function searchAgain () {
+                //TODO: write logic for function
+                $location.path("/home");
+            };
+
+            $scope.listResults = function listResults () {
+                
+                //TODO: write logic for function
+                console.log('she knows');
+                console.log($scope.results);
+                var destination = "/home/"+$scope.service+"/location/"+$scope.address+"/list"; 
+                $location.path(destination);
+            };
 
             $scope.addMarkers = function addMarkers() {
                 
-
-                    console.log('addMarkers being called');
-                    //until XML is correctly parsed, using fake data that mocks the correct JSON format we want
-                    var fakeData = {
+            console.log('addMarkers being called');
+            //until XML is correctly parsed, using fake data that mocks the correct JSON format we want
+            var fakeData = {
   "Locations": {
     "-Area": "WC1H 9JE",
     "AddressSearchResults": {
@@ -324,26 +337,6 @@
             //     $location.path(destination);
             // }
 
-            $scope.search = function search () {
-                if ($scope.address) {
-                    var path = "/home/" + $stateParams.service + "/location/" + $scope.address;
-                    $location.path(path);
-                } else {
-                    $scope.error = "Please enter an address";
-                } 
-            }
-
-            $scope.searchAgain = function searchAgain () {
-                //TODO: write logic for function
-                $location.path("/home");
-            }
-
-            $scope.listResults = function listResults () {
-                //TODO: write logic for function
-                console.log($scope.results);
-                var destination = "/home/"+$scope.service+"/location/"+$scope.address+"/list"; 
-                $location.path(destination);
-            }
         }
     ];
 }());
