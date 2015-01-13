@@ -1,5 +1,4 @@
 node_modules/
-*.min.js
 *.sw*
 npm-debug.log
 .sass-cache/

@@ -20,6 +20,8 @@
 
             $http.get("/services/" + $stateParams.service)
                 .success(function success (services) {
+                    console.log('banana');
+
                     $scope.updateResults(services.Locations.Properties.Property);
                 });
 
@@ -46,6 +48,7 @@
             $http.get("/services/" + $stateParams.service)
                 .success(function success (services) {
                     $scope.results = services;
+                    console.log('make it work');
                 });
 
             //redirects to next state when provided with address
@@ -56,17 +59,18 @@
                 } else {
                     $scope.error = "Please enter an address";
                 } 
-            }
+            };
 
             $scope.searchAgain = function searchAgain () {
                 //TODO: write logic for function
                 $location.path("/home");
-            }
+            };
 
             $scope.listResults = function listResults () {
                 //TODO: write logic for function
                 console.log($scope.results);
-            }
+                // var destination = "/home/"+$scope.service+"/location/"+$scope.address+"/list"; 
+            };
 
         }
     ];

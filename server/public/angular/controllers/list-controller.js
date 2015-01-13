@@ -11,12 +11,13 @@
         "$stateParams",
         "$location", 
         function ($scope, $stateParams, $location) {
-   
+  
+
             //button to exit list view
             $scope.exit = function exit () {
                 var destination = "/home/" + $stateParams.service + "/location/" + $stateParams.address;
                 $location.path(destination);
-            }
+            };
 
             //handler for each result
             function createResultsHandler (id) {
@@ -25,7 +26,7 @@
                         "/location/" + $stateParams.address +
                         id;
                     $location.path(path); 
-                }
+                };
             }
 /*
             //add handler to results list
