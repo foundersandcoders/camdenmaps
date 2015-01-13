@@ -43,6 +43,6 @@
 
             return cb(null, url.nearestApi + query, { "Accept": "application/json" });
         }
-    }
+    };
 
 }());
