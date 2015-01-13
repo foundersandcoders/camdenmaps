@@ -17,7 +17,7 @@ exports.config = {
     'name': 'App Tests'
   },
 
-  baseUrl: 'http://localhost:'+ (process.env.HTTP_PORT || '9001'),
+  baseUrl: 'http://localhost:'+ (process.env.HTTP_PORT || '8080'),
 
   framework: 'jasmine',
 

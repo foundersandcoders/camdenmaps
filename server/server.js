@@ -18,7 +18,7 @@ var server = new hapi.Server();
 
 //add connection
 server.connection({
-    port: process.env.PORT,
+    port: process.env.PORT || config.server.port,
     labels: ["api"],
     routes: {
         cors: true,

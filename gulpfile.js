@@ -16,6 +16,7 @@
         source = require("vinyl-source-stream"),
         buffer = require("vinyl-buffer"),
         watchify = require("watchify"),
+        nodemon = require("gulp-nodemon"),
         connect = require("gulp-connect"),
         shell = require("gulp-shell"),
         browserify = require("browserify");
@@ -96,29 +97,24 @@
             .pipe(gulp.dest("./server/public/js/"));
     });
 
-    //task to start server
-    gulp.task("serve", function () {
-        console.log("starting server");
-
-        connect.server({
-            port: 8080,
-            livereload: true
-        });
-    });
-
     //task for travis
     gulp.task("travis", function () {
-        console.log("sass, uglify and tests passed");
-        shell(['npm start']);
-        return gulp.src(protractorTestFiles)
-            .pipe(shell(['node_modules/protractor/bin/webdriver-manager update']))
-            .pipe(protractor({
-                configFile: "./test/frontend/config/protractor.conf.js"
-            }))
-            .on("error", function (err) {
-                throw err;
-            }) ;
+        nodemon({ script: 'server/server.js'})
+        .on('start', function () {
+            return gulp.src(protractorTestFiles)
+                .pipe(protractor({
+                    configFile: "./test/frontend/config/protractor.conf.js"
+                }))
+                .on("error", function (err) {
+                    throw err;
+                })
+                .on('end', function () {
+                    process.exit();
+                })
+        })
+        
     });
+
 
     //task for when developing
     gulp.task("file-watch",  function () {
