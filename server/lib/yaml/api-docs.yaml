@@ -46,7 +46,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-  location/{postcode}:
+  locations/{postcode}:
     get:
       summary: Location of user
       description: |
