@@ -9,6 +9,7 @@
     "use strict";
 
     angular.module("maps")
+
         .controller("RootController", require("./root-controller.js"))
         .controller("LandingController", require("./landing-controller.js"))
         .controller("ServicesController", require("./services-controller.js"))

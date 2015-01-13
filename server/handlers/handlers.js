@@ -17,5 +17,6 @@
             res.file("../public/index.html");
         }
 
-    }
+    };
+
 }());

@@ -6,27 +6,27 @@ info:
   description: Investigate and explore the Camden maps API 
   version: "1.0.0"
 # the domain of the service
-host: camdenmaps.herokuapp.com
+host: localhost:0.0.0.0:8080
 # array of all schemes that your API supports
 schemes:
+  - http
   - https
 # will be prefixed to all path
-basePath:
+basePath: /
 produces:
   - application/json
 paths:
-  /services/{service}:
+  services/{service}:
     get:
-      summary: /services/{service}
+      summary: services
       description: |
-        The services endpoint returns the location of all the locations of a selected Camden Council service 
+        The services endpoint returns a list of organisations that provdie the Camden Council point of interest selected by the user. The response includes information about contact and location. 
       parameters:
         - name: service
           in: query
           description: Camden Council run organisation 
           required: true
           type: string
-          format: uuid
         # - name: longitude
         #   in: query
         #   description: Longitude component of location.
@@ -34,23 +34,23 @@ paths:
         #   type: number
         #   format: double
       tags:
-        - Services
+        - services
       responses:
         200:
-          description: An array of products
+          description: An array of organisations that provide required service
           schema:
             type: array
             items:
-              $ref: Product
+              $ref: '#/definitions/Service'
         default:
           description: Unexpected error
           schema:
-            $ref: Error
-  /location/{postcode}:
+            $ref: '#/definitions/Error'
+  location/{postcode}:
     get:
-      summary: /location/{postcode}
+      summary: Location of user
       description: |
-        The Location postcode endpoint uses the users postcode to pinpoint a location within Camden on the map
+        The Location endpoint returns information about laocation of Camden postcode selected by the user.
       parameters:
         - name: postcode
           in: query
@@ -82,17 +82,16 @@ paths:
         200:
           description: An array of services 
           schema:
-            type: array
-            items:
-              $ref: PriceEstimate
+            $ref: '#/definitions/AddressSearchResults'
         default:
           description: Unexpected error
           schema:
-            $ref: Error
-  /services/{service}/locations/{postcode}:
+            $ref: '#/definitions/Error'
+  services/{service}/locations/{postcode}:
     get:
       summary: Selected service near specified postcode
-      description: The services and location endpoint will bring back a list of specified services in order of distance to the specified postcode  
+      description: |
+        The Endpoint will return a list similar to that of services, but this endpoint will return the information in relation to a Camden postcode specified by the user.
       parameters:
         - name: service
           in: query
@@ -114,15 +113,13 @@ paths:
         #   type: string
         #   description: Unique identifier representing a specific product for a given latitude & longitude.
       tags:
-        - Services
+        - services
         - Location
       responses:
         200:
           description: An array of selected service information
           schema:
-            type: array
-            items:
-              $ref: Product
+            $ref: '#/definitions/AddressAndService' 
         default:
           description: Unexpected error
           schema:
@@ -169,85 +166,143 @@ paths:
   #         schema:
   #           $ref: Error
 definitions:
-  Product:
+  Service:
     properties:
-      product_id:
+      Name:
         type: string
-        description: Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
-      description:
+        description: Name of service host
+      Type:
         type: string
-        description: Description of product.
-      display_name:
+        description: Description of service category
+      Telephone:
         type: string
-        description: Display name of product.
-      capacity:
+        description: Contact number for servcie host
+      OpeningHours:
         type: string
-        description: Capacity of product. For example, 4 people.
-      image:
+        description: Weekly opening times of service host
+      URL:
         type: string
-        description: Image URL representing the product.
-  PriceEstimate:
+        description: URL of service host 
+      Source:
+        type: string
+        description:
+  AddressSearchResults: 
     properties:
-      product_id:
+      Area:
         type: string
-        description: Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles
-      currency_code:
+        description: postcode 
+      East:
         type: string
-        description: "[ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code."
-      display_name:
+        description: 
+      North: 
         type: string
-        description: Display name of product.
-      estimate:
+        description: 
+      Longitude: 
+        type: string 
+        description: Longitudinal point on map
+      Latitude:
         type: string
-        description: Formatted string of estimate in local currency of the start location. Estimate could be a range, a single number (flat rate) or "Metered" for TAXI.
-      low_estimate:
-        type: number
-        description: Lower bound of the estimated price.
-      high_estimate:
-        type: number
-        description: Upper bound of the estimated price.
-      surge_multiplier:
-        type: number
-        description: Expected surge multiplier. Surge is active if surge_multiplier is greater than 1. Price estimate already factors in the surge multiplier.
-  Profile:
-    properties:
-      first_name:
+        description: latitudinal point on map
+      AddressAndService:
+        properties:
+      Area:
         type: string
-        description: First name of the Uber user.
-      last_name:
+        description: postcode 
+      East:
         type: string
-        description: Last name of the Uber user.
-      email:
+        description: 
+      North: 
         type: string
-        description: Email address of the Uber user
-      picture:
+        description: 
+      Longitude: 
+        type: string 
+        description: Longitudinal point on map
+      Latitude:
         type: string
-        description: Image URL of the Uber user.
-      promo_code:
-        type: string
-        description: Promo code of the Uber user.
-  Activity:
-    properties:
-      uuid:
-        type: string
-        description: Unique identifier for the activity
-  Activities:
-    properties:
-      offset:
-        type: integer
-        format: int32
-        description: Position in pagination.
-      limit:
-        type: integer
-        format: int32
-        description: Number of items to retrieve (100 max).
-      count:
-        type: integer
-        format: int32
-        description: Total number of items available.
-      history:
+        description: latitudinal point on map
+      poi:
         type: array
-        $ref: Activity
+        items:
+          $ref: '#/definitions/Service'
+  # Product:
+  #   properties:
+  #     product_id:
+  #       type: string
+  #       description: Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles.
+  #     description:
+  #       type: string
+  #       description: Description of product.
+  #     display_name:
+  #       type: string
+  #       description: Display name of product.
+  #     capacity:
+  #       type: string
+  #       description: Capacity of product. For example, 4 people.
+  #     image:
+  #       type: string
+  #       description: Image URL representing the product.
+  # PriceEstimate:
+  #   properties:
+  #     product_id:
+  #       type: string
+  #       description: Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles
+  #     currency_code:
+  #       type: string
+  #       description: "[ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code."
+  #     display_name:
+  #       type: string
+  #       description: Display name of product.
+  #     estimate:
+  #       type: string
+  #       description: Formatted string of estimate in local currency of the start location. Estimate could be a range, a single number (flat rate) or "Metered" for TAXI.
+  #     low_estimate:
+  #       type: number
+  #       description: Lower bound of the estimated price.
+  #     high_estimate:
+  #       type: number
+  #       description: Upper bound of the estimated price.
+  #     surge_multiplier:
+  #       type: number
+  #       description: Expected surge multiplier. Surge is active if surge_multiplier is greater than 1. Price estimate already factors in the surge multiplier.
+  # Profile:
+  #   properties:
+  #     first_name:
+  #       type: string
+  #       description: First name of the Uber user.
+  #     last_name:
+  #       type: string
+  #       description: Last name of the Uber user.
+  #     email:
+  #       type: string
+  #       description: Email address of the Uber user
+  #     picture:
+  #       type: string
+  #       description: Image URL of the Uber user.
+  #     promo_code:
+  #       type: string
+  #       description: Promo code of the Uber user.
+  # Activity:
+  #   properties:
+  #     uuid:
+  #       type: string
+  #       description: Unique identifier for the activity
+  # Activities:
+  #   properties:
+  #     offset:
+  #       type: integer
+  #       format: int32
+  #       description: Position in pagination.
+  #     limit:
+  #       type: integer
+  #       format: int32
+  #       description: Number of items to retrieve (100 max).
+  #     count:
+  #       type: integer
+  #       format: int32
+  #       description: Total number of items available.
+  #     history:
+  #       type: array
+  #       $ref: Activity
   Error:
     properties:
       code:
