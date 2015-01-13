@@ -38,6 +38,10 @@
                 $scope.result = $scope.results.filter(function (result) {
                     return result.PoI.Name === $stateParams.id;
                 })[0];
+
+                $scope.currentDisplay = $scope.results.filter(function (result) {
+                    return result.text.toLowerCase()  === $stateParams.service.toLowerCase();
+                });
             }
         ];
 }());
