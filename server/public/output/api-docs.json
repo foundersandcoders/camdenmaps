@@ -50,7 +50,7 @@
         }
       }
     },
-    "location/{postcode}": {
+    "locations/{postcode}": {
       "get": {
         "summary": "Location of user",
         "description": "The Location endpoint returns information about laocation of Camden postcode selected by the user.\n",
@@ -128,61 +128,36 @@
     "Service": {
       "properties": {
         "Name": {
-          "type": "string",
-          "description": "Name of service host"
+          "type": "string"
         },
         "Type": {
-          "type": "string",
-          "description": "Description of service category"
+          "type": "string"
         },
         "Telephone": {
-          "type": "string",
-          "description": "Contact number for servcie host"
+          "type": "string"
         },
         "OpeningHours": {
-          "type": "string",
-          "description": "Weekly opening times of service host"
+          "type": "string"
         },
         "URL": {
-          "type": "string",
-          "description": "URL of service host"
+          "type": "string"
         },
         "Source": {
-          "type": "string",
-          "description": null
+          "type": "string"
         }
       }
     },
     "AddressSearchResults": {
       "properties": {
-        "Area": {
-          "type": "string",
-          "description": "postcode"
+        "code": {
+          "type": "integer",
+          "format": "int32"
         },
-        "East": {
-          "type": "string",
-          "description": null
+        "message": {
+          "type": "string"
         },
-        "North": {
-          "type": "string",
-          "description": null
-        },
-        "Longitude": {
-          "type": "string",
-          "description": "Longitudinal point on map"
-        },
-        "Latitude": {
-          "type": "string",
-          "description": "latitudinal point on map"
-        },
-        "AddressAndService": {
-          "properties": null
-        },
-        "poi": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Service"
-          }
+        "fields": {
+          "type": "string"
         }
       }
     },

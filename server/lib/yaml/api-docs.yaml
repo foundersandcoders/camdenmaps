@@ -170,60 +170,67 @@ definitions:
     properties:
       Name:
         type: string
-        description: Name of service host
+        #description: Name of service host
       Type:
         type: string
-        description: Description of service category
+        #description: Description of service category
       Telephone:
         type: string
-        description: Contact number for servcie host
+        #description: Contact number for servcie host
       OpeningHours:
         type: string
-        description: Weekly opening times of service host
+        #description: Weekly opening times of service host
       URL:
         type: string
-        description: URL of service host 
+        #description: URL of service host 
       Source:
         type: string
-        description:
+        #description:
   AddressSearchResults: 
     properties:
-      Area:
+      code:
+        type: integer
+        format: int32
+      message:
         type: string
-        description: postcode 
-      East:
+      fields:
         type: string
-        description: 
-      North: 
-        type: string
-        description: 
-      Longitude: 
-        type: string 
-        description: Longitudinal point on map
-      Latitude:
-        type: string
-        description: latitudinal point on map
-      AddressAndService:
-        properties:
-      Area:
-        type: string
-        description: postcode 
-      East:
-        type: string
-        description: 
-      North: 
-        type: string
-        description: 
-      Longitude: 
-        type: string  
-        description: Longitudinal point on map
-      Latitude:
-        type: string
-        description: latitudinal point on map
-      poi:
-        type: array
-        items:
-          $ref: '#/definitions/Service'
+      # Area:
+      #   type: string
+      #   #description: postcode 
+      # East:
+      #   type: string
+      #   #description: 
+      # North: 
+      #   type: string
+      #   #description: 
+      # Longitude: 
+      #   type: string 
+      #   #description: Longitudinal point on map
+      # Latitude:
+      #   type: string
+      #   #description: latitudinal point on map
+      # #AddressAndService:
+      #   #properties:
+      # Area:
+      #   type: string
+      #   #description: postcode 
+      # East:
+      #   type: string
+      #   #description: 
+      # North: 
+      #   type: string
+      #   #description: 
+      # Longitude: 
+      #   type: string  
+      #   #description: Longitudinal point on map
+      # Latitude:
+      #  type: string
+        #description: latitudinal point on map
+      #poi:
+      #  type: array
+        #items:
+      #    $ref: '#/definitions/Service'
   # Product:
   #   properties:
   #     product_id:
