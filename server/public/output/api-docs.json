@@ -5,7 +5,7 @@
     "description": "Investigate and explore the Camden maps API",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "0.0.0.0:8080/",
   "schemes": [
     "http",
     "https"
@@ -117,7 +117,7 @@
           "default": {
             "description": "Unexpected error",
             "schema": {
-              "$ref": "Error"
+              "$ref": "#/definitions/Error"
             }
           }
         }
