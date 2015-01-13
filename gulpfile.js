@@ -15,7 +15,7 @@
         source = require("vinyl-source-stream"),
         buffer = require("vinyl-buffer"),
         watchify = require("watchify"),
-        connect = require("gulp-connect"),
+        shell = require ("gulp-shell"),
         browserify = require("browserify");
 
     //file arrays
@@ -140,6 +140,11 @@
         
         return console.log("sass, uglify and tests passed");
     });
+
+    //task for converting yaml files to json
+    gulp.task("convertyaml", shell.task([
+        "node server/lib/yml2swagger.js server/lib/yaml server/public/output"
+    ]));
 
     //task for when developing
     gulp.task("file-watch",  function () {
