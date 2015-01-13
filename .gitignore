@@ -1,7 +1,7 @@
-node_modules/
 *.sw*
 npm-debug.log
 .sass-cache/
-*.css
 prep/
+node_modules/
+*.css
 *.map

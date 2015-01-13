@@ -1,6 +1,7 @@
 (function(){
     "use strict";
 
+
     //import modules
     var gulp = require("gulp"),
         eslint = require("gulp-eslint"),
@@ -18,7 +19,6 @@
         nodemon = require("gulp-nodemon"),
         connect = require("gulp-connect"),
         shell = require("gulp-shell"),
-
         browserify = require("browserify");
 
     //file arrays
@@ -97,8 +97,8 @@
             .pipe(gulp.dest("./server/public/js/"));
     });
 
-    //task to start server
-    gulp.task("travis", function () {
+    //task for travis
+    gulp.task("travis", ["sass-production", "browserify"], function () {
         nodemon({ script: 'server/server.js'})
         .on('start', function () {
             return gulp.src(protractorTestFiles)
@@ -127,19 +127,6 @@
         gulp.watch(karmaTestFiles, angularFiles, ["unit-test"]);
         gulp.watch(serverFiles.concat(serverTestFiles), ["server-test"]);
         console.log("gulp is watching for test changes...");
-    });
-
-    gulp.task("browserify", function () {
-
-        var bundler = browserify({
-            entries: ["./server/public/angular/app.js"],
-            debug: true
-        });connect.server({
-            root: "server",
-            port: 9001
-        });
-        
-        return console.log("sass, uglify and tests passed");
     });
 
     //task for when developing

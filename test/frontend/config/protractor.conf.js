@@ -9,16 +9,15 @@ exports.config = {
 
   sauceKey: process.env.SAUCE_ACCESS_KEY, 
 
-
   capabilities: {
     'browserName': 'chrome',
     'platform': 'ANY',
-    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+    'tunnel-identifier': (process.env.TRAVIS) ? process.env.TRAVIS_JOB_NUMBER : process.env.TUNNEL_ID,
     'build': process.env.TRAVIS_BUILD_NUMBER,
     'name': 'App Tests'
   },
 
-  baseUrl: 'http://0.0.0.0:8080/',
+  baseUrl: 'http://localhost:'+ (process.env.HTTP_PORT || '8080'),
 
   framework: 'jasmine',
 
