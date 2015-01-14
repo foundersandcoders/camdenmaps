@@ -165,14 +165,14 @@
             // expect(element(by.id('list-results')).isPresent()).toBe(true);
             expect(element(by.id('list-results')).isPresent()).toBe(false);
         });
-        it("When a list item is selected, single list result view is displayed", function () { 
+        // it("When a list item is selected, single list result view is displayed", function () { 
 
-            element(by.css('[ng-click=""]')).click();
+            // element(by.css('[ng-click=""]')).click();
 
             //need to switch to true when view added.
             // expect(element(by.id('results')).isPresent()).toBe(true);
-            expect(element(by.id('results')).isPresent()).toBe(false);
-        });
+            // expect(element(by.id('results')).isPresent()).toBe(false);
+        // });
 	});
 
 /**********************************************
@@ -180,21 +180,24 @@
 ***********************************************/
     describe("As a user, I want to enter a postcode to search the closest results from me", function () {
 
-        it("a postcode is entered, then it is validated to ensure it is a valid Camden postcode.", function () {
-         //Need to test
-        });
         it("an invalid postcode is entered, then a message informs the user that the postcode is either not correct or in Camden.", function () {
             //Need to test
         });
-        describe ("given a valid camden postcode is entered", function () {
-            it("list button appears", function () {
 
-            });
+        describe ("given a valid camden postcode is entered", function () {
             it("list button is clicked and items list", function () {
 
-            });
-            it("list items also display on map ", function () {
+                var postcodeInput = element(by.id('postcode-input')).element(by.tagName('input'));
+                var listResults = element(by.id('list-results'));
+                var repeater = element.all(by.repeater('result in results'));
 
+                postcodeInput.sendKeys('NW1 0NE');
+                element(by.css('[ng-click="search()"]')).click();
+
+                element(by.css('[ng-click="listResults()"]')).click();
+
+                expect(listResults.isPresent()).toBe(true);
+                expect(repeater.count()).toBe(24);
             });
         });
 
