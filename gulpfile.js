@@ -88,14 +88,6 @@
             .pipe(gulp.dest("./server/public/css/"));
     });
 
-    //task for minifying
-    gulp.task("compress", function () {
-       return gulp.src(angularFiles)
-            .pipe(concat('app.min.js'))
-            .pipe(ngAnnotate())
-            .pipe(uglify())
-            .pipe(gulp.dest("./server/public/js/"));
-    });
 
     //task for travis
     gulp.task("travis", ["sass-production", "browserify"], function () {
