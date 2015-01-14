@@ -36,6 +36,12 @@
                 templateUrl: "angular/partials/root.landing.services.html",
                 controller: "ServicesController" 
             })
+
+            .state("root.landing.neighbourhood", {
+                url: "http://maps.camden.gov.uk/streetworks/neareststreetworks.aspx",
+                templateUrl: "angular/partials/root.landing.neighbourhood.html",
+                //controller: "neighbourhoodController"
+            })
   
             .state("root.address-search", {
                 url: "/{service}/search",

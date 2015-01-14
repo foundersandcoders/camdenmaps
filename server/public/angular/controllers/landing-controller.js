@@ -21,7 +21,7 @@
                 {
                     id: "aboutYourNeighbourhood",
                     title: "About Your Neighbourhood",
-                    path: "/neighbourhood/search",
+                    path: "roo.landing.Neighbourhood",
                     iconUrl: "img/icons/your-neighbourhood.png"
                 },
                 {
