@@ -36,6 +36,7 @@
         var name = require('./package.json').name;
         return version + '.' + name + '.' + 'min';
     };
+
     //task for angular acceptance test
     gulp.task("acceptance-test", function () {
         return gulp.src(protractorTestFiles)
@@ -110,8 +111,8 @@
                 })
                 .on('end', function () {
                     process.exit();
-                })
-        })
+                });
+        });
         
     });
 
@@ -136,22 +137,10 @@
         console.log("gulp is watching for linting and sass changes...");
     });
 
-    gulp.task("test-watch", function () {
-        gulp.watch(karmaTestFiles, angularFiles, ["unit-test"]);
-        gulp.watch(serverFiles.concat(serverTestFiles), ["server-test"]);
-        console.log("gulp is watching for test changes...");
-    });
-
     gulp.task("browserify", function () {
 
-        var bundler = browserify({
-            entries: ["./server/public/angular/app.js"],
-            debug: true
-        });
-
         var bundle = function() {
-
-            return bundler
+            return browserify({ entries: ["./server/public/angular/app.js"], debug: true })
                 .bundle()
                 .pipe(source(getBundleName() + '.js'))
                 .pipe(buffer())
@@ -163,15 +152,11 @@
         return bundle();
     });
 
-
+    //below task not working properly.
     gulp.task("watchify", function () {
 
-
-        var bundler = watchify(browserify("./server/public/angular/app.js", watchify.args));
-
         var bundle = function() {
-
-            return bundler
+            return watchify(browserify(angularFiles, watchify.args))
                 .bundle()
                 .pipe(source(getBundleName() + '.js'))
                 .pipe(buffer())
