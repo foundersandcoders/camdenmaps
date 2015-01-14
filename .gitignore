@@ -6,3 +6,4 @@ node_modules/
 *.css
 *.map
 *.min.js
+*maps.min.js
