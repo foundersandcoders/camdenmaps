@@ -16,9 +16,8 @@
         source = require("vinyl-source-stream"),
         buffer = require("vinyl-buffer"),
         watchify = require("watchify"),
+        shell = require ("gulp-shell"),
         nodemon = require("gulp-nodemon"),
-        connect = require("gulp-connect"),
-        shell = require("gulp-shell"),
         browserify = require("browserify");
 
     //file arrays
@@ -130,6 +129,27 @@
         console.log("gulp is watching for test changes...");
     });
 
+<<<<<<< HEAD
+    gulp.task("browserify", function () {
+
+        var bundler = browserify({
+            entries: ["./server/public/angular/app.js"],
+            debug: true
+        });connect.server({
+            root: "server",
+            port: 9001
+        });
+        
+        return console.log("sass, uglify and tests passed");
+    });
+
+    //task for converting yaml files to json
+    gulp.task("convertyaml", shell.task([
+        "node server/lib/yml2swagger.js server/lib/yaml server/public/output"
+    ]));
+
+=======
+>>>>>>> dev
     //task for when developing
     gulp.task("file-watch",  function () {
         gulp.watch(allFiles, ["lint"]);
