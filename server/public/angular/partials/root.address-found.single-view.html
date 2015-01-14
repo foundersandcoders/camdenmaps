@@ -1,17 +1,17 @@
 
- <div class="container-fluid">
+ <div ng-show="result" class="container-fluid">
     <div class="result col-xs-12">
         <div class="col-xs-10">
             <a href="link-to-url">
-                <h5>{{ result.PoI.Name }}</h5>
+                <h5>{{ result.display.Name }}</h5>
             </a>
             <p>{{ result.StreetNum + " " + result.Street }}</p>
-            <p>London, {{result.Postcode}}</p>
-            <p>{{ result.PoI.Telephone }}</p>
-            <p>{{ result.PoI.URL }}</p>
+            <p>London, {{result.PostCode}}</p>
+            <p>{{ result.display.Telephone }}</p>
+            <p>{{ result.display.URL }}</p>
             <br>
             <h5>Opening Hours</h5>
-            <p>{{ result.PoI.OpeningHours }}</p>
+            <p>{{ result.display.OpeningHours }}</p>
         </div>
 
         <div class="col-xs-2">
