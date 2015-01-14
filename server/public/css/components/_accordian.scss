@@ -1,0 +1,46 @@
+/***********************************************
+*   SERVICES AND CATEGORIES ACCORDIAN
+*   Description: for services and categories
+*	mixins and variables.
+************************************************/
+
+//IMPORTS FILES
+@import '../base/colours';
+
+
+
+
+.services-and-categories {
+	border-bottom: 0.1em solid black;
+	background-color: $dark-grey;
+	color: $light-blue;
+	text-align: center;
+}
+
+.arrow-up {
+	width: 0;
+	height: 0;
+	border-left: 30px solid transparent;
+	border-right: 30px solid transparent;
+	border-bottom: 40px solid $dark-grey;
+	position: absolute;
+	top: -2em;
+	left:50%;
+	margin-left:-32px;
+}
+
+.icon {
+	width: 3em;
+	margin: 0 auto;
+	display: block;
+}
+
+.service {
+	padding-bottom: 0.5em;
+	h4 {
+		margin-bottom: 0;
+	}
+	p {
+		color: white;
+	}
+}

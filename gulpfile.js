@@ -1,5 +1,6 @@
-(function(){
+;(function(){
     "use strict";
+
 
     //import modules
     var gulp = require("gulp"),
@@ -15,7 +16,8 @@
         source = require("vinyl-source-stream"),
         buffer = require("vinyl-buffer"),
         watchify = require("watchify"),
-        connect = require("gulp-connect"),
+        shell = require ("gulp-shell"),
+        nodemon = require("gulp-nodemon"),
         browserify = require("browserify");
 
     //file arrays
@@ -33,6 +35,7 @@
         var name = require('./package.json').name;
         return version + '.' + name + '.' + 'min';
     };
+
     //task for angular acceptance test
     gulp.task("acceptance-test", function () {
         return gulp.src(protractorTestFiles)
@@ -94,32 +97,22 @@
             .pipe(gulp.dest("./server/public/js/"));
     });
 
-    //task to start server
-    gulp.task("serve", function () {
-        console.log("starting server");
-        connect.server({
-            root: "server",
-            port: 9001
-        });
-    });
-
     //task for travis
-    gulp.task("travis",["serve"] ,function () {
-        console.log("sass, uglify and tests passed");
-        return gulp.src(protractorTestFiles)
-            .pipe(protractor({
-                configFile: "./test/frontend/config/protractor.conf.js"
-            }))
-            .on("error", function (err) {
-                throw err;
-            }) ;
-    });
-
-    //task for when developing
-    gulp.task("file-watch",  function () {
-        gulp.watch(allFiles, ["lint"]);
-        gulp.watch("./server/public/css/main.scss", ["sass-dev"]);
-        console.log("gulp is watching for linting and sass changes...");
+    gulp.task("travis", ["sass-production", "browserify"], function () {
+        nodemon({ script: 'server/server.js'})
+        .on('start', function () {
+            return gulp.src(protractorTestFiles)
+                .pipe(protractor({
+                    configFile: "./test/frontend/config/protractor.conf.js"
+                }))
+                .on("error", function (err) {
+                    throw err;
+                })
+                .on('end', function () {
+                    process.exit();
+                });
+        });
+        
     });
 
     gulp.task("test-watch", function () {
@@ -128,18 +121,10 @@
         console.log("gulp is watching for test changes...");
     });
 
-    gulp.task("browserify", function () {
-
-        var bundler = browserify({
-            entries: ["./server/public/angular/app.js"],
-            debug: true
-        });connect.server({
-            root: "server",
-            port: 9001
-        });
-        
-        return console.log("sass, uglify and tests passed");
-    });
+    //task for converting yaml files to json
+    gulp.task("convertyaml", shell.task([
+        "node server/lib/yml2swagger.js server/lib/yaml server/public/output"
+    ]));
 
     //task for when developing
     gulp.task("file-watch",  function () {
@@ -148,22 +133,10 @@
         console.log("gulp is watching for linting and sass changes...");
     });
 
-    gulp.task("test-watch", function () {
-        gulp.watch(karmaTestFiles, angularFiles, ["unit-test"]);
-        gulp.watch(serverFiles.concat(serverTestFiles), ["server-test"]);
-        console.log("gulp is watching for test changes...");
-    });
-
     gulp.task("browserify", function () {
 
-        var bundler = browserify({
-            entries: ["./server/public/angular/app.js"],
-            debug: true
-        });
-
         var bundle = function() {
-
-            return bundler
+            return browserify({ entries: ["./server/public/angular/app.js"], debug: true })
                 .bundle()
                 .pipe(source(getBundleName() + '.js'))
                 .pipe(buffer())
@@ -175,15 +148,11 @@
         return bundle();
     });
 
-
+    //below task not working properly.
     gulp.task("watchify", function () {
 
-
-        var bundler = watchify(browserify("./server/public/angular/app.js", watchify.args));
-
         var bundle = function() {
-
-            return bundler
+            return watchify(browserify(angularFiles, watchify.args))
                 .bundle()
                 .pipe(source(getBundleName() + '.js'))
                 .pipe(buffer())

@@ -4,11 +4,11 @@
 *   Use: Imported throughout the server
 *
 ************************************************/
-(function () {
+;(function () {
     "use strict";
 
     //Module for converting XML to JSON
-    var faketoe = require("faketoe");
+    var xml = require("../lib/xml-parser.js");
 
     module.exports = {
 
@@ -32,20 +32,17 @@
 
         //Function for responding JSON to client
         convertToXml: function convertToXml (err, res, req, rep) {
-            if (err) {
-                return rep(err);
-            }
-            //Create xml parser
-            var parser = faketoe.createParser(function (err, json) {
-                if (err) {
-                    return rep(err);
-                } else {
-                    //When ready, return json back to client
-                    rep(json);
-                }
+            var parser = xml.parse(res);
+            var response = [];
+            parser.each("AddressSearchResults", function (location) {
+               response.push(location); 
             });
-            //Pipe downstream response to parser
-            res.pipe(parser);
+            parser.each("Property", function (property) {
+                response.push(property);
+            });
+            parser.on("end", function () {
+                rep(response);
+            });
         } 
     };
 
