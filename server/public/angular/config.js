@@ -49,6 +49,12 @@
                 controller: "ListController" 
             })
 
+            .state("root.address-search.single-view", {
+                url: "/{id}",
+                templateUrl: "angular/partials/root.address-found.single-view.html",
+                controller: "SingleController" 
+            })
+
             .state("root.address-found", {
                 url: "/{service}/location/{address}",
                 templateUrl: "angular/partials/root.address-found.html",
