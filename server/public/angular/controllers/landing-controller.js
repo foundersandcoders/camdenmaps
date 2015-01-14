@@ -32,6 +32,11 @@
                 }
             ]; 
 
+
+            $scope.toggle =  function toggle(button) {
+
+                button.titleHide = !button.titleHide;
+            };
         }
     ];
 
