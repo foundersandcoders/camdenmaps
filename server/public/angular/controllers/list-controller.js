@@ -11,8 +11,14 @@
         "$stateParams",
         "$location", 
         function ($scope, $stateParams, $location) {
-  
 
+            //change baseurl depending on whether address-found or address-search 
+            $scope.baseUrl = $stateParams.address ?  "/#/home/" + $stateParams.service + 
+                "/location/" + $stateParams.address + "/" : "/#/home/" + $stateParams.service + 
+                "/search/";
+              
+            $scope.showDistance = $stateParams.address ? true : false; 
+                
             //button to exit list view
             $scope.exit = function exit () {
                 var current = $location.path();
@@ -29,6 +35,7 @@
                     $location.path(path); 
                 };
             }
+
 /*
             //add handler to results list
             (function addResultsHandlers (index){

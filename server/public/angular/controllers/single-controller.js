@@ -23,6 +23,8 @@
                     });
                 */
 
+                $scope.showDistance = $stateParams.address ? true : false; 
+            
                 $http.get("/services/" + $stateParams.service + "/locations/" + $stateParams.address)
                     .success(function success (data) {
                         $scope.updateResults(data.properties);
