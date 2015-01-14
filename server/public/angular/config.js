@@ -42,7 +42,13 @@
                 templateUrl: "angular/partials/root.address-search.html",
                 controller: "SearchController"
             })
-  
+ 
+            .state("root.address-search.list-view", {
+                url: "/list",
+                templateUrl: "angular/partials/root.address-found.list-view.html",
+                controller: "ListController" 
+            })
+
             .state("root.address-found", {
                 url: "/{service}/location/{address}",
                 templateUrl: "angular/partials/root.address-found.html",
