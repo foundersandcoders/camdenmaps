@@ -21,7 +21,6 @@
                 .success(function success (data) {
                     $scope.updateResults(data.properties);
                     $scope.updateLocation(data.location);
-                    $scope.addMarkers();
                 });
 
             $scope.service = $stateParams.service;
@@ -29,6 +28,7 @@
 
             $scope.searchAgain = function searchAgain () {
                 //TODO: write logic for function
+                $scope.updateMarkers({});
                 $location.path("/home");
             };
 
@@ -63,7 +63,6 @@
 
             $scope.addMarkers = function addMarkers() {
 
-                    //once we have real data this will need to be changed to data not fakeData
                     var root = $scope.results;
 
                     console.log('results', $scope.results);
@@ -88,6 +87,7 @@
                         var pointMessage = "";
 
                         //TODO work out a sensible way to loop over this.... 
+                        //TODO replace view with nothing if it returns 0, ref car parks
                         check(root[i]["display"]["Name"] || root[i]["display"][0]["-Name"], "<br>"); 
                         check(root[i]["BuildingName"], "<br>");
                         check(root[i]["View"], " ");
@@ -149,12 +149,10 @@
                     };
 
                 $scope.updateMarkers(firstEight);
-                console.log('results2', $scope.results);
 
                 };
 
                 $scope.addMarkers();
-                console.log('results3', $scope.results);
 
 
 
