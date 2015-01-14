@@ -33,13 +33,19 @@
         //Function for responding JSON to client
         convertToXml: function convertToXml (err, res, req, rep) {
             var parser = xml.parse(res);
-            var response = [];
-            parser.each("AddressSearchResults", function (location) {
-               response.push(location); 
+            var response = {};
+            response.properties = [];
+            
+            parser.each("AddressSearchResults", function (match) {
+               response.location = match.attributes; 
             });
-            parser.each("Property", function (property) {
-                response.push(property);
+           
+            parser.each("Property", function (match) {
+                var formatProperty = match.attributes;
+                formatProperty.display = match.$children[0].attributes
+                response.properties.push(formatProperty);
             });
+            
             parser.on("end", function () {
                 rep(response);
             });
