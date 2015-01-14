@@ -22,8 +22,6 @@
             $scope.address = "";
             //model for error messages
             $scope.error = "";
-            //model for service results
-            $scope.results = [];
             //model for title
             $scope.service = $stateParams.service;
             //model for icon
@@ -60,8 +58,8 @@
 
             $scope.listResults = function listResults () {
                 //TODO: write logic for function
-                console.log($scope.results);
-                // var destination = "/home/"+$scope.service+"/location/"+$scope.address+"/list"; 
+                var destination = "/home/"+$scope.service+"/search/list"; 
+                $location.path(destination);
             };
 
         }
