@@ -8,14 +8,13 @@
             <p>{{ result.StreetNum + " " + result.Street }}</p>
             <p>London, {{result.PostCode}}</p>
             <p>{{ result.display.Telephone }}</p>
-            <p>{{ result.display.URL }}</p>
             <br>
             <h5>Opening Hours</h5>
             <p>{{ result.display.OpeningHours }}</p>
         </div>
 
         <div class="col-xs-2">
-            <h5>{{ result.Distance }}</h5>
+            <h5>{{ result.Distance + ' miles' }}</h5>
         </div>
 
         <div class="contact col-xs-12">
@@ -23,7 +22,9 @@
                 <img src="./img/contact/call.png">
             </div>
             <div class="col-xs-4">
-                <img src="./img/contact/website.png">
+                <a ng-href="{{ result.display.URL }}" target="_blank">
+                    <img src="./img/contact/website.png">
+                </a>
             </div>
             <div class="col-xs-4">
                 <a href="http://maps.google.co.uk">
