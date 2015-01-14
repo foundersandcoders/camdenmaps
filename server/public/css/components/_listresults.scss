@@ -1,0 +1,31 @@
+/***********************************************
+*   LISTRESULTS
+*   Description: for list-results related
+*	mixins and variables.
+************************************************/
+
+//IMPORTS FILES
+@import '../base/colours';
+
+
+#list-results {
+	text-align: left;
+	background-color: white;
+	padding: 0;
+	height: 23.5em;
+	overflow: hidden;
+	overflow-y: scroll;
+	.list-item {
+		border-top: 0.1em black solid;
+		color: black;
+		padding: 0.7em 0;
+	}
+	.distance {
+		text-align: right;
+	}
+	h5, p {
+		color: black;
+		margin: 0;
+	}
+}
+

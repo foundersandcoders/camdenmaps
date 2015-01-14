@@ -7,13 +7,6 @@
 //IMPORTS FILES
 @import '../base/colours';
 
-//Imports for Gov Files
-@import '../../../../node_modules/govuk_frontend_toolkit/stylesheets/colours',
-	//below for box shadow and other css3 functions
-	'../../../../node_modules/govuk_frontend_toolkit/stylesheets/css3',
-	//to normalise old browsers
-	'../../../../node_modules/govuk_frontend_toolkit/stylesheets/shims';
-
 #buttons {
 	margin-top: 1em;
 	padding: 0;
@@ -47,6 +40,9 @@
 
 .button {
 	padding: 0;
+	span {
+		right: -6em;
+	}
 	.list-results {
 		border-right: 0.1em white solid;
 		border-left: 0.1em white solid;
@@ -59,4 +55,15 @@
 			background-color: $hover-blue;
 		}
 	}
+}
+
+#back {
+	position: absolute;
+	top: 0.3em;
+	left: 0.3em;
+	z-index: 1;
+}
+
+.navigation-arrow {
+	margin: 0.9em 0 2.5em;
 }
