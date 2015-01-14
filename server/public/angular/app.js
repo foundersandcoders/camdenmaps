@@ -10,16 +10,12 @@
 ;(function () {
     "use strict";
 
-
     var angular = require("angular");
 
     angular.module("maps", [
             require("angular-ui-router"),
             "leaflet-directive"
- //           require("./directives/directive.js"), 
- //           require("./services/service.js")
     ])
-
 
       .config( require("./config.js") );
         
