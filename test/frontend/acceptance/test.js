@@ -25,22 +25,19 @@
 
             it("Find your nearest, ", function () {
                 
-                var findYourNearest = element(by.id('findYourNearest'));
-                var nearestText = findYourNearest.element(by.tagName('h4')).getText();
+                var nearestText = element(by.id('findYourNearest')).getText();
                 
                 expect(nearestText).toEqual('Find Your Nearest');
             });
             it("About Your Neighbourhood, ", function () {
 
-                var aboutYourNeighbourhood = element(by.id('aboutYourNeighbourhood'));
-                var neighbourhoodText = aboutYourNeighbourhood.element(by.tagName('h4')).getText();
+                var neighbourhoodText = element(by.id('aboutYourNeighbourhood')).getText();
                 
                 expect(neighbourhoodText).toEqual('About Your Neighbourhood');
             });
             it("and Live Streetworks", function () {
 
-                var liveStreetworks = element(by.id('liveStreetworks'));
-                var streetworksText = liveStreetworks.element(by.tagName('h4')).getText();
+                var streetworksText = element(by.id('liveStreetworks')).getText();
                 
                 expect(streetworksText).toEqual('Live Streetworks');
             });
@@ -120,26 +117,61 @@
 
             it("first step options disappear", function () { 
 
+                element(by.css('[ng-click="execute(item.handler)"]')).click();
+                element(by.css('[ng-click="execute(item.handler)"]')).click();
+
+                expect(element(by.id('first-level-options')).isPresent()).toBe(false);
             });
             it("name of selected service with icon are displayed", function () { 
 
+                var container = element(by.id('address-search'))
+
+                var imgsrc = container.element(by.tagName('img')).getAttribute("ng-src");
+                var text = container.element(by.tagName('h2')).getText();
+
+                expect(imgsrc).toEqual("../img/nearestservice/lunchclub.png")
+                expect(text).toEqual("Lunch club")
             });
             it("input field and search button are displayed", function () { 
 
+                var postcodeInput = element(by.id('postcode-input')).element(by.tagName('input'));
+
+                expect(postcodeInput.isPresent()).toBe(true);
             });
             it("search again and list results buttons are displayed", function () { 
 
+                var buttons = element.all(by.tagName('button')).getText();
+
+                expect(buttons).toEqual(['', 'Search again', 'List results']);
             });
         });
 
         it("When Search again button is clicked, you go back to the beginning", function () { 
 
+            element(by.css('[ng-click="searchAgain()"]')).click();
+
+            expect(browser.getCurrentUrl()).toContain('/#/home');
         });
         it("When List Results button is clicked, results list.", function () { 
 
+            element(by.id('findYourNearest')).click();
+            element(by.css('[ng-click="execute(item.handler)"]')).click();
+            element(by.css('[ng-click="execute(item.handler)"]')).click();
+            element(by.css('[ng-click="listResults()"]')).click();
+
+            var container = element(by.id('address-search'))
+
+            //need to switch to true when view added.
+            // expect(element(by.id('list-results')).isPresent()).toBe(true);
+            expect(element(by.id('list-results')).isPresent()).toBe(false);
         });
         it("When a list item is selected, single list result view is displayed", function () { 
 
+            element(by.css('[ng-click=""]')).click();
+
+            //need to switch to true when view added.
+            // expect(element(by.id('results')).isPresent()).toBe(true);
+            expect(element(by.id('results')).isPresent()).toBe(false);
         });
 	});
 

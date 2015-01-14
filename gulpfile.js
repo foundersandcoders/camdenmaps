@@ -8,6 +8,7 @@
         karma = require("gulp-karma"),
         lab = require("gulp-lab"),
         protractor = require("gulp-protractor").protractor,
+        webdriver_update = require("gulp-protractor").webdriver_update,
         sass = require("gulp-sass"),
         concat = require("gulp-concat"),
         uglify = require("gulp-uglify"),
@@ -36,8 +37,10 @@
         return version + '.' + name + '.' + 'min';
     };
 
+    gulp.task('webdriver_update', webdriver_update);
+
     //task for angular acceptance test
-    gulp.task("acceptance-test", function () {
+    gulp.task("acceptance-test", ["webdriver_update"],function () {
         return gulp.src(protractorTestFiles)
             .pipe(protractor({
                 configFile: "./test/frontend/config/protractor.conf.js"
