@@ -1,4 +1,4 @@
-(function(){
+;(function(){
     "use strict";
 
 
@@ -115,20 +115,28 @@
         
     });
 
-
-    //task for when developing
-    gulp.task("file-watch",  function () {
-        gulp.watch(allFiles, ["lint"]);
-        gulp.watch("./server/public/css/main.scss", ["sass-dev"]);
-        console.log("gulp is watching for linting and sass changes...");
-    });
-
     gulp.task("test-watch", function () {
         gulp.watch(karmaTestFiles, angularFiles, ["unit-test"]);
         gulp.watch(serverFiles.concat(serverTestFiles), ["server-test"]);
         console.log("gulp is watching for test changes...");
     });
 
+<<<<<<< HEAD
+=======
+    gulp.task("browserify", function () {
+
+        var bundler = browserify({
+            entries: ["./server/public/angular/app.js"],
+            debug: true
+        });connect.server({
+            root: "server",
+            port: 9001
+        });
+        
+        return console.log("sass, uglify and tests passed");
+    });
+
+>>>>>>> dev
     //task for converting yaml files to json
     gulp.task("convertyaml", shell.task([
         "node server/lib/yml2swagger.js server/lib/yaml server/public/output"
