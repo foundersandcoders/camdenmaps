@@ -29,16 +29,23 @@
 	background-color: white;
 	text-align: left;
 	color: black;
+	padding: 0.5em 0;
+	border: 0.1em black solid;
+	position: absolute;
+	bottom: 0;
+	z-index: 1;
 	.contact {
 		text-align: center;
+		padding: 0.5em 0;
 		img {
-			width: 4em;
+			width: 3em;
 		}
 	}
 	a {
 		color: black;
 	}
-	p {
+	p, h5 {
 		color: black;
+		margin: 0;
 	}
 }
