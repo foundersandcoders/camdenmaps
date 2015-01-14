@@ -25,23 +25,21 @@
 
                 $http.get("/services/" + $stateParams.service + "/locations/" + $stateParams.address)
                     .success(function success (data) {
-                        $scope.updateResults(data.Locations.Properties.Property);
+                        $scope.updateResults(data.properties);
+                        $scope.updateLocation(data.location);
                         
                         //selects item from results with matching {id}
                         $scope.result = $scope.results.filter(function (result) {
-                            return result.PoI.Name === $stateParams.id;
+                            return result.display.Name === $stateParams.id;
                         })[0];
                     });
 
               
                  //selects item from results with matching {id}
                 $scope.result = $scope.results.filter(function (result) {
-                    return result.PoI.Name === $stateParams.id;
+                    return result.display.Name === $stateParams.id;
                 })[0];
 
-                $scope.currentDisplay = $scope.results.filter(function (result) {
-                    return result.text.toLowerCase()  === $stateParams.service.toLowerCase();
-                });
             }
         ];
 }());

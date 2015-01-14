@@ -9,11 +9,16 @@
         "$scope",
         function ($scope) {
             
-            //initialize $scope.results at root level
+            //stores results at root for access by all controllers
             $scope.results = [];
-
-            $scope.updateResults = function updateResults (data) {
-                $scope.results = data;
+            //stores entered location at root for access by leafletjs
+            $scope.location = {};
+            //functions to update results and location on root level 
+            $scope.updateResults = function updateResults (newResults) {
+                $scope.results = newResults;
+            };
+            $scope.updateLocation = function updateLocation (newLocation) {
+                $scope.location = newLocation;
             };
 
 

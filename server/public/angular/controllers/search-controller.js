@@ -18,13 +18,6 @@
         "$http",
         function ($scope, $stateParams, $location, $http) {
 
-            $http.get("/services/" + $stateParams.service)
-                .success(function success (services) {
-                    console.log('banana');
-
-                    $scope.updateResults(services.Locations.Properties.Property);
-                });
-
             //model for search query
             $scope.address = "";
             //model for error messages
@@ -46,9 +39,8 @@
 
             //populate results when response is received
             $http.get("/services/" + $stateParams.service)
-                .success(function success (services) {
-                    $scope.results = services;
-                    console.log('make it work');
+                .success(function success (data) {
+                    $scope.updateResults(data.properties);
                 });
 
             //redirects to next state when provided with address
