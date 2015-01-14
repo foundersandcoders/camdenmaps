@@ -37,6 +37,14 @@
                 $location.path(destination);
             };
 
+            //return icon url from menu.json
+            $http.get("menu.json")
+                .success(function success(menu) {
+                    $scope.iconUrl = menu.filter(function (item) {
+                        return item.title === $scope.service;
+                    })[0].img;
+                });
+
             $scope.addMarkers = function addMarkers() {
 
             //until XML is correctly parsed, using fake data that mocks the correct JSON format we want

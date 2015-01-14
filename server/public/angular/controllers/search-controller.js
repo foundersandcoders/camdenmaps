@@ -33,7 +33,7 @@
             $http.get("menu.json")
                 .success(function success(menu) {
                     $scope.iconUrl = menu.filter(function (item) {
-                        return item.text.toLowerCase() === $scope.service;
+                        return item.title === $scope.service;
                     })[0].img;
                 });
 
