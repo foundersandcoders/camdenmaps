@@ -6,7 +6,7 @@
     </div>
 
     <div ng-repeat="button in buttons" class="col-xs-4 col-sm-3 col-sm-offset-1 col-">
-        <a ui-sref="{{ button.path }}" onclick="toggle('#findYourNearest')">    
+        <a ng-href="{{ button.path }}">    
             <img class="icon" ng-src="{{ button.iconUrl }}" alt="">
         	<h4 id="{{ button.id }}">{{ button.title }}</h4>
         </a>

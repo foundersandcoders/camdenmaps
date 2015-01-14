@@ -15,7 +15,8 @@
 
             //button to exit list view
             $scope.exit = function exit () {
-                var destination = "/home/" + $stateParams.service + "/location/" + $stateParams.address;
+                var current = $location.path();
+                var destination = current.substring(0, current.indexOf("/list"));
                 $location.path(destination);
             };
 
