@@ -5,3 +5,4 @@ prep/
 node_modules/
 *.css
 *.map
+*maps.min.js
