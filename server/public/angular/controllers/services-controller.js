@@ -44,6 +44,7 @@
                 //handler that either redirects user or opens new category 
                 function clickHandler (item) {
                     if (item.type === "service") {
+                        $scope.updateIcon(item.img);
                         var path = "/home/" + item.title + item.text + "/search";
                         $location.path(path);
                     } else if (item.type === "category") {

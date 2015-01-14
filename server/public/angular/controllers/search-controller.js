@@ -5,7 +5,6 @@
 
 //TODO: Better error handling
 //TODO: Must have input validation for address/street name: HOW??? 
-//TODO: Add button handlers for 'Search Again' and 'List Results'
 
 
 ;(function () {
@@ -24,17 +23,7 @@
             $scope.error = "";
             //model for title
             $scope.service = $stateParams.service;
-            //model for icon
-            $scope.iconUrl = "";
             
-            //return icon url from menu.json
-            $http.get("menu.json")
-                .success(function success(menu) {
-                    $scope.iconUrl = menu.filter(function (item) {
-                        return item.title === $scope.service;
-                    })[0].img;
-                });
-
             //populate results when response is received
             $http.get("/services/" + $stateParams.service)
                 .success(function success (data) {
