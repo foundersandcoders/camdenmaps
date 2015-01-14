@@ -25,6 +25,8 @@
             $scope.service = $stateParams.service;
             $scope.address = $stateParams.address.toUpperCase();
 
+            console.log('item', $scope.item);
+
             $scope.searchAgain = function searchAgain () {
                 //TODO: write logic for function
                 $location.path("/home");
@@ -35,6 +37,20 @@
                 console.log($scope.results);
                 var destination = "/home/"+$scope.service+"/location/"+$scope.address+"/list"; 
                 $location.path(destination);
+            };
+
+            var called = false; 
+
+            //button to exit list view
+            $scope.exit = function exit () {
+                var destination = "/home/" + $stateParams.service + "/location/" + $stateParams.address;
+                $location.path(destination);
+            };
+
+            $scope.toggle = function toggle() {
+                if(!called) { called = true; console.log('list results called'); return $scope.listResults(); }
+                $scope.exit();
+                called = false;
             };
 
             $scope.addMarkers = function addMarkers() {
