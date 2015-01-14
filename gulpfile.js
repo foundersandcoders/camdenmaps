@@ -121,19 +121,6 @@
         console.log("gulp is watching for test changes...");
     });
 
-    gulp.task("browserify", function () {
-
-        var bundler = browserify({
-            entries: ["./server/public/angular/app.js"],
-            debug: true
-        });connect.server({
-            root: "server",
-            port: 9001
-        });
-        
-        return console.log("sass, uglify and tests passed");
-    });
-
     //task for converting yaml files to json
     gulp.task("convertyaml", shell.task([
         "node server/lib/yml2swagger.js server/lib/yaml server/public/output"
