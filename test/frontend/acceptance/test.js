@@ -68,7 +68,7 @@
 *   Service and Service Category Tests
 ***********************************************/
 
-    describe("As a user, I want to be able to enter a Camden postcode so that I can find the nearest point of interest to me.", function () {
+    describe("As a user, I want to find a specific service ", function () {
 
         describe("Find Your Nearest option is clicked", function () {
             it("section is revealed", function () {
@@ -79,7 +79,7 @@
                 expect(element(by.id('find-your-nearest')).isDisplayed()).toBe(true);
             });
 
-            it("with 10 service categories, only 3 visable", function () {
+            it("with 11 service categories, only 3 visible", function () {
 
                 var serviceCategories = element.all(by.repeater('item in visibleItems'));
 
@@ -116,17 +116,43 @@
                 expect(firstServiceCategories).toEqual(thirdServiceCategories);
             });
         });
+        describe("Once a service is selected", function () {
+
+            it("first step options disappear", function () { 
+
+            });
+            it("name of selected service with icon are displayed", function () { 
+
+            });
+            it("input field and search button are displayed", function () { 
+
+            });
+            it("search again and list results buttons are displayed", function () { 
+
+            });
+        });
+
+        it("When Search again button is clicked, you go back to the beginning", function () { 
+
+        });
+        it("When List Results button is clicked, results list.", function () { 
+
+        });
+        it("When a list item is selected, single list result view is displayed", function () { 
+
+        });
 	});
 
 /**********************************************
 *   After service is selected tests
 ***********************************************/
     describe("As a user, I want to enter a postcode to search the closest results from me", function () {
+
         it("a postcode is entered, then it is validated to ensure it is a valid Camden postcode.", function () {
          //Need to test
         });
         it("an invalid postcode is entered, then a message informs the user that the postcode is either not correct or in Camden.", function () {
-
+            //Need to test
         });
         describe ("given a valid camden postcode is entered", function () {
             it("list button appears", function () {
