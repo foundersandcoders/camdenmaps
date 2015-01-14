@@ -88,14 +88,6 @@
             .pipe(gulp.dest("./server/public/css/"));
     });
 
-    //task for minifying
-    gulp.task("compress", function () {
-       return gulp.src(angularFiles)
-            .pipe(concat('app.min.js'))
-            .pipe(ngAnnotate())
-            .pipe(uglify())
-            .pipe(gulp.dest("./server/public/js/"));
-    });
 
     //task for travis
     gulp.task("travis", ["sass-production", "browserify"], function () {
@@ -129,7 +121,6 @@
         console.log("gulp is watching for test changes...");
     });
 
-<<<<<<< HEAD
     gulp.task("browserify", function () {
 
         var bundler = browserify({
@@ -148,8 +139,6 @@
         "node server/lib/yml2swagger.js server/lib/yaml server/public/output"
     ]));
 
-=======
->>>>>>> dev
     //task for when developing
     gulp.task("file-watch",  function () {
         gulp.watch(allFiles, ["lint"]);
