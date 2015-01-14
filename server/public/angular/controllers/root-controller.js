@@ -13,6 +13,8 @@
             $scope.results = [];
             //stores entered location at root for access by leafletjs
             $scope.location = {};
+            //stores current service icon
+            $scope.icon = "";
             //functions to update results and location on root level 
             $scope.updateResults = function updateResults (newResults) {
                 $scope.results = newResults;
@@ -20,7 +22,9 @@
             $scope.updateLocation = function updateLocation (newLocation) {
                 $scope.location = newLocation;
             };
-
+            $scope.updateIcon = function updateIcon (newIcon) {
+                $scope.icon = newIcon;
+            }
 
             var regions = {
                 camdenBorough: {

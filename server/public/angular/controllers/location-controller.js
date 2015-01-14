@@ -16,6 +16,13 @@
         function ($scope, $location, $stateParams, $http) {
 
             
+            $http.get("menu.json")
+                .success(function success(menu) {
+                    $scope.iconUrl = menu.filter(function (item) {
+                        return item.title === $scope.service;
+                    })[0].img;
+                });
+            
             //reloads $scope.results with new data based on address 
             $http.get("/services/" + $stateParams.service + "/locations/" + $stateParams.address)
                 .success(function success (data) {
