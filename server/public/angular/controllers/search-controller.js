@@ -53,7 +53,7 @@
 
             $scope.searchAgain = function searchAgain () {
                 //TODO: write logic for function
-                $location.path("/home");
+                $location.path("/home/services");
             };
 
             $scope.listResults = function listResults () {

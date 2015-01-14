@@ -51,7 +51,7 @@
  
             .state("root.address-search.list-view", {
                 url: "/list",
-                templateUrl: "angular/partials/root.address-found.list-view.html",
+                templateUrl: "angular/partials/list-view.html",
                 controller: "ListController" 
             })
 
@@ -63,7 +63,7 @@
   
             .state("root.address-found.list-view", {
                 url: "/list",
-                templateUrl: "angular/partials/root.address-found.list-view.html",
+                templateUrl: "angular/partials/list-view.html",
                 controller: "ListController" 
             })
   
