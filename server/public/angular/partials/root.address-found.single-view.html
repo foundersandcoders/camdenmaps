@@ -9,7 +9,7 @@
             <p>London, {{result.PostCode}}</p>
             <p>{{ result.display.Telephone }}</p>
             <br>
-            <h5>Opening Hours</h5>
+            <h5 ng-show="result.display.OpeningHours">Opening Hours</h5>
             <p>{{ result.display.OpeningHours }}</p>
         </div>
 
