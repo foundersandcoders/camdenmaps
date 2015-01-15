@@ -36,13 +36,10 @@
                
                 //****************** Menu population functions ***************** 
                 
-                //makes visible 3 items from current category
+                //makes visible numberOfItems items from current category
                 function getVisibleItems(index) {
                     $scope.visibleItems = currentCategory[index];
                 }
-
-                // console.log('item', item);
-                // console.log('img', item.img);
                 
                 //handler that either redirects user or opens new category 
                 function clickHandler (item) {
@@ -123,7 +120,7 @@
                 //execute function to solve scoping issues with ng-repeat & ng-click
                 $scope.execute = function execute (fn) {
                     fn();
-                };
+                }; 
 
             }
         ];
