@@ -31,6 +31,12 @@
                     iconUrl: "img/icons/streetworks.png"
                 }
             ]; 
+
+
+            $scope.toggle =  function toggle(button) {
+
+                button.titleHide = !button.titleHide;
+            };
         }
     ];
 
