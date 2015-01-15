@@ -93,7 +93,7 @@
 
 
     //task for travis
-    gulp.task("travis", function () {
+    gulp.task("travis", ["webdriver_update"], function () {
         nodemon({ script: 'server/server.js'})
         .on('start', function () {
             return gulp.src(protractorTestFiles)
