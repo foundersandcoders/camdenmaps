@@ -4,6 +4,7 @@
 ******************************/
 
 //TODO: Add handler for List Results and Search Again buttons
+//Broken results: recyling, connexions... these could be all results with fewer than 8 results becuase of hard coding 8 markers
 
 ;(function () {
     "use strict";
@@ -20,10 +21,15 @@
             $http.get("/services/" + $stateParams.service + "/locations/" + $stateParams.address)
                 .success(function success (data) {
                     $scope.updateResults(data.properties);
-                    $scope.updateLocation(data.location);
+                    $scope.updateLocationSelected(data.location);
+                    console.log('get location', data.location);
+                    console.log('location in get', $scope.locationSelected);
+                    console.log('location in get', $scope.locationSelected.Latitude);
+
                 });
 
             $scope.service = $stateParams.service;
+            console.log('state params.service', $stateParams.service);
             $scope.address = $stateParams.address.toUpperCase();
 
             $scope.searchAgain = function searchAgain () {
@@ -38,6 +44,7 @@
                 $location.path(destination);
             };
 
+            //to allow toggling in toggle()
             var called = false; 
 
             //button to exit list view
@@ -66,6 +73,7 @@
                     var root = $scope.results;
 
                     console.log('results', $scope.results);
+                     console.log('location', $scope.locationSelected);
 
 
                     function lat(i){
@@ -152,7 +160,18 @@
 
                 };
 
+                // var newCentre = {
+                //   centre: {
+                //     lat: Number($scope.location.Latitude),
+                //     lng: Number($scope.location.Longitude),
+                //     zoom: 14
+                //   }
+                // };
+
                 $scope.addMarkers();
+                // $scope.updateCentre(newCentre);
+                console.log('lat', $scope.locationSelected.Latitude);
+                console.log('location', $scope.locationSelected);
 
 
 

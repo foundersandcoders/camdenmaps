@@ -12,13 +12,14 @@
             //stores results at root for access by all controllers
             $scope.results = [];
             //stores entered location at root for access by leafletjs
-            $scope.location = {};
+            $scope.locationSelected = {};
             //functions to update results and location on root level 
             $scope.updateResults = function updateResults (newResults) {
                 $scope.results = newResults;
             };
-            $scope.updateLocation = function updateLocation (newLocation) {
-                $scope.location = newLocation;
+
+            $scope.updateLocationSelected = function updateLocationSelected (newLocation) {
+                $scope.locationSelected = newLocation;
             };
 
 
@@ -44,7 +45,7 @@
             };
 
             angular.extend($scope, {
-                camden: {
+                centre: {
                     lat: 51.535923,
                     lng: -0.139991,
                     zoom: 14
@@ -58,6 +59,10 @@
 
             $scope.updateMarkers = function updateMarkers(newMarkers){
                 $scope.markers = newMarkers;
+            };
+
+            $scope.updateCentre = function updateMarkers(newCentre){
+                $scope.centre = newCentre;
             };
             
 
