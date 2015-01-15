@@ -159,19 +159,18 @@
             element(by.css('[ng-click="execute(item.handler)"]')).click();
             element(by.css('[ng-click="listResults()"]')).click();
 
-            var container = element(by.id('address-search'))
+            var listResults = element(by.id('list-results'));
+            var repeater = element.all(by.repeater('result in results'));
 
             expect(listResults.isPresent()).toBe(true);
             expect(repeater.count()).toBe(24);
         });
-        // it("When a list item is selected, single list result view is displayed", function () { 
+        it("When a list item is selected, single list result view is displayed", function () { 
 
-            // element(by.css('[ng-click=""]')).click();
+            element(by.repeater('result in results')).click();
 
-            //need to switch to true when view added.
-            // expect(element(by.id('results')).isPresent()).toBe(true);
-            // expect(element(by.id('results')).isPresent()).toBe(false);
-        // });
+            expect(element(by.css('.result')).isPresent()).toBe(true);
+        });
 	});
 
 /**********************************************
@@ -179,24 +178,31 @@
 ***********************************************/
     describe("As a user, I want to enter a postcode to search the closest results from me", function () {
 
-        it("an invalid postcode is entered, then a message informs the user that the postcode is either not correct or in Camden.", function () {
-            //Need to test
-        });
-
         describe ("given a valid camden postcode is entered", function () {
-            it("list button is clicked and items list", function () {
 
-                var postcodeInput = element(by.id('postcode-input')).element(by.tagName('input'));
-                var listResults = element(by.id('list-results'));
-                var repeater = element.all(by.repeater('result in results'));
+            describe("list button is clicked and ", function () {
+                it("items list is displayed with distances", function () {
 
-                postcodeInput.sendKeys('NW1 0NE');
-                element(by.css('[ng-click="search()"]')).click();
+                    var postcodeInput = element(by.id('postcode-input')).element(by.tagName('input'));
 
-                element(by.css('[ng-click="listResults()"]')).click();
+                    postcodeInput.sendKeys('NW1 0NE');
+                    element(by.css('[ng-click="search()"]')).click();
+                    element(by.css('[ng-click="listResults()"]')).click();
 
-                expect(listResults.isPresent()).toBe(true);
-                expect(repeater.count()).toBe(24);
+                    var listResults = element(by.id('list-results'));
+                    var repeater = element.all(by.repeater('result in results'));
+                    var text = element(by.css('.distance')).getText();
+
+                    expect(listResults.isPresent()).toBe(true);
+                    expect(repeater.count()).toBe(24);
+                    expect(text).toEqual('0.49 miles');
+                });
+                it("items list is displayed with distance", function () {
+
+                    element(by.repeater('result in results')).click();
+
+                    expect(element(by.css('.result')).isPresent()).toBe(true);
+                });
             });
         });
 
