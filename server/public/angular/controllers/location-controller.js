@@ -16,6 +16,13 @@
         function ($scope, $location, $stateParams, $http) {
 
             
+            $http.get("menu.json")
+                .success(function success(menu) {
+                    $scope.iconUrl = menu.filter(function (item) {
+                        return item.title === $scope.service;
+                    })[0].img;
+                });
+            
             //reloads $scope.results with new data based on address 
             $http.get("/services/" + $stateParams.service + "/locations/" + $stateParams.address)
                 .success(function success (data) {
@@ -28,7 +35,7 @@
 
             $scope.searchAgain = function searchAgain () {
                 //TODO: write logic for function
-                $location.path("/home");
+                $location.path("/home/services");
             };
 
             $scope.listResults = function listResults () {       
@@ -36,14 +43,6 @@
                 var destination = "/home/"+$scope.service+"/location/"+$scope.address+"/list"; 
                 $location.path(destination);
             };
-
-            //return icon url from menu.json
-            $http.get("menu.json")
-                .success(function success(menu) {
-                    $scope.iconUrl = menu.filter(function (item) {
-                        return item.title === $scope.service;
-                    })[0].img;
-                });
 
             $scope.addMarkers = function addMarkers() {
 
