@@ -30,13 +30,20 @@
                     path: "http://maps.camden.gov.uk/streetworks/neareststreetworks.aspx",
                     iconUrl: "img/icons/streetworks.png"
                 }
-            ]; 
+            ];
 
+            // $scope.$watch( function toggle() {
+            //      var findYourNearest = $('#find-your-nearest');
 
-            $scope.toggle =  function toggle(button) {
+            //     if (findYourNearest.length === 0) {
+            //         $scope.showMe = true;
+            //         console.log($scope.showMe);
+            //     } else {
+            //         $scope.showMe = false;
+            //         console.log($scope.showMe);
+            //     }
+            // });
 
-                button.titleHide = !button.titleHide;
-            };
         }
     ];
 

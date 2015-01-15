@@ -17,9 +17,21 @@
             "leaflet-directive"
     ])
 
-      .config( require("./config.js") );
+    .config( require("./config.js") );
+
+
+    angular.element(document).ready(function toggle() {
+         var findYourNearest = $('#findYourNearest');
+
+        if (findYourNearest.length === 0) {
+            return true;
+        } else {
+            return false;
+        }
+    });
         
   require("./controllers");
+
 
 }());
 
