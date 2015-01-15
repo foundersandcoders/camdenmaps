@@ -71,7 +71,7 @@
                 url: "/{id}",
                 templateUrl: "angular/partials/root.address-found.single-view.html",
                 controller: "SingleController" 
-            })
+            });
 
     }];
 }());

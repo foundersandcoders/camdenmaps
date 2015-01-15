@@ -47,7 +47,6 @@
                 //handler that either redirects user or opens new category 
                 function clickHandler (item) {
                     if (item.type === "service") {
-                        $scope.updateIcon(item.img);
                         var path = "/home/" + item.title + item.text + "/search";
                         $location.path(path);
                     } else if (item.type === "category") {
@@ -83,15 +82,11 @@
                         currentCategory[index].push(fullCategory[i]);
                     }
                 }
+              
+                var menu = require("../menu.json");
+                getCurrentCategory(currentPosition, numberOfItems);
+                getVisibleItems(currentIndex); 
                 
-                //loads menu 
-                $http.get("menu.json")
-                    .success(function success (data) {
-                        menu = data;
-                        getCurrentCategory(currentPosition, numberOfItems);
-                        getVisibleItems(currentIndex);
-                    });
-
                 //********************* Menu control functions ******************
                
                 //loads next page of items

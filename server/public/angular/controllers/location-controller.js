@@ -15,14 +15,12 @@
         "$stateParams",
         "$http",
         function ($scope, $location, $stateParams, $http) {
-
             
-            $http.get("menu.json")
-                .success(function success(menu) {
-                    $scope.iconUrl = menu.filter(function (item) {
-                        return item.title === $scope.service;
-                    })[0].img;
-                });
+            //model for image icon
+            $scope.icon = require("../menu.json").filter(function filterImg (item) {
+                var name = item.title + item.text;
+                return name.toLowerCase() === $stateParams.service.toLowerCase();
+            })[0].img;
             
             //reloads $scope.results with new data based on address 
             $http.get("/services/" + $stateParams.service + "/locations/" + $stateParams.address)

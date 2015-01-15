@@ -12,22 +12,14 @@
             //stores results at root for access by all controllers
             $scope.results = [];
             //stores entered location at root for access by leafletjs
-
             $scope.locationSelected = {};
-
-            //stores current service icon
-            $scope.icon = "";
-
+            
             //functions to update results and location on root level 
             $scope.updateResults = function updateResults (newResults) {
                 $scope.results = newResults;
             };
-
             $scope.updateLocationSelected = function updateLocationSelected (newLocation) {
                 $scope.locationSelected = newLocation;
-            };
-            $scope.updateIcon = function updateIcon (newIcon) {
-                $scope.icon = newIcon;
             };
 
             var regions = {
