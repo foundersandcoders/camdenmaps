@@ -68,7 +68,7 @@
                 $scope.markers = newMarkers;
             };
 
-            $scope.updateCentre = function updateMarkers(newCentre){
+            $scope.updateCentre = function updateCentre(newCentre){
                 $scope.centre = newCentre;
             };
             

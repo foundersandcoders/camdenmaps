@@ -29,10 +29,12 @@
                 .success(function success (data) {
                     $scope.updateResults(data.properties);
                     $scope.updateLocationSelected(data.location);
-                    console.log('get location', data.location);
-                    console.log('location in get', $scope.locationSelected);
-                    console.log('location in get', $scope.locationSelected.Latitude);
-
+                    $scope.addMarkers();
+                    $scope.updateCentre({
+                        lat: Number($scope.locationSelected.Latitude),
+                        lng: Number($scope.locationSelected.Longitude),
+                          zoom: 14
+                    });
                 });
 
             $scope.service = $stateParams.service;
@@ -76,6 +78,8 @@
                 });
 
             $scope.addMarkers = function addMarkers() {
+
+                console.log('addMarkers being called');
 
                     var root = $scope.results;
 
@@ -165,16 +169,15 @@
 
                 // var newCentre = {
                 //   centre: {
-                //     lat: Number($scope.location.Latitude),
-                //     lng: Number($scope.location.Longitude),
+                //     lat: Number($scope.LocationSelected.Latitude),
+                //     lng: Number($scope.LocationSelected.Longitude),
                 //     zoom: 14
                 //   }
                 // };
 
-                $scope.addMarkers();
+                // $scope.addMarkers();
                 // $scope.updateCentre(newCentre);
-                console.log('lat', $scope.locationSelected.Latitude);
-                console.log('location', $scope.locationSelected);
+
 
 
 
