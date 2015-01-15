@@ -25,22 +25,19 @@
 
             it("Find your nearest, ", function () {
                 
-                var findYourNearest = element(by.id('findYourNearest'));
-                var nearestText = findYourNearest.element(by.tagName('h4')).getText();
+                var nearestText = element(by.id('findYourNearest')).getText();
                 
                 expect(nearestText).toEqual('Find Your Nearest');
             });
             it("About Your Neighbourhood, ", function () {
 
-                var aboutYourNeighbourhood = element(by.id('aboutYourNeighbourhood'));
-                var neighbourhoodText = aboutYourNeighbourhood.element(by.tagName('h4')).getText();
+                var neighbourhoodText = element(by.id('aboutYourNeighbourhood')).getText();
                 
                 expect(neighbourhoodText).toEqual('About Your Neighbourhood');
             });
             it("and Live Streetworks", function () {
 
-                var liveStreetworks = element(by.id('liveStreetworks'));
-                var streetworksText = liveStreetworks.element(by.tagName('h4')).getText();
+                var streetworksText = element(by.id('liveStreetworks')).getText();
                 
                 expect(streetworksText).toEqual('Live Streetworks');
             });
@@ -68,7 +65,7 @@
 *   Service and Service Category Tests
 ***********************************************/
 
-    describe("As a user, I want to be able to enter a Camden postcode so that I can find the nearest point of interest to me.", function () {
+    describe("As a user, I want to find a specific service ", function () {
 
         describe("Find Your Nearest option is clicked", function () {
             it("section is revealed", function () {
@@ -79,7 +76,7 @@
                 expect(element(by.id('find-your-nearest')).isDisplayed()).toBe(true);
             });
 
-            it("with 10 service categories, only 3 visable", function () {
+            it("with 11 service categories, only 3 visible", function () {
 
                 var serviceCategories = element.all(by.repeater('item in visibleItems'));
 
@@ -116,27 +113,90 @@
                 expect(firstServiceCategories).toEqual(thirdServiceCategories);
             });
         });
+        describe("Once a service is selected", function () {
+
+            it("first step options disappear", function () { 
+
+                element(by.css('[ng-click="execute(item.handler)"]')).click();
+                element(by.css('[ng-click="execute(item.handler)"]')).click();
+
+                expect(element(by.id('first-level-options')).isPresent()).toBe(false);
+            });
+            it("name of selected service with icon are displayed", function () { 
+
+                var container = element(by.id('address-search'))
+
+                var imgsrc = container.element(by.tagName('img')).getAttribute("ng-src");
+                var text = container.element(by.tagName('h2')).getText();
+
+                expect(imgsrc).toEqual("../img/nearestservice/lunchclub.png")
+                expect(text).toEqual("Lunch club")
+            });
+            it("input field and search button are displayed", function () { 
+
+                var postcodeInput = element(by.id('postcode-input')).element(by.tagName('input'));
+
+                expect(postcodeInput.isPresent()).toBe(true);
+            });
+            it("search again and list results buttons are displayed", function () { 
+
+                var buttons = element.all(by.tagName('button')).getText();
+
+                expect(buttons).toEqual(['', 'Search again', 'List results']);
+            });
+        });
+
+        it("When Search again button is clicked, you go back to the beginning", function () { 
+
+            element(by.css('[ng-click="searchAgain()"]')).click();
+
+            expect(browser.getCurrentUrl()).toContain('/#/home');
+        });
+        it("When List Results button is clicked, results list.", function () { 
+
+            element(by.id('findYourNearest')).click();
+            element(by.css('[ng-click="execute(item.handler)"]')).click();
+            element(by.css('[ng-click="execute(item.handler)"]')).click();
+            element(by.css('[ng-click="listResults()"]')).click();
+
+            var container = element(by.id('address-search'))
+
+            expect(listResults.isPresent()).toBe(true);
+            expect(repeater.count()).toBe(24);
+        });
+        // it("When a list item is selected, single list result view is displayed", function () { 
+
+            // element(by.css('[ng-click=""]')).click();
+
+            //need to switch to true when view added.
+            // expect(element(by.id('results')).isPresent()).toBe(true);
+            // expect(element(by.id('results')).isPresent()).toBe(false);
+        // });
 	});
 
 /**********************************************
 *   After service is selected tests
 ***********************************************/
     describe("As a user, I want to enter a postcode to search the closest results from me", function () {
-        it("a postcode is entered, then it is validated to ensure it is a valid Camden postcode.", function () {
-         //Need to test
-        });
+
         it("an invalid postcode is entered, then a message informs the user that the postcode is either not correct or in Camden.", function () {
-
+            //Need to test
         });
-        describe ("given a valid camden postcode is entered", function () {
-            it("list button appears", function () {
 
-            });
+        describe ("given a valid camden postcode is entered", function () {
             it("list button is clicked and items list", function () {
 
-            });
-            it("list items also display on map ", function () {
+                var postcodeInput = element(by.id('postcode-input')).element(by.tagName('input'));
+                var listResults = element(by.id('list-results'));
+                var repeater = element.all(by.repeater('result in results'));
 
+                postcodeInput.sendKeys('NW1 0NE');
+                element(by.css('[ng-click="search()"]')).click();
+
+                element(by.css('[ng-click="listResults()"]')).click();
+
+                expect(listResults.isPresent()).toBe(true);
+                expect(repeater.count()).toBe(24);
             });
         });
 

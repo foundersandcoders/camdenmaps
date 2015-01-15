@@ -11,13 +11,15 @@
         "$stateParams",
         "$location", 
         function ($scope, $stateParams, $location) {
-  
 
-            // //button to exit list view
-            // $scope.exit = function exit () {
-            //     var destination = "/home/" + $stateParams.service + "/location/" + $stateParams.address;
-            //     $location.path(destination);
-            // };
+
+            //change baseurl depending on whether address-found or address-search 
+            $scope.baseUrl = $stateParams.address ?  "/#/home/" + $stateParams.service + 
+                "/location/" + $stateParams.address + "/" : "/#/home/" + $stateParams.service + 
+                "/search/";
+              
+            $scope.showDistance = $stateParams.address ? true : false; 
+
 
             //handler for each result
             function createResultsHandler (id) {

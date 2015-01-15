@@ -17,6 +17,13 @@
         function ($scope, $location, $stateParams, $http) {
 
             
+            $http.get("menu.json")
+                .success(function success(menu) {
+                    $scope.iconUrl = menu.filter(function (item) {
+                        return item.title === $scope.service;
+                    })[0].img;
+                });
+            
             //reloads $scope.results with new data based on address 
             $http.get("/services/" + $stateParams.service + "/locations/" + $stateParams.address)
                 .success(function success (data) {
@@ -33,23 +40,24 @@
             $scope.address = $stateParams.address.toUpperCase();
 
             $scope.searchAgain = function searchAgain () {
-                //TODO: write logic for function
                 $scope.updateMarkers({});
-                $location.path("/home");
+                $location.path("/home/services");
+
             };
 
             $scope.listResults = function listResults () {       
-                //TODO: write logic for function
                 var destination = "/home/"+$scope.service+"/location/"+$scope.address+"/list"; 
                 $location.path(destination);
             };
+
 
             //to allow toggling in toggle()
             var called = false; 
 
             //button to exit list view
             $scope.exit = function exit () {
-                var destination = "/home/" + $stateParams.service + "/location/" + $stateParams.address;
+                var current = $location.path();
+                var destination = current.substring(0, current.indexOf("/list"));
                 $location.path(destination);
             };
 
@@ -67,14 +75,9 @@
                     })[0].img;
                 });
 
-
             $scope.addMarkers = function addMarkers() {
 
                     var root = $scope.results;
-
-                    console.log('results', $scope.results);
-                     console.log('location', $scope.locationSelected);
-
 
                     function lat(i){
                         return Number($scope.results[i]["Latitude"]);
@@ -156,7 +159,7 @@
 
                     };
 
-                $scope.updateMarkers(firstEight);
+                    $scope.updateMarkers(firstEight);
 
                 };
 

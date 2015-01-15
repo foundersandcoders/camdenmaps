@@ -47,6 +47,7 @@
                 //handler that either redirects user or opens new category 
                 function clickHandler (item) {
                     if (item.type === "service") {
+                        $scope.updateIcon(item.img);
                         var path = "/home/" + item.title + item.text + "/search";
                         $location.path(path);
                     } else if (item.type === "category") {
@@ -114,12 +115,11 @@
                 //loads parent category
                 $scope.backOneCategory = function backOneCategory () {
                     if (Number(currentPosition) === 0) {
-                        return;
+                        $location.path("/home");
                     } else {
                         currentPosition = menu.filter(function(item){
                             return Number(item.id) === Number(currentPosition);
                         })[0].parentId;
-                        currentIndex = 0;
                         getCurrentCategory(currentPosition, numberOfItems);
                         getVisibleItems(currentIndex);
                     }

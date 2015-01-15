@@ -42,7 +42,19 @@
                 templateUrl: "angular/partials/root.address-search.html",
                 controller: "SearchController"
             })
-  
+ 
+            .state("root.address-search.list-view", {
+                url: "/list",
+                templateUrl: "angular/partials/list-view.html",
+                controller: "ListController" 
+            })
+
+            .state("root.address-search.single-view", {
+                url: "/{id}",
+                templateUrl: "angular/partials/root.address-found.single-view.html",
+                controller: "SingleController" 
+            })
+
             .state("root.address-found", {
                 url: "/{service}/location/{address}",
                 templateUrl: "angular/partials/root.address-found.html",
@@ -51,7 +63,7 @@
   
             .state("root.address-found.list-view", {
                 url: "/list",
-                templateUrl: "angular/partials/root.address-found.list-view.html",
+                templateUrl: "angular/partials/list-view.html",
                 controller: "ListController" 
             })
   
