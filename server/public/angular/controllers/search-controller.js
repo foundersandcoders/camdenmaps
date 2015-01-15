@@ -46,11 +46,25 @@
             };
 
             $scope.listResults = function listResults () {
-                //TODO: write logic for function
                 var destination = "/home/"+$scope.service+"/search/list"; 
                 $location.path(destination);
+                
             };
 
+            $scope.exit = function exit () {
+                var current = $location.path();
+                var destination = current.substring(0, current.indexOf("/list"));
+                $location.path(destination);
+
+            };
+
+            var called = false;
+
+            $scope.toggle = function toggle() {
+                if(!called) { called = true; return $scope.listResults(); }
+                $scope.exit();
+                called = false;
+            };
         }
     ];
 }());

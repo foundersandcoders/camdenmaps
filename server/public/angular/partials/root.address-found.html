@@ -14,7 +14,7 @@
     </div>
 
     <div id="locations" class="col-xs-4">
-        <img class="icon" src="../img/nearestservice/home.png">
+        <img class="icon" src="../img/nearestservice/mapmarker.png">
         <h4>{{ address }}</h4>
     </div>
 
@@ -23,7 +23,8 @@
             <button ng-click="searchAgain()" class="btn">Search again</button>
         </div>
         <div class="button col-xs-6">
-            <button ng-click="listResults()" class="btn">List results</button>
+<!--             toggle() alternates between listResults() and exit() -->
+            <button ng-click="toggle()" class="btn">List results</button>
         </div>
     </div>
 

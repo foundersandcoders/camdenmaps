@@ -40,6 +40,9 @@
                 function getVisibleItems(index) {
                     $scope.visibleItems = currentCategory[index];
                 }
+
+                // console.log('item', item);
+                // console.log('img', item.img);
                 
                 //handler that either redirects user or opens new category 
                 function clickHandler (item) {
@@ -58,7 +61,7 @@
                 //adds click handler functions to menu items
                 function addClickHandler (item) {
                     return function () {
-                        clickHandler(item)
+                        clickHandler(item);
                     };
                 }
                 
@@ -99,7 +102,7 @@
                         currentIndex += 1;
                         getVisibleItems(currentIndex);
                     }
-                }
+                };
                 //loads previous page of items
                 $scope.prevItems = function prevItems () {
                     if (currentIndex === 0) {
@@ -108,7 +111,7 @@
                         currentIndex -= 1;
                         getVisibleItems(currentIndex);
                     }
-                }
+                };
                 //loads parent category
                 $scope.backOneCategory = function backOneCategory () {
                     if (Number(currentPosition) === 0) {
@@ -120,12 +123,12 @@
                         getCurrentCategory(currentPosition, numberOfItems);
                         getVisibleItems(currentIndex);
                     }
-                }
+                };
                
                 //execute function to solve scoping issues with ng-repeat & ng-click
                 $scope.execute = function execute (fn) {
                     fn();
-                }
+                };
 
             }
         ];
