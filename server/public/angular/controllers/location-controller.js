@@ -167,21 +167,6 @@
 
                 };
 
-                // var newCentre = {
-                //   centre: {
-                //     lat: Number($scope.LocationSelected.Latitude),
-                //     lng: Number($scope.LocationSelected.Longitude),
-                //     zoom: 14
-                //   }
-                // };
-
-                // $scope.addMarkers();
-                // $scope.updateCentre(newCentre);
-
-
-
-
-
         }
     ];
 }());
