@@ -36,6 +36,7 @@
                     $scope.addMarkers();
                 });
 
+
             //redirects to next state when provided with address
             $scope.search = function search () {
                 if ($scope.address) {
@@ -47,7 +48,6 @@
             };
 
             $scope.searchAgain = function searchAgain () {
-                //TODO: write logic for function
                 $location.path("/home/services");
             };
 

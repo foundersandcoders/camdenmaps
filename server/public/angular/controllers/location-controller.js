@@ -50,10 +50,6 @@
                 $location.path(destination);
             };
 
-
-            //to allow toggling in toggle()
-            var called = false; 
-
             //button to exit list view
             $scope.exit = function exit () {
                 var current = $location.path();
