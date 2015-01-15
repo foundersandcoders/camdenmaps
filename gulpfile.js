@@ -93,7 +93,7 @@
 
 
     //task for travis
-    gulp.task("travis", ["sass-production", "browserify"], function () {
+    gulp.task("travis", function () {
         nodemon({ script: 'server/server.js'})
         .on('start', function () {
             return gulp.src(protractorTestFiles)
