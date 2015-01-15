@@ -88,9 +88,9 @@
 
                         //TODO work out a sensible way to loop over this.... 
                         //TODO replace view with nothing if it returns 0, ref car parks
-                        check(root[i]["display"]["Name"] || root[i]["display"][0]["-Name"], "<br>"); 
+                        check(root[i]["display"]["Name"] || root[i]["display"][0]["Name"], "<br>"); 
                         check(root[i]["BuildingName"], "<br>");
-                        check(root[i]["View"], " ");
+                        check(root[i]["StreetNum"], " ");
                         check(root[i]["Street"], "<br>"); 
                         check(root[i]["PostCode"], "<br>");
                         check(root[i]["display"]["Telephone"], "");
