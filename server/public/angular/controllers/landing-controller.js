@@ -31,28 +31,19 @@
                     iconUrl: "img/icons/streetworks.png"
                 }
             ];
-            $scope.watch( function toggle() {
-                 var findYourNearest = $('#findYourNearest');
 
-                 console.log("hello");
-
-                if (findYourNearest.length === 0) {
-                    button.hideMe = true;
-                } else {
-                    button.hideMe = false;
-                }
-            });
-            // $scope.toggle = function toggle() {
-            //     var findYourNearest = $('#findYourNearest');
-
-            //      console.log("hello");
+            // $scope.$watch( function toggle() {
+            //      var findYourNearest = $('#find-your-nearest');
 
             //     if (findYourNearest.length === 0) {
-            //         showMe = true;
+            //         $scope.showMe = true;
+            //         console.log($scope.showMe);
             //     } else {
-            //         showMe = false;
+            //         $scope.showMe = false;
+            //         console.log($scope.showMe);
             //     }
-            // }
+            // });
+
         }
     ];
 

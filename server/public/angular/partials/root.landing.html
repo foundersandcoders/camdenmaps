@@ -8,7 +8,7 @@
     <div ng-repeat="button in buttons" class="col-xs-4 col-sm-3 col-sm-offset-1 col-">
         <a id="{{ button.id }}" ng-href="{{ button.path }}">    
             <img class="icon" ng-src="{{ button.iconUrl }}" alt="">
-        	<h4 ng-hide="button.hideMe">{{ button.title }}</h4>
+        	<h4 ng-show="{{ showMe }}">{{ button.title }}</h4>
         </a>
     </div>
 
