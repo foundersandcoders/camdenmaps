@@ -62,9 +62,11 @@
             };
 
             $scope.toggle = function toggle() {
-                if(!called) { called = true; return $scope.listResults(); }
-                $scope.exit();
-                called = false;
+                if($location.path().indexOf("/list") > -1) { 
+                    return $scope.exit(); 
+                } else {
+                    return $scope.listResults();
+                }
             };
 
             //return icon url from menu.json
