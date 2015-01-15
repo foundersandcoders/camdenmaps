@@ -36,7 +36,7 @@
                
                 //****************** Menu population functions ***************** 
                 
-                //makes visible 4 items from current category
+                //makes visible 3 items from current category
                 function getVisibleItems(index) {
                     $scope.visibleItems = currentCategory[index];
                 }
