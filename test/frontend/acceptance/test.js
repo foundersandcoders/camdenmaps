@@ -161,9 +161,8 @@
 
             var container = element(by.id('address-search'))
 
-            //need to switch to true when view added.
-            // expect(element(by.id('list-results')).isPresent()).toBe(true);
-            expect(element(by.id('list-results')).isPresent()).toBe(false);
+            expect(listResults.isPresent()).toBe(true);
+            expect(repeater.count()).toBe(24);
         });
         // it("When a list item is selected, single list result view is displayed", function () { 
 
