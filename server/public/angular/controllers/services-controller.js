@@ -40,11 +40,13 @@
                 function getVisibleItems(index) {
                     $scope.visibleItems = currentCategory[index];
                 }
+
+                // console.log('item', item);
+                // console.log('img', item.img);
                 
                 //handler that either redirects user or opens new category 
                 function clickHandler (item) {
                     if (item.type === "service") {
-                        $scope.updateIcon(item.img);
                         var path = "/home/" + item.title + item.text + "/search";
                         $location.path(path);
                     } else if (item.type === "category") {
@@ -58,7 +60,7 @@
                 //adds click handler functions to menu items
                 function addClickHandler (item) {
                     return function () {
-                        clickHandler(item)
+                        clickHandler(item);
                     };
                 }
                 
@@ -80,15 +82,11 @@
                         currentCategory[index].push(fullCategory[i]);
                     }
                 }
+              
+                var menu = require("../menu.json");
+                getCurrentCategory(currentPosition, numberOfItems);
+                getVisibleItems(currentIndex); 
                 
-                //loads menu 
-                $http.get("menu.json")
-                    .success(function success (data) {
-                        menu = data;
-                        getCurrentCategory(currentPosition, numberOfItems);
-                        getVisibleItems(currentIndex);
-                    });
-
                 //********************* Menu control functions ******************
                
                 //loads next page of items
@@ -99,7 +97,7 @@
                         currentIndex += 1;
                         getVisibleItems(currentIndex);
                     }
-                }
+                };
                 //loads previous page of items
                 $scope.prevItems = function prevItems () {
                     if (currentIndex === 0) {
@@ -108,7 +106,7 @@
                         currentIndex -= 1;
                         getVisibleItems(currentIndex);
                     }
-                }
+                };
                 //loads parent category
                 $scope.backOneCategory = function backOneCategory () {
                     if (Number(currentPosition) === 0) {
@@ -120,12 +118,12 @@
                         getCurrentCategory(currentPosition, numberOfItems);
                         getVisibleItems(currentIndex);
                     }
-                }
+                };
                
                 //execute function to solve scoping issues with ng-repeat & ng-click
                 $scope.execute = function execute (fn) {
                     fn();
-                }
+                };
 
             }
         ];

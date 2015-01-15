@@ -31,7 +31,7 @@
                     iconUrl: "img/icons/streetworks.png"
                 }
             ];
-            $scope.$watch( function toggle() {
+            $scope.watch( function toggle() {
                  var findYourNearest = $('#findYourNearest');
 
                  console.log("hello");

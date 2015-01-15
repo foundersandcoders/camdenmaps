@@ -23,6 +23,11 @@
             $scope.error = "";
             //model for title
             $scope.service = $stateParams.service;
+            //model for image icon
+            $scope.icon = require("../menu.json").filter(function filterImg (item) {
+                var name = item.title + item.text;
+                return name.toLowerCase() === $stateParams.service.toLowerCase();
+            })[0].img;
             
             //populate results when response is received
             $http.get("/services/" + $stateParams.service)
@@ -46,11 +51,25 @@
             };
 
             $scope.listResults = function listResults () {
-                //TODO: write logic for function
                 var destination = "/home/"+$scope.service+"/search/list"; 
                 $location.path(destination);
+                
             };
 
+            $scope.exit = function exit () {
+                var current = $location.path();
+                var destination = current.substring(0, current.indexOf("/list"));
+                $location.path(destination);
+
+            };
+
+            var called = false;
+
+            $scope.toggle = function toggle() {
+                if(!called) { called = true; return $scope.listResults(); }
+                $scope.exit();
+                called = false;
+            };
         }
     ];
 }());
