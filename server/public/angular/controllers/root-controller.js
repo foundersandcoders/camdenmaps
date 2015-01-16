@@ -22,6 +22,8 @@
                 $scope.locationSelected = newLocation;
             };
 
+            //************ MAP MANIPULATIONS ***************
+
             var regions = {
                 camdenBorough: {
                     northEast: {
@@ -63,7 +65,65 @@
             $scope.updateCentre = function updateCentre(newCentre){
                 $scope.centre = newCentre;
             };
+
+            Object.size = function(obj) {
+                var size = 0, key;
+                for (key in obj) {
+                    if (obj.hasOwnProperty(key)) size++;
+                }
+                    return size;
+            };
             
+            $scope.addMarkers = function addMarkers() {
+
+                    var root = $scope.results;
+
+                    // console.log('size of results', Object.size(root));
+
+                    var lat = function lat(i){
+                        return Number($scope.results[i]["Latitude"]);
+                    }
+
+                    var lng = function lng(i) {
+                        return Number(root[i]["Longitude"]);
+                    }
+
+                    var message = function message(i) {
+                        //this stops undefined being returned in message
+                        var check = function(value, spacing) {
+                            if(value !== undefined) {
+                                pointMessage += (value + spacing);
+                            }
+                        };
+
+                        var pointMessage = "";
+ 
+                        check(root[i]["display"]["Name"] || root[i]["display"][0]["Name"], "<br>"); 
+                        check(root[i]["BuildingName"], "<br>");
+                        check(root[i]["StreetNum"], " ");
+                        check(root[i]["Street"], "<br>"); 
+                        check(root[i]["PostCode"], "<br>");
+                        check(root[i]["display"]["Telephone"], "");
+
+                        return pointMessage;
+                    };
+
+                    // this creates the marker objects to plot the locations on the map
+                    var markers = {};
+
+                    for (var i = 0; i<Object.size(root); i++) {
+                        var property = "m"+i;
+                       
+                        markers[property] = {};
+                        markers[property].lat = lat(i);
+                        markers[property].lng = lng(i);
+                        markers[property].message = message(i);
+  
+                    }
+
+                    $scope.updateMarkers(markers);
+
+                };
 
         }  
     ];
