@@ -32,17 +32,20 @@
                 }
             ];
 
-            // $scope.$watch( function toggle() {
-            //      var findYourNearest = $('#find-your-nearest');
+            // $scope.findYourNearest = $('#find-your-nearest');
+            
 
-            //     if (findYourNearest.length === 0) {
-            //         $scope.showMe = true;
-            //         console.log($scope.showMe);
-            //     } else {
-            //         $scope.showMe = false;
-            //         console.log($scope.showMe);
-            //     }
-            // });
+            $scope.$watch( function toggleWords() {
+                 var findYourNearest = $('#find-your-nearest');
+
+                if (findYourNearest.length === 0) {
+                    $scope.showMe = true;
+                    console.log($scope.showMe);
+                } else {
+                    $scope.showMe = false;
+                    console.log($scope.showMe);
+                }
+            });
 
         }
     ];

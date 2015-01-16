@@ -6,7 +6,7 @@
         <div class="arrow-up"></div>
     </div>
 
-    <a id="back" href="" ng-click="backOneCategory()">
+    <a id="back" ng-click="backOneCategory()">
         <span class="glyphicon glyphicon-chevron-up"></span>
     </a>
 
@@ -15,14 +15,14 @@
     </div>
 
     <div class="col-xs-1 navigation-arrow">
-        <a href="" ng-click="prevItems()">
+        <a ng-click="prevItems()">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
     </div>
 
     <div class="col-xs-10 visible-item-container">
         <div ng-repeat="item in visibleItems" class="service col-xs-4 col-sm-3 col-sm-offset-1" >
-            <a ng-click="execute(item.handler)" href="#">    
+            <a ng-click="execute(item.handler)">    
                 <img ng-src="{{ item.img }}" alt="">
             </a>
             <h4>{{ item.title }}</h4>
@@ -31,7 +31,7 @@
     </div>
 
     <div class="col-xs-1 navigation-arrow">
-        <a href="" ng-click="nextItems()">
+        <a ng-click="nextItems()">
             <span class=" glyphicon glyphicon-chevron-right"></span>
         </a>
     </div>
