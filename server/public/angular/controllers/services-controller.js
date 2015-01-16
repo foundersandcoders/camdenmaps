@@ -32,13 +32,15 @@
                     menu = [];
                 //stores currently visible items
                 $scope.visibleItems = [];
-               
+                $scope.page = currentIndex;
+
                
                 //****************** Menu population functions ***************** 
                 
                 //makes visible numberOfItems items from current category
                 function getVisibleItems(index) {
                     $scope.visibleItems = currentCategory[index];
+                    $scope.lastPage = currentCategory.length-1;
                 }
                 
                 //handler that either redirects user or opens new category 
@@ -85,13 +87,14 @@
                 getVisibleItems(currentIndex); 
                 
                 //********************* Menu control functions ******************
-               
+                
                 //loads next page of items
                 $scope.nextItems = function nextItems () {
                     if (currentIndex === currentCategory.length-1) {
                         return;
                     } else {
                         currentIndex += 1;
+                        $scope.page = currentIndex;
                         getVisibleItems(currentIndex);
                     }
                 };
@@ -101,6 +104,7 @@
                         return;
                     } else {
                         currentIndex -= 1;
+                        $scope.page = currentIndex;
                         getVisibleItems(currentIndex);
                     }
                 };
@@ -121,6 +125,11 @@
                 $scope.execute = function execute (fn) {
                     fn();
                 }; 
+
+               //********************* Menu styling functions ******************
+
+
+
 
             }
         ];
