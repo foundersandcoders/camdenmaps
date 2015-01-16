@@ -32,6 +32,7 @@
                     menu = [];
                 //stores currently visible items
                 $scope.visibleItems = [];
+                //used to hide/show back/next button on menu
                 $scope.page = currentIndex;
 
                
@@ -50,6 +51,7 @@
                         $location.path(path);
                     } else if (item.type === "category") {
                         currentIndex = 0;
+                        $scope.page = currentIndex;
                         currentPosition = item.id;
                         getCurrentCategory(currentPosition, numberOfItems);
                         getVisibleItems(currentIndex);
@@ -95,6 +97,7 @@
                     } else {
                         currentIndex += 1;
                         $scope.page = currentIndex;
+                        console.log('next item', $scope.page);
                         getVisibleItems(currentIndex);
                     }
                 };
@@ -105,6 +108,7 @@
                     } else {
                         currentIndex -= 1;
                         $scope.page = currentIndex;
+                        console.log('prev item', $scope.page);
                         getVisibleItems(currentIndex);
                     }
                 };
@@ -112,12 +116,14 @@
                 $scope.backOneCategory = function backOneCategory () {
                     if (Number(currentPosition) === 0) {
                         $location.path("/home");
+                        console.log('going back to parent', currentIndex);
                     } else {
                         currentPosition = menu.filter(function(item){
                             return Number(item.id) === Number(currentPosition);
                         })[0].parentId;
                         getCurrentCategory(currentPosition, numberOfItems);
                         getVisibleItems(currentIndex);
+                        console.log('back to parent2', currentIndex);
                     }
                 };
                
