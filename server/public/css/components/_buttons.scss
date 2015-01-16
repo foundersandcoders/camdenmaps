@@ -23,6 +23,12 @@
 			&:hover {
 				background-color: $hover-blue;
 			}
+			&:active {
+				background-color: $dark-blue;
+			}
+			&:focus {
+				background-color: $dark-blue;
+			}
 		}
 	}
 }
@@ -69,4 +75,10 @@
 .navigation-arrow {
 	margin: 0.9em 0 2.5em;
 	padding: 0;
+}
+
+
+@media (max-device-width: 480px) {
+	#first-level-options {
+	}
 }

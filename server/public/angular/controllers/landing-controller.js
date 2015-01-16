@@ -31,8 +31,6 @@
                     iconUrl: "img/icons/streetworks.png"
                 }
             ];
-
-            // $scope.findYourNearest = $('#find-your-nearest');
             
 
             $scope.$watch( function toggleWords() {
@@ -40,10 +38,8 @@
 
                 if (findYourNearest.length === 0) {
                     $scope.showMe = true;
-                    console.log($scope.showMe);
                 } else {
                     $scope.showMe = false;
-                    console.log($scope.showMe);
                 }
             });
 
