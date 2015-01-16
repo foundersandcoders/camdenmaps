@@ -10,12 +10,12 @@
 
             // frameworks to use
             // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-            frameworks: ['jasmine'],
+            frameworks: ['jasmine', "browserify"],
 
             // list of files / patterns to load in the browser
             files: [
               '../node_modules/angular/angular.js',
-              '../bower_components/angular-mocks/angular-mocks.js',
+              '../node_modules/angular-mocks/angular-mocks.js',
               '../test/frontend/unit/*.js',
             ],
 
@@ -26,6 +26,7 @@
             // preprocess matching files before serving them to the browser
             // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
             preprocessors: {
+             "../test/frontend/unit/*.js": ["browserify"]
             },
 
             // test results reporter to use
@@ -34,7 +35,7 @@
             reporters: ['dots'],
 
             // web server port
-            port: 3000,
+            port: 9876,
 
             // enable / disable colors in the output (reporters and logs)
             colors: true,
