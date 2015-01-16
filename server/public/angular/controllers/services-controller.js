@@ -52,8 +52,11 @@
                         var path = "/home/" + item.title + item.text + "/search";
                         $location.path(path);
                     } else if (item.type === "category") {
+                        //sets parentIndex so will return to page with parent category on
                         parentIndex = currentIndex;
+                        //resets page number for services listed
                         currentIndex = 0;
+                        //updates so ng-show works for next/previous buttons
                         $scope.page = currentIndex;
                         currentPosition = item.id;
                         getCurrentCategory(currentPosition, numberOfItems);
@@ -99,8 +102,8 @@
                         return;
                     } else {
                         currentIndex += 1;
+                        //updates to ensure ng-show works for next/previous buttons
                         $scope.page = currentIndex;
-                        console.log('next item', $scope.page);
                         getVisibleItems(currentIndex);
                     }
                 };
@@ -110,8 +113,8 @@
                         return;
                     } else {
                         currentIndex -= 1;
+                        //updates to ensure ng-show works for next/previous buttons
                         $scope.page = currentIndex;
-                        console.log('prev item', $scope.page);
                         getVisibleItems(currentIndex);
                     }
                 };
@@ -119,15 +122,15 @@
                 $scope.backOneCategory = function backOneCategory () {
                     if (Number(currentPosition) === 0) {
                         $location.path("/home");
-                        console.log('going back to parent', currentIndex);
                     } else {
                         currentPosition = menu.filter(function(item){
                             return Number(item.id) === Number(currentPosition);
                         })[0].parentId;
                         getCurrentCategory(currentPosition, numberOfItems);
+                        //this will return to the parent categories correct page on menu
                         getVisibleItems(parentIndex);
-                        currentIndex = parentIndex;
-                        $scope.page = currentIndex;
+                        //this will reset the page numbers to the relevant parent page on menu
+                        $scope.page = currentIndex = parentIndex;
                     }
                 };
                
