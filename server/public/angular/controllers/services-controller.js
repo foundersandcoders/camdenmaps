@@ -29,16 +29,21 @@
                 //all items in current category
                     currentCategory = [],
                 //stores full menu
-                    menu = [];
+                    menu = [],
+                //allows back from services to return to relevant categories page
+                    parentIndex = 0;
                 //stores currently visible items
                 $scope.visibleItems = [];
-               
+                //used to hide/show back/next button on menu
+                $scope.page = currentIndex;
+
                
                 //****************** Menu population functions ***************** 
                 
                 //makes visible numberOfItems items from current category
                 function getVisibleItems(index) {
                     $scope.visibleItems = currentCategory[index];
+                    $scope.lastPage = currentCategory.length-1;
                 }
                 
                 //handler that either redirects user or opens new category 
@@ -47,7 +52,12 @@
                         var path = "/home/" + item.title + item.text + "/search";
                         $location.path(path);
                     } else if (item.type === "category") {
+                        //sets parentIndex so will return to page with parent category on
+                        parentIndex = currentIndex;
+                        //resets page number for services listed
                         currentIndex = 0;
+                        //updates so ng-show works for next/previous buttons
+                        $scope.page = currentIndex;
                         currentPosition = item.id;
                         getCurrentCategory(currentPosition, numberOfItems);
                         getVisibleItems(currentIndex);
@@ -85,13 +95,15 @@
                 getVisibleItems(currentIndex); 
                 
                 //********************* Menu control functions ******************
-               
+                
                 //loads next page of items
                 $scope.nextItems = function nextItems () {
                     if (currentIndex === currentCategory.length-1) {
                         return;
                     } else {
                         currentIndex += 1;
+                        //updates to ensure ng-show works for next/previous buttons
+                        $scope.page = currentIndex;
                         getVisibleItems(currentIndex);
                     }
                 };
@@ -101,6 +113,8 @@
                         return;
                     } else {
                         currentIndex -= 1;
+                        //updates to ensure ng-show works for next/previous buttons
+                        $scope.page = currentIndex;
                         getVisibleItems(currentIndex);
                     }
                 };
@@ -113,7 +127,10 @@
                             return Number(item.id) === Number(currentPosition);
                         })[0].parentId;
                         getCurrentCategory(currentPosition, numberOfItems);
-                        getVisibleItems(currentIndex);
+                        //this will return to the parent categories correct page on menu
+                        getVisibleItems(parentIndex);
+                        //this will reset the page numbers to the relevant parent page on menu
+                        $scope.page = currentIndex = parentIndex;
                     }
                 };
                
@@ -121,6 +138,11 @@
                 $scope.execute = function execute (fn) {
                     fn();
                 }; 
+
+               //********************* Menu styling functions ******************
+
+
+
 
             }
         ];
