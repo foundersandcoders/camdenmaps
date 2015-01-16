@@ -26,27 +26,7 @@
 	}
 }
 
-.result {
-	background-color: white;
-	text-align: left;
-	color: black;
-	padding: 0.5em 0;
-	border: 0.1em black solid;
-	position: fixed;
-	bottom: 0;
-	z-index: 1;
-	.contact {
-		text-align: center;
-		padding: 0.5em 0;
-		img {
-			width: 3em;
-		}
-	}
-	a {
-		color: black;
-	}
-	p, h5 {
-		color: black;
-		margin: 0;
+@media (max-device-width: 480px) {
+	#first-level-options {
 	}
 }
