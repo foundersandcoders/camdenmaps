@@ -29,7 +29,9 @@
                 //all items in current category
                     currentCategory = [],
                 //stores full menu
-                    menu = [];
+                    menu = [],
+                //allows back from services to return to relevant categories page
+                    parentIndex = 0;
                 //stores currently visible items
                 $scope.visibleItems = [];
                 //used to hide/show back/next button on menu
@@ -50,6 +52,7 @@
                         var path = "/home/" + item.title + item.text + "/search";
                         $location.path(path);
                     } else if (item.type === "category") {
+                        parentIndex = currentIndex;
                         currentIndex = 0;
                         $scope.page = currentIndex;
                         currentPosition = item.id;
@@ -122,8 +125,8 @@
                             return Number(item.id) === Number(currentPosition);
                         })[0].parentId;
                         getCurrentCategory(currentPosition, numberOfItems);
-                        getVisibleItems(currentIndex);
-                        console.log('back to parent2', currentIndex);
+                        getVisibleItems(parentIndex);
+                        parentIndex = 0;
                     }
                 };
                
