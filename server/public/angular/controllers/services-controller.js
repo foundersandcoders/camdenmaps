@@ -126,7 +126,8 @@
                         })[0].parentId;
                         getCurrentCategory(currentPosition, numberOfItems);
                         getVisibleItems(parentIndex);
-                        parentIndex = 0;
+                        currentIndex = parentIndex;
+                        $scope.page = currentIndex;
                     }
                 };
                
