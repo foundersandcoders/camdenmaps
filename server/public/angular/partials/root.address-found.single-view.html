@@ -19,7 +19,9 @@
 
         <div class="contact col-xs-12">
             <div class="col-xs-4">
-                <img src="./img/contact/call.png">
+                <a href= "tel: {{ result.display.Telephone }}">    
+                    <img src="./img/contact/call.png">
+                </a>
             </div>
             <div class="col-xs-4">
                 <a href="{{ result.display.URL }}" target="_blank">
