@@ -17,9 +17,10 @@
             "leaflet-directive"
     ])
 
-      .config( require("./config.js") );
+    .config( require("./config.js") );
         
   require("./controllers");
+
 
 }());
 
