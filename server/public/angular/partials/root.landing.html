@@ -1,4 +1,3 @@
-<!-- ROOT.LANDING BEGINS -->
 <div id="first-level-options" class="container-fluid col-xs-12">
 
     <div class="col-xs-12">
@@ -6,13 +5,12 @@
     </div>
 
     <div ng-repeat="button in buttons" class="col-xs-4 col-sm-3 col-sm-offset-1 col-">
-        <a id="{{ button.id }}" ng-click="toggle(button)" ng-href="{{ button.path }}">    
+        <a id="{{ button.id }}" ng-href="{{ button.path }}">    
             <img class="icon" ng-src="{{ button.iconUrl }}" alt="">
-        	<h4 ng-hide="button.titleHide">{{ button.title }}</h4>
+        	<h4 ng-show="showMe">{{ button.title }}</h4>
         </a>
     </div>
 
 </div>
 
 <div ui-view></div>
-<!-- ROOT.LANDING ENDS -->

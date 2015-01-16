@@ -28,8 +28,6 @@
              expect(scope.buttons.length).toBe(3);
         });
 
-        //TODO: Test any other functions
-
      });
 
 }());

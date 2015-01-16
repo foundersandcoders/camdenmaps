@@ -159,4 +159,8 @@
         return bundle();
     });
 
+    gulp.task("watchifytry", shell.task([
+        "watchify ./server/public/angular/app.js -o ./server/public/js/1.0.0.camdenmaps.min.js -v"
+    ]));
+
 }());
