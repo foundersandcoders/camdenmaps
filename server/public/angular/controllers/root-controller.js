@@ -91,7 +91,7 @@
                     var message = function message(i) {
                         //this stops undefined being returned in message
                         var check = function(value, spacing) {
-                            if(value !== undefined) {
+                            if(value !== undefined && (value + "<br>") !== pointMessage) {
                                 pointMessage += (value + spacing);
                             }
                         };

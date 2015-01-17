@@ -38,12 +38,12 @@
             $scope.service = $stateParams.service;
             $scope.address = $stateParams.address.toUpperCase();
 
-            // $scope.searchAgain = function searchAgain () {
-            //     console.log('search again on location controller');
-            //     $scope.updateMarkers({});
-            //     $location.path("/home/services");
+            $scope.searchAgain = function searchAgain () {
+                console.log('search again on location controller');
+                $scope.updateMarkers({});
+                $location.path("/home/services");
 
-            // };
+            };
 
             $scope.listResults = function listResults () {       
                 var destination = "/home/"+$scope.service+"/location/"+$scope.address+"/list"; 
