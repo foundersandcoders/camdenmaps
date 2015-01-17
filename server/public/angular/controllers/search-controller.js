@@ -49,6 +49,8 @@
 
             $scope.searchAgain = function searchAgain () {
                 $location.path("/home/services");
+                console.log('searching again');
+                $scope.updateMarkers({});
             };
 
             $scope.listResults = function listResults () {
