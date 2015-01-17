@@ -1,6 +1,6 @@
 
  <div ng-show="result" class="container-fluid">
-    <div class="result col-xs-12">
+    <div class="result col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-6 col-lg-4 col-lg-offset-8">
         <div class="col-xs-10">
             <a href="link-to-url">
                 <h5>{{ result.display.Name }}</h5>
@@ -17,18 +17,18 @@
             <h5>{{ result.Distance + ' miles' }}</h5>
         </div>
 
-        <div class="contact col-xs-12">
-            <div class="col-xs-4">
+        <div class="contact col-xs-12 col-sm-10 col-sm-offset-1">
+            <div class="call-mobile col-xs-4">
                 <a href= "tel: {{ result.display.Telephone }}">    
                     <img src="./img/contact/call.png">
                 </a>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-4 col-sm-6">
                 <a href="{{ result.display.URL }}" target="_blank">
                     <img src="./img/contact/website.png">
                 </a>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-4 col-sm-6">
                 <a href="http://maps.google.co.uk">
                     <img src="./img/contact/travel.png">
                 </a>

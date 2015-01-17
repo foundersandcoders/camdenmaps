@@ -32,7 +32,12 @@
 	}
 }
 
-@media (max-device-width: 480px) {
-	#first-level-options {
+.call-mobile {
+	display: none;
+}
+
+@media (max-device-width: 768px) {
+	.call-mobile {
+		display: block;
 	}
 }
