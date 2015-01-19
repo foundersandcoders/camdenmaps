@@ -17,6 +17,8 @@
 	overflow: hidden;
 	overflow-y: scroll;
 	border-bottom: 0.2em black solid;
+	position: absolute;
+	z-index: 1;
 	.list-item {
 		border-top: 0.1em black solid;
 		color: black;
