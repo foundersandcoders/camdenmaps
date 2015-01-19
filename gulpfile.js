@@ -91,6 +91,9 @@
             .pipe(gulp.dest("./server/public/css/"));
     });
 
+    gulp.task("sass-watch", function () {
+        gulp.watch(sassFiles, ["sass-dev"]);
+    });
 
     //task for travis
     gulp.task("travis", ["webdriver_update"], function () {
