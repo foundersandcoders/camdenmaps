@@ -23,6 +23,7 @@
 		border-top: 0.1em black solid;
 		color: black;
 		padding: 0.7em 0;
+		height: 5em; 
 	}
 	.distance {
 		text-align: right;
@@ -35,7 +36,7 @@
 
 @media (max-width: 768px) {
 	#list-results {
-		max-height: 22em;
-		position: relative;
+		height: 22em;
+		bottom: 0px;
 	}
 }
