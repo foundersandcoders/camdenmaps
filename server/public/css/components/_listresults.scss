@@ -36,7 +36,10 @@
 
 @media (max-width: 768px) {
 	#list-results {
-		height: 22em;
+		height: 25em;
 		bottom: 0px;
+		.list-item {
+			height: 7em;
+		}
 	}
 }
