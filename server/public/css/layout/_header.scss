@@ -7,17 +7,19 @@ header {
 	border-bottom: 0.1em solid black;
 	div {
 		#camden-logo {
-			width: 100%;
+			width: 15em;
 			height: auto;
 			margin: 0.3em 0;
 		}
 	}
 }
 
-
-//Imports for Gov Files
-@import '../../../../node_modules/govuk_frontend_toolkit/stylesheets/colours',
-	//below for box shadow and other css3 functions
-	'../../../../node_modules/govuk_frontend_toolkit/stylesheets/css3',
-	//to normalise old browsers
-	'../../../../node_modules/govuk_frontend_toolkit/stylesheets/shims';
+@media (max-width: 768px) {
+	header {
+		div {
+			#camden-logo {
+				width: 10em;
+			}
+		}
+	}
+}
