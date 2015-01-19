@@ -31,18 +31,17 @@
                     iconUrl: "img/icons/streetworks.png"
                 }
             ];
+            
 
-            // $scope.$watch( function toggle() {
-            //      var findYourNearest = $('#find-your-nearest');
+            $scope.$watch( function toggleWords() {
+                 var findYourNearest = $('#find-your-nearest');
 
-            //     if (findYourNearest.length === 0) {
-            //         $scope.showMe = true;
-            //         console.log($scope.showMe);
-            //     } else {
-            //         $scope.showMe = false;
-            //         console.log($scope.showMe);
-            //     }
-            // });
+                if (findYourNearest.length === 0) {
+                    $scope.showMe = true;
+                } else {
+                    $scope.showMe = false;
+                }
+            });
 
         }
     ];

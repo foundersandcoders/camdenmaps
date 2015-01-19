@@ -12,7 +12,7 @@
 	border-bottom: 0.1em solid black;
 	background-color: $light-blue;
 	.icon {
-		margin: 0 auto;
+		margin: 0 auto 1em;
 		display: block;
 		width: 5em;
 	}
@@ -22,30 +22,11 @@
 	h4 {
 		text-align: center;
 		color: black;
+		margin: 0 0 1em;
 	}
 }
 
-.result {
-	background-color: white;
-	text-align: left;
-	color: black;
-	padding: 0.5em 0;
-	border: 0.1em black solid;
-	position: fixed;
-	bottom: 0;
-	z-index: 1;
-	.contact {
-		text-align: center;
-		padding: 0.5em 0;
-		img {
-			width: 3em;
-		}
-	}
-	a {
-		color: black;
-	}
-	p, h5 {
-		color: black;
-		margin: 0;
+@media (max-device-width: 480px) {
+	#first-level-options {
 	}
 }

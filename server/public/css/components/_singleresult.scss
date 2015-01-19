@@ -1,0 +1,43 @@
+/***********************************************
+*   SINGLE RESULTS
+*   Description: for single result view related
+*	mixins and variables.
+************************************************/
+
+//IMPORTS FILES
+@import '../base/colours';
+
+.result {
+	background-color: white;
+	text-align: left;
+	color: black;
+	padding: 0.5em 0;
+	border: 0.1em black solid;
+	position: fixed;
+	bottom: 0;
+	z-index: 1;
+	.contact {
+		text-align: center;
+		padding: 0.5em 0;
+		img {
+			width: 3em;
+		}
+	}
+	a {
+		color: black;
+	}
+	p, h5 {
+		color: black;
+		margin: 0;
+	}
+}
+
+.call-mobile {
+	display: none;
+}
+
+@media (max-device-width: 768px) {
+	.call-mobile {
+		display: block;
+	}
+}

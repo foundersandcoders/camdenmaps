@@ -33,7 +33,9 @@
             $http.get("/services/" + $stateParams.service)
                 .success(function success (data) {
                     $scope.updateResults(data.properties);
+                    $scope.addMarkers();
                 });
+
 
             //redirects to next state when provided with address
             $scope.search = function search () {
@@ -46,7 +48,6 @@
             };
 
             $scope.searchAgain = function searchAgain () {
-                //TODO: write logic for function
                 $location.path("/home/services");
             };
 
@@ -63,13 +64,14 @@
 
             };
 
-            var called = false;
-
             $scope.toggle = function toggle() {
-                if(!called) { called = true; return $scope.listResults(); }
-                $scope.exit();
-                called = false;
+                if($location.path().indexOf("/list") > -1) { 
+                    return $scope.exit(); 
+                } else {
+                    return $scope.listResults();
+                }
             };
+            
         }
     ];
 }());
