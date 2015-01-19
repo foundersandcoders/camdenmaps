@@ -31,7 +31,7 @@
                     $scope.updateCentre({
                         lat: Number($scope.locationSelected.Latitude),
                         lng: Number($scope.locationSelected.Longitude),
-                          zoom: 14
+                        zoom: 14
                     });
                 });
 
@@ -39,8 +39,6 @@
             $scope.address = $stateParams.address.toUpperCase();
 
             $scope.searchAgain = function searchAgain () {
-                console.log('search again on location controller');
-                $scope.updateMarkers({});
                 $location.path("/home/services");
 
             };

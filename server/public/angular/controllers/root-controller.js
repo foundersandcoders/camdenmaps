@@ -78,8 +78,6 @@
 
                     var root = $scope.results;
 
-                    // console.log('size of results', Object.size(root));
-
                     var lat = function lat(i){
                         return Number($scope.results[i]["Latitude"]);
                     }
@@ -109,10 +107,10 @@
                     };
 
                     // this creates the marker objects to plot the locations on the map
-                    var markers = {};
+                    var markers = $scope.markers;
 
                     for (var i = 0; i<Object.size(root); i++) {
-                        var property = "m"+i;
+                        var property = "m"+(i+1);
                        
                         markers[property] = {};
                         markers[property].lat = lat(i);
@@ -120,6 +118,18 @@
                         markers[property].message = message(i);
   
                     }
+
+                    if($scope.locationSelected !== {}) {
+                        markers.m0 = {
+                            lat: Number($scope.locationSelected.Latitude),
+                            lng: Number($scope.locationSelected.Longitude),
+                            message: "Searching near " + $scope.locationSelected.Area.toUpperCase(),
+                            focus: true
+                        };
+                        console.log($scope.locationSelected);
+                    }
+
+
 
                     $scope.updateMarkers(markers);
 
