@@ -7,7 +7,9 @@
 
     module.exports = [
         "$scope",
-        function ($scope) {
+        "$location",
+        "$stateParams",
+        function ($scope, $location, $stateParams) {
             
             //stores results at root for access by all controllers
             $scope.results = [];
@@ -58,6 +60,7 @@
                 markers: {}      
             });
 
+
             $scope.updateMarkers = function updateMarkers(newMarkers){
                 $scope.markers = newMarkers;
             };
@@ -107,23 +110,26 @@
                         return pointMessage;
                     };
 
+
                     // this creates the marker objects to plot the locations on the map
                     var markers = $scope.markers;
 
                     
                     // this only runs if there isn't already a m1 markers
                     // this stops it recreating the whole object when the search location is added
-                    if(!$scope.markers.m1) {
+                    // if(!$scope.markers.m1) {
                         for (var i = 0; i<Object.size(root); i++) {
-                            var property = "m"+(i+1);
+                            // var property = root[i]["display"]["Name"];
+                            var property = "m" + (i+1);
                            
                             markers[property] = {};
                             markers[property].lat = lat(i);
                             markers[property].lng = lng(i);
                             markers[property].message = message(i);
+                            markers[property].name = $scope.results[i]["display"]["Name"];
                         }
                         console.log('creating object');
-                    }
+                    // }
 
                     // only runs when a search address has been entered
                     if($scope.locationSelected.Area) {
@@ -134,6 +140,7 @@
                             focus: true
                         };
                     }
+
 
                     $scope.updateMarkers(markers);
 

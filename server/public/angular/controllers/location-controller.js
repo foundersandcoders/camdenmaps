@@ -15,7 +15,19 @@
         "$stateParams",
         "$http",
         function ($scope, $location, $stateParams, $http) {
+
+            console.log("location-controller");
             
+            $scope.$on('leafletDirectiveMarker.click', function(e, args) {
+                // Args will contain the marker name and other relevant information       
+                // if($scope.address) {
+                var path = "/home/" + $stateParams.service + "/location/" + $scope.address + "/" + $scope.markers[args.markerName].name;
+
+                $location.path(path);
+
+            });
+
+
             //model for image icon
             $scope.icon = require("../menu.json").filter(function filterImg (item) {
                 var name = item.title + item.text;
