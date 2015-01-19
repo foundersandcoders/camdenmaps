@@ -7,18 +7,22 @@
 //IMPORTS FILES
 @import '../base/colours';
 
-
+// #list-result-wrapper {
+// 	position: relative;
+// 	height: 20em;
+// 	overflow: hidden;
+// 	overflow-y: scroll;
+//}
 #list-results {
 	text-align: left;
 	background-color: white;
 	padding: 0;
-	min-height: 100%;
-	max-height: 20em;
 	overflow: hidden;
 	overflow-y: scroll;
 	border-bottom: 0.2em black solid;
 	position: absolute;
 	z-index: 1;
+	height: 20em;
 	.list-item {
 		border-top: 0.1em black solid;
 		color: black;
@@ -36,5 +40,6 @@
 @media (max-width: 768px) {
 	#list-results {
 		max-height: 22em;
+		position: relative;
 	}
 }
