@@ -88,6 +88,7 @@
 
                     var message = function message(i) {
                         //this stops undefined being returned in message
+                        //will not return building name if same as display name
                         var check = function(value, spacing) {
                             if(value !== undefined && (value + "<br>") !== pointMessage) {
                                 pointMessage += (value + spacing);
@@ -109,14 +110,16 @@
                     // this creates the marker objects to plot the locations on the map
                     var markers = $scope.markers;
 
-                    for (var i = 0; i<Object.size(root); i++) {
-                        var property = "m"+(i+1);
-                       
-                        markers[property] = {};
-                        markers[property].lat = lat(i);
-                        markers[property].lng = lng(i);
-                        markers[property].message = message(i);
-  
+                    if(!$scope.markers.m1) {
+                        for (var i = 0; i<Object.size(root); i++) {
+                            var property = "m"+(i+1);
+                           
+                            markers[property] = {};
+                            markers[property].lat = lat(i);
+                            markers[property].lng = lng(i);
+                            markers[property].message = message(i);
+                        }
+                        console.log('creating object');
                     }
 
 
