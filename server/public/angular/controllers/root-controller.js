@@ -119,17 +119,15 @@
   
                     }
 
-                    if($scope.locationSelected !== {}) {
+
+                    if($scope.locationSelected.Area) {
                         markers.m0 = {
                             lat: Number($scope.locationSelected.Latitude),
                             lng: Number($scope.locationSelected.Longitude),
                             message: "Searching near " + $scope.locationSelected.Area.toUpperCase(),
                             focus: true
                         };
-                        console.log($scope.locationSelected);
                     }
-
-
 
                     $scope.updateMarkers(markers);
 
