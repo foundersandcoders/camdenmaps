@@ -13,9 +13,10 @@
 	background-color: white;
 	padding: 0;
 	min-height: 100%;
-	max-height: 22em;
+	max-height: 20em;
 	overflow: hidden;
 	overflow-y: scroll;
+	border-bottom: 0.2em black solid;
 	.list-item {
 		border-top: 0.1em black solid;
 		color: black;
@@ -30,7 +31,8 @@
 	}
 }
 
-@media (max-device-width: 480px) {
-	#first-level-options {
+@media (max-width: 768px) {
+	#list-results {
+		max-height: 22em;
 	}
 }
