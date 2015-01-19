@@ -110,6 +110,9 @@
                     // this creates the marker objects to plot the locations on the map
                     var markers = $scope.markers;
 
+                    
+                    // this only runs if there isn't already a m1 markers
+                    // this stops it recreating the whole object when the search location is added
                     if(!$scope.markers.m1) {
                         for (var i = 0; i<Object.size(root); i++) {
                             var property = "m"+(i+1);
@@ -122,7 +125,7 @@
                         console.log('creating object');
                     }
 
-
+                    // only runs when a search address has been entered
                     if($scope.locationSelected.Area) {
                         markers.m0 = {
                             lat: Number($scope.locationSelected.Latitude),
