@@ -40,6 +40,7 @@
 
             $scope.searchAgain = function searchAgain () {
                 $location.path("/home/services");
+                $scope.updateMarkers({});
 
             };
 
