@@ -21,9 +21,14 @@
             $scope.$on('leafletDirectiveMarker.click', function(e, args) {
                 // Args will contain the marker name and other relevant information       
                 // if($scope.address) {
-                var path = "/home/" + $stateParams.service + "/location/" + $scope.address + "/" + $scope.markers[args.markerName].name;
-
-                $location.path(path);
+                console.log("clickyclick");
+                // var path = "/home/" + $stateParams.service + "/location/" + $scope.address + "/" + $scope.markers[args.markerName].name;
+                // $scope.updateCentre({
+                //     lat: args.leafletEvent.latlng.lat,
+                //     lng: args.leafletEvent.latlng.lng,
+                //     zoom: 15
+                // });
+                // $location.path(path);
 
             });
 

@@ -125,7 +125,7 @@
                             markers[property] = {};
                             markers[property].lat = lat(i);
                             markers[property].lng = lng(i);
-                            markers[property].message = message(i);
+                            // markers[property].message = message(i);
                             markers[property].name = $scope.results[i]["display"]["Name"];
                         }
                         console.log('creating object');

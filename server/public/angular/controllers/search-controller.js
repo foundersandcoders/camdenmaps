@@ -40,6 +40,7 @@
             $scope.$on('leafletDirectiveMarker.click', function(e, args) {
                 // Args will contain the marker name and other relevant information       
                 // if($scope.address) {
+                console.log('name check', $scope.markers[args.markerName].name);
                 var path = "/home/" + $stateParams.service + "/search/" + $scope.markers[args.markerName].name;
                 $location.path(path);
                 $scope.updateCentre({
