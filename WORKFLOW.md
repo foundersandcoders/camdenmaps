@@ -2,6 +2,7 @@
 
 Documentation of workflow that should be implemented by all members of Hake me Mapi
 
+
 ## Gitflow
 
 ### Branches
