@@ -31,8 +31,8 @@
                         lng: -0.094538
                     },
                     southWest: {
-                        lat: 51.510989,
-                        lng: -0.218649
+                        lat: 51.450089,
+                        lng: -0.218650
                     }
                 }
             };
@@ -78,8 +78,6 @@
 
                     var root = $scope.results;
 
-                    // console.log('size of results', Object.size(root));
-
                     var lat = function lat(i){
                         return Number($scope.results[i]["Latitude"]);
                     }
@@ -90,8 +88,9 @@
 
                     var message = function message(i) {
                         //this stops undefined being returned in message
+                        //will not return building name if same as display name
                         var check = function(value, spacing) {
-                            if(value !== undefined) {
+                            if(value !== undefined && (value + "<br>") !== pointMessage) {
                                 pointMessage += (value + spacing);
                             }
                         };
@@ -109,16 +108,31 @@
                     };
 
                     // this creates the marker objects to plot the locations on the map
-                    var markers = {};
+                    var markers = $scope.markers;
 
-                    for (var i = 0; i<Object.size(root); i++) {
-                        var property = "m"+i;
-                       
-                        markers[property] = {};
-                        markers[property].lat = lat(i);
-                        markers[property].lng = lng(i);
-                        markers[property].message = message(i);
-  
+                    
+                    // this only runs if there isn't already a m1 markers
+                    // this stops it recreating the whole object when the search location is added
+                    if(!$scope.markers.m1) {
+                        for (var i = 0; i<Object.size(root); i++) {
+                            var property = "m"+(i+1);
+                           
+                            markers[property] = {};
+                            markers[property].lat = lat(i);
+                            markers[property].lng = lng(i);
+                            markers[property].message = message(i);
+                        }
+                        console.log('creating object');
+                    }
+
+                    // only runs when a search address has been entered
+                    if($scope.locationSelected.Area) {
+                        markers.m0 = {
+                            lat: Number($scope.locationSelected.Latitude),
+                            lng: Number($scope.locationSelected.Longitude),
+                            message: "Searching near " + $scope.locationSelected.Area.toUpperCase(),
+                            focus: true
+                        };
                     }
 
                     $scope.updateMarkers(markers);

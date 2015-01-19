@@ -31,17 +31,22 @@
                     $scope.updateCentre({
                         lat: Number($scope.locationSelected.Latitude),
                         lng: Number($scope.locationSelected.Longitude),
-                          zoom: 14
+                        zoom: 15
                     });
                 });
 
             $scope.service = $stateParams.service;
-            console.log('state params.service', $stateParams.service);
             $scope.address = $stateParams.address.toUpperCase();
 
             $scope.searchAgain = function searchAgain () {
-                $scope.updateMarkers({});
                 $location.path("/home/services");
+                $scope.updateMarkers({});
+                $scope.updateLocationSelected({});
+                $scope.updateCentre({
+                        lat: 51.535923,
+                        lng: -0.139991,
+                        zoom: 14
+                    });
 
             };
 

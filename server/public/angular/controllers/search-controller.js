@@ -49,6 +49,13 @@
 
             $scope.searchAgain = function searchAgain () {
                 $location.path("/home/services");
+                $scope.updateMarkers({});
+                $scope.updateLocationSelected({});
+                $scope.updateCentre({
+                        lat: 51.535923,
+                        lng: -0.139991,
+                        zoom: 14
+                    });
             };
 
             $scope.listResults = function listResults () {
