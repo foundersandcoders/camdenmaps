@@ -57,34 +57,34 @@ paths:
           description: Unexpected error
           schema:
             $ref: 'Error'
-  # /services/{service}/locations/{postcode}:
-  #   get:
-  #     summary: Selected service near specified postcode
-  #     description: |
-  #       The Endpoint will return a list similar to that of services, but this endpoint will return the information in relation to a Camden postcode specified by the user.
-  #     parameters:
-  #       - name: service
-  #         in: path
-  #         description: Select a Camden service 
-  #         required: true
-  #         type: string
-  #       - name: postcode
-  #         in: path
-  #         description: Camden postcode
-  #         required: true
-  #         type: string
-  #     tags:
-  #       - services
-  #       - Location
-  #     responses:
-  #       200:
-  #         description: An array of selected service information
-  #         schema:
-  #           $ref: 'Location' 
-  #       default:
-  #         description: Unexpected error
-  #         schema:
-  #           $ref: 'Error'
+  /services/{service}/locations/{postcode}:
+    get:
+      summary: Selected service near specified postcode
+      description: |
+        The Endpoint will return a list similar to that of services, but this endpoint will return the information in relation to a Camden postcode specified by the user.
+      parameters:
+        - name: service
+          in: path
+          description: Select a Camden service 
+          required: true
+          type: string
+        - name: postcode
+          in: path
+          description: Camden postcode
+          required: true
+          type: string
+      tags:
+        - services
+        - Location
+      responses:
+        200:
+          description: An array of selected service information
+          schema:
+            $ref: 'service' 
+        default:
+          description: Unexpected error
+          schema:
+            $ref: 'Error'
 definitions:
   Service:
     properties:
