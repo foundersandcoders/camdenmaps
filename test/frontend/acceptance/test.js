@@ -152,19 +152,19 @@
 
             expect(browser.getCurrentUrl()).toContain('/#/home');
         });
-        it("When List Results button is clicked, results list.", function () { 
+        // it("When List Results button is clicked, results list.", function () { 
 
-            element(by.id('findYourNearest')).click();
-            element(by.css('[ng-click="execute(item.handler)"]')).click();
-            element(by.css('[ng-click="execute(item.handler)"]')).click();
-            element(by.css('[ng-click="toggle()"]')).click();
+        //     element(by.id('findYourNearest')).click();
+        //     element(by.css('[ng-click="execute(item.handler)"]')).click();
+        //     element(by.css('[ng-click="execute(item.handler)"]')).click();
+        //     element(by.css('[ng-click="toggle()"]')).click();
 
-            var listResults = element(by.id('list-results'));
-            var repeater = element.all(by.repeater('result in results'));
+        //     var listResults = element(by.id('list-results'));
+        //     var repeater = element.all(by.repeater('result in results'));
 
-            expect(listResults.isPresent()).toBe(true);
-            expect(repeater.count()).toBe(24);
-        });
+        //     expect(listResults.isPresent()).toBe(true);
+        //     expect(repeater.count()).toBe(24);
+        // });
         // it("When a list item is selected, single list result view is displayed", function () { 
 
         //     element(by.repeater('result in results')).click();

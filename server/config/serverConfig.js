@@ -21,7 +21,7 @@
         //Mapping for query params and camden API
         map: {
             url: {
-                nearestApi: "http://maps.camden.gov.uk/nearest/nearestrest.aspx"
+                nearestApi: "https://maps.camden.gov.uk/nearest/nearestrest.aspx"
             },
             query: {
                 service: "find=",
