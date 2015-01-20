@@ -89,26 +89,27 @@
                         return Number(root[i]["Longitude"]);
                     }
 
-                    var message = function message(i) {
-                        //this stops undefined being returned in message
-                        //will not return building name if same as display name
-                        var check = function(value, spacing) {
-                            if(value !== undefined && (value + "<br>") !== pointMessage) {
-                                pointMessage += (value + spacing);
-                            }
-                        };
+                    // var message = function message(i) {
+                    //     //this stops undefined being returned in message
+                    //     //will not return building name if same as display name
+                    //     var check = function(value, spacing) {
+                    //         if(value !== undefined && (value + "<br>") !== pointMessage) {
+                    //             pointMessage += (value + spacing);
+                    //         }
+                        
+                    // };
 
-                        var pointMessage = "";
+                    //     var pointMessage = "";
  
-                        check(root[i]["display"]["Name"] || root[i]["display"][0]["Name"], "<br>"); 
-                        check(root[i]["BuildingName"], "<br>");
-                        check(root[i]["StreetNum"], " ");
-                        check(root[i]["Street"], "<br>"); 
-                        check(root[i]["PostCode"], "<br>");
-                        check(root[i]["display"]["Telephone"], "");
+                    //     check(root[i]["display"]["Name"] || root[i]["display"][0]["Name"], "<br>"); 
+                    //     check(root[i]["BuildingName"], "<br>");
+                    //     check(root[i]["StreetNum"], " ");
+                    //     check(root[i]["Street"], "<br>"); 
+                    //     check(root[i]["PostCode"], "<br>");
+                    //     check(root[i]["display"]["Telephone"], "");
 
-                        return pointMessage;
-                    };
+                    //     return pointMessage;
+                    // };
 
 
                     // this creates the marker objects to plot the locations on the map
