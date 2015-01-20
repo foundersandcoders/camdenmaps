@@ -107,7 +107,7 @@
           "200": {
             "description": "An array of selected service information",
             "schema": {
-              "$ref": "service"
+              "$ref": "Service"
             }
           },
           "default": {
