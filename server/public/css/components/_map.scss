@@ -1,0 +1,21 @@
+#map-container {
+	height: 70%;
+}
+#map {
+	height: 100%;
+	leaflet {
+		height: 100%;
+	}
+	div {
+		height: 100%;
+	}
+	.leaflet-control-attribution.leaflet-control{
+		height: 0;
+	}
+	.leaflet-bottom, .leaflet-top {
+		z-index: 10
+	}
+	.leaflet-control-zoom.leaflet-bar.leaflet-control {
+		height: 90%;
+	}
+}
