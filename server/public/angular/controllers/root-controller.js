@@ -18,6 +18,8 @@
             $scope.updateResults = function updateResults (newResults) {
                 $scope.results = newResults;
             };
+
+            // some comments
             $scope.updateLocationSelected = function updateLocationSelected (newLocation) {
                 $scope.locationSelected = newLocation;
             };
@@ -66,7 +68,7 @@
                 $scope.centre = newCentre;
             };
 
-            Object.size = function(obj) {
+            Object.prototype.size = function(obj) {
                 var size = 0, key;
                 for (key in obj) {
                     if (obj.hasOwnProperty(key)) size++;
@@ -77,11 +79,14 @@
             $scope.addMarkers = function addMarkers() {
 
                     var root = $scope.results;
+                    //These propertes should be dot notation
 
+
+
+                    // instead of two function, one obj with two methods?
                     var lat = function lat(i){
                         return Number($scope.results[i]["Latitude"]);
                     }
-
                     var lng = function lng(i) {
                         return Number(root[i]["Longitude"]);
                     }
