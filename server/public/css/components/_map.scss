@@ -16,6 +16,9 @@
 		z-index: 10
 	}
 	.leaflet-control-zoom.leaflet-bar.leaflet-control {
-		height: 90%;
+		height: 0;
+	}
+	.leaflet-popup-content.ng-scope, .leaflet-popup-content-wrapper{
+		height: auto;
 	}
 }
