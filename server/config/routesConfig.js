@@ -10,7 +10,6 @@
     var handlers = require("../handlers/handlers.js");
     var Config = require("./serverConfig.js");
     var MapConfig = require("./mapConfig.js");
-    var handlers = require("../handlers/handlers.js");
 
     module.exports = {
         getHome: {
