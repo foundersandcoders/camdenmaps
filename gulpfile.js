@@ -91,12 +91,17 @@
             .pipe(gulp.dest("./server/public/css/"));
     });
 
+
     gulp.task("sass-watch", function () {
         gulp.watch(sassFiles, ["sass-dev"]);
     });
 
+    gulp.task("node-expat", shell.task([
+        "npm install node-expat --save"
+    ]));
+
     //task for travis
-    gulp.task("travis", ["sass-production", "browserify"], function () {
+    gulp.task("travis", ["webdriver_update"], function () {
         nodemon({ script: 'server/server.js'})
         .on('start', function () {
             return gulp.src(protractorTestFiles)
