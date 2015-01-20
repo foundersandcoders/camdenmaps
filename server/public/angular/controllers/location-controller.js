@@ -32,6 +32,19 @@
 
             });
 
+            $scope.$on('leafletDirectiveMap.click', function(e, args) {
+                // Args will contain the marker name and other relevant information       
+                // if($scope.address) {
+                console.log("map click");
+                var path = "/home/" + $stateParams.service + "/location/" + $scope.address;
+                // $scope.updateCentre({
+                //     lat: args.leafletEvent.latlng.lat,
+                //     lng: args.leafletEvent.latlng.lng,
+                //     zoom: 15
+                // });
+                $location.path(path);
+            });
+
 
             //model for image icon
             $scope.icon = require("../menu.json").filter(function filterImg (item) {
