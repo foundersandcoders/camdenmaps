@@ -20,6 +20,8 @@
 
                 //***************** Initialize menu and variables **************
                
+                //Put in state object
+
                 //current index of visibleItems within currentCategory
                 var currentIndex = 0, 
                 //number of items visible in menu
