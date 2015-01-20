@@ -7,7 +7,9 @@
 
     module.exports = [
         "$scope",
-        function ($scope) {
+        "$location",
+        "$stateParams",
+        function ($scope, $location, $stateParams) {
             
             //stores results at root for access by all controllers
             $scope.results = [];
@@ -58,6 +60,7 @@
                 markers: {}      
             });
 
+
             $scope.updateMarkers = function updateMarkers(newMarkers){
                 $scope.markers = newMarkers;
             };
@@ -86,26 +89,28 @@
                         return Number(root[i]["Longitude"]);
                     }
 
-                    var message = function message(i) {
-                        //this stops undefined being returned in message
-                        //will not return building name if same as display name
-                        var check = function(value, spacing) {
-                            if(value !== undefined && (value + "<br>") !== pointMessage) {
-                                pointMessage += (value + spacing);
-                            }
-                        };
+                    // var message = function message(i) {
+                    //     //this stops undefined being returned in message
+                    //     //will not return building name if same as display name
+                    //     var check = function(value, spacing) {
+                    //         if(value !== undefined && (value + "<br>") !== pointMessage) {
+                    //             pointMessage += (value + spacing);
+                    //         }
+                        
+                    // };
 
-                        var pointMessage = "";
+                    //     var pointMessage = "";
  
-                        check(root[i]["display"]["Name"] || root[i]["display"][0]["Name"], "<br>"); 
-                        check(root[i]["BuildingName"], "<br>");
-                        check(root[i]["StreetNum"], " ");
-                        check(root[i]["Street"], "<br>"); 
-                        check(root[i]["PostCode"], "<br>");
-                        check(root[i]["display"]["Telephone"], "");
+                    //     check(root[i]["display"]["Name"] || root[i]["display"][0]["Name"], "<br>"); 
+                    //     check(root[i]["BuildingName"], "<br>");
+                    //     check(root[i]["StreetNum"], " ");
+                    //     check(root[i]["Street"], "<br>"); 
+                    //     check(root[i]["PostCode"], "<br>");
+                    //     check(root[i]["display"]["Telephone"], "");
 
-                        return pointMessage;
-                    };
+                    //     return pointMessage;
+                    // };
+
 
                     // this creates the marker objects to plot the locations on the map
                     var markers = $scope.markers;
@@ -115,12 +120,14 @@
                     // this stops it recreating the whole object when the search location is added
                     if(!$scope.markers.m1) {
                         for (var i = 0; i<Object.size(root); i++) {
-                            var property = "m"+(i+1);
+                            // var property = root[i]["display"]["Name"];
+                            var property = "m" + (i+1);
                            
                             markers[property] = {};
                             markers[property].lat = lat(i);
                             markers[property].lng = lng(i);
-                            markers[property].message = message(i);
+                            // markers[property].message = message(i);
+                            markers[property].name = $scope.results[i]["display"]["Name"];
                         }
                         console.log('creating object');
                     }
@@ -134,6 +141,7 @@
                             focus: true
                         };
                     }
+
 
                     $scope.updateMarkers(markers);
 
