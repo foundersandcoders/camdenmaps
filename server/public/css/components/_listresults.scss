@@ -23,6 +23,7 @@
 		border-top: 0.1em black solid;
 		color: black;
 		padding: 0.7em 0;
+		height: 5em; 
 	}
 	.distance {
 		text-align: right;
@@ -36,14 +37,9 @@
 @media (max-width: 768px) {
 	#list-results {
 		height: 70%;
+		.list-item {
+			height: 7em;
+		}
 	}
 }
-
-.leaflet-control-zoom.leaflet-bar.leaflet-control {
-	z-index: 0;
-}
-.leaflet-control-attribution {
-	z-index: 0;
-}
-
 
