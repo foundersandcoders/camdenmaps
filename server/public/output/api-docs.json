@@ -25,7 +25,7 @@
             "in": "path",
             "description": "Camden Council run organisation",
             "required": true,
-            "type": "string"
+            "type": "array"
           }
         ],
         "tags": [
