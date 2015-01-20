@@ -17,7 +17,7 @@
 	border-bottom: 0.2em black solid;
 	border-left: 0.2em black solid;
 	position: absolute;
-	z-index: 1;
+	z-index: 50;
 	height: 20em;
 	.list-item {
 		border-top: 0.1em black solid;
@@ -35,7 +35,15 @@
 
 @media (max-width: 768px) {
 	#list-results {
-		max-height: 22em;
-		position: relative;
+		height: 70%;
 	}
 }
+
+.leaflet-control-zoom.leaflet-bar.leaflet-control {
+	z-index: 0;
+}
+.leaflet-control-attribution {
+	z-index: 0;
+}
+
+
