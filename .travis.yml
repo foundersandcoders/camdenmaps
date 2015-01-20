@@ -10,6 +10,7 @@ before_install:
 - sudo apt-get install build-essential
 - sudo apt-get install libssl-dev
 - sudo apt-get install libexpat-dev
+- sudo apt-get install libexpat1-dev
 
 - npm install -g gulp
 deploy: 
@@ -20,7 +21,7 @@ deploy:
 script: 
  - gulp travis
 node_js: 
-- 0.10.32
+- 0.10.4
 install: 
 - npm install
 after_script: 
