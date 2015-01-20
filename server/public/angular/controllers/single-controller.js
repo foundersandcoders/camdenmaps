@@ -12,6 +12,8 @@
             "$http",
             function ($stateParams, $scope, $http) {
 
+                //var uri;
+
                 //TODO: Do some DATA CLEANING so data is standardized before it reaches us
 
                 /*
@@ -24,19 +26,25 @@
                 */
 
                 $scope.showDistance = $stateParams.address ? true : false; 
-            
-                $http.get("/services/" + $stateParams.service + "/locations/" + $stateParams.address)
+           
+                if ($stateParams.address) {
+                    var uri = "/services/" + $stateParams.service + "/locations/" + $stateParams.address;
+                } else {
+                    console.log("you");
+                    var uri = "/services/" + $stateParams.service; 
+                }
+               
+                console.log("uri: ", uri);
+
+                $http.get(uri)
                     .success(function success (data) {
                         $scope.updateResults(data.properties);
                         $scope.updateLocation(data.location);
-                        
                         //selects item from results with matching {id}
                         $scope.result = $scope.results.filter(function (result) {
                             return result.display.Name === $stateParams.id;
                         })[0];
                     });
-
-              
                  //selects item from results with matching {id}
                 $scope.result = $scope.results.filter(function (result) {
                     return result.display.Name === $stateParams.id;
