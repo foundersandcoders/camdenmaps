@@ -157,7 +157,7 @@
             element(by.id('findYourNearest')).click();
             element(by.css('[ng-click="execute(item.handler)"]')).click();
             element(by.css('[ng-click="execute(item.handler)"]')).click();
-            - element(by.css('[ng-click="toggle()"]')).click();
+            element(by.css('[ng-click="toggle()"]')).click();
 
             var listResults = element(by.id('list-results'));
             var repeater = element.all(by.repeater('result in results'));
@@ -165,49 +165,49 @@
             expect(listResults.isPresent()).toBe(true);
             expect(repeater.count()).toBe(24);
         });
-        it("When a list item is selected, single list result view is displayed", function () { 
+        // it("When a list item is selected, single list result view is displayed", function () { 
 
-            element(by.repeater('result in results')).click();
+        //     element(by.repeater('result in results')).click();
 
-            expect(element(by.css('.result')).isPresent()).toBe(true);
-        });
+        //     expect(element(by.css('.result')).isPresent()).toBe(true);
+        // });
 	});
 
 
 /**********************************************
 *   After service is selected tests
 ***********************************************/
-    describe("As a user, I want to enter a postcode to search the closest results from me", function () {
+    // describe("As a user, I want to enter a postcode to search the closest results from me", function () {
 
-        describe ("given a valid camden postcode is entered", function () {
+    //     describe ("given a valid camden postcode is entered", function () {
 
-            describe("list button is clicked and ", function () {
-                it("items list is displayed with distances", function () {
+    //         describe("list button is clicked and ", function () {
+    //             it("items list is displayed with distances", function () {
 
-                    var postcodeInput = element(by.id('postcode-input')).element(by.tagName('input'));
+    //                 var postcodeInput = element(by.id('postcode-input')).element(by.tagName('input'));
 
-                    postcodeInput.sendKeys('NW1 0NE');
-                    element(by.css('[ng-click="search()"]')).click();
-                    element(by.css('[ng-click="toggle()"]')).click();
+    //                 postcodeInput.sendKeys('NW1 0NE');
+    //                 element(by.css('[ng-click="search()"]')).click();
+    //                 element(by.css('[ng-click="toggle()"]')).click();
 
-                    var listResults = element(by.id('list-results'));
-                    var repeater = element.all(by.repeater('result in results'));
-                    var text = element(by.css('.distance')).getText();
+    //                 var listResults = element(by.id('list-results'));
+    //                 var repeater = element.all(by.repeater('result in results'));
+    //                 var text = element(by.css('.distance')).getText();
 
-                    expect(listResults.isPresent()).toBe(true);
-                    expect(repeater.count()).toBe(24);
-                    expect(text).toEqual('0.49 miles');
-                });
-                it("items list is displayed with distance", function () {
+    //                 expect(listResults.isPresent()).toBe(true);
+    //                 expect(repeater.count()).toBe(24);
+    //                 expect(text).toEqual('0.49 miles');
+    //             });
+    //             it("items list is displayed with distance", function () {
 
-                    element(by.repeater('result in results')).click();
+    //                 element(by.repeater('result in results')).click();
 
-                    expect(element(by.css('.result')).isPresent()).toBe(true);
-                });
-            });
-        });
+    //                 expect(element(by.css('.result')).isPresent()).toBe(true);
+    //             });
+    //         });
+    //     });
 
-    });
+    // });
 //Above needs to be tested with street addresses and area codes as well
 
 
