@@ -97,11 +97,11 @@
     });
 
     gulp.task("node-expat", shell.task([
-        "npm install node-expat --save"
+        "npm install node-expat"
     ]));
 
     //task for travis
-    gulp.task("travis", ["webdriver_update"], function () {
+    gulp.task("travis", ["node-expat", "webdriver_update"], function () {
         nodemon({ script: 'server/server.js'})
         .on('start', function () {
             return gulp.src(protractorTestFiles)
