@@ -49,6 +49,13 @@
                 }
             };
 
+            var circleCentre = {
+                a: {
+                    lat: 51.535923,
+                    lng: -0.139991
+                }
+            }
+
             angular.extend($scope, {
                 centre: {
                     lat: 51.535923,
@@ -59,7 +66,8 @@
                 defaults: {
                     scrollWheelZoom: false
                 },
-                markers: {}      
+                markers: {},
+                paths: {}    
             });
 
 
@@ -69,6 +77,10 @@
 
             $scope.updateCentre = function updateCentre(newCentre){
                 $scope.centre = newCentre;
+            };
+
+            $scope.updatePaths = function updateCentre(newPaths){
+                $scope.paths = newPaths;
             };
 
             Object.size = function(obj) {
@@ -137,18 +149,26 @@
                         console.log('creating object');
                     }
 
+                    var paths = $scope.paths;
                     // only runs when a search address has been entered
-                    if($scope.locationSelected.Area) {
-                        markers.m0 = {
+                    var coords = {
                             lat: Number($scope.locationSelected.Latitude),
-                            lng: Number($scope.locationSelected.Longitude),
-                            message: "Searching near " + $scope.locationSelected.Area.toUpperCase(),
-                            focus: true
-                        };
+                            lng: Number($scope.locationSelected.Longitude),    
+                    };
+
+                    if($scope.locationSelected.Area) {
+                        paths.circle = {};
+                        paths.circle.type = "circleMarker";
+                        paths.circle.radius = 5;
+                        paths.circle.latlngs = coords;
+                        // paths.circle.message = "Searching near " + $scope.locationSelected.Area.toUpperCase();
+                        // // paths.circle.focus = true;
+                        
+
                     }
 
-
                     $scope.updateMarkers(markers);
+                    $scope.updatePaths(paths);
 
                 };
 

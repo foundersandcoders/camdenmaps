@@ -16,8 +16,6 @@
         "$http",
         function ($scope, $location, $stateParams, $http) {
 
-            console.log("location-controller");
-            
             $scope.$on('leafletDirectiveMarker.click', function(e, args) {
                 // Args will contain the marker name and other relevant information           
                 if($scope.address) {
