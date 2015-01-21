@@ -100,6 +100,24 @@
         "npm install node-expat"
     ]));
 
+    //task for before pushing to master
+    gulp.task("master", ["browserify", "sass-production", "webdriver_update"], function () {
+        nodemon({ script: 'server/server.js'})
+        .on('start', function () {
+            return gulp.src(protractorTestFiles)
+                .pipe(protractor({
+                    configFile: "./test/frontend/config/protractor.conf.js"
+                }))
+                .on("error", function (err) {
+                    throw err;
+                })
+                .on('end', function () {
+                    process.exit();
+                });
+        });
+        
+    });
+
     //task for travis
     gulp.task("travis", ["node-expat", "webdriver_update"], function () {
         nodemon({ script: 'server/server.js'})
@@ -150,25 +168,5 @@
         };
         return bundle();
     });
-
-    //below task not working properly.
-    gulp.task("watchify", function () {
-
-        var bundle = function() {
-            return watchify(browserify(angularFiles, watchify.args))
-                .bundle()
-                .pipe(source(getBundleName() + '.js'))
-                .pipe(buffer())
-                .pipe(sourcemaps.init({loadMaps: true}))
-                .pipe(uglify())
-                .pipe(sourcemaps.write('./'))
-                .pipe(gulp.dest('./server/public/js/'));
-        };
-        return bundle();
-    });
-
-    gulp.task("watchifytry", shell.task([
-        "watchify ./server/public/angular/app.js -o ./server/public/js/1.0.0.camdenmaps.min.js -v"
-    ]));
 
 }());
