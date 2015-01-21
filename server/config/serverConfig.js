@@ -8,7 +8,6 @@
     "use strict";
 
     //Module for converting XML to JSON
-    // var xml = require("../lib/xml-parser.js");
     var xml2js = require('xml2js');
     var parser = new xml2js.Parser();
 
