@@ -39,7 +39,7 @@
 
             $scope.$on('leafletDirectiveMarker.click', function(e, args) {
                 // Args will contain the marker name and other relevant information      
-                console.log("search-controller");
+                console.log("search args", args);
                 if($scope.address) {
                     var path = "/home/" + $stateParams.service + "/location/" + $scope.address + "/" + $scope.markers[args.markerName].name;
                 } else {

@@ -130,9 +130,10 @@
 
                     // this creates the marker objects to plot the locations on the map
                     var markers = $scope.markers;   
-                    // this only runs if there isn't already a m1 markers
+
                     // this stops it recreating the whole object when the search location is added
-                    if(!$scope.markers.m5) {
+                    // but it will run if there are only 5 markers and re-populate near search result
+                    if(!$scope.markers.m6) {
                         // var x will save time as the loop does not have to look up the length each time
                         for (var i = 0, resultLength = Object.size(root); i<resultLength; i++) {
                             // var property = root[i]["display"]["Name"];
@@ -153,7 +154,8 @@
                             lat: Number($scope.locationSelected.Latitude),
                             lng: Number($scope.locationSelected.Longitude),
                             message: "Searching near " + $scope.locationSelected.Area.toUpperCase(),
-                            focus: true
+                            focus: true,
+                            name: "location"
                         };
                     }
 

@@ -18,18 +18,25 @@
 
             $scope.$on('leafletDirectiveMarker.click', function(e, args) {
                 // Args will contain the marker name and other relevant information           
-                console.log("location-controller");
-                if($scope.address) {
-                    var path = "/home/" + $stateParams.service + "/location/" + $scope.address + "/" + $scope.markers[args.markerName].name;
+                console.log("location args", args.markerName);
+                if (args.markerName === "m0") {
+                    var path = "/home/" + $stateParams.service + "/location/" + $scope.address;
+                    $location.path(path);
+                    return; 
                 } else {
-                    var path = "/home/" + $stateParams.service + "/search/" + $scope.markers[args.markerName].name;
-                }
-                $location.path(path);
-                $scope.updateCentre({
-                    lat: args.leafletEvent.latlng.lat,
-                    lng: args.leafletEvent.latlng.lng,
-                    zoom: 15
-                });
+                    if($scope.address) {
+                        var path = "/home/" + $stateParams.service + "/location/" + $scope.address + "/" + $scope.markers[args.markerName].name;
+                    } else {
+                        var path = "/home/" + $stateParams.service + "/search/" + $scope.markers[args.markerName].name;
+                    }
+                    $location.path(path);
+                    $scope.updateCentre({
+                        lat: args.leafletEvent.latlng.lat,
+                        lng: args.leafletEvent.latlng.lng,
+                        zoom: 15
+                    });
+                } 
+
             });
 
             $scope.$on('leafletDirectiveMap.click', function(e, args) {
