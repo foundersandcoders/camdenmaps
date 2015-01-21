@@ -8,7 +8,7 @@
     "use strict";
 
     var handlers = require("../handlers/handlers.js");
-    var Config = require("./serverConfig.js");
+    var ConvertXml = require("../handlers/convertXml.js");
     var MapConfig = require("./mapConfig.js");
 
     module.exports = {
@@ -20,7 +20,7 @@
                 handler: {
                     proxy: {
                         mapUri: MapConfig.nearestMapper,
-                        onResponse: Config.convertToXml   
+                        onResponse: ConvertXml.convertToJson   
                     }
                 }
             },
@@ -28,7 +28,7 @@
                 handler: {
                     proxy: {
                         mapUri: MapConfig.nearestMapper,
-                        onResponse: Config.convertToXml
+                        onResponse: ConvertXml.convertToJson
                     }
                 }
             },
@@ -36,7 +36,7 @@
                 handler: {
                     proxy: {
                         mapUri: MapConfig.nearestMapper,
-                        onResponse: Config.convertToXml,
+                        onResponse: ConvertXml.convertToJson
 
                     }
                 }
@@ -45,7 +45,7 @@
                 handler: {
                     proxy: {
                         mapUri: MapConfig.parkingMapper,
-                        onResponse: Config.convertToXmlagain
+                        onResponse: ConvertXml.convertToJsonAgain
                     }
                 }
             }
@@ -67,7 +67,7 @@
                 handler: {
                     proxy: {
                         mapUri: MapConfig.localMapper,
-                        onResponse: Config.convertToXml
+                        onResponse: ConvertXml.convertToJson
                     }
                 }
             }
