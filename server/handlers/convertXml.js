@@ -2,7 +2,7 @@
     "use strict";
     // module for converting XML to JSON 
     var xml = require("../lib/xml-parser.js");
-    var RoutesConfig = require("../config/routesConfig.js");
+    var routesConfig = require("../config/routesConfig.js");
 
     module.exports = {
         //Function for responding JSON to client
@@ -29,7 +29,7 @@
                 console.log(response);
                 if (response.properties.length > null) {
                 rep(response);
-                } else {return(RoutesConfig.nearest.parkingServicesAndLocations)}
+                } else {return(routesConfig.nearest.parkingServicesAndLocations)}
             });
             
         },
