@@ -28,6 +28,10 @@
                 service: "find=",
                 location: "area=",
                 uprn: "uprn="
+            },
+            serviceArrays: {
+                parking:["Car club bay","Parking space", "Car park", "Car club", "Coach parking", "Disabled blue badge", "Disabled green badge", "Electric recharging point", "Loading bay", "Pay and display/meter", "Permit holders", "Solo motorcycles", "Bicycle stand"],
+                recycling: ["Batteries","Cardboard and Paper", "Clothing and Textiles", "Nappies", "Funiture", "Garden Waste", "Light bulbs", "Glass", "Clinical Waste", "Paint", "chemical and hazardous waste", "Household electronics/appliances", "Aluminium cans", "Vehicles", "Foil", "Scrap metal", "Spectacles", "Cooking oil", "Plastic", "Wood"]
             }
         }
     };

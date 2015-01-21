@@ -37,47 +37,6 @@
 
 
                 return cb(null, url.nearestApi + query, { "Accept": "application/json" });
-            
-        },
-        parkingMapper: function parkingMapper (req, cb) {
-            var service = req.params.service,
-                location = req.params.postcode;
-
-                console.log("I make it here!")
-                
-                if (location === undefined) {
-                    var query = "?" + services + service;
-
-                } else if (service === undefined) {
-                    var query = "?" + locations + location;
-
-                } else {
-                    var query = "?" + locations + location + 
-                        "&" + services + service;
-
-                }
-
-                return cb(null, url.parkingApi + query, { "Accept": "application/json" });            
-        },
-        recyclingMapper: function recyclingMapper (req, cb) {
-            var service = req.params.service,
-                location = req.params.postcode;
-
-                console.log("I make it here!")
-                
-                if (location === undefined) {
-                    var query = "?" + services + service;
-
-                } else if (service === undefined) {
-                    var query = "?" + locations + location;
-
-                } else {
-                    var query = "?" + locations + location + 
-                        "&" + services + service;
-
-                }
-
-                return cb(null, url.recyclingApi + query, { "Accept": "application/json" });            
         },
         localMapper: function localInfoMapper (req, cb) {
             var uprn = req.params.uprn;
