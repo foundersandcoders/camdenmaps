@@ -8,7 +8,9 @@
     "use strict";
 
     //Module for converting XML to JSON
-    var xml = require("../lib/xml-parser.js");
+    // var xml = require("../lib/xml-parser.js");
+    var xml2js = require('xml2js');
+    var parser = new xml2js.Parser();
 
     module.exports = {
 
@@ -17,7 +19,7 @@
             host: "0.0.0.0",
             port: "8080"
         },
-     
+
         //Mapping for query params and camden API
         map: {
             url: {
@@ -32,24 +34,28 @@
 
         //Function for responding JSON to client
         convertToXml: function convertToXml (err, res, req, rep) {
-            var parser = xml.parse(res);
+            // var parser = xml.parse(res);
+            var xml = '';
             var response = {};
             response.properties = [];
-            
-            parser.each("AddressSearchResults", function (match) {
-               response.location = match.attributes; 
-            });
-           
-            parser.each("Property", function (match) {
-                var formatProperty = match.attributes;
-                formatProperty.display = match.$children[0].attributes
-                response.properties.push(formatProperty);
-            });
-            
-            parser.on("end", function () {
+
+            res.on('data', function(data){
+              xml = xml + data;
+            }).on('end', function(){
+              parser.parseString(xml, function (err, result) {
+                // console.log(result);
+                response.location = result.Locations.AddressSearchResults[0]['$'];
+                result.Locations.Properties[0].Property.map(function(p) {
+                  var formatProperty = p['$'];
+                  formatProperty.display = p.PoI[0]['$']
+                  response.properties.push(formatProperty);
+                });
+
                 rep(response);
+              });
             });
-        } 
-    };
+            // });
+        }
+    }
 
 }());
