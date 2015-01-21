@@ -36,7 +36,16 @@
                 handler: {
                     proxy: {
                         mapUri: MapConfig.nearestMapper,
-                        onResponse: Config.convertToXml
+                        onResponse: Config.convertToXml,
+
+                    }
+                }
+            },
+            parkingServicesAndLocations: {
+                handler: {
+                    proxy: {
+                        mapUri: MapConfig.parkingMapper,
+                        onResponse: Config.convertToXmlagain
                     }
                 }
             }

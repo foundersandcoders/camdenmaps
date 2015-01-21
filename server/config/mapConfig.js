@@ -8,7 +8,7 @@
 //  Factorize this into one repeatable function, this isn't DRY
 //
 //**********************************************
-(function () {
+;(function () {
     "use strict";
 
     var Config = require("./serverConfig.js"),
@@ -19,22 +19,45 @@
 
     module.exports = {
 
-        nearestMapper: function nearestMapper (req, cb) {
+        nearestMapper: function nearestMapper (req, cb, err) {
+            var service = req.params.service,
+                location = req.params.postcode;
+                
+                if (location === undefined) {
+                    var query = "?" + services + service;
+
+                } else if (service === undefined) {
+                    var query = "?" + locations + location;
+
+                } else {
+                    var query = "?" + locations + location + 
+                        "&" + services + service;
+
+                }
+                
+
+                return cb(null, url.nearestApi + query, { "Accept": "application/json" });
+            
+        },
+        parkingMapper: function parkingMapper (req, cb) {
             var service = req.params.service,
                 location = req.params.postcode;
 
-            if (location === undefined) {
-                var query = "?" + services + service;
+                console.log("I make it here!")
+                
+                if (location === undefined) {
+                    var query = "?" + services + service;
 
-            } else if (service === undefined) {
-                var query = "?" + locations + location;
+                } else if (service === undefined) {
+                    var query = "?" + locations + location;
 
-            } else {
-                var query = "?" + locations + location + 
-                    "&" + services + service;
+                } else {
+                    var query = "?" + locations + location + 
+                        "&" + services + service;
 
-            }
-            return cb(null, url.nearestApi + query, { "Accept": "application/json" });
+                }
+
+                return cb(null, url.parkingApi + query, { "Accept": "application/json" });            
         },
         localMapper: function localInfoMapper (req, cb) {
             var uprn = req.params.uprn;
