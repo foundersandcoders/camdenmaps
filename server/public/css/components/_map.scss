@@ -3,12 +3,6 @@
 }
 #map {
 	height: 100%;
-	leaflet {
-		height: 100%;
-	}
-	div {
-		height: 100%;
-	}
 	.leaflet-control-attribution.leaflet-control{
 		height: 0;
 		top: 95%;
@@ -19,7 +13,11 @@
 	.leaflet-control-zoom.leaflet-bar.leaflet-control {
 		height: 0;
 	}
-	.leaflet-popup-content.ng-scope, .leaflet-popup-content-wrapper{
+	.leaflet-popup-content.ng-scope, .leaflet-popup-content-wrapper {
 		height: auto;
 	}
+	.angular-leaflet-map.ng-isolate-scope.leaflet-container.leaflet-fade-anim {
+		height: 100%;
+	}
 }
+

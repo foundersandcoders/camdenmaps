@@ -36,10 +36,10 @@
                     $scope.addMarkers();
                 });
 
-
+                //NOTE if create single function (other one in location controller) you will need to check if location marker "m0" is present
             $scope.$on('leafletDirectiveMarker.click', function(e, args) {
                 // Args will contain the marker name and other relevant information      
-                console.log("search args", args);
+
                 if($scope.address) {
                     var path = "/home/" + $stateParams.service + "/location/" + $scope.address + "/" + $scope.markers[args.markerName].name;
                 } else {

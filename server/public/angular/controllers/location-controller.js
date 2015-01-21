@@ -18,7 +18,6 @@
 
             $scope.$on('leafletDirectiveMarker.click', function(e, args) {
                 // Args will contain the marker name and other relevant information           
-                console.log("location args", args.markerName);
                 if (args.markerName === "m0") {
                     var path = "/home/" + $stateParams.service + "/location/" + $scope.address;
                     $location.path(path);
