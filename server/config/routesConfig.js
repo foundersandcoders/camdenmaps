@@ -40,22 +40,6 @@
 
                     }
                 }
-            },
-            parkingServicesAndLocations: {
-                handler: {
-                    proxy: {
-                        mapUri: MapConfig.parkingMapper,
-                        onResponse: ConvertXml.convertToJsonAgain
-                    }
-                }
-            },
-            recyclingServicesAndLocations: {
-                handler: {
-                    proxy: {
-                        mapUri: MapConfig.recyclingMapper,
-                        onResponse: ConvertXml.convertToJson
-                    }
-                }
             }
         },
         apiDocs: {
