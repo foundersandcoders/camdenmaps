@@ -5,7 +5,7 @@
     "description": "Investigate and explore the Camden maps API",
     "version": "1.0.0"
   },
-  "host": "0.0.0.0:8080/",
+  "host": "0.0.0.0:8080",
   "schemes": [
     "http",
     "https"
@@ -15,7 +15,7 @@
     "application/json"
   ],
   "paths": {
-    "services/{service}": {
+    "/services/{service}": {
       "get": {
         "summary": "services",
         "description": "The services endpoint returns a list of organisations that provide the Camden Council point of interest selected by the user. The response includes information about contact and location. \n",
@@ -25,7 +25,7 @@
             "in": "path",
             "description": "Camden Council run organisation",
             "required": true,
-            "type": "array"
+            "type": "string"
           }
         ],
         "tags": [
@@ -35,22 +35,19 @@
           "200": {
             "description": "An array of organisations that provide required service",
             "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Service"
-              }
+              "$ref": "Service"
             }
           },
           "default": {
             "description": "Unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": "Error"
             }
           }
         }
       }
     },
-    "locations/{postcode}": {
+    "/locations/{postcode}": {
       "get": {
         "summary": "Location of user",
         "description": "The Location endpoint returns information about laocation of Camden postcode selected by the user.\n",
@@ -60,8 +57,7 @@
             "in": "path",
             "description": "Camden postcode",
             "required": true,
-            "type": "string",
-            "format": "uuid"
+            "type": "string"
           }
         ],
         "tags": [
@@ -71,19 +67,19 @@
           "200": {
             "description": "An array containing information about location",
             "schema": {
-              "$ref": "#/definitions/AddressSearchResults"
+              "$ref": "Location"
             }
           },
           "default": {
             "description": "Unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": "Error"
             }
           }
         }
       }
     },
-    "services/{service}/locations/{postcode}": {
+    "/services/{service}/locations/{postcode}": {
       "get": {
         "summary": "Selected service near specified postcode",
         "description": "The Endpoint will return a list similar to that of services, but this endpoint will return the information in relation to a Camden postcode specified by the user.\n",
@@ -111,13 +107,13 @@
           "200": {
             "description": "An array of selected service information",
             "schema": {
-              "$ref": "#/definitions/AddressAndService"
+              "$ref": "Service"
             }
           },
           "default": {
             "description": "Unexpected error",
             "schema": {
-              "$ref": "#/definitions/Error"
+              "$ref": "Error"
             }
           }
         }
@@ -127,36 +123,59 @@
   "definitions": {
     "Service": {
       "properties": {
-        "Name": {
+        "LocationID": {
           "type": "string"
         },
-        "Type": {
+        "BuildingName": {
           "type": "string"
         },
-        "Telephone": {
+        "StreetNum": {
           "type": "string"
         },
-        "OpeningHours": {
+        "Street": {
           "type": "string"
         },
-        "URL": {
+        "PostCode": {
           "type": "string"
         },
-        "Source": {
+        "Longitude": {
           "type": "string"
+        },
+        "Latitude": {
+          "type": "string"
+        },
+        "ViewLat": {
+          "type": "string"
+        },
+        "ViewLng": {
+          "type": "string"
+        },
+        "View": {
+          "type": "string"
+        },
+        "Distance": {
+          "type": "string"
+        },
+        "display": {
+          "type": "object"
         }
       }
     },
-    "AddressSearchResults": {
+    "Location": {
       "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
+        "Area": {
           "type": "string"
         },
-        "fields": {
+        "East": {
+          "type": "string"
+        },
+        "North": {
+          "type": "string"
+        },
+        "Longitude": {
+          "type": "string"
+        },
+        "Latitude": {
           "type": "string"
         }
       }
