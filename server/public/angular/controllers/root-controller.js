@@ -54,7 +54,7 @@
                     lat: 51.535923,
                     lng: -0.139991
                 }
-            }
+            };
 
             angular.extend($scope, {
                 centre: {
@@ -66,8 +66,7 @@
                 defaults: {
                     scrollWheelZoom: false
                 },
-                markers: {},
-                paths: {}    
+                markers: {}  
             });
 
 
@@ -130,13 +129,12 @@
 
 
                     // this creates the marker objects to plot the locations on the map
-                    var markers = $scope.markers;
-
-                    
+                    var markers = $scope.markers;   
                     // this only runs if there isn't already a m1 markers
                     // this stops it recreating the whole object when the search location is added
-                    if(!$scope.markers.m1) {
-                        for (var i = 0; i<Object.size(root); i++) {
+                    if(!$scope.markers.m5) {
+                        // var x will save time as the loop does not have to look up the length each time
+                        for (var i = 0, resultLength = Object.size(root); i<resultLength; i++) {
                             // var property = root[i]["display"]["Name"];
                             var property = "m" + (i+1);
                            
@@ -149,26 +147,18 @@
                         console.log('creating object');
                     }
 
-                    var paths = $scope.paths;
                     // only runs when a search address has been entered
-                    var coords = {
-                            lat: Number($scope.locationSelected.Latitude),
-                            lng: Number($scope.locationSelected.Longitude),    
-                    };
-
                     if($scope.locationSelected.Area) {
-                        paths.circle = {};
-                        paths.circle.type = "circleMarker";
-                        paths.circle.radius = 5;
-                        paths.circle.latlngs = coords;
-                        // paths.circle.message = "Searching near " + $scope.locationSelected.Area.toUpperCase();
-                        // // paths.circle.focus = true;
-                        
-
+                        markers.m0 = {
+                            lat: Number($scope.locationSelected.Latitude),
+                            lng: Number($scope.locationSelected.Longitude),
+                            message: "Searching near " + $scope.locationSelected.Area.toUpperCase(),
+                            focus: true
+                        };
                     }
 
                     $scope.updateMarkers(markers);
-                    $scope.updatePaths(paths);
+
 
                 };
 
