@@ -26,11 +26,6 @@
                 */
                 
 
-                // $scope.updateCentre({
-                //     lat: args.leafletEvent.latlng.lat,
-                //     lng: args.leafletEvent.latlng.lng,
-                //     zoom: 15
-                // });
                 
                 $scope.showDistance = $stateParams.address ? true : false; 
            
@@ -48,12 +43,19 @@
                         $scope.result = $scope.results.filter(function (result) {
                             return result.display.Name === $stateParams.id;
                         })[0];
-                        // $scope.highlightMarker($scope.result.Latitude, $scope.result.Longitude);
-                        $scope.updateCentre({
-                            lat: Number($scope.result.Latitude),
-                            lng: Number($scope.result.Longitude),
-                            zoom: 15
-                        });
+                        
+                        //if there is an active marker the list view was accessed
+                        //by marker click and map already recentred
+                        
+                        console.log("active marker", $scope.activeMarker);
+                        if(!$scope.activeMarker) {
+                            console.log("recentre in SINGLE-CONTROLLER");
+                            $scope.updateCentre({
+                                lat: Number($scope.result.Latitude),
+                                lng: Number($scope.result.Longitude),
+                                zoom: 15
+                            });
+                        }
 
 
                     });

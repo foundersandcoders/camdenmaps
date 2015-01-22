@@ -16,12 +16,11 @@
         "$http",
         function ($scope, $location, $stateParams, $http) {
 
-            var activeMarker; 
 
             // Args will contain the marker name and other relevant information   
             $scope.$on('leafletDirectiveMarker.click', function(e, args) {
                 //this will reset the colour for any marker currently selected        
-                if(activeMarker) { activeMarker.icon.iconUrl = "../img/icons/marker-hi.png"; }
+                if($scope.activeMarker) { $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png"; }
                 
                 //if the location marker if selected it will stay on the current view
                 if (args.markerName === "m0") {
@@ -31,7 +30,8 @@
                 //otherwise the single results page will be shown
                 else {
                     //sets active marker so it can be reset when user clicks elsewhere
-                    activeMarker = $scope.markers[args.markerName];
+                    $scope.activeMarker = $scope.markers[args.markerName];
+
                     //changes colour of marker selected
                     $scope.markers[args.markerName].icon.iconUrl = "../img/icons/yellow-marker.png";
                     
@@ -57,7 +57,8 @@
             // Args will contain the marker name and other relevant information 
             $scope.$on('leafletDirectiveMap.click', function(e, args) {
                 //the active marker will be reset to default icon      
-                activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
+                $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
+                $scope.activeMarker = 0;
 
                 //correct path will depend on if a location has been selected
                 var path = $stateParams.address ?  "/home/" + $stateParams.service + 

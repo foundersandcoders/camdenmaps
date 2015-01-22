@@ -28,6 +28,11 @@
 
             //************ MAP MANIPULATIONS ***************
 
+            //this will allow marker colour to change when it is highlighted
+            //in root as accessed by several controllers
+            $scope.activeMarker;
+
+
             var regions = {
                 camdenBorough: {
                     northEast: {
@@ -143,19 +148,6 @@
                 };
 
 
-                // $scope.highlightMarker = function highlightMarker(lat, lng) {
-                //     var markers = $scope.markers;
-                //     markers.m = {
-                //             lat: Number(lat),
-                //             lng: Number(lng),
-                //             icon: {
-                //                 iconUrl: "../img/icons/yellow-marker.png",
-                //                 iconSize: [28]
-                //             }
-                //         };
-                //     $scope.updateMarkers(markers);
-                        
-                // };
 
         }  
     ];
