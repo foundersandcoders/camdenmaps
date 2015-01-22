@@ -8,7 +8,6 @@
     "use strict";
     
 
-
     module.exports = {
 
         //Config for server host and port
@@ -16,7 +15,7 @@
             host: "0.0.0.0",
             port: "8080"
         },
-     
+
         //Mapping for query params and camden API
         map: {
             url: {
@@ -35,5 +34,6 @@
             }
         }
     };
+      
 
 }());
