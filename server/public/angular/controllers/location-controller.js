@@ -16,18 +16,16 @@
         "$http",
         function ($scope, $location, $stateParams, $http) {
 
+
             $scope.$on('leafletDirectiveMarker.click', function(e, args) {
                 // Args will contain the marker name and other relevant information           
                 if (args.markerName === "m0") {
                     var path = "/home/" + $stateParams.service + "/location/" + $scope.address;
                     $location.path(path);
-                    return; 
                 } else {
-                    if($scope.address) {
-                        var path = "/home/" + $stateParams.service + "/location/" + $scope.address + "/" + $scope.markers[args.markerName].name;
-                    } else {
-                        var path = "/home/" + $stateParams.service + "/search/" + $scope.markers[args.markerName].name;
-                    }
+                    var path = $stateParams.address ?  
+                        "/home/" + $stateParams.service + "/location/" + $stateParams.address + "/" + $scope.markers[args.markerName].name 
+                        : "/home/" + $stateParams.service + "/search/" + $scope.markers[args.markerName].name;
                     $location.path(path);
                     $scope.updateCentre({
                         lat: args.leafletEvent.latlng.lat,
@@ -38,13 +36,13 @@
 
             });
 
+
+
             $scope.$on('leafletDirectiveMap.click', function(e, args) {
                 // Args will contain the marker name and other relevant information       
-                if($scope.address) {
-                    var path = "/home/" + $stateParams.service + "/location/" + $scope.address;
-                } else { 
-                    var path = "/home/" + $stateParams.service + "/search"; 
-                }
+                var path = $stateParams.address ?  "/home/" + $stateParams.service + 
+                "/location/" + $stateParams.address : "/home/" + $stateParams.service + 
+                "/search";
                 $location.path(path);
             });
 

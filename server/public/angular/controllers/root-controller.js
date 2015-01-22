@@ -82,6 +82,10 @@
                 $scope.paths = newPaths;
             };
 
+            // $scope.update = function update (type, newType){
+            //     $scope.type = newType
+            // };
+
             Object.size = function(obj) {
                 var size = 0, key;
                 for (key in obj) {
@@ -95,38 +99,10 @@
                     var root = $scope.results;
                     //These propertes should be dot notation
 
-
-
                     // instead of two function, one obj with two methods?
-                    var lat = function lat(i){
-                        return Number($scope.results[i]["Latitude"]);
-                    }
-                    var lng = function lng(i) {
-                        return Number(root[i]["Longitude"]);
-                    }
-
-                    // var message = function message(i) {
-                    //     //this stops undefined being returned in message
-                    //     //will not return building name if same as display name
-                    //     var check = function(value, spacing) {
-                    //         if(value !== undefined && (value + "<br>") !== pointMessage) {
-                    //             pointMessage += (value + spacing);
-                    //         }
-                        
-                    // };
-
-                    //     var pointMessage = "";
- 
-                    //     check(root[i]["display"]["Name"] || root[i]["display"][0]["Name"], "<br>"); 
-                    //     check(root[i]["BuildingName"], "<br>");
-                    //     check(root[i]["StreetNum"], " ");
-                    //     check(root[i]["Street"], "<br>"); 
-                    //     check(root[i]["PostCode"], "<br>");
-                    //     check(root[i]["display"]["Telephone"], "");
-
-                    //     return pointMessage;
-                    // };
-
+                    var coord = function coord(i, coord){
+                        return Number($scope.results[i][coord]);
+                    };
 
                     // this creates the marker objects to plot the locations on the map
                     var markers = $scope.markers;   
@@ -136,20 +112,19 @@
                     if(!$scope.markers.m6) {
                         // var x will save time as the loop does not have to look up the length each time
                         for (var i = 0, resultLength = Object.size(root); i<resultLength; i++) {
-                            // var property = root[i]["display"]["Name"];
+
                             var property = "m" + (i+1);
                            
                             markers[property] = {};
                             markers[property].icon = {};
-                            markers[property].lat = lat(i);
-                            markers[property].lng = lng(i);
-                            // markers[property].message = message(i);
+                            markers[property].lat = coord(i, "Latitude");
+                            markers[property].lng = coord(i, "Longitude");
                             markers[property].name = $scope.results[i]["display"]["Name"];
                             markers[property].icon.iconUrl = "../img/icons/marker-hi.png";
                             markers[property].icon.iconSize = [28];
 
                         }
-                        console.log('creating object');
+                        console.log('creating marker object in root controller');
                     }
 
                     // only runs when a search address has been entered
@@ -162,7 +137,7 @@
                             popupOptions: {
                                 closeOnClick: false
                             },
-                            message: "searching near " + $scope.locationSelected.Area.toUpperCase(),
+                            message: $scope.locationSelected.Area.toUpperCase(),
                             icon: {
                                 iconUrl: "../img/icons/location-marker.png",
                                 iconSize: [28]

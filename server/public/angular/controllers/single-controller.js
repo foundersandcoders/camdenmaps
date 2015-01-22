@@ -30,11 +30,10 @@
                 if ($stateParams.address) {
                     var uri = "/services/" + $stateParams.service + "/locations/" + $stateParams.address;
                 } else {
-                    console.log("you");
+                    console.log("you too");
                     var uri = "/services/" + $stateParams.service; 
                 }
                
-                console.log("uri: ", uri);
 
                 $http.get(uri)
                     .success(function success (data) {
