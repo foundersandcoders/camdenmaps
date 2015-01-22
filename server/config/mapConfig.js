@@ -21,60 +21,30 @@
     module.exports = {
 
         nearestMapper: function nearestMapper (req, cb, err) {
-            var service = req.params.service,
-                location = req.params.postcode,
-                query;
+            var service, location, query, apiUrl;
+            service = req.params.service;
+            location = req.params.postcode;
 
-            if (serviceArray.parking.indexOf(service) !== -1 ) {
-                
-                
-                if (location === undefined) {
-                    query = "?" + services + service;
+            //TODO: green query is not the same, needs to be changed depending on service requested
 
-                } else if (service === undefined) {
-                    query = "?" + locations + location;
+            //api url routed based on service requested
+            apiUrl 
+                = (serviceArray.parking.indexOf(service) !== -1)    ? url.parkingApi
+                : (serviceArray.recycling.indexOf(service) !== -1)  ? url.recyclingApi
+                : url.nearestApi;
 
-                } else {
-                    query = "?" + locations + location + 
-                        "&" + services + service;
-
-                }
-
-
-                return cb(null, url.parkingApi + query, { "Accept": "application/json" });
+            //query constructed based on combination of services and/or address
+            if (location === undefined) {
+                query = "?" + services + service;
+            } else if (service === undefined) {
+                query = "?" + locations + location;
+            } else {
+                query = "?" + locations + location + 
+                    "&" + services + service;
             }
-            else if (serviceArray.recycling.indexOf(service) !== -1 ) {
-                
-                if (location === undefined) {
-                    query = "?" + services + service;
+ 
+            return cb(null, apiUrl + query, { "Accept": "application/json" });
 
-                } else if (service === undefined) {
-                    query = "?" + locations + location;
-
-                } else {
-                    query = "?" + locations + location + 
-                        "&" + services + service;
-
-                }
-
-
-                return cb(null, url.recyclingApi + query, { "Accept": "application/json" });    
-            }else {
-                if (location === undefined) {
-                    query = "?" + services + service;
-
-                } else if (service === undefined) {
-                    query = "?" + locations + location;
-
-                } else {
-                    query = "?" + locations + location + 
-                        "&" + services + service;
-
-                }
-
-
-                return cb(null, url.nearestApi + query, { "Accept": "application/json" }); 
-            }
         },
         localMapper: function localInfoMapper (req, cb) {
             var uprn = req.params.uprn;
