@@ -38,24 +38,24 @@
             method: "GET",
             path: "/services/{service}",
             config: RoutesConfig.nearest.services 
-    },
-    {
-        method: "GET",
-        path: "/locations/{postcode}",
-        config: RoutesConfig.nearest.locations 
-    },
-    {
-        method: "GET",
-        path: "/services/{service}/locations/{postcode}",
-        config: RoutesConfig.nearest.servicesAndLocations 
-    },
-    {
-        method: "GET",
-        path: "/api",
-        config: RoutesConfig.apiDocs
-    },
-    
-       
+        },
+        {
+            method: "GET",
+            path: "/locations/{postcode}",
+            config: RoutesConfig.nearest.locations 
+        },
+        {
+            method: "GET",
+            path: "/services/{service}/locations/{postcode}",
+            config: RoutesConfig.nearest.servicesAndLocations 
+        },
+        {
+            method: "GET",
+            path: "/api",
+            config: RoutesConfig.apiDocs
+        },
+        
+           
 
         //Local Information Routes *********************
 

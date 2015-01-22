@@ -1,13 +1,12 @@
-(function() { 
+;(function() { 
     "use strict";
     // module for converting XML to JSON 
     var xml = require("../lib/xml-parser.js");
-    var MapConfig = require
     //var routesConfig = require("../config/routesConfig.js");
 
     module.exports = {
         //Function for responding JSON to client
-        convertToJsonNearest: function convertToXml (err, res, req, rep, cb) {
+        convertToJson: function convertToXml (err, res, req, rep, cb) {
             
             var parser = xml.parse(res);
             var response = {};
