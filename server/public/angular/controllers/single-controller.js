@@ -24,7 +24,13 @@
                         $scope.results = data;
                     });
                 */
+                
 
+                // $scope.updateCentre({
+                //     lat: args.leafletEvent.latlng.lat,
+                //     lng: args.leafletEvent.latlng.lng,
+                //     zoom: 15
+                // });
                 
                 $scope.showDistance = $stateParams.address ? true : false; 
            
@@ -41,6 +47,12 @@
                         $scope.result = $scope.results.filter(function (result) {
                             return result.display.Name === $stateParams.id;
                         })[0];
+                        $scope.updateCentre({
+                            lat: Number($scope.result.Latitude),
+                            lng: Number($scope.result.Longitude),
+                            zoom: 15
+                        });
+
                     });
 
                  //selects item from results with matching {id}
