@@ -27,6 +27,7 @@
                         "/home/" + $stateParams.service + "/location/" + $stateParams.address + "/" + $scope.markers[args.markerName].name 
                         : "/home/" + $stateParams.service + "/search/" + $scope.markers[args.markerName].name;
                     $location.path(path);
+                    //as you click on markers the map recentres to place them in the centre
                     $scope.updateCentre({
                         lat: args.leafletEvent.latlng.lat,
                         lng: args.leafletEvent.latlng.lng,
@@ -35,7 +36,6 @@
                 } 
 
             });
-
 
 
             $scope.$on('leafletDirectiveMap.click', function(e, args) {
@@ -56,6 +56,7 @@
             //reloads $scope.results with new data based on address 
             $http.get("/services/" + $stateParams.service + "/locations/" + $stateParams.address)
                 .success(function success (data) {
+                    console.log("http get running in location LOCATION-CONTROLLER");
                     $scope.updateResults(data.properties);
                     $scope.updateLocationSelected(data.location);
                     $scope.addMarkers();

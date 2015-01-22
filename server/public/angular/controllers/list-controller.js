@@ -30,8 +30,7 @@
                     $location.path(path); 
                 };
             }
-
-/*
+/*  
             //add handler to results list
             (function addResultsHandlers (index){
                 if (index > $scope.results.length) {

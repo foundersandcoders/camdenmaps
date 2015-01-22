@@ -25,25 +25,24 @@
                     });
                 */
 
+                
                 $scope.showDistance = $stateParams.address ? true : false; 
            
-                if ($stateParams.address) {
-                    var uri = "/services/" + $stateParams.service + "/locations/" + $stateParams.address;
-                } else {
-                    console.log("you too");
-                    var uri = "/services/" + $stateParams.service; 
-                }
+                var uri = ($stateParams.address) ? "/services/" + $stateParams.service + "/locations/" + $stateParams.address
+               : "/services/" + $stateParams.service; 
+  
                
-
+               //this function throws up the error undefined is not a function
                 $http.get(uri)
                     .success(function success (data) {
                         $scope.updateResults(data.properties);
-                        $scope.updateLocation(data.location);
-                        //selects item from results with matching {id}
+                        $scope.updateLocationSelected(data.location);
+                        // selects item from results with matching {id}
                         $scope.result = $scope.results.filter(function (result) {
                             return result.display.Name === $stateParams.id;
                         })[0];
                     });
+
                  //selects item from results with matching {id}
                 $scope.result = $scope.results.filter(function (result) {
                     return result.display.Name === $stateParams.id;
