@@ -8,6 +8,17 @@
 	'../base/reset',
 	'../base/typography';
 
+#alpha-banner {
+	border-bottom: 0.1em solid black;
+	#alpha-sign {
+		background-color: $orange;
+		p {
+			text-align: center;
+			color: #fff;
+		}
+	} 
+}
+
 #first-level-options {
 	border-bottom: 0.1em solid black;
 	background-color: $light-blue;
