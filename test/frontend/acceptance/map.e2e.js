@@ -1,73 +1,73 @@
 /*************************************************
-*   Map E2E tests
+*   MAP E2E TESTS
 *   Description: Acceptance tests are written here
 *   Use: run tests by npm test
 **************************************************/
 
-// ALL PASSING!!
-// (function () {
-//     "use strict";
 
-//     describe("As a user, when I want to find a service, I want to see it on a map", function () {
+(function () {
+    "use strict";
 
-//     	describe("Given the page loads", function () {
-// 	        it ("the map renders", function () {
+    describe("As a user, when I want to find a service, I want to see it on a map", function () {
 
-// 	        	browser.get('#/home');
+    	describe("Given the page loads", function () {
+	        it ("the map renders", function () {
 
-// 	        	var leaflet = element(by.css('.leaflet-tile'));
+	        	browser.get('#/home');
 
-// 	            expect(leaflet.isPresent()).toBe(true);
-// 	        });
-// 	        it ("with no markers are on the map", function () {
+	        	var leaflet = element(by.css('.leaflet-tile'));
 
-// 	        	var leafletmarkers = element(by.css('.leaflet-marker-pane'));
+	            expect(leaflet.isPresent()).toBe(true);
+	        });
+	        it ("with no markers are on the map", function () {
 
-// 	            expect(leafletmarkers.isDisplayed()).toBe(false);
-// 	        });
-// 	    });
+	        	var leafletmarkers = element(by.css('.leaflet-marker-pane'));
 
-//     	describe("Given that a service is selected, ", function () {
-// 	        it("The markers load", function () {
+	            expect(leafletmarkers.isDisplayed()).toBe(false);
+	        });
+	    });
 
-// 	        	element(by.id('findYourNearest')).click();
-// 	            element(by.css('[ng-click="execute(item.handler)"]')).click();
-// 	            element(by.css('[ng-click="execute(item.handler)"]')).click();
+    	describe("Given that a service is selected, ", function () {
+	        it("The markers load", function () {
 
-// 	            var markerPane = element(by.css('.leaflet-marker-pane'));
+	        	element(by.id('findYourNearest')).click();
+	            element(by.css('[ng-click="execute(item.handler)"]')).click();
+	            element(by.css('[ng-click="execute(item.handler)"]')).click();
+
+	            var markerPane = element(by.css('.leaflet-marker-pane'));
 	            
-// 	        	expect(markerPane.isPresent()).toBe(true);
+	        	expect(markerPane.isPresent()).toBe(true);
 
-// 	        });
-// 	        it("with the correct number", function () {
+	        });
+	        it("with the correct number", function () {
 
-// 	        	var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
+	        	var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
 
-// 	        	expect(leafletmarkers.count()).toEqual(24);
-// 	        });
-// 	    });
+	        	expect(leafletmarkers.count()).toEqual(24);
+	        });
+	    });
 
-//         it("Given that a marker is selected, the result page loads", function () {
+        it("Given that a marker is selected, the result page loads", function () {
         	
-//         	element(by.css('img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-clickable')).click();
+        	element(by.css('img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-clickable')).click();
 
-//         	var resultPage = element(by.css('.result'));
+        	var resultPage = element(by.css('.result'));
 
-//         	expect(resultPage.isDisplayed()).toBe(true);
-//         });
+        	expect(resultPage.isDisplayed()).toBe(true);
+        });
 
-//         it("Given that a postcode is entered, a position marker appears", function () {
+        it("Given that a postcode is entered, a position marker appears", function () {
 
-//         	var postcodeInput = element(by.id('postcode-input')).element(by.tagName('input'));
+        	var postcodeInput = element(by.id('postcode-input')).element(by.tagName('input'));
 
-//             postcodeInput.sendKeys('NW1 0NE');
-//             element(by.css('[ng-click="search()"]')).click();
+            postcodeInput.sendKeys('NW1 0NE');
+            element(by.css('[ng-click="search()"]')).click();
 
-//             var positionMarker = element(by.css('path.leaflet-clickable'));
+            var positionMarker = element(by.css('path.leaflet-clickable'));
 
-//             expect(positionMarker.isPresent()).toBe(true);
-//         });
+            expect(positionMarker.isPresent()).toBe(true);
+        });
 
-//     });
+    });
 
-// }());
+}());
