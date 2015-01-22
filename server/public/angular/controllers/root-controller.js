@@ -146,8 +146,7 @@
                             // markers[property].message = message(i);
                             markers[property].name = $scope.results[i]["display"]["Name"];
                             markers[property].icon.iconUrl = "../img/icons/marker-hi.png";
-                            markers[property].icon.iconSize = [60, 50];
-                            markers[property].icon.iconAnchor = [15, 50];
+                            markers[property].icon.iconSize = [28];
 
                         }
                         console.log('creating object');
@@ -166,9 +165,7 @@
                             message: "searching near " + $scope.locationSelected.Area.toUpperCase(),
                             icon: {
                                 iconUrl: "../img/icons/location-marker.png",
-                                iconSize: [60, 50],
-                                iconAnchor: [15, 50],
-                                popupAnchor: [0, -52]
+                                iconSize: [28]
                             }
                         };
                     }
