@@ -14,7 +14,7 @@
 
     	 	browser.get('#/home/Lunch%20club/location/NW1%200NE/list');
 
-            element(by.css('.list-item')).click();
+            element.all(by.css('.list-item')).get(0).click();
 
             var result = element(by.css('.result'));
 
@@ -24,7 +24,7 @@
         describe("the information box is displayed, then it contains contains the information", function () {
         	it("Distance", function () {
 
-        		var distance = element(by.css(' [ng-show="showDistance"] '));
+        		var distance = element.all(by.css(' [ng-show="showDistance"] ')).get(0);
 
                 expect(distance.isDisplayed()).toBe(true);
 
@@ -32,7 +32,7 @@
 
             it("Name", function () {
 
-            	var name = element(by.tagName('h5'));
+            	var name = element.all(by.tagName('h5')).get(0);
 
                 expect(name.getText()).toBe('St Pancras Community Centre Lunch Club');
 
@@ -65,21 +65,16 @@
 	        });
         });
 
-        describe("if the travel icon is clicked, google is opened in a new tab or window.", function () {
+        // it("if the travel icon is clicked, google is opened in a new tab or window.", function () {
 
-	        it("if the phone icon is clicked on a mobile device, the number is dialled automatically.", function () {
+        // 	var travel = element.all(by.css('.contact img')).get(1);
 
-	        });
+        // 	travel.click();
 
-	        it("if the website icon is clicked, the service's website is opened in a new tab or window.", function () {
+        // 	var url = browser.getCurrentUrl();
 
-	        });
-
-	        it("if the travel icon is clicked, google is opened in a new tab or window.", function () {
-
-	        });
-	    });
-
+        // 	expect(url).toBe('google');
+        // });
     });
 
 }());
