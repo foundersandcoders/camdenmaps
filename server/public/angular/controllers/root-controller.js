@@ -145,8 +145,10 @@
                             markers[property].lng = lng(i);
                             // markers[property].message = message(i);
                             markers[property].name = $scope.results[i]["display"]["Name"];
-                            markers[property].icon.iconUrl = "../img/icons/markericon.png";
-                            markers[property].icon.iconSize = [42, 49];
+                            markers[property].icon.iconUrl = "../img/icons/marker-hi.png";
+                            markers[property].icon.iconSize = [60, 50];
+                            markers[property].icon.iconAnchor = [15, 50];
+
                         }
                         console.log('creating object');
                     }
@@ -156,12 +158,17 @@
                         markers.m0 = {
                             lat: Number($scope.locationSelected.Latitude),
                             lng: Number($scope.locationSelected.Longitude),
-                            // message: "Searching near " + $scope.locationSelected.Area.toUpperCase(),
-                            focus: true,
                             name: "location",
+                            focus: true,
+                            popupOptions: {
+                                closeOnClick: false
+                            },
+                            message: "searching near " + $scope.locationSelected.Area.toUpperCase(),
                             icon: {
-                                iconUrl: "../img/icons/locationpin2.png",
-                                // iconSize: [30, 30]
+                                iconUrl: "../img/icons/location-marker.png",
+                                iconSize: [60, 50],
+                                iconAnchor: [15, 50],
+                                popupAnchor: [0, -52]
                             }
                         };
                     }
