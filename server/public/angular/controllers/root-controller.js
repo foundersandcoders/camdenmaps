@@ -140,10 +140,13 @@
                             var property = "m" + (i+1);
                            
                             markers[property] = {};
+                            markers[property].icon = {};
                             markers[property].lat = lat(i);
                             markers[property].lng = lng(i);
                             // markers[property].message = message(i);
                             markers[property].name = $scope.results[i]["display"]["Name"];
+                            markers[property].icon.iconUrl = "../img/icons/markericon.png";
+                            markers[property].icon.iconSize = [42, 49];
                         }
                         console.log('creating object');
                     }
@@ -153,9 +156,13 @@
                         markers.m0 = {
                             lat: Number($scope.locationSelected.Latitude),
                             lng: Number($scope.locationSelected.Longitude),
-                            message: "Searching near " + $scope.locationSelected.Area.toUpperCase(),
+                            // message: "Searching near " + $scope.locationSelected.Area.toUpperCase(),
                             focus: true,
-                            name: "location"
+                            name: "location",
+                            icon: {
+                                iconUrl: "../img/icons/locationpin2.png",
+                                // iconSize: [30, 30]
+                            }
                         };
                     }
 
