@@ -36,7 +36,8 @@
            
                 var uri = ($stateParams.address) ? "/services/" + $stateParams.service + "/locations/" + $stateParams.address
                : "/services/" + $stateParams.service; 
-  
+    
+
                
                //this function throws up the error undefined is not a function
                 $http.get(uri)
@@ -47,11 +48,13 @@
                         $scope.result = $scope.results.filter(function (result) {
                             return result.display.Name === $stateParams.id;
                         })[0];
+                        // $scope.highlightMarker($scope.result.Latitude, $scope.result.Longitude);
                         $scope.updateCentre({
                             lat: Number($scope.result.Latitude),
                             lng: Number($scope.result.Longitude),
                             zoom: 15
                         });
+
 
                     });
 

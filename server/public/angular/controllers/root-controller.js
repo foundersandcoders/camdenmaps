@@ -49,13 +49,6 @@
                 }
             };
 
-            var circleCentre = {
-                a: {
-                    lat: 51.535923,
-                    lng: -0.139991
-                }
-            };
-
             angular.extend($scope, {
                 centre: {
                     lat: 51.535923,
@@ -147,8 +140,22 @@
 
                     $scope.updateMarkers(markers);
 
-
                 };
+
+
+                // $scope.highlightMarker = function highlightMarker(lat, lng) {
+                //     var markers = $scope.markers;
+                //     markers.m = {
+                //             lat: Number(lat),
+                //             lng: Number(lng),
+                //             icon: {
+                //                 iconUrl: "../img/icons/yellow-marker.png",
+                //                 iconSize: [28]
+                //             }
+                //         };
+                //     $scope.updateMarkers(markers);
+                        
+                // };
 
         }  
     ];

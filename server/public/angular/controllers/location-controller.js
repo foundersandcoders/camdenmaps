@@ -16,30 +16,50 @@
         "$http",
         function ($scope, $location, $stateParams, $http) {
 
+            var activeMarker; 
 
+            // Args will contain the marker name and other relevant information   
             $scope.$on('leafletDirectiveMarker.click', function(e, args) {
-                // Args will contain the marker name and other relevant information           
+                //this will reset the colour for any marker currently selected        
+                if(activeMarker) { activeMarker.icon.iconUrl = "../img/icons/marker-hi.png"; }
+                
+                //if the location marker if selected it will stay on the current view
                 if (args.markerName === "m0") {
                     var path = "/home/" + $stateParams.service + "/location/" + $scope.address;
                     $location.path(path);
-                } else {
-                    var path = $stateParams.address ?  
-                        "/home/" + $stateParams.service + "/location/" + $stateParams.address + "/" + $scope.markers[args.markerName].name 
-                        : "/home/" + $stateParams.service + "/search/" + $scope.markers[args.markerName].name;
-                    $location.path(path);
+                } 
+                //otherwise the single results page will be shown
+                else {
+                    //sets active marker so it can be reset when user clicks elsewhere
+                    activeMarker = $scope.markers[args.markerName];
+                    //changes colour of marker selected
+                    $scope.markers[args.markerName].icon.iconUrl = "../img/icons/yellow-marker.png";
+                    
                     //as you click on markers the map recentres to place them in the centre
                     $scope.updateCentre({
                         lat: args.leafletEvent.latlng.lat,
                         lng: args.leafletEvent.latlng.lng,
                         zoom: 15
                     });
+
+                    //correct path will depend on if a location has been entered
+                    var path = $stateParams.address ?  
+                        "/home/" + $stateParams.service + "/location/" + $stateParams.address + "/" + $scope.markers[args.markerName].name 
+                        : "/home/" + $stateParams.service + "/search/" + $scope.markers[args.markerName].name;
+                    $location.path(path);
+                    
+
                 } 
 
             });
 
 
+            // Args will contain the marker name and other relevant information 
             $scope.$on('leafletDirectiveMap.click', function(e, args) {
-                // Args will contain the marker name and other relevant information       
+                //the active marker will be reset to default icon      
+                activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
+
+                //correct path will depend on if a location has been selected
                 var path = $stateParams.address ?  "/home/" + $stateParams.service + 
                 "/location/" + $stateParams.address : "/home/" + $stateParams.service + 
                 "/search";
