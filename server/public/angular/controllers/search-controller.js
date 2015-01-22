@@ -28,7 +28,7 @@
                 var name = item.title + item.text;
                 return name.toLowerCase() === $stateParams.service.toLowerCase();
             })[0].img;
-            
+
             //populate results when response is received
             $http.get("/services/" + $stateParams.service)
                 .success(function success (data) {
