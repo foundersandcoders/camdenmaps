@@ -18,11 +18,16 @@
         locations = Config.map.query.location,
         exactLocations = Config.map.query.uprn;
 
+    //capitalize first letter of word (norm
+    function cap(word) {
+        return word[0].toUpperCase() + word.substring(1, word.length).toLowerCase();
+    }
+
     module.exports = {
 
         nearestMapper: function nearestMapper (req, cb, err) {
             var service, location, query, apiUrl;
-            service = req.params.service;
+            service = cap(req.params.service);
             location = req.params.postcode;
 
             //TODO: green query is not the same, needs to be changed depending on service requested
