@@ -12,7 +12,6 @@
         "$location", 
         function ($scope, $stateParams, $location) {
 
-
             //change baseurl depending on whether address-found or address-search 
             $scope.baseUrl = $stateParams.address ?  "/#/home/" + $stateParams.service + 
                 "/location/" + $stateParams.address + "/" : "/#/home/" + $stateParams.service + 
@@ -30,8 +29,7 @@
                     $location.path(path); 
                 };
             }
-
-/*
+/*  
             //add handler to results list
             (function addResultsHandlers (index){
                 if (index > $scope.results.length) {

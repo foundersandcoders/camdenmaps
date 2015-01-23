@@ -24,9 +24,9 @@
             <div ng-repeat="item in visibleItems" class="service col-xs-4 col-sm-3 col-sm-offset-1" >
                 <a ng-click="execute(item.handler)">    
                     <img ng-src="{{ item.img }}" alt="">
+                    <h4>{{ item.title }}</h4>
+                    <p class="hidden-xs">{{ item.text }}</p>
                 </a>
-                <h4>{{ item.title }}</h4>
-                <p class="hidden-xs">{{ item.text }}</p>
             </div>
         </div>
 
