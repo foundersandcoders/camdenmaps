@@ -30,7 +30,11 @@
 
             //this will allow marker colour to change when it is highlighted
             //in root as accessed by several controllers
-            $scope.activeMarker;
+            $scope.activeMarker = 0;
+            //update active marker
+            $scope.updateActiveMarker = function (newActiveMarker) {
+                $scope.activeMarker = newActiveMarker;
+            };
 
 
             var regions = {
@@ -64,7 +68,8 @@
                 defaults: {
                     scrollWheelZoom: false
                 },
-                markers: {}  
+                markers: {},
+                path: {},
             });
 
 
@@ -81,7 +86,7 @@
             };
 
             // $scope.update = function update (type, newType){
-            //     $scope.type = newType
+            //     $scope[type] = newType
             // };
 
             Object.size = function(obj) {
@@ -104,6 +109,9 @@
 
                     // this creates the marker objects to plot the locations on the map
                     var markers = $scope.markers;   
+                    
+                    //this is declared here to prevent it being declared every time the loop runs
+                    var property;
 
                     // this stops it recreating the whole object when the search location is added
                     // but it will run if there are only 5 markers and re-populate near search result
@@ -111,7 +119,7 @@
                         // var x will save time as the loop does not have to look up the length each time
                         for (var i = 0, resultLength = Object.size(root); i<resultLength; i++) {
 
-                            var property = "m" + (i+1);
+                            property = "m" + (i+1);
                            
                             markers[property] = {};
                             markers[property].icon = {};
@@ -122,7 +130,7 @@
                             markers[property].icon.iconSize = [28];
 
                         }
-                        console.log('creating marker object in root controller');
+                        
                     }
 
                     // only runs when a search address has been entered

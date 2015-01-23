@@ -16,6 +16,8 @@
         "$http",
         function ($scope, $location, $stateParams, $http) {
 
+        var path,
+            destination;
 
             // Args will contain the marker name and other relevant information   
             $scope.$on('leafletDirectiveMarker.click', function(e, args) {
@@ -24,7 +26,7 @@
                 
                 //if the location marker if selected it will stay on the current view
                 if (args.markerName === "m0") {
-                    var path = "/home/" + $stateParams.service + "/location/" + $scope.address;
+                    path = "/home/" + $stateParams.service + "/location/" + $scope.address;
                     $location.path(path);
                 } 
                 //otherwise the single results page will be shown
@@ -43,7 +45,7 @@
                     });
 
                     //correct path will depend on if a location has been entered
-                    var path = $stateParams.address ?  
+                    path = $stateParams.address ?  
                         "/home/" + $stateParams.service + "/location/" + $stateParams.address + "/" + $scope.markers[args.markerName].name 
                         : "/home/" + $stateParams.service + "/search/" + $scope.markers[args.markerName].name;
                     $location.path(path);
@@ -56,12 +58,14 @@
 
             // Args will contain the marker name and other relevant information 
             $scope.$on('leafletDirectiveMap.click', function(e, args) {
-                //the active marker will be reset to default icon      
-                $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
-                $scope.activeMarker = 0;
+                //if there is an active marker it will be reset to default icon      
+                if($scope.activeMarker) {
+                    $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
+                    $scope.updateActiveMarker(0);
+                }
 
-                //correct path will depend on if a location has been selected
-                var path = $stateParams.address ?  "/home/" + $stateParams.service + 
+                // correct path will depend on if a location has been selected
+                path = $stateParams.address ?  "/home/" + $stateParams.service + 
                 "/location/" + $stateParams.address : "/home/" + $stateParams.service + 
                 "/search";
                 $location.path(path);
@@ -104,14 +108,20 @@
             };
 
             $scope.listResults = function listResults () {       
-                var destination = "/home/"+$scope.service+"/location/"+$scope.address+"/list"; 
+                //clears the active marker
+                if($scope.activeMarker) {
+                    $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
+                    $scope.updateActiveMarker(0);
+                }
+
+                destination = "/home/"+$scope.service+"/location/"+$scope.address+"/list"; 
                 $location.path(destination);
             };
 
             //button to exit list view
             $scope.exit = function exit () {
                 var current = $location.path();
-                var destination = current.substring(0, current.indexOf("/list"));
+                destination = current.substring(0, current.indexOf("/list"));
                 $location.path(destination);
             };
 

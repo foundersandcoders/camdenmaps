@@ -92,7 +92,7 @@
                     }
                 }
               
-                var menu = require("../menu.json");
+                menu = require("../menu.json");
                 getCurrentCategory(currentPosition, numberOfItems);
                 getVisibleItems(currentIndex); 
                 
