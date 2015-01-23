@@ -8,19 +8,25 @@
 @import '../base/colours';
 
 
-
-
 .services-and-categories {
 	padding: 0;
 	border-bottom: 0.1em solid black;
 	background-color: $dark-grey;
 	color: $light-blue;
 	text-align: center;
+	height: 10em;
 	h2 {
 		margin: 0.7em 0em;
 		text-align: center;
 	}
 }
+
+@media (max-width: 768px) {
+	.services-and-categories {
+		height: 11em;
+	}
+}
+
 
 .arrow-up {
 	width: 0;
@@ -30,8 +36,18 @@
 	border-bottom: 2.5em solid $dark-grey;
 	position: absolute;
 	top: -1.7em;
-	left:50%;
+	left:53%;
 	margin-left:-32px;
+}
+
+@media (max-width: 768px) {
+	.arrow-up {
+		border-left: 1em solid transparent;
+		border-right: 1em solid transparent;
+		border-bottom: 1.3em solid $dark-grey;
+		top: -1.2em;
+		left: 74%;
+	}
 }
 
 #address-search {
@@ -87,9 +103,4 @@
 h2 {
 	text-align: left;
 	margin: 1em 0;
-}
-
-@media (max-device-width: 480px) {
-	#first-level-options {
-	}
 }
