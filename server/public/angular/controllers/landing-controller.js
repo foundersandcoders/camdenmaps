@@ -32,7 +32,7 @@
                 }
             ];
             
-
+            //this should be in a directive
             $scope.$watch( function toggleWords() {
                  var findYourNearest = $('#find-your-nearest');
 

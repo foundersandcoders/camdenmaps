@@ -101,7 +101,7 @@
     ]));
 
     //task for before pushing to master
-    gulp.task("master", ["browserify", "sass-production", "webdriver_update"], function () {
+    gulp.task("pre-travis", ["browserify", "sass-production", "webdriver_update", "acceptance-test"], function () {
         nodemon({ script: 'server/server.js'})
         .on('start', function () {
             return gulp.src(protractorTestFiles)
@@ -119,7 +119,7 @@
     });
 
     //task for travis
-    gulp.task("travis", ["node-expat", "webdriver_update"], function () {
+    gulp.task("travis", ["webdriver_update"], function () {
         nodemon({ script: 'server/server.js'})
         .on('start', function () {
             return gulp.src(protractorTestFiles)

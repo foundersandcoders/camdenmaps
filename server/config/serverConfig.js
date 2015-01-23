@@ -6,9 +6,7 @@
 ************************************************/
 ;(function () {
     "use strict";
-
-    //Module for converting XML to JSON
-    var xml = require("../lib/xml-parser.js");
+    
 
     module.exports = {
 
@@ -17,39 +15,25 @@
             host: "0.0.0.0",
             port: "8080"
         },
-     
+
         //Mapping for query params and camden API
         map: {
             url: {
-                nearestApi: "http://maps.camden.gov.uk/nearest/nearestrest.aspx"
+                nearestApi: "http://maps.camden.gov.uk/nearest/nearestrest.aspx",
+                parkingApi: "http://maps.camden.gov.uk/parkingbays/parkingbaysrest.aspx",
+                recyclingApi: "http://maps.camden.gov.uk/nearest/recyclingrest.aspx"
             },
             query: {
                 service: "find=",
                 location: "area=",
                 uprn: "uprn="
+            },
+            serviceArrays: {
+                parking:["Car club bay","Parking space", "Car park", "Car club", "Coach parking", "Disabled blue badge", "Disabled green badge", "Electric recharging point", "Loading bay", "Pay and display/meter", "Permit holders", "Solo motorcycles", "Bicycle stand"],
+                recycling: ["Batteries","Cardboard and Paper", "Clothing and Textiles", "Nappies", "Funiture", "Garden Waste", "Light bulbs", "Glass", "Clinical Waste", "Paint", "chemical and hazardous waste", "Household electronics/appliances", "Aluminium cans", "Vehicles", "Foil", "Scrap metal", "Spectacles", "Cooking oil", "Plastic", "Wood"]
             }
-        },
-
-        //Function for responding JSON to client
-        convertToXml: function convertToXml (err, res, req, rep) {
-            var parser = xml.parse(res);
-            var response = {};
-            response.properties = [];
-            
-            parser.each("AddressSearchResults", function (match) {
-               response.location = match.attributes; 
-            });
-           
-            parser.each("Property", function (match) {
-                var formatProperty = match.attributes;
-                formatProperty.display = match.$children[0].attributes
-                response.properties.push(formatProperty);
-            });
-            
-            parser.on("end", function () {
-                rep(response);
-            });
-        } 
+        }
     };
+      
 
 }());

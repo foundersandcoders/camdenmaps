@@ -5,6 +5,10 @@
 ;(function () {
     "use strict";
 
+    function stripText(word) {
+        return word.replace(/[^0-9" "]+/ig,"").replace(/\s+$/,'');
+    }
+
     module.exports = [
         "$scope",
         "$location",
@@ -15,9 +19,14 @@
             $scope.results = [];
             //stores entered location at root for access by leafletjs
             $scope.locationSelected = {};
-            
+           
+
             //functions to update results and location on root level 
             $scope.updateResults = function updateResults (newResults) {
+                var i;
+                for(i = 0; i < newResults.length; i += 1) {
+                    newResults[i].display.Telephone = stripText(newResults[i].display.Telephone);
+                }
                 $scope.results = newResults;
             };
 

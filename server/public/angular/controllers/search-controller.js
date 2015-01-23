@@ -28,7 +28,7 @@
                 var name = item.title + item.text;
                 return name.toLowerCase() === $stateParams.service.toLowerCase();
             })[0].img;
-            
+
             //populate results when response is received
             $http.get("/services/" + $stateParams.service)
                 .success(function success (data) {
@@ -39,7 +39,6 @@
 
             $scope.$on('leafletDirectiveMarker.click', function(e, args) {
                 // Args will contain the marker name and other relevant information      
-                console.log("search-controller");
                 if($scope.address) {
                     var path = "/home/" + $stateParams.service + "/location/" + $scope.address + "/" + $scope.markers[args.markerName].name;
                 } else {
