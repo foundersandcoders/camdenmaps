@@ -29,7 +29,7 @@
                 var name = item.title + item.text;
                 return name.toLowerCase() === $stateParams.service.toLowerCase();
             })[0].img;
-            
+
             var path,
                 destination;
 
@@ -41,7 +41,7 @@
                 });
 
                 //NOTE if create single function (other one in location controller) you will need to check if location marker "m0" is present
-            $scope.$on('leafletDirectiveMarker.click', function(e, args) {
+                $scope.$on('leafletDirectiveMarker.click', function(e, args) {
                 // Args will contain the marker name and other relevant information      
 
                 if($scope.activeMarker) {

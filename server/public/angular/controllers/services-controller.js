@@ -14,8 +14,7 @@
     module.exports = [
             "$scope",
             "$location",
-            "$http",
-            function ($scope, $location, $http) {
+            function ($scope, $location) {
          
 
                 //***************** Initialize menu and variables **************
@@ -135,16 +134,10 @@
                         $scope.page = currentIndex = parentIndex;
                     }
                 };
-               
                 //execute function to solve scoping issues with ng-repeat & ng-click
                 $scope.execute = function execute (fn) {
                     fn();
                 }; 
-
-               //********************* Menu styling functions ******************
-
-
-
 
             }
         ];
