@@ -17,7 +17,6 @@
         "$http",
         function ($scope, $stateParams, $location, $http) {
 
-            console.log("SEARCH-CONTROLLER");
             //model for search query
             $scope.address = "";
             //model for error messages
