@@ -12,8 +12,6 @@
             "$http",
             function ($stateParams, $scope, $http) {
 
-                console.log("SINGLE-CONTROLLER");
-
                 var uri,
                     marker;
 
