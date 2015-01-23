@@ -6,10 +6,7 @@
 ************************************************/
 ;(function () {
     "use strict";
-
-    //Module for converting XML to JSON
-    var xml2js = require('xml2js');
-    var parser = new xml2js.Parser();
+    
 
     module.exports = {
 
@@ -22,39 +19,21 @@
         //Mapping for query params and camden API
         map: {
             url: {
-                nearestApi: "http://maps.camden.gov.uk/nearest/nearestrest.aspx"
+                nearestApi: "http://maps.camden.gov.uk/nearest/nearestrest.aspx",
+                parkingApi: "http://maps.camden.gov.uk/parkingbays/parkingbaysrest.aspx",
+                recyclingApi: "http://maps.camden.gov.uk/nearest/recyclingrest.aspx"
             },
             query: {
                 service: "find=",
                 location: "area=",
                 uprn: "uprn="
+            },
+            serviceArrays: {
+                parking:["Car club bay","Parking space", "Car park", "Car club", "Coach parking", "Disabled blue badge", "Disabled green badge", "Electric recharging point", "Loading bay", "Pay and display/meter", "Permit holders", "Solo motorcycles", "Bicycle stand"],
+                recycling: ["Batteries","Cardboard and Paper", "Clothing and Textiles", "Nappies", "Funiture", "Garden Waste", "Light bulbs", "Glass", "Clinical Waste", "Paint", "chemical and hazardous waste", "Household electronics/appliances", "Aluminium cans", "Vehicles", "Foil", "Scrap metal", "Spectacles", "Cooking oil", "Plastic", "Wood"]
             }
-        },
-
-        //Function for responding JSON to client
-        convertToXml: function convertToXml (err, res, req, rep) {
-            // var parser = xml.parse(res);
-            var xml = '';
-            var response = {};
-            response.properties = [];
-
-            res.on('data', function(data){
-              xml = xml + data;
-            }).on('end', function(){
-              parser.parseString(xml, function (err, result) {
-                // console.log(result);
-                response.location = result.Locations.AddressSearchResults[0]['$'];
-                result.Locations.Properties[0].Property.map(function(p) {
-                  var formatProperty = p['$'];
-                  formatProperty.display = p.PoI[0]['$']
-                  response.properties.push(formatProperty);
-                });
-
-                rep(response);
-              });
-            });
-            // });
         }
-    }
+    };
+      
 
 }());
