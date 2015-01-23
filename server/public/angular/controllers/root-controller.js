@@ -176,7 +176,7 @@
                     geojson: {
                         data: data,
                         style: {
-                            fillcolor: "green",
+                            fillColor: "green",
                             weight: 2, 
                             opacity: 1,
                             color: 'white', 
