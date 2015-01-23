@@ -9,48 +9,181 @@
         describe = lab.experiment,
         it = lab.test,
         expect = require("code").expect,
-        options = {
-            method: "GET",
-            url: "/services/police%20station/locations/NW1%200JH"
-        };
+
+    /*************************************************
+    *   BASIC SERVER TESTS
+    *   Description: Acceptance tests are written here
+    *   Use: run tests by npm test
+    **************************************************/
 
 
-    describe("As a server, I want to call Where's my Nearest current API", function () {
+    describe("Given that server starts", function () {
 
-        describe("Given that server starts", function () {
+        it("then runs on port 8080", function (done) {
+            expect(server.info.port).to.equal(8080);
+            done();
+        });
 
-            it("then runs on port 8080", function (done) {
-                expect(server.info.port).to.equal(8080);
+        it("statusCode is 200 okay", function (done) {
+
+            server.inject(options, function(response) {
+                expect(response.statusCode).to.equal(200);
                 done();
             });
 
         });
 
-        describe("Given that server starts", function () {
+    });
 
-            it("statusCode is 200 okay", function (done) {
+    /*************************************************
+    *   NEAREST ENDPOINTS SERVER TESTS
+    *   Description: Acceptance tests are written here
+    *   Use: run tests by npm test
+    **************************************************/
+
+    describe("Given that a Nearest api call is made", function () {
+
+        it("then result for services is in the correct format", function (done) {
+
+            options = {
+                method: "GET",
+                url: "/services/police%20station"
+            };
+
+            server.inject(options, function(response) {
+                expect(response.payload).to.equal(fixtures.nearest.services);
+                done();
+            });
+
+        });
+
+        it("then result for locations is in the correct format", function (done) {
+            options = {
+                method: "GET",
+                url: "/locations/NW1%200JH"
+            };
+
+            server.inject(options, function(response) {
+                expect(response.payload).to.equal(fixtures.nearest.locations);
+                done();
+            });
+
+        });
+
+        it("then result for services and locations is in the correct format", function (done) {
+
+            options = {
+                method: "GET",
+                url: "/services/police%20station/locations/NW1%200JH"
+            };
+
+            server.inject(options, function(response) {
+                expect(response.payload).to.equal(fixtures.nearest.servicesLocations);
+                done();
+            });
+
+        });
+    });
+
+    /*************************************************
+    *   PARKING ENDPOINTS
+    *   Description: Acceptance tests are written here
+    *   Use: run tests by npm test
+    **************************************************/
+
+        describe("Given that a parking api call is made", function () {
+
+            it("then result for services is in the correct format", function (done) {
+
+                options = {
+                    method: "GET",
+                    url: "/services/police%20station"
+                };
 
                 server.inject(options, function(response) {
-                    expect(response.statusCode).to.equal(200);
+                    expect(response.payload).to.equal(fixtures.parking.services);
                     done();
                 });
 
             });
 
-        });
-
-        describe("Given that api call is made", function () {
-
-            it("then result is a json object", function (done) {
+            it("then result for locations is in the correct format", function (done) {
+                options = {
+                    method: "GET",
+                    url: "/locations/NW1%200JH"
+                };
 
                 server.inject(options, function(response) {
-                    expect(response.payload).to.equal(fixtures.json);
+                    expect(response.payload).to.equal(fixtures.parking.locations);
+                    done();
+                });
+
+            });
+
+            it("then result for services and locations is in the correct format", function (done) {
+
+                options = {
+                    method: "GET",
+                    url: "/services/police%20station/locations/NW1%200JH"
+                };
+
+                server.inject(options, function(response) {
+                    expect(response.payload).to.equal(fixtures.parking.servicesLocations);
                     done();
                 });
 
             });
         });
+        
+        /*************************************************
+    *   RECYCLING ENDPOINTS
+    *   Description: Acceptance tests are written here
+    *   Use: run tests by npm test
+    **************************************************/
 
+        describe("Given that a recycling api call is made", function () {
+
+            it("then result for services is in the correct format", function (done) {
+
+                options = {
+                    method: "GET",
+                    url: "/services/police%20station"
+                };
+
+                server.inject(options, function(response) {
+                    expect(response.payload).to.equal(fixtures.recycling.services);
+                    done();
+                });
+
+            });
+
+            it("then result for locations is in the correct format", function (done) {
+                options = {
+                    method: "GET",
+                    url: "/locations/NW1%200JH"
+                };
+
+                server.inject(options, function(response) {
+                    expect(response.payload).to.equal(fixtures.recycling.locations);
+                    done();
+                });
+
+            });
+
+            it("then result for services and locations is in the correct format", function (done) {
+
+                options = {
+                    method: "GET",
+                    url: "/services/police%20station/locations/NW1%200JH"
+                };
+
+                server.inject(options, function(response) {
+                    expect(response.payload).to.equal(fixtures.recycling.servicesLocations);
+                    done();
+                });
+
+            });
+        });
     });
 
 }());
