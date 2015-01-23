@@ -12,7 +12,6 @@
         sass = require("gulp-sass"),
         concat = require("gulp-concat"),
         uglify = require("gulp-uglify"),
-        ngAnnotate = require("gulp-ng-annotate"),
         sourcemaps = require("gulp-sourcemaps"),
         source = require("vinyl-source-stream"),
         buffer = require("vinyl-buffer"),
@@ -146,23 +145,7 @@
         return bundle();
     });
 
-    //below task not working properly.
-    gulp.task("watchify", function () {
-
-        var bundle = function() {
-            return watchify(browserify(angularFiles, watchify.args))
-                .bundle()
-                .pipe(source(getBundleName() + '.js'))
-                .pipe(buffer())
-                .pipe(sourcemaps.init({loadMaps: true}))
-                .pipe(uglify())
-                .pipe(sourcemaps.write('./'))
-                .pipe(gulp.dest('./server/public/js/'));
-        };
-        return bundle();
-    });
-
-    gulp.task("watchifytry", shell.task([
+    gulp.task("watchify", shell.task([
         "watchify ./server/public/angular/app.js -o ./server/public/js/1.0.0.camdenmaps.min.js -v"
     ]));
 
