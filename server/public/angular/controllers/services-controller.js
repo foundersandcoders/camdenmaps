@@ -24,7 +24,7 @@
                 //current index of visibleItems within currentCategory
                 var currentIndex = 0, 
                 //number of items visible in menu
-                    numberOfItems = 3,
+                    numberOfItems,
                 //current position in the menu
                     currentPosition = 0,
                 //all items in current category
@@ -40,9 +40,24 @@
 
                
                 //****************** Menu population functions ***************** 
+
+                function getWindowWidth () {
+
+                    if(window.innerWidth < 768) {
+                        return numberOfItems = 3;
+                    } else if((window.innerWidth < 1200) && (window.innerWidth >=768)) {
+                        return numberOfItems = 4;
+                    } else {
+                        return numberOfItems = 6;
+                    }
+
+                };
+
+                $scope.$watch(getWindowWidth());
+
                 
                 //makes visible numberOfItems items from current category
-                function getVisibleItems(index) {
+                function getVisibleItems (index) {
                     $scope.visibleItems = currentCategory[index];
                     $scope.lastPage = currentCategory.length-1;
                 }
@@ -63,7 +78,7 @@
                         getCurrentCategory(currentPosition, numberOfItems);
                         getVisibleItems(currentIndex);
                     }
-                }
+                });
                 
                 //adds click handler functions to menu items
                 function addClickHandler (item) {
