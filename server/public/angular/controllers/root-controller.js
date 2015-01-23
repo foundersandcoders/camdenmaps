@@ -5,6 +5,8 @@
 ;(function () {
     "use strict";
 
+    //var camden = require("../../../lib/camdenCordinates.js");
+
     function stripText(word) {
         return word.replace(/[^0-9" "]+/ig,"").replace(/\s+$/,'');
     }
@@ -13,7 +15,8 @@
         "$scope",
         "$location",
         "$stateParams",
-        function ($scope, $location, $stateParams) {
+        "$http",
+        function ($scope, $location, $stateParams, $http) {
             
             //stores results at root for access by all controllers
             $scope.results = [];
@@ -79,7 +82,9 @@
                     scrollWheelZoom: false
                 },
                 markers: {},
-                path: {},
+
+                paths: {},
+
             });
 
 
@@ -165,8 +170,24 @@
 
                 };
 
+            
+            $http.get('lib/camdenBorough.geo.json').success(function (data, status){
+                angular.extend($scope, {
+                    geojson: {
+                        data: data,
+                        style: {
+                            fillColor: "#E6E6E6",
+                            weight: 2, 
+                            opacity: 1,
+                            color: 'white', 
+                            dashArray: '3', 
+                            fillOpacity: 0.7
+                        }
+                    }
+                });
+            });  
 
+        }
 
-        }  
     ];
 }());
