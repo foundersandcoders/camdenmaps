@@ -5,9 +5,9 @@ info:
   version: "1.0.0"
 # the domain of the service
 host: 0.0.0.0:8080
+# host: 'camdenmaps.herokuapp.com'
 # array of all schemes that your API supports
 schemes:
-  - http
   - https
 basePath: /
 produces:
