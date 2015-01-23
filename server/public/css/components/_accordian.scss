@@ -14,22 +14,27 @@
 	background-color: $dark-grey;
 	color: $light-blue;
 	text-align: center;
-	height: 10em;
 	h2 {
 		margin: 0.7em 0em;
 		text-align: center;
 	}
 }
 
+#find-your-nearest { 
+	height: 10em;
+}
+
+
 @media (max-width: 768px) {
 	.services-and-categories {
-		height: 9.5em;
 		h2 {
 			margin: 0.3em 0em;
 		}
 	}
+	#find-your-nearest {
+		height: 9.5em;
+	}
 }
-
 
 .arrow-up {
 	width: 0;
