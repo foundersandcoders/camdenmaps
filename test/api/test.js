@@ -4,7 +4,6 @@
     var Lab = require("lab"),
         lab = exports.lab = Lab.script(),
         Fs = require('fs'),
-        faketoe = require("faketoe"),
         server = require("../../server/server.js"),
         fixtures = require("../fixtures/test-fixtures.js"),
         describe = lab.experiment,
