@@ -28,6 +28,7 @@
                     newResults[i].display.Telephone = stripText(newResults[i].display.Telephone);
                 }
                 $scope.results = newResults;
+                console.log($scope.results);
             };
 
             // some comments

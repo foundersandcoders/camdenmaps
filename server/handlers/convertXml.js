@@ -31,7 +31,25 @@
 
                 res.on("end", function() {
                     parser.parseString(xml, function(err, result) {
-                        rep(result);
+                        response.location = {};
+                        response.location.Latitude = result.Locations.$.Lat;
+                        response.location.Longitude = result.Locations.$.Lng;
+                        response.location.Area = result.Locations.$.postcode;
+                        response.properties = [];
+                        result.Locations.ParkingBay.map(function(p) {
+                            var formatProperty = {};
+                            formatProperty.Latitude = p.$.Lat;
+                            formatProperty.Longitude = p.$.Lng;
+                            formatProperty.Street = p.$.Street;
+                            formatProperty.display = {};
+                            formatProperty.display.Size = p.$.Size;
+                            formatProperty.display.OpeningHours = p.$.Time;
+                            formatProperty.display.Tariff = p.$.Tariff;
+                            formatProperty.display.Duration  = p.$.Duration;
+                            formatProperty.display.Type = p.$.Type;
+                            response.properties.push(formatProperty);
+                        });
+                        rep(response);
                     });  
                 });
             
