@@ -8,14 +8,13 @@
         fixtures = require("../fixtures/test-fixtures.js"),
         describe = lab.experiment,
         it = lab.test,
-        expect = require("code").expect,
+        expect = require("code").expect;
 
     /*************************************************
     *   BASIC SERVER TESTS
     *   Description: Acceptance tests are written here
     *   Use: run tests by npm test
     **************************************************/
-
 
     describe("Given that server starts", function () {
 
@@ -25,6 +24,11 @@
         });
 
         it("statusCode is 200 okay", function (done) {
+
+            var options = {
+                method: "GET",
+                url: "/services/police%20station"
+            };
 
             server.inject(options, function(response) {
                 expect(response.statusCode).to.equal(200);
@@ -45,9 +49,9 @@
 
         it("then result for services is in the correct format", function (done) {
 
-            options = {
+            var options = {
                 method: "GET",
-                url: "/services/police%20station"
+                url: "/services/library"
             };
 
             server.inject(options, function(response) {
@@ -57,22 +61,22 @@
 
         });
 
-        it("then result for locations is in the correct format", function (done) {
-            options = {
-                method: "GET",
-                url: "/locations/NW1%200JH"
-            };
+        // it("then result for locations is in the correct format", function (done) {
+        //     var options = {
+        //         method: "GET",
+        //         url: "/locations/NW1%200JH"
+        //     };
 
-            server.inject(options, function(response) {
-                expect(response.payload).to.equal(fixtures.nearest.locations);
-                done();
-            });
+        //     server.inject(options, function(response) {
+        //         expect(response.payload).to.equal(fixtures.nearest.locations);
+        //         done();
+        //     });
 
-        });
+        // });
 
         it("then result for services and locations is in the correct format", function (done) {
 
-            options = {
+            var options = {
                 method: "GET",
                 url: "/services/police%20station/locations/NW1%200JH"
             };
@@ -91,49 +95,49 @@
     *   Use: run tests by npm test
     **************************************************/
 
-        describe("Given that a parking api call is made", function () {
+    // describe("Given that a parking api call is made", function () {
 
-            it("then result for services is in the correct format", function (done) {
+    //     it("then result for services is in the correct format", function (done) {
 
-                options = {
-                    method: "GET",
-                    url: "/services/police%20station"
-                };
+    //         var options = {
+    //             method: "GET",
+    //             url: "/services/police%20station"
+    //         };
 
-                server.inject(options, function(response) {
-                    expect(response.payload).to.equal(fixtures.parking.services);
-                    done();
-                });
+    //         server.inject(options, function(response) {
+    //             expect(response.payload).to.equal(fixtures.parking.services);
+    //             done();
+    //         });
 
-            });
+    //     });
 
-            it("then result for locations is in the correct format", function (done) {
-                options = {
-                    method: "GET",
-                    url: "/locations/NW1%200JH"
-                };
+        // it("then result for locations is in the correct format", function (done) {
+        //     var options = {
+        //         method: "GET",
+        //         url: "/locations/NW1%200JH"
+        //     };
 
-                server.inject(options, function(response) {
-                    expect(response.payload).to.equal(fixtures.parking.locations);
-                    done();
-                });
+        //     server.inject(options, function(response) {
+        //         expect(response.payload).to.equal(fixtures.parking.locations);
+        //         done();
+        //     });
 
-            });
+        // });
 
-            it("then result for services and locations is in the correct format", function (done) {
+        // it("then result for services and locations is in the correct format", function (done) {
 
-                options = {
-                    method: "GET",
-                    url: "/services/police%20station/locations/NW1%200JH"
-                };
+        //     var options = {
+        //         method: "GET",
+        //         url: "/services/police%20station/locations/NW1%200JH"
+        //     };
 
-                server.inject(options, function(response) {
-                    expect(response.payload).to.equal(fixtures.parking.servicesLocations);
-                    done();
-                });
+        //     server.inject(options, function(response) {
+        //         expect(response.payload).to.equal(fixtures.parking.servicesLocations);
+        //         done();
+        //     });
 
-            });
-        });
+        // });
+    // });
         
         /*************************************************
     *   RECYCLING ENDPOINTS
@@ -141,49 +145,48 @@
     *   Use: run tests by npm test
     **************************************************/
 
-        describe("Given that a recycling api call is made", function () {
+    // describe("Given that a recycling api call is made", function () {
 
-            it("then result for services is in the correct format", function (done) {
+    //     it("then result for services is in the correct format", function (done) {
 
-                options = {
-                    method: "GET",
-                    url: "/services/police%20station"
-                };
+    //         var options = {
+    //             method: "GET",
+    //             url: "/services/police%20station"
+    //         };
 
-                server.inject(options, function(response) {
-                    expect(response.payload).to.equal(fixtures.recycling.services);
-                    done();
-                });
+    //         server.inject(options, function(response) {
+    //             expect(response.payload).to.equal(fixtures.recycling.services);
+    //             done();
+    //         });
 
-            });
+    //     });
 
-            it("then result for locations is in the correct format", function (done) {
-                options = {
-                    method: "GET",
-                    url: "/locations/NW1%200JH"
-                };
+        // it("then result for locations is in the correct format", function (done) {
+        //     var options = {
+        //         method: "GET",
+        //         url: "/locations/NW1%200JH"
+        //     };
 
-                server.inject(options, function(response) {
-                    expect(response.payload).to.equal(fixtures.recycling.locations);
-                    done();
-                });
+        //     server.inject(options, function(response) {
+        //         expect(response.payload).to.equal(fixtures.recycling.locations);
+        //         done();
+        //     });
 
-            });
+        // });
 
-            it("then result for services and locations is in the correct format", function (done) {
+        // it("then result for services and locations is in the correct format", function (done) {
 
-                options = {
-                    method: "GET",
-                    url: "/services/police%20station/locations/NW1%200JH"
-                };
+        //     var options = {
+        //         method: "GET",
+        //         url: "/services/police%20station/locations/NW1%200JH"
+        //     };
 
-                server.inject(options, function(response) {
-                    expect(response.payload).to.equal(fixtures.recycling.servicesLocations);
-                    done();
-                });
+        //     server.inject(options, function(response) {
+        //         expect(response.payload).to.equal(fixtures.recycling.servicesLocations);
+        //         done();
+        //     });
 
-            });
-        });
-    });
+        // });
+    // });
 
 }());

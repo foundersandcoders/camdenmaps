@@ -66,6 +66,11 @@
             .pipe(lab());
     });
 
+    //task for coverage lab test
+    gulp.task("server-test-coverage", shell.task([
+        "lab test/api/test.js -c"
+    ]));
+
     //task for linting
     gulp.task("lint", function () {
         return gulp.src(allFiles)
