@@ -12,6 +12,7 @@
         "$location", 
         function ($scope, $stateParams, $location) {
 
+
             //change baseurl depending on whether address-found or address-search 
             $scope.baseUrl = $stateParams.address ?  "/#/home/" + $stateParams.service + 
                 "/location/" + $stateParams.address + "/" : "/#/home/" + $stateParams.service + 

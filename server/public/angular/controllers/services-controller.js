@@ -63,9 +63,11 @@
                 }
                 
                 //handler that either redirects user or opens new category 
+                //use encode URI and decode URI
                 function clickHandler (item) {
                     if (item.type === "service") {
-                        var path = "/home/" + item.title + item.text + "/search";
+                        var service = encodeURIComponent(item.title + item.text);
+                        var path = "/home/" + service + "/search";
                         $location.path(path);
                     } else if (item.type === "category") {
                         //sets parentIndex so will return to page with parent category on
@@ -78,7 +80,7 @@
                         getCurrentCategory(currentPosition, numberOfItems);
                         getVisibleItems(currentIndex);
                     }
-                });
+                };
                 
                 //adds click handler functions to menu items
                 function addClickHandler (item) {
