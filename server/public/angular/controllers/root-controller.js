@@ -26,12 +26,13 @@
 
             //functions to update results and location on root level 
             $scope.updateResults = function updateResults (newResults) {
+                // console.log(n/ewResults[0].display);
                 var i;
                 for(i = 0; i < newResults.length; i += 1) {
-                    newResults[i].display.Telephone = stripText(newResults[i].display.Telephone);
+                    newResults[i].display.Telephone; //= stripText(newResults[i].display.Telephone);
                 }
                 $scope.results = newResults;
-                console.log($scope.results);
+                // console.log($scope.results);
             };
 
             // some comments
