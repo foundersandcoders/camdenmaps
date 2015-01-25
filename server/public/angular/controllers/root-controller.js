@@ -26,10 +26,11 @@
             $scope.updateResults = function updateResults (newResults) {
                 var i;
                 for(i = 0; i < newResults.length; i += 1) {
-                    newResults[i].display.Telephone = stripText(newResults[i].display.Telephone);
+                    if (newResults[i].display.hasOwnProperty("Telephone")) {
+                        newResults[i].display.Telephone = stripText(newResults[i].display.Telephone);
+                    }
                 }
                 $scope.results = newResults;
-                console.log($scope.results);
             };
 
             // some comments
