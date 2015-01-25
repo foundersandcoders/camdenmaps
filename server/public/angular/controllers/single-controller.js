@@ -25,11 +25,16 @@
                         $scope.results = data;
                     });
                 */
-                     
+                
+                // Ensuring that the service name in the URL is Encoded
+                $stateParams.service = encodeURIComponent($stateParams.service);
+
                 $scope.showDistance = $stateParams.address ? true : false; 
            
                 uri = ($stateParams.address) ? "/services/" + $stateParams.service + "/locations/" + $stateParams.address
                 : "/services/" + $stateParams.service; 
+
+
                 
                 //if there is an active marker the list view was accessed
                 //by marker click and map already recentred
