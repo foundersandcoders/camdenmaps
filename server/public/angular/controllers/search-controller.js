@@ -23,13 +23,11 @@
             $scope.error = "";
             //model for title
 
+            // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
-            $stateParams.service = encodeURIComponent($scope.service);
-            //DECODED URI
-            // console.log($scope.service);
 
-            //CODED
-            // console.log($stateParams.service);
+            // Ensuring that the service name in the URL is Encoded
+            $stateParams.service = encodeURIComponent($scope.service);
 
             //model for image icon
             $scope.icon = require("../menu.json").filter(function filterImg (item) {

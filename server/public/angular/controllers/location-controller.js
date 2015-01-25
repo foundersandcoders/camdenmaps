@@ -19,13 +19,11 @@
         var path,
             destination;
 
+            // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
-            $stateParams.service = encodeURIComponent($scope.service);
-            //DECODED URI
-            console.log($scope.service);
 
-            //CODED
-            console.log($stateParams.service);
+            // Ensuring that the service name in the URL is Encoded
+            $stateParams.service = encodeURIComponent($scope.service);
 
             // Args will contain the marker name and other relevant information   
             $scope.$on('leafletDirectiveMarker.click', function(e, args) {
