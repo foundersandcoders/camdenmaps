@@ -128,6 +128,11 @@
                 $location.path("home/" + $stateParams.service + "/search");
                 $scope.updateMarkers({});
                 $scope.updateLocationSelected({});
+                $scope.updateCentre({
+                        lat: 51.535923,
+                        lng: -0.139991,
+                        zoom: 14
+                    });
             }
 
             //button to exit list view
