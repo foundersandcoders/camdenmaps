@@ -65,6 +65,7 @@
 
                 res.on('end', function(){
                     parser.parseString(xml, function (err, result) {
+                        console.log(result);
                         response.location = result.Locations.AddressSearchResults[0]['$'];
                         result.Locations.Properties[0].Property.map(function(p) {
                             var formatProperty = p['$'];
