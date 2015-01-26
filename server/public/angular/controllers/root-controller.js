@@ -24,6 +24,8 @@
             $scope.results = [];
             //stores entered location at root for access by leafletjs
             $scope.locationSelected = {};
+            //this will allow marker colour to change when it is highlighted
+            $scope.activeMarker = 0;
             
             //functions to update results and location on root level 
             $scope.updateResults = function updateResults (newResults) {
@@ -36,9 +38,9 @@
                 $scope.results = newResults;
             };
 
-            // some comments
-            $scope.updateLocationSelected = function updateLocationSelected (newLocation) {
-                $scope.locationSelected = newLocation;
+            //used for updating centre, markers, active markers and location selected 
+            $scope.update = function update (type, newType){
+                $scope[type] = newType;
             };
 
             //************ MAP MANIPULATIONS ***************
@@ -80,36 +82,9 @@
                 }
 
             });
-
-            //this will allow marker colour to change when it is highlighted
-            //in root as accessed by several controllers
-            $scope.activeMarker = 0;
-            //update active marker
-            $scope.updateActiveMarker = function updateActiveMarker (newActiveMarker) {
-                $scope.activeMarker = newActiveMarker;
-            };
-
-            $scope.updateMarkers = function updateMarkers(newMarkers){
-                $scope.markers = newMarkers;
-            };
-
-            $scope.updateCentre = function updateCentre(newCentre){
-                $scope.centre = newCentre;
-            };
-
-            $scope.updatePaths = function updateCentre(newPaths){
-                $scope.paths = newPaths;
-            };
-
-            $scope.update = function update (type, newType){
-                $scope[type] = newType;
-            };
             
-            $scope.addMarkers = markers.addMarkers($scope.updateMarkers, $scope);
-
-
-
-            
+            $scope.addMarkers = markers.addMarkers($scope);
+          
 
         }
 

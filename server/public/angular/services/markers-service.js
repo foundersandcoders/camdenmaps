@@ -12,7 +12,7 @@
                 return size;
             };  
 
-			this.addMarkers = function (cb, scope) {
+			this.addMarkers = function (scope) {
 				return function () {
                     var root = scope.results,
                     // this creates the marker objects to plot the locations on the map
@@ -68,7 +68,7 @@
                         };
                     }
 
-                    cb(markers);
+                    scope.update("markers", markers);
 			};
 
 			};
