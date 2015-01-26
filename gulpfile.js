@@ -173,11 +173,8 @@
         return bundle();
     });
 
-<<<<<<< HEAD
     gulp.task("watchify", shell.task([
         "watchify ./server/public/angular/app.js -o ./server/public/js/1.0.0.camdenmaps.min.js -v"
     ]));
 
-=======
->>>>>>> 04850f85042773e9e0365337629cc0c9d32bf314
 }());
