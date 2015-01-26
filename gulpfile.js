@@ -123,7 +123,7 @@
     });
 
     //task for travis
-    gulp.task("travis", ["webdriver_update"], function () {
+    gulp.task("travis", ["webdriver_update", "browserify", "convertyaml", "sass-production"], function () {
         nodemon({ script: 'server/server.js'})
         .on('start', function () {
             return gulp.src(protractorTestFiles)
