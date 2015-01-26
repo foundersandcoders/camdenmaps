@@ -19,6 +19,12 @@
         var path,
             destination;
 
+            // Ensuring that the service that displays is decoded
+            $scope.service = decodeURI($stateParams.service);
+
+            // Ensuring that the service name in the URL is Encoded
+            $stateParams.service = encodeURIComponent($scope.service);
+
             // Args will contain the marker name and other relevant information   
             $scope.$on('leafletDirectiveMarker.click', function(e, args) {
                 //this will reset the colour for any marker currently selected        
@@ -75,12 +81,13 @@
             //model for image icon
             $scope.icon = require("../menu.json").filter(function filterImg (item) {
                 var name = item.title + item.text;
-                return name.toLowerCase() === $stateParams.service.toLowerCase();
+                return name.toLowerCase() === $scope.service.toLowerCase();
             })[0].img;
             
             //reloads $scope.results with new data based on address 
             $http.get("/services/" + $stateParams.service + "/locations/" + $stateParams.address)
                 .success(function success (data) {
+                    console.log(data);
                     console.log("http get running in location LOCATION-CONTROLLER");
                     $scope.updateResults(data.properties);
                     $scope.updateLocationSelected(data.location);
@@ -92,7 +99,6 @@
                     });
                 });
 
-            $scope.service = $stateParams.service;
             $scope.address = $stateParams.address.toUpperCase();
 
             $scope.searchAgain = function searchAgain () {
@@ -114,7 +120,7 @@
                     $scope.updateActiveMarker(0);
                 }
 
-                destination = "/home/"+$scope.service+"/location/"+$scope.address+"/list"; 
+                destination = "/home/"+$stateParams.service+"/location/"+$scope.address+"/list"; 
                 $location.path(destination);
             };
 
@@ -133,14 +139,6 @@
                 }
             };
 
-            //return icon url from menu.json
-            $http.get("menu.json")
-                .success(function success(menu) {
-                    $scope.iconUrl = menu.filter(function (item) {
-                        return item.title === $scope.service;
-                    })[0].img;
-                });
-                
         }
     ];
 }());

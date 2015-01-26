@@ -14,21 +14,23 @@
         "$location",
         "$stateParams",
         function ($scope, $location, $stateParams) {
-            
+           
+            //stores geo data for camden borough boundaries
+            var camdenBoundaries = require("../../lib/camdenBorough.geo.json");
             //stores results at root for access by all controllers
             $scope.results = [];
             //stores entered location at root for access by leafletjs
             $scope.locationSelected = {};
-           
-
+            
             //functions to update results and location on root level 
             $scope.updateResults = function updateResults (newResults) {
                 var i;
                 for(i = 0; i < newResults.length; i += 1) {
-                    newResults[i].display.Telephone = stripText(newResults[i].display.Telephone);
+                    if (newResults[i].display.hasOwnProperty("Telephone")) {
+                        newResults[i].display.Telephone = stripText(newResults[i].display.Telephone);
+                    }
                 }
                 $scope.results = newResults;
-                console.log($scope.results);
             };
 
             // some comments
@@ -45,7 +47,6 @@
             $scope.updateActiveMarker = function (newActiveMarker) {
                 $scope.activeMarker = newActiveMarker;
             };
-
 
             var regions = {
                 camdenBorough: {
@@ -79,7 +80,21 @@
                     scrollWheelZoom: false
                 },
                 markers: {},
-                path: {},
+
+                paths: {},
+
+                geojson: {
+                    data: camdenBoundaries,
+                    style: {
+                        fillColor: "#E6E6E6",
+                        weight: 2, 
+                        opacity: 1,
+                        color: 'white', 
+                        dashArray: '3', 
+                        fillOpacity: 0.6
+                    }
+                }
+
             });
 
 
@@ -165,8 +180,9 @@
 
                 };
 
+            
 
+        }
 
-        }  
     ];
 }());

@@ -22,11 +22,17 @@
             //model for error messages
             $scope.error = "";
             //model for title
-            $scope.service = $stateParams.service;
+
+            // Ensuring that the service that displays is decoded
+            $scope.service = decodeURI($stateParams.service);
+
+            // Ensuring that the service name in the URL is Encoded
+            $stateParams.service = encodeURIComponent($scope.service);
+
             //model for image icon
             $scope.icon = require("../menu.json").filter(function filterImg (item) {
                 var name = item.title + item.text;
-                return name.toLowerCase() === $stateParams.service.toLowerCase();
+                return name.toLowerCase() === $scope.service.toLowerCase();
             })[0].img;
 
             var path,
@@ -102,7 +108,7 @@
                     $scope.updateActiveMarker(0);
                 }  
 
-                destination = "/home/"+$scope.service+"/search/list"; 
+                destination = "/home/"+$stateParams.service+"/search/list"; 
                 $location.path(destination);
                 
             };
