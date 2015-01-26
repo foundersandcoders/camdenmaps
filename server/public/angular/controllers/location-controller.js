@@ -124,6 +124,12 @@
                 $location.path(destination);
             };
 
+            $scope.changeAddress = function changeAddress () {
+                $location.path("home/" + $stateParams.service + "/search");
+                $scope.updateMarkers({});
+                $scope.updateLocationSelected({});
+            }
+
             //button to exit list view
             $scope.exit = function exit () {
                 var current = $location.path();
