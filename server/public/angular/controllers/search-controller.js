@@ -53,7 +53,7 @@
 
             //redirects to next state when provided with address
             $scope.search = function search () {
-                if($scope.locationSelected) {
+                if($scope.address) {
                     path = "/home/" + $stateParams.service + "/location/" + $scope.address;
                     $location.path(path);
                 }

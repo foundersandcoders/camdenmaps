@@ -16,6 +16,8 @@
             this.markerClick = function(s) {
                 return function(e, args, scope) {
                 scope = scope || s;
+
+                console.log(args.markerName);
                 
                 // Args will contain the marker name and other relevant information      
                 if (args.markerName === "m0") {

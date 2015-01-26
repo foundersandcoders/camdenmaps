@@ -49,6 +49,22 @@
                         
                     }
 
+                    if(Object.size(markers) === 5) {
+                        console.log("five markers");
+
+                            markers.m0 = {
+                                lat: 51.53861,
+                                lng: -0.14205, 
+                                icon: {
+                                    iconUrl: "../img/icons/location-marker.png",
+                                    iconSize: [28]
+                                },
+                                focus: true,
+                                message: "5 nearest " + decodeURI($stateParams.service) + "s to NW1 0NE, <br> please enter an address for 5 results near that location."
+                            };
+
+                    }
+
                     // only runs when a search address has been entered and is valid
                     console.log(scope.locationSelected);
                     if(scope.locationSelected.Area) {
