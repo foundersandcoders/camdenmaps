@@ -16,8 +16,10 @@ var internals = {};
 //create server
 var server = new hapi.Server();
 
+server.connection.protocol === 'https';
 //add connection
 server.connection({
+    // protocol: "https",
     port: process.env.PORT || config.server.port,
     labels: ["api"],
     routes: {

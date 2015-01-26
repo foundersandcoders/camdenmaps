@@ -95,12 +95,35 @@
             .pipe(gulp.dest("./server/public/css/"));
     });
 
+
     gulp.task("sass-watch", function () {
         gulp.watch(sassFiles, ["sass-dev"]);
     });
 
+    gulp.task("node-expat", shell.task([
+        "npm install node-expat"
+    ]));
+
+    //task for before pushing to master
+    gulp.task("pre-travis", ["browserify", "convertyaml", "sass-production", "webdriver_update", "acceptance-test"], function () {
+        nodemon({ script: 'server/server.js'})
+        .on('start', function () {
+            return gulp.src(protractorTestFiles)
+                .pipe(protractor({
+                    configFile: "./test/frontend/config/protractor.conf.js"
+                }))
+                .on("error", function (err) {
+                    throw err;
+                })
+                .on('end', function () {
+                    process.exit();
+                });
+        });
+        
+    });
+
     //task for travis
-    gulp.task("travis", ["sass-production", "browserify"], function () {
+    gulp.task("travis", ["webdriver_update"], function () {
         nodemon({ script: 'server/server.js'})
         .on('start', function () {
             return gulp.src(protractorTestFiles)
@@ -150,8 +173,11 @@
         return bundle();
     });
 
+<<<<<<< HEAD
     gulp.task("watchify", shell.task([
         "watchify ./server/public/angular/app.js -o ./server/public/js/1.0.0.camdenmaps.min.js -v"
     ]));
 
+=======
+>>>>>>> 04850f85042773e9e0365337629cc0c9d32bf314
 }());
