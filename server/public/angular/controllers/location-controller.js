@@ -87,6 +87,7 @@
             //reloads $scope.results with new data based on address 
             $http.get("/services/" + $stateParams.service + "/locations/" + $stateParams.address)
                 .success(function success (data) {
+                    console.log(data);
                     console.log("http get running in location LOCATION-CONTROLLER");
                     $scope.updateResults(data.properties);
                     $scope.updateLocationSelected(data.location);
@@ -138,14 +139,6 @@
                 }
             };
 
-            //return icon url from menu.json
-            $http.get("menu.json")
-                .success(function success(menu) {
-                    $scope.iconUrl = menu.filter(function (item) {
-                        return item.title === $scope.service;
-                    })[0].img;
-                });
-                
         }
     ];
 }());
