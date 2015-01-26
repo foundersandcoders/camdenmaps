@@ -27,8 +27,7 @@
 
                     // this stops it recreating the whole object when the search location is added
                     // but it will run if there are only 5 markers and re-populate near search result
-                    if(!scope.markers.m6) {
-                        console.log("ROOT-CONTROLLER line 133");
+                    if(!scope.markers.m6 && scope.locationSelected) {
                         // var x will save time as the loop does not have to look up the length each time
                         var i, 
                         	resultLength = Object.size(root);

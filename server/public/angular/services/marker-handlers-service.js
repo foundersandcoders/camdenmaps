@@ -40,7 +40,9 @@
                 path    = scope.address ? "/home/" + $stateParams.service + "/location/" + scope.address + "/" + scope.markers[args.markerName].name
                         : "/home/" + $stateParams.service + "/search/" + scope.markers[args.markerName].name;
                 
-                $location.path(path);
+                if($location.path() !== path) {
+                    $location.path(path);
+                }
 
                 
                 scope.update("centre", {

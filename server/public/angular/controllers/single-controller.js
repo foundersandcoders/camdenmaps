@@ -9,8 +9,8 @@
     module.exports = [
             "$stateParams",
             "$scope",
-            "$http",
-            function ($stateParams, $scope, $http) {
+            "apiSearch",
+            function ($stateParams, $scope, apiSearch) {
 
                 var uri,
                     marker;
@@ -67,8 +67,8 @@
                 }
 
                //this function throws up the error undefined is not a function
-                if(!$scope.results || $scope.results.indexOf($scope.result) === -1 ) {
-                $http.get(uri)
+                if(!$scope.results || typeof $scope.result === undefined ) {
+                apiSearch.search($stateParams.service, $stateParams.address)
                     .success(function success (data) {
                         $scope.updateResults(data.properties);
                         $scope.update("locationSelected", data.location);

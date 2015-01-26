@@ -38,18 +38,21 @@
                 return name.toLowerCase() === $scope.service.toLowerCase();
             })[0].img;
             
-            //reloads $scope.results with new data based on address 
-            apiSearch.search($stateParams.service, $stateParams.address)
-                .success(function success (data) {
-                    $scope.updateResults(data.properties);
-                    $scope.update("locationSelected", data.location);
-                    $scope.addMarkers();
-                    $scope.update("centre", {
-                        lat: Number($scope.locationSelected.Latitude),
-                        lng: Number($scope.locationSelected.Longitude),
-                        zoom: 15
+            if(!$scope.locationSelected.hasOwnProperty("Area") ){
+                console.log("ifstatementlocationcontrolleraklsdjf");
+                //reloads $scope.results with new data based on address 
+                apiSearch.search($stateParams.service, $stateParams.address)
+                    .success(function success (data) {
+                        $scope.updateResults(data.properties);
+                        $scope.update("locationSelected", data.location);
+                        $scope.addMarkers();
+                        $scope.update("centre", {
+                            lat: Number($scope.locationSelected.Latitude),
+                            lng: Number($scope.locationSelected.Longitude),
+                            zoom: 15
+                        });
                     });
-                });
+            }
 
             $scope.address = $stateParams.address.toUpperCase();
 
