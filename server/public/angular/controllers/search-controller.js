@@ -15,7 +15,8 @@
         "$stateParams",
         "$location",
         "apiSearch",
-        function ($scope, $stateParams, $location, apiSearch) {
+        "markerHandlers",
+        function ($scope, $stateParams, $location, apiSearch, markerHandlers) {
 
             //model for search query
             $scope.address = "";
@@ -48,50 +49,10 @@
             // }
 
             //NOTE if create single function (other one in location controller) you will need to check if location marker "m0" is present
-            $scope.$on('leafletDirectiveMarker.click', function(e, args) {
-            // Args will contain the marker name and other relevant information      
-
-                //resets any existing highlighted marker 
-                if($scope.activeMarker) {
-                    $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
-                    $scope.update("activeMarker", 0);
-                }
-
-                //changes colour of marker selected
-                $scope.markers[args.markerName].icon.iconUrl = "../img/icons/yellow-marker.png";                    
-
-                //sets active marker so it can be reset when user clicks elsewhere
-                $scope.activeMarker = $scope.markers[args.markerName];
-                console.log("active marker SEARCH-CONTROLLER", $scope.activeMarker);
+            $scope.$on('leafletDirectiveMarker.click', markerHandlers.markerClick($scope));
 
 
-                path    = $scope.address ? "/home/" + $stateParams.service + "/location/" + $scope.address + "/" + $scope.markers[args.markerName].name
-                        : "/home/" + $stateParams.service + "/search/" + $scope.markers[args.markerName].name;
-                
-                $location.path(path);
-
-                
-                $scope.update("centre", {
-                    lat: args.leafletEvent.latlng.lat,
-                    lng: args.leafletEvent.latlng.lng,
-                    zoom: 15
-                });
-            });
-
-
-            $scope.$on('leafletDirectiveMap.click', function(e, args) {
-                // Args will contain the marker name and other relevant information       
-                
-                if($scope.activeMarker) {
-                    $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
-                    $scope.update("activeMarker", 0);
-                }
-
-                path    = $scope.address ? "/home/" + $stateParams.service + "/location/" + $scope.address
-                        : "/home/" + $stateParams.service + "/search";
-                    
-                $location.path(path);
-            });
+            $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
 
             //redirects to next state when provided with address
             $scope.search = function search () {

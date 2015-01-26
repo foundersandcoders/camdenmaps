@@ -16,14 +16,12 @@
             this.search = function search (service, address) {
                 //construct uri depending on arguments passed
                 var apiUrl = (service && !address) 
-                    ? "/service/" + service 
-                    : "/service/" + service + "/locations/" + address;
+                    ? "/services/" + service 
+                    : "/services/" + service + "/locations/" + address;
                          
                 //return http promise to be processed in controllers
-                return http({ method: "GET", url: apiUrl, cache: true })
-                    .then(function preprocess (response) {
-                        return response.data;
-                 });
+                return $http({ method: "GET", url: apiUrl, cache: true });
+
             };
         }
     ];
