@@ -37,11 +37,11 @@
                 } 
                 //otherwise the single results page will be shown
                 else {
+                    //changes colour of marker selected
+                    $scope.markers[args.markerName].icon.iconUrl = "../img/icons/yellow-marker.png";                    
+
                     //sets active marker so it can be reset when user clicks elsewhere
                     $scope.activeMarker = $scope.markers[args.markerName];
-
-                    //changes colour of marker selected
-                    $scope.markers[args.markerName].icon.iconUrl = "../img/icons/yellow-marker.png";
                     
                     //as you click on markers the map recentres to place them in the centre
                     $scope.updateCentre({
@@ -101,14 +101,14 @@
             $scope.address = $stateParams.address.toUpperCase();
 
             $scope.searchAgain = function searchAgain () {
-                $location.path("/home/services");
-                $scope.updateMarkers({});
+                $location.path("/home/services");                
                 $scope.updateLocationSelected({});
                 $scope.updateCentre({
                         lat: 51.535923,
                         lng: -0.139991,
                         zoom: 14
                     });
+                $scope.updateMarkers({});
 
             };
 
