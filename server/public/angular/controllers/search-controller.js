@@ -53,13 +53,10 @@
 
             //redirects to next state when provided with address
             $scope.search = function search () {
-                console.log("search controller OSARP", $scope.locationSelected);
-                if ($scope.locationSelected) {
+                if($scope.locationSelected) {
                     path = "/home/" + $stateParams.service + "/location/" + $scope.address;
                     $location.path(path);
-                } else {
-                    alert("New error for testing");
-                } 
+                }
             };
 
             $scope.searchAgain = buttonHandlers.searchAgain($scope);

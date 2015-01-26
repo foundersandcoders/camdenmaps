@@ -29,7 +29,10 @@
 
                     $location.path("/home/services"); 
 
-                    $timeout(function() { scope.update("markers", {}); console.log("timeout"); }, 2000);
+
+
+                    // better to have a watch functiont that triggers when markers changes??
+                    $timeout(function() { scope.update("markers", {}); console.log("timeout"); }, 1000);
                 };
             };
 

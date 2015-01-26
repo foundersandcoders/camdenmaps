@@ -50,7 +50,8 @@
                     }
 
                     // only runs when a search address has been entered and is valid
-                    if(scope.locationSelected.North) {
+                    console.log(scope.locationSelected);
+                    if(scope.locationSelected.Area) {
                         markers.m0 = {
                             lat: Number(scope.locationSelected.Latitude),
                             lng: Number(scope.locationSelected.Longitude),
