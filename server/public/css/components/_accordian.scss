@@ -80,11 +80,14 @@
 }
 
 #locations {
-	img {
-		width: 3em;
-		margin: 0 auto;
-		display: block;
-		padding-bottom: 0.5em;
+	a {
+		cursor: pointer;
+		img {
+			width: 3em;
+			margin: 0 auto;
+			display: block;
+			padding-bottom: 0.5em;
+		}
 	}
 }
 
