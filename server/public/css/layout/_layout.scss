@@ -26,16 +26,27 @@
 	border-bottom: 0.1em solid black;
 	background-color: $light-blue;
 	.icon {
-		margin: 0 auto 1em;
+		margin: 1em auto 1em;
 		display: block;
 		width: 5em;
 	}
-	#neighbourhood {
-		margin: 1.1em auto;
+	h1 {
+		margin-bottom: 0;
 	}
 	h4 {
 		text-align: center;
 		color: black;
 		margin: 0 0 1em;
+	}
+}
+@media (max-width: 768px) {
+	#first-level-options {
+		.icon {
+			width: 4em;
+			margin: 1em auto 0.5em;
+		}
+		.landing-options {
+			padding: 0;
+		}
 	}
 }

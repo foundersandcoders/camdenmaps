@@ -22,12 +22,21 @@
             //model for error messages
             $scope.error = "";
             //model for title
-            $scope.service = $stateParams.service;
+
+            // Ensuring that the service that displays is decoded
+            $scope.service = decodeURI($stateParams.service);
+
+            // Ensuring that the service name in the URL is Encoded
+            $stateParams.service = encodeURIComponent($scope.service);
+
             //model for image icon
             $scope.icon = require("../menu.json").filter(function filterImg (item) {
                 var name = item.title + item.text;
-                return name.toLowerCase() === $stateParams.service.toLowerCase();
+                return name.toLowerCase() === $scope.service.toLowerCase();
             })[0].img;
+
+            var path,
+                destination;
 
             //populate results when response is received
             $http.get("/services/" + $stateParams.service)
@@ -36,15 +45,20 @@
                     $scope.addMarkers();
                 });
 
-
-            $scope.$on('leafletDirectiveMarker.click', function(e, args) {
+                //NOTE if create single function (other one in location controller) you will need to check if location marker "m0" is present
+                $scope.$on('leafletDirectiveMarker.click', function(e, args) {
                 // Args will contain the marker name and other relevant information      
-                if($scope.address) {
-                    var path = "/home/" + $stateParams.service + "/location/" + $scope.address + "/" + $scope.markers[args.markerName].name;
-                } else {
-                    var path = "/home/" + $stateParams.service + "/search/" + $scope.markers[args.markerName].name;
+
+                if($scope.activeMarker) {
+                    $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
+                    $scope.updateActiveMarker(0);
                 }
+
+                path    = $scope.address ? "/home/" + $stateParams.service + "/location/" + $scope.address + "/" + $scope.markers[args.markerName].name
+                        : "/home/" + $stateParams.service + "/search/" + $scope.markers[args.markerName].name;
+                
                 $location.path(path);
+                
                 $scope.updateCentre({
                     lat: args.leafletEvent.latlng.lat,
                     lng: args.leafletEvent.latlng.lng,
@@ -55,18 +69,22 @@
 
             $scope.$on('leafletDirectiveMap.click', function(e, args) {
                 // Args will contain the marker name and other relevant information       
-                if($scope.address) {
-                    var path = "/home/" + $stateParams.service + "/location/" + $scope.address;
-                } else { 
-                    var path = "/home/" + $stateParams.service + "/search"; 
+                
+                if($scope.activeMarker) {
+                    $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
+                    $scope.updateActiveMarker(0);
                 }
+
+                path    = $scope.address ? "/home/" + $stateParams.service + "/location/" + $scope.address
+                        : "/home/" + $stateParams.service + "/search";
+                    
                 $location.path(path);
             });
 
             //redirects to next state when provided with address
             $scope.search = function search () {
                 if ($scope.address) {
-                    var path = "/home/" + $stateParams.service + "/location/" + $scope.address;
+                    path = "/home/" + $stateParams.service + "/location/" + $scope.address;
                     $location.path(path);
                 } else {
                     $scope.error = "Please enter an address";
@@ -85,14 +103,19 @@
             };
 
             $scope.listResults = function listResults () {
-                var destination = "/home/"+$scope.service+"/search/list"; 
+                if($scope.activeMarker) {
+                    $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
+                    $scope.updateActiveMarker(0);
+                }  
+
+                destination = "/home/"+$stateParams.service+"/search/list"; 
                 $location.path(destination);
                 
             };
 
             $scope.exit = function exit () {
                 var current = $location.path();
-                var destination = current.substring(0, current.indexOf("/list"));
+                destination = current.substring(0, current.indexOf("/list"));
                 $location.path(destination);
 
             };

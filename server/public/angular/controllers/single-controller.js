@@ -12,7 +12,8 @@
             "$http",
             function ($stateParams, $scope, $http) {
 
-                //var uri;
+                var uri,
+                    marker;
 
                 //TODO: Do some DATA CLEANING so data is standardized before it reaches us
 
@@ -24,31 +25,59 @@
                         $scope.results = data;
                     });
                 */
+                
+                // Ensuring that the service name in the URL is Encoded
+                $stateParams.service = encodeURIComponent($stateParams.service);
 
                 $scope.showDistance = $stateParams.address ? true : false; 
            
-                if ($stateParams.address) {
-                    var uri = "/services/" + $stateParams.service + "/locations/" + $stateParams.address;
-                } else {
-                    console.log("you");
-                    var uri = "/services/" + $stateParams.service; 
-                }
-               
-                console.log("uri: ", uri);
+                uri = ($stateParams.address) ? "/services/" + $stateParams.service + "/locations/" + $stateParams.address
+                : "/services/" + $stateParams.service; 
 
+
+                
+                //if there is an active marker the list view was accessed
+                //by marker click and map already recentred
+                function linkResultToMarker() {                         
+                        //links list result with relevant marker
+                        marker = "m" + ($scope.results.indexOf($scope.result) + 1);
+                        $scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
+                        $scope.updateActiveMarker($scope.markers[marker]);
+                        
+                        //recentres map on the list result selected
+                        $scope.updateCentre({
+                            lat: Number($scope.result.Latitude),
+                            lng: Number($scope.result.Longitude),
+                            zoom: 15
+                        });
+                    }
+                
+                //if single view accessed through list it will link to map
+                if($scope.results) { 
+                    //selects item from results with matching {id}
+                    $scope.result = $scope.results.filter(function (result) {
+                        return result.display.Name === $stateParams.id;
+                    })[0];
+                    if(!$scope.activeMarker && $scope.results.indexOf($scope.result) > -1) { 
+                        linkResultToMarker(); 
+                    } 
+                }
+
+               //this function throws up the error undefined is not a function
+                if(!$scope.results || $scope.results.indexOf($scope.result) === -1 ) {
                 $http.get(uri)
                     .success(function success (data) {
                         $scope.updateResults(data.properties);
-                        $scope.updateLocation(data.location);
-                        //selects item from results with matching {id}
+                        $scope.updateLocationSelected(data.location);
+                        // selects item from results with matching {id}
                         $scope.result = $scope.results.filter(function (result) {
                             return result.display.Name === $stateParams.id;
                         })[0];
+
+                        linkResultToMarker();
                     });
-                 //selects item from results with matching {id}
-                $scope.result = $scope.results.filter(function (result) {
-                    return result.display.Name === $stateParams.id;
-                })[0];
+
+                 }
 
             }
         ];
