@@ -45,10 +45,10 @@
                         marker = "m" + ($scope.results.indexOf($scope.result) + 1);
                         console.log("marker line 46 single-controller marker", marker);
                         $scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
-                        $scope.updateActiveMarker($scope.markers[marker]);
+                        $scope.update("activeMarker", $scope.markers[marker]);
                         
                         //recentres map on the list result selected
-                        $scope.updateCentre({
+                        $scope.update("centre", {
                             lat: Number($scope.result.Latitude),
                             lng: Number($scope.result.Longitude),
                             zoom: 15
@@ -71,7 +71,7 @@
                 $http.get(uri)
                     .success(function success (data) {
                         $scope.updateResults(data.properties);
-                        $scope.updateLocationSelected(data.location);
+                        $scope.update("locationSelected", data.location);
                         // selects item from results with matching {id}
                         $scope.result = $scope.results.filter(function (result) {
                             return result.display.Name === $stateParams.id;
