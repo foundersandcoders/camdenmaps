@@ -21,8 +21,8 @@
 						property, 
                     // instead of two function, one obj with two methods?
                     	coord = function coord(i, latlng){
-                        return Number(scope.results[i][latlng]);
-                    };
+                            return Number(scope.results[i][latlng]);
+                        };
         
 
                     // this stops it recreating the whole object when the search location is added
@@ -49,8 +49,8 @@
                     }
 
                     console.log("location", scope.locationSelected.Area);
-                    // only runs when a search address has been entered
-                    if(scope.locationSelected.Area) {
+                    // only runs when a search address has been entered and is valid
+                    if(scope.locationSelected.OSARP) {
                         markers.m0 = {
                             lat: Number(scope.locationSelected.Latitude),
                             lng: Number(scope.locationSelected.Longitude),

@@ -45,15 +45,21 @@
                         $scope.updateResults(data.properties);
                         $scope.update("locationSelected", data.location);
                         $scope.addMarkers();
-                        $scope.update("centre", {
+                        
+                        if (!data.location.hasOwnProperty("OSAPR")) {
+                            alert("Please enter a Camden street address or postcode");
+                        }
+                        else {
+                            console.log("else statement");
+                            $scope.update("centre", {
                             lat: Number($scope.locationSelected.Latitude),
                             lng: Number($scope.locationSelected.Longitude),
                             zoom: 15
-                        });
+                            });
+                        }
+
                     });
             }
-
-            if($stateParams.address) { console.log("address length", $stateParams.address.replace(/\s/g, "").length); }
 
             //this will uppercase postcodes and capitalise street addresses 
             $scope.address  = $stateParams.address.replace(/\s/g, "").length < 7
@@ -64,6 +70,8 @@
             $scope.searchAgain = buttonHandlers.searchAgain($scope);
 
             $scope.toggle = buttonHandlers.toggle($scope);
+
+
 
 
         }
