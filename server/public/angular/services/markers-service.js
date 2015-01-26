@@ -2,7 +2,8 @@
 	"use strict";
 
 	module.exports = [
-		function () {
+        "$stateParams",
+		function ($stateParams) {
 
 			Object.size = function(obj) {
                 var size = 0, key;
@@ -48,9 +49,9 @@
                         
                     }
 
-                    console.log("location", scope.locationSelected.Area);
                     // only runs when a search address has been entered and is valid
-                    if(scope.locationSelected.OSARP) {
+                    if(scope.locationSelected.North) {
+                        console.log(scope.address, "scope address");
                         markers.m0 = {
                             lat: Number(scope.locationSelected.Latitude),
                             lng: Number(scope.locationSelected.Longitude),
@@ -59,7 +60,9 @@
                             popupOptions: {
                                 closeOnClick: false
                              },
-                            message: scope.locationSelected.Area.toUpperCase(),
+                            message: ($stateParams.address.replace(/\s/g, "").length < 7
+                                    ? $stateParams.address.toUpperCase()
+                                    : $stateParams.address.replace(/\b./g, function(m){ return m.toUpperCase(); })),
                             icon: {
                                 iconUrl: "../img/icons/location-marker.png",
                                 iconSize: [28]

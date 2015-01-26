@@ -46,17 +46,16 @@
                         $scope.update("locationSelected", data.location);
                         $scope.addMarkers();
                         
-                        if (!data.location.hasOwnProperty("OSAPR")) {
-                            alert("Please enter a Camden street address or postcode");
-                        }
-                        else {
-                            console.log("else statement");
+                        //will only update if the address is valid
+                        //only valid addresses have a north property
+                        if(data.location.North) {
                             $scope.update("centre", {
                             lat: Number($scope.locationSelected.Latitude),
                             lng: Number($scope.locationSelected.Longitude),
                             zoom: 15
                             });
                         }
+                        
 
                     });
             }

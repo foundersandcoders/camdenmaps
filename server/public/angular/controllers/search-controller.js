@@ -40,28 +40,25 @@
             var path,
                 destination;
 
-            
             apiSearch.search($stateParams.service)
                     .success(function success (data) {
-                        console.log("SEARCH-CONTROLLER line 44 http get");
                         $scope.update("results", data.properties);
                         $scope.addMarkers();
                     });
             // }
 
-            //NOTE if create single function (other one in location controller) you will need to check if location marker "m0" is present
             $scope.$on('leafletDirectiveMarker.click', markerHandlers.markerClick($scope));
-
 
             $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
 
             //redirects to next state when provided with address
             $scope.search = function search () {
-                if ($scope.address) {
+                console.log("search controller OSARP", $scope.locationSelected);
+                if ($scope.locationSelected) {
                     path = "/home/" + $stateParams.service + "/location/" + $scope.address;
                     $location.path(path);
                 } else {
-                    $scope.error = "Please enter an address";
+                    alert("New error for testing");
                 } 
             };
 
