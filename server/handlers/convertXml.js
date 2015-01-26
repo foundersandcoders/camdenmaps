@@ -14,7 +14,7 @@
         //function for responding JSON to client
         convertToJson: function convertToJson (err, res, req, rep) {
             var xml, response;
-            xml = [];
+            xml = "";
             response = {};
 
             if (serviceArray.recycling.indexOf(req.params.service) > -1) {
@@ -22,7 +22,7 @@
                 rep(res);
             
             } else if (serviceArray.parking.indexOf(req.params.service) > -1) {
-                xml = " ";
+                xml = "";
                 response = {};
                 
                 res.on("data", function(data) {
