@@ -14,8 +14,8 @@
         "$scope",
         "$stateParams",
         "$location",
-        "$http",
-        function ($scope, $stateParams, $location, $http) {
+        "apiSearch",
+        function ($scope, $stateParams, $location, apiSearch) {
 
             //model for search query
             $scope.address = "";
@@ -38,10 +38,8 @@
             var path,
                 destination;
 
-            // if($scope.results === []) {
-                console.log("results SEARCH-CONTROLLER line 42", $scope.results);
-                //populate results when response is received
-                $http.get("/services/" + $stateParams.service)
+            
+            apiSearch.search($stateParams.service)
                     .success(function success (data) {
                         console.log("SEARCH-CONTROLLER line 44 http get");
                         $scope.update("results", data.properties);

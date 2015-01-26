@@ -8,7 +8,8 @@
 
     angular.module("maps")
 
-    	.service("markers", require("./markers-service.js"));
+    	.service("markers", require("./markers-service.js"))
+    	.service("apiSearch", require("./api-search-service.js"));
 
 
         // .service("apiSearch", require("./api-search.js"));
