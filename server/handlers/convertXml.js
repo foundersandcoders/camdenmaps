@@ -18,11 +18,21 @@
             response = {};
 
             if (serviceArray.recycling.indexOf(req.params.service) > -1) {
-            
-                rep(res);
-            
+                xml = "";
+                response = {};           
+
+                res.on("data", function(data) {
+                    xml = xml + data;
+                });
+
+                res.on("end", function() {
+                    parser.parseString(xml, function(err, result) {
+                        rep(result);
+                    });
+                });
+
             } else if (serviceArray.parking.indexOf(req.params.service) > -1) {
-                xml = " ";
+                xml = "";
                 response = {};
                 
                 res.on("data", function(data) {
@@ -65,6 +75,7 @@
 
                 res.on('end', function(){
                     parser.parseString(xml, function (err, result) {
+                        console.log(result);
                         response.location = result.Locations.AddressSearchResults[0]['$'];
                         result.Locations.Properties[0].Property.map(function(p) {
                             var formatProperty = p['$'];
