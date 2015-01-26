@@ -39,8 +39,11 @@
                 //if there is an active marker the list view was accessed
                 //by marker click and map already recentred
                 function linkResultToMarker() {                         
+                        console.log("linktoResult in SINGLE-CONTROLLER line 42")
+
                         //links list result with relevant marker
                         marker = "m" + ($scope.results.indexOf($scope.result) + 1);
+                        console.log("marker line 46 single-controller marker", marker);
                         $scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
                         $scope.updateActiveMarker($scope.markers[marker]);
                         
@@ -74,7 +77,10 @@
                             return result.display.Name === $stateParams.id;
                         })[0];
 
-                        linkResultToMarker();
+                        if($stateParams.id) {
+                            linkResultToMarker(); 
+                        }
+
                     });
 
                  }

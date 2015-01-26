@@ -41,6 +41,7 @@
             //populate results when response is received
             $http.get("/services/" + $stateParams.service)
                 .success(function success (data) {
+                    console.log("SEARCH-CONTROLLER line 44 http get");
                     $scope.updateResults(data.properties);
                     $scope.addMarkers();
                 });
@@ -49,15 +50,25 @@
                 $scope.$on('leafletDirectiveMarker.click', function(e, args) {
                 // Args will contain the marker name and other relevant information      
 
+                //resets any existing highlighted marker 
                 if($scope.activeMarker) {
                     $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
                     $scope.updateActiveMarker(0);
                 }
 
+                //changes colour of marker selected
+                $scope.markers[args.markerName].icon.iconUrl = "../img/icons/yellow-marker.png";                    
+
+                //sets active marker so it can be reset when user clicks elsewhere
+                $scope.activeMarker = $scope.markers[args.markerName];
+
+
                 path    = $scope.address ? "/home/" + $stateParams.service + "/location/" + $scope.address + "/" + $scope.markers[args.markerName].name
                         : "/home/" + $stateParams.service + "/search/" + $scope.markers[args.markerName].name;
                 
                 $location.path(path);
+
+                console.log("after location path in SEARCH-CONTROLLER");
                 
                 $scope.updateCentre({
                     lat: args.leafletEvent.latlng.lat,
