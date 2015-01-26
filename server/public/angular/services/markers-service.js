@@ -4,28 +4,35 @@
 	module.exports = [
 		function () {
 
+			Object.size = function(obj) {
+                var size = 0, key;
+                for (key in obj) {
+                    if (obj.hasOwnProperty(key)) size++;
+                }
+                return size;
+            };  
+
 			this.addMarkers = function (cb, scope) {
 				return function () {
-                    var root = scope.results;
-                    //These propertes should be dot notation
-
-                    // instead of two function, one obj with two methods?
-                    var coord = function coord(i, coord){
-                        return Number(scope.results[i][coord]);
-                    };
-
+                    var root = scope.results,
                     // this creates the marker objects to plot the locations on the map
-                    var markers = scope.markers;   
-                    
+                    	markers = scope.markers,
                     //this is declared here to prevent it being declared every time the loop runs
-                    var property;
+						property, 
+                    // instead of two function, one obj with two methods?
+                    	coord = function coord(i, latlng){
+                        return Number(scope.results[i][latlng]);
+                    };
+        
 
                     // this stops it recreating the whole object when the search location is added
                     // but it will run if there are only 5 markers and re-populate near search result
                     if(!scope.markers.m6) {
                         console.log("ROOT-CONTROLLER line 133");
                         // var x will save time as the loop does not have to look up the length each time
-                        var i, resultLength = Object.size(root);
+                        var i, 
+                        	resultLength = Object.size(root);
+                        
                         for (i = 0; i<resultLength; i++) {
 
                             property = "m" + (i+1);
