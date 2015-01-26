@@ -12,12 +12,16 @@
         function ($location, $stateParams) {
 
         var path; 
-        
+
             this.markerClick = function(s) {
                 return function(e, args, scope) {
                 scope = scope || s;
-            // Args will contain the marker name and other relevant information      
-
+                
+                // Args will contain the marker name and other relevant information      
+                if (args.markerName === "m0") {
+                    path = "/home/" + $stateParams.service + "/location/" + scope.address;
+                    $location.path(path);
+                } 
                 //resets any existing highlighted marker 
                 if(scope.activeMarker) {
                     scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
@@ -32,6 +36,7 @@
                 console.log("active marker SEARCH-CONTROLLER", scope.activeMarker);
 
 
+                //correct path will depend on if it is called from search or location controller
                 path    = scope.address ? "/home/" + $stateParams.service + "/location/" + scope.address + "/" + scope.markers[args.markerName].name
                         : "/home/" + $stateParams.service + "/search/" + scope.markers[args.markerName].name;
                 
@@ -57,7 +62,7 @@
                     scope.update("activeMarker", 0);
                 }
 
-                    path    = scope.address ? "/home/" + $stateParams.service + "/location/" + scope.address
+                path    = scope.address ? "/home/" + $stateParams.service + "/location/" + scope.address
                         : "/home/" + $stateParams.service + "/search";
                     
                 $location.path(path);  
