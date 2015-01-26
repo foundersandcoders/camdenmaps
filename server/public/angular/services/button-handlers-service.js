@@ -50,7 +50,9 @@
                     scope.update("activeMarker", 0);
                 }
 
-                destination = "/home/" + $stateParams.service + "/location/" + scope.address + "/list"; 
+                destination = ($stateParams.address) 
+                            ? "/home/" + $stateParams.service + "/location/" + scope.address + "/list"
+                            :  "/home/" + $stateParams.service + "/search/list";
                 $location.path(destination);
             }
 

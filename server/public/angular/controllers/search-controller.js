@@ -16,7 +16,8 @@
         "$location",
         "apiSearch",
         "markerHandlers",
-        function ($scope, $stateParams, $location, apiSearch, markerHandlers) {
+        "buttonHandlers",
+        function ($scope, $stateParams, $location, apiSearch, markerHandlers, buttonHandlers) {
 
             //model for search query
             $scope.address = "";
@@ -64,42 +65,9 @@
                 } 
             };
 
-            $scope.searchAgain = function searchAgain () {
-                $location.path("/home/services");
-                $scope.update("markers", {});
-                $scope.update("locationSelected", {});
-                $scope.update("centre", {
-                        lat: 51.535923,
-                        lng: -0.139991,
-                        zoom: 14
-                    });
-            };
+            $scope.searchAgain = buttonHandlers.searchAgain($scope);
 
-            $scope.listResults = function listResults () {
-                if($scope.activeMarker) {
-                    $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
-                    $scope.update("activeMarker", 0);
-                }  
-
-                destination = "/home/"+$stateParams.service+"/search/list"; 
-                $location.path(destination);
-                
-            };
-
-            $scope.exit = function exit () {
-                var current = $location.path();
-                destination = current.substring(0, current.indexOf("/list"));
-                $location.path(destination);
-
-            };
-
-            $scope.toggle = function toggle() {
-                if($location.path().indexOf("/list") > -1) { 
-                    return $scope.exit(); 
-                } else {
-                    return $scope.listResults();
-                }
-            };
+            $scope.toggle = buttonHandlers.toggle($scope);
             
         }
     ];
