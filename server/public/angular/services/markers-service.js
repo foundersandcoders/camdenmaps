@@ -51,7 +51,6 @@
 
                     // only runs when a search address has been entered and is valid
                     if(scope.locationSelected.North) {
-                        console.log(scope.address, "scope address");
                         markers.m0 = {
                             lat: Number(scope.locationSelected.Latitude),
                             lng: Number(scope.locationSelected.Longitude),
@@ -60,6 +59,8 @@
                             popupOptions: {
                                 closeOnClick: false
                              },
+                             //this will correctly format street addresses to capitalised
+                             //and postcodes to upper case
                             message: ($stateParams.address.replace(/\s/g, "").length < 7
                                     ? $stateParams.address.toUpperCase()
                                     : $stateParams.address.replace(/\b./g, function(m){ return m.toUpperCase(); })),

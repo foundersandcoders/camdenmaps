@@ -9,7 +9,8 @@
     module.exports = [
         "$location",
         "$stateParams",
-        function ($location, $stateParams) {
+        "$timeout",
+        function ($location, $stateParams, $timeout) {
 
             var current,
                 destination;
@@ -27,6 +28,8 @@
                     scope.update("markers", {});
 
                     $location.path("/home/services"); 
+
+                    $timeout(function() { scope.update("markers", {}); console.log("timeout"); }, 2000);
                 };
             };
 
