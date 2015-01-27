@@ -39,7 +39,6 @@
             })[0].img;
             
             if(!$scope.locationSelected.hasOwnProperty("Area") ){
-                console.log("ifstatementlocationcontrolleraklsdjf");
                 //reloads $scope.results with new data based on address 
                 apiSearch.search($stateParams.service, $stateParams.address)
                     .success(function success (data) {
@@ -54,7 +53,13 @@
                     });
             }
 
-            $scope.address = $stateParams.address.toUpperCase();
+            if($stateParams.address) { console.log("address length", $stateParams.address.replace(/\s/g, "").length); }
+
+            //this will uppercase postcodes and capitalise street addresses 
+            $scope.address  = $stateParams.address.replace(/\s/g, "").length < 7
+                            ? $stateParams.address.toUpperCase()
+                            : $stateParams.address.replace(/\b./g, function(m){ return m.toUpperCase(); });
+
 
             $scope.searchAgain = buttonHandlers.searchAgain($scope);
 
