@@ -29,7 +29,7 @@
 
                     // this will run on refreshes
                     // TODO run when services with 5 results have address added
-                    if(Object.size(markers) === 0) {
+                    if(Object.size(markers) === 0 || ( !markers.m6 && !markers.m0.locationTest ) ) {
                         // var x will save time as the loop does not have to look up the length each time
                         var i, 
                         	resultLength = Object.size(root);
@@ -61,7 +61,6 @@
                                 },
                                 focus: true,
                                 message:  "NW1 0NE, <br> please enter an address for the 5 closest results.",
-                                name: "fiveResultsOnlyMessage"
                             };
 
                     }
@@ -72,6 +71,7 @@
                             lat: Number(scope.locationSelected.Latitude),
                             lng: Number(scope.locationSelected.Longitude),
                             name: "location",
+                            locationTest: true,
                             focus: true,
                             popupOptions: {
                                 closeOnClick: false
