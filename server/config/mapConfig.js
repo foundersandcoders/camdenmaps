@@ -78,6 +78,7 @@
             //redirect request to proxy
             return cb(null, apiUrl + query, { "Accept": "application/json" });
 
+            server.methods.cacheResponse
         },
         localMapper: function localInfoMapper (req, cb) {
             var uprn = req.params.uprn;

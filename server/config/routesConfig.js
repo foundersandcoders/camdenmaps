@@ -10,17 +10,22 @@
     var handlers = require("../handlers/handlers.js");
     var ConvertXml = require("../handlers/convertXml.js");
     var MapConfig = require("./mapConfig.js");
+    var server = require("../server.js");
+    var methods = require("./methodsConfig.js");
 
     module.exports = {
         getHome: {
-            handler: handlers.getHome        
+            handler: handlers.getHome
         },
         nearest: {
             services: {
                 handler: {
                     proxy: {
                         mapUri: MapConfig.nearestMapper,
-                        onResponse: ConvertXml.convertToJson   
+                        onResponse: ConvertXml.convertToJson
+                        // onResponse: methods.cacheNearest(err, res, req, rep, function(err, result) {
+                        //     rep(result);
+                        // })
                     }
                 }
             },
@@ -47,14 +52,6 @@
         },
        
         local: {
-            // addresses: {
-            //     handler: {
-            //         proxy: {
-            //             mapUri: MapConfig.localInfoMapper,
-            //             onResponse: Config.convertToXml
-            //         }
-            //     }
-            // }
             information: {
                 handler: {
                     proxy: {

@@ -12,7 +12,7 @@
     module.exports = {
         
         //function for responding JSON to client
-        convertToJson: function convertToJson (err, res, req, rep) {
+        convertToJson: function convertToJson (err, res, req, rep, next) {
             var xml, response;
             xml = [];
             response = {};

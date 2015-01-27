@@ -15,7 +15,6 @@
             host: "0.0.0.0",
             port: "8080"
         },
-
         //Mapping for query params and camden API
         map: {
             url: {
