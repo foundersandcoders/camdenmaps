@@ -59,7 +59,7 @@
                 handler: {
                     proxy: {
                         mapUri: MapConfig.localMapper,
-                        onResponse: ConvertXml.convertToJson
+                        onResponse: ConvertXml.convertLocalInformation
                     }
                 }
             }
@@ -71,7 +71,7 @@
                     onResponse: ConvertXml.convertStreetworks
                 }
             }
-        },
+        }, 
         staticFiles: {
             handler: {
                 directory: {

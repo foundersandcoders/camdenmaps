@@ -13,6 +13,31 @@
     }
 
     module.exports = {
+        convertLocalInformation: function convertLocalInformation (err, res, req, rep) {
+            var xml, response;
+            xml = "";
+            response = {};
+            
+            res.on("data", function(data) {
+                xml = xml + data;
+            });
+
+            res.on("end", function() {
+                parser.parseString(xml, function(err, result) {
+                    response.location = {};
+                    response.location.Area = result.Locations.AddressSearchResults[0].$.sPostcode;
+                    response.location.Latitude = result.Locations.AddressSearchResults[0].$.Latitude;
+                    response.location.Longitude = result.Locations.AddressSearchResults[0].$.Longitude;
+                    response.location.BuildingName = result.Locations.AddressSearchResults[0].$.sBuildingName; 
+                    response.location.Street = result.Locations.AddressSearchResults[0].$.sStreet; 
+                    response.information = {};
+                    result.Locations.LocalInformation[0].Table.map(function(p) {
+                        response.information[p.$.TableDesc] = p.Object[0].$.ObjectDesc;
+                    });
+                    rep(response);
+                });
+            });
+        },
         convertStreetworks: function convertStreetworks (err, res, req, rep) {
             var xml, response;
             xml = "";

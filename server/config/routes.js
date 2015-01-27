@@ -69,7 +69,7 @@
         {
             //example uprn (for tests): 5023741
             method: "GET",
-            path: "/local/locations/{uprn}",
+            path: "/addresses/{uprn}",
             config: RoutesConfig.local.information
         }
     ];
