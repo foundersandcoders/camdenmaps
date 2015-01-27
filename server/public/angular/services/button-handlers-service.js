@@ -14,7 +14,7 @@
             var current,
                 destination;
 
-            this.searchAgain = function (s) { 
+            this.searchAgain = function (s,) { 
 
                 return function (scope) { 
                     scope = scope || s;             
