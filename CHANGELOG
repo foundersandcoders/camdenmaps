@@ -1,4 +1,10 @@
-489644f (HEAD, origin/dev, origin/HEAD, dev) Merge pull request #127 from foundersandcoders/searchterm
+00746fb (HEAD, dev) Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into dev
+66d7b0b adds changelog
+a8ee952 (origin/dev, origin/HEAD) Merge pull request #129 from foundersandcoders/streetworksendpoint
+7d957db Merge pull request #128 from foundersandcoders/bugFix
+fcdaa6f (origin/streetworksendpoint, streetworksendpoint) adds streetworks endpoint and parserw
+9d85766 (origin/bugFix) prepares to switch branch
+489644f Merge pull request #127 from foundersandcoders/searchterm
 2271487 (origin/searchterm) has default view zoomed out to fit in more of Camden
 747403f merges locally with dev and adds location arguments for search again on search-controller
 d87ab0d Merge pull request #122 from foundersandcoders/reenterPostcode
