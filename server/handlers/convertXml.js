@@ -4,6 +4,8 @@
     // module for converting XML to JSON 
     var xml2js = require('xml2js');
     var parser = new xml2js.Parser();
+    var config = require("../config/serverConfig.js");
+    var serviceArrays = config.map.serviceArrays;
     //var routesConfig = require("../config/routesConfig.js");
 
     module.exports = {
@@ -15,11 +17,11 @@
             xml = "";
             response = {};
 
-            if (serviceArray.recycling.indexOf(req.params.service) > -1) {
+            if (serviceArrays.recycling.indexOf(req.params.service) > -1) {
             
                 rep(res);
             
-            } else if (serviceArray.parking.indexOf(req.params.service) > -1) {
+            } else if (serviceArrays.parking.indexOf(req.params.service) > -1) {
                 xml = "";
                 response = {};
                 
