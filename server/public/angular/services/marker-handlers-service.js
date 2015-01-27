@@ -24,6 +24,7 @@
                     path = "/home/" + $stateParams.service + "/location/" + scope.address;
                     $location.path(path);
                 } else {
+                    console.log("else statement");
                     //resets any existing highlighted marker 
                     if(scope.activeMarker) {
                         scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";

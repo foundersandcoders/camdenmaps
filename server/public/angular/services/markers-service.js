@@ -26,9 +26,10 @@
                         };
         
 
-                    // this stops it recreating the whole object when the search location is added
-                    // but it will run if there are only 5 markers and re-populate near search result
-                    if(!scope.markers.m6 && scope.locationSelected) {
+
+                    // this will run on refreshes
+                    // TODO run when services with 5 results have address added
+                    if(Object.size(markers) === 0) {
                         // var x will save time as the loop does not have to look up the length each time
                         var i, 
                         	resultLength = Object.size(root);
@@ -49,8 +50,7 @@
                         
                     }
 
-                    if(Object.size(markers) === 5) {
-                        console.log("five markers");
+                    if(Object.size(markers) === 5 && !$stateParams.location) {
 
                             markers.m0 = {
                                 lat: 51.53861,
@@ -60,14 +60,14 @@
                                     iconSize: [28]
                                 },
                                 focus: true,
-                                message: "5 nearest " + decodeURI($stateParams.service) + "s to NW1 0NE, <br> please enter an address for 5 results near that location."
+                                message:  "NW1 0NE, <br> please enter an address for the 5 closest results.",
+                                name: "fiveResultsOnlyMessage"
                             };
 
                     }
 
                     // only runs when a search address has been entered and is valid
-                    console.log(scope.locationSelected);
-                    if(scope.locationSelected.Area) {
+                    if($stateParams.address && scope.locationSelected.North) {
                         markers.m0 = {
                             lat: Number(scope.locationSelected.Latitude),
                             lng: Number(scope.locationSelected.Longitude),
@@ -86,6 +86,8 @@
                                 iconSize: [28]
                             }
                         };
+                    } else if ($stateParams.address && !scope.locationSelected.North) {
+                        alert("Please enter a valid address");
                     }
 
                     scope.update("markers", markers);
