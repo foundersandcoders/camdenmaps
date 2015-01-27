@@ -64,6 +64,14 @@
                 }
             }
         },
+        streetworks: {
+            handler: {
+                proxy: {
+                    mapUri: MapConfig.streetworksMapper,
+                    onResponse: ConvertXml.convertStreetworks
+                }
+            }
+        },
         staticFiles: {
             handler: {
                 directory: {

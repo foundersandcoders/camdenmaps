@@ -84,6 +84,13 @@
             var query = "?" + exactLocations + uprn + "&tab=m";
 
             return cb(null, url.nearestApi + query, { "Accept": "application/json" });
+        },
+        streetworksMapper: function streetworksMapper (req, cb, err) {
+            var location, query;
+            location = req.params.postcode;
+            query = "?" + locations + location;
+            
+            return cb(null, url.streetworksApi + query, { "Accept": "application/json" });
         }
     };
 
