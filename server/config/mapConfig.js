@@ -62,7 +62,7 @@
            console.log(service); 
             //change value of services query depending on service being searched
             services    = (serviceArray.recycling.indexOf(service) !== -1) ? "recycle="
-                        : services;
+                        : "find=";
 
            
             //map our service names to camden service names
