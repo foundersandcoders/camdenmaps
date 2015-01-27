@@ -18,8 +18,6 @@
         "buttonHandlers",
         function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers) {
 
-            console.log("LOCATION-CONTROLLER");
-
             // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
 

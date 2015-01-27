@@ -116,8 +116,6 @@
                         zoomLevel = 13;
                     }
 
-                    console.log("zoom", zoomLevel);
-
                     return zoomLevel;
 
                 };

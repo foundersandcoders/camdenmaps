@@ -18,7 +18,6 @@
         "buttonHandlers",
         function ($scope, $location, markers, buttonHandlers) {
            
-            console.log("ROOT-CONTROLLER");
 
             //stores geo data for camden borough boundaries
             var camdenBoundaries = require("../../lib/camdenBorough.geo.json");
