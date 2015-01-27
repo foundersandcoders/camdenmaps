@@ -51,7 +51,7 @@
 
             var options = {
                 method: "GET",
-                url: "/services/library"
+                url: "/services/Library"
             };
 
             server.inject(options, function(response) {
@@ -95,49 +95,36 @@
     *   Use: run tests by npm test
     **************************************************/
 
-    // describe("Given that a parking api call is made", function () {
+    describe("Given that a parking api call is made", function () {
 
-    //     it("then result for services is in the correct format", function (done) {
+        it("then result for services is in the correct format", function (done) {
 
-    //         var options = {
-    //             method: "GET",
-    //             url: "/services/police%20station"
-    //         };
+            var options = {
+                method: "GET",
+                url: "/services/Car%20club"
+            };
 
-    //         server.inject(options, function(response) {
-    //             expect(response.payload).to.equal(fixtures.parking.services);
-    //             done();
-    //         });
+            server.inject(options, function(response) {
+                expect(response.payload).to.equal(fixtures.parking.services);
+                done();
+            });
 
-    //     });
+        });
 
-        // it("then result for locations is in the correct format", function (done) {
-        //     var options = {
-        //         method: "GET",
-        //         url: "/locations/NW1%200JH"
-        //     };
+        it("then result for services and locations is in the correct format", function (done) {
 
-        //     server.inject(options, function(response) {
-        //         expect(response.payload).to.equal(fixtures.parking.locations);
-        //         done();
-        //     });
+            var options = {
+                method: "GET",
+                url: "/services/Permit%20holders/locations/NW1%200JH"
+            };
 
-        // });
+            server.inject(options, function(response) {
+                expect(response.payload).to.equal(fixtures.parking.servicesLocations);
+                done();
+            });
 
-        // it("then result for services and locations is in the correct format", function (done) {
-
-        //     var options = {
-        //         method: "GET",
-        //         url: "/services/police%20station/locations/NW1%200JH"
-        //     };
-
-        //     server.inject(options, function(response) {
-        //         expect(response.payload).to.equal(fixtures.parking.servicesLocations);
-        //         done();
-        //     });
-
-        // });
-    // });
+        });
+    });
         
         /*************************************************
     *   RECYCLING ENDPOINTS
@@ -161,32 +148,19 @@
 
     //     });
 
-        // it("then result for locations is in the correct format", function (done) {
-        //     var options = {
-        //         method: "GET",
-        //         url: "/locations/NW1%200JH"
-        //     };
+    //     it("then result for services and locations is in the correct format", function (done) {
 
-        //     server.inject(options, function(response) {
-        //         expect(response.payload).to.equal(fixtures.recycling.locations);
-        //         done();
-        //     });
+    //         var options = {
+    //             method: "GET",
+    //             url: "/services/police%20station/locations/NW1%200JH"
+    //         };
 
-        // });
+    //         server.inject(options, function(response) {
+    //             expect(response.payload).to.equal(fixtures.recycling.servicesLocations);
+    //             done();
+    //         });
 
-        // it("then result for services and locations is in the correct format", function (done) {
-
-        //     var options = {
-        //         method: "GET",
-        //         url: "/services/police%20station/locations/NW1%200JH"
-        //     };
-
-        //     server.inject(options, function(response) {
-        //         expect(response.payload).to.equal(fixtures.recycling.servicesLocations);
-        //         done();
-        //     });
-
-        // });
+    //     });
     // });
 
 }());
