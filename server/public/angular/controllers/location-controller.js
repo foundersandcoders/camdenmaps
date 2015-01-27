@@ -61,7 +61,7 @@
                             : $stateParams.address.replace(/\b./g, function(m){ return m.toUpperCase(); });
 
 
-            $scope.searchAgain = buttonHandlers.searchAgain($scope);
+            $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home/services");
 
             $scope.toggle = buttonHandlers.toggle($scope);
 

@@ -16,7 +16,8 @@
         "$location",
         "$stateParams",
         "markers",
-        function ($scope, $location, $stateParams, markers) {
+        "buttonHandlers",
+        function ($scope, $location, $stateParams, markers, buttonHandlers) {
            
             console.log("ROOT-CONTROLLER");
 
@@ -85,16 +86,8 @@
 
             });
 
-            $scope.sendHome = function sendHome () {
-                $location.path("/home");
-                $scope.updateMarkers({});
-                $scope.updateLocationSelected({});
-                $scope.updateCentre({
-                        lat: 51.535923,
-                        lng: -0.139991,
-                        zoom: 14
-                    });
-            }
+            $scope.sendHome = buttonHandlers.searchAgain($scope, "/home");
+
             $scope.addMarkers = markers.addMarkers($scope);
 
         }
