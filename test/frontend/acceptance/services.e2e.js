@@ -15,28 +15,21 @@
 
                 browser.get('#/home');
 
-                element(by.id('findYourNearest')).click();
+                element.all(by.repeater('button in buttons')).get(0).click();
 
                 var services = element(by.id('find-your-nearest'));
 
                 expect(services.isDisplayed()).toBe(true);
-            });
-
-            it("with 11 service categories, only 3 visible", function () {
-
-                var serviceCategories = element.all(by.repeater('item in visibleItems'));
-
-                expect(serviceCategories.count()).toBe(3);
             });
         });
 
         describe("navigation arrows are functioning:", function () {
             it("back arrow ", function () {
 
-                var serviceCategories = element(by.repeater('item in visibleItems'));
+                var serviceCategories = element.all(by.repeater('item in visibleItems')).get(0);
                 var text = serviceCategories.element(by.tagName('h4')).getText();
 
-                element(by.css('[ng-click="execute(item.handler)"]')).click();
+                element.all(by.css('[ng-click="execute(item.handler)"]')).get(0).click();
                 element(by.css('[ng-click="backOneCategory()"]')).click();
 
                 var serviceCategories2 = element(by.repeater('item in visibleItems'));
@@ -47,14 +40,14 @@
             });
             it("and carousal arrows", function () {
 
-                var firstServiceCategories = element(by.repeater('item in visibleItems')).element(by.tagName('h4')).getText();
+                var firstServiceCategories = element.all(by.repeater('item in visibleItems')).get(0).element(by.tagName('h4')).getText();
                 element(by.css('[ng-click="nextItems()"]')).click();
-                var secondServiceCategories = element(by.repeater('item in visibleItems')).element(by.tagName('h4')).getText();
+                var secondServiceCategories = element.all(by.repeater('item in visibleItems')).get(0).element(by.tagName('h4')).getText();
 
                 expect(firstServiceCategories).not.toEqual(secondServiceCategories);
 
                 element(by.css('[ng-click="prevItems()"]')).click();
-                var thirdServiceCategories = element(by.repeater('item in visibleItems')).element(by.tagName('h4')).getText();
+                var thirdServiceCategories = element.all(by.repeater('item in visibleItems')).get(0).element(by.tagName('h4')).getText();
 
                 expect(firstServiceCategories).toEqual(thirdServiceCategories);
             });
@@ -63,8 +56,8 @@
 
             it("first step options disappear", function () { 
 
-                element(by.css('[ng-click="execute(item.handler)"]')).click();
-                element(by.css('[ng-click="execute(item.handler)"]')).click();
+                element.all(by.css('[ng-click="execute(item.handler)"]')).get(0).click();
+                element.all(by.css('[ng-click="execute(item.handler)"]')).get(0).click();
 
                 expect(element(by.id('first-level-options')).isPresent()).toBe(false);
             });

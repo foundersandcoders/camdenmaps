@@ -30,9 +30,9 @@
     	describe("Given that a service is selected, ", function () {
 	        it("The markers load", function () {
 
-	        	element(by.id('findYourNearest')).click();
-	            element(by.css('[ng-click="execute(item.handler)"]')).click();
-	            element(by.css('[ng-click="execute(item.handler)"]')).click();
+	        	element.all(by.repeater('button in buttons')).get(0).click();
+	            element.all(by.css('[ng-click="execute(item.handler)"]')).get(0).click();
+	            element.all(by.css('[ng-click="execute(item.handler)"]')).get(0).click();
 
 	            var markerPane = element(by.css('.leaflet-marker-pane'));
 	            
@@ -49,7 +49,7 @@
 
         it("Given that a marker is selected, the result page loads", function () {
         	
-        	element(by.css('img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-clickable')).click();
+        	element.all(by.css('img.leaflet-marker-icon.leaflet-zoom-animated.leaflet-clickable')).get(0).click();
 
         	var resultPage = element(by.css('.result'));
 
