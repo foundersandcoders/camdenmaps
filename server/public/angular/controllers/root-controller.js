@@ -14,10 +14,9 @@
     module.exports = [
         "$scope",
         "$location",
-        "$stateParams",
         "markers",
         "buttonHandlers",
-        function ($scope, $location, $stateParams, markers, buttonHandlers) {
+        function ($scope, $location, markers, buttonHandlers) {
            
             console.log("ROOT-CONTROLLER");
 
