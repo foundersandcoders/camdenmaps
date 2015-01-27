@@ -5,6 +5,8 @@
 ;(function () {
     "use strict";
 
+    //var camden = require("../../../lib/camdenCordinates.js");
+
     function stripText(word) {
         return word.replace(/[^0-9" "]+/ig,"").replace(/\s+$/,'');
     }
@@ -12,9 +14,9 @@
     module.exports = [
         "$scope",
         "$location",
-        "$stateParams",
         "markers",
-        function ($scope, $location, $stateParams, markers) {
+        "buttonHandlers",
+        function ($scope, $location, markers, buttonHandlers) {
            
             console.log("ROOT-CONTROLLER");
 
@@ -24,6 +26,7 @@
             $scope.results = [];
             //stores entered location at root for access by leafletjs
             $scope.locationSelected = {};
+
             //this will allow marker colour to change when it is highlighted
             $scope.activeMarker = 0;
             
@@ -69,6 +72,7 @@
                     scrollWheelZoom: false
                 },
                 markers: {},
+
                 geojson: {
                     data: camdenBoundaries,
                     style: {
@@ -82,9 +86,10 @@
                 }
 
             });
-            
+
+            $scope.sendHome = buttonHandlers.searchAgain($scope, "/home");
+
             $scope.addMarkers = markers.addMarkers($scope);
-          
 
         }
 
