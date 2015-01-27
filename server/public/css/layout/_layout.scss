@@ -8,6 +8,20 @@
 	'../base/reset',
 	'../base/typography';
 
+#camden-logo-header {
+	border-bottom: 0.1em solid black;
+}
+#alpha-banner {
+	#alpha-sign {
+		background-color: $orange;
+		padding: 0em;
+		p {
+			text-align: center;
+			color: #fff;
+		}
+	} 
+}
+
 #first-level-options {
 	border-bottom: 0.1em solid black;
 	background-color: $light-blue;

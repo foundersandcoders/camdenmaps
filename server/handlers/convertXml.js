@@ -1,18 +1,16 @@
-//TODO: validate that response has x,y or z properties and if not, respond nothing 
 
 ;(function() { 
     "use strict";
-
     // module for converting XML to JSON 
     var xml2js = require('xml2js');
     var parser = new xml2js.Parser();
-    var Config = require("../config/serverConfig.js");
-    var serviceArray = Config.map.serviceArrays;
+    //var routesConfig = require("../config/routesConfig.js");
 
     module.exports = {
-        
-        //function for responding JSON to client
+        //Function for responding JSON to client
+        //Function for responding JSON to client
         convertToJson: function convertToJson (err, res, req, rep) {
+
             var xml, response;
             xml = "";
             response = {};
@@ -59,10 +57,9 @@
                 response = {};
                 response.properties = [];
 
-                res.on('data', function(data){
-                    xml = xml + data;
-                });
-
+            res.on('data', function(data){
+              xml = xml + data;
+            });
                 res.on('end', function(){
                     parser.parseString(xml, function (err, result) {
                         console.log(result);
@@ -76,6 +73,9 @@
                     });
                 });
             }
+
         }
+        
     };
 }());
+
