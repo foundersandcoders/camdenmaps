@@ -34,19 +34,7 @@
                     $location.path(path); 
                 };
             }
-/*  
-            //add handler to results list
-            (function addResultsHandlers (index){
-                if (index > $scope.results.length) {
-                    return;
-                }
-                $scope.results[index].createResultsHandler($scope.result.id);
-                addResultsHandlers(index+1);
-            }(0));
-*/
+
             }
     ];
 }());
-
-// /#/home/marriage%2Fcivil%2520partnership%2520venue/search/London%20Irish%20Centre%20Camden%20Halls%20For%20Hire
-// /#/home/marriage%252Fcivil%2520partnership%2520venue/search/London%20Irish%20Centre%20Camden%20Halls%20For%20Hire
