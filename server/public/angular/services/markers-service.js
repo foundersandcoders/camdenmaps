@@ -2,7 +2,8 @@
 	"use strict";
 
 	module.exports = [
-		function () {
+        "$stateParams",
+		function ($stateParams) {
 
 			Object.size = function(obj) {
                 var size = 0, key;
@@ -21,13 +22,14 @@
 						property, 
                     // instead of two function, one obj with two methods?
                     	coord = function coord(i, latlng){
-                        return Number(scope.results[i][latlng]);
-                    };
+                            return Number(scope.results[i][latlng]);
+                        };
         
 
-                    // this stops it recreating the whole object when the search location is added
-                    // but it will run if there are only 5 markers and re-populate near search result
-                    if(!scope.markers.m6 && scope.locationSelected) {
+
+                    // this will run on refreshes
+                    // TODO run when services with 5 results have address added
+                    if(Object.size(markers) === 0 || ( !markers.m6 && !markers.m0.locationTest ) ) {
                         // var x will save time as the loop does not have to look up the length each time
                         var i, 
                         	resultLength = Object.size(root);
@@ -48,23 +50,45 @@
                         
                     }
 
-                    console.log("location", scope.locationSelected.Area);
-                    // only runs when a search address has been entered
-                    if(scope.locationSelected.Area) {
+                    if(Object.size(markers) === 5 && !$stateParams.location) {
+
+                            markers.m0 = {
+                                lat: 51.53861,
+                                lng: -0.14205, 
+                                icon: {
+                                    iconUrl: "../img/icons/location-marker.png",
+                                    iconSize: [28]
+                                },
+                                focus: true,
+                                message:  "NW1 0NE, <br> please enter an address for the 5 closest results.",
+                            };
+
+                    }
+
+                    // only runs when a search address has been entered and is valid
+                    if($stateParams.address && scope.locationSelected.North) {
                         markers.m0 = {
                             lat: Number(scope.locationSelected.Latitude),
                             lng: Number(scope.locationSelected.Longitude),
                             name: "location",
+                            locationTest: true,
                             focus: true,
                             popupOptions: {
                                 closeOnClick: false
                              },
-                            message: scope.locationSelected.Area.toUpperCase(),
+                             //this will correctly format street addresses to capitalised
+                             //and postcodes to upper case
+                            message: ($stateParams.address.replace(/\s/g, "").length < 7
+                                    ? $stateParams.address.toUpperCase()
+                                    : $stateParams.address.replace(/\b./g, function(m){ return m.toUpperCase(); })),
                             icon: {
                                 iconUrl: "../img/icons/location-marker.png",
                                 iconSize: [28]
                             }
                         };
+                    } 
+                    else if ($stateParams.address && !scope.locationSelected.North) {
+                        alert("Please enter a valid address");
                     }
 
                     scope.update("markers", markers);

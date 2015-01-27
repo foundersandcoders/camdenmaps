@@ -45,15 +45,20 @@
                         $scope.updateResults(data.properties);
                         $scope.update("locationSelected", data.location);
                         $scope.addMarkers();
-                        $scope.update("centre", {
+                        
+                        //will only update if the address is valid
+                        //only valid addresses have a north property
+                        if(data.location.North) {
+                            $scope.update("centre", {
                             lat: Number($scope.locationSelected.Latitude),
                             lng: Number($scope.locationSelected.Longitude),
                             zoom: 15
-                        });
+                            });
+                        }
+                        
+
                     });
             }
-
-            if($stateParams.address) { console.log("address length", $stateParams.address.replace(/\s/g, "").length); }
 
             //this will uppercase postcodes and capitalise street addresses 
             $scope.address  = $stateParams.address.replace(/\s/g, "").length < 7
@@ -66,6 +71,8 @@
             $scope.toggle = buttonHandlers.toggle($scope);
 
             $scope.changeAddress = buttonHandlers.searchAgain($scope, "home/" + $stateParams.service + "/search");
+
+
 
         }
     ];

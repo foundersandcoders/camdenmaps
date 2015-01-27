@@ -40,32 +40,31 @@
             var path,
                 destination;
 
-            
             apiSearch.search($stateParams.service)
                     .success(function success (data) {
-                        console.log("SEARCH-CONTROLLER line 44 http get");
                         $scope.update("results", data.properties);
                         $scope.addMarkers();
                     });
             // }
 
-            //NOTE if create single function (other one in location controller) you will need to check if location marker "m0" is present
             $scope.$on('leafletDirectiveMarker.click', markerHandlers.markerClick($scope));
-
 
             $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
 
             //redirects to next state when provided with address
             $scope.search = function search () {
-                if ($scope.address) {
+                if($scope.address) {
+                    if($scope.activeMarker) {
+                        $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
+                        $scope.update("activeMarker", 0);
+                    }
                     path = "/home/" + $stateParams.service + "/location/" + $scope.address;
                     $location.path(path);
-                } else {
-                    $scope.error = "Please enter an address";
-                } 
+
+                }
             };
 
-            $scope.searchAgain = buttonHandlers.searchAgain($scope);
+            $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home/services");
 
             $scope.toggle = buttonHandlers.toggle($scope);
             

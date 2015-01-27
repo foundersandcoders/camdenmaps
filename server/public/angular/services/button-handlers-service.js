@@ -9,7 +9,8 @@
     module.exports = [
         "$location",
         "$stateParams",
-        function ($location, $stateParams) {
+        "$timeout",
+        function ($location, $stateParams, $timeout) {
 
             var current,
                 destination;
@@ -26,7 +27,11 @@
                     });
                     scope.update("markers", {});
 
+                    // better to have a watch functiont that triggers when markers changes??
+                    $timeout(function() { scope.update("markers", {}); console.log("timeout"); }, 1000);
+
                     $location.path(destination); 
+
                 };
             };
 
