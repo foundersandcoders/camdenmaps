@@ -9,8 +9,8 @@
     module.exports = [
             "$stateParams",
             "$scope",
-            "$http",
-            function ($stateParams, $scope, $http) {
+            "apiSearch",
+            function ($stateParams, $scope, apiSearch) {
 
                 var uri,
                     marker;
@@ -39,13 +39,16 @@
                 //if there is an active marker the list view was accessed
                 //by marker click and map already recentred
                 function linkResultToMarker() {                         
+                        console.log("linktoResult in SINGLE-CONTROLLER line 42")
+
                         //links list result with relevant marker
                         marker = "m" + ($scope.results.indexOf($scope.result) + 1);
+                        console.log("marker line 46 single-controller marker", marker);
                         $scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
-                        $scope.updateActiveMarker($scope.markers[marker]);
+                        $scope.update("activeMarker", $scope.markers[marker]);
                         
                         //recentres map on the list result selected
-                        $scope.updateCentre({
+                        $scope.update("centre", {
                             lat: Number($scope.result.Latitude),
                             lng: Number($scope.result.Longitude),
                             zoom: 15
@@ -64,17 +67,20 @@
                 }
 
                //this function throws up the error undefined is not a function
-                if(!$scope.results || $scope.results.indexOf($scope.result) === -1 ) {
-                $http.get(uri)
+                if(!$scope.results || typeof $scope.result === undefined ) {
+                apiSearch.search($stateParams.service, $stateParams.address)
                     .success(function success (data) {
                         $scope.updateResults(data.properties);
-                        $scope.updateLocationSelected(data.location);
+                        $scope.update("locationSelected", data.location);
                         // selects item from results with matching {id}
                         $scope.result = $scope.results.filter(function (result) {
                             return result.display.Name === $stateParams.id;
                         })[0];
 
-                        linkResultToMarker();
+                        if($stateParams.id) {
+                            linkResultToMarker(); 
+                        }
+
                     });
 
                  }

@@ -14,8 +14,10 @@
         "$scope",
         "$stateParams",
         "$location",
-        "$http",
-        function ($scope, $stateParams, $location, $http) {
+        "apiSearch",
+        "markerHandlers",
+        "buttonHandlers",
+        function ($scope, $stateParams, $location, apiSearch, markerHandlers, buttonHandlers) {
 
             //model for search query
             $scope.address = "";
@@ -38,48 +40,20 @@
             var path,
                 destination;
 
-            //populate results when response is received
-            $http.get("/services/" + $stateParams.service)
-                .success(function success (data) {
-                    $scope.updateResults(data.properties);
-                    $scope.addMarkers();
-                });
+            
+            apiSearch.search($stateParams.service)
+                    .success(function success (data) {
+                        console.log("SEARCH-CONTROLLER line 44 http get");
+                        $scope.update("results", data.properties);
+                        $scope.addMarkers();
+                    });
+            // }
 
-                //NOTE if create single function (other one in location controller) you will need to check if location marker "m0" is present
-                $scope.$on('leafletDirectiveMarker.click', function(e, args) {
-                // Args will contain the marker name and other relevant information      
-
-                if($scope.activeMarker) {
-                    $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
-                    $scope.updateActiveMarker(0);
-                }
-
-                path    = $scope.address ? "/home/" + $stateParams.service + "/location/" + $scope.address + "/" + $scope.markers[args.markerName].name
-                        : "/home/" + $stateParams.service + "/search/" + $scope.markers[args.markerName].name;
-                
-                $location.path(path);
-                
-                $scope.updateCentre({
-                    lat: args.leafletEvent.latlng.lat,
-                    lng: args.leafletEvent.latlng.lng,
-                    zoom: 15
-                });
-            });
+            //NOTE if create single function (other one in location controller) you will need to check if location marker "m0" is present
+            $scope.$on('leafletDirectiveMarker.click', markerHandlers.markerClick($scope));
 
 
-            $scope.$on('leafletDirectiveMap.click', function(e, args) {
-                // Args will contain the marker name and other relevant information       
-                
-                if($scope.activeMarker) {
-                    $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
-                    $scope.updateActiveMarker(0);
-                }
-
-                path    = $scope.address ? "/home/" + $stateParams.service + "/location/" + $scope.address
-                        : "/home/" + $stateParams.service + "/search";
-                    
-                $location.path(path);
-            });
+            $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
 
             //redirects to next state when provided with address
             $scope.search = function search () {
@@ -91,42 +65,9 @@
                 } 
             };
 
-            $scope.searchAgain = function searchAgain () {
-                $location.path("/home/services");
-                $scope.updateMarkers({});
-                $scope.updateLocationSelected({});
-                $scope.updateCentre({
-                        lat: 51.535923,
-                        lng: -0.139991,
-                        zoom: 14
-                    });
-            };
+            $scope.searchAgain = buttonHandlers.searchAgain($scope);
 
-            $scope.listResults = function listResults () {
-                if($scope.activeMarker) {
-                    $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
-                    $scope.updateActiveMarker(0);
-                }  
-
-                destination = "/home/"+$stateParams.service+"/search/list"; 
-                $location.path(destination);
-                
-            };
-
-            $scope.exit = function exit () {
-                var current = $location.path();
-                destination = current.substring(0, current.indexOf("/list"));
-                $location.path(destination);
-
-            };
-
-            $scope.toggle = function toggle() {
-                if($location.path().indexOf("/list") > -1) { 
-                    return $scope.exit(); 
-                } else {
-                    return $scope.listResults();
-                }
-            };
+            $scope.toggle = buttonHandlers.toggle($scope);
             
         }
     ];

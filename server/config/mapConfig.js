@@ -59,7 +59,7 @@
                     : (serviceArray.recycling.indexOf(service) !== -1)  ? url.recyclingApi
                     : url.nearestApi;
 
-            
+           console.log(service); 
             //change value of services query depending on service being searched
             services    = (serviceArray.recycling.indexOf(service) !== -1) ? "recycle="
                         : services;

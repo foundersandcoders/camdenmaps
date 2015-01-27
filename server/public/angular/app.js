@@ -20,6 +20,7 @@
     .config( require("./config.js") );
         
   require("./controllers");
+  require("./services");
 
 
 }());
