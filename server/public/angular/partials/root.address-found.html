@@ -14,8 +14,10 @@
         </div>
 
         <div id="locations" class="col-xs-4">
-            <img src="../img/nearestservice/mapmarker.png">
-            <h4>{{ address }}</h4>
+            <a ng-click="changeAddress()">
+                <img src="../img/nearestservice/mapmarker.png">
+                <h4>{{ address }}</h4>
+            </a>
         </div>
 
         <div id="buttons" class="col-xs-12">
