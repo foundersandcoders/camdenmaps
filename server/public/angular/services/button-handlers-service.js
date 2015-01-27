@@ -28,10 +28,12 @@
                     scope.update("markers", {});
 
                     // better to have a watch functiont that triggers when markers changes??
-                    $timeout(function() { scope.update("markers", {}); console.log("timeout"); }, 1000);
-
-                    $location.path(destination); 
-
+                    if($location.path === "/home") {
+                        $location.path(destination);
+                        $timeout(function() { scope.update("markers", {}); console.log("timeout"); }, 1000);
+                    } else {
+                        $location.path(destination); 
+                    }
                 };
             };
 
