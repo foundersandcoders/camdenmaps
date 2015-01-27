@@ -54,8 +54,13 @@
             //redirects to next state when provided with address
             $scope.search = function search () {
                 if($scope.address) {
+                    if($scope.activeMarker) {
+                        $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
+                        $scope.update("activeMarker", 0);
+                    }
                     path = "/home/" + $stateParams.service + "/location/" + $scope.address;
                     $location.path(path);
+
                 }
             };
 

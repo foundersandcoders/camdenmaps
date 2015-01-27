@@ -86,7 +86,8 @@
                                 iconSize: [28]
                             }
                         };
-                    } else if ($stateParams.address && !scope.locationSelected.North) {
+                    } 
+                    else if ($stateParams.address && !scope.locationSelected.North) {
                         alert("Please enter a valid address");
                     }
 
