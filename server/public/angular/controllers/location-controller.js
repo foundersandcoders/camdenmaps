@@ -12,10 +12,11 @@
     module.exports = [
         "$scope",
         "$stateParams",
+        "markers",
         "markerHandlers",
         "apiSearch",
         "buttonHandlers",
-        function ($scope, $stateParams, markerHandlers, apiSearch, buttonHandlers) {
+        function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers) {
 
             console.log("LOCATION-CONTROLLER");
 
@@ -50,11 +51,12 @@
                         //only valid addresses have a north property
                         if(data.location.North) {
                             $scope.update("centre", {
-                            lat: Number($scope.locationSelected.Latitude),
-                            lng: Number($scope.locationSelected.Longitude),
-                            zoom: 15
+                                lat: Number($scope.locationSelected.Latitude),
+                                lng: Number($scope.locationSelected.Longitude),
+                                zoom: markers.zoomCheck($scope)()
                             });
                         }
+
                         
 
                     });

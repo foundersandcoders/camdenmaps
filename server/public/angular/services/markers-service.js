@@ -12,6 +12,7 @@
                 }
                 return size;
             };  
+            
 
 			this.addMarkers = function (scope) {
 				return function () {
@@ -94,7 +95,33 @@
                     scope.update("markers", markers);
 			};
 
+
 			};
+
+            this.zoomCheck = function (scope) {
+                return function () {
+
+                    var zoomLevel,
+                        size = Object.size(scope.markers);
+                    console.log("size", size);
+                    //if results capped at 5 (plus location marker) can zoom in 
+                    if(size === 6) {
+                        zoomLevel = 15;
+                    }
+                    //if results are less than 5 markers zooms out to fit them all in
+                    else if (size < 6) {
+                        zoomLevel = 12;
+                    }
+                    else {
+                        zoomLevel = 13;
+                    }
+
+                    console.log("zoom", zoomLevel);
+
+                    return zoomLevel;
+
+                };
+            };
 		}
 
 	];

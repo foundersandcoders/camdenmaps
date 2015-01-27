@@ -15,9 +15,10 @@
         "$stateParams",
         "$location",
         "apiSearch",
+        "markers",
         "markerHandlers",
         "buttonHandlers",
-        function ($scope, $stateParams, $location, apiSearch, markerHandlers, buttonHandlers) {
+        function ($scope, $stateParams, $location, apiSearch, markers, markerHandlers, buttonHandlers) {
 
             //model for search query
             $scope.address = "";
@@ -44,6 +45,7 @@
                     .success(function success (data) {
                         $scope.update("results", data.properties);
                         $scope.addMarkers();
+                        $scope.centre.zoom = markers.zoomCheck($scope)();
                     });
             // }
 
