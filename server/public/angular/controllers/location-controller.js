@@ -61,22 +61,11 @@
                             : $stateParams.address.replace(/\b./g, function(m){ return m.toUpperCase(); });
 
 
-            $scope.searchAgain = buttonHandlers.searchAgain($scope);
+            $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home/services");
 
             $scope.toggle = buttonHandlers.toggle($scope);
 
-
-
-            $scope.changeAddress = function changeAddress () {
-                $location.path("home/" + $stateParams.service + "/search");
-                $scope.updateMarkers({});
-                $scope.updateLocationSelected({});
-                $scope.updateCentre({
-                        lat: 51.535923,
-                        lng: -0.139991,
-                        zoom: 14
-                    });
-            }
+            $scope.changeAddress = buttonHandlers.searchAgain($scope, "home/" + $stateParams.service + "/search");
 
         }
     ];

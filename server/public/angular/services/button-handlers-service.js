@@ -14,7 +14,7 @@
             var current,
                 destination;
 
-            this.searchAgain = function (s) { 
+            this.searchAgain = function (s, destination) { 
 
                 return function (scope) { 
                     scope = scope || s;             
@@ -26,7 +26,7 @@
                     });
                     scope.update("markers", {});
 
-                    $location.path("/home/services"); 
+                    $location.path(destination); 
                 };
             };
 
