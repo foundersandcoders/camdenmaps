@@ -29,7 +29,7 @@
 
                     // this will run on refreshes
                     // TODO run when services with 5 results have address added
-                    if(Object.size(markers) === 0 || ( !markers.m6 && !markers.m0.locationTest ) ) {
+                    if(Object.size(markers) === 0 || ( !markers.m6 && markers.m0 && !markers.m0.locationTest ) ) {
                         // var x will save time as the loop does not have to look up the length each time
                         var i, 
                         	resultLength = Object.size(root);
