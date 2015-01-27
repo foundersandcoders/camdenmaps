@@ -15,7 +15,7 @@
             var current,
                 destination;
 
-            this.searchAgain = function (s) { 
+            this.searchAgain = function (s, destination) { 
 
                 return function (scope) { 
                     scope = scope || s;             
@@ -27,12 +27,11 @@
                     });
                     scope.update("markers", {});
 
-                    $location.path("/home/services"); 
-
-
-
                     // better to have a watch functiont that triggers when markers changes??
                     $timeout(function() { scope.update("markers", {}); console.log("timeout"); }, 1000);
+
+                    $location.path(destination); 
+
                 };
             };
 

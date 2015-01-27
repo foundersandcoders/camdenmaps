@@ -64,7 +64,7 @@
                 }
             };
 
-            $scope.searchAgain = buttonHandlers.searchAgain($scope);
+            $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home/services");
 
             $scope.toggle = buttonHandlers.toggle($scope);
             
