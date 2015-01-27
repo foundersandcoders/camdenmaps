@@ -46,6 +46,11 @@
         },
         {
             method: "GET",
+            path: "/services/streetworks/locations/{postcode}",
+            config: RoutesConfig.streetworks
+        },
+        {
+            method: "GET",
             path: "/services/{service}/locations/{postcode}",
             config: RoutesConfig.nearest.servicesAndLocations 
         },

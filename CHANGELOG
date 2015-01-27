@@ -1,0 +1,790 @@
+00746fb (HEAD, dev) Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into dev
+66d7b0b adds changelog
+a8ee952 (origin/dev, origin/HEAD) Merge pull request #129 from foundersandcoders/streetworksendpoint
+7d957db Merge pull request #128 from foundersandcoders/bugFix
+fcdaa6f (origin/streetworksendpoint, streetworksendpoint) adds streetworks endpoint and parserw
+9d85766 (origin/bugFix) prepares to switch branch
+489644f Merge pull request #127 from foundersandcoders/searchterm
+2271487 (origin/searchterm) has default view zoomed out to fit in more of Camden
+747403f merges locally with dev and adds location arguments for search again on search-controller
+d87ab0d Merge pull request #122 from foundersandcoders/reenterPostcode
+08fbd83 Merge branch 'dev' into reenterPostcode
+44f7529 Merge pull request #126 from foundersandcoders/camdenHome
+ec222eb removes stateParams dep from root-controller.js
+f1c2641 adds missing if statement to root-controller.js
+1ffa9f1 fixes problems with the results capped at 5 so swapping between markers on single list works
+4218db2 adds a button handler service to root-controller allowing user to navigate home at any point
+a537d72 merges with dev
+c607f3d merges with dev
+ce5a59b removes active pin when postcode is entered from single view page
+0cd4c0e adds change address to location controller, that calls function searchAgain in buttonHandlers
+eff6725 adds an alert message when invalid address entered
+fd944f3 merges with dev
+2b94e94 prepaares merge wih reenterPostcode
+c0c0b0d Merge pull request #125 from foundersandcoders/searchterm
+0285eb3 corrects click marker function so location markers do not change colour
+58887a1 adds a message for results with 5  markers
+e8ee81e adds comments about timeout
+fa592c7 adds a timeout function that will clear markers to prevent late loading markers remaining on page
+6ae1136 correctly formats the location marker input
+50f77c9 only tries to add location markers if a valid address has been given and alerts to enter a valid locatoin
+b13b60f capitalises street addresses and uppercases postcodes in search results view
+f88aef5 Merge pull request #124 from foundersandcoders/services
+d819a68 Merge branch 'dev' into services
+e165c5c prevents api call in location controller when moving between markers
+1c32b87 replaces toggle and search again functions from search controller
+99c7579 creates services for toggle and search again and replaces functions in location controller
+4ae8ae7 moves click on marker and map function to service from search-controller
+c1f0721 replaces  with searchApi service in search-controller
+177dd96 makes all <a> tags pointers when user hovers over it, changed in reset.scss
+670f9bb comments new update function
+bfdd005 adds function so that user can go back to home page by clicking camden logo
+b4b9863 updates update function in single-controller
+fa24496 upates update function in search-controller
+caa3b65 recenters map when user opts to change location
+fd4f14b cleans markers service
+83e8dea makes colour of location text white
+b4267d6 makes cursor a poiter when user hovers over location image
+b05aed2 moves addMarkers() into a service
+9888e7c allows user to re-enter/change postcode
+f23be38 adds function to highlight marker on click in search controller
+98d5aa6 Merge pull request #121 from foundersandcoders/addsparsers
+b59163d (origin/addsparsers, addsparsers) Merge branch 'dev' into addsparsers
+6d46e11 adds unformatted xml parser for recycling
+cf63e08 Merge branch 'dev' into markers
+0fe21d2 updates comments in location controller
+48fcd2d changes placeholder text in postcode search
+568f395 Merge pull request #120 from foundersandcoders/categories
+59339fc makes the subtitles of categories all capitalised
+29f008b Merge pull request #119 from foundersandcoders/specificchanges
+325f270 merging changes with dev branch
+2461fa3 fixed double encoding problem in list-controller
+3dd1b57 added if statement for loop to fix problems for certain results that dont contain property `telephone`
+1d12da7 styling list so that under 2 results still looks good in list-results view
+6114e9a loads geo.json with require rather than .get(); combines two angular.extends() calls into one
+5d43ea0 encoding uri for services with characters such as `/`
+1126af8 6 services on desktop and 4 on medium
+261427d merging with development branch
+97fc784 added cursor: pointer for services
+23c2be0 Merge pull request #117 from foundersandcoders/camdenBoundary
+857c928 shades map outside the Camden boundary
+4bc72ce changes colour of polyon
+aaf2aac resolves merge conflicts
+a0e54fa deletes unused kml file and js file
+ca5f625 adds polygon to map
+bc38e85 Merge pull request #116 from foundersandcoders/addsparsers
+24bd932 Merge branch 'dev' into addsparsers
+9bddd3b adds parking parser
+db81ab6 fixed styling for buttons
+33eb120 added input into form so you can use the keyboard enter to search
+5b71753 added input into form so you can use the keyboard enter to search
+33683ea Merge pull request #115 from foundersandcoders/specificchanges
+4b2bd9c (origin/specificchanges) fixed height services carousal
+dd68a07 Merge branch 'dev' into addsparsers
+b5f4fc3 deletes keys
+daa772f improves api mapping
+42ed11d fixed height on services accordian
+18003d0 Merge pull request #113 from foundersandcoders/mapedits
+0cb78d8 Update single-controller.js
+0f6d08d Update search-controller.js
+60593b0 Update list-controller.js
+6569e91 Merge branch 'dev' into mapedits
+d033ab5 Merge pull request #112 from foundersandcoders/specificchanges
+9b2b57d link for works and img services and categories
+a2190df merges locally with dev
+2edb9a9 activates markers on click and links single list view to marker
+ab02821 Merge pull request #111 from foundersandcoders/servertests
+4b0a1bb added gulp server-test-coverage command for our lab tests
+f1d07e0 added server test outlines for parking and recycling endoints
+f329eaf deleting gulp task watchify that isnt working, changed watchifytry to watchify
+5a8b844 Merge pull request #110 from foundersandcoders/acceptancetests
+1cbe2a2 updated server tests with new result from parser
+8362a22 merging acceptance tests with dev branch
+72f1313 fixing some of the warnings
+34ab1b6 reorganising tests into seperate files for seperate views
+614cd8b Adding acceptance tests for the map
+8383355 deleted http from swagger scheme to fix http and https problems for production
+1d53d80 stops map recentering for second time if list view is via marker
+ac9a07a changes maker when its active and resets colour when you click off
+e14a9f9 Merge pull request #109 from foundersandcoders/validation
+94d2f1b adds todos and validation reminders
+f8f9b8f Merge pull request #108 from foundersandcoders/validation
+a9f8aab changes single-view so it only shows website if website is present
+3030e2c adds clientside phonenumber cleaning
+479d101 adds serverside normalization to services parameters [e.g bAdlY foRMAtted >> Badly formatted]
+c2fb4b0 recentres map on list result selected when single view opens
+380af07 Merge branch 'dev' into mapedits
+5e7b8ec fixes problem when refreshing on single results view page
+ea8304a Merge pull request #106 from foundersandcoders/endPoints
+4052e74 refactors and adds if statement to skip xml parsing if not from nearest api (temporary until xml parser accepts response from other apis)
+536f35f changes if else statement to ternary operators
+4798bd0 removes shadow on images to prevent nearby pins overlapping
+035a64d changes marker icons and keeps searching near message open
+3674936 Merge branch 'dev' into mapedits
+a062804 changes search marker to red pin
+0e4be0d moves xml parser to file convertXml
+0b80832 Merge pull request #107 from foundersandcoders/switch-xpat-to-xml2js
+c1b8b0b adds logic to provide different endpoints fully functioning and tested
+72222d4 Update serverConfig.js
+d670f13 adds request for ./lib/nearest2json.js example script
+a9cb9ba switch out node-expat for xml2js - hopefully fixes travis build: https://github.com/foundersandcoders/camdenmaps/issues/103
+6f0f14a (origin/endPoints) Merge branch 'dev' into endPoints
+d922f79 adds arrays for parking and recycling into serverConfig.js deletes parking and recycling functions in MapConfig.js
+6596f8d removes parking and recycling objects
+71035d2 removes convertToXmlAgain function
+335ed28 merges locally with dev
+841e144 Merge pull request #105 from foundersandcoders/markercss
+f281dde Update search-controller.js
+89d13f3 Update location-controller.js
+2d22489 Update README.md
+4acf232 Update README.md
+2951b2f changes map styling so the marker tip shows
+21b4e44 Merge branch 'dev' of github.com:foundersandcoders/camdenmaps into dev
+ca6128b Merge pull request #104 from foundersandcoders/favicon
+1231c87 added camden  favicon to our site
+7a7f090 Update package.json
+7679f50 separates location marker click from other markers click
+527fd12 addition of recycling logic
+faf878a move convertTo Xml function to convertXml.js file in handlers, change name of function from convertToXml to covertToJson
+bd21a71 returns path to marker
+3d7fe3a Merge branch 'dev' of github.com:foundersandcoders/camdenmaps into dev
+4e32d0e endpoints
+2cbda24 Merge pull request #101 from foundersandcoders/swaggerapi
+add0de8 checked and confirmed schema for services and locations endpoint
+daa89a5 changes marker to circle path
+df4e3bd merging remote dev changes with local swagger api changes
+7d545f5 deleting unnecessary images and jquery documents
+799fe96 editing services and locations schema
+dc6ae2d (regexrouteparams) Merge pull request #100 from foundersandcoders/swaggerapi
+4a86037 moved leaflet logo to bottom of page
+0acc5b3 (origin/singlecontrollerhttp) Merge pull request #99 from foundersandcoders/singlecontrollerhttp
+3146919 Merge branch 'dev' into singlecontrollerhttp
+881cce3 makes conditional http call in single controller
+10eba7b deleting prototype
+47b47c8 Update root-controller.js
+07317ac merging dev with swaggerapi changes
+855fad6 merging remote dev with local dev
+f373737 map styling
+633abdf Merge pull request #98 from foundersandcoders/swaggerapi
+62b3e41 comments from angular code review
+aa14990 Merge pull request #97 from foundersandcoders/markers
+42e708d comments out message functionality on location markers
+41ebbe2 removes single list view in both controllers
+782be0e removes single list view when click on map
+d765dad added news for location and services
+8675460 deletes var handlers on line 13 of routesConfig.js because already present on line 10
+387c987 Merge branch 'dev' of github.com:foundersandcoders/camdenmaps into dev
+874d3c0 removes the original message functions for pop up which is no longer used
+0b350a6 merging naomis list changes with natalias list changes and map changes
+535066b map styling
+1d335c7 removes pop up messages'
+262f1d9 pop up links to single list view but still has message pop up too
+37f1f8c makes the list-item on mobile view, slightly larger to allow for better text spacing
+6a0ce6e edits the height of each list item
+44d3eab Merge pull request #94 from foundersandcoders/editsToListView
+e421f10 Merge pull request #95 from foundersandcoders/markers
+43abc90 adds comments to code
+c8483ba does not recreate markers object when address entered, instead it only adds the address marker to the existing object
+e440cc2 deletes list-result-wrapper as no longer required in css
+fd1c24c adds border-left to css
+e21d8a8 zooms in when location for search selected and zooms out and recentres on search again
+ff78128 edits to styling on list view
+f96f8b7 moves list results to the right
+635e9bf changes lat of boundary to include Westminster
+73d6ca0 Merge branch 'dev' into markers
+9e35a1c Merge pull request #93 from foundersandcoders/gulptasks
+41bbae9 gulp sass-watch taslk completed
+b835019 removes markers when searh again from a search by location
+b30c5eb adds markers at postcode used to search
+79e7e20 changes lng of boundary
+9de87be if marker name and building name are the same only returns one value
+e933b82 merges locally with dev
+46b1ba1 added border on list-view and changed max-height to be different on small view then desktop
+4677bd8 made header look better on all screen sizes
+5f35056 mobile call  only showing up on mobile devices
+6be6aac fixing single view. scss import was incorrect
+738d89e Merge pull request #92 from foundersandcoders/callFunction
+d89ab85 Merge branch 'dev' into callFunction
+f8e7793 adds call property on mobile device
+c03c83b Merge pull request #91 from foundersandcoders/menustyling
+7972aee (origin/menustyling) removes console.logs
+f0c20c2 fixes problem with currentIndex value when returning to parent's index page
+1051af1 back button on services page take user back to page with parent category on menu
+6647194 fixes problem with arrows on services page
+6bf462e Merge branch 'dev' into menustyling
+2e03ab1 removes before button on first page and next button on last page of menu
+10c86bd Merge pull request #90 from foundersandcoders/stylingbuttons
+18f59c8 compressed images
+8407062 removing console.logs for toggleWords function and added some styling
+8eec087 Merge pull request #89 from foundersandcoders/toggleWords
+7235567 merging with remote changes
+d36f9c4 toggleWords now officially working
+cabb098 Delete 1.0.0.camdenmaps.min.js.map
+34af308 Delete 1.0.0.camdenmaps.min.js
+aa95a41 Merge pull request #88 from foundersandcoders/linkToWebsite
+3c08643 links web icon on results single view to external website
+62a8aa8 regenerated min.js and map.js
+3292035 min.js
+25c37ff merges locally
+86cf1d3 adds first unit test
+481b184 Delete 1.0.0.camdenmaps.min.js
+be8114c Delete 1.0.0.camdenmaps.min.js.map
+4962644 Merge pull request #87 from foundersandcoders/mapfunctions
+c1b385c creates an object for each data result and adds all results as markers on the map
+8648e90 moves addmarker function constructor to root controller
+c01cba0 Merge pull request #86 from foundersandcoders/servicemarkers
+9f5a32c merges locally
+874de72 loads markers as soon as a service is selected
+3a47053 changes toggle implementation
+7c0626c toggle break
+9d15e66 merging remote changes
+bf8111f toggle trial
+040d5b9 Merge pull request #85 from foundersandcoders/changemenujson
+20c63b6 (origin/changemenujson) Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into dev
+044df3b changes menu.json to load via browserify
+a62859b Merge pull request #84 from foundersandcoders/cosmetics
+db0564a resizes marker icon
+bb815ee resizes service icon
+841eca1 changes colour of map marker.png to white
+672d1b4 merging changes
+08517ef Merge pull request #83 from foundersandcoders/listimprovements
+e1413aa merges locally with dev
+b755cd4 Merge branch 'dev' of github.com:foundersandcoders/camdenmaps into dev
+cffbae3 cleans code by removing commented out functions
+3408637 Merge pull request #82 from foundersandcoders/cosmetics
+d5ad3f7 removes wrong state
+de0038c recentres map to postcode searched with
+bcd7b30 align left address search service
+9333cc5 adds results to list and puts toggle on relevant partial views
+921a466 aligns services change h1 tag to h2
+7cd3194 merges locally
+39d23a9 debugging in progress
+5eaae9a removes min.js
+5ae036e completing merge
+319478b corrects street number in markers
+701d759 Merge pull request #80 from foundersandcoders/toggle
+9449ec9 merges locally
+6091961 Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into dev
+3666b0c added two more tests
+b8b89ea (origin/toggle) on single result view position fixed instead of absolute
+da0e034 merging with dev
+2645dad deleted camden.maps.js again
+b695a65 changing ng-hide slightly
+4797143 Merge pull request #81 from foundersandcoders/addssingleview
+6683f07 (origin/addssingleview) adds single view from search, shows distance only if address entered
+2f0676d added ng-hide
+2caddf1 adding toggle.js
+daa8b00 merging with remote dev
+dedf2c8 changing map height
+caeb215 Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into dev
+dba7d3f removes fake data js
+ca7f6c7 removes markers when click search again
+902355d Merge pull request #78 from foundersandcoders/fixicon
+67ce029 (origin/fixicon) merge conflicts
+7f38ba5 Merge pull request #77 from foundersandcoders/improvingtests
+dff7731 merging with dev
+ad37a50 added new tests
+12ac40d fixes terrible implementation of icon continuity
+5f0f6b5 Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into dev
+4a1f5a5 deleted files
+cacdffc Merge pull request #76 from foundersandcoders/tweakingmenucontrol
+20c17cd (origin/tweakingmenucontrol) tweaks control of services menu
+73f7899 changes mock data to acutal data
+cb7f983 (origin/improvingtests) merging with updated dev
+ac12fc5 Merge pull request #75 from foundersandcoders/fixinglistview
+5a941b4 added more protractor tests and accptance criteria
+8eb4696 (origin/fixinglistview) adds list view to search stage
+bd0896b resolves conflicts
+0cede93 adds angular-leaflet-directve.min.js
+d2f2dc2 Merge branch 'dev' into listimprovements
+dd39c0c Merge branch 'dev' of github.com:foundersandcoders/camdenmaps into dev
+a8c06c3 merges locally
+678836b Merge pull request #74 from foundersandcoders/datadisplaytweaks
+6b7a092 merges locally
+3781d86 (origin/datadisplaytweaks) tweeks data display
+5552a56 changed height of map
+39f6261 Merge pull request #73 from foundersandcoders/formattingresponse
+c656109 (origin/formattingresponse) reformats json response
+85c40fb Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into dev
+faf4b69 Merge pull request #72 from foundersandcoders/tweakingchanges
+874388a reformats data and fixes xmltojson formatting
+1e37971 (origin/tweakingchanges) fixed styling for postcode search
+77f955d added icon to address found view and address search view
+778b788 changed styling to compensate for if there is less then 4 results
+5a8155d onclick FindYourNearest text disappears now when clicked
+5d35cf8 merges locally with dev
+c5622a8 adds min leaflet file
+55f3195 merging changes
+624af3e merging with remote dev
+4d9a20a re-added .gitignore for min.js
+67c8eac adds angular-leaflet-directive.min.js
+e7b2eba Merge pull request #71 from foundersandcoders/fixingxmlparser
+cc18a17 Merge pull request #70 from foundersandcoders/gulpFix
+baf2870 (origin/fixingxmlparser) adds *maps.min.js to gitignore
+63cff15 fixes gulp browserify
+0eb46f2 removes faulty faketoe require statement
+1a041c0 removes one of two gulp browserify
+d84d55d Merge pull request #69 from foundersandcoders/fixingxmlparser
+84fd368 removes <<head and <<dev in gulp file
+5731e42 Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into fixingxmlparser
+74aeb16 removes faketoe from package.json
+6288480 adds new xml-parser
+8233157 adds message about change to exit function
+f12ebdc removes the double list results button
+60d6b22 switched to new codeclimate with correct default branch
+7e359da Merge pull request #68 from foundersandcoders/styling
+a5e8445 (origin/styling) fixed result view and fixed on bottom
+a07c363 scrolling list with fixed height
+b0b06d9 putting .css .map and .min.js back in the gitignore
+52d9f8b Merge pull request #65 from foundersandcoders/gulpPath
+47c6f54 removes *.min.js
+4cac477 Merge pull request #66 from foundersandcoders/codeclimatereview
+74186b9 removing compiled min.js and min.js.map as not needed on github (also will improve codeclimate
+edeb60c cleaning up some code based on code climate
+b22fbec moved angular leaflet directive to lib folder. Needs to remain in public.
+8ca2b87 Delete .config.js.swn
+eb6738b Delete .app.js.swn
+3edf0cd Delete .app.js.swm
+04a1ed3 Delete .config.js.swl
+01b5e8c Delete .config.js.swm
+a45b322 Delete .app.js.swl
+8df2bed Delete .app.js.swk
+40c1242 Delete .menu.json.swn
+f545c73 location to locations
+6b7e8b9 changing yaml file
+3052668 resolves conflicts
+7246a6c merging master with local dev
+7ecb08d creates gulp file that converts yaml
+af4c7fd merging remote dev with local dev
+b21d349 add gulp shell to package.json
+663485c Merge pull request #64 from foundersandcoders/swaggerYaml
+06749ac fixes path and connects with JSON
+2b1b20a merging local
+0e9ba3a added new cdns for testing
+347919d took out s in https for leaflet cdn
+54d1f61 added browserify to travis gulp task
+7b1ed29 Update index.html
+c36024e changes leaflet request to https
+d7aae23 Merge branch 'dev' into swaggerYaml
+b9111a4 added faketoe as a dependency not a devdependency
+1ee966a added and pushed node_modules
+fe9419d updates image to a map marker from a house on results page
+ad40031 removing node_modules
+9cacac5 corrects spelling mistake in both yaml and JSON
+1b48cf1 commenting out conflicting code
+efde1c3 removes service type from list
+16b2e66 commited node_modules for heroku
+b62a524 adds change to host into json file
+2b572a5 edits to host in yaml file
+e8008ae merging remote changes with local ones
+ca7caa2 merging with working task in master
+14a79b1 Merge pull request #63 from foundersandcoders/locatingservicesmerge
+b0cc5c2 new gulp travis task
+e38cf48 removes fake list result and finalises merge
+3a4ab1d changes parser back to faketoe - still incomplete data
+18de22d Merge branch 'dev' into locatingservicesmerge
+570146e takes min.js out of gitignore
+67946bf attempts to fix merge :(
+3278aeb ran gulp task
+db0c304 merges locally part 1
+3cbc666 again
+b182193 again
+d898e54 update
+766f8d8 took out npm script
+3e9a229 trying new server
+27443bf protractor test change
+14f129a protractor test change
+19d3dfc commenting out process.env
+628603f updating gulfile
+d911494 trying again
+f8b0d68 Merge pull request #62 from foundersandcoders/swaggerPolish
+9d578e0 local merge
+44c4546 gitignore
+5ed7ad7 commenting out tests
+b72b55b adding shell command
+03b1319 Update gulpfile.js
+36d9b54 echo tests
+655bd8a webdriver update
+550c778 last test gulp test
+f0f3e67 testing again
+430b79e fixing travis gulp command again
+59e573e fixing travis gulp command
+d881c47 changes results to 8 markers
+1ae347c Merge branch 'dev' into swaggerPolish
+b2a7a66 adds a 200 response to services/{service}/locations/{postcode}
+b106c08 merging remote with local
+e65609e fixed view for span
+7565404 changes protractor.conf
+7b58d38 adds first name when location has multiple PoI and removed blank spaces from messages
+383cbba erased hardcoded icon in address-found and replaced it with IconURL
+a20725e adds list close button
+3db0969 merging remote dev with local dev
+5e16a46 adds googlemaps link
+53d351d styling black text
+e555674 edits summary of GET requests
+88ff8dd Merge pull request #61 from foundersandcoders/stylingandicons
+66998f7 removes undefined from message
+73fe621 changes timing of api queries so urls can be navigated to directly
+e3027a0 edits description of each endpoint
+424dd3d merging local dev into stylingandicons
+9ff1fbe merging local dev with remote dev
+5efa21e Merge pull request #60 from foundersandcoders/stylingandicons
+85206bb started to add workflow instructions
+a7df3bc improves list-controller functionality
+2bac644 adds a model schema to response class section
+48c0c6a updated README with csvtojson instructions
+46d8d26 fixed titles, and removed text in menu.json
+184b727 merges locally
+d16d47e refactors and modularizes controllers
+43415c3 merges locally
+52eb310 makes swagger local
+c6e89ce added item.title to clickHandler function
+70f2853 Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into dev
+7bbb865 adds phantomjs launcher for karma
+749ae33 title moved into the link tag in root.landing
+7f69303 added the rest of the sport icons and tweaked the menu.json
+b00b52f new images added as well as styling
+c717bfd added more sports images
+104f8c8 Merge pull request #59 from foundersandcoders/acceptance-testing
+1e52e11 hidden text on xs screens
+cacd8c0 deleted unnecessary on landing page
+ac64477 updated menu.json with shorttext
+deed3f9 deleting views folder
+473d222 added a few more passing tests and outlines for future tests
+a10edcc merging
+c6ea86a fixes links in list-view partial
+c072de2 testing if backbutton works
+62acd91 form and button editing
+7b211f7 fixed back button z-index-1;
+9a17ef5 styling for step3 view
+a8f8d33 adds single controller
+bcf6287 adds list controller
+08480cb adds location controller
+49eaa02 merging local with origin
+35294dc merging remote swaggerbuildedits with local dev
+01e69bd Merge pull request #57 from foundersandcoders/mergingbranches
+0e26a80 editing package.json to remove accidental duplicate node modules
+7493861 js-hinted gulpfile
+683aeb2 merging local dev into local htmlandrouter
+64a1bf8 modified README with sass gov instructions
+8821da3 deleted makefileas we should avoid using anything but gulp
+6a6af68 merging master into dev
+3d06204 acceptence criteria edited to new format in test file; ;
+6f8bcfc fixed npm test in package.json
+51c414b Merge pull request #56 from foundersandcoders/tests
+b71f4bc starting service category tests
+9b493b4 fixed header stying
+3f392e1 Landing tests complete and passing
+c89ae77 added more styling
+88c83a5 merging with remote changes
+6f36ddc merging remote changes with local
+b582a73 made new menu.json from approved new services and categories
+546c1c9 deleting conflicting code
+bfdbbe9 (origin/htmlandrouter) adds searchcontroller
+a4aab0b merging remote changes with local branch
+35a13db removes console.logs
+fb51ed7 fixes merge conflicts
+b4d99bc completes service controller
+de2555a adding servicescontroller logic
+5ae8ec7 taking out console.log from gulp file
+5e6bbec fixes protractor config format
+664ead0 adds dependencies to package.json again again
+5629d3c adds dependencies to package.json again
+263fb82 adds dependencies to package.json
+44e04dd adds sourcemaps to package.json
+07ef712 map loading now. Solved problem by adding container-fluid to outer div
+36eeb8b fixes double sc execution
+3d1029a reconfigures saucelabs details
+ca88b12 begins fixing landing.services controller
+7139dc7 Update protractor.conf.js
+5b0de39 Update protractor.conf.js
+cad1f81 Update package.json
+a735d21 Update protractor.conf.js
+beaf54c adds protractor config
+19399c2 added ng-app to html, instead of body
+bb5f349 got rid of error loading angular more than once
+9cc8919 got rid of error loading angular more than once
+aeab5b4 Merge pull request #55 from foundersandcoders/fileRestructure
+b8aa4bc added some map styling to make it responsive;
+a999f40 moves yaml file, edits made to READme file accordingly, moves yml2swagger.js to lib directory
+c5d7bc7 added correct script tags for map
+9211b00 updated package.json with new faketoe. Please npm install
+ee12b58 moves index to public root, deletes directory 'views'
+6a257f6 Merge branch 'htmlandrouter' of https://github.com/foundersandcoders/camdenmaps into htmlandrouter
+a380943 deletes unnecessary swn files
+0ea414d added the arrow up from demo, into here
+74cdfb2 fixed bootstrap offsets
+1197a97 updated README with browserify command
+cd12ede resolves merge conflicts in app.js
+a877e0d Local changes
+b26269f Merge branch 'htmlandrouter' of https://github.com/foundersandcoders/camdenmaps into htmlandrouter
+0423c60 gulp browserify-watch task created and seems to be working
+dcf2a7e fixes root.landing and its corresponding controller
+6750f85 updated index.html with new js path
+fd9f96d gulp-browserify removed and complete gulp browserify task
+15657fe Merge branch 'htmlandrouter' of https://github.com/foundersandcoders/camdenmaps into htmlandrouter
+11c612b merge conflicts
+6930d11 removes bundlejs
+73a7f1f bugfixing
+fbc989f Local changes
+50a3548 Merge branch 'htmlandrouter' of https://github.com/foundersandcoders/camdenmaps into htmlandrouter
+98ed1d6 make basic gulp task for browserify
+936632f changed img/nearestservices to the correct img/nearestservice
+abab92c merging local dev into remote htmlandrouter
+85b7598 fixing angularrouter still
+c3f4ff9 minor edits to swagger routing
+b10b1c0 gulp file watching scss files now
+f9a4f73 changes made to base url
+f4d976b fixes merge conflicts in index
+07b506a Merge pull request #53 from foundersandcoders/acceptance-tests
+6eaa38c added tests for landing page
+eda3881 added 2 more tests
+9937518 returns undefined for values which are missing and values when they are there
+515216c fixes merge conflicts
+defa2b4 fixing router
+b1b8810 (origin/htmlsCssPrototype) adds carousel for services
+af77ad9 edits to id tags
+2942739 addition of bootstrap tags
+c644349 (origin/LocatingServices) adds function to return relevant value for first five markers
+b6f401f added images
+86a6375 added alternate menu.json
+c791956 menu.json completed
+023ba89 adds fake data and returns first five values as markers on map
+fdf52a3 changes map boundary to Camden borough boundary
+2505ca7 bounds map to roughly Camden council area
+3425aea adds map features
+f18c4b6 Merge branch 'angularrouter' into htmlandrouter
+bf491c6 put headers in the body and changed any id and class names to be hyphen seperated instead of camelcase
+7c35456 added a better css arrow and added link styling in reset.scss
+8c8abc4 reorganizing html structure readying for uirouter merge
+47e5ca6 collapse.js beginning to work
+f3ab9d5 (origin/angularrouter) adds more controllers
+85c8a09 merges locally
+7753275 adds link to leaflet style sheet
+c7667c7 replaces open layers scripts with leaflet and angular-leaflet scripts
+72c1a9d removes the open layers map javascript
+a8a7030 adds angular leaflet tag
+3c0d050 adds leaflet map controller
+85ecdc6 removes jquery library script
+15684cd second level started
+53b0b1b complies with OSM t&cs by making attribution information always visible rather than just displaying an 'i' button
+14907bb add attributes styling and image for location marker
+002ab9b map is back in and commented out script that was causing the error
+430e60e added png icons in case browser doesnt read svg
+95d1e12 added icons for find-your-nearest
+e88286b added basic styling complete
+d85335b base styling variables added
+188050d header finished and resizing well
+b2e39e3 added camden logo and took out parts of index that we are not using yet
+2b51489 adds bootstrap columns to divs
+4dd6abd adds services controller
+f4eee46 adds bootstrap columns to divs
+71a6eaa added gov imports to sass ready to style
+452888e added descriptions and organised sass folders a little bit more
+b8cb6c4 commented out images and added camden logo
+2880b6d Merge branch 'angularrouter' of https://github.com/foundersandcoders/camdenmaps into angularrouter
+e524cf9 adds angular router layout
+34d6023 edits to index.html
+ed8cfe2 Merge branch 'master' of https://github.com/foundersandcoders/camdenmaps into htmlsCssPrototype
+5fb908f div placeholders added to server/public/views/index.html
+75a8ec0 (origin/swaggerBuild) Merge branch 'dev' into swaggerBuild
+5d95ee0 corrected spelling in server/public/yaml/api-docs.yaml
+aead5dc fixes cdns to jquery
+d309e05 fixes final path for index.html on swagger
+cd9dc61 changes path in docs/index.html for swagger
+5c38610 temporarily emoves npm test command
+6c095b7 fixes merge conflicts
+2b2c60e Delete test.txt
+5ed61c6 temporarily remove saucelab config
+830e279 Merge pull request #50 from foundersandcoders/acceptance-tests
+d58f748 Merge pull request #49 from foundersandcoders/swaggerBuild
+35e553a moves json2yaml and js-yaml to devdependencies
+6912804 adding a few ore bits of potential acceptance criteria to continue to add to
+8a3d294 added glue to package.json for future use
+b990192 Merge branch 'dev' into swaggerBuild
+1923a05 resolveed merge conflicts
+55e4ac1 fixes scrip
+1827a0e swagger page added, json converted from yaml
+2d2acbe readds saucelab env variables
+7b67292 adds swagger documentation
+2ea4be4 fixing fortmatting error
+5434218 Update .travis.yml
+bf2907f Update .travis.yml
+bd49f92 added tests to test options
+7e7bc39 indenting in html
+9bb16ae rerereformats travis
+5bef08d rereformats travis.yml
+6642de6 reformats travis.yml
+fa8b87b dummy commit
+82cb8d2 Update README.md
+12d0f93 Merge pull request #48 from foundersandcoders/dev
+6f51914 Merge pull request #47 from foundersandcoders/fixingacceptancetests
+f50ac63 reconfigures saucelab
+b74ef38 Merge pull request #46 from foundersandcoders/dev
+78471c4 Merge pull request #45 from foundersandcoders/fixingacceptancetests
+008f90c Merge pull request #44 from foundersandcoders/testing-updates
+0a7ac43 adds saucelab scripts and config in protractor
+a8198b6 updating README with new commands
+039e51a npm start to start server
+88c98e3 Merge pull request #43 from foundersandcoders/dev
+331b2d2 Merge pull request #42 from foundersandcoders/fixingacceptancetests
+812137d fixes chromedriver path
+4f07d90 Merge pull request #41 from foundersandcoders/dev
+5e1f4ad Merge pull request #40 from foundersandcoders/fixingacceptancetests
+8d59a06 fixes package.json conflicts
+86ddd69 adding chromedriver and switching back to chrome
+f2b4338 Merge branch 'dev' into swaggerBuild
+1c486fb Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into dev
+7c6a9e2 api swagger build
+b86f47f Merge pull request #39 from foundersandcoders/testing-protractor
+292a1c5 merging yet again
+556145b merging with remote dev branch
+c5a8200 adds semicolons
+a839835 Merge pull request #38 from foundersandcoders/dev
+3254774 Merge pull request #37 from foundersandcoders/fixingacceptancetests
+a1c01d8 changed https to http
+c903ab7 adds firefox config to protractor config
+2184527 merging with remote dev changes
+2e192bb empty acceptance tests recorded
+6753a18 fixes conflicts with swagger and local information
+8f53d7f Merge pull request #36 from foundersandcoders/dev
+3220ebc Merge pull request #35 from foundersandcoders/fixingacceptancetests
+d45de45 changes protractor config to firefox
+c185814 Delete map.js
+1928e1b fixes merge conflicts
+67c892b Swagger
+4262191 added angular and protractor to the package.json
+8e799fb Merge branch 'master' of github.com:foundersandcoders/camdenmaps
+543e5d2 fix merge conflicts
+bd5f8c2 Merge pull request #34 from foundersandcoders/buildprocessfix
+f215cfe Merge branch 'dev' of github.com:foundersandcoders/camdenmaps into dev
+2c54d9b Merge pull request #33 from foundersandcoders/local-info
+77b859d removes console.log
+3b60836 Merge branch 'dev' of github.com:foundersandcoders/camdenmaps into dev
+fa8bc35 fixes gulp tasks and allows to be automatable. adds to travis.yml
+dbafdfb merge with dev (just in case)
+2593e0e cleaning up code a tad
+5f7eb7d first whole endpoint mapped for local info
+6e0c941 added first route for local information
+725999a Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into dev
+0f81c1d Merge pull request #32 from foundersandcoders/d-r-y-code!
+b89e743 making mapper functions dry
+47ab46b Update README.md
+0a84f96 Merge pull request #31 from foundersandcoders/dev
+353ec47 changes to https
+29d833d Update README.md
+652e83c Merge pull request #30 from foundersandcoders/dev
+125d76d adds proto frontend
+7773f52 fixes paths to static files
+72e9780 Merge pull request #29 from foundersandcoders/emma
+03fc9a9 updates the .gitignore
+3a82a94 Merge branch 'emma' of github.com:foundersandcoders/camdenmaps into emma
+c8370fb adds cors to server connection in server.js
+0cd7dfe adds sass cache and npm-debug.log to .gitignore
+6d8de85 Reformatting req, res signature to align with rest of code
+4ffcc9c merges locally
+7b98024 temporary fix to home page
+747a345 html view test
+60b0125 Merge pull request #28 from foundersandcoders/dev
+ab1f419 changes cors in routes
+55fd1cd corrects paths in html
+77d5c50 moves html to views folder
+c5822d3 adds cors everywhere possible
+86c68e3 serves html page test
+8491464 fixes merge conflicts
+6133f7b adds cors true to all routes
+a00411b changes routes to new file location
+405a63a writes css into new file
+4ceab42 adds file changes which were being ignored before
+a4b9a0b Merge pull request #27 from foundersandcoders/fixgulpfile
+2cb7a4e Merge pull request #26 from foundersandcoders/gov-uk-sassfiles
+4ad6c66 small fix to makefile
+111112d fixes some gulpfile tasks
+feec20f fixes gulpfile
+cb6159f added basic sass structure ready to code
+c449ef6 added how to use gov uk sass imports to readme
+d0deab2 added gov.uk style sheets download to package.json
+2ea86d4 Merge branch 'dev' of github.com:foundersandcoders/camdenmaps into dev
+e4de0b6 Merge pull request #25 from foundersandcoders/gov-uk-sassfiles
+cd657f7 Merge branch 'dev' of github.com:foundersandcoders/camdenmaps into dev
+760f317 reworking gulpfile.js
+49a6a32 updated readme and changed nameing slightly in lab test.js
+2caecec Merge pull request #24 from foundersandcoders/testing-lab
+d313140 testing payload is a json object
+e7bad23 two beginning tests
+6608f0e adds minimal styling
+3d283a8 centres on Camden High Street
+f83042c changes map source to OSM
+aa67f57 adds world map
+06b3051 beginning of testing. One test passing
+4a2434b added file for rough mocking
+9fad21a updated readme to with command for running tests
+4377027 added code to package.json
+125ca92 updated makefile to run lab tests
+a11361c adds asset path
+beb0eac changes css paths in makefile
+aa70790 removes css files
+9cb1cf6 Merge pull request #5 from foundersandcoders/Emma
+e8136f4 Update makefile
+6b54a5a Merge pull request #23 from foundersandcoders/dev
+f6af924 Merge pull request #22 from foundersandcoders/deploymentfix
+95fecb7 fixes path in Procfile... again
+7922dea Merge pull request #21 from foundersandcoders/dev
+0c68da4 Merge pull request #20 from foundersandcoders/deploymentfix
+5885e49 adds process.env.PORT to server.connections
+0f5e53f adds app name to travis.yml
+e5ca4fb Merge pull request #19 from foundersandcoders/dev
+bbf32bd Merge pull request #18 from foundersandcoders/deploymentfix
+4a6d0df corrects path in procfile
+74d6ec2 Update README.md
+d34120c Merge pull request #17 from foundersandcoders/deploymentfix
+1091e12 Merge pull request #16 from foundersandcoders/deploymentfix
+5b60316 adds procfile
+0cb8c61 Update .travis.yml
+a201c69 Merge pull request #15 from foundersandcoders/dev
+1eace7d Merge pull request #14 from foundersandcoders/addherokudeployment
+420ed15 readds missing provider
+cabcd72 Update README.md
+29ceb4b Merge pull request #13 from foundersandcoders/master
+c27cc72 Merge pull request #12 from foundersandcoders/dev
+423d422 Merge pull request #11 from foundersandcoders/addherokudeployment
+fbee065 removes recursive npm test command
+1c8bb4b Merge pull request #10 from foundersandcoders/dev
+4b7525a Merge pull request #9 from foundersandcoders/addherokudeployment
+7251dde comments out test temporarily
+89d476a Merge pull request #8 from foundersandcoders/dev
+beed726 Merge pull request #7 from foundersandcoders/addherokudeployment
+a44a840 adds heroku deployment config to travis.yml
+c1bf20b Merge pull request #6 from foundersandcoders/upgradinghapi
+923d213 updates server.js to hapi 8.0 standards
+50b4a2c adds hapi 8.0.0 to package.json
+911a9cd adds placeholder to search box
+21d60e1 adds CSS file and makefile for sass watching
+d5e0d92 adds basic html page with dropdown menu and search box
+14888f0 Merge pull request #4 from foundersandcoders/addfaketoeconversion
+95fb038 wraps routes in closure
+8e7dbfd Merge pull request #3 from foundersandcoders/addfaketoeconversion
+1bc77dd adds xml to json converter
+0f49513 adds beginning of server routes for wheresmynearest
+a3ba602 adds .editorconfig
+0827472 changes travis config to only build from master
+d0de0e7 adds travis config to only build from build branch
+962a2bb adds filler files for direction on structure later
+bf0bc63 adds codeclimate config to travis.yml
+1447382 Merge branch 'master' of github.com:foundersandcoders/camdenmaps
+839c39f adds hapi-lab and lab and gulp tasks
+aa52bde Update README.md
+d0a366a Update README.md
+cce6bac Merge branch 'master' of github.com:foundersandcoders/camdenmaps
+2e10b03 adds gulp tasks
+25e035a Update README.md
+5f6a5d4 Update README.md
+c45acb7 removes swp and swo files
+398fb23 adds travis.yml
+82c2511 adds file structure
+c0295d5 adds gulpfile
+5c19b0c Merge pull request #2 from foundersandcoders/packagebuild
+2e75a0d Merge pull request #1 from gitter-badger/gitter-badge
+7429104 beginning to build package.json
+d02c61d Added Gitter badge
+e1f8ede Initial commit
