@@ -53,16 +53,28 @@
 
                     if(Object.size(markers) === 5 && !$stateParams.location) {
 
+  
                             markers.m0 = {
-                                lat: 51.53861,
-                                lng: -0.14205, 
                                 icon: {
                                     iconUrl: "../img/icons/location-marker.png",
                                     iconSize: [28]
                                 },
                                 focus: true,
-                                message:  "NW1 0NE, <br> please enter an address for the 5 closest results.",
                             };
+                            //sets this markers to geolocation 
+                            if (markers.location) {
+
+                                markers.m0.message = "Please enter another address for the 5 closest results to that location.";
+                                markers.m0.lat = markers.location.lat;
+                                markers.m0.lng = markers.location.lng; 
+
+                            } 
+                            //else sets it to the default location
+                            else {
+                                markers.m0.message = "NW1 0NE, <br> please enter an address for the 5 closest results.";
+                                markers.m0.lat = 51.53861;
+                                markers.m0.lng = -0.14205; 
+                            }
 
                     }
 
