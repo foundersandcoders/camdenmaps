@@ -23,7 +23,7 @@
                     scope.update("centre", {
                             lat: 51.535923,
                             lng: -0.139991,
-                            zoom: 14
+                            zoom: 13
                     });
                     scope.update("markers", {});
 

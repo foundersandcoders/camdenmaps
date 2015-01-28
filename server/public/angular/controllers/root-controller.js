@@ -64,7 +64,8 @@
                 centre: {
                     lat: 51.535923,
                     lng: -0.139991,
-                    zoom: 13
+                    zoom: 13,
+                    autoDiscover: true
                 },
                 maxbounds: regions.camdenBorough,
                 defaults: {
