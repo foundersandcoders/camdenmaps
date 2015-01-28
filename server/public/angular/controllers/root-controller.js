@@ -16,7 +16,8 @@
         "$location",
         "markers",
         "buttonHandlers",
-        function ($scope, $location, markers, buttonHandlers) {
+        "leafletData",
+        function ($scope, $location, markers, buttonHandlers, leafletData) {
            
 
             //stores geo data for camden borough boundaries
@@ -65,7 +66,7 @@
                     lat: 51.535923,
                     lng: -0.139991,
                     zoom: 13,
-                    autoDiscover: true
+                    // autoDiscover: true
                 },
                 maxbounds: regions.camdenBorough,
                 defaults: {
@@ -90,6 +91,24 @@
             $scope.sendHome = buttonHandlers.searchAgain($scope, "/home");
 
             $scope.addMarkers = markers.addMarkers($scope);
+
+            leafletData.getMap().then(function(map) {
+                     map.locate({setView: false, watch: false})
+                     .on('locationfound', function (e){
+                        if (51.57878 > e.latitude > 51.450089 && -0.094538 > e.longitude > -0.218650) {
+                            console.log("inside Camden");
+                            $scope.markers.locating = {
+                                lat: e.latitude,
+                                lng: e.longitude,
+                                message: "You are here"
+                            };
+                            map.locate({setView: true, watch: false});
+                        } else {
+                            console.log("outside Camden");
+                        }
+                     });
+            });
+
 
         }
 
