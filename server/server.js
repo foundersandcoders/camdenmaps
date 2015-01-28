@@ -10,11 +10,14 @@ var hapi = require("hapi");
 var config = require("../server/config/serverConfig.js");
 var routes = require("../server/config/routes.js");
 var path = require('path');
+var ConvertXml = require("./handlers/convertXml.js");
+var mapConfig = require("./config/mapConfig.js");
 
 var internals = {};
 
 //create server
 var server = new hapi.Server();
+
 
 //add connection
 server.connection({
@@ -28,8 +31,9 @@ server.connection({
     }
 });
 
+
 //route server
-server.route(routes);
+routes(server);
 
 
 //server start if not testing

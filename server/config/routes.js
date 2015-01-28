@@ -12,27 +12,30 @@
 (function () {
     "use strict";
 
+    var mapConfig = require("../config/mapConfig.js");
+    var convertXml = require("../handlers/convertXml.js");
     var RoutesConfig = require("./routesConfig.js");
 
-    module.exports = [
-    /* EXAMPLE **************************************
-    *    { 
-    *        method:    ":METHOD", 
-    *        path:      ":PATH", 
-    *        handlers:  ":HANDLERS" 
-    *    }
-    */
-        {
-            method: "GET",
-            path: "/{param*}",
-            config: RoutesConfig.staticFiles
-        },
-        {
-            method: "GET",
-            path: "/",
-            config: RoutesConfig.getHome
-        },
+    module.exports = function (server){
 
+        server.route([
+        /* EXAMPLE **************************************
+        *    { 
+        *        method:    ":METHOD", 
+        *        path:      ":PATH", 
+        *        handlers:  ":HANDLERS" 
+        *    }
+        */
+            {
+                method: "GET",
+                path: "/{param*}",
+                config: RoutesConfig.staticFiles
+            },
+            {
+                method: "GET",
+                path: "/",
+                config: RoutesConfig.getHome
+            },
     //Where's My Nearest Routes *********************
         {
             method: "GET",
@@ -58,19 +61,15 @@
             method: "GET",
             path: "/api",
             config: RoutesConfig.apiDocs
-        },
-        
-           
+        },               
 
-        //Local Information Routes *********************
-
-        //Unsure where address information is coming from. Leaving for now.
-
+            //Local Information Routes *********************
         {
             //example uprn (for tests): 5023741
             method: "GET",
             path: "/addresses/{uprn}",
             config: RoutesConfig.local.information
         }
-    ];
+    ]);
+}
 }());
