@@ -14,21 +14,9 @@
 
     var mapConfig = require("../config/mapConfig.js");
     var convertXml = require("../handlers/convertXml.js");
+    var RoutesConfig = require("./routesConfig.js")(server);
 
-    module.exports = function (server) {
-
-        // server.method(
-        //     'cacheNearest', 
-        //     mapConfig.nearestMapper, 
-        //     {
-        //         cache: { 
-        //             cache: 'memory', 
-        //             expiresIn: 60 * 60 * 1000 * 24
-        //         }
-        //     }
-        // );
-
-        var RoutesConfig = require("./routesConfig.js")(server);
+    module.exports = {
 
         server.route([
         /* EXAMPLE **************************************

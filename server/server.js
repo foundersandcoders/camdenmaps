@@ -17,15 +17,7 @@ var mapConfig = require("./config/mapConfig.js");
 var internals = {};
 
 //create server
-var server = new hapi.Server({ cache: require("catbox-memory")
-    // cache: [{
-    //     name: "memory",
-    //     engine: require('catbox-memory'),
-    //     partition: 'cache',
-    //     host: config.server.host,
-    //     allowMixedContent: true
-    // }]
-});
+var server = new hapi.Server();
 
 
 //add connection
