@@ -30,7 +30,7 @@
 
                     // this will run on refreshes
                     // TODO run when services with 5 results have address added
-                    if(Object.size(markers) === 0 || ( !markers.m6 && markers.m0 && !markers.m0.locationTest ) ) {
+                    if(Object.size(markers) === 0 || (Object.size(markers) === 1 && markers.location ) || ( !markers.m6 && markers.m0 && !markers.m0.locationTest ) ) {
                         // var x will save time as the loop does not have to look up the length each time
                         var i, 
                         	resultLength = Object.size(root);
@@ -50,8 +50,15 @@
                         }
                         
                     }
+            
+                    //to prevent the geolocation marker from being overwritten... 
+                    // if(markers.location) {
+                    //     markers.location = markers.location;
+                    // }
 
-                    if(Object.size(markers) === 5 && !$stateParams.location) {
+                    console.log(markers.location, "markers location in markers");
+
+                    if( (Object.size(markers) === 5 || ( (Object.size(markers) === 6 && markers.location) ) ) && !$stateParams.location) {
 
   
                             markers.m0 = {
@@ -117,11 +124,11 @@
                         size = Object.size(scope.markers);
                     console.log("size", size);
                     //if results capped at 5 (plus location marker) can zoom in 
-                    if(size === 6) {
+                    if(size === 6 || ( size === 7 && markers.location) ) {
                         zoomLevel = 15;
                     }
                     //if results are less than 5 markers zooms out to fit them all in
-                    else if (size < 6) {
+                    else if (size < 6 || ( size === 7 && markers.location) ) {
                         zoomLevel = 12;
                     }
                     else {
