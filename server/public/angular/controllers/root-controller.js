@@ -93,18 +93,38 @@
             $scope.addMarkers = markers.addMarkers($scope);
 
             leafletData.getMap().then(function(map) {
+                     //this will return the location but not auto-centre on it or continuously watch
                      map.locate({setView: false, watch: false})
                      .on('locationfound', function (e){
+                        //this checks if the location returned is within the map boundaries i.e. larger than Camden
                         if (51.57878 > e.latitude > 51.450089 && -0.094538 > e.longitude > -0.218650) {
                             console.log("inside Camden");
-                            $scope.markers.locating = {
+                            $scope.markers.location = {
                                 lat: e.latitude,
                                 lng: e.longitude,
-                                message: "You are here"
+                                icon: {
+                                    iconSize: [28],
+                                    iconUrl: "../img/icons/geolocation.png"
+                                },
+                                
+                                //not sure this is necessary if we have a location symbol used 
+                                message: "You are here",
+                                focus: true
                             };
+                            //if we are within Camden then it will auto-centre the map on the user's location
                             map.locate({setView: true, watch: false});
                         } else {
+                            //if they are outside Camden normal functionality will be used
                             console.log("outside Camden");
+                            //this is here for testing when outside Camden
+                            $scope.markers.location = {
+                                lat: e.latitude,
+                                lng: e.longitude,
+                                icon: {
+                                    iconSize: [28],
+                                    iconUrl: "../img/icons/geolocation.png"
+                                },
+                            }
                         }
                      });
             });
