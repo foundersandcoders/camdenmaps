@@ -35,7 +35,7 @@
             describe("Each result in the list contains information", function () {
 	        	it("Distance", function () {
 
-	        		var text = element(by.css('.distance')).getText();
+	        		var text = element.all(by.css('.distance')).get(0).getText();
 
 	                expect(text).toEqual('0.49 miles');
 
@@ -54,7 +54,7 @@
 		        	var address = element.all(by.tagName('p')).get(0);
 		        	var address2 = element.all(by.tagName('p')).get(1);
 
-	                expect(address.getText()).toBe('30 Camden Street');
+	                expect(address.getText()).toBe('Camden Street');
 	                expect(address2.getText()).toBe('NW1 0LG');
 
 		        });
