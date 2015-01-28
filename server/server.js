@@ -11,24 +11,21 @@ var config = require("../server/config/serverConfig.js");
 var methods = require("../server/config/methodsConfig.js");
 var routes = require("../server/config/routes.js");
 var path = require('path');
+var ConvertXml = require("./handlers/convertXml.js");
+var mapConfig = require("./config/mapConfig.js");
 
 var internals = {};
 
 //create server
-var server = new hapi.Server({
-    cache: [
-        {
-            name: 'memory',
-            engine: require('catbox-memory'),
-            host: '127.0.0.1',
-            partition: 'cache',
-            allowMixedContent: true
-        }
-    ]
+var server = new hapi.Server({ cache: require("catbox-memory")
+    // cache: [{
+    //     name: "memory",
+    //     engine: require('catbox-memory'),
+    //     partition: 'cache',
+    //     host: config.server.host,
+    //     allowMixedContent: true
+    // }]
 });
-
-//server methods. Used for Caching
-server.method(methods);
 
 
 //add connection
@@ -43,8 +40,9 @@ server.connection({
     }
 });
 
+
 //route server
-server.route(routes);
+routes(server);
 
 
 //server start if not testing

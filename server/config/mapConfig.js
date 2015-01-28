@@ -9,11 +9,15 @@
     "use strict";
 
     var Config = require("./serverConfig.js"),
+        convertToJson= require("../handlers/convertXml.js").convertToJson,
         url = Config.map.url,
         serviceArray = Config.map.serviceArrays,
         services = Config.map.query.service,
         locations = Config.map.query.location,
+        cache = require("./cache.js"),
         exactLocations = Config.map.query.uprn;
+
+        cache.del("abcTest");
 
     //capitalize first letter of word (norm
     function cap(word) {
@@ -44,47 +48,68 @@
                 : service;
     }
 
-    module.exports = {
+    module.exports = function () {
+        return {
 
-        nearestMapper: function nearestMapper (req, cb, err) {
-            var service, location, query, apiUrl, defaultLocation;
-            service = cap(req.params.service);
-            location = req.params.postcode;
-            defaultLocation = "NW1 0NE";
+            nearestMapper: function nearestMapper (req, cb, err, next) {
 
-            //TODO: green query is not the same, needs to be changed depending on service requested
-
-            //api url routed based on service requested
-            apiUrl  = (serviceArray.parking.indexOf(service) !== -1)    ? url.parkingApi
-                    : (serviceArray.recycling.indexOf(service) !== -1)  ? url.recyclingApi
-                    : url.nearestApi;
-
+                cache.get("abcTest", function (err, value) {
+                    console.log( "get err" + err);
+                    if (value.hasOwnProperty("abcTest")) {
+                        console.dir( "get value" + value.abcTest.test);
+                    }
+                });
             
-            //change value of services query depending on service being searched
-            services    = (serviceArray.recycling.indexOf(service) !== -1) ? "recycle="
-                        : services;
 
-           
-            //map our service names to camden service names
-            service = aliasServices(service);
+                cache.set("abcTest", {test: true}, function (err, success) {
+                    console.log("set err" + err);
+                    console.log("set success" + success);
+                })
 
-            //query constructed based on combination of services and/or address
-            query   = (location === undefined) ? "?" + services + service + "&" + locations + defaultLocation
-                    : (service === undefined)  ? query = "?" + locations + location 
-                    : "?" + locations + location + "&" + services + service;
+                // cache.set("abcTEST", {test: true}, function (err) {
+                //     console.log("nearestMapper" + err);
+                // })
 
-            
-           console.log(apiUrl + query); 
-            //redirect request to proxy
-            return cb(null, apiUrl + query, { "Accept": "application/json" });
+                console.log("not caching in nearestMapper");
 
-            server.methods.cacheResponse
-        },
-        localMapper: function localInfoMapper (req, cb) {
-            var uprn = req.params.uprn;
-            var query = "?" + exactLocations + uprn + "&tab=m";
+                var service, location, query, apiUrl, defaultLocation;
+                service = cap(req.params.service);
+                location = req.params.postcode;
+                defaultLocation = "NW1 0NE";
 
-            return cb(null, url.nearestApi + query, { "Accept": "application/json" });
+                //TODO: green query is not the same, needs to be changed depending on service requested
+
+                //api url routed based on service requested
+                apiUrl  = (serviceArray.parking.indexOf(service) !== -1)    ? url.parkingApi
+                        : (serviceArray.recycling.indexOf(service) !== -1)  ? url.recyclingApi
+                        : url.nearestApi;
+
+                
+                //change value of services query depending on service being searched
+                services    = (serviceArray.recycling.indexOf(service) !== -1) ? "recycle="
+                            : services;
+
+               
+                //map our service names to camden service names
+                service = aliasServices(service);
+
+                //query constructed based on combination of services and/or address
+                query   = (location === undefined) ? "?" + services + service + "&" + locations + defaultLocation
+                        : (service === undefined)  ? query = "?" + locations + location 
+                        : "?" + locations + location + "&" + services + service;
+
+                
+               console.log(apiUrl + query); 
+                //redirect request to proxy
+                return cb(null, apiUrl + query, { "Accept": "application/json" });
+
+            },
+            localMapper: function localInfoMapper (req, cb) {
+                var uprn = req.params.uprn;
+                var query = "?" + exactLocations + uprn + "&tab=m";
+
+                return cb(null, url.nearestApi + query, { "Accept": "application/json" });
+            }
         }
     };
 

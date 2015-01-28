@@ -8,68 +8,75 @@
     "use strict";
 
     var handlers = require("../handlers/handlers.js");
-    var ConvertXml = require("../handlers/convertXml.js");
-    var MapConfig = require("./mapConfig.js");
-    var server = require("../server.js");
     var methods = require("./methodsConfig.js");
 
-    module.exports = {
-        getHome: {
-            handler: handlers.getHome
-        },
-        nearest: {
-            services: {
-                handler: {
-                    proxy: {
-                        mapUri: MapConfig.nearestMapper,
-                        onResponse: ConvertXml.convertToJson
-                        // onResponse: methods.cacheNearest(err, res, req, rep, function(err, result) {
-                        //     rep(result);
-                        // })
+
+    module.exports = function (server) {
+
+        // var cacheNearest = server.cache ({
+        //     // cache: "memory",
+        //     expiresIn: 60 * 60 * 1000 * 24,
+        //     segment: 'services'
+        // })
+
+        var ConvertXml = require("../handlers/convertXml.js")();
+        var MapConfig = require("./mapConfig.js")();
+
+        return {
+            getHome: {
+                handler: handlers.getHome
+            },
+            nearest: {
+                services: {
+                    handler: {
+                        proxy: {
+                            mapUri: MapConfig.nearestMapper,
+                            onResponse: ConvertXml.convertToJson
+                        }
+                    }
+                },
+                locations: {
+                    handler: {
+                        proxy: {
+                            mapUri: MapConfig.nearestMapper,
+                            onResponse: ConvertXml.convertToJson
+                        }
+                    }
+                },
+                servicesAndLocations: {
+                    handler: {
+                        proxy: {
+                            mapUri: MapConfig.nearestMapper,
+                            onResponse: ConvertXml.convertToJson
+
+                        }
                     }
                 }
             },
-            locations: {
-                handler: {
-                    proxy: {
-                        mapUri: MapConfig.nearestMapper,
-                        onResponse: ConvertXml.convertToJson
+            apiDocs: {
+                handler: handlers.showDocsHome
+            },
+           
+            local: {
+                information: {
+                    handler: {
+                        proxy: {
+                            mapUri: MapConfig.localMapper,
+                            onResponse: ConvertXml.convertToJson
+                        }
                     }
                 }
             },
-            servicesAndLocations: {
+            staticFiles: {
                 handler: {
-                    proxy: {
-                        mapUri: MapConfig.nearestMapper,
-                        onResponse: ConvertXml.convertToJson
-
+                    directory: {
+                        path: "../public",
+                        listing: true,
+                        index: true
                     }
                 }
-            }
-        },
-        apiDocs: {
-            handler: handlers.showDocsHome
-        },
-       
-        local: {
-            information: {
-                handler: {
-                    proxy: {
-                        mapUri: MapConfig.localMapper,
-                        onResponse: ConvertXml.convertToJson
-                    }
-                }
-            }
-        },
-        staticFiles: {
-            handler: {
-                directory: {
-                    path: "../public",
-                    listing: true,
-                    index: true
-                }
-            }
 
+            }
         }
     };
 }());

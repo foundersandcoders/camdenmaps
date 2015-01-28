@@ -1,12 +1,12 @@
 (function () {
     "use strict";
 
-    var convertToJson= require("../handlers/convertXml.js").convertToJson;
+    var mapConfig = require("./mapConfig.js");
 
 	module.exports = [
         {
             name: 'cacheNearest', 
-            method: convertToJson,
+            method: mapConfig.nearestMapper,
             options: {
                 cache: { 
                     cache: 'memory', 

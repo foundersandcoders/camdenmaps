@@ -22,6 +22,7 @@
     "angular-ui-router": "^0.2.13",
     "glue": "^2.0.0",
     "hapi": "^8.0.0",
+    "node-cache": "^1.1.0",
     "xml2js": "^0.4.4"
   },
   "devDependencies": {
