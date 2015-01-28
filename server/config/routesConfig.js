@@ -21,38 +21,71 @@
         nearest: {
             services: {
                 handler: function (req, rep) {
+                    
                     var key = req.raw.req.url;
-                    console.log("key:" + key);
 
                     cache.get(key, function (err, value) {
-                        console.log( "get err" + err);
+
+                        if (err) {
+                            console.log(err);
+                        }
+
                         if (value.hasOwnProperty(key)) {
-                            console.log("CACHED!!!!!!")
+                            console.log("cached service");
                             rep(value[key]);
                         } else {
                             rep.proxy({
                                 mapUri: MapConfig.nearestMapper,
                                 onResponse: ConvertXml.convertToJson
-                            })
+                            });
                         }
                     });
                 }
             },
             locations: {
-                handler: {
-                    proxy: {
-                        mapUri: MapConfig.nearestMapper,
-                        onResponse: ConvertXml.convertToJson
-                    }
+
+                handler: function (req, rep) {
+                    var key = req.raw.req.url;
+
+                    cache.get(key, function (err, value) {
+
+                        if (err) {
+                            console.log(err);
+                        }
+
+                        if (value.hasOwnProperty(key)) {
+                            console.log("cached location");
+                            rep(value[key]);
+                        } else {
+                            rep.proxy({
+                                mapUri: MapConfig.nearestMapper,
+                                onResponse: ConvertXml.convertToJson
+                            });
+                        }
+                    });
                 }
             },
             servicesAndLocations: {
-                handler: {
-                    proxy: {
-                        mapUri: MapConfig.nearestMapper,
-                        onResponse: ConvertXml.convertToJson
 
-                    }
+                handler: function (req, rep) {
+                    var key = req.raw.req.url;
+
+                    cache.get(key, function (err, value) {
+
+                        if (err) {
+                            console.log(err);
+                        }
+
+                        if (value.hasOwnProperty(key)) {
+                            console.log("cached service and location");
+                            rep(value[key]);
+                        } else {
+                            rep.proxy({
+                                mapUri: MapConfig.nearestMapper,
+                                onResponse: ConvertXml.convertToJson
+                            });
+                        }
+                    });
                 }
             }
         },

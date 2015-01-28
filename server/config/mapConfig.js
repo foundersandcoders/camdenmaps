@@ -17,9 +17,6 @@
         cache = require("./cache.js"),
         exactLocations = Config.map.query.uprn;
 
-    //Clears the Cache
-    cache.del("abcTest");
-
     //capitalize first letter of word (norm
     function cap(word) {
         return word[0].toUpperCase() + word.substring(1, word.length).toLowerCase();
@@ -53,19 +50,6 @@
 
         nearestMapper: function nearestMapper (req, cb, err, next) {
 
-            var key = req.raw.req.url;
-
-
-            cache.get(key, function (err, value) {
-                console.log( "get err" + err);
-                if (value.hasOwnProperty("abcTest")) {
-                    console.dir( "get value" + value.abcTest.test);
-                }
-                return (value);
-            });
-
-            console.log("not caching in nearestMapper");
-
             var service, location, query, apiUrl, defaultLocation;
             service = cap(req.params.service);
             location = req.params.postcode;
@@ -93,7 +77,6 @@
                     : "?" + locations + location + "&" + services + service;
 
             
-           console.log(apiUrl + query); 
             //redirect request to proxy
             return cb(null, apiUrl + query, { "Accept": "application/json" });
 

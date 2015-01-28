@@ -16,16 +16,21 @@
     module.exports = {
 
         convertLocalInformation: function convertLocalInformation (err, res, req, rep) {
+
             var xml, response;
             xml = "";
             response = {};
+
+
             
             res.on("data", function(data) {
                 xml = xml + data;
             });
 
             res.on("end", function() {
+
                 parser.parseString(xml, function(err, result) {
+
                     response.location = {};
                     response.location.Area = result.Locations.AddressSearchResults[0].$.sPostcode;
                     response.location.Latitude = result.Locations.AddressSearchResults[0].$.Latitude;
@@ -36,11 +41,13 @@
                     result.Locations.LocalInformation[0].Table.map(function(p) {
                         response.information[p.$.TableDesc] = p.Object[0].$.ObjectDesc;
                     });
+
                     rep(response);
                 });
             });
         },
         convertStreetworks: function convertStreetworks (err, res, req, rep) {
+
             var xml, response;
             xml = "";
             response = {};
@@ -51,12 +58,14 @@
 
             res.on("end", function() {
                 parser.parseString(xml, function(err, result) {
+
                     response.location = {};
                     response.location.Area = result.Locations.$.postcode; 
                     response.location.Latitude = result.Locations.$.Lat;
                     response.location.Longitude = result.Locations.$.Lng;
                     response.properties = [];
                     result.Locations.StreetWorks.map(function(p) {
+
                         console.dir(p);
                         var formattedProperty = {};
                         formattedProperty.Longitude = p.$.Lng;
@@ -73,6 +82,7 @@
                         formattedProperty.display.Description = p.$.Description;
                         response.properties.push(formattedProperty);
                     });
+
                     rep(response);
                 });
             });
@@ -84,8 +94,7 @@
             response = {};
             key = req.raw.req.url;
 
-            console.log("Need to Cache...")
-            console.log(req.url);
+            console.log("Not Cached");
 
             if (serviceArrays.recycling.indexOf(req.params.service) > -1) {
                 xml = "";
@@ -96,13 +105,15 @@
                 });
 
                 res.on("end", function() {
+
                     parser.parseString(xml, function(err, result) {
+
                         console.dir(result);
                         response.location = {};
                         response.location.Area = result.Locations.$.Area;
                         response.properties = [];
                         result.Locations.RecycleCentre.map(function(p) {
-                            console.log(p);
+
                             var formatProperty = {};
                             formatProperty.Latitude = p.$.Lat;
                             formatProperty.Longitude = p.$.Lng;
@@ -113,12 +124,14 @@
                             formatProperty.display.URL = p.$.URL;
                             response.properties.push(formatProperty);
                         });
-                        cache.set(key, response, function (err, success) {
-                            console.log("set err" + err);
-                            console.log("set success" + success);
 
-                            rep(response);
-                        })
+                        cache.set(key, response, function (err, success) {
+                            if (!err && success) {
+                                rep(response);
+                            } else {
+                                console.log(err);
+                            }
+                        });
                     });
                 });
 
@@ -132,13 +145,14 @@
 
                 res.on("end", function() {
                     parser.parseString(xml, function(err, result) {
+
                         response.location = {};
                         response.location.Latitude = result.Locations.$.Lat;
                         response.location.Longitude = result.Locations.$.Lng;
                         response.location.Area = result.Locations.$.postcode;
                         response.properties = [];
                         result.Locations.ParkingBay.map(function(p) {
-                            console.log(p);
+
                             var formatProperty = {};
                             formatProperty.Latitude = p.$.Lat;
                             formatProperty.Longitude = p.$.Lng;
@@ -152,17 +166,19 @@
                             formatProperty.display.Type = p.$.Type;
                             response.properties.push(formatProperty);
                         });
-                        cache.set(key, response, function (err, success) {
-                            console.log("set err" + err);
-                            console.log("set success" + success);
 
-                            rep(response);
-                        })
+                        cache.set(key, response, function (err, success) {
+                            if (!err && success) {
+                                rep(response);
+                            } else {
+                                console.log(err);
+                            }
+                        });
                     });  
                 });
             
             } else {
-                // var parser = xml.parse(res);
+                
                 xml = '';
                 response = {};
                 response.properties = [];
@@ -170,22 +186,24 @@
                 res.on('data', function(data){
                   xml = xml + data;
                 });
+
                 res.on('end', function(){
                     parser.parseString(xml, function (err, result) {
-                        console.log(result);
+
                         response.location = result.Locations.AddressSearchResults[0]['$'];
                         result.Locations.Properties[0].Property.map(function(p) {
                             var formatProperty = p['$'];
-                            formatProperty.display = p.PoI[0]['$']
+                            formatProperty.display = p.PoI[0]['$'];
                             response.properties.push(formatProperty);
                         });
+
                         cache.set(key, response, function (err, success) {
-                            console.log("set err" + err);
-                            console.log("set success" + success);
-
-                            rep(response);
-                        })
-
+                            if (!err && success) {
+                                rep(response);
+                            } else {
+                                console.log(err);
+                            }
+                        });
                     });
                 });
             }
