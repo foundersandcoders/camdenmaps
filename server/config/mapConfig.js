@@ -53,11 +53,15 @@
 
         nearestMapper: function nearestMapper (req, cb, err, next) {
 
-            cache.get("abcTest", function (err, value) {
+            var key = req.raw.req.url;
+
+
+            cache.get(key, function (err, value) {
                 console.log( "get err" + err);
                 if (value.hasOwnProperty("abcTest")) {
                     console.dir( "get value" + value.abcTest.test);
                 }
+                return (value);
             });
 
             console.log("not caching in nearestMapper");
@@ -99,6 +103,13 @@
             var query = "?" + exactLocations + uprn + "&tab=m";
 
             return cb(null, url.nearestApi + query, { "Accept": "application/json" });
+        },
+        streetworksMapper: function streetworksMapper (req, cb, err) {
+            var location, query;
+            location = req.params.postcode;
+            query = "?" + locations + location;
+            
+            return cb(null, url.streetworksApi + query, { "Accept": "application/json" });
         }
     };
 

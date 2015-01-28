@@ -12,6 +12,7 @@
                 }
                 return size;
             };  
+            
 
 			this.addMarkers = function (scope) {
 				return function () {
@@ -29,7 +30,7 @@
 
                     // this will run on refreshes
                     // TODO run when services with 5 results have address added
-                    if(Object.size(markers) === 0 || ( !markers.m6 && !markers.m0.locationTest ) ) {
+                    if(Object.size(markers) === 0 || ( !markers.m6 && markers.m0 && !markers.m0.locationTest ) ) {
                         // var x will save time as the loop does not have to look up the length each time
                         var i, 
                         	resultLength = Object.size(root);
@@ -94,7 +95,31 @@
                     scope.update("markers", markers);
 			};
 
+
 			};
+
+            this.zoomCheck = function (scope) {
+                return function () {
+
+                    var zoomLevel,
+                        size = Object.size(scope.markers);
+                    console.log("size", size);
+                    //if results capped at 5 (plus location marker) can zoom in 
+                    if(size === 6) {
+                        zoomLevel = 15;
+                    }
+                    //if results are less than 5 markers zooms out to fit them all in
+                    else if (size < 6) {
+                        zoomLevel = 12;
+                    }
+                    else {
+                        zoomLevel = 13;
+                    }
+
+                    return zoomLevel;
+
+                };
+            };
 		}
 
 	];

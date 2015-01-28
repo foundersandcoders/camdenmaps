@@ -8,9 +8,9 @@
     "use strict";
 
     var handlers = require("../handlers/handlers.js");
-    var methods = require("./methodsConfig.js");
-    var ConvertXml = require("../handlers/convertXml.js")();
-    var MapConfig = require("./mapConfig.js")();
+    var ConvertXml = require("../handlers/convertXml.js");
+    var MapConfig = require("./mapConfig.js");
+    var cache = require("../config/cache.js");
 
 
     module.exports = {
@@ -20,11 +20,22 @@
         },
         nearest: {
             services: {
-                handler: {
-                    proxy: {
-                        mapUri: MapConfig.nearestMapper,
-                        onResponse: ConvertXml.convertToJson
-                    }
+                handler: function (req, rep) {
+                    var key = req.raw.req.url;
+                    console.log("key:" + key);
+
+                    cache.get(key, function (err, value) {
+                        console.log( "get err" + err);
+                        if (value.hasOwnProperty(key)) {
+                            console.log("CACHED!!!!!!")
+                            rep(value[key]);
+                        } else {
+                            rep.proxy({
+                                mapUri: MapConfig.nearestMapper,
+                                onResponse: ConvertXml.convertToJson
+                            })
+                        }
+                    });
                 }
             },
             locations: {
@@ -54,11 +65,19 @@
                 handler: {
                     proxy: {
                         mapUri: MapConfig.localMapper,
-                        onResponse: ConvertXml.convertToJson
+                        onResponse: ConvertXml.convertLocalInformation
                     }
                 }
             }
         },
+        streetworks: {
+            handler: {
+                proxy: {
+                    mapUri: MapConfig.streetworksMapper,
+                    onResponse: ConvertXml.convertStreetworks
+                }
+            }
+        }, 
         staticFiles: {
             handler: {
                 directory: {

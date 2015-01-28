@@ -8,7 +8,6 @@
 //import routes, controllers, plugins, config, and modules
 var hapi = require("hapi");
 var config = require("../server/config/serverConfig.js");
-var methods = require("../server/config/methodsConfig.js");
 var routes = require("../server/config/routes.js");
 var path = require('path');
 var ConvertXml = require("./handlers/convertXml.js");
