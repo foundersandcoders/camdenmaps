@@ -13,11 +13,12 @@
     module.exports = [
         "$scope",
         "$stateParams",
+        "$location",
         "apiSearch",
         "markers",
         "markerHandlers",
         "buttonHandlers",
-        function ($scope, $stateParams, apiSearch, markers, markerHandlers, buttonHandlers) {
+        function ($scope, $stateParams, $location, apiSearch, markers, markerHandlers, buttonHandlers) {
 
             //model for search query
             $scope.address = "";
@@ -44,7 +45,8 @@
                     .success(function success (data) {
                         $scope.update("results", data.properties);
                         $scope.addMarkers();
-                        $scope.centre.zoom = markers.zoomCheck($scope)();
+                        // $scope.centre = markers.centreCheck($scope)();
+                        // $scope.centre.zoom = markers.zoomCheck($scope)();
                     });
             // }
 

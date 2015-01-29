@@ -44,11 +44,11 @@
                     }
 
                     
-                    scope.update("centre", {
-                        lat: args.leafletEvent.latlng.lat,
-                        lng: args.leafletEvent.latlng.lng,
-                        zoom: 15
-                    });
+                    // scope.update("centre", {
+                    //     lat: args.leafletEvent.latlng.lat,
+                    //     lng: args.leafletEvent.latlng.lng,
+                    //     zoom: 15
+                    // });
                 }
                 };
             };

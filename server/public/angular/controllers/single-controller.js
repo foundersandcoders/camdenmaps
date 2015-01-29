@@ -39,20 +39,24 @@
                 //if there is an active marker the list view was accessed
                 //by marker click and map already recentred
                 function linkResultToMarker() {                         
-                        console.log("linktoResult in SINGLE-CONTROLLER line 42")
+                        console.log("linktoResult in SINGLE-CONTROLLER line 42");
 
                         //links list result with relevant marker
                         marker = "m" + ($scope.results.indexOf($scope.result) + 1);
-                        console.log("marker line 46 single-controller marker", marker);
-                        $scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
-                        $scope.update("activeMarker", $scope.markers[marker]);
                         
-                        //recentres map on the list result selected
-                        $scope.update("centre", {
-                            lat: Number($scope.result.Latitude),
-                            lng: Number($scope.result.Longitude),
-                            zoom: 15
-                        });
+                        //if single list view loaded from click this marker will already be the active marker
+                        if(marker !== $scope.activeMarker) {
+                            $scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
+                            $scope.update("activeMarker", $scope.markers[marker]);
+                            
+                            //recentres map on the list result selected
+                            $scope.update("centre", {
+                                lat: Number($scope.result.Latitude),
+                                lng: Number($scope.result.Longitude),
+                                zoom: 15
+                            });
+                        }
+
                     }
                 
                 //if single view accessed through list it will link to map

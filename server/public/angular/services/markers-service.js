@@ -29,9 +29,14 @@
 
 
                     // this will run on refreshes
+                    // it will run if 1 markers is there if it is the geolocation marker
+                    // it will run if there are only five results and the m0 markers is the default location warning marker
                     // TODO run when services with 5 results have address added
                     if(Object.size(markers) === 0 || (Object.size(markers) === 1 && markers.location ) || ( !markers.m6 && markers.m0 && !markers.m0.locationTest ) ) {
                         // var x will save time as the loop does not have to look up the length each time
+                        
+                    console.log(markers.location, "markers in loop");
+
                         var i, 
                         	resultLength = Object.size(root);
                         
@@ -51,12 +56,8 @@
                         
                     }
             
-                    //to prevent the geolocation marker from being overwritten... 
-                    // if(markers.location) {
-                    //     markers.location = markers.location;
-                    // }
 
-                    console.log(markers.location, "markers location in markers");
+
 
                     if( (Object.size(markers) === 5 || ( (Object.size(markers) === 6 && markers.location) ) ) && !$stateParams.location) {
 
@@ -74,6 +75,7 @@
                                 markers.m0.lat = markers.location.lat;
                                 markers.m0.lng = markers.location.lng;
                                 markers.m0.icon.iconUrl =  "../img/icons/geolocation.png"; 
+                                markers.m0.geolocation = true;
 
                             } 
                             //else sets it to the default location
@@ -83,6 +85,7 @@
                                 markers.m0.lng = -0.14205; 
                                 markers.m0.icon.iconUrl =  "../img/icons/location-marker.png";
                             }
+
 
                     }
 
@@ -123,7 +126,7 @@
 
                     var zoomLevel,
                         size = Object.size(scope.markers);
-                    console.log("size", size);
+
                     //if results capped at 5 (plus location marker) can zoom in 
                     if(size === 6 || ( size === 7 && scope.markers.location) ) {
                         zoomLevel = 15;
@@ -140,6 +143,35 @@
 
                 };
             };
+            
+  //           this.centreCheck = function (scope) {
+  //               return function () {
+
+  //                   var centre;
+
+  //                   //if geolocation used centres map on this point
+  //                   if(scope.markers.location) {
+  //                       centre = {
+  //                           lat: scope.markers.location.lat,
+  //                           lng: scope.markers.location.lng
+  //                       };
+  //                   }
+  //                   //if only five results centres map on NW1 0NE 
+  //                   else if (scope.markers.m0 && scope.markers.m0.locationTest) {
+  //                       centre = {
+  //                           lat: 51.53861,
+  //                           lng: -0.14205
+  //                       };
+  //                   }
+  //                   //otherwise remains intial location
+  //                   else {
+  //                       centre = scope.centre;
+  //                   }
+
+  //                   return centre;
+
+  //               };
+  //           };
 		}
 
 	];

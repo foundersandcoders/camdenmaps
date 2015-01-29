@@ -38,6 +38,7 @@
             })[0].img;
             
             if(!$scope.locationSelected.hasOwnProperty("Area") ){
+                console.log("running api search in LOCATION-CONTROLLER");
                 //reloads $scope.results with new data based on address 
                 apiSearch.search($stateParams.service, $stateParams.address)
                     .success(function success (data) {
@@ -51,7 +52,7 @@
                             $scope.update("centre", {
                                 lat: Number($scope.locationSelected.Latitude),
                                 lng: Number($scope.locationSelected.Longitude),
-                                zoom: markers.zoomCheck($scope)()
+                                // zoom: markers.zoomCheck($scope)()
                             });
                         }
 

@@ -116,15 +116,6 @@
                         } else {
                             //if they are outside Camden normal functionality will be used
                             console.log("outside Camden");
-                            //this is here for testing when outside Camden
-                            $scope.markers.location = {
-                                lat: e.latitude,
-                                lng: e.longitude,
-                                icon: {
-                                    iconSize: [28],
-                                    iconUrl: "../img/icons/geolocation.png"
-                                },
-                            }
                         }
                      });
             });
