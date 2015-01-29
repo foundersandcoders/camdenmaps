@@ -35,7 +35,7 @@
             describe("Each result in the list contains information", function () {
 	        	it("Distance", function () {
 
-	        		var text = element(by.css('.distance')).getText();
+	        		var text = element.all(by.css('.distance')).get(0).getText();
 
 	                expect(text).toEqual('0.49 miles');
 

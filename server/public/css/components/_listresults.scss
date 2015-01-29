@@ -39,8 +39,13 @@
 }
 
 @media (max-width: 768px) {
-	#list-results {
+	#list-results-container {
+		padding: 0;
+		position: absolute;
 		height: 70%;
+	}
+	#list-results {
+		// height: 70%;
 		.list-item {
 			height: 7em;
 		}

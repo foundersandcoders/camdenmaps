@@ -9,10 +9,12 @@
     "use strict";
 
     var Config = require("./serverConfig.js"),
+        convertToJson= require("../handlers/convertXml.js").convertToJson,
         url = Config.map.url,
         serviceArray = Config.map.serviceArrays,
         services = Config.map.query.service,
         locations = Config.map.query.location,
+        cache = require("./cache.js"),
         exactLocations = Config.map.query.uprn;
 
     //capitalize first letter of word (norm
@@ -46,7 +48,8 @@
 
     module.exports = {
 
-        nearestMapper: function nearestMapper (req, cb, err) {
+        nearestMapper: function nearestMapper (req, cb, err, next) {
+
             var service, location, query, apiUrl, defaultLocation;
             service = cap(req.params.service);
             location = req.params.postcode;
@@ -74,7 +77,6 @@
                     : "?" + locations + location + "&" + services + service;
 
             
-           console.log(apiUrl + query); 
             //redirect request to proxy
             return cb(null, apiUrl + query, { "Accept": "application/json" });
 
@@ -84,6 +86,13 @@
             var query = "?" + exactLocations + uprn + "&tab=m";
 
             return cb(null, url.nearestApi + query, { "Accept": "application/json" });
+        },
+        streetworksMapper: function streetworksMapper (req, cb, err) {
+            var location, query;
+            location = req.params.postcode;
+            query = "?" + locations + location;
+            
+            return cb(null, url.streetworksApi + query, { "Accept": "application/json" });
         }
     };
 

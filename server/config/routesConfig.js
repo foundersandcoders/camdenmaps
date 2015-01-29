@@ -10,35 +10,82 @@
     var handlers = require("../handlers/handlers.js");
     var ConvertXml = require("../handlers/convertXml.js");
     var MapConfig = require("./mapConfig.js");
+    var cache = require("../config/cache.js");
+
 
     module.exports = {
+
         getHome: {
-            handler: handlers.getHome        
+            handler: handlers.getHome
         },
         nearest: {
             services: {
-                handler: {
-                    proxy: {
-                        mapUri: MapConfig.nearestMapper,
-                        onResponse: ConvertXml.convertToJson   
-                    }
+                handler: function (req, rep) {
+                    
+                    var key = req.raw.req.url;
+
+                    cache.get(key, function (err, value) {
+
+                        if (err) {
+                            console.log(err);
+                        }
+
+                        if (value.hasOwnProperty(key)) {
+                            console.log("cached service");
+                            rep(value[key]);
+                        } else {
+                            rep.proxy({
+                                mapUri: MapConfig.nearestMapper,
+                                onResponse: ConvertXml.convertToJson
+                            });
+                        }
+                    });
                 }
             },
             locations: {
-                handler: {
-                    proxy: {
-                        mapUri: MapConfig.nearestMapper,
-                        onResponse: ConvertXml.convertToJson
-                    }
+
+                handler: function (req, rep) {
+                    var key = req.raw.req.url;
+
+                    cache.get(key, function (err, value) {
+
+                        if (err) {
+                            console.log(err);
+                        }
+
+                        if (value.hasOwnProperty(key)) {
+                            console.log("cached location");
+                            rep(value[key]);
+                        } else {
+                            rep.proxy({
+                                mapUri: MapConfig.nearestMapper,
+                                onResponse: ConvertXml.convertToJson
+                            });
+                        }
+                    });
                 }
             },
             servicesAndLocations: {
-                handler: {
-                    proxy: {
-                        mapUri: MapConfig.nearestMapper,
-                        onResponse: ConvertXml.convertToJson
 
-                    }
+                handler: function (req, rep) {
+                    var key = req.raw.req.url;
+
+                    cache.get(key, function (err, value) {
+
+                        if (err) {
+                            console.log(err);
+                        }
+
+                        if (value.hasOwnProperty(key)) {
+                            console.log("cached service and location");
+                            rep(value[key]);
+                        } else {
+                            rep.proxy({
+                                mapUri: MapConfig.nearestMapper,
+                                onResponse: ConvertXml.convertToJson
+                            });
+                        }
+                    });
                 }
             }
         },
@@ -47,23 +94,23 @@
         },
        
         local: {
-            // addresses: {
-            //     handler: {
-            //         proxy: {
-            //             mapUri: MapConfig.localInfoMapper,
-            //             onResponse: Config.convertToXml
-            //         }
-            //     }
-            // }
             information: {
                 handler: {
                     proxy: {
                         mapUri: MapConfig.localMapper,
-                        onResponse: ConvertXml.convertToJson
+                        onResponse: ConvertXml.convertLocalInformation
                     }
                 }
             }
         },
+        streetworks: {
+            handler: {
+                proxy: {
+                    mapUri: MapConfig.streetworksMapper,
+                    onResponse: ConvertXml.convertStreetworks
+                }
+            }
+        }, 
         staticFiles: {
             handler: {
                 directory: {
@@ -72,7 +119,6 @@
                     index: true
                 }
             }
-
         }
     };
 }());
