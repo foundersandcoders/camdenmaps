@@ -17,7 +17,12 @@
             "leaflet-directive"
     ])
 
-    .config( require("./config.js") );
+    .config( require("./config.js") )
+
+	// Set up the cache for initial resources
+	.factory('cacheResources', function($cacheFactory) {
+	 return $cacheFactory('cachedResources');
+	});
         
   require("./controllers");
   require("./services");
