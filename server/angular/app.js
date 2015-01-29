@@ -20,9 +20,17 @@
 
     .config( require("./config.js") )
 
+    // Need to Cache for optimisation:
+    // - Boostrap css.
+    // - Leaflet.css
+    // - Our angular bundle
+    // - leaflet-directive
+    // - bootstrap js
+    // - openstreetmap
+
 	// Set up the cache for initial resources
 	.factory('cacheResources', function($cacheFactory) {
-	 return $cacheFactory('cachedResources');
+	   return $cacheFactory('cachedResources');
 	});
         
   require("./controllers");

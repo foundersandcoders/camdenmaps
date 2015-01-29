@@ -13,9 +13,9 @@
 
         var path; 
 
-            this.markerClick = function(s) {
+            this.markerClick = function(functionScope) {
                 return function(e, args, scope) {
-                scope = scope || s;
+                scope = scope || functionScope;
 
                 
                 // Args will contain the marker name and other relevant information      
@@ -53,9 +53,9 @@
                 };
             };
 
-            this.mapClick = function(s) {
+            this.mapClick = function(functionScope) {
                 return function(e, args, scope) {
-                scope = scope || s;
+                scope = scope || functionScope;
                 
 
                 if(scope.activeMarker) {
