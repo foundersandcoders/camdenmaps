@@ -20,7 +20,7 @@
            
 
             //stores geo data for camden borough boundaries
-            var camdenBoundaries = require("../../lib/camdenBorough.geo.json");
+            var camdenBoundaries = require("../../public/lib/camdenBorough.geo.json");
             //stores results at root for access by all controllers
             $scope.results = [];
             //stores entered location at root for access by leafletjs

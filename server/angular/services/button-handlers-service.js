@@ -15,10 +15,10 @@
             var current,
                 destination;
 
-            this.searchAgain = function (s, destination) { 
+            this.searchAgain = function (functionScope, destination) { 
 
                 return function (scope) { 
-                    scope = scope || s;             
+                    scope = scope || functionScope;             
                     scope.update("locationSelected", {});
                     scope.update("centre", {
                             lat: 51.535923,
@@ -37,10 +37,10 @@
                 };
             };
 
-            this.toggle = function (s) {
+            this.toggle = function (functionScope) {
                 
                 return function (scope) {
-                    scope = scope || s;  
+                    scope = scope || functionScope;  
                     if($location.path().indexOf("/list") > -1) { 
                         return exit(); 
                     } else {
@@ -51,6 +51,11 @@
             };
             
             function listResults (scope) {   
+                
+                //Encodes service in url.
+                $stateParams.service = decodeURI($stateParams.service);
+                var service = encodeURIComponent($stateParams.service);
+
                 //clears the active marker
                 if(scope.activeMarker) {
                     scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
@@ -58,8 +63,8 @@
                 }
 
                 destination = ($stateParams.address) 
-                            ? "/home/" + $stateParams.service + "/location/" + scope.address + "/list"
-                            :  "/home/" + $stateParams.service + "/search/list";
+                            ? "/home/" + service + "/location/" + scope.address + "/list"
+                            :  "/home/" + service + "/search/list";
                 $location.path(destination);
             }
 

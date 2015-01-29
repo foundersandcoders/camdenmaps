@@ -65,10 +65,15 @@
                         path;
 
                     if (item.type === "service") {
+
                         service = encodeURIComponent(item.title + item.text);
+
                         path = "/home/" + service + "/search";
+
                         $location.path(path);
+
                     } else if (item.type === "category") {
+
                         //sets parentIndex so will return to page with parent category on
                         parentIndex = currentIndex;
                         //resets page number for services listed

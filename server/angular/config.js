@@ -21,55 +21,55 @@
             .state("root", {
                 abstract: true,
                 url:"/home",
-                templateUrl: "angular/partials/root.html",
+                templateUrl: "partials/root.html",
                 controller: "RootController"
             })
 
             .state("root.landing", {
                 url: "",
-                templateUrl: "angular/partials/root.landing.html",
+                templateUrl: "partials/root.landing.html",
                 controller: "LandingController"
             })
   
             .state("root.landing.services", {
                 url: "/services",
-                templateUrl: "angular/partials/root.landing.services.html",
+                templateUrl: "partials/root.landing.services.html",
                 controller: "ServicesController" 
             })
   
             .state("root.address-search", {
                 url: "/{service}/search",
-                templateUrl: "angular/partials/root.address-search.html",
+                templateUrl: "partials/root.address-search.html",
                 controller: "SearchController"
             })
  
             .state("root.address-search.list-view", {
                 url: "/list",
-                templateUrl: "angular/partials/list-view.html",
+                templateUrl: "partials/list-view.html",
                 controller: "ListController" 
             })
 
             .state("root.address-search.single-view", {
                 url: "/{id}",
-                templateUrl: "angular/partials/root.address-found.single-view.html",
+                templateUrl: "partials/root.address-found.single-view.html",
                 controller: "SingleController" 
             })
 
             .state("root.address-found", {
                 url: "/{service}/location/{address}",
-                templateUrl: "angular/partials/root.address-found.html",
+                templateUrl: "partials/root.address-found.html",
                 controller: "LocationController"
             })
   
             .state("root.address-found.list-view", {
                 url: "/list",
-                templateUrl: "angular/partials/list-view.html",
+                templateUrl: "partials/list-view.html",
                 controller: "ListController" 
             })
   
             .state("root.address-found.single-view", {
                 url: "/{id}",
-                templateUrl: "angular/partials/root.address-found.single-view.html",
+                templateUrl: "partials/root.address-found.single-view.html",
                 controller: "SingleController" 
             });
 

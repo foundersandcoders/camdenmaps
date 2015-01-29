@@ -138,7 +138,7 @@
     gulp.task("browserify", function () {
 
         var bundle = function() {
-            return browserify({ entries: ["./server/public/angular/app.js"], debug: true })
+            return browserify({ entries: ["./server/angular/app.js"], debug: true })
                 .bundle()
                 .pipe(source(getBundleName() + '.js'))
                 .pipe(buffer())
@@ -151,7 +151,7 @@
     });
 
     gulp.task("watchify", shell.task([
-        "watchify ./server/public/angular/app.js -o ./server/public/js/1.0.0.camdenmaps.min.js -v"
+        "watchify ./server/angular/app.js -o ./server/public/js/1.0.0.camdenmaps.min.js -v"
     ]));
 
 }());
