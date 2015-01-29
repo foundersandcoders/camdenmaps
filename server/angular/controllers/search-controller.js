@@ -13,11 +13,12 @@
     module.exports = [
         "$scope",
         "$stateParams",
+        "$location",
         "apiSearch",
         "markers",
         "markerHandlers",
         "buttonHandlers",
-        function ($scope, $stateParams, apiSearch, markers, markerHandlers, buttonHandlers) {
+        function ($scope, $stateParams, $location, apiSearch, markers, markerHandlers, buttonHandlers) {
 
             //model for search query
             $scope.address = "";
