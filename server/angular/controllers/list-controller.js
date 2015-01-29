@@ -15,8 +15,13 @@
             // Ensuring that the service name in the URL is Encoded
             // Need to decode and then encode twice so to compensate for double encoding for only part of $stateParams.service
             $stateParams.service = decodeURI($stateParams.service);
-            $stateParams.service = encodeURIComponent($stateParams.service);
-            var service = encodeURIComponent($stateParams.service);
+
+            var encodeservice = encodeURIComponent($stateParams.service);
+            var service = encodeURIComponent(encodeservice);
+
+            console.log($stateParams.service);
+            console.log(encodeservice);
+            console.log(service);
 
             //change baseurl depending on whether address-found or address-search 
             $scope.baseUrl = $stateParams.address ?  "/#/home/" + service + 
@@ -28,8 +33,8 @@
             //handler for each result
             function createResultsHandler (id) {
                 return function () {
-                    var path = "/service" + $stateParams.service + 
-                        "/location/" + $stateParams.address +
+                    var path = "/service" + service + 
+                        "/location/" + service +
                         id;
                     $location.path(path); 
                 };

@@ -70,27 +70,23 @@
 	}
 }
 
+@media (max-width: 768px) {
+	#address-search {
+		h1 {
+			margin: 0.3em 0;
+		}
+		.icon {
+			width: 2em;
+		}
+	}
+}
+
 #services {
 	img {
 		width: 3em;
 		margin: 0 auto;
 		display: block;
 		padding-bottom: 0.5em;
-	}
-}
-
-#locations {
-	a {
-		cursor: pointer;
-		img {
-			width: 3em;
-			margin: 0 auto;
-			display: block;
-			padding-bottom: 0.5em;
-		}
-		h4 {
-			color: white;
-		}
 	}
 }
 
