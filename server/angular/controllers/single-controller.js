@@ -27,23 +27,26 @@
                 */
                 
                 // Ensuring that the service name in the URL is Encoded
-                $stateParams.service = encodeURIComponent($stateParams.service);
+
+                $stateParams.service = decodeURI($stateParams.service);
+                var service = encodeURIComponent($stateParams.service);
+                console.log(service);
 
                 $scope.showDistance = $stateParams.address ? true : false; 
            
-                uri = ($stateParams.address) ? "/services/" + $stateParams.service + "/locations/" + $stateParams.address
-                : "/services/" + $stateParams.service; 
+                uri = ($stateParams.address) ? "/services/" + service + "/locations/" + $stateParams.address
+                : "/services/" + service; 
 
 
                 
                 //if there is an active marker the list view was accessed
                 //by marker click and map already recentred
                 function linkResultToMarker() {                         
-                        console.log("linktoResult in SINGLE-CONTROLLER line 42")
+                        // console.log("linktoResult in SINGLE-CONTROLLER line 42")
 
                         //links list result with relevant marker
                         marker = "m" + ($scope.results.indexOf($scope.result) + 1);
-                        console.log("marker line 46 single-controller marker", marker);
+                        // console.log("marker line 46 single-controller marker", marker);
                         $scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
                         $scope.update("activeMarker", $scope.markers[marker]);
                         
@@ -68,7 +71,7 @@
 
                //this function throws up the error undefined is not a function
                 if(!$scope.results || typeof $scope.result === undefined ) {
-                apiSearch.search($stateParams.service, $stateParams.address)
+                apiSearch.search(service, $stateParams.address)
                     .success(function success (data) {
                         $scope.updateResults(data.properties);
                         $scope.update("locationSelected", data.location);
