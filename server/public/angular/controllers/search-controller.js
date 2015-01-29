@@ -46,7 +46,7 @@
                         $scope.update("results", data.properties);
                         $scope.addMarkers();
                         // $scope.centre = markers.centreCheck($scope)();
-                        // $scope.centre.zoom = markers.zoomCheck($scope)();
+                        $scope.centre.zoom = markers.zoomCheck($scope)();
                     });
             // }
 
