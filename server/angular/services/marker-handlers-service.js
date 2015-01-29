@@ -17,9 +17,9 @@
                 return function(e, args, scope) {
                 scope = scope || functionScope;
 
+                //ensuring that the uri is encoded correctly
                 $stateParams.service = decodeURI($stateParams.service);
                 var service = encodeURIComponent($stateParams.service);
-                console.log(service);
 
                 
                 // Args will contain the marker name and other relevant information      
