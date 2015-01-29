@@ -17,6 +17,10 @@
                 return function(e, args, scope) {
                 scope = scope || functionScope;
 
+                $stateParams.service = decodeURI($stateParams.service);
+                var service = encodeURIComponent($stateParams.service);
+                console.log(service);
+
                 
                 // Args will contain the marker name and other relevant information      
                 if (args.markerName === "m0") {
@@ -36,8 +40,8 @@
                     
 
                     //correct path will depend on if it is called from search or location controller
-                    path    = scope.address ? "/home/" + $stateParams.service + "/location/" + scope.address + "/" + scope.markers[args.markerName].name
-                            : "/home/" + $stateParams.service + "/search/" + scope.markers[args.markerName].name;
+                    path    = scope.address ? "/home/" + service + "/location/" + scope.address + "/" + scope.markers[args.markerName].name
+                            : "/home/" + service + "/search/" + scope.markers[args.markerName].name;
                     
                     if($location.path() !== path) {
                         $location.path(path);
@@ -63,8 +67,8 @@
                     scope.update("activeMarker", 0);
                 }
 
-                path    = scope.address ? "/home/" + $stateParams.service + "/location/" + scope.address
-                        : "/home/" + $stateParams.service + "/search";
+                path    = scope.address ? "/home/" + service + "/location/" + scope.address
+                        : "/home/" + service + "/search";
                     
                 $location.path(path);  
                 };
