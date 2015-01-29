@@ -6,7 +6,8 @@
 
 var Nodecache = require("node-cache");
 
-// 86400000 is for 24 hours
-var cache = new Nodecache({ stdTTL: 86400000 });
+// milliseconds * seconds * minutes * hours * days = 1 week as standard
+// this can be overwritten when calling cache.set (i.e for streetworks)
+var cache = new Nodecache({ stdTTL: 1000 * 60 * 60 * 24 * 7 });
 
 module.exports = cache;
