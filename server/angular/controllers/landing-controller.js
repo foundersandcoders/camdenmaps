@@ -15,12 +15,10 @@
                 var findYourNearest = $('#find-your-nearest');
 
                 if (findYourNearest.length === 0){
-                    console.log('services');
                     var destination = "/home/services"
                     $location.path(destination);
                     
                 } else {
-                    console.log('home');
                     var destination = "/home"
                     $location.path(destination);
                 }
@@ -59,8 +57,6 @@
                     $scope.showMe = false;
                 }
             });
-
-            //$scope.$watch(choosePath);
            
         }
     ];
