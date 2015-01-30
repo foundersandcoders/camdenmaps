@@ -14,14 +14,11 @@
             $scope.choosePath = function () {
                 var findYourNearest = $('#find-your-nearest');
 
-                if (findYourNearest.length === 0){
-                    var destination = "/home/services"
-                    $location.path(destination);
-                    
-                } else {
-                    var destination = "/home"
-                    $location.path(destination);
-                }
+                var destination = findYourNearest.length === 0
+                                ? "/home/services"
+                                : "/home";
+                                
+                $location.path(destination);
             };
 
 
