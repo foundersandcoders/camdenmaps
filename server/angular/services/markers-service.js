@@ -3,9 +3,9 @@
 
 	module.exports = [
         "$stateParams",
-		function ($stateParams) {
+        function ($stateParams) {
 
-			Object.size = function(obj) {
+            Object.size = function(obj) {
                 var size = 0, key;
                 for (key in obj) {
                     if (obj.hasOwnProperty(key)) size++;
@@ -14,17 +14,17 @@
             };  
             
 
-			this.addMarkers = function (scope) {
-				return function () {
-                    var root = scope.results,
-                    // this creates the marker objects to plot the locations on the map
-                    	markers = scope.markers,
-                    //this is declared here to prevent it being declared every time the loop runs
-						property, 
-                    // instead of two function, one obj with two methods?
-                    	coord = function coord(i, latlng){
-                            return Number(scope.results[i][latlng]);
-                        };
+            this.addMarkers = function (scope) {
+                return function () {
+                var root = scope.results,
+                // this creates the marker objects to plot the locations on the map
+                markers = scope.markers,
+            //this is declared here to prevent it being declared every time the loop runs
+                property, 
+            // instead of two function, one obj with two methods?
+                coord = function coord(i, latlng){
+                    return Number(scope.results[i][latlng]);
+                };
         
 
 
@@ -89,7 +89,8 @@
                         };
                     } 
                     else if ($stateParams.address && !scope.locationSelected.North) {
-                        alert("Please enter a valid address");
+                        //TODO: Handle this better, alerts are terrible
+                        //alert("Please enter a valid address");
                     }
 
                     scope.update("markers", markers);
