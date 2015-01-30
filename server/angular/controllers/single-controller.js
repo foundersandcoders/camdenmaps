@@ -26,11 +26,9 @@
                     });
                 */
                 
-                // Ensuring that the service name in the URL is Encoded
-
+                // Ensuring that the service name in the URL is Encoded properly
                 $stateParams.service = decodeURI($stateParams.service);
                 var service = encodeURIComponent($stateParams.service);
-                console.log(service);
 
                 $scope.showDistance = $stateParams.address ? true : false; 
            

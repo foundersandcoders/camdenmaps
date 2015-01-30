@@ -103,7 +103,7 @@
 
                     var zoomLevel,
                         size = Object.size(scope.markers);
-                    console.log("size", size);
+                    
                     //if results capped at 5 (plus location marker) can zoom in 
                     if(size === 6) {
                         zoomLevel = 15;

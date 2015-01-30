@@ -19,10 +19,6 @@
             var encodeservice = encodeURIComponent($stateParams.service);
             var service = encodeURIComponent(encodeservice);
 
-            console.log($stateParams.service);
-            console.log(encodeservice);
-            console.log(service);
-
             //change baseurl depending on whether address-found or address-search 
             $scope.baseUrl = $stateParams.address ?  "/#/home/" + service + 
                 "/location/" + $stateParams.address + "/" : "/#/home/" + service + 

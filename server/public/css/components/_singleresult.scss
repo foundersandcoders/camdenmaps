@@ -30,6 +30,9 @@
 		color: black;
 		margin: 0;
 	}
+	.opening-hours {
+		margin-top: 1em;
+	}
 }
 
 .call-mobile {
@@ -37,6 +40,15 @@
 }
 
 @media (max-device-width: 768px) {
+	.result {
+		padding: 0.3em 0;
+		.contact {
+			padding: 0.2em 0;
+			img {
+				width: 2em;
+			}
+		}
+	}
 	.call-mobile {
 		display: block;
 	}

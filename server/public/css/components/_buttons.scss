@@ -33,15 +33,32 @@
 	}
 }
 
+@media (max-width: 768px) {
+	#buttons {
+		margin-top: 0.3em;
+	}
+}
+
 #search {
 	padding: 0;
 	button {
 		width: 2.3em;
 		height: 2.3em;
 		border-left: 0.1em $dark-grey solid;
+		background-color: $light-grey;
+		text-align: center;
 		span {
 			color: $dark-grey;
-			text-align: center;
+		}
+	}
+}
+
+@media (max-width: 320px) {
+	#search {
+		button {
+			span {
+				left: -0.4em;
+			}
 		}
 	}
 }
