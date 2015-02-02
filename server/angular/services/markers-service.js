@@ -128,11 +128,7 @@
 
                     var zoomLevel,
                         size = Object.size(scope.markers);
-<<<<<<< HEAD:server/public/angular/services/markers-service.js
 
-=======
-                    
->>>>>>> dev:server/angular/services/markers-service.js
                     //if results capped at 5 (plus location marker) can zoom in 
                     if(size === 6 || ( size === 7 && scope.markers.location) ) {
                         zoomLevel = 15;
