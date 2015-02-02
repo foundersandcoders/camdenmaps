@@ -6,6 +6,7 @@
     var parser = new xml2js.Parser();
     var config = require("../config/serverConfig.js");
     var cache = require("../config/cache.js");
+    var cap = require("../lib/capitalize.js");
     var serviceArrays = config.map.serviceArrays;
     //var routesConfig = require("../config/routesConfig.js");
 
@@ -89,14 +90,15 @@
         },
         convertToJson: function convertToJson (err, res, req, rep) {
 
-            var xml, response, key;
+            var xml, response, key, service;
             xml = "";
             response = {};
             key = req.raw.req.url;
+            service = cap(req.params.service)
 
             console.log("Not Cached");
 
-            if (serviceArrays.recycling.indexOf(req.params.service) > -1) {
+            if (serviceArrays.recycling.indexOf(service) > -1) {
                 xml = "";
                 response = {};           
 
@@ -105,37 +107,54 @@
                 });
 
                 res.on("end", function() {
-
                     parser.parseString(xml, function(err, result) {
 
                         console.dir(result);
                         response.location = {};
                         response.location.Area = result.Locations.$.Area;
                         response.properties = [];
-                        result.Locations.RecycleCentre.map(function(p) {
+                        
+                        if (result.Locations.hasOwnProperty("RecycleCentre")) { 
+                            result.Locations.RecycleCentre.map(function(p) {
+                                var formatProperty = {};
+                                formatProperty.Latitude = p.$.Lat;
+                                formatProperty.Longitude = p.$.Lng;
+                                formatProperty.display = {};
+                                formatProperty.display.Name = p.$.Name;
+                                formatProperty.display.OpeningHours = p.$.OpeningHours;
+                                formatProperty.display.Telephone = p.$.Telephone;
+                                formatProperty.display.URL = p.$.URL;
+                                response.properties.push(formatProperty);
+                            });
+                        }
+                        
+                        if (result.Locations.hasOwnProperty("RecyclePoint")) { 
+                            result.Locations.RecyclePoint.map(function(p) {
 
-                            var formatProperty = {};
-                            formatProperty.Latitude = p.$.Lat;
-                            formatProperty.Longitude = p.$.Lng;
-                            formatProperty.display = {};
-                            formatProperty.display.Name = p.$.Name;
-                            formatProperty.display.OpeningHours = p.$.OpeningHours;
-                            formatProperty.display.Telephone = p.$.Telephone;
-                            formatProperty.display.URL = p.$.URL;
-                            response.properties.push(formatProperty);
-                        });
-
+                                var formatProperty = {};
+                                formatProperty.Latitude = p.$.Lat;
+                                formatProperty.Longitude = p.$.Lng;
+                                formatProperty.display = {};
+                                formatProperty.display.Name = p.$.Name;
+                                formatProperty.display.OpeningHours = p.$.OpeningHours;
+                                formatProperty.display.Telephone = p.$.Telephone;
+                                formatProperty.display.URL = p.$.URL;
+                                response.properties.push(formatProperty);
+                            });
+                        }
                         cache.set(key, response, function (err, success) {
                             if (!err && success) {
                                 rep(response);
                             } else {
                                 console.log(err);
+                                rep(response);
                             }
                         });
+                        
                     });
-                });
+               });
 
-            } else if (serviceArrays.parking.indexOf(req.params.service) > -1) {
+            } else if (serviceArrays.parking.indexOf(service) > -1) {
                 xml = "";
                 response = {};
                 
@@ -172,6 +191,7 @@
                                 rep(response);
                             } else {
                                 console.log(err);
+                                rep(response);
                             }
                         });
                     });  
@@ -202,6 +222,7 @@
                                 rep(response);
                             } else {
                                 console.log(err);
+                                rep(response);
                             }
                         });
                     });
