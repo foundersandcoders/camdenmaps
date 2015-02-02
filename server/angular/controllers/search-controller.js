@@ -41,14 +41,16 @@
             var path,
                 destination;
 
-            apiSearch.search($stateParams.service)
-                    .success(function success (data) {
-                        $scope.update("results", data.properties);
-                        $scope.addMarkers();
-                        // $scope.centre = markers.centreCheck($scope)();
-                        $scope.centre.zoom = markers.zoomCheck($scope)();
-                    });
-            // }
+            if($scope.results.length === 0) {        
+                apiSearch.search($stateParams.service)
+                        .success(function success (data) {
+                            console.log("api search running");
+                            $scope.update("results", data.properties);
+                            $scope.addMarkers();
+                            // $scope.centre = markers.centreCheck($scope)();
+                            $scope.centre.zoom = markers.zoomCheck($scope)();
+                        });
+            }
 
             $scope.$on('leafletDirectiveMarker.click', markerHandlers.markerClick($scope));
 
