@@ -41,6 +41,8 @@
             var path,
                 destination;
 
+            console.log($scope.results);
+
             if($scope.results.length === 0) {        
                 apiSearch.search($stateParams.service)
                         .success(function success (data) {

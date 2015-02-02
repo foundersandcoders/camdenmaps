@@ -19,6 +19,7 @@
 
                 return function (scope) { 
                     scope = scope || functionScope;             
+                    scope.update("results", []);
                     scope.update("locationSelected", {});
                     scope.update("centre", {
                             lat: 51.535923,
