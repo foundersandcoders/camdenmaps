@@ -8,14 +8,26 @@
 
     module.exports = [
         "$scope",
-        function ($scope) {
-            
+        "$location",
+        function ($scope, $location) {
+
+            $scope.choosePath = function () {
+                var findYourNearest = $('#find-your-nearest');
+
+                var destination = findYourNearest.length === 0
+                                ? "/home/services"
+                                : "/home";
+                                
+                $location.path(destination);
+            };
+
+
             //stores function names and corresponding paths for landing-page buttons
             $scope.buttons = [
                 {
                     id: "findYourNearest",
                     title: "Find Your Nearest",
-                    path: "/#/home/services",
+                    path: $scope.choosePath,
                     iconUrl: "img/icons/find-your-nearest.png"
                 },
                 {
@@ -42,7 +54,7 @@
                     $scope.showMe = false;
                 }
             });
-
+           
         }
     ];
 

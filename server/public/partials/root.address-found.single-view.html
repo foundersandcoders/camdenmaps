@@ -8,8 +8,7 @@
             <p>{{ result.StreetNum + " " + result.Street }}</p>
             <p>London, {{result.PostCode}}</p>
             <p>{{ result.display.Telephone }}</p>
-            <br>
-            <h5 ng-show="result.display.OpeningHours">Opening Hours</h5>
+            <h5 ng-show="result.display.OpeningHours" class="opening-hours">Opening Hours</h5>
             <p>{{ result.display.OpeningHours }}</p>
         </div>
 

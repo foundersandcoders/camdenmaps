@@ -51,6 +51,11 @@
             };
             
             function listResults (scope) {   
+                
+                //Encodes service in url.
+                $stateParams.service = decodeURI($stateParams.service);
+                var service = encodeURIComponent($stateParams.service);
+
                 //clears the active marker
                 if(scope.activeMarker) {
                     scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
@@ -58,8 +63,8 @@
                 }
 
                 destination = ($stateParams.address) 
-                            ? "/home/" + $stateParams.service + "/location/" + scope.address + "/list"
-                            :  "/home/" + $stateParams.service + "/search/list";
+                            ? "/home/" + service + "/location/" + scope.address + "/list"
+                            :  "/home/" + service + "/search/list";
                 $location.path(destination);
             }
 
