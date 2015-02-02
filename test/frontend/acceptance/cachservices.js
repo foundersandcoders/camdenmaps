@@ -1,5 +1,5 @@
 /*************************************************
-*   SINGLE VIEW TESTS
+*   CACHING TESTS
 *   Description: Acceptance tests are written here
 *   Use: run tests by npm test
 **************************************************/
