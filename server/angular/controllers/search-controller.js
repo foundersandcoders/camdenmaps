@@ -71,6 +71,8 @@
                 }
             };
 
+            $scope.geolocateUser = markers.geolocateUser($scope);
+
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home/services");
 
             $scope.toggle = buttonHandlers.toggle($scope);

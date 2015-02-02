@@ -92,7 +92,6 @@
 
             $scope.addMarkers = markers.addMarkers($scope);
 
-            // markers.geolocateUser($scope)();
 
 
 

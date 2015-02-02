@@ -27,7 +27,7 @@
                 {
                     id: "findYourNearest",
                     title: "Find Your Nearest",
-                    path: $scope.choosePath(),
+                    path: $scope.choosePath,
                     iconUrl: "img/icons/find-your-nearest.png"
                 },
                 {

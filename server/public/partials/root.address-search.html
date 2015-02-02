@@ -19,6 +19,11 @@
                     <input placeholder="Enter a postcode" ng-model="address">
                 </div>
                 
+                <div id="yourLocation" class="col-xs-1">
+                    <button ng-click="geolocateUser()">
+                        <span class="glyphicon glyphicon-screenshot"></span>
+                    </button>
+                </div>
                 <div id="search" class="col-xs-1">
                     <button ng-click="search()">
                         <span class="glyphicon glyphicon-search"></span>
