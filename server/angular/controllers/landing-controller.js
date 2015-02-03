@@ -43,18 +43,6 @@
                     iconUrl: "img/icons/streetworks.png"
                 }
             ];
-            
-            //this should be in a directive
-            $scope.$watch( function toggleWords() {
-                 var findYourNearest = $('#find-your-nearest');
-
-                if (findYourNearest.length === 0) {
-                    $scope.showMe = true;
-                } else {
-                    $scope.showMe = false;
-                }
-            });
-           
         }
     ];
 

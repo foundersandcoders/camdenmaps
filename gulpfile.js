@@ -100,12 +100,8 @@
         gulp.watch(sassFiles, ["sass-dev"]);
     });
 
-    gulp.task("node-expat", shell.task([
-        "npm install node-expat"
-    ]));
-
     //task for before pushing to master
-    gulp.task("pre-travis", ["browserify", "convertyaml", "sass-production", "webdriver_update", "acceptance-test"], function () {
+    gulp.task("pre-travis", ["browserify", "convertyaml", "sass-production", "webdriver_update"], function () {
         nodemon({ script: 'server/server.js'})
         .on('start', function () {
             return gulp.src(protractorTestFiles)
