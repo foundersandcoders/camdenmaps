@@ -5,10 +5,9 @@ info:
   version: "1.0.0"
 # the domain of the service
 host: 0.0.0.0:8080
-# host: 'camdenmaps.herokuapp.com'
 # array of all schemes that your API supports
 schemes:
-  - https
+  - http
 basePath: /
 produces:
   - application/json
@@ -39,7 +38,7 @@ paths:
     get:
       summary: Location of user
       description: |
-        The Location endpoint returns information about laocation of Camden postcode selected by the user.
+        The Location endpoint returns information about location of Camden postcode selected by the user.
       parameters:
         - name: postcode
           in: path
@@ -74,13 +73,56 @@ paths:
           required: true
           type: string
       tags:
-        - services
-        - Location
+        - Services and Location
       responses:
         200:
           description: An array of selected service information
           schema:
             $ref: 'Service' 
+        default:
+          description: Unexpected error
+          schema:
+            $ref: 'Error'
+  /services/streetworks/locations/{postcode}:
+    get:
+      summary: Use a Camden location to find live streetworks in your area
+      description: |
+        The Endpoint returns information about live streetworks happening near a specific location
+      parameters:
+        - name: postcode
+          in: path
+          description: Camden postcode
+          required: true
+          type: string
+      tags:
+        - Services and Location
+      responses:
+        200:
+          description: An array of live streetworks information
+          schema:
+            $ref: 'Streetworks' 
+        default:
+          description: Unexpected error
+          schema:
+            $ref: 'Error'
+  /addresses/{uprn}:
+    get:
+      summary: Use an exact Camden location (uprn) to find out about the area
+      description: |
+        The Endpoint returns information about a particular neighbourhood.
+      parameters:
+        - name: uprn
+          in: path
+          description: A valid Camden UPRN
+          required: true
+          type: string
+      tags:
+        - Location
+      responses:
+        200:
+          description: An array of live streetworks information
+          schema:
+            $ref: 'LocalInformation' 
         default:
           description: Unexpected error
           schema:
@@ -123,6 +165,42 @@ definitions:
       Longitude:
         type: string
       Latitude:
+        type: string
+  Streetworks:
+    properties:
+      Longitude:
+        type: string
+      Latitude:
+        type: string
+      LAref:
+        type: string
+      externalref:
+        type: string
+      display:
+        type: object
+  LocalInformation:
+    properties:
+      Children Locality Areas:
+        type: string
+      Conservation Area:
+        type: string
+      Controlled Parking Main Zone:
+        type: string
+      European constituency:
+        type: string
+      Housing district:
+        type: string
+      Licensing Enforcement Areas:
+        type: string
+      Parliamentary Constituency:
+        type: string
+      UDP Town Centre:
+        type: string
+      Ward:
+        type: string
+      Ward housing team:
+        type: string
+      Your property is within 25m of the following historic land use(s):
         type: string
   Error:
     properties:
