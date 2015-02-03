@@ -18,6 +18,10 @@
         "buttonHandlers",
         function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers) {
 
+            var markers = $scope.markers,
+                lat,
+                lng;
+
             // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
 
@@ -37,10 +41,18 @@
                 return name.toLowerCase() === $scope.service.toLowerCase();
             })[0].img;
             
-            if(!$scope.locationSelected.hasOwnProperty("Area") ){
+
+            if(!$scope.locationSelected.hasOwnProperty("Area")  ){
                 console.log("running api search in LOCATION-CONTROLLER");
+                console.log("markers.location", $scope.markers.location);
                 //reloads $scope.results with new data based on address 
-                apiSearch.search($stateParams.service, $stateParams.address)
+                
+                // will pass through values if present otherwise 0
+                lat = markers.location ? markers.location.lat : 0;
+                lng = markers.location ? markers.location.lng : 0;
+         
+                apiSearch.search($stateParams.service, $stateParams.address, lat, lng)
+
                     .success(function success (data) {
                         $scope.updateResults(data.properties);
                         $scope.update("locationSelected", data.location);
@@ -48,13 +60,13 @@
                         
                         //will only update if the address is valid
                         //only valid addresses have a north property
-                        if(data.location.North) {
-                            $scope.update("centre", {
-                                lat: Number($scope.locationSelected.Latitude),
-                                lng: Number($scope.locationSelected.Longitude),
-                                // zoom: markers.zoomCheck($scope)()
-                            });
-                        }
+                        // if(data.location.North) {
+                        //     $scope.update("centre", {
+                        //         lat: Number($scope.locationSelected.Latitude),
+                        //         lng: Number($scope.locationSelected.Longitude),
+                        //         // zoom: markers.zoomCheck($scope)()
+                        //     });
+                        // }
 
                         
 

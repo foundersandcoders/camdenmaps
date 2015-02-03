@@ -209,8 +209,16 @@
 
                 res.on('end', function(){
                     parser.parseString(xml, function (err, result) {
-
-                        response.location = result.Locations.AddressSearchResults[0]['$'];
+                        console.log("result", result);
+                        
+                        if( result.Locations.hasOwnProperty("AddressSearchResults") ) {
+                            response.location = result.Locations.AddressSearchResults[0]['$'];
+                        } else {
+                            response.location = {};
+                            response.location.Latitude = result.Locations.$.lat;
+                            response.location.Longitude = result.Locations.$.lng;
+                        }
+                        
                         result.Locations.Properties[0].Property.map(function(p) {
                             var formatProperty = p['$'];
                             formatProperty.display = p.PoI[0]['$'];

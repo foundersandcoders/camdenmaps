@@ -41,8 +41,6 @@
             var path,
                 destination;
 
-            console.log($scope.results);
-
             if($scope.results.length === 0) {        
                 apiSearch.search($stateParams.service)
                         .success(function success (data) {
@@ -71,7 +69,11 @@
                 }
             };
 
-            $scope.geolocateUser = markers.geolocateUser($scope);
+            $scope.geolocateUser = function() {
+                markers.geolocateUser($scope)();
+            
+
+            };
 
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home/services");
 

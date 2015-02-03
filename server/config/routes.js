@@ -59,6 +59,11 @@
         },
         {
             method: "GET",
+            path: "/services/{service}/locations/lats/{latitude}/lngs/{longitude}",
+            config: RoutesConfig.nearest.servicesAndLocationsLatLng
+        },
+        {
+            method: "GET",
             path: "/api",
             config: RoutesConfig.apiDocs
         },               

@@ -12,8 +12,10 @@
         convertToJson= require("../handlers/convertXml.js").convertToJson,
         url = Config.map.url,
         serviceArray = Config.map.serviceArrays,
-        services = Config.map.query.service,
+        services,
         locations = Config.map.query.location,
+        lats = Config.map.query.lat,
+        lngs = Config.map.query.lng,
         cache = require("./cache.js"),
         exactLocations = Config.map.query.uprn,
         cap = require("../lib/capitalize.js"),
@@ -23,9 +25,11 @@
 
         nearestMapper: function nearestMapper (req, cb, err, next) {
 
-            var service, location, query, apiUrl, defaultLocation;
+            var service, location, lat, lng, query, apiUrl, defaultLocation;
             service = cap(req.params.service);
             location = req.params.postcode;
+            lat = req.params.latitude;
+            lng = req.params.longitude;
             defaultLocation = "NW1 0NE";
 
             //TODO: green query is not the same, needs to be changed depending on service requested
@@ -45,7 +49,8 @@
             service = aliasServices(service);
 
             //query constructed based on combination of services and/or address
-            query   = (location === undefined) ? "?" + services + service + "&" + locations + defaultLocation
+            query   = (lat || lng !== undefined) ? "?" + services + service + "&" + lats + lat + "&" + lngs + lng
+                    : (location === undefined) ? "?" + services + service + "&" + locations + defaultLocation
                     : (service === undefined)  ? query = "?" + locations + location 
                     : "?" + locations + location + "&" + services + service;
 

@@ -4,7 +4,8 @@
 	module.exports = [
         "$stateParams",
         "leafletData",
-        function ($stateParams, leafletData) {
+        "$location",
+        function ($stateParams, leafletData, $location) {
 
             Object.size = function(obj) {
                 var size = 0, key;
@@ -14,6 +15,57 @@
                 return size;
             };  
             
+
+            this.geolocateUser = function (functionScope, cb) {
+                return function(scope) {
+                    scope = scope || functionScope; 
+                    
+                    leafletData.getMap().then(function(map) {
+                     //this will return the location but not auto-centre on it or continuously watch
+                     map.locate({setView: false, watch: false})
+                     .on('locationfound', function (e){
+                        //this checks if the location returned is within the map boundaries i.e. larger than Camden
+                        if (51.57878 > e.latitude > 51.450089 && -0.094538 > e.longitude > -0.218650) {
+                            console.log("inside Camden");
+                            scope.markers.location = {
+                                lat: e.latitude,
+                                lng: e.longitude,
+                                icon: {
+                                    iconSize: [28],
+                                    iconUrl: "../img/icons/geolocation.png"
+                                },
+                                
+                                //not sure this is necessary if we have a location symbol used 
+                                message: "You are here",
+                                focus: true
+                            };
+                            //if we are within Camden then it will auto-centre the map on the user's location
+                            map.locate({setView: true, watch: false});
+                            path = "/home/" + $stateParams.service + "/location/" + "your location";
+                            $location.path(path);
+                        } else {
+                            //TODO DELETE THIS it is being used for testing as we are outside camden
+                            //if they are outside Camden normal functionality will be used
+                            console.log("outside Camden");
+                            scope.markers.location = {
+                                lat: e.latitude,
+                                lng: e.longitude,
+                                icon: {
+                                    iconSize: [28],
+                                    iconUrl: "../img/icons/geolocation.png"
+                                },
+                                message: "You are here",
+                                focus: true
+                            };
+                            var path = "/home/" + $stateParams.service + "/location/" + "your location";
+                            $location.path(path);
+                        }
+                      });
+
+
+                    });
+                };
+            };
 
             this.addMarkers = function (scope) {
                 return function () {
@@ -30,15 +82,11 @@
 
 
                     // this will run on refreshes
-                    // it will run if 1 markers is there if it is the geolocation marker
-                    // it will run if there are only five results and the m0 markers is the default location warning marker
+                    // it will run if there are only five results + warning marker
                     // TODO run when services with 5 results have address added
-                    if(Object.size(markers) === 0 || (Object.size(markers) === 1 && markers.location ) || ( $stateParams.location && markers.m0 && !markers.m0.locationTest ) ) {
-                        // var x will save time as the loop does not have to look up the length each time
+                    if(Object.size(markers) === 0 || (Object.size(markers) === (6 || 7) ) || ( $stateParams.location && markers.m0 && !markers.m0.locationTest ) ) {
                         
-                    console.log(markers.location, "markers in loop");
-                    console.log(scope.locationSelected);
-
+   
                         var i, 
                         	resultLength = Object.size(root);
                         
@@ -59,10 +107,7 @@
                     }
             
 
-
-
-                    if( (Object.size(markers) === 5 || ( (Object.size(markers) === 6 && markers.location) ) ) && !$stateParams.location) {
-
+                    if( Object.size(markers) === 5 || ( Object.size(markers) === 6 && !$stateParams.location) ) {
   
                             markers.m0 = {
                                 icon: {
@@ -92,6 +137,7 @@
                     }
 
                     // only runs when a search address has been entered and is valid
+                    // or runs using the defaul location if none is given.... 
                     if($stateParams.address && scope.locationSelected.North) {
                         markers.m0 = {
                             lat: Number(scope.locationSelected.Latitude),
@@ -148,50 +194,7 @@
             };
 
 
-            this.geolocateUser = function (functionScope) {
-                return function(scope) {
-                    scope = scope || functionScope; 
-                    
-                    leafletData.getMap().then(function(map) {
-                     //this will return the location but not auto-centre on it or continuously watch
-                     map.locate({setView: false, watch: false})
-                     .on('locationfound', function (e){
-                        //this checks if the location returned is within the map boundaries i.e. larger than Camden
-                        if (51.57878 > e.latitude > 51.450089 && -0.094538 > e.longitude > -0.218650) {
-                            console.log("inside Camden");
-                            scope.markers.location = {
-                                lat: e.latitude,
-                                lng: e.longitude,
-                                icon: {
-                                    iconSize: [28],
-                                    iconUrl: "../img/icons/geolocation.png"
-                                },
-                                
-                                //not sure this is necessary if we have a location symbol used 
-                                message: "You are here",
-                                focus: true
-                            };
-                            //if we are within Camden then it will auto-centre the map on the user's location
-                            map.locate({setView: true, watch: false});
-                        } else {
-                            //TODO DELETE THIS it is being used for testing as we are outside camden
-                            //if they are outside Camden normal functionality will be used
-                            console.log("outside Camden");
-                            scope.markers.location = {
-                                lat: e.latitude,
-                                lng: e.longitude,
-                                icon: {
-                                    iconSize: [28],
-                                    iconUrl: "../img/icons/geolocation.png"
-                                },
-                                message: "You are here",
-                                focus: true
-                            };
-                        }
-                      });
-                    });
-                }
-            }
+
             
   //           this.centreCheck = function (scope) {
   //               return function () {
