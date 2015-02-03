@@ -24,7 +24,6 @@
             $scope.address = "";
             //model for error messages
             $scope.error = "";
-            //model for title
 
             // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);

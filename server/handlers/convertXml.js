@@ -59,32 +59,39 @@
 
             res.on("end", function() {
                 parser.parseString(xml, function(err, result) {
+                    //TODO: move the error messages to an object so only written once
+                    if (err) {
+                        return rep("Sorry, no data could be found for that address");
+                    }
+                    if (result.hasOwnProperty("Locations")) {
+                        response.location = {};
+                        response.location.Area = result.Locations.$.postcode; 
+                        response.location.Latitude = result.Locations.$.Lat;
+                        response.location.Longitude = result.Locations.$.Lng;
+                        response.properties = [];
+                        if(result.Locations.hasOwnProperty("StreetWorks")) {
+                            result.Locations.StreetWorks.map(function(p) {
 
-                    response.location = {};
-                    response.location.Area = result.Locations.$.postcode; 
-                    response.location.Latitude = result.Locations.$.Lat;
-                    response.location.Longitude = result.Locations.$.Lng;
-                    response.properties = [];
-                    result.Locations.StreetWorks.map(function(p) {
-
-                        console.dir(p);
-                        var formattedProperty = {};
-                        formattedProperty.Longitude = p.$.Lng;
-                        formattedProperty.Latitude = p.$.Lat;
-                        formattedProperty.LAref = p.$.LAref;
-                        formattedProperty.externalref = p.$.externalref;
-                        formattedProperty.display = {};
-                        formattedProperty.display.Organisation = p.$.Organisation;
-                        formattedProperty.display.Name = p.$.Location;
-                        formattedProperty.display.StartDate = p.$.StartDate;
-                        formattedProperty.display.EndDate = p.$.EndDate;
-                        formattedProperty.display.Telephone = p.$.Telephone;
-                        formattedProperty.display.Street = p.$.Street;
-                        formattedProperty.display.Description = p.$.Description;
-                        response.properties.push(formattedProperty);
-                    });
-
-                    rep(response);
+                                var formattedProperty = {};
+                                formattedProperty.Longitude = p.$.Lng;
+                                formattedProperty.Latitude = p.$.Lat;
+                                formattedProperty.LAref = p.$.LAref;
+                                formattedProperty.externalref = p.$.externalref;
+                                formattedProperty.display = {};
+                                formattedProperty.display.Organisation = p.$.Organisation;
+                                formattedProperty.display.Name = p.$.Location;
+                                formattedProperty.display.StartDate = p.$.StartDate;
+                                formattedProperty.display.EndDate = p.$.EndDate;
+                                formattedProperty.display.Telephone = p.$.Telephone;
+                                formattedProperty.display.Street = p.$.Street;
+                                formattedProperty.display.Description = p.$.Description;
+                                response.properties.push(formattedProperty);
+                            });
+                        }
+                        return rep(response);
+                    } else {
+                        return rep("Sorry, no data could be found for that address");
+                    }
                 });
             });
         },
@@ -112,6 +119,11 @@
                         console.dir(result);
                         response.location = {};
                         response.location.Area = result.Locations.$.Area;
+                        if (req.info.hasOwnProperty("latitude")) {
+                            response.location.Latitude = req.info.latitude;
+                            response.location.Longitude = req.info.longitude;
+
+                        }
                         response.properties = [];
                         
                         if (result.Locations.hasOwnProperty("RecycleCentre")) { 
@@ -209,8 +221,14 @@
 
                 res.on('end', function(){
                     parser.parseString(xml, function (err, result) {
-
                         response.location = result.Locations.AddressSearchResults[0]['$'];
+
+                        //adds latitude and longitude to response if previously set
+                        if (req.info.hasOwnProperty("latitude")) {
+                            response.location.Latitude = req.info.latitude;
+                            response.location.Longitude = req.info.longitude;
+
+                        }
                         result.Locations.Properties[0].Property.map(function(p) {
                             var formatProperty = p['$'];
                             formatProperty.display = p.PoI[0]['$'];

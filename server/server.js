@@ -35,6 +35,9 @@ server.connection({
 //route server
 routes(server);
 
+//register prehandler extension
+require("./lib/streetnameLookup.js")(server);
+
 
 //server start if not testing
 if(!module.parent) {
