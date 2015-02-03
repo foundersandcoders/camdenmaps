@@ -7,7 +7,7 @@
                 : service === "Cardboard and paper"                 ? "Cardboard"
                 : service === "Clothing and textiles"               ? "Textiles and shoes"
                 : service === "Nappies"                             ? "Nappies"
-                : service === "Funiture"                           ? "Furniture (not reusable)"
+                : service === "Funiture"                            ? "Furniture (not reusable)"
                 : service === "Garden waste"                        ? "Grass cuttings and leaves"
                 : service === "Light bulbs"                         ? "Light bulbs"
                 : service === "Glass"                               ? "Glass bottles and jars (all colours)"
