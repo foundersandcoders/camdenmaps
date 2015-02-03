@@ -5,7 +5,6 @@ info:
   version: "1.0.0"
 # the domain of the service
 host: 0.0.0.0:8080
-# host: 'camdenmaps.herokuapp.com'
 # array of all schemes that your API supports
 schemes:
   - http
@@ -39,7 +38,7 @@ paths:
     get:
       summary: Location of user
       description: |
-        The Location endpoint returns information about laocation of Camden postcode selected by the user.
+        The Location endpoint returns information about location of Camden postcode selected by the user.
       parameters:
         - name: postcode
           in: path
@@ -88,7 +87,7 @@ paths:
     get:
       summary: Use a Camden location to find live streetworks in your area
       description: |
-        The Endpoint will return a list similar to that of services, but this endpoint will return the information in relation to a Camden postcode specified by the user.
+        The Endpoint returns information about live streetworks happening near a specific location
       parameters:
         - name: postcode
           in: path
@@ -108,9 +107,9 @@ paths:
             $ref: 'Error'
   /addresses/{uprn}:
     get:
-      summary: Use a Camden location to find live streetworks in your area
+      summary: Use an exact Camden location (uprn) to find out about the area
       description: |
-        The Endpoint will return a list similar to that of services, but this endpoint will return the information in relation to a Camden postcode specified by the user.
+        The Endpoint returns information about a particular neighbourhood.
       parameters:
         - name: uprn
           in: path

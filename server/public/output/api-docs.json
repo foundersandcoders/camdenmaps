@@ -49,7 +49,7 @@
     "/locations/{postcode}": {
       "get": {
         "summary": "Location of user",
-        "description": "The Location endpoint returns information about laocation of Camden postcode selected by the user.\n",
+        "description": "The Location endpoint returns information about location of Camden postcode selected by the user.\n",
         "parameters": [
           {
             "name": "postcode",
@@ -120,7 +120,7 @@
     "/services/streetworks/locations/{postcode}": {
       "get": {
         "summary": "Use a Camden location to find live streetworks in your area",
-        "description": "The Endpoint will return a list similar to that of services, but this endpoint will return the information in relation to a Camden postcode specified by the user.\n",
+        "description": "The Endpoint returns information about live streetworks happening near a specific location\n",
         "parameters": [
           {
             "name": "postcode",
@@ -151,8 +151,8 @@
     },
     "/addresses/{uprn}": {
       "get": {
-        "summary": "Use a Camden location to find live streetworks in your area",
-        "description": "The Endpoint will return a list similar to that of services, but this endpoint will return the information in relation to a Camden postcode specified by the user.\n",
+        "summary": "Use an exact Camden location (uprn) to find out about the area",
+        "description": "The Endpoint returns information about a particular neighbourhood.\n",
         "parameters": [
           {
             "name": "uprn",
