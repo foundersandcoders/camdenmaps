@@ -19,6 +19,8 @@ exports.config = {
 
   baseUrl: 'http://localhost:'+ (process.env.HTTP_PORT || '8080'),
 
+  // baseUrl: 'https://camdenmaps.herokuapp.com',
+
   framework: 'jasmine',
 
   jasmineNodeOpts: {

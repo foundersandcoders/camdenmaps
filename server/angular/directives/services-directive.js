@@ -1,5 +1,5 @@
 /*************************************
-*   TITLE TOGGLE DIRECTIVE.JS
+*   SERVICES DIRECTIVE.JS
 *	use: to show or hide title based
 *		on what has been rendered
 *************************************/
