@@ -3,34 +3,37 @@
 *   Description: Acceptance tests are written here
 *   Use: run tests by npm test
 **************************************************/
-// var menu = require("../../../server/angular/menu.json");
 
-// (function () {
-//     "use strict";
+var menu = require("../../../server/angular/menu.json");
 
-//     describe("caching service", function () {
+var errorMessage = '{"statusCode":500,"error":"Internal Server Error","message":"An internal server error occurred"}';
 
-//         beforeEach(function() {
-//             return browser.ignoreSynchronization = true;
-//         });
+(function () {
+    "use strict";
 
-//         function runTest (j) {
-//             it("service cached" + menu[j].title, function () {
+    describe("caching service", function () {
 
-//                 browser.get("/services/" + menu[j].title );
-//                 console.log()
+        beforeEach(function() {
+            return browser.ignoreSynchronization = true;
+        });
 
-//                 expect(browser.driver.getCurrentUrl()).toContain('services');
-//             });
+        function runTest (j) {
+            it("service cached" + menu[j].title, function () {
 
-//         }
+                browser.get("/services/" + menu[j].title );
+    			var text = element(by.tagName("pre")).getText();
 
-//         for (var i = 0; i < 172 ; i++ ) {
-//             if (menu[i].type === 'service') {
-//                 runTest(i);
+                expect(text).toNotEqual(errorMessage);
+            });
 
-//             }
-//         }
-//     });
+        }
 
-// }());
+        for (var i = 0; i < menu.length ; i++ ) {
+            if (menu[i].type === 'service') {
+                runTest(i);
+
+            }
+        }
+    });
+
+}());

@@ -43,7 +43,7 @@ gulp browserify-watch
 
 To use the csv to json converter, please run this command:
 ```
-node server/public/js/csvtojson.js
+node server/lib/csvtojson.js
 ```
 
 To include gov.uk sass files in our project simply import to begin to use!

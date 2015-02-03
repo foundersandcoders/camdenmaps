@@ -2,7 +2,7 @@
     "use strict";
 
     module.exports = function aliasServices(service) {
-        return  service === "Wood"                                  ? "Timber"
+        return  service === "Wood"                                  ? "Christmas Trees"
                 : service === "Batteries"                           ? "Household batteries"
                 : service === "Cardboard and paper"                 ? "Cardboard"
                 : service === "Clothing and textiles"               ? "Textiles and shoes"
