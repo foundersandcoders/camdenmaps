@@ -11,7 +11,7 @@
         "$location",
         function ($scope, $location) {
 
-            $scope.choosePath = function () {
+            $scope.choosePath = function() {
                 var findYourNearest = $('#find-your-nearest');
 
                 var destination = findYourNearest.length === 0

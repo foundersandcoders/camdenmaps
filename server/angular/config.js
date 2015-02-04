@@ -71,6 +71,12 @@
                 url: "/{id}",
                 templateUrl: "partials/root.address-found.single-view.html",
                 controller: "SingleController" 
+            })
+
+            .state("root.locations", {
+                url: "/locations",
+                templateUrl: "partials/root.locations.html",
+                controller: "locationLocalController"
             });
 
     }];
