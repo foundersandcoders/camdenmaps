@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div id="address-search" class="services-and-categories col-xs-12">
         <div class="col-xs-12">
-            <h1>Find your Nearest</h1>
+            <h1>{{ title }}</h1>
         </div>
 
          <div class="col-xs-2">
@@ -16,7 +16,7 @@
             
             <form>
                 <div id="postcode-input" class="col-xs-11">
-                    <input placeholder="Enter a postcode" ng-model="address">
+                    <input placeholder="{{ placeholder }}" ng-model="address">
                 </div>
                 
                 <div id="search" class="col-xs-1">
@@ -31,7 +31,7 @@
         <div id="buttons" class="col-xs-12">
             
             <div class="button col-xs-6">
-                <button ng-click="searchAgain()" class="btn">Search again</button>
+                <button ng-click="searchAgain()" class="btn">{{ backButtonText }}</button>
             </div>
             
             <div class="button col-xs-6">

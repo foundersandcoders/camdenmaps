@@ -23,6 +23,16 @@
                 return $http({ method: "GET", url: apiUrl, cache: true });
 
             };
+
+            this.searchNeighbourhood = function searchLocal (uprn) {
+                var apiUrl = "/addresses/" + uprn;
+                return $http({
+                    method: "GET",
+                    url: apiUrl,
+                    cache: true
+                });
+            }
+
         }
     ];
 }());

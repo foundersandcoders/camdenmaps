@@ -16,5 +16,8 @@
         .controller("SearchController", require("./search-controller.js"))
         .controller("LocationController", require("./location-controller.js"))
         .controller("ListController", require("./list-controller.js"))
-        .controller("SingleController", require("./single-controller.js"));
+        .controller("SingleController", require("./single-controller.js"))
+        .controller("LocalSearchController", require("./local-search-controller.js"))
+        .controller("LocalFoundController", require("./local-found-controller.js"))
+        .controller("StreetworksSearchController", require("./streetworks-search-controller.js"));
 }());
