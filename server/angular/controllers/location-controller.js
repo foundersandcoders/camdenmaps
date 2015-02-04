@@ -33,11 +33,15 @@
             $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
 
 
-            //model for image icon
-            $scope.icon = require("../menu.json").filter(function filterImg (item) {
-                var name = item.title + item.text;
-                return name.toLowerCase() === $scope.service.toLowerCase();
-            })[0].img;
+            if($scope.service.toLowerCase() !== "streetworks") {
+                //model for image icon
+                $scope.icon = require("../menu.json").filter(function filterImg (item) {
+                    var name = item.title + item.text;
+                    return name.toLowerCase() === $scope.service.toLowerCase();
+                })[0].img;
+            } else {
+                $scope.icon = "img/icons/streetworks.png";
+            }
             
             if(!$scope.locationSelected.hasOwnProperty("Area") ){
                 //reloads $scope.results with new data based on address 

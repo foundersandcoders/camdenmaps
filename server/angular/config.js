@@ -94,6 +94,13 @@
                 url: "/{uprn}",
                 templateUrl: "partials/root.neighbourhood.local-information.html",
                 controller: "LocalFoundController"
-            });
+            })
+
+            //state for searching streetworks by address
+            .state("root.streetworks", {
+                url: "/streetworks",
+                templateUrl: "partials/root.address-search.html",
+                controller: "StreetworksSearchController"
+            })
     }];
 }());
