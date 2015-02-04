@@ -1,6 +1,9 @@
 ;(function () {
 	"use strict";
 
+    var noResults = require("../../lib/noResults.js");
+    var cappedresults = require("../../lib/cappedresults.js");
+
 	module.exports = [
         "$stateParams",
         "leafletData",
@@ -82,9 +85,8 @@
 
 
                     // this will run on refreshes
-                    // it will run if there are only five results + warning marker
-                    // TODO run when services with 5 results have address added
-                    if(Object.size(markers) === 0 || (Object.size(markers) === (6 || 7) ) || ( $stateParams.location && markers.m0 && !markers.m0.locationTest ) ) {
+                    // it will run if there are capped results
+                    if(noResults(scope) || cappedResults(scope) ) {
                         
    
                         var i, 

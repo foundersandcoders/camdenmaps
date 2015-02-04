@@ -9,6 +9,9 @@
 ;(function () {
     "use strict";
 
+    var noResults = require("../lib/noResults.js");
+    var addressUsedinAPIcall = require("../lib/validAddress.js");
+
     module.exports = [
         "$scope",
         "$stateParams",
@@ -42,7 +45,7 @@
             })[0].img;
             
 
-            if(!$scope.locationSelected.hasOwnProperty("Area")  ){
+            if(!addressUsedinAPIcall($scope)){
                 console.log("running api search in LOCATION-CONTROLLER");
                 console.log("markers.location", $scope.markers.location);
                 //reloads $scope.results with new data based on address 

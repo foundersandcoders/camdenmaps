@@ -60,10 +60,12 @@
             $scope.search = function search () {
                 if($scope.address) {
                     if($scope.activeMarker) {
+                        //resets active marker
                         $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
                         $scope.update("activeMarker", 0);
                     }
                     path = "/home/" + $stateParams.service + "/location/" + $scope.address;
+                    //redirects to new path and runs location controller
                     $location.path(path);
 
                 }
