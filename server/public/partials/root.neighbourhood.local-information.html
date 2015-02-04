@@ -1,0 +1,33 @@
+ <div class="container-fluid">
+    <div class="result col-xs-6">
+    	<h4>Political information</h4>
+    	<ul style="list-style-type:none">
+    		<li>Ward: {{ information.Ward }}</li>
+    		<li>Eurpean Constituency: {{ information["European constituency"] }}</li>
+    		<li>Parlimentary Constituency: {{ information["Parliamentary Constituency"] }} </li> 
+    		<li>Polling Station: {{ information["Polling District"] }}</li>
+    	</ul>
+    	<h4>Recycling and rubbish</h4>
+    	<ul style="list-style-type:none">
+    		<li>Domestic rubbish collection: {{ information["Domestic Refuse Collection Day. Refuse should be put out by 7am on the morning of collection"] }} </li>
+    		<li>Recycling Collection: {{ information["Recycling Kerbside Collection Day"] }}</li>
+    	</ul>
+    	<h4>Environment</h4>
+    	<ul style="list-style-type:none">
+    		<li>Consrvation area: {{ information["Conservation Area"] }}</li>
+    	</ul>
+    	<h4>Housing</h4>
+    	<ul style="list-style-type:none">
+    		<li>Ward Housing Team: {{ informaiton["Ward housing team"] }}</li>
+    		<li>District management comittee: {{ information["Ward district management committee"] }}</li>
+    	</ul>
+    	<h4>Parking</h4>
+    	<ul style="list-style-type:none">
+    		<li>Controlled parking zone: {{ information["Controlled Parking Main Zone"] }}</li>
+    	</ul>
+    	<h4>Licensing Enforcement</h4>
+    	<ul style="list-style-type:none">
+    		<li>Licensing enforcement officer: {{ information["Licensing Enforcement Areas"] }}</li>
+    	</ul>
+    </div>
+ </div>

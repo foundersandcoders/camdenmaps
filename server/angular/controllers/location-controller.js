@@ -17,6 +17,8 @@
         "apiSearch",
         "buttonHandlers",
         function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers) {
+            //model for page title
+            $scope.title = "Find your Nearest...";
 
             // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
