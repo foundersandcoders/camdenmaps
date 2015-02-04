@@ -39,7 +39,7 @@
                 {
                     id: "aboutYourNeighbourhood",
                     title: "About Your Neighbourhood",
-                    handler: addLandingButtonHandler("/home/local"),
+                    handler: addLandingButtonHandler("/home/neighbourhood"),
                     iconUrl: "img/icons/your-neighbourhood.png"
                 },
                 {
