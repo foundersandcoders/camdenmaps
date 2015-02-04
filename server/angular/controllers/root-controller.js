@@ -38,7 +38,6 @@
                     }
                 }
                 $scope.results = newResults;
-                console.log($scope.results);
             };
 
             //used for updating centre, markers, active markers and location selected 
