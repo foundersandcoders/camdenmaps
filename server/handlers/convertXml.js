@@ -76,7 +76,7 @@
                             formattedProperty.externalref = p.$.externalref;
                             formattedProperty.display = {};
                             formattedProperty.display.Organisation = p.$.Organisation;
-                            formattedProperty.display.Name = p.$.Location;
+                            formattedProperty.display.Name = p.$.Street + " - " + p.$.externalref;
                             formattedProperty.display.StartDate = p.$.StartDate;
                             formattedProperty.display.EndDate = p.$.EndDate;
                             formattedProperty.display.Telephone = p.$.Telephone;
