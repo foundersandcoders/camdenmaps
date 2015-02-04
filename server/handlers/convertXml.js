@@ -8,7 +8,8 @@
     var cache = require("../config/cache.js");
     var cap = require("../lib/capitalize.js");
     var serviceArrays = config.map.serviceArrays;
-    //var routesConfig = require("../config/routesConfig.js");
+    //strips html from obj (depth of 1 only)
+    var clean = require("../lib/cleanobj.js");
 
     function toTitleCase(str) {
         return str.replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -31,7 +32,6 @@
             res.on("end", function() {
 
                 parser.parseString(xml, function(err, result) {
-
                     response.location = {};
                     response.location.Area = result.Locations.AddressSearchResults[0].$.sPostcode;
                     response.location.Latitude = result.Locations.AddressSearchResults[0].$.Latitude;
@@ -42,7 +42,7 @@
                     result.Locations.LocalInformation[0].Table.map(function(p) {
                         response.information[p.$.TableDesc] = p.Object[0].$.ObjectDesc;
                     });
-
+                    response = clean(response);
                     rep(response);
                 });
             });
@@ -82,9 +82,12 @@
                             formattedProperty.display.Telephone = p.$.Telephone;
                             formattedProperty.display.Street = p.$.Street;
                             formattedProperty.display.Description = p.$.Description;
+                            formattedProperty.display = clean(formattedProperty.display)
+                            formattedProperty = clean(formattedProperty);
                             response.properties.push(formattedProperty);
                         });
                     }
+                    response = clean(response);
                     rep(response);
                 });
             });
@@ -125,6 +128,8 @@
                                 formatProperty.display.OpeningHours = p.$.OpeningHours;
                                 formatProperty.display.Telephone = p.$.Telephone;
                                 formatProperty.display.URL = p.$.URL;
+                                formatProperty.display = clean(formatProperty.display);
+                                formatProperty = clean(formatProperty);
                                 response.properties.push(formatProperty);
                             });
                         }
@@ -140,9 +145,12 @@
                                 formatProperty.display.OpeningHours = p.$.OpeningHours;
                                 formatProperty.display.Telephone = p.$.Telephone;
                                 formatProperty.display.URL = p.$.URL;
+                                formatProperty.display = clean(formatProperty.display);
+                                formatProperty = clean(formatProperty);
                                 response.properties.push(formatProperty);
                             });
                         }
+                        response = clean(response);
                         cache.set(key, response, function (err, success) {
                             if (!err && success) {
                                 rep(response);
@@ -184,8 +192,12 @@
                             formatProperty.display.Tariff = p.$.Tariff;
                             formatProperty.display.Duration  = p.$.Duration;
                             formatProperty.display.Type = p.$.Type;
+                            formatProperty.display = clean(formatProperty.display);
+                            formatProperty = clean(formatProperty);
                             response.properties.push(formatProperty);
                         });
+
+                        response = clean(response);
 
                         cache.set(key, response, function (err, success) {
                             if (!err && success) {
@@ -213,10 +225,12 @@
 
                         response.location = result.Locations.AddressSearchResults[0]['$'];
                         result.Locations.Properties[0].Property.map(function(p) {
-                            var formatProperty = p['$'];
-                            formatProperty.display = p.PoI[0]['$'];
+                            var formatProperty = clean(p['$']);
+                            formatProperty.display = clean(p.PoI[0]['$']);
                             response.properties.push(formatProperty);
                         });
+
+                        response = clean(response);
 
                         cache.set(key, response, function (err, success) {
                             if (!err && success) {
