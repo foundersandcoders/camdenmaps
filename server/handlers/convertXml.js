@@ -65,25 +65,26 @@
                     response.location.Latitude = result.Locations.$.Lat;
                     response.location.Longitude = result.Locations.$.Lng;
                     response.properties = [];
-                    result.Locations.StreetWorks.map(function(p) {
+                    if (result.Locations.hasOwnProperty("StreetWorks")) {
+                        result.Locations.StreetWorks.map(function(p) {
 
-                        console.dir(p);
-                        var formattedProperty = {};
-                        formattedProperty.Longitude = p.$.Lng;
-                        formattedProperty.Latitude = p.$.Lat;
-                        formattedProperty.LAref = p.$.LAref;
-                        formattedProperty.externalref = p.$.externalref;
-                        formattedProperty.display = {};
-                        formattedProperty.display.Organisation = p.$.Organisation;
-                        formattedProperty.display.Name = p.$.Location;
-                        formattedProperty.display.StartDate = p.$.StartDate;
-                        formattedProperty.display.EndDate = p.$.EndDate;
-                        formattedProperty.display.Telephone = p.$.Telephone;
-                        formattedProperty.display.Street = p.$.Street;
-                        formattedProperty.display.Description = p.$.Description;
-                        response.properties.push(formattedProperty);
-                    });
-
+                            console.dir(p);
+                            var formattedProperty = {};
+                            formattedProperty.Longitude = p.$.Lng;
+                            formattedProperty.Latitude = p.$.Lat;
+                            formattedProperty.LAref = p.$.LAref;
+                            formattedProperty.externalref = p.$.externalref;
+                            formattedProperty.display = {};
+                            formattedProperty.display.Organisation = p.$.Organisation;
+                            formattedProperty.display.Name = p.$.Location;
+                            formattedProperty.display.StartDate = p.$.StartDate;
+                            formattedProperty.display.EndDate = p.$.EndDate;
+                            formattedProperty.display.Telephone = p.$.Telephone;
+                            formattedProperty.display.Street = p.$.Street;
+                            formattedProperty.display.Description = p.$.Description;
+                            response.properties.push(formattedProperty);
+                        });
+                    }
                     rep(response);
                 });
             });

@@ -11,15 +11,21 @@
         "$location",
         function ($scope, $location) {
 
-            $scope.choosePath = function () {
-                var findYourNearest = $('#find-your-nearest');
+            $scope.executeFn = function executeFn(fn) {
+                fn();
+            }
 
-                var destination = findYourNearest.length === 0
-                                ? "/home/services"
-                                : "/home";
-                                
-                $location.path(destination);
-            };
+            function addLandingButtonHandler (path) {
+                return function () {
+                    var findYourNearest = $('#find-your-nearest');
+
+                    var destination = findYourNearest.length === 0
+                                    ? path
+                                    : "/home";
+                                    
+                    $location.path(destination);
+                }
+            }
 
 
             //stores function names and corresponding paths for landing-page buttons
@@ -27,19 +33,19 @@
                 {
                     id: "findYourNearest",
                     title: "Find Your Nearest",
-                    path: $scope.choosePath,
+                    handler: addLandingButtonHandler("/home/services"),
                     iconUrl: "img/icons/find-your-nearest.png"
                 },
                 {
                     id: "aboutYourNeighbourhood",
                     title: "About Your Neighbourhood",
-                    path: "http://maps.camden.gov.uk/nearest/nearest.aspx?tab=m",
+                    handler: addLandingButtonHandler("/home/local"),
                     iconUrl: "img/icons/your-neighbourhood.png"
                 },
                 {
                     id: "liveStreetworks",
                     title: "Live Streetworks",
-                    path: "http://maps.camden.gov.uk/streetworks/neareststreetworks.aspx",
+                    handler: addLandingButtonHandler("/home/streetworks"),
                     iconUrl: "img/icons/streetworks.png"
                 }
             ];
