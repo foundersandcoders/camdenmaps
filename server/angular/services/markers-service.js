@@ -67,7 +67,7 @@
                     }
 
                     // only runs when a search address has been entered and is valid
-                    if($stateParams.address && scope.locationSelected.North) {
+                    if($stateParams.address && scope.locationSelected.Latitude) {
                         markers.m0 = {
                             lat: Number(scope.locationSelected.Latitude),
                             lng: Number(scope.locationSelected.Longitude),
@@ -88,7 +88,7 @@
                             }
                         };
                     } 
-                    else if ($stateParams.address && !scope.locationSelected.North) {
+                    else if ($stateParams.address && !scope.locationSelected.Latitude) {
                         //TODO: Handle this better, alerts are terrible
                         //alert("Please enter a valid address");
                     }

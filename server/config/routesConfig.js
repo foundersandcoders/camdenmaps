@@ -104,11 +104,22 @@
             }
         },
         streetworks: {
-            handler: {
-                proxy: {
-                    mapUri: MapConfig.streetworksMapper,
-                    onResponse: ConvertXml.convertStreetworks
-                }
+            handler: function(req, rep) {
+                var key = req.raw.req.url;
+                cache.get(key, function (err, value) {
+                    if (err) {
+                        console.log(err);
+                    }
+
+                    if (value.hasOwnProperty(key)) {
+                        rep(value[key]);
+                    } else {
+                        rep.proxy({
+                            mapUri: MapConfig.streetworksMapper,
+                            onResponse: ConvertXml.convertStreetworks
+                        });
+                    }
+                  }); 
             }
         }, 
         staticFiles: {

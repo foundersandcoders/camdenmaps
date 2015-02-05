@@ -54,7 +54,17 @@
         },
         {
             method: "GET",
+            path: "/services/streetworks/locations/lats/{latitude}/lngs/{longitude}",
+            config: RoutesConfig.streetworks
+        },
+        {
+            method: "GET",
             path: "/services/{service}/locations/{postcode}",
+            config: RoutesConfig.nearest.servicesAndLocations 
+        },
+        {
+            method: "GET",
+            path: "/services/{service}/locations/lats/{latitude}/lngs/{longitude}",
             config: RoutesConfig.nearest.servicesAndLocations 
         },
         {

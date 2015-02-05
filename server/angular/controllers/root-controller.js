@@ -43,6 +43,7 @@
             //used for updating centre, markers, active markers and location selected 
             $scope.update = function update (type, newType){
                 $scope[type] = newType;
+                console.log($scope[type]);
             };
 
             //************ MAP MANIPULATIONS ***************

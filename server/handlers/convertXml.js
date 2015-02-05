@@ -59,36 +59,40 @@
 
             res.on("end", function() {
                 parser.parseString(xml, function(err, result) {
-
-                    response.location = {};
-                    response.location.Area = result.Locations.$.postcode; 
-                    response.location.Latitude = result.Locations.$.Lat;
-                    response.location.Longitude = result.Locations.$.Lng;
-                    response.properties = [];
-                    if (result.Locations.hasOwnProperty("StreetWorks")) {
-                        result.Locations.StreetWorks.map(function(p) {
-
-                            console.dir(p);
-                            var formattedProperty = {};
-                            formattedProperty.Longitude = p.$.Lng;
-                            formattedProperty.Latitude = p.$.Lat;
-                            formattedProperty.LAref = p.$.LAref;
-                            formattedProperty.externalref = p.$.externalref;
-                            formattedProperty.display = {};
-                            formattedProperty.display.Organisation = p.$.Organisation;
-                            formattedProperty.display.Name = p.$.Street + " - " + p.$.externalref;
-                            formattedProperty.display.StartDate = p.$.StartDate;
-                            formattedProperty.display.EndDate = p.$.EndDate;
-                            formattedProperty.display.Telephone = p.$.Telephone;
-                            formattedProperty.display.Street = p.$.Street;
-                            formattedProperty.display.Description = p.$.Description;
-                            formattedProperty.display = clean(formattedProperty.display)
-                            formattedProperty = clean(formattedProperty);
-                            response.properties.push(formattedProperty);
-                        });
+                    //TODO: move the error messages to an object so only written once
+                    if (err) {
+                        return rep("Sorry, no data could be found for that address");
                     }
-                    response = clean(response);
-                    rep(response);
+                    if (result.hasOwnProperty("Locations")) {
+                        response.location = {};
+                        response.location.Area = result.Locations.$.postcode; 
+                        response.location.Latitude = result.Locations.$.Lat;
+                        response.location.Longitude = result.Locations.$.Lng;
+                        response.properties = [];
+                        if(result.Locations.hasOwnProperty("StreetWorks")) {
+                            result.Locations.StreetWorks.map(function(p) {
+
+                                var formattedProperty = {};
+                                formattedProperty.Longitude = p.$.Lng;
+                                formattedProperty.Latitude = p.$.Lat;
+                                formattedProperty.LAref = p.$.LAref;
+                                formattedProperty.externalref = p.$.externalref;
+                                formattedProperty.display = {};
+                                formattedProperty.display.Organisation = p.$.Organisation;
+                                formattedProperty.display.Name = p.$.Street + " - " + p.$.externalref;
+                                formattedProperty.display.StartDate = p.$.StartDate;
+                                formattedProperty.display.EndDate = p.$.EndDate;
+                                formattedProperty.display.Telephone = p.$.Telephone;
+                                formattedProperty.display.Street = p.$.Street;
+                                formattedProperty.display.Description = p.$.Description;
+                                formattedProperty.display = clean(formattedProperty.display)
+                                formattedProperty = clean(formattedProperty);
+                                response.properties.push(formattedProperty);
+                            });
+                        }
+                        response = clean(response);
+                        rep(response);
+                    }
                 });
             });
         },
@@ -116,6 +120,11 @@
                         console.dir(result);
                         response.location = {};
                         response.location.Area = result.Locations.$.Area;
+                        if (req.info.hasOwnProperty("latitude")) {
+                            response.location.Latitude = req.info.latitude;
+                            response.location.Longitude = req.info.longitude;
+
+                        }
                         response.properties = [];
                         
                         if (result.Locations.hasOwnProperty("RecycleCentre")) { 
@@ -222,8 +231,15 @@
 
                 res.on('end', function(){
                     parser.parseString(xml, function (err, result) {
+                        
+                        if(result.Locations.hasOwnProperty("AddressSearchResults")) {
+                            response.location = result.Locations.AddressSearchResults[0]['$'];
+                        } else {
+                            response.location = {};
+                            response.location.Latitude = result.Locations.$.lat;
+                            response.location.Longitude = result.Locations.$.lng;
+                        }
 
-                        response.location = result.Locations.AddressSearchResults[0]['$'];
                         result.Locations.Properties[0].Property.map(function(p) {
                             var formatProperty = clean(p['$']);
                             formatProperty.display = clean(p.PoI[0]['$']);
