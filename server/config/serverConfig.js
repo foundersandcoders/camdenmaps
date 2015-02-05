@@ -26,7 +26,9 @@
             query: {
                 service: "find=",
                 location: "area=",
-                uprn: "uprn="
+                uprn: "uprn=",
+                lat: "lat=",
+                lng: "lng="
             },
             serviceArrays: {
                 parking:["Car club bay","Parking space", "Car park", "Car club", "Coach parking", "Disabled blue badge", "Disabled green badge", "Electric recharging point", "Loading bay", "Pay and display/meter", "Permit holders", "Solo motorcycles", "Bicycle stand"],
