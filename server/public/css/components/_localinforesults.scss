@@ -1,8 +1,19 @@
 #local-info-results {
-	padding: 0;
+	text-align: left;
+	background-color: white;
 	position: absolute;
-	min-height: 77%;
-	max-height: 21em;
+	padding: 0;
+	overflow: hidden;
+	overflow-y: scroll;
+	border-bottom: 0.2em black solid;
+	border-left: 0.2em black solid;
+	z-index: 50;
+	min-height: 69.5%;
+	max-height: 30em;
+	// padding: 0;
+	// position: absolute;
+	// min-height: 77%;
+	// max-height: 21em;
 	.local-info-heading {
 		font-weight: bold;
 	}
@@ -10,4 +21,12 @@
 		color: $hover-blue;
 	}
 	
+}
+
+@media (max-width: 768px) {
+	#local-info-results {
+		padding: 0;
+		position: absolute;
+		min-height: 77%;
+	}
 }
