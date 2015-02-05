@@ -9,8 +9,8 @@
 ;(function () {
     "use strict";
 
-    var noResults = require("../lib/noResults.js");
-    var addressUsedinAPIcall = require("../lib/validAddress.js");
+    var noResults = require("../lib/no-results.js");
+    var addressUsedinAPIcall = require("../lib/address-used-in-api-call.js");
 
     module.exports = [
         "$scope",

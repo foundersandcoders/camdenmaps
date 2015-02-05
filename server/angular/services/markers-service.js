@@ -1,8 +1,8 @@
 ;(function () {
 	"use strict";
 
-    var noResults = require("../../lib/noResults.js");
-    var cappedresults = require("../../lib/cappedresults.js");
+    var noResults = require("../lib/no-results.js");
+    var cappedResults = require("../lib/capped-results.js");
 
 	module.exports = [
         "$stateParams",
@@ -86,7 +86,7 @@
 
                     // this will run on refreshes
                     // it will run if there are capped results
-                    if(noResults(scope) || cappedResults(scope) ) {
+                    if(noResults(scope) || cappedResults(decodeURI($stateParams.service)) ) {
                         
    
                         var i, 
@@ -109,8 +109,10 @@
                     }
             
 
-                    if( Object.size(markers) === 5 || ( Object.size(markers) === 6 && !$stateParams.location) ) {
-  
+                    if( cappedResults(decodeURI($stateParams.service)) ) {
+                        console.log("capped results state params", decodeURI($stateParams.service) ) ;
+                        console.log("City farm capped?", cappedResults("City farm"));
+                         console.log("City hall", cappedResults("Hall for hire"));
                             markers.m0 = {
                                 icon: {
                                     iconSize: [28]

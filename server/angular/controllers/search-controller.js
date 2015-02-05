@@ -5,7 +5,7 @@
 
 //TODO: Better error handling
 //TODO: Must have input validation for address/street name: HOW??? 
-
+var noResults = require("../lib/noResults.js");
 
 ;(function () {
     "use strict";
@@ -41,7 +41,7 @@
             var path,
                 destination;
 
-            if($scope.results.length === 0) {        
+            if( noResults($scope) ) {        
                 apiSearch.search($stateParams.service)
                         .success(function success (data) {
                             console.log("api search running");
