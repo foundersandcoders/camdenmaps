@@ -59,6 +59,8 @@
 
             res.on("end", function() {
                 parser.parseString(xml, function(err, result) {
+                    console.log(result);
+                    console.log(err);
                     //TODO: move the error messages to an object so only written once
                     if (err) {
                         return rep("Sorry, no data could be found for that address");

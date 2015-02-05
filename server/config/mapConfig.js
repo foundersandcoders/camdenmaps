@@ -66,10 +66,14 @@
             return cb(null, url.nearestApi + query, { "Accept": "application/json" });
         },
         streetworksMapper: function streetworksMapper (req, cb, err) {
-            var location, query;
+            var location, query, lat, lng;
             location = req.params.postcode;
-            query = "?" + locations + location;
-            
+            lat = req.params.latitude;
+            lng = req.params.longitude;
+            query = (req.params.location) ? "?" + locations + location
+                                        : "?" + lats + lat + "&" + lngs + lng;
+
+            console.log(url.streetworksApi + query); 
             return cb(null, url.streetworksApi + query, { "Accept": "application/json" });
         }
     };
