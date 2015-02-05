@@ -102,5 +102,12 @@
                 templateUrl: "partials/root.address-search.html",
                 controller: "StreetworksSearchController"
             })
+
+            //state for your local streetworks when address has been found
+            .state("root.streetworks.found", {
+                url: "/{address}", 
+                templateUrl: "partials/root.streetworks.local-information.html",
+                controller: "LocalFoundController"
+            })
     }];
 }());
