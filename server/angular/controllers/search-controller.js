@@ -5,7 +5,7 @@
 
 //TODO: Better error handling
 //TODO: Must have input validation for address/street name: HOW??? 
-var noResults = require("../lib/noResults.js");
+var noResults = require("../lib/no-results.js");
 
 ;(function () {
     "use strict";

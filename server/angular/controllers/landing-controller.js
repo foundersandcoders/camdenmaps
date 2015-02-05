@@ -13,7 +13,7 @@
 
             $scope.executeFn = function executeFn(fn) {
                 fn();
-            }
+            };
 
             function addLandingButtonHandler (path) {
                 return function () {
@@ -24,7 +24,7 @@
                                     : "/home";
                                     
                     $location.path(destination);
-                }
+                };
             }
 
 

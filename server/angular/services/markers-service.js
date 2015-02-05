@@ -129,7 +129,7 @@
                             } 
                             //else sets it to the default location
                             else {
-                                markers.m0.message = "NW1 0NE, <br> please enter an address for the 5 closest results.";
+                                markers.m0.message = "<b>NW1 0NE</b> <br> Please enter an address <br> for the 5 closest results.";
                                 markers.m0.lat = 51.53861;
                                 markers.m0.lng = -0.14205; 
                                 markers.m0.icon.iconUrl =  "../img/icons/location-marker.png";
