@@ -86,7 +86,7 @@
 
                     // this will run on refreshes
                     // it will run if there are capped results
-                    if(noResults(scope) || cappedResults(decodeURI($stateParams.service)) ) {
+                    if( Object.size(markers) === 0 || cappedResults(decodeURI($stateParams.service)) ) {
                         
    
                         var i, 
@@ -110,9 +110,7 @@
             
 
                     if( cappedResults(decodeURI($stateParams.service)) ) {
-                        console.log("capped results state params", decodeURI($stateParams.service) ) ;
-                        console.log("City farm capped?", cappedResults("City farm"));
-                         console.log("City hall", cappedResults("Hall for hire"));
+
                             markers.m0 = {
                                 icon: {
                                     iconSize: [28]
@@ -122,7 +120,7 @@
                             //sets this markers to geolocation 
                             if (markers.location) {
 
-                                markers.m0.message = "Please enter another address for the 5 closest results to that location.";
+                                markers.m0.message = "5 closest results to your location";
                                 markers.m0.lat = markers.location.lat;
                                 markers.m0.lng = markers.location.lng;
                                 markers.m0.icon.iconUrl =  "../img/icons/geolocation.png"; 
