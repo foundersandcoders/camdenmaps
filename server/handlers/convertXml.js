@@ -31,7 +31,7 @@
             res.on("end", function() {
 
                 parser.parseString(xml, function(err, result) {
-
+                    console.log(result.Locations.LocalInformation[0].Table[0].Object[0].$);
                     response.location = {};
                     response.location.Area = result.Locations.AddressSearchResults[0].$.sPostcode;
                     response.location.Latitude = result.Locations.AddressSearchResults[0].$.Latitude;
@@ -40,7 +40,9 @@
                     response.location.Street = result.Locations.AddressSearchResults[0].$.sStreet; 
                     response.information = {};
                     result.Locations.LocalInformation[0].Table.map(function(p) {
-                        response.information[p.$.TableDesc] = p.Object[0].$.ObjectDesc;
+                        response.information[p.$.TableDesc] = {};
+                        response.information[p.$.TableDesc].Value = p.Object[0].$.ObjectDesc;
+                        response.information[p.$.TableDesc].Website = p.Object[0].$.ObjectLink;
                     });
 
                     rep(response);
