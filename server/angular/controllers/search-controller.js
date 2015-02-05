@@ -25,6 +25,9 @@ var noResults = require("../lib/noResults.js");
             //model for error messages
             $scope.error = "";
             //model for title
+            $scope.title = "Find your Nearest";
+            //model for placeholder
+            $scope.placeholder = "Please enter a postcode";
 
             // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
@@ -71,13 +74,18 @@ var noResults = require("../lib/noResults.js");
                 }
             };
 
+
             $scope.geolocateUser = function() {
                 markers.geolocateUser($scope)();
             
 
             };
 
+    
+            //back button functionality
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home/services");
+            //back button text
+            $scope.backButtonText = "Pick Another Service";
 
             $scope.toggle = buttonHandlers.toggle($scope);
             
