@@ -43,52 +43,6 @@
                     });
                 }
             },
-            servicesAndLocations: {
-
-                handler: function (req, rep) {
-                    var key = req.raw.req.url;
-
-                    cache.get(key, function (err, value) {
-
-                        if (err) {
-                            console.log(err);
-                        }
-
-                        if (value.hasOwnProperty(key)) {
-                            console.log("cached service and location");
-                            rep(value[key]);
-                        } else {
-                            rep.proxy({
-                                mapUri: MapConfig.nearestMapper,
-                                onResponse: ConvertXml.convertToJson
-                            });
-                        }
-                    });
-                }
-            },
-            servicesAndLocationsLatLng: {
-
-                handler: function (req, rep) {
-                    var key = req.raw.req.url;
-
-                    cache.get(key, function (err, value) {
-
-                        if (err) {
-                            console.log(err);
-                        }
-
-                        if (value.hasOwnProperty(key)) {
-                            console.log("cached service and location LatLng");
-                            rep(value[key]);
-                        } else {
-                            rep.proxy({
-                                mapUri: MapConfig.nearestMapper,
-                                onResponse: ConvertXml.convertToJson
-                            });
-                        }
-                    });
-                }
-            }
         },
         apiDocs: {
             handler: handlers.showDocsHome

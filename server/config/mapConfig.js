@@ -55,16 +55,13 @@
             service = aliasServices(service);
 
             //query constructed based on combination of services and/or address
-<<<<<<< HEAD
-            query   = (lat || lng !== undefined) ? "?" + services + service + "&" + lats + lat + "&" + lngs + lng
-=======
+
             query   = (lat !== undefined) ? "?" + services + service + "&" + lats + lat + "&" + lngs + lng
->>>>>>> dev
+
                     : (location === undefined) ? "?" + services + service + "&" + locations + defaultLocation
                     : (service === undefined)  ? query = "?" + locations + location 
                     : "?" + locations + location + "&" + services + service;
 
-            console.log(apiUrl + query); 
             //redirect request to proxy
             return cb(null, apiUrl + query, { "Accept": "application/json" });
 
