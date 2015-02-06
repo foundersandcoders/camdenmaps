@@ -2,68 +2,78 @@
 	"use strict";
 
 	module.exports = function cappedResults(service) {
-				//services which cap results at 5
-		return 	service === "Community centre" ? true 
-				: service === "Hall for hire" ? true 
-				: service  === "marriage/civil partnership venues" ? true
-				
-				//services which cap results at 10
-				: service  === "Wifi hotspot" ? true
-				: service  === "Residents/tenants association" ? true
-				: service  === "Special school" ? true
-				: service  === "Library" ? true
-				: service  === "Children's library" ? true
-				: service  === "Pay and display/meter" ? true
-				: service  === "Household electronics/appliances" ? true
-				: service  === "Cinema" ? true
-				: service  === "Art gallery" ? true
-				: service  === "Pay and display/meter" ? true
-				: service  === "Green action group" ? true
-				: service  === "Green roof" ? true
-				: service  === "Low carbon schools pilot" ? true
-				: service  === "Camden Climate Change Alliance award winner" ? true
-				: service  === "Open space" ? true
-				: service  === "Recycling point" ? true
-				: service  === "Batteries" ? true
-				: service  === "Cardboard and Paper" ? true
-				: service  === "Household electronics/appliances" ? true
-				: service  === "Aluminium cans" ? true
-				: service  === "Foil" ? true
-				: service  === "Grit Bin" ? true
-				: service  === "Chemist" ? true
-				: service  === "Day centre" ? true
-				: service  === "Dentist" ? true
-				: service  === "Flu Jab" ? true
-				: service  === "GP" ? true
-				: service  === "Hospital" ? true
-				: service  === "NHS Trust" ? true
-				: service  === "Optician" ? true
-				: service  === "Sexual health clinic" ? true
-				: service  === "Athletics" ? true
-				: service  === "Badminton" ? true
-				: service  === "Basketball" ? true
-				: service  === "Bowling" ? true
-				: service  === "Cricket" ? true
-				: service  === "Dance" ? true
-				: service  === "Five-a-side football" ? true
-				: service  === "Football" ? true
-				: service  === "Gentle exercise" ? true
-				: service  === "Gymnastics" ? true
-				: service  === "Karate" ? true
-				: service  === "Kickboxing" ? true
-				: service  === "Kung Fu" ? true
-				: service  === "Martial Arts" ? true
-				: service  === "Netball" ? true
-				: service  === "Pilates" ? true
-				: service  === "Squash" ? true
-				: service  === "Swimming" ? true
-				: service  === "Table Tennis" ? true
-				: service  === "Tai Chi" ? true
-				: service  === "Tennis" ? true
-				: service  === "Yoga" ? true
-				: false;
-
-
+		
+		//will only check for small results lists		
+		// if(Object.size(markers) < 12) {
+			var fiveortenmarkers = [ "Community centre",
+				"Hall for hire",
+				"Place of worship",
+				"CCTV camera",
+				"Training for organisations",
+				"Holiday play scheme",
+				"Beavers group",
+				"Children's club",
+				"After school club",
+				"Theatre",
+				"Art gallery",
+				"Wifi hotspot",
+				"Residents/tenants association",
+				"Special school",
+				"Library",
+				"Children's library",
+				"Pay and display/meter",
+				"Household electronics/appliances",
+				"Cinema",
+				"Art gallery",
+				"Pay and display/meter",
+				"Green action group",
+				"Green roof",
+				"Low carbon schools pilot",
+				"Camden Climate Change Alliance award winner",
+				"Open space",
+				"Recycling point",
+				"Batteries",
+				"Cardboard and Paper",
+				"Household electronics/appliances",
+				"Aluminium cans",
+				"Foil",
+				"Grit Bin",
+				"Chemist",
+				"Day centre",
+				"Dentist",
+				"Flu Jab",
+				"GP",
+				"Hospital",
+				"NHS Trust",
+				"Optician",
+				"Sexual health clinic",
+				"Athletics",
+				"Badminton",
+				"Basketball",
+				"Bowling",
+				"Cricket",
+				"Dance",
+				"Five-a-side football",
+				"Football",
+				"Gentle exercise",
+				"Gymnastics",
+				"Karate",
+				"Kickboxing",
+				"Kung Fu",
+				"Martial Arts",
+				"Netball",
+				"Pilates",
+				"Squash",
+				"Swimming",
+				"Table Tennis",
+				"Tai Chi",
+				"Tennis",
+				"Yoga" ];	
+			
+			if(fiveortenmarkers.indexOf(service) > -1) {
+				return true;
+			}
+		// }
 
 
 	};
