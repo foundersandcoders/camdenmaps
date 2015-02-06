@@ -47,7 +47,6 @@ var noResults = require("../lib/no-results.js");
             if( noResults($scope) ) {        
                 apiSearch.search($stateParams.service)
                         .success(function success (data) {
-                            console.log("api search running");
                             $scope.update("results", data.properties);
                             $scope.addMarkers();
                             // $scope.centre = markers.centreCheck($scope)();

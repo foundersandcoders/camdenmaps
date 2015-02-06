@@ -44,7 +44,6 @@
             //used for updating centre, markers, active markers and location selected 
             $scope.update = function update (type, newType){
                 $scope[type] = newType;
-                console.log($scope[type]);
             };
 
             //************ MAP MANIPULATIONS ***************
@@ -72,7 +71,7 @@
                 maxbounds: regions.camdenBorough,
                 defaults: {
                     scrollWheelZoom: false,
-                    tileLayer: "http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{y}/{x}.jpg"
+                    // tileLayer: "http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{y}/{x}.jpg"
                 },
                 markers: {},
 

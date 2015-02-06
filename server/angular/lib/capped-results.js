@@ -7,6 +7,7 @@
 		// if(Object.size(markers) < 12) {
 			var fiveortenmarkers = [ "Community centre",
 				"Hall for hire",
+				"Connexions personal adviser",
 				"Place of worship",
 				"CCTV camera",
 				"Training for organisations",
