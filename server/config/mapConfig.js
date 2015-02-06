@@ -17,6 +17,8 @@
         lats = Config.map.query.lat,
         lngs = Config.map.query.lng,
         cache = require("./cache.js"),
+        lngs = Config.map.query.lng,
+        lats = Config.map.query.lat,
         exactLocations = Config.map.query.uprn,
         cap = require("../lib/capitalize.js"),
         aliasServices = require("../lib/alias.js");
@@ -25,12 +27,16 @@
 
         nearestMapper: function nearestMapper (req, cb, err, next) {
 
-            var service, location, lat, lng, query, apiUrl, defaultLocation;
+
+            var service, location, query, lat, lng, apiUrl, defaultLocation;
+
             service = cap(req.params.service);
             location = req.params.postcode;
             lat = req.params.latitude;
             lng = req.params.longitude;
             defaultLocation = "NW1 0NE";
+            lat = req.params.latitude;
+            lng = req.params.longitude;
 
             //TODO: green query is not the same, needs to be changed depending on service requested
 
@@ -49,7 +55,11 @@
             service = aliasServices(service);
 
             //query constructed based on combination of services and/or address
+<<<<<<< HEAD
             query   = (lat || lng !== undefined) ? "?" + services + service + "&" + lats + lat + "&" + lngs + lng
+=======
+            query   = (lat !== undefined) ? "?" + services + service + "&" + lats + lat + "&" + lngs + lng
+>>>>>>> dev
                     : (location === undefined) ? "?" + services + service + "&" + locations + defaultLocation
                     : (service === undefined)  ? query = "?" + locations + location 
                     : "?" + locations + location + "&" + services + service;
@@ -66,10 +76,14 @@
             return cb(null, url.nearestApi + query, { "Accept": "application/json" });
         },
         streetworksMapper: function streetworksMapper (req, cb, err) {
-            var location, query;
+            var location, query, lat, lng;
             location = req.params.postcode;
-            query = "?" + locations + location;
-            
+            lat = req.params.latitude;
+            lng = req.params.longitude;
+            query = (req.params.location) ? "?" + locations + location
+                                        : "?" + lats + lat + "&" + lngs + lng;
+
+            console.log(url.streetworksApi + query); 
             return cb(null, url.streetworksApi + query, { "Accept": "application/json" });
         }
     };

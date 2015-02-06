@@ -72,18 +72,19 @@
 
             this.mapClick = function(functionScope) {
                 return function(e, args, scope) {
-                scope = scope || functionScope;
-                
+                    scope = scope || functionScope;
+                    
 
-                if(scope.activeMarker) {
-                    scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
-                    scope.update("activeMarker", 0);
-                }
+                    if(scope.activeMarker) {
+                        scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
+                        scope.update("activeMarker", 0);
+                    }
 
                 path    = scope.address ? "/home/" + scope.service + "/location/" + scope.address
                         : "/home/" + scope.service + "/search";
                     
                 $location.path(path);  
+
                 };
             };
 

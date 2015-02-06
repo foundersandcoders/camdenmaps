@@ -63,19 +63,22 @@
                 apiSearch.search($stateParams.service, $stateParams.address, lat, lng)
 
                     .success(function success (data) {
+                        console.log("ex)");
                         $scope.updateResults(data.properties);
                         $scope.update("locationSelected", data.location);
                         $scope.addMarkers();
                         
                         //will only update if the address is valid
                         //only valid addresses have a north property
-                        // if(data.location.North) {
-                        //     $scope.update("centre", {
-                        //         lat: Number($scope.locationSelected.Latitude),
-                        //         lng: Number($scope.locationSelected.Longitude),
-                        //         // zoom: markers.zoomCheck($scope)()
-                        //     });
-                        // }
+
+                        if(data.location.Latitude) {
+                            $scope.update("centre", {
+                                lat: Number($scope.locationSelected.Latitude),
+                                lng: Number($scope.locationSelected.Longitude),
+                                zoom: markers.zoomCheck($scope)()
+                            });
+                        }
+
 
                         
 
