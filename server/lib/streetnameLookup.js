@@ -28,16 +28,18 @@
                     uri = serverConfig.map.url.parkingApi + "?" + serverConfig.map.query.location  + req.params.postcode;
                     request(uri, function(err, res, body) {
                         parser.parseString(body, function(err, result) {
-                            //TODO: both of these are assigned until the lat/lng endpoints have been written
-                            //TODO: once lat/lng endpoints have been written, force a lat/lng request when streetname is given 
-                            //req.info.latitude = result.Locations.$.Lat;
-                            //req.info.longitude = result.Locations.$.Lng;
-                            //req.params.latitude = result.Locations.$.Lat;
-                            //req.params.longitude = result.Locations.$.Lng;
-                            var path = req.raw.req.url.split("/");
-                            path[path.length-1] = "lats/" + result.Locations.$.Lat + "/lngs/" + result.Locations.$.Lng;
-                            path = path.join("/");
-                            return rep.redirect(path);
+                            var path;
+                            if (err) {
+                                throw err;
+                            }
+                            if (result.Locations.$.hasOwnProperty("Lat") && result.Locations.$.hasOwnProperty("Lng")) {
+                                path = req.raw.req.url.split("/");
+                                path[path.length-1] = "lats/" + result.Locations.$.Lat + "/lngs/" + result.Locations.$.Lng;
+                                path = path.join("/");
+                                return rep.redirect(path);
+                            } else {
+                                return rep("Error: " + req.params.postcode + " could not be found within Camden");
+                            }
 
                         });
                     });

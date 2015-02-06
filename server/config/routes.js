@@ -21,9 +21,9 @@
         server.route([
         /* EXAMPLE **************************************
         *    { 
-        *        method:    ":METHOD", 
-        *        path:      ":PATH", 
-        *        handlers:  ":HANDLERS" 
+        *        method:    ":METHOD STRING", 
+        *        path:      ":PATH STRING", 
+        *        config:    ":CONFIG OBJECT" 
         *    }
         */
             {
@@ -45,7 +45,7 @@
         {
             method: "GET",
             path: "/locations/{postcode}",
-            config: RoutesConfig.nearest.locations 
+            config: RoutesConfig.nearest.services 
         },
         {
             method: "GET",
@@ -60,12 +60,12 @@
         {
             method: "GET",
             path: "/services/{service}/locations/{postcode}",
-            config: RoutesConfig.nearest.servicesAndLocations 
+            config: RoutesConfig.nearest.services 
         },
         {
             method: "GET",
             path: "/services/{service}/locations/lats/{latitude}/lngs/{longitude}",
-            config: RoutesConfig.nearest.servicesAndLocations 
+            config: RoutesConfig.nearest.services
         },
         {
             method: "GET",
