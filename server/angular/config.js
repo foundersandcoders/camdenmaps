@@ -61,6 +61,20 @@
                 controller: "SingleController" 
             })
 
+            //state for searching streetworks by address
+            .state("root.streetworks", {
+                url: "/streetworks",
+                templateUrl: "partials/root.address-search.html",
+                controller: "StreetworksSearchController"
+            })
+
+            //state for your local streetworks when address has been found
+            .state("root.streetworks.found", {
+                url: "locations/{address}", 
+                templateUrl: "partials/root.streetworks.local-information.html",
+                controller: "LocalFoundController"
+            })
+
             //address-found contains view for when an address+service are found
             .state("root.address-found", {
                 url: "/{service}/location/{address}",
@@ -96,18 +110,7 @@
                 controller: "LocalFoundController"
             })
 
-            //state for searching streetworks by address
-            .state("root.streetworks", {
-                url: "/streetworks",
-                templateUrl: "partials/root.address-search.html",
-                controller: "StreetworksSearchController"
-            })
+        
 
-            //state for your local streetworks when address has been found
-            .state("root.streetworks.found", {
-                url: "/{address}", 
-                templateUrl: "partials/root.streetworks.local-information.html",
-                controller: "LocalFoundController"
-            })
     }];
 }());
