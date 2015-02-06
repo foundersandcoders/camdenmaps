@@ -25,6 +25,9 @@
                         $scope.results = data;
                     });
                 */
+
+                console.log("SINGLE-CONTROLLER", $scope.result);
+                // console.log("results Distance", $scope.results);
                 
                 // Ensuring that the service name in the URL is Encoded properly
                 $stateParams.service = decodeURI($stateParams.service);
@@ -65,6 +68,10 @@
                     $scope.result = $scope.results.filter(function (result) {
                         return result.display.Name === $stateParams.id;
                     })[0];
+    
+                    $scope.rounding = (Math.floor( (Number($scope.result.Distance) + 0.005) * 100 )) /100;
+
+
                     if(!$scope.activeMarker && $scope.results.indexOf($scope.result) > -1) { 
                         linkResultToMarker(); 
                     } 

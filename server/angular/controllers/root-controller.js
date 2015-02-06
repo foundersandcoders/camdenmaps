@@ -61,7 +61,7 @@
                 }
             };
 
-            angular.extend($scope, {
+            angular.extend($scope, {            
                 centre: {
                     lat: 51.535923,
                     lng: -0.139991,
