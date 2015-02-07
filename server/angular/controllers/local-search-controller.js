@@ -23,8 +23,7 @@
                 if ($scope.address) {
                     $location.path("/home/neighbourhood/" + $scope.address);
                 } else {
-                    console.log("NEO");
-                    $scope.error = "Sorry, that didn't look right";
+                    $scope.update("error", "Sorry, that didn't look right");
                 } 
             }
 
