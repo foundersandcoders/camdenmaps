@@ -33,7 +33,7 @@
                     url: apiUrl,
                     cache: true
                 });
-            }
+            };
 
         }
     ];

@@ -14,20 +14,15 @@
 
                 var uri,
                     marker;
+                
+                //selects item from results with matching {id}
+                $scope.result = $scope.results.filter(function (result) {
+                        return result.display.Name === $stateParams.id;
+                })[0];
 
-                //TODO: Do some DATA CLEANING so data is standardized before it reaches us
+                // $scope.rounding = (Math.floor( (Number($scope.result.Distance) + 0.005) * 100 )) /100;
 
-                /*
-                //CHECKME: theoretically shouldn't be executed if cache is working correctly.
-                //loads results if not previously loaded (i.e navigated to directly by url)
-                apiSearch.search($stateParams.service, $stateParams.address)
-                    .then(function success (data) {
-                        $scope.results = data;
-                    });
-                */
 
-                console.log("SINGLE-CONTROLLER", $scope.result);
-                // console.log("results Distance", $scope.results);
                 
                 // Ensuring that the service name in the URL is Encoded properly
                 $stateParams.service = decodeURI($stateParams.service);
@@ -64,29 +59,25 @@
                 
                 //if single view accessed through list it will link to map
                 if($scope.results) { 
-                    //selects item from results with matching {id}
-                    $scope.result = $scope.results.filter(function (result) {
-                        return result.display.Name === $stateParams.id;
-                    })[0];
-    
-                    $scope.rounding = (Math.floor( (Number($scope.result.Distance) + 0.005) * 100 )) /100;
-
 
                     if(!$scope.activeMarker && $scope.results.indexOf($scope.result) > -1) { 
                         linkResultToMarker(); 
                     } 
                 }
 
-               //this function throws up the error undefined is not a function
                 if(!$scope.results || typeof $scope.result === undefined ) {
                 apiSearch.search(service, $stateParams.address)
                     .success(function success (data) {
                         $scope.updateResults(data.properties);
                         $scope.update("locationSelected", data.location);
+                        
                         // selects item from results with matching {id}
                         $scope.result = $scope.results.filter(function (result) {
                             return result.display.Name === $stateParams.id;
                         })[0];
+
+                        $scope.rounding = (Math.floor( (Number($scope.result.Distance) + 0.005) * 100 )) /100;
+
 
                         if($stateParams.id) {
                             linkResultToMarker(); 

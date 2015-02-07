@@ -119,7 +119,7 @@
                                     iconUrl: "../img/icons/location-marker.png",
                                 },
                                 focus: true,
-                                message: "<b>NW1 0NE</b> <br> Please enter an postcode <br> for nearby results.",
+                                message: "<b>NW1 0NE</b> <br> Please enter a postcode <br> for nearby results.",
                             };
 
                     }

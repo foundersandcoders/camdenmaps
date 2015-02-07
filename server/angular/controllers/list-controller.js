@@ -16,13 +16,15 @@
             // Need to decode and then encode twice so to compensate for double encoding for only part of $stateParams.service
             $stateParams.service = decodeURI($stateParams.service);
 
-            console.log("results LIST-CONTROLLER", $scope.results[0].Distance);
-            // console.log("results Distance", $scope.results);
-
-
             var encodeservice = encodeURIComponent($stateParams.service),
                 service = encodeURIComponent(encodeservice);
 
+            //selects item from results with matching {id}
+            $scope.result = $scope.results.filter(function (result) {
+                    return result.display.Name === $stateParams.id;
+            })[0];
+
+            console.log($scope.result);
 
             //change baseurl depending on whether address-found or address-search 
             $scope.baseUrl = $stateParams.address ?  "/#/home/" + service + 
