@@ -23,7 +23,8 @@
             //model for page title
             $scope.title = "Find your Nearest...";
 
-            var markers = $scope.markers,
+            //service called markers exists
+            var mapMarkers = $scope.markers,
                 lat,
                 lng;
 
@@ -51,19 +52,18 @@
             }
             
 
+            //this will only run an API call if location needs to be added
             if(!addressUsedinAPIcall($scope)){
-                console.log("running api search in LOCATION-CONTROLLER");
-                console.log("markers.location", $scope.markers.location);
+
                 //reloads $scope.results with new data based on address 
                 
                 // will pass through values if present otherwise 0
-                lat = markers.location ? markers.location.lat : 0;
-                lng = markers.location ? markers.location.lng : 0;
+                lat = mapMarkers.location ? mapMarkers.location.lat : 0;
+                lng = mapMarkers.location ? mapMarkers.location.lng : 0;
          
                 apiSearch.search($stateParams.service, $stateParams.address, lat, lng)
 
                     .success(function success (data) {
-                        console.log("ex)");
                         $scope.updateResults(data.properties);
                         $scope.update("locationSelected", data.location);
                         $scope.addMarkers();

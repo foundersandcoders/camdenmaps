@@ -136,8 +136,8 @@
                             popupOptions: {
                                 closeOnClick: false
                              },
-                             //this will correctly format street addresses to capitalised
-                             //and postcodes to upper case
+                             //this will capitalise street addresses
+                             //and upper case postcodes
                             message: ($stateParams.address.replace(/\s/g, "").length < 7
                                     ? $stateParams.address.toUpperCase()
                                     : $stateParams.address.replace(/\b./g, function(m){ return m.toUpperCase(); })),
@@ -165,7 +165,7 @@
                         size = Object.size(scope.markers);
 
                     //if results are less than 5 markers zooms out to fit them all in
-                    if (size < 6 || ( size < 7 && scope.markers.location) ) {
+                    if (size < 5 ) {
                         zoomLevel = 12;
                     }
                     else {
