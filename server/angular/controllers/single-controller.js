@@ -71,6 +71,9 @@
                 if(!$scope.results || typeof $scope.result === undefined ) {
                 apiSearch.search(service, $stateParams.address)
                     .success(function success (data) {
+                        if(data.hasOwnProperty("error")){
+                            return $scope.update("error", data.message);
+                        }
                         $scope.updateResults(data.properties);
                         $scope.update("locationSelected", data.location);
                         // selects item from results with matching {id}
@@ -82,6 +85,9 @@
                             linkResultToMarker(); 
                         }
 
+                    })
+                    .error(function error (err) {
+                        return $scope.update("error", err.message);
                     });
 
                  }

@@ -18,7 +18,8 @@
             this.searchAgain = function (functionScope, destination) { 
 
                 return function (scope) { 
-                    scope = scope || functionScope;             
+                    scope = scope || functionScope;  
+                    scope.update("error", "");
                     scope.update("locationSelected", {});
                     scope.update("centre", {
                             lat: 51.535923,
@@ -40,7 +41,8 @@
             this.toggle = function (functionScope) {
                 
                 return function (scope) {
-                    scope = scope || functionScope;  
+                    scope = scope || functionScope; 
+                    scope.update("error", "");
                     if($location.path().indexOf("/list") > -1) { 
                         return exit(); 
                     } else {
@@ -52,6 +54,7 @@
             
             function listResults (scope) {   
                 
+                scope.update("error", "");
                 //Encodes service in url.
                 $stateParams.service = decodeURI($stateParams.service);
                 var service = encodeURIComponent($stateParams.service);
@@ -63,8 +66,8 @@
                 }
 
                 destination = ($stateParams.address) 
-                            ? "/home/" + service + "/location/" + scope.address + "/list"
-                            :  "/home/" + service + "/search/list";
+                            ? "/home/" + scope.service + "/location/" + scope.address + "/list"
+                            :  "/home/" + scope.service + "/search/list";
                 $location.path(destination);
             }
 
