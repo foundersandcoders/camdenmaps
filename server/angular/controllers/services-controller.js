@@ -161,7 +161,6 @@
                 $scope.execute = function execute (fn) {
                     fn();
                 }; 
-
             }
         ];
 
