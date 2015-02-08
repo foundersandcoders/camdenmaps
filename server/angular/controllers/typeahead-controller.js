@@ -11,29 +11,44 @@
         "$location",
         function ($scope, $location) {
 
-        	var menu = [];
+            	var menu = [];
 
-        	menu = require("../menu.json");
+            	menu = require("../menu.json");
 
-            $scope.selected = '';
+                $scope.selected = '';
 
-            $scope.typeaheadServicesList = menu.filter(function (item) {
-                if (item.type === "service") {
-                    return item;
-                }
-            });
+                function getItems() {
 
-            $scope.handler = function handler (item) {
-                var service,
-                    destination;
+                    var newArray = [];
 
-                service = encodeURIComponent(item);
+                    for (var i = menu.length - 1; i >= 0; i--) {
+                    
+                        if (menu[i].type === "service") {
+                            newArray.push(menu[i].title);
+                        }
+                        
+                    };
+                    return newArray;
+                };
 
-                destination = "/home/" + service + "/search";
+            if(($location.path().indexOf("/neighbourhood") > -1) || ($location.path().indexOf("/streetworks") > -1)) { 
 
-                $location.path(destination);
+                console.log("address search goes here");
 
-                console.log(item);
+            } else {
+
+                $scope.typeaheadSearchList = getItems();
+
+                $scope.handler = function handler (item) {
+                    var service,
+                        destination;
+
+                    service = encodeURIComponent(item);
+
+                    destination = "/home/" + service + "/search";
+
+                    $location.path(destination);
+                };
             }
         }
     ];

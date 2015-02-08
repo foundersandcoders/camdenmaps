@@ -11,13 +11,11 @@
     "use strict";
 
     var angular = require("angular");
-    require("angular-animate");
     require("angular-touch");
     require("angular-bootstrap");
 
     angular.module("maps", [
             require("angular-ui-router"),
-            "ngAnimate",
             "ngTouch",
             "ui.bootstrap",
             "leaflet-directive"

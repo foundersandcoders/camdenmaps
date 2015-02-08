@@ -58,4 +58,15 @@
 			cursor: pointer;
 		}
 	}
+	.dropdown-menu {
+		border-radius: 0;
+		width: 100%;
+		padding: 0;
+		li {
+			border-bottom: 0.1em $menu-stroke-grey solid;
+		}
+	}
+	form {
+		display: none;
+	}
 }
