@@ -16,12 +16,15 @@
                     marker;
                 
                 //selects item from results with matching {id}
-                $scope.result = $scope.results.filter(function (result) {
+                
+
+                if($scope.results) {
+                    $scope.result = $scope.results.filter(function (result) {
                         return result.display.Name === $stateParams.id;
-                })[0];
+                    })[0];
 
-                $scope.rounding = (Math.floor( (Number($scope.result.Distance) + 0.005) * 100 )) /100;
-
+                    $scope.rounding = (Math.floor( (Number($scope.result.Distance) + 0.005) * 100 )) /100;
+                }
 
                 
                 // Ensuring that the service name in the URL is Encoded properly
