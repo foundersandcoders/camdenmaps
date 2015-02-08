@@ -14,7 +14,7 @@ var menu = require("../menu.json");
         	return {
         		restrict: 'AEC',
             transclude: true,
-        		template: '<input type="text" ng-model="selected" typeahead="service.title for service in typeaheadServicesList | filter:$viewValue | limitTo:8" class="form-control">',
+        	templateUrl: 'partials/typeahead-search.html',
             controller: 'typeahead'
         	}
         }

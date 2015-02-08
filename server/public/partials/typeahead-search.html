@@ -1,0 +1,11 @@
+<form ng-submit="handler(selected)">
+	<div class="col-xs-11">
+	    <input type="text" placeholder="Enter a service to search" ng-model="selected" typeahead="service.title for service in typeaheadServicesList | filter:$viewValue | limitTo:8" class="form-control">
+	</div>
+
+	<div class="col-xs-1">
+	    <button type="submit">
+	        <span class="glyphicon glyphicon-search"></span>
+	    </button>
+	</div>
+</form>

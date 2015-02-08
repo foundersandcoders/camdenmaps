@@ -18,7 +18,6 @@
         "buttonHandlers",
         function ($scope, $location, markers, buttonHandlers) {
            
-
             //stores geo data for camden borough boundaries
             var camdenBoundaries = require("../../public/lib/camdenBorough.geo.json");
             //stores results at root for access by all controllers
@@ -69,7 +68,8 @@
                 },
                 maxbounds: regions.camdenBorough,
                 defaults: {
-                    scrollWheelZoom: false
+                    scrollWheelZoom: false,
+                    tileLayer: "http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png"
                 },
                 markers: {},
 
