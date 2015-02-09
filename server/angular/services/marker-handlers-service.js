@@ -28,6 +28,7 @@
                     } else {
                         //resets any existing highlighted marker 
                         if(scope.activeMarker) {
+                            console.log("line 31");
                             scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
                             scope.update("activeMarker", 0);
                         }
@@ -42,6 +43,8 @@
                         path    = scope.address ? "/home/" + service + "/location/" + scope.address + "/" + scope.markers[args.markerName].name
                                 : "/home/" + service + "/search/" + scope.markers[args.markerName].name;
                         
+                        console.log('scope.address', scope.address);
+
                         if($location.path() !== path) {
                             $location.path(path);
                         }
