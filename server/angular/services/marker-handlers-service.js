@@ -80,10 +80,10 @@
                         scope.update("activeMarker", 0);
                     }
 
-                path    = scope.address ? "/home/" + scope.service + "/location/" + scope.address
-                        : "/home/" + scope.service + "/search";
-                    
-                $location.path(path);  
+                    path    = scope.address ? "/home/" + scope.service + "/location/" + scope.address
+                            : "/home/" + scope.service + "/search";
+                        
+                    $location.path(path);  
 
                 };
             };

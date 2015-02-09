@@ -35,11 +35,16 @@ var noResults = require("../lib/no-results.js");
             // Ensuring that the service name in the URL is Encoded
             $stateParams.service = encodeURIComponent($scope.service);
 
-            //model for image icon
-            $scope.icon = require("../menu.json").filter(function filterImg (item) {
-                var name = item.title + item.text;
-                return name.toLowerCase() === $scope.service.toLowerCase();
-            })[0].img;
+            try {
+                //model for image icon
+                $scope.icon = require("../menu.json").filter(function filterImg (item) {
+                    var name = item.title + item.text;
+                    return name.toLowerCase() === $scope.service.toLowerCase();
+                })[0].img;
+            } catch (e) {
+                // don't break if image couldn't load
+                console.log(e);
+            } 
 
             var path,
                 destination;
@@ -47,12 +52,24 @@ var noResults = require("../lib/no-results.js");
             if( noResults($scope) ) {        
                 apiSearch.search($stateParams.service)
                         .success(function success (data) {
+                            if(data.hasOwnProperty("error")) {
+                                // display error message
+                                $scope.update("error", data.message);
+                                // and redirect back to services menu to try again
+                                $location.path("/home/services");
+                            }
                             $scope.update("results", data.properties);
                             $scope.addMarkers();
                             // $scope.centre = markers.centreCheck($scope)();
                             $scope.centre.zoom = markers.zoomCheck($scope)();
+                        })
+                        .error(function error(err) {
+                            return $scope.update("error", err.message);
                         });
+
             }
+
+
 
             $scope.$on('leafletDirectiveMarker.click', markerHandlers.markerClick($scope));
 

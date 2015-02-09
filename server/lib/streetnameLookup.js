@@ -29,18 +29,14 @@
                     request(uri, function(err, res, body) {
                         parser.parseString(body, function(err, result) {
                             var path;
-                            if (err) {
-                                throw err;
-                            }
-                            if (result.Locations.$.hasOwnProperty("Lat") && result.Locations.$.hasOwnProperty("Lng")) {
+                            if (!err && result.Locations.$.hasOwnProperty("Lat") && result.Locations.$.hasOwnProperty("Lng")) {
                                 path = req.raw.req.url.split("/");
                                 path[path.length-1] = "lats/" + result.Locations.$.Lat + "/lngs/" + result.Locations.$.Lng;
                                 path = path.join("/");
                                 return rep.redirect(path);
                             } else {
-                                return rep("Error: " + req.params.postcode + " could not be found within Camden");
+                                return rep({error: "Streetname Not Found", message: "Sorry, " + req.params.postcode + " could not be found within Camden"});
                             }
-
                         });
                     });
             } else {

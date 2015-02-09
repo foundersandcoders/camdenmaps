@@ -9,7 +9,7 @@
     var cap = require("../lib/capitalize.js");
     var serviceArrays = config.map.serviceArrays;
     //strips html from obj (depth of 1 only)
-    var clean = require("../lib/cleanobj.js");
+    var clean = require("../lib/cleanobj.js");  
 
     function toTitleCase(str) {
         return str.replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -25,7 +25,7 @@
             
             if (err) {
                 console.log(err);
-                return rep("Sorry, it looks like something went wrong");
+                return rep({error: "Upstream Error", message: "Sorry, it looks like something went wrong on an upstream server"});
             }
             
             res.on("data", function(data) {
@@ -37,7 +37,7 @@
                 parser.parseString(xml, function(err, result) {
                     if (err) {
                         console.log(err);
-                        return rep("Sorry, we could not find the right information on that location");
+                        return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that location"});
                     }
                     response.location = {};
                     if(typeof result !== "undefined" && result.hasOwnProperty("Location") && result.Locations.hasOwnProperty("AddressSearchResults")) {
@@ -47,7 +47,7 @@
                         response.location.BuildingName = result.Locations.AddressSearchResults[0].$.sBuildingName; 
                         response.location.Street = result.Locations.AddressSearchResults[0].$.sStreet; 
                     } else {
-                        return rep("Sorry, we could not find the right information on that location");
+                        return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that location"});
                     }
                     response.information = {};
                     if(result.Locations.hasOwnProperty("LocalInformation") && result.Locations.LocalInformation[0].hasOwnProperty("Table")) {
@@ -55,7 +55,7 @@
                             response.information[p.$.TableDesc] = p.Object[0].$.ObjectDesc;
                         });
                     } else {
-                        return rep("Sorry, we could not find the right information on that location");
+                        return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that location"});
                     }
                     response = clean(response);
                     return rep(response);
@@ -70,7 +70,7 @@
             
             if (err) {
                 console.log(err);
-                return rep("Sorry, it looks like something went wrong");
+                return rep({error: "Upstream Error", message: "Sorry, it looks like something went wrong on an upstream server"});
             }
             
             res.on("data", function(data) {
@@ -82,7 +82,7 @@
                     //TODO: move the error messages to an object so only written once
                     if (err) {
                         console.log(err);
-                        return rep("Sorry, no data could be found for that address");
+                        return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                     }
                     if (result.hasOwnProperty("Locations") && typeof result !== "undefined" && result.hasOwnProperty("Locations") && result.Locations.hasOwnProperty("StreetWorks")) {
                         response.location = {};
@@ -110,7 +110,7 @@
                             response.properties.push(formattedProperty);
                         });
                     } else {
-                        return rep("Sorry, no data could be found for that address");
+                        return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                     }
                     response = clean(response);
                     return rep(response);
@@ -127,7 +127,7 @@
 
             if (err) {
                 console.log(err);
-                return rep("Sorry, it looks like something went wrong");
+                return rep({error: "Upstream Error", message: "Sorry, it looks like something went wrong on an upstream server"});
             }
                 
             if (serviceArrays.recycling.indexOf(service) > -1) {
@@ -143,7 +143,7 @@
 
                         if (err) {
                             console.log(err);
-                            return rep("Sorry, no data could be found for that address");
+                            return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                         }
 
                         console.dir(result);
@@ -190,7 +190,7 @@
                                 });
                             }
                         } else {
-                            return rep("Sorry, no data could be found for that address");
+                            return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                         } 
                         response = clean(response);
                         cache.set(key, response, function (err, success) {
@@ -220,7 +220,7 @@
 
                         if (err) {
                             console.log(err);
-                            return rep("Sorry, no data could be found for that address");
+                            return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                         }
                         
                         response.location = {};
@@ -248,7 +248,7 @@
                                 response.properties.push(formatProperty);
                             });
                         } else {
-                            return rep("Sorry, no data could be found for that address");
+                            return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                         }
                         response = clean(response);
 
@@ -278,7 +278,7 @@
                         
                         if (err) {
                             console.log(err);
-                            return rep("Sorry, no data could be found for that address");
+                            return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                         }
                         if(typeof result !== "undefined" && result.hasOwnProperty("Locations") && result.Locations.hasOwnProperty("Properties") && result.Locations.Properties[0].hasOwnProperty("Property")) { 
                             if(result.Locations.hasOwnProperty("AddressSearchResults")) {
@@ -295,7 +295,7 @@
                                 response.properties.push(formatProperty);
                             });
                         } else {
-                            return rep("Sorry, no data could be found for that address");
+                            return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                         }
 
                         response = clean(response);

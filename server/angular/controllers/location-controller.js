@@ -19,7 +19,8 @@
         "markerHandlers",
         "apiSearch",
         "buttonHandlers",
-        function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers) {
+            "$location", 
+        function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers, $location) {
             //model for page title
             $scope.title = "Find your Nearest...";
 
@@ -64,6 +65,12 @@
                 apiSearch.search($stateParams.service, $stateParams.address, lat, lng)
 
                     .success(function success (data) {
+
+                        if(data.hasOwnProperty("error")){
+                            $scope.update("error", data.message);
+                            return $location.path($location.path().substr(0, $location.path().indexOf("location")) + "search");
+                        }
+
                         $scope.updateResults(data.properties);
                         $scope.update("locationSelected", data.location);
                         $scope.addMarkers();
@@ -77,10 +84,14 @@
                                 lng: Number($scope.locationSelected.Longitude),
                                 zoom: markers.zoomCheck($scope)()
                             });
+                        } else {
+                            $scope.update("error", "Sorry, we couldn't find the right information for this location");
+                            return $location.path($location.path().substr(0, $location.path().indexOf("location")) + "search");
                         }
 
-
-                        
+                    })
+                    .error(function error(err) {
+                        return $scope.update("error", err.message);
 
                     });
             }
