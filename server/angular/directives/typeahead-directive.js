@@ -1,10 +1,8 @@
 /*************************************
-*   SERVICES DIRECTIVE.JS
+*   TYPEAHEAD-DIRECTIVE.JS
 *	use: to show or hide title based
 *		on what has been rendered
 *************************************/
-
-var menu = require("../menu.json");
 
 ;(function () {
     "use strict";
