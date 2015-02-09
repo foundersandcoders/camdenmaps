@@ -1,8 +1,8 @@
-/*************************************************
-*   CACHING TESTS
-*   Description: Acceptance tests are written here
-*   Use: run tests by npm test
-**************************************************/
+// /*************************************************
+// // *   CACHING TESTS
+// // *   Description: Acceptance tests are written here
+// // *   Use: run tests by npm test
+// // **************************************************/
 
 // var menu = require("../../../server/angular/menu.json");
 
