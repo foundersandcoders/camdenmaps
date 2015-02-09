@@ -90,6 +90,15 @@
                     index: true
                 }
             }
+        },
+        angularDirectiveFiles: {
+            handler: {
+                directory: {
+                    path: "../angular/directives",
+                    listing: true,
+                    index: true
+                }
+            }
         }
     };
 }());
