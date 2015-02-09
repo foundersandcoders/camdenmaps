@@ -40,6 +40,12 @@
 		border-radius: 0;
 		height: 2em;
 		margin-bottom: 1.2em;
+		&:hover {
+			border-bottom: 0.1em solid white;
+		}
+		&:focus {
+			border-bottom: 0.1em solid white;
+		}
 	}
 	button {
 		background-color: $dark-grey;
