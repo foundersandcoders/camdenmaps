@@ -2,7 +2,7 @@
 	"use strict";
 
 	module.exports = function addressUsedinAPIcall (scope) {
-		if(scope.locationSelected.hasOwnProperty("Area")) {
+		if(scope.locationSelected.hasOwnProperty("Latitude")) {
 			return true;
 		} else {
 			return false;
