@@ -18,18 +18,17 @@
                 <div id="postcode-input" class="col-xs-10">
                     <input placeholder="{{ placeholder }}" ng-model="address">
                 </div>
-                
-                <div id="yourLocation" class="col-xs-1">
-                    <button ng-click="geolocateUser()">
-                        <span class="glyphicon glyphicon-screenshot"></span>
-                    </button>
-                </div>
                 <div id="search" class="col-xs-1">
-                    <button ng-click="search()">
+                    <button type="submit" ng-click="search()">
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
                 </div>
             </form>
+            <div id="yourLocation" class="col-xs-1">
+                <button ng-click="geolocateUser()">
+                    <span class="glyphicon glyphicon-screenshot"></span>
+                </button>
+            </div>
         
         </div>
 
