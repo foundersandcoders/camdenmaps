@@ -12,9 +12,12 @@
 
     var angular = require("angular");
     require("angular-touch");
+    require("angular-bootstrap");
+
     angular.module("maps", [
             require("angular-ui-router"),
             "ngTouch",
+            "ui.bootstrap",
             "leaflet-directive"
     ])
 
