@@ -15,6 +15,10 @@
         return str.replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     }
 
+    function replaceSlashes(str) {
+        return str.replace("/", " and ");
+    }
+
     module.exports = {
 
         convertLocalInformation: function convertLocalInformation (err, res, req, rep) {
@@ -39,6 +43,7 @@
                         console.log(err);
                         return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that location"});
                     }
+
                     response.location = {};
                     if(typeof result !== "undefined" && result.hasOwnProperty("Location") && result.Locations.hasOwnProperty("AddressSearchResults")) {
                         response.location.Area = result.Locations.AddressSearchResults[0].$.sPostcode;
@@ -80,11 +85,13 @@
             res.on("end", function() {
                 parser.parseString(xml, function(err, result) {
                     //TODO: move the error messages to an object so only written once
+                    console.log(err);
                     if (err) {
                         console.log(err);
                         return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                     }
                     if (result.hasOwnProperty("Locations") && typeof result !== "undefined" && result.hasOwnProperty("Locations") && result.Locations.hasOwnProperty("StreetWorks")) {
+                        console.log(result.Locations.StreetWorks[0]);
                         response.location = {};
                         response.location.Area = result.Locations.$.postcode; 
                         response.location.Latitude = result.Locations.$.Lat;
@@ -99,7 +106,7 @@
                             formattedProperty.externalref = p.$.externalref;
                             formattedProperty.display = {};
                             formattedProperty.display.Organisation = p.$.Organisation;
-                            formattedProperty.display.Name = p.$.Street + " - " + p.$.externalref;
+                            formattedProperty.display.Name = replaceSlashes(p.$.Street) + " - " + p.$.externalref.split("-")[p.$.externalref.split("-").length - 1];
                             formattedProperty.display.StartDate = p.$.StartDate;
                             formattedProperty.display.EndDate = p.$.EndDate;
                             formattedProperty.display.Telephone = p.$.Telephone;
