@@ -28,6 +28,7 @@
 }
 
 .servicestypeahead {
+	margin-bottom: 1.2em;
 	div {
 		padding: 0;
 	}
@@ -39,7 +40,6 @@
 		width: 100%;
 		border-radius: 0;
 		height: 2em;
-		margin-bottom: 1.2em;
 		&:hover {
 			border-bottom: 0.1em solid white;
 		}

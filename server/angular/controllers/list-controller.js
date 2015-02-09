@@ -16,8 +16,9 @@
             // Need to decode and then encode twice so to compensate for double encoding for only part of $stateParams.service
             $stateParams.service = decodeURI($stateParams.service);
 
-            var encodeservice = encodeURIComponent($stateParams.service);
-            var service = encodeURIComponent(encodeservice);
+            var encodeservice = encodeURIComponent($stateParams.service),
+                service = encodeURIComponent(encodeservice);
+
 
             //change baseurl depending on whether address-found or address-search 
             $scope.baseUrl = $stateParams.address ?  "/#/home/" + service + 
@@ -36,6 +37,7 @@
                 };
             }
 
-            }
+
+        }
     ];
 }());

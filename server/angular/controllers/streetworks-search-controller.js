@@ -12,7 +12,7 @@
         function ($scope, $location) {
 
             //model for placeholder
-            $scope.placeholder = "Please enter a postcode"
+            $scope.placeholder = "Please enter a postcode";
             //model for address input
             $scope.address = "";
             //model for page title
@@ -25,12 +25,12 @@
                 } else {
                     $scope.error = "Sorry, that didn't look right";
                 } 
-            }
+            };
 
             //back button function
             $scope.searchAgain = function() {
                 $location.path("/home");
-            }
+            };
             //back button text
             $scope.backButtonText = "Main Menu";
 

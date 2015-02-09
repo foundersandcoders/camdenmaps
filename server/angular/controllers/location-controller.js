@@ -9,6 +9,9 @@
 ;(function () {
     "use strict";
 
+    var noResults = require("../lib/no-results.js");
+    var addressUsedinAPIcall = require("../lib/address-used-in-api-call.js");
+
     module.exports = [
         "$scope",
         "$stateParams",
@@ -20,6 +23,12 @@
         function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers, $location) {
             //model for page title
             $scope.title = "Find your Nearest...";
+
+            //service called markers exists
+            var mapMarkers = $scope.markers,
+                lat,
+                lng,
+                round = require("../lib/round.js");
 
             // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
@@ -44,20 +53,38 @@
                 $scope.icon = "img/icons/streetworks.png";
             }
             
-            if(!$scope.locationSelected.hasOwnProperty("Area") ){
+
+            //this will only run an API call if location needs to be added
+            if(!addressUsedinAPIcall($scope)){
+
                 //reloads $scope.results with new data based on address 
-                apiSearch.search($stateParams.service, $stateParams.address)
+                
+                // will pass through values if present otherwise 0
+                lat = mapMarkers.location ? mapMarkers.location.lat : 0;
+                lng = mapMarkers.location ? mapMarkers.location.lng : 0;
+         
+                apiSearch.search($stateParams.service, $stateParams.address, lat, lng)
+
                     .success(function success (data) {
+
                         if(data.hasOwnProperty("error")){
                             $scope.update("error", data.message);
                             return $location.path($location.path().substr(0, $location.path().indexOf("location")) + "search");
                         }
+
                         $scope.updateResults(data.properties);
                         $scope.update("locationSelected", data.location);
                         $scope.addMarkers();
+
+                        $scope.results.forEach(function(entry) {
+                            entry.Distance = round(entry.Distance);
+                        });
+
+
                         
                         //will only update if the address is valid
                         //only valid addresses have a north property
+
                         if(data.location.Latitude) {
                             $scope.update("centre", {
                                 lat: Number($scope.locationSelected.Latitude),
@@ -68,9 +95,11 @@
                             $scope.update("error", "Sorry, we couldn't find the right information for this location");
                             return $location.path($location.path().substr(0, $location.path().indexOf("location")) + "search");
                         }
+
                     })
                     .error(function error(err) {
                         return $scope.update("error", err.message);
+
                     });
             }
 

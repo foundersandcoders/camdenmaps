@@ -18,13 +18,16 @@
             this.searchAgain = function (functionScope, destination) { 
 
                 return function (scope) { 
-                    scope = scope || functionScope;  
+
+                    scope = scope || functionScope;             
+                    scope.update("results", []);
+ 
                     scope.update("error", "");
                     scope.update("locationSelected", {});
                     scope.update("centre", {
                             lat: 51.535923,
                             lng: -0.139991,
-                            zoom: 14
+                            zoom: 13
                     });
                     scope.update("markers", {});
 

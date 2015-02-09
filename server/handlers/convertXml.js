@@ -297,6 +297,7 @@
                         } else {
                             return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                         }
+
                         response = clean(response);
 
                         cache.set(key, response, function (err, success) {

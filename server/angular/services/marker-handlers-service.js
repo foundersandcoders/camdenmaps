@@ -84,6 +84,7 @@
                             : "/home/" + scope.service + "/search";
                         
                     $location.path(path);  
+
                 };
             };
 
