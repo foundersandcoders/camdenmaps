@@ -13,23 +13,13 @@
             function ($stateParams, $scope, apiSearch) {
 
                 var uri,
-                    marker;
+                    marker,
+                    service = encodeURIComponent($stateParams.service);
+
                 
-                //selects item from results with matching {id}
-                
-
-                if($scope.results) {
-                    $scope.result = $scope.results.filter(function (result) {
-                        return result.display.Name === $stateParams.id;
-                    })[0];
-
-                    $scope.rounding = (Math.floor( (Number($scope.result.Distance) + 0.005) * 100 )) /100;
-                }
-
                 
                 // Ensuring that the service name in the URL is Encoded properly
                 $stateParams.service = decodeURI($stateParams.service);
-                var service = encodeURIComponent($stateParams.service);
 
                 $scope.showDistance = $stateParams.address ? true : false; 
            
@@ -62,7 +52,11 @@
                 
                 //if single view accessed through list it will link to map
                 if($scope.results) { 
-
+                    //selects item from results with matching {id}
+                    $scope.result = $scope.results.filter(function (result) {
+                        return result.display.Name === $stateParams.id;
+                    })[0];
+                    
                     if(!$scope.activeMarker && $scope.results.indexOf($scope.result) > -1) { 
                         linkResultToMarker(); 
                     } 
@@ -81,9 +75,6 @@
                         $scope.result = $scope.results.filter(function (result) {
                             return result.display.Name === $stateParams.id;
                         })[0];
-
-                        $scope.rounding = (Math.floor( (Number($scope.result.Distance) + 0.005) * 100 )) /100;
-
 
                         if($stateParams.id) {
                             linkResultToMarker(); 

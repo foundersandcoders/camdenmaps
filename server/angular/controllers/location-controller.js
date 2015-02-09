@@ -27,7 +27,8 @@
             //service called markers exists
             var mapMarkers = $scope.markers,
                 lat,
-                lng;
+                lng,
+                round = require("../lib/round.js");
 
             // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
@@ -74,6 +75,12 @@
                         $scope.updateResults(data.properties);
                         $scope.update("locationSelected", data.location);
                         $scope.addMarkers();
+
+                        $scope.results.forEach(function(entry) {
+                            entry.Distance = round(entry.Distance);
+                        });
+
+
                         
                         //will only update if the address is valid
                         //only valid addresses have a north property
