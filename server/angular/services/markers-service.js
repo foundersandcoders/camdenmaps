@@ -72,23 +72,19 @@
 
             this.addMarkers = function (scope) {
                 return function () {
-                var root = scope.results,
-                // this creates the marker objects to plot the locations on the map
-                markers = scope.markers,
-            //this is declared here to prevent it being declared every time the loop runs
-                property, 
-            // instead of two function, one obj with two methods?
-                coord = function coord(i, latlng){
-                    return Number(scope.results[i][latlng]);
-                };
+                    var root = scope.results,
+                    markers = scope.markers,
+                    property, 
+                    coord = function coord(i, latlng){
+                        return Number(scope.results[i][latlng]);
+                    };
         
 
-
+                    // this creates the marker objects to plot the locations on the map
                     // this will run on refreshes
                     // it will run if there are capped results
                     if( Object.size(markers) === 0 || cappedResults(decodeURI($stateParams.service)) ) {
                         
-   
                         var i, 
                         	resultLength = Object.size(root);
                         
@@ -125,7 +121,8 @@
                     }
 
                     // only runs when a search address has been entered and is valid
-                    if($stateParams.address && scope.locationSelected.Latitude) {
+                    //does not over-write the geolocate marker with 
+                    if($stateParams.address && $stateParams.address !== "your location" && scope.locationSelected.Latitude ) {
 
                         markers.m0 = {
                             lat: Number(scope.locationSelected.Latitude),
@@ -147,10 +144,6 @@
                             }
                         };
                     } 
-                    else if ($stateParams.address && !scope.locationSelected.Latitude) {
-                        //TODO: Handle this better, alerts are terrible
-                        //alert("Please enter a valid address");
-                    }
 
                     scope.update("markers", markers);
 			};
