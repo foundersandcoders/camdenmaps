@@ -27,6 +27,15 @@
 	}
 }
 
+@media (max-width: 768px) {
+	.search-box {
+		#postcode-input {
+			width: 80%;
+		}
+	}
+}
+
+
 .servicestypeahead {
 	margin-bottom: 1.2em;
 	div {
