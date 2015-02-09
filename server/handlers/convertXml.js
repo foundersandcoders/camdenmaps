@@ -39,6 +39,7 @@
                         console.log(err);
                         return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that location"});
                     }
+
                     response.location = {};
                     if(typeof result !== "undefined" && result.hasOwnProperty("Location") && result.Locations.hasOwnProperty("AddressSearchResults")) {
                         response.location.Area = result.Locations.AddressSearchResults[0].$.sPostcode;
