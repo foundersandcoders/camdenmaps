@@ -1,5 +1,34 @@
  <div class="container-fluid">
-    <div class="result col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-6 col-lg-4 col-lg-offset-8">
-        <p>{{ information }}</p> 
+    <div class="container-fluid result col-xs-12 col-sm-6" id="local-info-results">
+    	<h4 class="local-info-heading">Political information</h4>
+    	<ul style="list-style-type:none">
+    		<li>Ward: <a href=" {{ information.Ward.Website }} ">{{ information.Ward.Value }} </a></li>
+    		<li>Eurpean Constituency: <a href="{{ information['European constituency'].Website }}">{{ information["European constituency"].Value }}</a></li>
+    		<li>Parlimentary Constituency: <a href="{{ information['Parliamentary Constituency'].Website}}">{{ information["Parliamentary Constituency"].Value }} </a></li> 
+    		<li>Polling Station: <a href=" {{ information['Polling District'].Website }} ">{{ information["Polling District"].Value }}</a></li>
+    	</ul>
+    	<h4 class="local-info-heading">Recycling and rubbish</h4>
+    	<ul style="list-style-type:none">
+    		<li>Domestic rubbish collection: {{ information["Domestic Refuse Collection Day. Refuse should be put out by 7am on the morning of collection"].Value }} </li>
+    		<li>Recycling Collection: {{ information["Recycling Kerbside Collection Day"].Value }}</li>
+    	</ul>
+    	<h4 class="local-info-heading">Environment</h4>
+    	<ul style="list-style-type:none">
+    		<li>Conservation area: <a href=" {{ information['Conservation Area'].Website }} ">{{ information["Conservation Area"].Value }}</a></li>
+    	</ul>
+    	<h4 class="local-info-heading">Housing</h4>
+    	<ul style="list-style-type:none">
+    		<li>Ward Housing Team: <a href=" {{ information['Ward housing team'].Website }} ">{{ information["Ward housing team"].Value }}</a></li>
+    		<li>District management comittee: <a href=" {{ information['Ward district management comittee'].Website }} ">{{ information["Ward district management committee"].Value }}</a></li>
+    	</ul>
+    	<h4 class="local-info-heading">Parking</h4>
+    	<ul style="list-style-type:none">
+    		<li><a href=" {{ information['Controlled Parking Main Zone'].Website }} ">Controlled parking zone:</a> {{ information["Controlled Parking Main Zone"].Value }}</li>
+    	</ul>
+    	<h4 class="local-info-heading">Licensing Enforcement</h4>
+    	<ul style="list-style-type:none">
+    		<li>Licensing enforcement officer: <a href=" {{information['Licensing Enforcement Areas'].Website }} ">{{ information["Licensing Enforcement Areas"].Value }}</a></li>
+    	</ul>
+    	<!-- <p>{{ information }}</p> -->
     </div>
  </div>
