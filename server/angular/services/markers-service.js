@@ -1,7 +1,6 @@
 ;(function () {
 	"use strict";
 
-    var noResults = require("../lib/no-results.js");
     var cappedResults = require("../lib/capped-results.js");
 
 	module.exports = [
@@ -39,9 +38,10 @@
                                 },
                                 
                                 //not sure this is necessary if we have a location symbol used 
-                                message: "You are here",
+                                message: "Your location",
                                 focus: true
                             };
+                            scope.markers.m0 = {};
                             //if we are within Camden then it will auto-centre the map on the user's location
                             map.locate({setView: true, watch: false});
                             path = "/home/" + $stateParams.service + "/location/" + "your location";
@@ -57,9 +57,10 @@
                                     iconSize: [28],
                                     iconUrl: "../img/icons/geolocation.png"
                                 },
-                                message: "You are here",
+                                message: "Your location",
                                 focus: true
                             };
+                            scope.markers.m0 = {};
                             var path = "/home/" + $stateParams.service + "/location/" + "your location";
                             $location.path(path);
                         }
@@ -102,10 +103,11 @@
 
                         }
                         
-                    }
-            
+                    }   
 
-                    if( cappedResults(decodeURI($stateParams.service)) ) {
+                    //loads default location marker if results are capped
+                    //but not if searching with geolocate 
+                    if( cappedResults(decodeURI($stateParams.service)) && !scope.markers.location ) {
 
                             markers.m0 = {
                                 lat: 51.53861,
