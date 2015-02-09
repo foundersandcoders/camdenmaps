@@ -19,11 +19,11 @@
     module.exports = function (server){
 
         server.route([
-        /* EXAMPLE **************************************
+        /* EXAMPLE ****************************************
         *    { 
-        *        method:    ":METHOD", 
-        *        path:      ":PATH", 
-        *        handlers:  ":HANDLERS" 
+        *        method:    ":METHOD STRING", 
+        *        path:      ":PATH STRING", 
+        *        config:    ":CONFIG OBJECT" 
         *    }
         */
             {
@@ -31,45 +31,63 @@
                 path: "/{param*}",
                 config: RoutesConfig.staticFiles
             },
+    //Needed for directive templateUrl to work ************
+            {
+                method: "GET",
+                path: "/{directive}",
+                config: RoutesConfig.angularDirectiveFiles
+            },
             {
                 method: "GET",
                 path: "/",
                 config: RoutesConfig.getHome
             },
-    //Where's My Nearest Routes *********************
-        {
-            method: "GET",
-            path: "/services/{service}",
-            config: RoutesConfig.nearest.services 
-        },
-        {
-            method: "GET",
-            path: "/locations/{postcode}",
-            config: RoutesConfig.nearest.locations 
-        },
-        {
-            method: "GET",
-            path: "/services/streetworks/locations/{postcode}",
-            config: RoutesConfig.streetworks
-        },
-        {
-            method: "GET",
-            path: "/services/{service}/locations/{postcode}",
-            config: RoutesConfig.nearest.servicesAndLocations 
-        },
-        {
-            method: "GET",
-            path: "/api",
-            config: RoutesConfig.apiDocs
-        },               
+    //Find Your  Nearest Routes ***************************
+            {
+                method: "GET",
+                path: "/services/{service}",
+                config: RoutesConfig.nearest.services 
+            },
+            {
+                method: "GET",
+                path: "/locations/{postcode}",
+                config: RoutesConfig.nearest.services 
+            },
+            {
+                method: "GET",
+                path: "/services/{service}/locations/{postcode}",
+                config: RoutesConfig.nearest.services 
+            },
+            {
+                method: "GET",
+                path: "/services/{service}/locations/lats/{latitude}/lngs/{longitude}",
+                config: RoutesConfig.nearest.services
+            },
+    //Streetoworks Routes *********************************
+            {
+                method: "GET",
+                path: "/services/streetworks/locations/{postcode}",
+                config: RoutesConfig.streetworks
+            },
+            {
+                method: "GET",
+                path: "/services/streetworks/locations/lats/{latitude}/lngs/{longitude}",
+                config: RoutesConfig.streetworks
+            },
+     //Swagger API Route *********************8*************
+            {
+                method: "GET",
+                path: "/api",
+                config: RoutesConfig.apiDocs
+            },               
 
-            //Local Information Routes *********************
-        {
-            //example uprn (for tests): 5023741
-            method: "GET",
-            path: "/addresses/{uprn}",
-            config: RoutesConfig.local.information
-        }
-    ]);
-}
+    //Local Information Routes ******************************
+            {
+                //example uprn (for tests): 5023741
+                method: "GET",
+                path: "/addresses/{uprn}",
+                config: RoutesConfig.local.information
+            }
+        ]);
+    }
 }());

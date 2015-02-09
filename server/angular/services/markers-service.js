@@ -1,9 +1,14 @@
 ;(function () {
 	"use strict";
 
+    var noResults = require("../lib/no-results.js");
+    var cappedResults = require("../lib/capped-results.js");
+
 	module.exports = [
         "$stateParams",
-        function ($stateParams) {
+        "leafletData",
+        "$location",
+        function ($stateParams, leafletData, $location) {
 
             Object.size = function(obj) {
                 var size = 0, key;
@@ -14,24 +19,72 @@
             };  
             
 
+            this.geolocateUser = function (functionScope, cb) {
+                return function(scope) {
+                    scope = scope || functionScope; 
+                    
+                    leafletData.getMap().then(function(map) {
+                     //this will return the location but not auto-centre on it or continuously watch
+                     map.locate({setView: false, watch: false})
+                     .on('locationfound', function (e){
+                        //this checks if the location returned is within the map boundaries i.e. larger than Camden
+                        if (51.57878 > e.latitude > 51.450089 && -0.094538 > e.longitude > -0.218650) {
+                            console.log("inside Camden");
+                            scope.markers.location = {
+                                lat: e.latitude,
+                                lng: e.longitude,
+                                icon: {
+                                    iconSize: [28],
+                                    iconUrl: "../img/icons/geolocation.png"
+                                },
+                                
+                                //not sure this is necessary if we have a location symbol used 
+                                message: "You are here",
+                                focus: true
+                            };
+                            //if we are within Camden then it will auto-centre the map on the user's location
+                            map.locate({setView: true, watch: false});
+                            path = "/home/" + $stateParams.service + "/location/" + "your location";
+                            $location.path(path);
+                        } else {
+                            //TODO DELETE THIS it is being used for testing as we are outside camden
+                            //if they are outside Camden normal functionality will be used
+                            console.log("outside Camden");
+                            scope.markers.location = {
+                                lat: e.latitude,
+                                lng: e.longitude,
+                                icon: {
+                                    iconSize: [28],
+                                    iconUrl: "../img/icons/geolocation.png"
+                                },
+                                message: "You are here",
+                                focus: true
+                            };
+                            var path = "/home/" + $stateParams.service + "/location/" + "your location";
+                            $location.path(path);
+                        }
+                      });
+
+
+                    });
+                };
+            };
+
             this.addMarkers = function (scope) {
                 return function () {
-                var root = scope.results,
-                // this creates the marker objects to plot the locations on the map
-                markers = scope.markers,
-            //this is declared here to prevent it being declared every time the loop runs
-                property, 
-            // instead of two function, one obj with two methods?
-                coord = function coord(i, latlng){
-                    return Number(scope.results[i][latlng]);
-                };
+                    var root = scope.results,
+                    markers = scope.markers,
+                    property, 
+                    coord = function coord(i, latlng){
+                        return Number(scope.results[i][latlng]);
+                    };
         
 
-
+                    // this creates the marker objects to plot the locations on the map
                     // this will run on refreshes
-                    // TODO run when services with 5 results have address added
-                    if(Object.size(markers) === 0 || ( !markers.m6 && markers.m0 && !markers.m0.locationTest ) ) {
-                        // var x will save time as the loop does not have to look up the length each time
+                    // it will run if there are capped results
+                    if( Object.size(markers) === 0 || cappedResults(decodeURI($stateParams.service)) ) {
+                        
                         var i, 
                         	resultLength = Object.size(root);
                         
@@ -50,24 +103,27 @@
                         }
                         
                     }
+            
 
-                    if(Object.size(markers) === 5 && !$stateParams.location) {
+                    if( cappedResults(decodeURI($stateParams.service)) ) {
 
                             markers.m0 = {
                                 lat: 51.53861,
-                                lng: -0.14205, 
+                                lng: -0.14205,
                                 icon: {
+                                    iconSize: [28],
                                     iconUrl: "../img/icons/location-marker.png",
-                                    iconSize: [28]
                                 },
                                 focus: true,
-                                message:  "NW1 0NE, <br> please enter an address for the 5 closest results.",
+                                message: "<b>NW1 0NE</b> <br> Please enter a postcode <br> for nearby results.",
                             };
 
                     }
 
                     // only runs when a search address has been entered and is valid
-                    if($stateParams.address && scope.locationSelected.North) {
+                    //does not over-write the geolocate marker with 
+                    if($stateParams.address && $stateParams.address !== "your location" && scope.locationSelected.Latitude ) {
+
                         markers.m0 = {
                             lat: Number(scope.locationSelected.Latitude),
                             lng: Number(scope.locationSelected.Longitude),
@@ -77,8 +133,8 @@
                             popupOptions: {
                                 closeOnClick: false
                              },
-                             //this will correctly format street addresses to capitalised
-                             //and postcodes to upper case
+                             //this will capitalise street addresses
+                             //and upper case postcodes
                             message: ($stateParams.address.replace(/\s/g, "").length < 7
                                     ? $stateParams.address.toUpperCase()
                                     : $stateParams.address.replace(/\b./g, function(m){ return m.toUpperCase(); })),
@@ -88,10 +144,6 @@
                             }
                         };
                     } 
-                    else if ($stateParams.address && !scope.locationSelected.North) {
-                        //TODO: Handle this better, alerts are terrible
-                        //alert("Please enter a valid address");
-                    }
 
                     scope.update("markers", markers);
 			};
@@ -104,13 +156,9 @@
 
                     var zoomLevel,
                         size = Object.size(scope.markers);
-                    
-                    //if results capped at 5 (plus location marker) can zoom in 
-                    if(size === 6) {
-                        zoomLevel = 15;
-                    }
+
                     //if results are less than 5 markers zooms out to fit them all in
-                    else if (size < 6) {
+                    if (size < 5 ) {
                         zoomLevel = 12;
                     }
                     else {
@@ -121,6 +169,38 @@
 
                 };
             };
+
+
+
+            
+  //           this.centreCheck = function (scope) {
+  //               return function () {
+
+  //                   var centre;
+
+  //                   //if geolocation used centres map on this point
+  //                   if(scope.markers.location) {
+  //                       centre = {
+  //                           lat: scope.markers.location.lat,
+  //                           lng: scope.markers.location.lng
+  //                       };
+  //                   }
+  //                   //if only five results centres map on NW1 0NE 
+  //                   else if (scope.markers.m0 && scope.markers.m0.locationTest) {
+  //                       centre = {
+  //                           lat: 51.53861,
+  //                           lng: -0.14205
+  //                       };
+  //                   }
+  //                   //otherwise remains intial location
+  //                   else {
+  //                       centre = scope.centre;
+  //                   }
+
+  //                   return centre;
+
+  //               };
+  //           };
 		}
 
 	];

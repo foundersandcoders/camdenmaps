@@ -1,8 +1,8 @@
-/*************************************************
-*   MAP E2E TESTS
-*   Description: Acceptance tests are written here
-*   Use: run tests by npm test
-**************************************************/
+// /*************************************************
+// *   MAP E2E TESTS
+// *   Description: Acceptance tests are written here
+// *   Use: run tests by npm test
+// **************************************************/
 
 
 (function () {

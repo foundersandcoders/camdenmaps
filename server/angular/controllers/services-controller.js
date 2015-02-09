@@ -64,6 +64,8 @@
                     var service,
                         path;
 
+                    $scope.update("error", "");
+
                     if (item.type === "service") {
 
                         service = encodeURIComponent(item.title + item.text);
@@ -161,7 +163,6 @@
                 $scope.execute = function execute (fn) {
                     fn();
                 }; 
-
             }
         ];
 

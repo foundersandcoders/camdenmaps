@@ -1,8 +1,8 @@
-/*************************************************
-*   LANDING TESTS
-*   Description: Acceptance tests are written here
-*   Use: run tests by npm test
-**************************************************/
+// /*************************************************
+// *   LANDING TESTS
+// *   Description: Acceptance tests are written here
+// *   Use: run tests by npm test
+// **************************************************/
 
 
 (function () {

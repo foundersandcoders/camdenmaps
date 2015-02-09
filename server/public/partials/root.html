@@ -7,6 +7,7 @@
                 <img id="camden-logo" src="../img/camdenlogo.png" alt="Camden">
             </a>
         </div>
+        <h1 ng-hide={{error}}>{{error}}</h1>
     </header>
     <!-- HEADER ENDS HERE -->
 
@@ -18,7 +19,7 @@
 
     <!-- MAP BEGINS --> 
     <div id="map" class="map container-fluid">
-            <leaflet defaults="defaults" center="centre" maxbounds="maxbounds" markers="markers" paths="paths" geojson= "geojson"></leaflet>
+            <leaflet defaults="defaults" center="centre" maxbounds="maxbounds" markers="markers" leafletMap="leafletMap" geojson= "geojson"></leaflet>
     </div>
 </div>
     <!-- MAP ENDS -->

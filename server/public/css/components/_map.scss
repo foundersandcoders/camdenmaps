@@ -16,8 +16,16 @@
 	.leaflet-popup-content.ng-scope, .leaflet-popup-content-wrapper {
 		height: auto;
 	}
+	.leaflet-popup-content-wrapper{
+		box-shadow: rgba(0, 0, 0, 0.247059) 3px 3px 10px 0px;
+		border-radius: 2px;
+		.leaflet-popup-content {
+			text-align: center;
+		}
+	}
 	.angular-leaflet-map.ng-isolate-scope.leaflet-container.leaflet-fade-anim {
 		height: 100%;
 	}
+
 }
 

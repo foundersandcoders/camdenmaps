@@ -16,9 +16,9 @@
         "$location",
         "markers",
         "buttonHandlers",
-        function ($scope, $location, markers, buttonHandlers) {
+        "leafletData",
+        function ($scope, $location, markers, buttonHandlers, leafletData) {
            
-
             //stores geo data for camden borough boundaries
             var camdenBoundaries = require("../../public/lib/camdenBorough.geo.json");
             //stores results at root for access by all controllers
@@ -60,15 +60,17 @@
                 }
             };
 
-            angular.extend($scope, {
+            angular.extend($scope, {            
                 centre: {
                     lat: 51.535923,
                     lng: -0.139991,
-                    zoom: 13
+                    zoom: 13,
+                    // autoDiscover: true
                 },
                 maxbounds: regions.camdenBorough,
                 defaults: {
-                    scrollWheelZoom: false
+                    scrollWheelZoom: false,
+                    tileLayer: "http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png"
                 },
                 markers: {},
 
@@ -89,6 +91,9 @@
             $scope.sendHome = buttonHandlers.searchAgain($scope, "/home");
 
             $scope.addMarkers = markers.addMarkers($scope);
+
+
+
 
         }
 

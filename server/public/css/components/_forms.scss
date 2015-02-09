@@ -26,3 +26,62 @@
 		}
 	}
 }
+
+@media (max-width: 768px) {
+	.search-box {
+		#postcode-input {
+			width: 80%;
+		}
+	}
+}
+
+
+.servicestypeahead {
+	margin-bottom: 1.2em;
+	div {
+		padding: 0;
+	}
+	input {
+		border: none;
+		border-bottom: 0.1em solid white;
+		background-color: $dark-grey;
+		color: white;
+		width: 100%;
+		border-radius: 0;
+		height: 2em;
+		&:hover {
+			border-bottom: 0.1em solid white;
+		}
+		&:focus {
+			border-bottom: 0.1em solid white;
+		}
+	}
+	button {
+		background-color: $dark-grey;
+		span {
+			color: white;
+			&:hover {
+				color: $hover-grey;
+				cursor: pointer;
+			}
+		}
+	}
+	span {
+		color: white;
+		&:hover {
+			color: $hover-grey;
+			cursor: pointer;
+		}
+	}
+	.dropdown-menu {
+		border-radius: 0;
+		width: 100%;
+		padding: 0;
+		li {
+			border-bottom: 0.1em $menu-stroke-grey solid;
+		}
+	}
+	form {
+		display: none;
+	}
+}

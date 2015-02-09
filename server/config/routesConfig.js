@@ -4,7 +4,7 @@
 *   Use: Imported by routes.js
 *
 ************************************************/
-(function () {
+;(function () {
     "use strict";
 
     var handlers = require("../handlers/handlers.js");
@@ -25,69 +25,24 @@
                     var key = req.raw.req.url;
 
                     cache.get(key, function (err, value) {
-
+                        
+                        // print error if something went wrong
                         if (err) {
                             console.log(err);
                         }
 
+                        // return cached response if it exists
                         if (value.hasOwnProperty(key)) {
-                            console.log("cached service");
                             rep(value[key]);
-                        } else {
-                            rep.proxy({
-                                mapUri: MapConfig.nearestMapper,
-                                onResponse: ConvertXml.convertToJson
-                            });
                         }
+                        // route request to proxy by default (if response not cached)
+                        rep.proxy({
+                            mapUri: MapConfig.nearestMapper,
+                            onResponse: ConvertXml.convertToJson
+                        });
                     });
                 }
             },
-            locations: {
-
-                handler: function (req, rep) {
-                    var key = req.raw.req.url;
-
-                    cache.get(key, function (err, value) {
-
-                        if (err) {
-                            console.log(err);
-                        }
-
-                        if (value.hasOwnProperty(key)) {
-                            console.log("cached location");
-                            rep(value[key]);
-                        } else {
-                            rep.proxy({
-                                mapUri: MapConfig.nearestMapper,
-                                onResponse: ConvertXml.convertToJson
-                            });
-                        }
-                    });
-                }
-            },
-            servicesAndLocations: {
-
-                handler: function (req, rep) {
-                    var key = req.raw.req.url;
-
-                    cache.get(key, function (err, value) {
-
-                        if (err) {
-                            console.log(err);
-                        }
-
-                        if (value.hasOwnProperty(key)) {
-                            console.log("cached service and location");
-                            rep(value[key]);
-                        } else {
-                            rep.proxy({
-                                mapUri: MapConfig.nearestMapper,
-                                onResponse: ConvertXml.convertToJson
-                            });
-                        }
-                    });
-                }
-            }
         },
         apiDocs: {
             handler: handlers.showDocsHome
@@ -104,17 +59,42 @@
             }
         },
         streetworks: {
-            handler: {
-                proxy: {
-                    mapUri: MapConfig.streetworksMapper,
-                    onResponse: ConvertXml.convertStreetworks
-                }
+            handler: function(req, rep) {
+                
+                var key = req.raw.req.url;
+                
+                cache.get(key, function (err, value) {
+                    
+                    // print error if something went wrong
+                    if (err) {
+                        console.log(err);
+                    }
+
+                    // return cached response if it exists
+                    if (value.hasOwnProperty(key)) {
+                        rep(value[key]);
+                    } 
+                    // route request to proxy by default (if response not cached)
+                    rep.proxy({
+                        mapUri: MapConfig.streetworksMapper,
+                        onResponse: ConvertXml.convertStreetworks
+                    });
+                }); 
             }
         }, 
         staticFiles: {
             handler: {
                 directory: {
                     path: "../public",
+                    listing: true,
+                    index: true
+                }
+            }
+        },
+        angularDirectiveFiles: {
+            handler: {
+                directory: {
+                    path: "../angular/directives",
                     listing: true,
                     index: true
                 }

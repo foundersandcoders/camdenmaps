@@ -1,8 +1,8 @@
-/*************************************************
-*   SERVICES AND CATEGORIES TESTS
-*   Description: Acceptance tests are written here
-*   Use: run tests by npm test
-**************************************************/
+// /*************************************************
+// *   SERVICES AND CATEGORIES TESTS
+// *   Description: Acceptance tests are written here
+// *   Use: run tests by npm test
+// **************************************************/
 
 
 (function () {
@@ -81,7 +81,7 @@
 
                 var buttons = element.all(by.tagName('button')).getText();
 
-                expect(buttons).toEqual(['', 'Search again', 'List results']);
+                expect(buttons).toEqual(['', '', 'Pick Another Service', 'List results']);
             });
         });
 
