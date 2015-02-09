@@ -53,16 +53,15 @@
                 $scope.icon = "img/icons/streetworks.png";
             }
             
-
+            console.log("location selected", $scope.locationSelected);
             //this will only run an API call if location needs to be added
             if(!addressUsedinAPIcall($scope)){
 
                 //reloads $scope.results with new data based on address 
                 
-                // will pass through values if present otherwise 0
-                lat = mapMarkers.location ? mapMarkers.location.lat : 0;
-                lng = mapMarkers.location ? mapMarkers.location.lng : 0;
-         
+                // will pass through values if present otherwise null
+                lat = mapMarkers.m0 ? mapMarkers.m0.lat : null;
+                lng = mapMarkers.m0 ? mapMarkers.m0.lng : null;
                 apiSearch.search($stateParams.service, $stateParams.address, lat, lng)
 
                     .success(function success (data) {

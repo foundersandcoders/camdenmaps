@@ -49,6 +49,8 @@ var noResults = require("../lib/no-results.js");
             var path,
                 destination;
 
+            console.log($scope.results.length);
+
             if( noResults($scope) ) {        
                 apiSearch.search($stateParams.service)
                         .success(function success (data) {
