@@ -24,6 +24,7 @@
     "angular-bootstrap": "^0.12.0",
     "glue": "^2.0.0",
     "hapi": "^8.0.0",
+    "request": "^2.51.0",
     "node-cache": "^1.1.0",
     "xml2js": "^0.4.4"
   },
@@ -58,7 +59,6 @@
     "karma-phantomjs-launcher": "^0.1.4",
     "lab": "^5.1.0",
     "protractor": "^1.5.0",
-    "request": "^2.51.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^2.2.1"

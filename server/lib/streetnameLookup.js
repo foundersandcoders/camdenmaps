@@ -21,8 +21,7 @@
         server.ext("onPreHandler", function(req, rep) {
             var uri; 
             if (req.params.hasOwnProperty("postcode") && !validatePostcode(req.params.postcode)) {
-
-                    //STREETNAMES DO NOT RETURN LAT OR LNG VALUES FROM ANY API EXCEPT THE PARKING API
+                    //STREETNAMES DO NOT RETURN LAT OR LNG VALUES FROM ANY API EXCEPT THE PARKING API`
                     //THIS SOLUTION IS A HACK: IF A STREETNAME IS SENT, A "SECRET" REQUEST IS SENT TO THE PARKING API
                     //construct request to parking API in order to get lat and lng values for street names
                     uri = serverConfig.map.url.parkingApi + "?" + serverConfig.map.query.location  + req.params.postcode;
@@ -40,6 +39,7 @@
                         });
                     });
             } else {
+                console.log("carry on as normal")
                 return rep.continue();
             }
         });
