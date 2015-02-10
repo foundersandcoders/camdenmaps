@@ -7,20 +7,23 @@
     var parser = new xml2js.Parser();
 
     function validatePostcode(postcode) {
-        console.log(postcode);
-        postcode = postcode.replace(/\s/g, "");
+        postcode = postcode ? postcode.replace(/\s/g, "") : postcode;
         var regex = /^[A-Z]{1,2}[0-9]{1,2} ?[0-9][A-Z]{2}$/i;
-        console.log(regex.test(postcode));
         return regex.test(postcode);
 
     }
 
+    function validateUPRN (uprn) {
+        var regex = /^\d{0, 12}$/;
+        return regex.test(uprn);
+    }
 
     module.exports = function (server) {
    
         server.ext("onPreHandler", function(req, rep) {
             var uri; 
-            if (req.params.hasOwnProperty("postcode") && !validatePostcode(req.params.postcode)) {
+            if (req.params.postcode && !validatePostcode(req.params.postcode) ) {
+                console.log(req.params.postcode, req.params.uprn)
                     //STREETNAMES DO NOT RETURN LAT OR LNG VALUES FROM ANY API EXCEPT THE PARKING API`
                     //THIS SOLUTION IS A HACK: IF A STREETNAME IS SENT, A "SECRET" REQUEST IS SENT TO THE PARKING API
                     //construct request to parking API in order to get lat and lng values for street names

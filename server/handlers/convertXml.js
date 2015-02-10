@@ -45,7 +45,7 @@
                     }
 
                     response.location = {};
-                    if(typeof result !== "undefined" && result.hasOwnProperty("Location") && result.Locations.hasOwnProperty("AddressSearchResults")) {
+                    if(typeof result !== "undefined" && result.hasOwnProperty("Locations") && result.Locations.hasOwnProperty("AddressSearchResults")) {
                         response.location.Area = result.Locations.AddressSearchResults[0].$.sPostcode;
                         response.location.Latitude = result.Locations.AddressSearchResults[0].$.Latitude;
                         response.location.Longitude = result.Locations.AddressSearchResults[0].$.Longitude;

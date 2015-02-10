@@ -79,7 +79,15 @@
 		padding: 0;
 		li {
 			border-bottom: 0.1em $menu-stroke-grey solid;
-		}
+	                a {
+                            &:active {
+                                overflow: hidden;
+                            }
+                            &:focus {
+                                overflow: hidden;
+                            }
+                        }           
+                }
 	}
 	form {
 		display: none;
