@@ -57,7 +57,9 @@
                     response.information = {};
                     if(result.Locations.hasOwnProperty("LocalInformation") && result.Locations.LocalInformation[0].hasOwnProperty("Table")) {
                         result.Locations.LocalInformation[0].Table.map(function(p) {
-                            response.information[p.$.TableDesc] = p.Object[0].$.ObjectDesc;
+                            response.information[p.$.TableDesc] = {};
+                            response.information[p.$.TableDesc].Value = p.Object[0].$.ObjectDesc;
+                            response.information[p.$.TableDesc].Url = p.Object[0].$.ObjectLink;
                         });
                     } else {
                         return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that location"});
