@@ -39,7 +39,6 @@
             res.on("end", function() {
 
                 parser.parseString(xml, function(err, result) {
-                    console.log(result);
                     if (err) {
                         console.log(err);
                         return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that location"});
