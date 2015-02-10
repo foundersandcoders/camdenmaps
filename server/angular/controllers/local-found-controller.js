@@ -24,6 +24,7 @@
                     if (data.hasOwnProperty("error")) {
                         return $scope.update("error", data.message);
                     }
+                
                     $scope.information = data.information;
                 })
                 .error(function(data) {
