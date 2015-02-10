@@ -26,7 +26,6 @@
                     }
                 
                     $scope.information = data.information;
-                    console.log($scope.information);
                 })
                 .error(function(data) {
                     $scope.update("error", "Sorry, it looks like something went wrong");
