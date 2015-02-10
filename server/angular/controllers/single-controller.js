@@ -15,9 +15,7 @@
                 var uri,
                     marker,
                     service = encodeURIComponent($stateParams.service);
-
-                
-                
+      
                 // Ensuring that the service name in the URL is Encoded properly
                 $stateParams.service = decodeURI($stateParams.service);
 
@@ -26,29 +24,28 @@
                 uri = ($stateParams.address) ? "/services/" + service + "/locations/" + $stateParams.address
                 : "/services/" + service; 
 
-
                 
                 //if there is an active marker the list view was accessed
                 //by marker click and map already recentred
                 function linkResultToMarker() {                         
 
-                        //links list result with relevant marker
-                        marker = "m" + ($scope.results.indexOf($scope.result) + 1);
+                    //links list result with relevant marker
+                    marker = "m" + ($scope.results.indexOf($scope.result) + 1);
+                    
+                    //if single list view loaded from click this marker will already be the active marker
+                    if(marker !== $scope.activeMarker) {
+                        $scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
+                        $scope.update("activeMarker", $scope.markers[marker]);
                         
-                        //if single list view loaded from click this marker will already be the active marker
-                        if(marker !== $scope.activeMarker) {
-                            $scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
-                            $scope.update("activeMarker", $scope.markers[marker]);
-                            
-                            //recentres map on the list result selected
-                            $scope.update("centre", {
-                                lat: Number($scope.result.Latitude),
-                                lng: Number($scope.result.Longitude),
-                                zoom: 15
-                            });
-                        }
-
+                        //recentres map on the list result selected
+                        $scope.update("centre", {
+                            lat: Number($scope.result.Latitude),
+                            lng: Number($scope.result.Longitude),
+                            zoom: 14
+                        });
                     }
+
+                }
                 
                 //if single view accessed through list it will link to map
                 if($scope.results) { 
@@ -57,6 +54,8 @@
                         return result.display.Name === $stateParams.id;
                     })[0];
                     
+                    console.log("index of", $scope.results.indexOf($scope.result));
+
                     if(!$scope.activeMarker && $scope.results.indexOf($scope.result) > -1) { 
                         linkResultToMarker(); 
                     } 
@@ -90,3 +89,8 @@
             }
         ];
 }());
+
+
+
+//m1 & m10
+//when you don't zoom in always selects m1...

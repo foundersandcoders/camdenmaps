@@ -3,10 +3,6 @@
 *
 ********************************/
 
-//TODO: Better error handling
-//TODO: Must have input validation for address/street name: HOW??? 
-var noResults = require("../lib/no-results.js");
-
 ;(function () {
     "use strict";
 
@@ -19,6 +15,11 @@ var noResults = require("../lib/no-results.js");
         "markerHandlers",
         "buttonHandlers",
         function ($scope, $stateParams, $location, apiSearch, markers, markerHandlers, buttonHandlers) {
+
+            var path,
+                destination,
+                noResults = require("../lib/no-results.js"),
+                resetActiveMarker = require("../lib/reset-active-marker");
 
             //model for search query
             $scope.address = "";
@@ -46,14 +47,11 @@ var noResults = require("../lib/no-results.js");
                 console.log(e);
             } 
 
-            var path,
-                destination;
-
-            console.log($scope.results.length);
-
+            //this will load results on a refresh
             if( noResults($scope) ) {        
                 apiSearch.search($stateParams.service)
                         .success(function success (data) {
+                            console.log("API search in SEARCH-CONTROLLER");
                             if(data.hasOwnProperty("error")) {
                                 // display error message
                                 $scope.update("error", data.message);
@@ -70,9 +68,7 @@ var noResults = require("../lib/no-results.js");
                         });
 
             }
-
-
-
+            
             $scope.$on('leafletDirectiveMarker.click', markerHandlers.markerClick($scope));
 
             $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
@@ -80,11 +76,7 @@ var noResults = require("../lib/no-results.js");
             //redirects to next state when provided with address
             $scope.search = function search () {
                 if($scope.address) {
-                    if($scope.activeMarker) {
-                        //resets active marker
-                        $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
-                        $scope.update("activeMarker", 0);
-                    }
+                    resetActiveMarker($scope);
                     path = "/home/" + $stateParams.service + "/location/" + $scope.address;
                     //redirects to new path and runs location controller
                     $location.path(path);
@@ -92,11 +84,9 @@ var noResults = require("../lib/no-results.js");
                 }
             };
 
-
             $scope.geolocateUser = function() {
                 markers.geolocateUser($scope)();
-            
-
+                resetActiveMarker($scope);
             };
 
     

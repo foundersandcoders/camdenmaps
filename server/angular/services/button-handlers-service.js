@@ -13,7 +13,8 @@
         function ($location, $stateParams, $timeout) {
 
             var current,
-                destination;
+                destination,
+                resetActiveMarker = require("../lib/reset-active-marker");
 
             this.searchAgain = function (functionScope, destination) { 
 
@@ -31,7 +32,7 @@
                     });
                     scope.update("markers", {});
 
-                    // better to have a watch functiont that triggers when markers changes??
+                    // better to have a watch function that triggers when markers changes??
                     if($location.path === "/home") {
                         $location.path(destination);
                         $timeout(function() { scope.update("markers", {}); console.log("timeout"); }, 1000);
@@ -63,10 +64,7 @@
                 var service = encodeURIComponent($stateParams.service);
 
                 //clears the active marker
-                if(scope.activeMarker) {
-                    scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
-                    scope.update("activeMarker", 0);
-                }
+                resetActiveMarker(scope);
 
                 destination = ($stateParams.address) 
                             ? "/home/" + scope.service + "/location/" + scope.address + "/list"

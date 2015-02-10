@@ -9,9 +9,6 @@
 ;(function () {
     "use strict";
 
-    var noResults = require("../lib/no-results.js");
-    var addressUsedinAPIcall = require("../lib/address-used-in-api-call.js");
-
     module.exports = [
         "$scope",
         "$stateParams",
@@ -19,7 +16,7 @@
         "markerHandlers",
         "apiSearch",
         "buttonHandlers",
-            "$location", 
+        "$location", 
         function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers, $location) {
             //model for page title
             $scope.title = "Find your Nearest...";
@@ -28,7 +25,10 @@
             var mapMarkers = $scope.markers,
                 lat,
                 lng,
-                round = require("../lib/round.js");
+                round = require("../lib/round.js"),
+                noResults = require("../lib/no-results.js"),
+                addressUsedinAPIcall = require("../lib/address-used-in-api-call.js");
+
 
             // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
@@ -52,8 +52,7 @@
             } else {
                 $scope.icon = "img/icons/streetworks.png";
             }
-            
-            console.log("location selected", $scope.locationSelected);
+        
             //this will only run an API call if location needs to be added
             if(!addressUsedinAPIcall($scope)){
 
@@ -75,15 +74,14 @@
                         $scope.update("locationSelected", data.location);
                         $scope.addMarkers();
 
+                        //this rounds results to max two decimal place s
                         $scope.results.forEach(function(entry) {
                             entry.Distance = round(entry.Distance);
                         });
 
-
                         
                         //will only update if the address is valid
-                        //only valid addresses have a north property
-
+                        //only valid addresses have a Latitude property
                         if(data.location.Latitude) {
                             $scope.update("centre", {
                                 lat: Number($scope.locationSelected.Latitude),

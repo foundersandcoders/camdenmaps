@@ -123,8 +123,8 @@
                     }
 
                     // only runs when a search address has been entered and is valid
-                    //does not over-write the geolocate marker with 
-                    if($stateParams.address && $stateParams.address !== "your location" && scope.locationSelected.Latitude ) {
+                    //does not over-write the geolocate marker  
+                    if($stateParams.address && scope.locationSelected.Latitude && $stateParams.address !== "your location") {
 
                         markers.m0 = {
                             lat: Number(scope.locationSelected.Latitude),
@@ -148,7 +148,7 @@
                     } 
 
                     scope.update("markers", markers);
-			};
+                };
 
 
 			};
