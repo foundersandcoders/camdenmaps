@@ -35,7 +35,14 @@
                 parking:["Car club bay","Parking space", "Car park", "Car club", "Coach parking", "Disabled blue badge", "Disabled green badge", "Electric recharging point", "Loading bay", "Pay and display/meter", "Permit holders", "Solo motorcycles", "Bicycle stand"],
                 recycling: ["Batteries","Cardboard and paper", "Clothing and textiles", "Nappies", "Funiture", "Garden waste", "Light bulbs", "Glass", "Clinical waste", "Paint", "Chemical and hazardous waste", "Household electronics/appliances", "Aluminium cans", "Vehicles", "Foil", "Scrap metal", "Spectacles", "Cooking oil", "Plastic", "Wood"]
             }
-        }
+        },
+        logging: {
+            opsInterval: 1000,
+            reporters: [{
+                reporter: require("good-file"),
+                args: [__dirname + "/../logs/server_log", {error: "*"}]   
+            }]
+        }        
     };
       
 
