@@ -80,7 +80,6 @@ var noResults = require("../lib/no-results.js");
             }
 
 
-
             $scope.$on('leafletDirectiveMarker.click', markerHandlers.markerClick($scope));
 
             $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
