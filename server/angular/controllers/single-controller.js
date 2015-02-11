@@ -14,7 +14,8 @@
 
                 var uri,
                     marker,
-                    service = encodeURIComponent($stateParams.service);
+                    service = encodeURIComponent($stateParams.service),
+                    noResults = require("../lib/no-results.js");
       
                 // Ensuring that the service name in the URL is Encoded properly
                 $stateParams.service = decodeURI($stateParams.service);
@@ -31,19 +32,21 @@
 
                     //links list result with relevant marker
                     marker = "m" + ($scope.results.indexOf($scope.result) + 1);
-                    
+
+                    console.log("scope.markers", $scope.markers);
+                    console.log("scope.markers", $scope.markers.m1);
                     //if single list view loaded from click this marker will already be the active marker
-                    if(marker !== $scope.activeMarker) {
-                        $scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
-                        $scope.update("activeMarker", $scope.markers[marker]);
+                    // if(marker !== $scope.activeMarker) {
+                    //     $scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
+                    //     $scope.update("activeMarker", $scope.markers[marker]);
                         
-                        //recentres map on the list result selected
-                        $scope.update("centre", {
-                            lat: Number($scope.result.Latitude),
-                            lng: Number($scope.result.Longitude),
-                            zoom: 14
-                        });
-                    }
+                    //     //recentres map on the list result selected
+                    //     $scope.update("centre", {
+                    //         lat: Number($scope.result.Latitude),
+                    //         lng: Number($scope.result.Longitude),
+                    //         zoom: 14
+                    //     });
+                    // }
 
                 }
                 
@@ -53,44 +56,43 @@
                     $scope.result = $scope.results.filter(function (result) {
                         return result.display.Name === $stateParams.id;
                     })[0];
-                    
-                    console.log("index of", $scope.results.indexOf($scope.result));
 
                     if(!$scope.activeMarker && $scope.results.indexOf($scope.result) > -1) { 
                         linkResultToMarker(); 
                     } 
                 }
 
-                if(!$scope.results || typeof $scope.result === undefined ) {
-                apiSearch.search(service, $stateParams.address)
-                    .success(function success (data) {
-                        if(data.hasOwnProperty("error")){
-                            return $scope.update("error", data.message);
-                        }
-                        $scope.updateResults(data.properties);
-                        $scope.update("locationSelected", data.location);
+                // linkResultToMarker();
+
+                // // if(noResults($scope) || typeof $scope.result === undefined ) {
+                // apiSearch.search(service, $stateParams.address)
+                //     .success(function success (data) {
+                //         console.log("apisearch in SINGLE-CONTROLLER");
+                //         if(data.hasOwnProperty("error")){
+                //             return $scope.update("error", data.message);
+                //         }
+                //         $scope.updateResults(data.properties);
+                //         $scope.update("locationSelected", data.location);
                         
-                        // selects item from results with matching {id}
-                        $scope.result = $scope.results.filter(function (result) {
-                            return result.display.Name === $stateParams.id;
-                        })[0];
+                        // // selects item from results with matching {id}
+                        // $scope.result = $scope.results.filter(function (result) {
+                        //     return result.display.Name === $stateParams.id;
+                        // })[0];
 
-                        if($stateParams.id) {
-                            linkResultToMarker(); 
-                        }
+                        // if($stateParams.id) {
+                        //     // linkResultToMarker(); 
+                        // }
 
-                    })
-                    .error(function error (err) {
-                        return $scope.update("error", err.message);
-                    });
+                        // console.log("scope.results at end of SINGLE-CONTROLLER", $scope.results);
 
-                 }
+                //     })
+                //     .error(function error (err) {
+                //         return $scope.update("error", err.message);
+                //     });
+
+                //  // }
+
 
             }
         ];
 }());
-
-
-
-//m1 & m10
-//when you don't zoom in always selects m1...
