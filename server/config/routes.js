@@ -63,7 +63,7 @@
                 path: "/services/{service}/locations/lats/{latitude}/lngs/{longitude}",
                 config: RoutesConfig.nearest.services
             },
-    //Streetoworks Routes *********************************
+    //Streetworks Routes *********************************
             {
                 method: "GET",
                 path: "/services/streetworks/locations/{postcode}",

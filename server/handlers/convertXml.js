@@ -155,7 +155,7 @@
                             return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                         }
 
-                        console.dir(result);
+                        // console.dir(result);
                         response.location = {};
                         response.location.Area = result.Locations.$.Area;
                         if (req.info.hasOwnProperty("latitude")) {

@@ -80,7 +80,6 @@
             query = (req.params.latitude && req.params.longitude)   ? "?" + lats + lat + "&" + lngs + lng
                                                                     : "?" + locations + location;
 
-            console.log(url.streetworksApi + query); 
             return cb(null, url.streetworksApi + query, { "Accept": "application/json" });
         }
     };

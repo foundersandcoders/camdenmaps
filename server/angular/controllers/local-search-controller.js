@@ -9,7 +9,8 @@
     module.exports = [
         "$scope",
         "$location",
-        function ($scope, $location) {
+        "localStorageService",
+        function ($scope, $location, localStorageService) {
 
             //model for placeholder
             $scope.placeholder = "Please enter a UPRN (5023741)"
@@ -21,6 +22,7 @@
             //function for searching uprn
             $scope.search = function () {
                 if ($scope.address) {
+
                     $location.path("/home/neighbourhood/" + $scope.address);
                 } else {
                     $scope.update("error", "Sorry, that didn't look right");
