@@ -19,17 +19,11 @@
             //model for page title
             $scope.title = "Live Streetworks";
 
-            function submit(key, value) {
-                return localStorageService.set(key, value);
-            }
-
-            function getItem(key) {
-                return localStorageService.get(key);
-            }
-
             if (localStorageService.isSupported) {
 
-                $scope.address = getItem("userLocation");
+                $scope.address = localStorageService.get("userLocation");
+
+                console.log($scope.address);
 
                 if($scope.address) {
                     $location.path("/home/streetworks/location/" + $scope.address);
@@ -44,7 +38,7 @@
                 if ($scope.address) {
 
                     if (localStorageService.isSupported) {
-                        submit( "userLocation", $scope.address);
+                        localStorageService.set( "userLocation", $scope.address);
                     }
 
                     $location.path("/home/streetworks/location/" + $scope.address);

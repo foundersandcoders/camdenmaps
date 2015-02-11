@@ -50,14 +50,6 @@ var noResults = require("../lib/no-results.js");
             var path,
                 destination;
 
-            function submit(key, value) {
-                return localStorageService.set(key, value);
-            }
-
-            function getItem(key) {
-                return localStorageService.get(key);
-            }
-
             // console.log($scope.results.length);
             if( noResults($scope) ) {        
                 apiSearch.search($stateParams.service)
@@ -88,7 +80,7 @@ var noResults = require("../lib/no-results.js");
             //check support before using it to avoid breaking the app
             if (localStorageService.isSupported) {
 
-                $scope.address = getItem("userLocation");
+                $scope.address = localStorageService.get("userLocation");
 
                 if($scope.address) {
                     if($scope.activeMarker) {
@@ -110,7 +102,7 @@ var noResults = require("../lib/no-results.js");
                 if($scope.address) {
 
                     if (localStorageService.isSupported) {
-                        submit( "userLocation", $scope.address);
+                        localStorageService.set( "userLocation", $scope.address);
                     }
 
                     if($scope.activeMarker) {
