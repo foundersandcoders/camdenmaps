@@ -13,8 +13,6 @@
         "$stateParams",
         function ($scope, $location, apiSearch, $stateParams) {
 
-            console.log("something");
-
 
             $scope.information;
 

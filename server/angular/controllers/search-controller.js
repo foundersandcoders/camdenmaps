@@ -18,7 +18,8 @@ var noResults = require("../lib/no-results.js");
         "markers",
         "markerHandlers",
         "buttonHandlers",
-        function ($scope, $stateParams, $location, apiSearch, markers, markerHandlers, buttonHandlers) {
+        "localStorageService",
+        function ($scope, $stateParams, $location, apiSearch, markers, markerHandlers, buttonHandlers, localStorageService) {
 
             //model for search query
             $scope.address = "";
@@ -49,8 +50,15 @@ var noResults = require("../lib/no-results.js");
             var path,
                 destination;
 
-            console.log($scope.results.length);
+            function submit(key, value) {
+                return localStorageService.set(key, value);
+            }
 
+            function getItem(key) {
+                return localStorageService.get(key);
+            }
+
+            // console.log($scope.results.length);
             if( noResults($scope) ) {        
                 apiSearch.search($stateParams.service)
                         .success(function success (data) {
@@ -77,14 +85,41 @@ var noResults = require("../lib/no-results.js");
 
             $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
 
-            //redirects to next state when provided with address
-            $scope.search = function search () {
+
+            //check support before using it to avoid breaking the app
+            if (localStorageService.isSupported) {
+
+                $scope.address = getItem("userLocation");
+
                 if($scope.address) {
                     if($scope.activeMarker) {
                         //resets active marker
                         $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
                         $scope.update("activeMarker", 0);
                     }
+                    path = "/home/" + $stateParams.service + "/location/" + $scope.address;
+                    //redirects to new path and runs location controller
+                    $location.path(path);
+
+                }
+            }
+
+
+            //redirects to next state when provided with address
+            $scope.search = function search () {
+
+                if($scope.address) {
+
+                    if (localStorageService.isSupported) {
+                        submit( "userLocation", $scope.address);
+                    }
+
+                    if($scope.activeMarker) {
+                        //resets active marker
+                        $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
+                        $scope.update("activeMarker", 0);
+                    }
+
                     path = "/home/" + $stateParams.service + "/location/" + $scope.address;
                     //redirects to new path and runs location controller
                     $location.path(path);

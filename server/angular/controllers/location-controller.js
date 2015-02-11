@@ -19,7 +19,7 @@
         "markerHandlers",
         "apiSearch",
         "buttonHandlers",
-            "$location", 
+        "$location",
         function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers, $location) {
             //model for page title
             $scope.title = "Find your Nearest...";
