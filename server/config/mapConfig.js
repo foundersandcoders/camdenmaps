@@ -26,8 +26,6 @@
     module.exports = {
 
         nearestMapper: function nearestMapper (req, cb, err, next) {
-
-
             var service, location, query, lat, lng, apiUrl, defaultLocation;
 
             service = cap(req.params.service);
