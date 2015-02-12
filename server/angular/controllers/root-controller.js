@@ -18,7 +18,7 @@
         "buttonHandlers",
         "leafletData",
         function ($scope, $location, markers, buttonHandlers, leafletData) {
-           
+
             //stores geo data for camden borough boundaries
             var camdenBoundaries = require("../../public/lib/camdenBorough.geo.json");
             //stores results at root for access by all controllers

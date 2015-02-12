@@ -14,7 +14,8 @@
         "markers",
         "markerHandlers",
         "buttonHandlers",
-        function ($scope, $stateParams, $location, apiSearch, markers, markerHandlers, buttonHandlers) {
+        "localStorageService",
+        function ($scope, $stateParams, $location, apiSearch, markers, markerHandlers, buttonHandlers, localStorageService) {
 
             var path,
                 destination,
@@ -47,8 +48,7 @@
                 console.log(e);
             } 
 
-            //this will load results on a refresh
-            if( noResults($scope) ) {  
+            if( noResults($scope) ) {        
 
                 apiSearch.search($stateParams.service)
                         .success(function success (data) {
@@ -74,15 +74,43 @@
 
             }
 
-            
+
             $scope.$on('leafletDirectiveMarker.click', markerHandlers.markerClick($scope));
 
             $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
 
+
+            //check support before using it to avoid breaking the app
+            if (localStorageService.isSupported) {
+
+                $scope.address = localStorageService.get("userLocation");
+
+                if($scope.address) {
+                    if($scope.activeMarker) {
+                        //resets active marker
+                        $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
+                        $scope.update("activeMarker", 0);
+                    }
+                    path = "/home/" + $stateParams.service + "/location/" + $scope.address;
+                    //redirects to new path and runs location controller
+                    $location.path(path);
+
+                }
+            }
+
+
             //redirects to next state when provided with address
             $scope.search = function search () {
+
                 if($scope.address) {
-                    resetActiveMarker($scope);
+
+                    if (localStorageService.isSupported) {
+                        localStorageService.set( "userLocation", $scope.address);
+                    }
+
+                   resetActiveMarker($scope);
+
+
                     path = "/home/" + $stateParams.service + "/location/" + $scope.address;
                     //redirects to new path and runs location controller
                     $location.path(path);

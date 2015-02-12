@@ -16,8 +16,10 @@
         "markerHandlers",
         "apiSearch",
         "buttonHandlers",
-        "$location", 
-        function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers, $location) {
+        "$location",
+        "localStorageService",
+        function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers, $location, localStorageService) {
+
             //model for page title
             $scope.title = "Find your Nearest...";
 
@@ -120,7 +122,7 @@
 
             $scope.toggle = buttonHandlers.toggle($scope);
 
-            $scope.changeAddress = buttonHandlers.searchAgain($scope, "home/" + $stateParams.service + "/search");
+            $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/" + $stateParams.service + "/search");
 
 
 

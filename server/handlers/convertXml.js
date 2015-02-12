@@ -45,7 +45,7 @@
                     }
 
                     response.location = {};
-                    if(typeof result !== "undefined" && result.hasOwnProperty("Location") && result.Locations.hasOwnProperty("AddressSearchResults")) {
+                    if(typeof result !== "undefined" && result.hasOwnProperty("Locations") && result.Locations.hasOwnProperty("AddressSearchResults")) {
                         response.location.Area = result.Locations.AddressSearchResults[0].$.sPostcode;
                         response.location.Latitude = result.Locations.AddressSearchResults[0].$.Latitude;
                         response.location.Longitude = result.Locations.AddressSearchResults[0].$.Longitude;
@@ -57,7 +57,9 @@
                     response.information = {};
                     if(result.Locations.hasOwnProperty("LocalInformation") && result.Locations.LocalInformation[0].hasOwnProperty("Table")) {
                         result.Locations.LocalInformation[0].Table.map(function(p) {
-                            response.information[p.$.TableDesc] = p.Object[0].$.ObjectDesc;
+                            response.information[p.$.TableDesc] = {};
+                            response.information[p.$.TableDesc].Value = p.Object[0].$.ObjectDesc;
+                            response.information[p.$.TableDesc].Url = p.Object[0].$.ObjectLink;
                         });
                     } else {
                         return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that location"});
@@ -153,7 +155,7 @@
                             return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                         }
 
-                        console.dir(result);
+                        // console.dir(result);
                         response.location = {};
                         response.location.Area = result.Locations.$.Area;
                         if (req.info.hasOwnProperty("latitude")) {

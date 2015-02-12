@@ -126,7 +126,31 @@
         });
     });
         
-        /*************************************************
+    /*************************************************
+    *   RECYCLING ENDPOINTS
+    *   Description: Acceptance tests are written here
+    *   Use: run tests by npm test
+    **************************************************/
+
+     describe("Given that a local information api call is made", function () {
+
+         it("then result for  uprn is in the correct format", function (done) {
+
+             var options = {
+                 method: "GET",
+                 url: "/addresses/5023741"
+             };
+
+             server.inject(options, function(response) {
+                 expect(response.payload).to.equal(fixtures.localInformation.uprn);
+                 done();
+             });
+
+         });
+
+     });
+    
+    /*************************************************
     *   RECYCLING ENDPOINTS
     *   Description: Acceptance tests are written here
     *   Use: run tests by npm test

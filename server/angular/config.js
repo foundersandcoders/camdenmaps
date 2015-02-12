@@ -12,7 +12,13 @@
     module.exports = [
     "$urlRouterProvider",
     "$stateProvider",
-    function ($urlRouterProvider, $stateProvider) {
+    "localStorageServiceProvider",
+    function ($urlRouterProvider, $stateProvider, localStorageServiceProvider) {
+
+        localStorageServiceProvider
+            .setPrefix('maps')
+            // send notification for both setItem and removeItem.
+            .setNotify(true, true);
 
         //default state is /home
         $urlRouterProvider.otherwise("/home");
