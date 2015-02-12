@@ -98,24 +98,39 @@
                 }
             }
 
-
             //redirects to next state when provided with address
             $scope.search = function search () {
 
                 if($scope.address) {
+                    apiSearch.search($stateParams.service, $scope.address)
+                        .success(function success (data) {
+                            if(data.hasOwnProperty("error")) {
+                                return $scope.update("error", data.message);
+                            }
+                            $scope.updateResults(data.properties);
+                            $scope.result = $scope.results.filter(function (result) {
+                                return result.display.Name === $stateParams.id;
+                            })[0];
 
-                    if (localStorageService.isSupported) {
-                        localStorageService.set( "userLocation", $scope.address);
-                    }
-
-                   resetActiveMarker($scope);
+                            $scope.addMarkers();
+                            // $scope.centre = markers.centreCheck($scope)();
+                            $scope.centre.zoom = markers.zoomCheck($scope)();
 
 
-                    path = "/home/" + $stateParams.service + "/location/" + $scope.address;
-                    //redirects to new path and runs location controller
-                    $location.path(path);
+                            if (localStorageService.isSupported) {
+                                localStorageService.set( "userLocation", $scope.address);
+                            }
 
-                }
+                            resetActiveMarker($scope);
+
+
+                            path = "/home/" + $stateParams.service + "/location/" + $scope.address;
+                            //redirects to new path and runs location controller
+                            $location.path(path);
+
+                        });
+
+                } 
             };
 
             $scope.geolocateUser = function() {
