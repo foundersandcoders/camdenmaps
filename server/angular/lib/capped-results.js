@@ -20,7 +20,6 @@
 				"Wifi hotspot",
 				"Residents/tenants association",
 				"Special school",
-				"Library",
 				"Children's library",
 				"Pay and display/meter",
 				"Household electronics/appliances",
