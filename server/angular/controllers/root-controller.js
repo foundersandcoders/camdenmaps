@@ -72,7 +72,7 @@
                 },
                 maxbounds: regions.camdenBorough,
                 defaults: {
-                    scrollWheelZoom: false,
+                    scrollWheelZoom: true,
                     tileLayer: "http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png"
                 },
                 markers: {},
