@@ -29,6 +29,9 @@
             //this will allow marker colour to change when it is highlighted
             $scope.activeMarker = 0;
             
+            console.log("root"); 
+            $scope.displayName = "hello"; 
+
             //functions to update results and location on root level 
             $scope.updateResults = function updateResults (newResults) {
                 var i;
@@ -69,7 +72,7 @@
                 },
                 maxbounds: regions.camdenBorough,
                 defaults: {
-                    scrollWheelZoom: false,
+                    scrollWheelZoom: true,
                     tileLayer: "http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png"
                 },
                 markers: {},

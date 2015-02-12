@@ -58,7 +58,8 @@
                                     iconUrl: "../img/icons/location-marker.png"
                                 },
                                 message: "Your location",
-                                focus: true
+                                focus: true,
+                                geolocation: true
                             };
 
                             var path = "/home/" + $stateParams.service + "/location/" + "your location";
@@ -123,14 +124,13 @@
                     }
 
                     // only runs when a search address has been entered and is valid
-                    //does not over-write the geolocate marker with 
-                    if($stateParams.address && $stateParams.address !== "your location" && scope.locationSelected.Latitude ) {
+                    //does not over-write the geolocate marker  
+                    if($stateParams.address && scope.locationSelected.Latitude && $stateParams.address !== "your location") {
 
                         markers.m0 = {
                             lat: Number(scope.locationSelected.Latitude),
                             lng: Number(scope.locationSelected.Longitude),
                             name: "location",
-                            locationTest: true,
                             focus: true,
                             popupOptions: {
                                 closeOnClick: false
@@ -148,7 +148,7 @@
                     } 
 
                     scope.update("markers", markers);
-			};
+                };
 
 
 			};
