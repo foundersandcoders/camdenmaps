@@ -36,9 +36,6 @@
             // Ensuring that the service name in the URL is Encoded
             $stateParams.service = encodeURIComponent($scope.service);
 
-            console.log("SEARCH-CONTROLLER");
-            console.log("displayName", $scope.displayName); 
-
             try {
                 //model for image icon
                 $scope.icon = require("../menu.json").filter(function filterImg (item) {
@@ -50,14 +47,11 @@
                 console.log(e);
             } 
 
-            console.log("stateParams", $stateParams);
             //this will load results on a refresh
             if( noResults($scope) ) {  
 
                 apiSearch.search($stateParams.service)
                         .success(function success (data) {
-                            console.log("API search in SEARCH-CONTROLLER");
-                            console.log("displayName", $scope.displayName); 
                             if(data.hasOwnProperty("error")) {
                                 // display error message
                                 $scope.update("error", data.message);
@@ -80,17 +74,6 @@
 
             }
 
-            // //if single view accessed through list it will link to map
-            // if($scope.results) { 
-            //     //selects item from results with matching {id}
-            //     $scope.result = $scope.results.filter(function (result) {
-            //         return result.display.Name === $stateParams.id;
-            //     })[0];
-
-            //     if(!$scope.activeMarker && $scope.results.indexOf($scope.result) > -1) { 
-            //         linkResultToMarker(); 
-            //     } 
-            // }
             
             $scope.$on('leafletDirectiveMarker.click', markerHandlers.markerClick($scope));
 

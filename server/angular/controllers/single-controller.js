@@ -32,21 +32,19 @@
 
                     //links list result with relevant marker
                     marker = "m" + ($scope.results.indexOf($scope.result) + 1);
-
-                    console.log("scope.markers", $scope.markers);
-                    console.log("scope.markers", $scope.markers.m1);
-                    //if single list view loaded from click this marker will already be the active marker
-                    // if(marker !== $scope.activeMarker) {
-                    //     $scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
-                    //     $scope.update("activeMarker", $scope.markers[marker]);
+                    
+                    // if single list view loaded from click this marker will already be the active marker
+                    if(marker !== $scope.activeMarker) {
+                        $scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
+                        $scope.update("activeMarker", $scope.markers[marker]);
                         
-                    //     //recentres map on the list result selected
-                    //     $scope.update("centre", {
-                    //         lat: Number($scope.result.Latitude),
-                    //         lng: Number($scope.result.Longitude),
-                    //         zoom: 14
-                    //     });
-                    // }
+                        //recentres map on the list result selected
+                        $scope.update("centre", {
+                            lat: Number($scope.result.Latitude),
+                            lng: Number($scope.result.Longitude),
+                            zoom: 14
+                        });
+                    }
 
                 }
                 
@@ -62,7 +60,6 @@
                     } 
                 }
 
-                // linkResultToMarker();
 
                 // // if(noResults($scope) || typeof $scope.result === undefined ) {
                 // apiSearch.search(service, $stateParams.address)

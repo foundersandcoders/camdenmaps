@@ -53,14 +53,24 @@
                 $scope.icon = "img/icons/streetworks.png";
             }
         
-            //this will only run an API call if location needs to be added
+            // this will only run an API call if location needs to be added
+            // will still run if default location used for capped results
             if(!addressUsedinAPIcall($scope)){
+                console.log("api call in location");
 
                 //reloads $scope.results with new data based on address 
                 
-                // will pass through values if present otherwise null
-                lat = mapMarkers.m0 ? mapMarkers.m0.lat : null;
-                lng = mapMarkers.m0 ? mapMarkers.m0.lng : null;
+                // if geolocation has been used 
+                // will pass through lat lng values to use for api call
+                // otherwise will use address given for api call
+                if (mapMarkers.m0 && mapMarkers.m0.geolocation) {
+                    lat = mapMarkers.m0.lat;
+                    lng = mapMarkers.m0.lng;
+                } else {
+                    lat = null;
+                    lng = null;
+                }
+
                 apiSearch.search($stateParams.service, $stateParams.address, lat, lng)
 
                     .success(function success (data) {

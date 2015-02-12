@@ -58,7 +58,8 @@
                                     iconUrl: "../img/icons/location-marker.png"
                                 },
                                 message: "Your location",
-                                focus: true
+                                focus: true,
+                                geolocation: true
                             };
 
                             var path = "/home/" + $stateParams.service + "/location/" + "your location";
@@ -130,7 +131,6 @@
                             lat: Number(scope.locationSelected.Latitude),
                             lng: Number(scope.locationSelected.Longitude),
                             name: "location",
-                            locationTest: true,
                             focus: true,
                             popupOptions: {
                                 closeOnClick: false
