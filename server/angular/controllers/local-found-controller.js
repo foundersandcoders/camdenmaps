@@ -23,7 +23,7 @@
                         return $scope.update("error", data.message);
                     }
                 
-                    $scope.information = data.information;
+                    return $scope.update("information", data.information);
                 })
                 .error(function(data) {
                     $scope.update("error", "Sorry, it looks like something went wrong");
