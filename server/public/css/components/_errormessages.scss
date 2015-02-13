@@ -10,12 +10,20 @@
 .errormessage {
 	display: none;
 	background: $light-pink;
-	border: 0.2em $dark-red solid;
+	border: 0.3em $dark-red solid;
 	color: $dark-red;
-	position: relative;
 	position: absolute;
 	top: 7em;
 	height: 4.5em;
-	width: 97.5%;
+	width: 98.5%;
 	margin: 0 0.7em;
+}
+
+@media (max-width: 768px) {
+	.errormessage {
+		top: 4.7em;
+		height: 4.1em;
+		width: 95%;
+		margin: 0 0.7em;
+	}
 }
