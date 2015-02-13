@@ -4,7 +4,6 @@
 *
 ********************************************/
 
-//TODO: Write menu JSON
 //TODO: Write service to access menu
 //TODO: Preload visible items in a resolve
 

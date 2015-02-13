@@ -7,8 +7,12 @@
 
 //Imports for our files
 
-@import 'base/reset',
+@import 
+
+	
+	'base/reset',
 	'base/typography',
+
 	'components/map',
 	'components/accordian',
 	'components/listresults',
@@ -16,7 +20,20 @@
 	'components/buttons',
 	'components/forms',
 	'components/localinforesults',
+
 	'helpers/mixins',
+
 	'layout/header',
-	'layout/layout';
+	'layout/layout',
+
+	'pages/home'
+
+
+
+
+
+
+
+
+	;
 
