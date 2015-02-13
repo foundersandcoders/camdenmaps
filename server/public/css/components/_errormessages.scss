@@ -1,0 +1,21 @@
+/***********************************************
+*   ERROR MESSAGES
+*   Description: for styling error messages
+*
+************************************************/
+
+//IMPORTS FILES
+@import '../base/colours';
+
+.errormessage {
+	display: none;
+	background: $light-pink;
+	border: 0.2em $dark-red solid;
+	color: $dark-red;
+	position: relative;
+	position: absolute;
+	top: 7em;
+	height: 4.5em;
+	width: 97.5%;
+	margin: 0 0.7em;
+}

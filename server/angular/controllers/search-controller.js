@@ -35,7 +35,7 @@
             $scope.service = decodeURI($stateParams.service);
 
             // Ensuring that the service name in the URL is Encoded
-            $stateParams.service = encodeURIComponent($scope.service);
+            $stateParams.service = encodeURIComponent($scope.service);;
 
             try {
                 //model for image icon
@@ -54,7 +54,7 @@
                         .success(function success (data) {
                             if(data.hasOwnProperty("error")) {
                                 // display error message
-                                $scope.update("error", data.message);
+                                $scope.updateError("error", data.message);
                                 // and redirect back to services menu to try again
                                 $location.path("/home/services");
                             }
@@ -69,7 +69,7 @@
                             $scope.centre.zoom = markers.zoomCheck($scope)();
                         })
                         .error(function error(err) {
-                            return $scope.update("error", err.message);
+                            return $scope.updateError("error", err.message);
                         });
 
             }
@@ -105,8 +105,9 @@
                     apiSearch.search($stateParams.service, $scope.address)
                         .success(function success (data) {
                             if(data.hasOwnProperty("error")) {
-                                return $scope.update("error", data.message);
+                                return $scope.updateError("error", data.message);
                             }
+
                             $scope.updateResults(data.properties);
                             $scope.result = $scope.results.filter(function (result) {
                                 return result.display.Name === $stateParams.id;
@@ -130,7 +131,7 @@
 
                         });
 
-                } 
+                }
             };
 
             $scope.geolocateUser = function() {
