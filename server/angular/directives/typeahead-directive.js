@@ -1,7 +1,6 @@
 /*************************************
 *   TYPEAHEAD-DIRECTIVE.JS
-*	use: to show or hide title based
-*		on what has been rendered
+*	
 *************************************/
 
 ;(function () {

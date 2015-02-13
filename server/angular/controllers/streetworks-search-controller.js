@@ -3,6 +3,8 @@
 *
 *****************************/
 
+//TODO: Error Messages by updateError('error', data);
+
 ;(function () {
     "use strict";
 
@@ -22,8 +24,6 @@
             if (localStorageService.isSupported) {
 
                 $scope.address = localStorageService.get("userLocation");
-
-                console.log($scope.address);
 
                 if($scope.address) {
                     $location.path("/home/streetworks/location/" + $scope.address);

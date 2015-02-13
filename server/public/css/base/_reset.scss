@@ -64,3 +64,9 @@ span {
 button {
 	border: none;
 }
+
+input {
+	&:focus {
+		outline: $orange solid 0.2em;
+	}
+}
