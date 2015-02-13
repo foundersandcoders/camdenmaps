@@ -19,8 +19,11 @@
 
             var path,
                 destination,
-                noResults = require("../lib/no-results.js"),
-                resetActiveMarker = require("../lib/reset-active-marker");
+                noResults,
+                resetActiveMarker;
+
+            noResults = require("../lib/no-results.js");
+            resetActiveMarker = require("../lib/reset-active-marker");
 
             //model for search query
             $scope.address = "";
