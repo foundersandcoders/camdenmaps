@@ -19,12 +19,6 @@
         return str.replace("/", " and ");
     }
 
-    function invalidPostcode(res, rep) {
-        if(!res.location.hasOwnProperty("Latitude")) {
-            return rep({error: "Upstream Error", message: "Sorry, that postcode looks invalid" });
-        } 
-    }
-
 
     module.exports = {
 
@@ -74,7 +68,11 @@
                         return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that location"});
                     }
                     response = clean(response);
-                    invalidPostcode(response, rep);
+                    
+                    if(!response.location.hasOwnProperty("Latitude")) {
+                        return rep({error: "Upstream Error", message: "Sorry, that postcode looks invalid" });
+                    } 
+        
                     return rep(response);
                 });
             });
@@ -134,7 +132,11 @@
                         return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                     }
                     response = clean(response);
-                    invalidPostcode(response, rep);
+                    
+                    if(!response.location.hasOwnProperty("Latitude")) {
+                        return rep({error: "Upstream Error", message: "Sorry, that postcode looks invalid" });
+                    } 
+                    
                     return rep(response);
                 });
             });
@@ -219,7 +221,10 @@
                             return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                         } 
                         response = clean(response);
-                        invalidPostcode(response, rep);
+                        
+                        if(!response.location.hasOwnProperty("Latitude")) {
+                            return rep({error: "Upstream Error", message: "Sorry, that postcode looks invalid" });
+                        } 
 
                         cache.set(key, response, function (err, success) {
                             if (!err && success) {
@@ -279,7 +284,10 @@
                             return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                         }
                         response = clean(response);
-                        invalidPostcode(response, rep);
+                        
+                        if(!response.location.hasOwnProperty("Latitude")) {
+                            return rep({error: "Upstream Error", message: "Sorry, that postcode looks invalid" });
+                        } 
 
                         cache.set(key, response, function (err, success) {
                             if (!err && success) {
@@ -328,6 +336,7 @@
                         }
 
                         response = clean(response);
+                        
                         if(!response.location.hasOwnProperty("Latitude")) {
                             return rep({error: "Upstream Error", message: "Sorry, that postcode looks invalid" });
                         } 
