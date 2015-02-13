@@ -16,13 +16,16 @@
 
 
     <!-- UI-VIEW FOR ROOT.LANDING --> 
-    <div ui-view id="main-container"></div>    
+      
     <!-- UI-VIEW FOR ROOT.LANDING ENDS --> 
 
 
     <!-- MAP BEGINS --> 
-    <div id="map" class="map container-fluid">
+    <div>
+        <div id="map" class="map container-fluid">
             <leaflet defaults="defaults" center="centre" maxbounds="maxbounds" markers="markers" leafletMap="leafletMap" geojson= "geojson"></leaflet>
+        </div>
+        <div ui-view id="main-container"></div>  
     </div>
 </div>
     <!-- MAP ENDS -->
