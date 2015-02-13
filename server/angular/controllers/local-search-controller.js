@@ -27,7 +27,7 @@
                     apiSearch.searchNeighbourhood($scope.address)
                         .success(function(data) {
                             if (data.hasOwnProperty("error")) {
-                                return $scope.update("error", data.message);
+                                return $scope.updateError("error", data.message);
                             }
                             
                             $scope.update("information", data.information);
@@ -38,7 +38,7 @@
                         });
 
                 } else {
-                    $scope.update("error", "Sorry, that didn't look right");
+                    $scope.updateError("error", "Sorry, that didn't look right");
                 } 
             }
 

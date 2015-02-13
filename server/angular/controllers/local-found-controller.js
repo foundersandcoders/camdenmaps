@@ -20,13 +20,13 @@
             apiSearch.searchNeighbourhood($stateParams.uprn)
                 .success(function(data) {
                     if (data.hasOwnProperty("error")) {
-                        return $scope.update("error", data.message);
+                        return $scope.updateError("error", data.message);
                     }
                 
                     return $scope.update("information", data.information);
                 })
                 .error(function(data) {
-                    $scope.update("error", "Sorry, it looks like something went wrong");
+                    $scope.updateError("error", "Sorry, it looks like something went wrong");
                     return $location.path("/home/neighbourhood");
                 });
 

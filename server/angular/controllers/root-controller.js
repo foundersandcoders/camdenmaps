@@ -5,8 +5,6 @@
 ;(function () {
     "use strict";
 
-    //var camden = require("../../../lib/camdenCordinates.js");
-
     function stripText(word) {
         return word.replace(/[^0-9" "]+/ig,"").replace(/\s+$/,'');
     }
@@ -29,7 +27,6 @@
             //this will allow marker colour to change when it is highlighted
             $scope.activeMarker = 0;
             
-            console.log("root"); 
             $scope.displayName = "hello"; 
 
             //functions to update results and location on root level 
@@ -94,9 +91,6 @@
             $scope.sendHome = buttonHandlers.searchAgain($scope, "/home");
 
             $scope.addMarkers = markers.addMarkers($scope);
-
-
-
 
         }
 
