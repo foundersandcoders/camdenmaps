@@ -22,7 +22,6 @@
                     ? "/services/" + service 
                     : "/services/" + service + "/locations/" + address);
                 
-                console.log("apiUrl", apiUrl);
                 //return http promise to be processed in controllers
                 return $http({ method: "GET", url: apiUrl, cache: true });
 

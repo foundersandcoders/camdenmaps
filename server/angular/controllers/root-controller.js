@@ -5,8 +5,6 @@
 ;(function () {
     "use strict";
 
-    //var camden = require("../../../lib/camdenCordinates.js");
-
     function stripText(word) {
         return word.replace(/[^0-9" "]+/ig,"").replace(/\s+$/,'');
     }
@@ -29,6 +27,8 @@
             //this will allow marker colour to change when it is highlighted
             $scope.activeMarker = 0;
             
+            $scope.displayName = "hello"; 
+
             //functions to update results and location on root level 
             $scope.updateResults = function updateResults (newResults) {
                 var i;
@@ -69,7 +69,7 @@
                 },
                 maxbounds: regions.camdenBorough,
                 defaults: {
-                    scrollWheelZoom: false,
+                    scrollWheelZoom: true,
                     tileLayer: "http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png"
                 },
                 markers: {},
@@ -91,9 +91,6 @@
             $scope.sendHome = buttonHandlers.searchAgain($scope, "/home");
 
             $scope.addMarkers = markers.addMarkers($scope);
-
-
-
 
         }
 

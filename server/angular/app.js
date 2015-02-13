@@ -22,7 +22,7 @@
             "LocalStorageModule",
             "leaflet-directive"
     ])
-
+    
     .config( require("./config.js") )
 
 	// Set up the cache for initial resources
