@@ -22,7 +22,7 @@
 
                         element.css('display', 'block');
 
-                        if (location.path().indexOf('/neighbourhood')) {
+                        if (location.path().indexOf('/neighbourhood') > -1) {
 
                             errorBox.css('top', '3em')
                         } else {
