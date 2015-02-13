@@ -7,19 +7,32 @@
     "use strict";
 
     module.exports = [
-        function () {
+        "$location",
+        function (location) {
         	return {
         		restrict: 'AEC',
             	template: '<p ng-hide={{error}}>{{error}}</p>',
                 link: function(scope, element, attribute) {
 
                     var inputBox = $('.search-box');
+                    var errorBox = $('.errormessage');
 
                     scope.updateError = function (type, newType){
                         scope[type] = newType;
+
                         element.css('display', 'block');
-                        inputBox.css('margin-top', '1.5em');
+
+                        if (location.path().indexOf('/neighbourhood')) {
+
+                            errorBox.css('top', '3em')
+                        } else {
+                            inputBox.css('margin-top', '1.5em');
+                        }
                     };
+
+                    if (location.path().indexOf('/neighbourhood')) {
+
+                    }
                 }
             }
         }
