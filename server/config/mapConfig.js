@@ -26,6 +26,7 @@
     module.exports = {
 
         nearestMapper: function nearestMapper (req, cb, err, next) {
+
             var service, location, query, lat, lng, apiUrl, defaultLocation;
 
             service = cap(req.params.service);
@@ -48,9 +49,12 @@
             services    = (serviceArray.recycling.indexOf(service) !== -1) ? "recycle="
                         : "find=";
 
+            console.log(service);
            
             //map our service names to camden service names
             service = aliasServices(service);
+
+            console.log(service);
 
             //query constructed based on combination of services and/or address
 
