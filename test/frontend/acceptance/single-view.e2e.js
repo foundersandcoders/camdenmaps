@@ -32,37 +32,37 @@
 
             it("Name", function () {
 
-            	var name = element.all(by.tagName('h5')).get(0);
+            	var name = element.all(by.tagName('h5')).get(1);
 
                 expect(name.getText()).toBe('St Pancras Community Centre Lunch Club');
 
 	        });
 
-	        // it("address", function () {
+	        it("address", function () {
 
-	        // 	var address = element.all(by.tagName('p')).get(0);
-	        // 	var address2 = element.all(by.tagName('p')).get(1);
+	        	var address = element.all(by.tagName('p')).get(4);
+	        	var address2 = element.all(by.tagName('p')).get(5);
 
-         //        expect(address.getText()).toBe('Camden Street');
-         //        expect(address2.getText()).toBe('London, NW1 0LG');
+                expect(address.getText()).toBe('Camden Street');
+                expect(address2.getText()).toBe('London, NW1 0LG');
 
-	        // });
+	        });
 
-         //    it("phone number", function () {
+            it("phone number", function () {
 
-         //    	var phoneNumber = element.all(by.tagName('p')).get(2);
+            	var phoneNumber = element.all(by.tagName('p')).get(3);
 
-         //        expect(phoneNumber.getText()).toBe('020 7388 5923');
+                expect(phoneNumber.getText()).toBe('020 7388 5923');
 
-	        // });
+	        });
 
-	        // it("opening hours", function () {
+	        it("opening hours", function () {
 
-	        // 	var openingHours = element.all(by.tagName('p')).get(3);
+	        	var openingHours = element.all(by.tagName('p')).get(10);
 
-         //        expect(openingHours.getText()).toBe('Meets Mon-Fri 11am-2pm.');
+                expect(openingHours.getText()).toBe('Meets Mon-Fri 11am-2pm.');
 
-	        // });
+	        });
         });
 
     });

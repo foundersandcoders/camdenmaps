@@ -60,8 +60,10 @@
 
         	var postcodeInput = element(by.id('postcode-input')).element(by.tagName('input'));
 
-            postcodeInput.sendKeys('NW1 0NE');
-            element(by.css('[ng-click="search()"]')).click();
+        	// if (!browser.getCurrentUrl().toContain('NW1')) {
+	        //     postcodeInput.sendKeys('NW1 0NE');
+	        //     element(by.css('[ng-click="search()"]')).click();
+	        // }
 
             var positionMarker = element(by.css('path.leaflet-clickable'));
 

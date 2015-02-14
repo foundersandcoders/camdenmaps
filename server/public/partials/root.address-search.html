@@ -12,6 +12,9 @@
             <h2>{{ service }}</h2>
         </div>
 
+        <div class="col-xs-12 errormessage">
+        </div>
+
         <div class="col-xs-12 search-box">
             
             <form>
@@ -25,9 +28,11 @@
                 </div>
             </form>
             <div id="yourLocation" class="col-xs-1">
-                <button ng-click="geolocateUser()">
-                    <span class="glyphicon glyphicon-screenshot"></span>
-                </button>
+                <a href="#" tooltip-placement="top" tooltip-trigger="click" tooltip="{{ geolocationToolTip }}">
+                    <button>
+                        <span class="glyphicon glyphicon-screenshot"></span>
+                    </button>
+                </a>
             </div>
         
         </div>
@@ -35,7 +40,7 @@
         <div id="buttons" class="col-xs-12">
             
             <div class="button col-xs-6">
-                <button ng-click="searchAgain()" class="btn">{{ backButtonText }}</button>
+                <button ng-click="searchAgain()" class="btn">Pick another service</button>
             </div>
             
             <div class="button col-xs-6">

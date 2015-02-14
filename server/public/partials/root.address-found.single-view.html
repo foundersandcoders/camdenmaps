@@ -5,37 +5,35 @@
             <a href="link-to-url">
                 <h5>{{ result.display.Name }}</h5>
             </a>
-            <p ng-show="result.display.Location"> Location of streetworks {{ result.display.Location }} </p>
-            <p ng-show="result.display.Description"> <b> Description: </b> {{ result.display.Description }} </p>
-            <p ng-show= "result.display.StartDate"> <b> Start Date: </b> {{ result.display.StartDate }} </p>
-            <p ng-show= "result.display.EndDate"> <b> End Date </b> {{ result.display.EndDate }} </p>
+            <a ng-show="result.display.URL" href="{{ result.display.URL }}" target="_blank">
+                <p>{{ result.display.URL }}</p>
+            </a>
+            <a href= "tel: {{ result.display.Telephone }}">
+                <p>{{ result.display.Telephone }}</p>
+            </a>
+
             <p>{{ result.StreetNum + " " + result.Street }}</p>
+            
             <p>London, {{result.PostCode}}</p>
-            <p>{{ result.display.Telephone }}</p>
+
+            <p ng-show="result.display.Location"> Location of streetworks {{ result.display.Location }} </p>
+
+            <p ng-show="result.display.Description"> <b> Description: </b> {{ result.display.Description }} </p>
+
+            <p ng-show= "result.display.StartDate"> <b> Start Date: </b> {{ result.display.StartDate }} </p>
+
+            <p ng-show= "result.display.EndDate"> <b> End Date </b> {{ result.display.EndDate }} </p>
+            
             <h5 ng-show="result.display.OpeningHours" class="opening-hours">Opening Hours</h5>
+            
             <p>{{ result.display.OpeningHours }}</p>
+
         </div>
 
         <div ng-show="showDistance" class="col-xs-2">
             <h5>{{ result.Distance + ' miles' }}</h5>
         </div>
 
-        <div class="contact col-xs-12 col-sm-10 col-sm-offset-1">
-            <div class="call-mobile col-xs-4">
-                <a href= "tel: {{ result.display.Telephone }}">    
-                    <img src="./img/contact/call.png">
-                </a>
-            </div>
-            <div class="col-xs-4 col-sm-6">
-                <a ng-show="result.display.URL" href="{{ result.display.URL }}" target="_blank">
-                    <img src="./img/contact/website.png">
-                </a>
-            </div>
-            <div class="col-xs-4 col-sm-6">
-                <a href="http://maps.google.co.uk">
-                    <img src="./img/contact/travel.png">
-                </a>
-            </div>
-        </div>
+
     </div>
  </div>

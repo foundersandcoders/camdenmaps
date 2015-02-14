@@ -39,16 +39,27 @@ routes(server);
 require("./lib/streetnameLookup.js")(server);
 
 
-//server start if not testing
-if(!module.parent) {
-    server.start(function(err){
-        if (err) {
-            throw err;
-        } else {
-            console.log("Server running on " + config.server.host + ":" + config.server.port);
+server.register({
+    register: require("good"),
+    options: config.logging
+}, function(err) {
+    if (err) {
+        console.log(err);
+    } else {
+        //server start if not testing
+        if(!module.parent) {
+            server.start(function(err){
+                if (err) {
+                    throw err;
+                } else {
+                    console.log("Server running on " + config.server.host + ":" + config.server.port);
+                }
+            });
         }
-    });
-}
+    }
+});
+
+console.log(__dirname)
 
 //exports server for testing
 module.exports = server;

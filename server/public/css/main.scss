@@ -9,6 +9,9 @@
 
 @import 'base/reset',
 	'base/typography',
+
+	'components/errormessages',
+	'components/tooltip',
 	'components/map',
 	'components/accordian',
 	'components/listresults',
@@ -16,7 +19,9 @@
 	'components/buttons',
 	'components/forms',
 	'components/localinforesults',
+
 	'helpers/mixins',
+
 	'layout/header',
 	'layout/layout';
 

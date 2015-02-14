@@ -27,7 +27,6 @@
 
         nearestMapper: function nearestMapper (req, cb, err, next) {
 
-
             var service, location, query, lat, lng, apiUrl, defaultLocation;
 
             service = cap(req.params.service);
@@ -49,7 +48,6 @@
             //change value of services query depending on service being searched
             services    = (serviceArray.recycling.indexOf(service) !== -1) ? "recycle="
                         : "find=";
-
            
             //map our service names to camden service names
             service = aliasServices(service);
@@ -80,7 +78,6 @@
             query = (req.params.latitude && req.params.longitude)   ? "?" + lats + lat + "&" + lngs + lng
                                                                     : "?" + locations + location;
 
-            console.log(url.streetworksApi + query); 
             return cb(null, url.streetworksApi + query, { "Accept": "application/json" });
         }
     };

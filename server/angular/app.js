@@ -13,14 +13,16 @@
     var angular = require("angular");
     require("angular-touch");
     require("angular-bootstrap");
+    require("angular-local-storage");
 
     angular.module("maps", [
             require("angular-ui-router"),
             "ngTouch",
             "ui.bootstrap",
+            "LocalStorageModule",
             "leaflet-directive"
     ])
-
+    
     .config( require("./config.js") )
 
 	// Set up the cache for initial resources

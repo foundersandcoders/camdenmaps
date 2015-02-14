@@ -61,27 +61,12 @@
 
                 expect(element(by.id('first-level-options')).isPresent()).toBe(false);
             });
-            it("name of selected service with icon are displayed", function () { 
 
-                var container = element(by.id('address-search'))
-
-                var imgsrc = container.element(by.tagName('img')).getAttribute("ng-src");
-                var text = container.element(by.tagName('h2')).getText();
-
-                expect(imgsrc).toEqual("../img/nearestservice/lunchclub.png")
-                expect(text).toEqual("Lunch club")
-            });
-            it("input field and search button are displayed", function () { 
-
-                var postcodeInput = element(by.id('postcode-input')).element(by.tagName('input'));
-
-                expect(postcodeInput.isPresent()).toBe(true);
-            });
             it("search again and list results buttons are displayed", function () { 
 
                 var buttons = element.all(by.tagName('button')).getText();
 
-                expect(buttons).toEqual(['', '', 'Pick Another Service', 'List results']);
+                expect(buttons).toEqual(['', '', 'Pick another service', 'List results']);
             });
         });
 

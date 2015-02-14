@@ -19,11 +19,14 @@
         return str.replace("/", " and ");
     }
 
+
     module.exports = {
 
         convertLocalInformation: function convertLocalInformation (err, res, req, rep) {
 
-            var xml, response;
+            var xml, 
+                response;
+
             xml = "";
             response = {};
             
@@ -65,13 +68,20 @@
                         return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that location"});
                     }
                     response = clean(response);
+                    
+                    if(!response.location.hasOwnProperty("Latitude")) {
+                        return rep({error: "Upstream Error", message: "Sorry, that postcode looks invalid" });
+                    } 
+        
                     return rep(response);
                 });
             });
         },
         convertStreetworks: function convertStreetworks (err, res, req, rep) {
 
-            var xml, response;
+            var xml, 
+                response;
+
             xml = "";
             response = {};
             
@@ -122,17 +132,26 @@
                         return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                     }
                     response = clean(response);
+                    
+                    if(!response.location.hasOwnProperty("Latitude")) {
+                        return rep({error: "Upstream Error", message: "Sorry, that postcode looks invalid" });
+                    } 
+                    
                     return rep(response);
                 });
             });
         },
         convertToJson: function convertToJson (err, res, req, rep) {
 
-            var xml, response, key, service;
+            var xml, 
+                response, 
+                key, 
+                service;
+            
             xml = "";
             response = {};
             key = req.raw.req.url;
-            service = cap(req.params.service)
+            service = cap(req.params.service);
 
             if (err) {
                 console.log(err);
@@ -155,7 +174,7 @@
                             return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                         }
 
-                        console.dir(result);
+                        // console.dir(result);
                         response.location = {};
                         response.location.Area = result.Locations.$.Area;
                         if (req.info.hasOwnProperty("latitude")) {
@@ -202,6 +221,11 @@
                             return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                         } 
                         response = clean(response);
+                        
+                        if(!response.location.hasOwnProperty("Latitude")) {
+                            return rep({error: "Upstream Error", message: "Sorry, that postcode looks invalid" });
+                        } 
+
                         cache.set(key, response, function (err, success) {
                             if (!err && success) {
                                 return rep(response);
@@ -259,6 +283,10 @@
                             return rep({error: "Service Not Found", message: "Sorry, we could not find the right information on that service or location"});
                         }
                         response = clean(response);
+                        
+                        if(!response.location.hasOwnProperty("Latitude")) {
+                            return rep({error: "Upstream Error", message: "Sorry, that postcode looks invalid" });
+                        } 
 
                         cache.set(key, response, function (err, success) {
                             if (!err && success) {
@@ -307,6 +335,10 @@
                         }
 
                         response = clean(response);
+                        
+                        if(!response.location.hasOwnProperty("Latitude")) {
+                            return rep({error: "Upstream Error", message: "Sorry, that postcode looks invalid" });
+                        } 
 
                         cache.set(key, response, function (err, success) {
                             if (!err && success) {

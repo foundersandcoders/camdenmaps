@@ -3,10 +3,6 @@
 *
 ********************************/
 
-//TODO: Better error handling
-//TODO: Must have input validation for address/street name: HOW??? 
-var noResults = require("../lib/no-results.js");
-
 ;(function () {
     "use strict";
 
@@ -18,7 +14,16 @@ var noResults = require("../lib/no-results.js");
         "markers",
         "markerHandlers",
         "buttonHandlers",
-        function ($scope, $stateParams, $location, apiSearch, markers, markerHandlers, buttonHandlers) {
+        "localStorageService",
+        function ($scope, $stateParams, $location, apiSearch, markers, markerHandlers, buttonHandlers, localStorageService) {
+
+            var path,
+                destination,
+                noResults,
+                resetActiveMarker;
+
+            noResults = require("../lib/no-results.js");
+            resetActiveMarker = require("../lib/reset-active-marker");
 
             //model for search query
             $scope.address = "";
@@ -33,7 +38,7 @@ var noResults = require("../lib/no-results.js");
             $scope.service = decodeURI($stateParams.service);
 
             // Ensuring that the service name in the URL is Encoded
-            $stateParams.service = encodeURIComponent($scope.service);
+            $stateParams.service = encodeURIComponent($scope.service);;
 
             try {
                 //model for image icon
@@ -46,39 +51,43 @@ var noResults = require("../lib/no-results.js");
                 console.log(e);
             } 
 
-            var path,
-                destination;
-
-            console.log($scope.results.length);
-
             if( noResults($scope) ) {        
+
                 apiSearch.search($stateParams.service)
                         .success(function success (data) {
                             if(data.hasOwnProperty("error")) {
                                 // display error message
-                                $scope.update("error", data.message);
+                                $scope.updateError("error", data.message);
                                 // and redirect back to services menu to try again
                                 $location.path("/home/services");
                             }
-                            $scope.update("results", data.properties);
+                            $scope.updateResults(data.properties);
+                            //selects item from results with matching {id}
+                            $scope.result = $scope.results.filter(function (result) {
+                                return result.display.Name === $stateParams.id;
+                            })[0];
+
                             $scope.addMarkers();
                             // $scope.centre = markers.centreCheck($scope)();
                             $scope.centre.zoom = markers.zoomCheck($scope)();
                         })
                         .error(function error(err) {
-                            return $scope.update("error", err.message);
+                            return $scope.updateError("error", err.message);
                         });
 
             }
-
 
 
             $scope.$on('leafletDirectiveMarker.click', markerHandlers.markerClick($scope));
 
             $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
 
-            //redirects to next state when provided with address
-            $scope.search = function search () {
+
+            //check support before using it to avoid breaking the app
+            if (localStorageService.isSupported) {
+
+                $scope.address = localStorageService.get("userLocation");
+
                 if($scope.address) {
                     if($scope.activeMarker) {
                         //resets active marker
@@ -90,20 +99,53 @@ var noResults = require("../lib/no-results.js");
                     $location.path(path);
 
                 }
-            };
+            }
 
+            //redirects to next state when provided with address
+            $scope.search = function search () {
+
+                if($scope.address) {
+                    apiSearch.search($stateParams.service, $scope.address)
+                        .success(function success (data) {
+                            if(data.hasOwnProperty("error")) {
+                                return $scope.updateError("error", data.message);
+                            }
+
+                            $scope.updateResults(data.properties);
+                            $scope.result = $scope.results.filter(function (result) {
+                                return result.display.Name === $stateParams.id;
+                            })[0];
+
+                            $scope.addMarkers();
+                            // $scope.centre = markers.centreCheck($scope)();
+                            $scope.centre.zoom = markers.zoomCheck($scope)();
+
+
+                            if (localStorageService.isSupported) {
+                                localStorageService.set( "userLocation", $scope.address);
+                            }
+
+                            resetActiveMarker($scope);
+
+
+                            path = "/home/" + $stateParams.service + "/location/" + $scope.address;
+                            //redirects to new path and runs location controller
+                            $location.path(path);
+
+                        });
+
+                }
+            }; 
+
+            $scope.geolocationToolTip = 'Use my current location';
 
             $scope.geolocateUser = function() {
                 markers.geolocateUser($scope)();
-            
-
+                resetActiveMarker($scope);
             };
-
     
             //back button functionality
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home/services");
-            //back button text
-            $scope.backButtonText = "Pick Another Service";
 
             $scope.toggle = buttonHandlers.toggle($scope);
             
