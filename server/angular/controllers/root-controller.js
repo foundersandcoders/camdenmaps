@@ -69,10 +69,10 @@
                 maxbounds: regions.camdenBorough,
                 defaults: {
                     scrollWheelZoom: true,
-                    tileLayer: "http://otile3.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png"
+                    tileLayer: "http://otile3.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png",
+                    zoomControlPosition: "bottomright",
                 },
                 markers: {},
-
                 geojson: {
                     data: camdenBoundaries,
                     style: {
