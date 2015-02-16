@@ -222,10 +222,6 @@
                         } 
                         response = clean(response);
                         
-                        if(!response.location.hasOwnProperty("Latitude")) {
-                            return rep({error: "Upstream Error", message: "Sorry, that postcode looks invalid" });
-                        } 
-
                         cache.set(key, response, function (err, success) {
                             if (!err && success) {
                                 return rep(response);
