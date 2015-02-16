@@ -115,14 +115,14 @@
                     if( cappedResults(decodeURI($stateParams.service)) && !scope.markers.m0 ) {
 
                             markers.m0 = {
-                                lat: 51.53861,
-                                lng: -0.14205,
+                                lat: 51.534,
+                                lng: -0.126,
                                 icon: {
                                     iconSize: [28],
                                     iconUrl: "../img/icons/location-marker.png",
                                 },
                                 focus: true,
-                                message: "<b>NW1 0NE</b> <br> Please enter a postcode <br> for nearby results.",
+                                message: "<b>N1C 4AG</b> <br> Please enter a postcode <br> for nearby results.",
 
                             };
 
