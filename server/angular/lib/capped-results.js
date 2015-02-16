@@ -1,10 +1,9 @@
 ;(function() {
 	"use strict";
 
-	module.exports = function cappedResults(service) {
+	module.exports = function cappedResults(service, scope) {
 		
 		//will only check for small results lists		
-		// if(Object.size(markers) < 12) {
 			var fiveortenmarkers = [ 
 					"After school club",
 					"Aluminium cans",
@@ -81,7 +80,7 @@
 			if(fiveortenmarkers.indexOf(service) > -1) {
 				return true;
 			}
-		// }
+		
 
 
 	};
