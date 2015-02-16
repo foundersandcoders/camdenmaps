@@ -33,7 +33,7 @@
             location = req.params.postcode;
             lat = req.params.latitude;
             lng = req.params.longitude;
-            defaultLocation = "NW1 0NE";
+            defaultLocation = "N1C 4AG";
             lat = req.params.latitude;
             lng = req.params.longitude;
 

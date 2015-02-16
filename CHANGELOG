@@ -1,11 +1,204 @@
-00746fb (HEAD, dev) Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into dev
+9ece333 Merge pull request #169 from foundersandcoders/changemenujson
+4018825 Merge pull request #170 from foundersandcoders/errormessages
+fe5ddd4 error messages complete for about your neighbourhood
+786aa80 error message, with correct styling, displaying for postcode input within find-your-nearest
+0db9726 adding error directive and error message styling
+1863eb5 adding aliases to fix encoding problems
+bce56e7 Merge pull request #167 from foundersandcoders/errormessages
+3025dd0 check for error before loading next page on neighbourhood search controoler
+19fa219 check for error before loading next page on search controller
+cd28145 Merge pull request #166 from foundersandcoders/logging
+6b1dfdd fixes routesConfig callbacks
+ecf2d50 removes boom
+d542587 Merge pull request #165 from foundersandcoders/map
+2b966bf adds parking options to capped results
+e5f1c89 removes library from capped results - has organic 10 results
+faba9a5 adds mouse zoom
+0a6bd94 merges locally with dev
+5977a68 ensures api uses address entered for capped results
+62f5aa9 removes api from single controller
+4a758cf adds basic logging
+58c20f1 Merge pull request #163 from foundersandcoders/localinfotest
+d54301b add localinformation endpoint test and fixtures
+b5357b5 Merge pull request #162 from foundersandcoders/rememberlocation
+36bb60a removing key on changeAddress
+1255180 saving use location in live streetworks
+9c25800 adding location saving to findyournearest section
+bd0d627 Merge pull request #161 from foundersandcoders/typeaheadstylequickfix
+2930668 fixed overflow issue on typeahead
+1699ed9 Merge pull request #160 from foundersandcoders/localinfodisplay
+f5ec665 remove console.log from convertXml.js
+9eb4094 remove console.log from local-found-controller.js
+5783e16 Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into dev
+dd25cad fix localinfo display
+838dc51 Merge pull request #159 from foundersandcoders/uprnparser
+36c0137 fix spelling mistake that breaks uprn parser
+adedcd7 adds resetActiveMarker function to lib and removes icons from single view
+72703ee Merge pull request #158 from foundersandcoders/map
+406d4c4 Merge branch 'dev' into map
+26366ff fixes bug where lat and lng set to 0
+c62774a Merge pull request #157 from foundersandcoders/localInfoTwo
+3624fc9 Update root.neighbourhood.local-information.html
+0e86e4d merging with dev fix
+7738b7e merging local info with dev
+65ef928 merges locally with dev
+a2f302a updates geolocation message to match your location
+1d33eea Merge pull request #156 from foundersandcoders/errorhandling
+0102081 move request to dependencies in package.json
+21743ba add error handling to streetworks
+a058a59 Merge pull request #155 from foundersandcoders/styling-quickfix
+8cdcbdd quick fix restyling of geolocation
+a590b48 Merge pull request #154 from foundersandcoders/location
+886f69a Merge branch 'dev' into location
+ffce6bf stops geolocation being over written by your location marker
+6d3f7c2 Merge pull request #152 from foundersandcoders/typeahead
+d885f76 remove menu.json from typeahead-directive.js
+52de5c7 merging with remote dev changes
+c8b6cce adding better hover and focus styling for the service typeahead;
+238c640 Merge pull request #153 from foundersandcoders/location
+f195879 cleans up rounding function
+dddc586 merges locally with dev
+d07e36a working on adding rounding to list
+12e859b updates rounding in list controller
+78262b5 making typehead controller easier to use and added some better styling
+c73f4c8 adding basic styling and moving typeahead to directive instead
+3a0f4cd servies typeahead completed
+59fd58e Merge pull request #151 from foundersandcoders/clientsideerrors
+b59bd9b Merge branch 'dev' into serversideerrors
+7c7fbe0 adds client-side error handling
+5535561 changes variable marker in location to mapMakers to allow markers to refer to service
+356c903 cleans up code and spelling
+06ca078 adds connexions to capped results
+7544cfb deletes duplicate server route
+ce93eaf merges locally
+4a8e55d updates location marker message for markers capped at 5 and 10
+9640dd6 changes capped results function to search an array of capped results
+fce26b9 Merge pull request #150 from foundersandcoders/serversideerrors
+c2eab8c Merge branch 'dev' into serversideerrors
+4ac247a add error handling in server
+34d16a0 adds 10 capped services
+203c02a Merge pull request #149 from foundersandcoders/protractortest
+3c61b38 testing endpoints with results equaling 5 or 10
+23e27dd adds streetworks single view info
+716588c changes styling of pop up box
+c9bab5f adds partial for streetworks
+1ae76c4 adds ui-view for streetorks
+5637520 Merge pull request #148 from foundersandcoders/streetnames
+8bafcab fix merge conflic
+e6a9a42 add lat/lng endpoint for streetworks
+8c13018 creates styling for multile devices
+e1e8f19 redirect streetname searches to lat/lng endpoint
+40f81b4 colours links in  blue to add clarity
+028a507 fixes a link in parlimentary information
+cd137dc adds website link to local information
+d4c35d6 merges locally with dev
+dd2ea81 removes console logs for Nat
+32c99d3 adds website links to neighbourhood parser
+34eda56 links capped results function with function in lib
+b99645c Merge pull request #147 from foundersandcoders/cctvfix
+743c219 ensuring that `/` is replaced with `and` in find your nearest endpoints
+dda2c66 Merge branch 'localinfo' of https://github.com/foundersandcoders/camdenmaps into localinfo
+608bbfc adds minimal styling to foot.neighbourhood partial
+9ebb2d7 merges files and adds ui-view of local information onto DOM
+24aaae2 Merge pull request #146 from foundersandcoders/striphtml
+97698c0 strip html from response properties while parsing
+a843721 Merge pull request #145 from foundersandcoders/localinfo
+a209bcc remove console logs
+9c1bf8c Merge pull request #144 from foundersandcoders/endpointpractice
+38abd11 completes rough streetworks user journey
+4f7d670 prepares landing-controller for merge with remote localinfo
+4247507 Add streetworks user journey (not fully routed yet)
+5ee89b7 prepares local pull
+8b6c1a6 adds partial root.landing.html to partials folder
+90972ac adds root.locations partial to the config file
+7e810ac adds rough user journey for local information
+361011f fix button implementation on landing to redirect to appropriate urls
+f296e69 Merge branch 'dev' into location
+00e4298 adds lib files with functions in
+c4649c4 deleting ice skating endpoint since it returns no results
+6117356 Deleting endpoints that return no data
+b382210 adds functions to check if results are capped and if results exisit
+41560f7 Merge branch 'dev' into streetnames
+e4b15fb Merge pull request #143 from foundersandcoders/swaggerupdate
+d3a0f2c adds preliminary support for streetname searching
+3ea553c updating descriptions and fixing spelling mistakes
+6a43443 updating swagger
+ac693ec finishes making correct end point for geolocation, markers still not working
+92d7edc Merge pull request #142 from foundersandcoders/directives
+2c9f1a9 Merge pull request #141 from foundersandcoders/cachechecking
+b0cd223 fixed minor styling errors
+28c62fc adding a directive in place of the ng-show used for toggling angular views
+4668cc6 caching `test`
+d3e0564 changing map to be 80% from 70%
+cc7143e Update cachservices.js
+5cec368 removes auto geolocate and adds a button
+d8a9e3d moves geolocate to a service
+7c3a56b fixes bug on search controller page and onclick map
+e6f0422 checks for results in location controller and doesn't rerun the api each time
+85a543c finalises local merge
+aef7cab merges locally with dev
+19538cc console logs location selected for testing
+cac853e Merge pull request #140 from foundersandcoders/recyclingparserfix
+f9269cd fixes recycling parser
+59381be Merge pull request #139 from foundersandcoders/nearestLogo
+7d545c3 refactors choosePath function in landing-ctrl
+cc15c1d Merge pull request #138 from foundersandcoders/stylingmobile
+92f8a3e removes unwanted console.logs and .
+89b3f02 redirects to home form find-your-nearest logo
+c125b9c on mobile, pin now centers near the top of the map to prevent being hidden by the result view
+11d3bde invisible button on safari now visible
+f1781b4 invisible button on safari now visible
+81d65c0 merging remote dev with local dev
+dbe9cbd optimising for phone
+7a8cc61 Merge pull request #137 from foundersandcoders/angularfiles
+0fb25eb uri encoding/decoding in the correct places again.
+ecbe1e8 merging with dev branch
+9508baa merged with remote changes
+961896a changed reserve `s` in params for service functions to `functionScope` to hopefully fix safari problems
+2bce68c mergeing with dev changes
+2102000 added location param to search controller to fix problem
+617ea9b changes default ttl for cache to 1 week
+672f4f2 Merge pull request #136 from foundersandcoders/swipenavigation
+12a128f adds swipe-right and swipe-left directives for services menu
+443c745 added cache factory for angular
+a9f5643 returns zoom check in search controller
+0edf0a7 Merge branch 'dev' into location
+489ff55 adds if statement to prevent bug when clicking between markers in single list view with location provided
+298a56b adds geolocation marker on five results if there
+c3aee15 changes values for markers to 7 when there is a location marker
+02d728d adds inital marker for 5 results using geolocation data
+3fb2eed Merge pull request #134 from foundersandcoders/caching
+5aec289 adds location marker for geolocating
+b7756c5 added all angular files, excluding partials directory, outside on the public folder
+744df4a uses geolocation and checks if it is within Camden boundaries and centres on that location if it is
+a085414 serverside caching complete for all current find your nearest endpoints
+43accab Update cache.js
+1e88c17 Update package.json
+62e1481 corrects zoom level with search again
+64bbced cached findyournearest Service endpoints
+7146325 caching progress
+4e006c9 added basic caching
+5f24987 Merge pull request #132 from foundersandcoders/servertesting
+f407fe5 fixed warnings for our acceptance tests
+0774e13 server tests for parking endpoints
+88dac2b added catbox and server methods
+1faf2a5 Merge pull request #131 from foundersandcoders/localinformationparser
+ae5350d adds localinformationparser
+8edaf0d Merge pull request #130 from foundersandcoders/mapedits
+9a26503 Update search-controller.js
+1764467 removes console logs
+34c8a98 merges locally with dev
+0bcbd94 adds zoom function that pans out when there are few results and zooms in when there are 5 clustered results
+6b5275c updates CHANGELOG
+00746fb Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into dev
 66d7b0b adds changelog
-a8ee952 (origin/dev, origin/HEAD) Merge pull request #129 from foundersandcoders/streetworksendpoint
+a8ee952 Merge pull request #129 from foundersandcoders/streetworksendpoint
 7d957db Merge pull request #128 from foundersandcoders/bugFix
-fcdaa6f (origin/streetworksendpoint, streetworksendpoint) adds streetworks endpoint and parserw
-9d85766 (origin/bugFix) prepares to switch branch
+fcdaa6f adds streetworks endpoint and parserw
+9d85766 prepares to switch branch
+090d770 prevents error for categories with less than 5 results by checking for m0 before checking for property of m0
 489644f Merge pull request #127 from foundersandcoders/searchterm
-2271487 (origin/searchterm) has default view zoomed out to fit in more of Camden
+2271487 has default view zoomed out to fit in more of Camden
 747403f merges locally with dev and adds location arguments for search again on search-controller
 d87ab0d Merge pull request #122 from foundersandcoders/reenterPostcode
 08fbd83 Merge branch 'dev' into reenterPostcode
@@ -49,7 +242,7 @@ b05aed2 moves addMarkers() into a service
 9888e7c allows user to re-enter/change postcode
 f23be38 adds function to highlight marker on click in search controller
 98d5aa6 Merge pull request #121 from foundersandcoders/addsparsers
-b59163d (origin/addsparsers, addsparsers) Merge branch 'dev' into addsparsers
+b59163d Merge branch 'dev' into addsparsers
 6d46e11 adds unformatted xml parser for recycling
 cf63e08 Merge branch 'dev' into markers
 0fe21d2 updates comments in location controller
@@ -79,7 +272,7 @@ db81ab6 fixed styling for buttons
 33eb120 added input into form so you can use the keyboard enter to search
 5b71753 added input into form so you can use the keyboard enter to search
 33683ea Merge pull request #115 from foundersandcoders/specificchanges
-4b2bd9c (origin/specificchanges) fixed height services carousal
+4b2bd9c fixed height services carousal
 dd68a07 Merge branch 'dev' into addsparsers
 b5f4fc3 deletes keys
 daa772f improves api mapping
@@ -128,7 +321,7 @@ c1b8b0b adds logic to provide different endpoints fully functioning and tested
 72222d4 Update serverConfig.js
 d670f13 adds request for ./lib/nearest2json.js example script
 a9cb9ba switch out node-expat for xml2js - hopefully fixes travis build: https://github.com/foundersandcoders/camdenmaps/issues/103
-6f0f14a (origin/endPoints) Merge branch 'dev' into endPoints
+6f0f14a Merge branch 'dev' into endPoints
 d922f79 adds arrays for parking and recycling into serverConfig.js deletes parking and recycling functions in MapConfig.js
 6596f8d removes parking and recycling objects
 71035d2 removes convertToXmlAgain function
@@ -155,9 +348,9 @@ daa89a5 changes marker to circle path
 df4e3bd merging remote dev changes with local swagger api changes
 7d545f5 deleting unnecessary images and jquery documents
 799fe96 editing services and locations schema
-dc6ae2d (regexrouteparams) Merge pull request #100 from foundersandcoders/swaggerapi
+dc6ae2d Merge pull request #100 from foundersandcoders/swaggerapi
 4a86037 moved leaflet logo to bottom of page
-0acc5b3 (origin/singlecontrollerhttp) Merge pull request #99 from foundersandcoders/singlecontrollerhttp
+0acc5b3 Merge pull request #99 from foundersandcoders/singlecontrollerhttp
 3146919 Merge branch 'dev' into singlecontrollerhttp
 881cce3 makes conditional http call in single controller
 10eba7b deleting prototype
@@ -207,7 +400,7 @@ e933b82 merges locally with dev
 d89ab85 Merge branch 'dev' into callFunction
 f8e7793 adds call property on mobile device
 c03c83b Merge pull request #91 from foundersandcoders/menustyling
-7972aee (origin/menustyling) removes console.logs
+7972aee removes console.logs
 f0c20c2 fixes problem with currentIndex value when returning to parent's index page
 1051af1 back button on services page take user back to page with parent category on menu
 6647194 fixes problem with arrows on services page
@@ -240,7 +433,7 @@ c01cba0 Merge pull request #86 from foundersandcoders/servicemarkers
 9d15e66 merging remote changes
 bf8111f toggle trial
 040d5b9 Merge pull request #85 from foundersandcoders/changemenujson
-20c63b6 (origin/changemenujson) Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into dev
+20c63b6 Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into dev
 044df3b changes menu.json to load via browserify
 a62859b Merge pull request #84 from foundersandcoders/cosmetics
 db0564a resizes marker icon
@@ -266,12 +459,12 @@ bcd7b30 align left address search service
 9449ec9 merges locally
 6091961 Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into dev
 3666b0c added two more tests
-b8b89ea (origin/toggle) on single result view position fixed instead of absolute
+b8b89ea on single result view position fixed instead of absolute
 da0e034 merging with dev
 2645dad deleted camden.maps.js again
 b695a65 changing ng-hide slightly
 4797143 Merge pull request #81 from foundersandcoders/addssingleview
-6683f07 (origin/addssingleview) adds single view from search, shows distance only if address entered
+6683f07 adds single view from search, shows distance only if address entered
 2f0676d added ng-hide
 2caddf1 adding toggle.js
 daa8b00 merging with remote dev
@@ -280,7 +473,7 @@ caeb215 Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps in
 dba7d3f removes fake data js
 ca7f6c7 removes markers when click search again
 902355d Merge pull request #78 from foundersandcoders/fixicon
-67ce029 (origin/fixicon) merge conflicts
+67ce029 merge conflicts
 7f38ba5 Merge pull request #77 from foundersandcoders/improvingtests
 dff7731 merging with dev
 ad37a50 added new tests
@@ -288,12 +481,12 @@ ad37a50 added new tests
 5f0f6b5 Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into dev
 4a1f5a5 deleted files
 cacdffc Merge pull request #76 from foundersandcoders/tweakingmenucontrol
-20c17cd (origin/tweakingmenucontrol) tweaks control of services menu
+20c17cd tweaks control of services menu
 73f7899 changes mock data to acutal data
-cb7f983 (origin/improvingtests) merging with updated dev
+cb7f983 merging with updated dev
 ac12fc5 Merge pull request #75 from foundersandcoders/fixinglistview
 5a941b4 added more protractor tests and accptance criteria
-8eb4696 (origin/fixinglistview) adds list view to search stage
+8eb4696 adds list view to search stage
 bd0896b resolves conflicts
 0cede93 adds angular-leaflet-directve.min.js
 d2f2dc2 Merge branch 'dev' into listimprovements
@@ -301,14 +494,14 @@ dd39c0c Merge branch 'dev' of github.com:foundersandcoders/camdenmaps into dev
 a8c06c3 merges locally
 678836b Merge pull request #74 from foundersandcoders/datadisplaytweaks
 6b7a092 merges locally
-3781d86 (origin/datadisplaytweaks) tweeks data display
+3781d86 tweeks data display
 5552a56 changed height of map
 39f6261 Merge pull request #73 from foundersandcoders/formattingresponse
-c656109 (origin/formattingresponse) reformats json response
+c656109 reformats json response
 85c40fb Merge branch 'dev' of https://github.com/foundersandcoders/camdenmaps into dev
 faf4b69 Merge pull request #72 from foundersandcoders/tweakingchanges
 874388a reformats data and fixes xmltojson formatting
-1e37971 (origin/tweakingchanges) fixed styling for postcode search
+1e37971 fixed styling for postcode search
 77f955d added icon to address found view and address search view
 778b788 changed styling to compensate for if there is less then 4 results
 5a8155d onclick FindYourNearest text disappears now when clicked
@@ -320,7 +513,7 @@ c5622a8 adds min leaflet file
 67c8eac adds angular-leaflet-directive.min.js
 e7b2eba Merge pull request #71 from foundersandcoders/fixingxmlparser
 cc18a17 Merge pull request #70 from foundersandcoders/gulpFix
-baf2870 (origin/fixingxmlparser) adds *maps.min.js to gitignore
+baf2870 adds *maps.min.js to gitignore
 63cff15 fixes gulp browserify
 0eb46f2 removes faulty faketoe require statement
 1a041c0 removes one of two gulp browserify
@@ -333,7 +526,7 @@ d84d55d Merge pull request #69 from foundersandcoders/fixingxmlparser
 f12ebdc removes the double list results button
 60d6b22 switched to new codeclimate with correct default branch
 7e359da Merge pull request #68 from foundersandcoders/styling
-a5e8445 (origin/styling) fixed result view and fixed on bottom
+a5e8445 fixed result view and fixed on bottom
 a07c363 scrolling list with fixed height
 b0b06d9 putting .css .map and .min.js back in the gitignore
 52d9f8b Merge pull request #65 from foundersandcoders/gulpPath
@@ -480,7 +673,7 @@ c89ae77 added more styling
 6f36ddc merging remote changes with local
 b582a73 made new menu.json from approved new services and categories
 546c1c9 deleting conflicting code
-bfdbbe9 (origin/htmlandrouter) adds searchcontroller
+bfdbbe9 adds searchcontroller
 a4aab0b merging remote changes with local branch
 35a13db removes console.logs
 fb51ed7 fixes merge conflicts
@@ -542,10 +735,10 @@ eda3881 added 2 more tests
 9937518 returns undefined for values which are missing and values when they are there
 515216c fixes merge conflicts
 defa2b4 fixing router
-b1b8810 (origin/htmlsCssPrototype) adds carousel for services
+b1b8810 adds carousel for services
 af77ad9 edits to id tags
 2942739 addition of bootstrap tags
-c644349 (origin/LocatingServices) adds function to return relevant value for first five markers
+c644349 adds function to return relevant value for first five markers
 b6f401f added images
 86a6375 added alternate menu.json
 c791956 menu.json completed
@@ -558,7 +751,7 @@ bf491c6 put headers in the body and changed any id and class names to be hyphen 
 7c35456 added a better css arrow and added link styling in reset.scss
 8c8abc4 reorganizing html structure readying for uirouter merge
 47e5ca6 collapse.js beginning to work
-f3ab9d5 (origin/angularrouter) adds more controllers
+f3ab9d5 adds more controllers
 85c8a09 merges locally
 7753275 adds link to leaflet style sheet
 c7667c7 replaces open layers scripts with leaflet and angular-leaflet scripts
@@ -587,7 +780,7 @@ e524cf9 adds angular router layout
 34d6023 edits to index.html
 ed8cfe2 Merge branch 'master' of https://github.com/foundersandcoders/camdenmaps into htmlsCssPrototype
 5fb908f div placeholders added to server/public/views/index.html
-75a8ec0 (origin/swaggerBuild) Merge branch 'dev' into swaggerBuild
+75a8ec0 Merge branch 'dev' into swaggerBuild
 5d95ee0 corrected spelling in server/public/yaml/api-docs.yaml
 aead5dc fixes cdns to jquery
 d309e05 fixes final path for index.html on swagger

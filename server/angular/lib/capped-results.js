@@ -1,10 +1,9 @@
 ;(function() {
 	"use strict";
 
-	module.exports = function cappedResults(service) {
+	module.exports = function cappedResults(service, scope) {
 		
 		//will only check for small results lists		
-		// if(Object.size(markers) < 12) {
 			var fiveortenmarkers = [ 
 					"After school club",
 					"Aluminium cans",
@@ -16,7 +15,7 @@
 					"Beavers group",
 					"Bowling",
 					"Camden Climate Change Alliance award winner",
-					"Car club bay",
+					"Car club",
 					"Cardboard and Paper",
 					"Car park",
 					"CCTV camera",
@@ -46,7 +45,7 @@
 					"Hall for hire",
 					"Holiday play scheme",
 					"Hospital",
-					"Household electronics/appliances",
+					"Household electronics and appliances",
 					"Karate",
 					"Kickboxing",
 					"Kung Fu",
@@ -58,12 +57,12 @@
 					"Open space",
 					"Optician",
 					"Parking space",
-					"Pay and display/meter",
+					"Pay and display",
 					"Permit holders",
 					"Pilates",
 					"Place of worship",
 					"Recycling point",
-					"Residents/tenants association",
+					"Residents and tenants association",
 					"Sexual health clinic",
 					"Solo motorcycle",
 					"Special school",
@@ -81,7 +80,7 @@
 			if(fiveortenmarkers.indexOf(service) > -1) {
 				return true;
 			}
-		// }
+		
 
 
 	};
