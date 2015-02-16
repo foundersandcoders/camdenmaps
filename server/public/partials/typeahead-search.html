@@ -1,19 +1,26 @@
-<div class="clicktosearch col-xs-1 col-xs-offset-11">
-    <button type="submit">
-        <span class="glyphicon glyphicon-search"></span>
-    </button>
+<div class="col-xs-1 col-md-1">
+    <a class="col-xs-1 col-md-1" ng-click="backOneCategory()">
+        <img id="backhome" src="../img/icons/backhome.png" alt="back">
+    </a> 
 </div>
 
 <form ng-submit="handler(selected)">
 
-	<div class="col-xs-11">
+	<div class="col-xs-10 col-md-10" id="forminput">
 	    <input type="text" placeholder="Enter a service to search" ng-model="selected" typeahead="searchitem for searchitem in typeaheadSearchList | filter:$viewValue | limitTo:8" class="form-control">
 	</div>
 
-	<div class="col-xs-1">
+	<div class="col-xs-1 col-md-1">
 	    <button type="submit">
 	        <span class="glyphicon glyphicon-search"></span>
 	    </button>
 	</div>
-	
+
 </form>
+
+<!-- <div class="clicktosearch col-xs-1 col-xs-offset-11">
+    <button type="submit">
+        <span class="glyphicon glyphicon-search"></span>
+    </button>
+</div>
+ -->

@@ -10,3 +10,17 @@
 #menubar{
 	position: fixed;
 }
+
+#first-level-options {
+	background-color: $black;
+	.icon {
+		margin: 1em auto 1em;
+		display: block;
+		width: 4em;
+	}
+	h4 {
+		text-align: center;
+		color: $white;
+		margin: 0 0 1em;
+	}
+}

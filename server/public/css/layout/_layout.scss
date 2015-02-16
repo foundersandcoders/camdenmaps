@@ -8,23 +8,7 @@
 	'../base/reset',
 	'../base/typography';
 
-#first-level-options {
-	border-bottom: 0.1em solid black;
-	background-color: $light-blue;
-	.icon {
-		margin: 1em auto 1em;
-		display: block;
-		width: 5em;
-	}
-	h1 {
-		margin-bottom: 0;
-	}
-	h4 {
-		text-align: center;
-		color: black;
-		margin: 0 0 1em;
-	}
-}
+
 
 #postcode-entered {
 	h4 {
@@ -70,14 +54,29 @@
 // 	}
 // }
 
-#accordionBox {
-	//display: block;
-	width: 40em;
+// @media screen and (max-width:768px) {
+// 	#accordionBox {
+// 		//display: block;
+// 		width: 100%;
+// 	}
+// }
+
+// @media screen and (max-width:400px) {
+// 	#accordionBox {
+// 		//display: block;
+// 		width: 100%;
+// 	}
+// }
+
+#accordionBox{
+	width: 100%;
 }
+
 #first-level-options {
 	padding: 0;
-	margin: 2em 0 0 3em;
-	//width: 40%;
+	margin: 2em 3em 0 3em;
+	box-shadow: 5px 5px 5px #888888;
+	width: 100%;
 	h1 {
 		margin-top: 0.3em;
 	}

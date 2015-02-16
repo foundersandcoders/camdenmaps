@@ -15,6 +15,7 @@
 	'../../../../node_modules/govuk_frontend_toolkit/stylesheets/shims';
 
 .search-box {
+	background-color: $black;
 	#postcode-input {
 		padding: 0;
 		input {
@@ -37,14 +38,15 @@
 
 
 .servicestypeahead {
-	margin-bottom: 1.2em;
+	background-color: $black;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
 	div {
 		padding: 0;
 	}
 	input {
-		border: none;
-		border-bottom: 0.1em solid white;
-		background-color: $dark-grey;
+		border: 0.2em solid $dark-grey;
+		background-color: $white;
 		color: white;
 		width: 100%;
 		border-radius: 0;
@@ -57,7 +59,7 @@
 		}
 	}
 	button {
-		background-color: $dark-grey;
+		background-color: $black;
 		span {
 			color: white;
 			&:hover {
@@ -83,6 +85,11 @@
         }
 	}
 	form {
-		display: none;
+		display: block;
 	}
 }
+
+#backhome {
+	width: 1.8em;
+}
+
