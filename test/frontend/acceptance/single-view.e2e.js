@@ -43,7 +43,7 @@
 	        	var address = element.all(by.tagName('p')).get(4);
 	        	var address2 = element.all(by.tagName('p')).get(5);
 
-                expect(address.getText()).toBe('Camden Street');
+                expect(address.getText()).toBe('30 Camden Street');
                 expect(address2.getText()).toBe('London, NW1 0LG');
 
 	        });
