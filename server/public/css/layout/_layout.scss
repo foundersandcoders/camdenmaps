@@ -50,22 +50,46 @@
 	}
 }
 
-@media (max-width: 768px) {
-	#first-level-options {
+// @media (max-width: 768px) {
+// 	#first-level-options {
+// 		padding: 0;
+// 		h1 {
+// 			margin-top: 0.3em;
+// 		}
+// 		h4 {
+// 			margin-bottom: 0.5em;
+// 			width: 100%;
+// 		}
+// 		.icon {
+// 			width: 4em;
+// 			margin: 0.5em auto;
+// 		}
+// 		.landing-options {
+// 			padding: 0;
+// 		}
+// 	}
+// }
+
+#accordionBox {
+	//display: block;
+	width: 40em;
+}
+#first-level-options {
+	padding: 0;
+	margin: 2em 0 0 3em;
+	//width: 40%;
+	h1 {
+		margin-top: 0.3em;
+	}
+	h4 {
+		margin-bottom: 0.5em;
+		width: 100%;
+	}
+	.icon {
+		width: 4em;
+		margin: 0.5em auto;
+	}
+	.landing-options {
 		padding: 0;
-		h1 {
-			margin-top: 0.3em;
-		}
-		h4 {
-			margin-bottom: 0.5em;
-			width: 100%;
-		}
-		.icon {
-			width: 4em;
-			margin: 0.5em auto;
-		}
-		.landing-options {
-			padding: 0;
-		}
 	}
 }
