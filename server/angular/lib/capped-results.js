@@ -4,8 +4,6 @@
 	module.exports = function cappedResults(service, scope) {
 		
 		//will only check for small results lists		
-		console.log("results", scope.results.length);
-			console.log("checking capped results");
 			var fiveortenmarkers = [ 
 					"After school club",
 					"Aluminium cans",
