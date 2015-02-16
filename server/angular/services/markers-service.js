@@ -89,7 +89,7 @@
                     // this creates the marker objects to plot the locations on the map
                     // this will run on refreshes
                     // it will run if there are capped results
-                    if( Object.size(markers) === 0 || cappedResults(decodeURI($stateParams.service)) ) {
+                    if( Object.size(markers) === 0 || cappedResults(decodeURI($stateParams.service), scope) ) {
                         
                         var i, 
                         	resultLength = Object.size(root);
@@ -112,8 +112,9 @@
 
                     //loads default location marker if results are capped
                     //but not if searching with geolocate 
-                    if( cappedResults(decodeURI($stateParams.service)) && !scope.markers.m0 ) {
+                    if( cappedResults(decodeURI($stateParams.service), scope) && !scope.markers.m0 ) {
 
+                        console.log("cappedResults"); 
                             markers.m0 = {
                                 lat: 51.534,
                                 lng: -0.126,
@@ -122,7 +123,7 @@
                                     iconUrl: "../img/icons/location-marker.png",
                                 },
                                 focus: true,
-                                message: "<b>N1C 4AG</b> <br> Please enter a postcode <br> for nearby results.",
+                                message: "<b>N1C 4AG</b> <br> Please enter a postcode <br> above for nearby results.",
 
                             };
 
