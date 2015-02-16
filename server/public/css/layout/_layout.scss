@@ -74,7 +74,6 @@
 
 #first-level-options {
 	padding: 0;
-	margin: 2em 3em 0 3em;
 	box-shadow: 5px 5px 5px #888888;
 	width: 100%;
 	h1 {
@@ -92,3 +91,11 @@
 		padding: 0;
 	}
 }
+
+#main-container {
+	position: absolute;
+	z-index: 999;
+	margin: 2em 3em 0 3em;
+	width: 30%;
+}
+

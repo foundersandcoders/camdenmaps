@@ -1,13 +1,6 @@
+
 <div class="container-fluid" id="accordionBox">
-	<div id="first-level-options" class="col-xs-12">
-	    <div ng-repeat="button in buttons" class="landing-options col-xs-4 col-sm-4 col-md-4 col-lg-4">
-	        <a id="{{ button.id }}" ng-click="executeFn(button.handler)" >    
-	            <img class="icon" ng-src="{{ button.iconUrl }}" alt="">
-	        	<titletoggle/>
-	        </a>
-	    </div>
-	</div>
-	<div ui-view></div>
+	
+    <titletoggle/> 
 </div>
-
-
+<div ui-view></div>

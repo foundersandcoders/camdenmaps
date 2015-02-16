@@ -1,4 +1,4 @@
-<div class="col-xs-1 col-md-1">
+<div class="col-xs-2 col-md-2">
     <a class="col-xs-1 col-md-1" ng-click="backOneCategory()">
         <img id="backhome" src="../img/icons/backhome.png" alt="back">
     </a> 
@@ -6,7 +6,7 @@
 
 <form ng-submit="handler(selected)">
 
-	<div class="col-xs-10 col-md-10" id="forminput">
+	<div class="col-xs-9 col-md-9" id="forminput">
 	    <input type="text" placeholder="Enter a service to search" ng-model="selected" typeahead="searchitem for searchitem in typeaheadSearchList | filter:$viewValue | limitTo:8" class="form-control">
 	</div>
 

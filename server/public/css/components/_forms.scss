@@ -16,6 +16,8 @@
 
 .search-box {
 	background-color: $black;
+	margin: 0;
+	box-shadow: 5px 5px 5px #888888;
 	#postcode-input {
 		padding: 0;
 		input {
