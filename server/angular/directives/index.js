@@ -12,6 +12,6 @@
 
         .directive("titletoggle", require("./title-toggle-directive.js"))
         .directive("servicestypeahead", require("./typeahead-directive.js"))
-
+        .directive("betabanner", require("./beta-banner-directive.js"))
         .directive("errormessage", require("./error-messages-directive.js"));
 }());

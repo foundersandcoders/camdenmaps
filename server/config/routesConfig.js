@@ -33,13 +33,16 @@
 
                         // return cached response if it exists
                         if (value.hasOwnProperty(key)) {
+
                             return rep(value[key]);
+
+                        } else {
+                            // route request to proxy by default (if response not cached)
+                            return rep.proxy({
+                                mapUri: MapConfig.nearestMapper,
+                                onResponse: ConvertXml.convertToJson
+                            });
                         }
-                        // route request to proxy by default (if response not cached)
-                        return rep.proxy({
-                            mapUri: MapConfig.nearestMapper,
-                            onResponse: ConvertXml.convertToJson
-                        });
                     });
                 }
             },

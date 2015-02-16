@@ -19,8 +19,11 @@
 
             var path,
                 destination,
-                noResults = require("../lib/no-results.js"),
-                resetActiveMarker = require("../lib/reset-active-marker");
+                noResults,
+                resetActiveMarker;
+
+            noResults = require("../lib/no-results.js");
+            resetActiveMarker = require("../lib/reset-active-marker");
 
             //model for search query
             $scope.address = "";
@@ -132,13 +135,14 @@
                         });
 
                 }
-            };
+            }; 
+
+            $scope.geolocationToolTip = 'Use my current location';
 
             $scope.geolocateUser = function() {
                 markers.geolocateUser($scope)();
                 resetActiveMarker($scope);
             };
-
     
             //back button functionality
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home/services");

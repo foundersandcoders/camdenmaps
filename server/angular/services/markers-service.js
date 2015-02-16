@@ -65,7 +65,11 @@
                             var path = "/home/" + $stateParams.service + "/location/" + "your location";
                             $location.path(path);
                         }
-                      });
+                    })
+                    .on('locationerror', function(e){
+                        console.log(e);
+                        alert("Location access denied.");
+                    });
 
 
                     });
@@ -119,6 +123,7 @@
                                 },
                                 focus: true,
                                 message: "<b>NW1 0NE</b> <br> Please enter a postcode <br> for nearby results.",
+
                             };
 
                     }

@@ -28,9 +28,11 @@
                 </div>
             </form>
             <div id="yourLocation" class="col-xs-1">
-                <button ng-click="geolocateUser()">
-                    <span class="glyphicon glyphicon-screenshot"></span>
-                </button>
+                <a href="#" tooltip-placement="top" tooltip="{{ geolocationToolTip }}">
+                    <button button ng-click="geolocateUser()">
+                        <span class="glyphicon glyphicon-screenshot"></span>
+                    </button>
+                </a>
             </div>
         
         </div>
