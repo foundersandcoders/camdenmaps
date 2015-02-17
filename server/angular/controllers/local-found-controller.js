@@ -17,7 +17,6 @@
             $scope.information;
 
             $scope.exit = function exit() {
-
                 $location.path("/home/neighbourhood");
             };
 

@@ -1,3 +1,6 @@
+
+@import '../base/colours';
+
 #local-info-results {
 	text-align: left;
 	background-color: white;
@@ -19,7 +22,10 @@
 	.glyphicon-remove {
 		float: right;
 		padding: 0.5em;
-	}
+		color: $exit-button;
+		&:hover {
+			color: $exit-button-hover;
+		}
 	
 }
 
