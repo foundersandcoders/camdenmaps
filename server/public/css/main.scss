@@ -8,19 +8,23 @@
 //Imports for our files
 
 @import 
-
-	
+ 	'base/colours',
 	'base/reset',
 	'base/typography',
+	
+	//Accordian Styling
+	'components/accordiangeneral',
+	'components/accordiancategories',
+	'components/accordianservices',
 
 	'components/errormessages',
 	'components/tooltip',
 	'components/map',
-	'components/accordian',
 	'components/listresults',
 	'components/singleresult',
 	'components/buttons',
 	'components/forms',
+	'components/home',
 	'components/localinforesults',
 	'components/pageanimations',
 
@@ -28,9 +32,8 @@
 	'helpers/mixins',
 
 	'layout/header',
-	'layout/layout',
+	'layout/layout'
 
-	'pages/home'
 
 
 

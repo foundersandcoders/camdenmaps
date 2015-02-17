@@ -1,0 +1,55 @@
+<!-- ROOT.LANDING.SERVICES BEGINS -->
+
+<div class="container-fluid">
+    <div ng-swipe-right="prevItems()" ng-swipe-left="nextItems()" class="services-and-categories col-xs-12">
+
+        <!-- Search Box for locations & GPS -->
+        <div class="col-xs-12 row search-box">   
+            <div class="servicestypeahead row">
+                <servicestypeahead/>
+            </div> 
+            <div class="col-md-offset-1 col-md-10">
+                <h2>Search a service of select one category from below</h2>
+            </div>        
+        </div>
+
+        <div class="col-xs-10 item-container">
+
+        <!-- Title of services that are listed in container -->
+            <div class="title-list-items" id="category-title-of-services">
+                <p>Something here {{category.title}}</p>
+                <!-- <div>
+                    <img src="{{category.img}}" alt="">
+                </div> -->
+            </div>
+
+        <!-- Container with all the services listed -->
+
+            <div class="list-items" id="services-list">
+                <div ng-repeat="service in services" class="container-list row" >
+                    <a ng-click="clickHandler(service)"> 
+                        <div class="col-xs-3 col-md-3">
+                            <img ng-src="{{ service.img }}" alt="">
+                        </div>
+                        <div class="accordiontext col-xs-9 col-md-9">
+                            <h4>{{ service.title }}</h4>
+                            <h4 class="hidden-xs">{{ service.text }}</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ROOT.LANDING.SERVICES ENDS-->
+
+<!-- 
+            <div class="title-list-items" id="category-title-of-services row">
+                <div class="col-xs-3 col-md-3">
+                    <img ng-src="{{ category.img }}" alt="">
+                </div>
+                <div class="accordiontext col-xs-9 col-md-9">
+                    <h4>{{ category.title }}</h4>
+                </div>
+            </div>
+ -->
