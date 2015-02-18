@@ -3,11 +3,6 @@
 *	Description: to reset or normalise
 ************************************************/
 
-//IMPORTS FILES
-@import '../base/typography',
-	'../base/colours';
-
-
 //BASID RESETS
 body, html {
 	font-family: $default-font;
