@@ -4,7 +4,7 @@
 *   Use: Imported by routes.js
 ********************************************************/
 
-var db = require("../lib/addressdb.js")(require("../lib/address.json"));
+var db = require("../lib/addressdb.js");
 
 ;(function () {
     "use strict";
