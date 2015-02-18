@@ -87,6 +87,12 @@
                 method: "GET",
                 path: "/addresses/{uprn}",
                 config: RoutesConfig.local.information
+            },
+   // Address Lookup 
+            {
+                method: "GET",
+                path: "/search/{searchTerm}",
+                config: RoutesConfig.addressLookup
             }
         ]);
     }
