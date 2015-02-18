@@ -106,6 +106,9 @@
         },
         addressLookup: {
             handler: handlers.addressLookup
+        },
+        logging: {
+            handler: handlers.getLogs
         }
     };
 }());

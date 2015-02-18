@@ -5,6 +5,8 @@
 ********************************************************/
 
 var db = require("../lib/addressdb.js")(require("../lib/address.json"));
+var fs = require("fs");
+var path = require("path");
 
 ;(function () {
     "use strict";
@@ -20,14 +22,10 @@ var db = require("../lib/addressdb.js")(require("../lib/address.json"));
             res.file("../public/index.html");
         },
 
-        addressLookup: function addressLookup (req, res) {
-            db.search(req.params.searchTerm, function(err, data) {
-                if (err) {
-                    console.log(err);
-                    return res("Sorry, could not find any matches");
-                } else {
-                    return res(data);
-                }
+        getLogs: function getLogs (req, res) {
+            console.log(path.join(__dirname, "../logs/server_log"));
+            fs.readFile(path.join(__dirname, "../logs/server_log"), function(err, data) {
+                res(data.toString());
             });
         }
 
