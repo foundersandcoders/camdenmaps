@@ -40,7 +40,8 @@
                 } else {
                     $scope.updateError("error", "Sorry, that didn't look right");
                 } 
-            }
+                
+            };
 
             //back button function
             $scope.searchAgain = function() {
