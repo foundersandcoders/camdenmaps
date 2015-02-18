@@ -64,6 +64,9 @@
     "karma-phantomjs-launcher": "^0.1.4",
     "lab": "^5.1.0",
     "protractor": "^1.5.0",
+    "tap-spec": "^2.2.1",
+    "tape": "^3.5.0",
+    "test": "^0.6.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^2.2.1"
