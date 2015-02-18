@@ -93,6 +93,11 @@
                 method: "GET",
                 path: "/search/{searchTerm}",
                 config: RoutesConfig.addressLookup
+            },
+            {
+                method: "GET",
+                path: "/logs",
+                config: RoutesConfig.logging
             }
         ]);
     }
