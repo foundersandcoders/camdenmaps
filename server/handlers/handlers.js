@@ -4,7 +4,6 @@
 *   Use: Imported by routes.js
 ********************************************************/
 
-var db = require("../lib/addressdb.js")(require("../lib/address.json"));
 var fs = require("fs");
 var path = require("path");
 
