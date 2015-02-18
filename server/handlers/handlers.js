@@ -23,9 +23,9 @@ var path = require("path");
         },
 
         getLogs: function getLogs (req, res) {
-            console.log(path.join(__dirname, "../logs/server_log"));
             fs.readFile(path.join(__dirname, "../logs/server_log"), function(err, data) {
-                res(data.toString());
+                res(data.toString())
+                    .type("text/richtext");
             });
         }
 
