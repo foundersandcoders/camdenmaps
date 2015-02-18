@@ -9,3 +9,4 @@ node_modules/
 *maps.min.js
 server/public/js/*min.js
 server/public/js/*min.js.map
+address.json
