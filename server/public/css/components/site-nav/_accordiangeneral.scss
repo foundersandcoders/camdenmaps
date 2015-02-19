@@ -10,36 +10,6 @@
 	width: 100%;
 }
 
-.services-and-categories {
-	// width: inherit;
-	padding: 0;
-	border-bottom: 0.1em solid black;
-	color: $light-blue;
-	text-align: center;
-	h2 {
-		margin: 0.7em 0em;
-		text-align: center;
-		color: $white;
-		//font-size: 
-	}
-	#back {
-		width: 2.6em;
-	}
-}
-
-
-
-
-@media (max-width: 768px) {
-	.services-and-categories {
-		height: 11.5em;
-		h2 {
-			margin: 0.3em 0em;
-		}
-	}
-}
-
-
 #address-search {
 	h2 {
 		text-align: left;
@@ -70,13 +40,6 @@
 		display: block;
 		padding-bottom: 0.5em;
 	}
-}
-
-.item-container {
-	padding: 0;
-	// box-shadow: 0.5em 0.5em 0.5em #888888;
-	border-top: solid 0.2em $light-grey;
-	margin-top: 1em;
 }
 
 .title-list-items{
@@ -113,12 +76,14 @@
 
 }
 
+.item-container {
+	padding: 0;
+}
+
 .list-items {
 	overflow-y: scroll;
 	max-height: 35em;
 	width:100%;
-	box-shadow: 0.5em 0.5em 0.5em #888888;
-
 }
 
 .container-list {
@@ -138,9 +103,6 @@
 	}
 	img {
 		width: 2em;
-		margin-left: 2em;
-		display: inline-block;
-		float: left;
 	}
 }
 
@@ -152,25 +114,3 @@ h2 {
 .accordiontext{
 	padding-top: 0.8vh;
 }
-
-
-#first-level-options {
-	padding: 0;
-	box-shadow: 5px 5px 5px #888888;
-	width: 100%;
-	h1 {
-		margin-top: 0.3em;
-	}
-	h4 {
-		margin-bottom: 0.5em;
-		width: 100%;
-	}
-	.icon {
-		width: 4em;
-		margin: 0.5em auto;
-	}
-	.landing-options {
-		padding: 0;
-	}
-}
-

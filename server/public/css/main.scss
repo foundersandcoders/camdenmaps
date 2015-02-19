@@ -12,7 +12,8 @@
  	'base/typography',
 	'base/reset',
 	'base/mobile',
-
+	
+	'components/beta-banner',
 	'components/errormessages',
 	'components/tooltip',
 	'components/map',
@@ -25,6 +26,7 @@
 
 		'components/site-nav/home',
 		'components/site-nav/accordiangeneral',
+		'components/site-nav/find-nearest',
 		'components/site-nav/accordiancategories',
 		'components/site-nav/accordianservices',
 
@@ -33,4 +35,4 @@
 	'layout/header',
 	'layout/layout'
 
-	;
+;
