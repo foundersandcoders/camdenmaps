@@ -3,15 +3,11 @@
 *	Description: to reset or normalise
 ************************************************/
 
-//IMPORTS FILES
-@import '../base/typography',
-	'../base/colours';
-
-
 //BASID RESETS
 body, html {
 	font-family: $default-font;
 	height: 100%;
+	width: 100%;
 }
 
 .container-fluid {
