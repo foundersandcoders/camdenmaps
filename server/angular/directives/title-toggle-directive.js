@@ -13,8 +13,8 @@
         function (location) {
         	return {
         		restrict: 'AE',
-        		replace: false,
-        		templateUrl: 'partials/hometoggle.html',
+        		replace: 'true',
+        		template: '<h4>{{ button.title }}</h4>',
         		link: function(scope, element, attribute) {
 
         			scope.$watch( function() {

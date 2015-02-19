@@ -41,18 +41,11 @@
                 templateUrl: "partials/root.landing.html",
                 controller: "LandingController"
             })
-    
-            //services contains menu for searching and selecting service category
-            .state("root.categories", {
-                url: "/services",
-                templateUrl: "partials/root.categories.html",
-                controller: "CategoriesController" 
-            })
-
+  
             //services contains menu for searching and selecting services
-            .state("root.services", {
-                url: "/{category}/service",
-                templateUrl: "partials/root.services.html",
+            .state("root.landing.services", {
+                url: "/services",
+                templateUrl: "partials/root.landing.services.html",
                 controller: "ServicesController" 
             })
   
