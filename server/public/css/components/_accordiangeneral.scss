@@ -74,18 +74,19 @@
 
 .item-container {
 	padding: 0;
-	box-shadow: 0.5em 0.5em 0.5em #888888;
+	// box-shadow: 0.5em 0.5em 0.5em #888888;
 	border-top: solid 0.2em $light-grey;
 	margin-top: 1em;
 }
 
 .title-list-items{
 	//border-bottom: solid 0.2em $dark-grey;
-	box-shadow: 0em 0.2em 0.2em #888888;
-	//height: 100%;
+	box-shadow: 0.5em 0.2em 0.5em #888888;
+	margin: 0 0 0.5vh 0;
+	padding: 0.2vh 0;
 	div{
 		img{
-			width: 2em;
+			width: 2.5em;
 			margin-left: 2em;
 			display: inline-block;
 			float: left;
@@ -95,17 +96,29 @@
 			color: $black;
 			font-weight: bold;
 			display:inline;
+			font-size: 1.2em;
+		}
+		a {
+			color: $exit-button;
+		}
+		a:hover {
+			color:$exit-button-hover;
+			font-weight:bold;
 		}
 	}
 }
 
 #category-title-of-services{
 	background-color: $medium-blue;
+
 }
 
 .list-items {
 	overflow-y: scroll;
 	max-height: 35em;
+	width:100%;
+	box-shadow: 0.5em 0.5em 0.5em #888888;
+
 }
 
 .container-list {
@@ -137,8 +150,7 @@ h2 {
 }
 
 .accordiontext{
-	display: inline-block;
-	vertical-align: center;
+	padding-top: 0.8vh;
 }
 
 

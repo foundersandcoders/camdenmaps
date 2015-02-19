@@ -4,24 +4,32 @@
     <div ng-swipe-right="prevItems()" ng-swipe-left="nextItems()" class="services-and-categories col-xs-12">
 
         <!-- Search Box for locations & GPS -->
-        <div class="col-xs-12 row search-box">   
+        <div class="col-xs-12 row search-box">
             <div class="servicestypeahead row">
                 <servicestypeahead/>
             </div> 
-            <div class="col-md-offset-1 col-md-10">
-                <h2>Search a service of select one category from below</h2>
+            <div class="col-md-12">
+                <h3>Search a service or select one category from below</h3>
             </div>        
         </div>
 
-        <div class="col-xs-10 item-container">
+
+
+        <div class="col-xs-12 item-container">
 
         <!-- Title of services that are listed in container -->
-            <div class="title-list-items" id="category-title-of-services">
-                <p>Something here {{category.title}}</p>
-                <!-- <div>
-                    <img src="{{category.img}}" alt="">
-                </div> -->
+
+        <div class="title-list-items row" id="category-title-of-services">
+            <div class="col-xs-3 col-md-3">
+                <img ng-src="{{ category.img }}"  alt="">
             </div>
+            <div class="accordiontext col-xs-9 col-md-8">
+                <h4>{{category.title}}</h4>
+            </div>
+            <div class="col-md-1 ">
+                <a href="#/home/services">x</a>
+            </div>
+        </div>            
 
         <!-- Container with all the services listed -->
 
@@ -43,13 +51,3 @@
 </div>
 <!-- ROOT.LANDING.SERVICES ENDS-->
 
-<!-- 
-            <div class="title-list-items" id="category-title-of-services row">
-                <div class="col-xs-3 col-md-3">
-                    <img ng-src="{{ category.img }}" alt="">
-                </div>
-                <div class="accordiontext col-xs-9 col-md-9">
-                    <h4>{{ category.title }}</h4>
-                </div>
-            </div>
- -->

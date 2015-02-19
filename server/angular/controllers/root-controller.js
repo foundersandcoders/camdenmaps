@@ -11,11 +11,10 @@
 
     module.exports = [
         "$scope",
-        "$location",
         "markers",
         "buttonHandlers",
         "leafletData",
-        function ($scope, $location, markers, buttonHandlers, leafletData) {
+        function ($scope, markers, buttonHandlers, leafletData) {
 
             //stores geo data for camden borough boundaries
             var camdenBoundaries = require("../../public/lib/camdenBorough.geo.json");
@@ -46,46 +45,40 @@
 
             //************ MAP MANIPULATIONS ***************
 
-            var regions = {
-                camdenBorough: {
-                    northEast: {
-                        lat: 51.57878,
-                        lng: -0.094538
-                    },
-                    southWest: {
-                        lat: 51.450089,
-                        lng: -0.218650
-                    }
-                }
-            };
-
-            angular.extend($scope, {            
-                centre: {
+            $scope.centre = {
                     lat: 51.535923,
                     lng: -0.139991,
                     zoom: 13,
                     // autoDiscover: true
+                };
+            $scope.maxbounds = {
+                northEast: {
+                    lat: 51.57878,
+                    lng: -0.094538
                 },
-                maxbounds: regions.camdenBorough,
-                defaults: {
+                southWest: {
+                    lat: 51.450089,
+                    lng: -0.218650
+                }
+            };
+            $scope.defaults = {
                     scrollWheelZoom: true,
                     tileLayer: "http://otile3.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png",
                     zoomControlPosition: "bottomright",
-                },
-                markers: {},
-                geojson: {
-                    data: camdenBoundaries,
-                    style: {
-                        fillColor: "#E6E6E6",
-                        weight: 2, 
-                        opacity: 1,
-                        color: 'white', 
-                        dashArray: '3', 
-                        fillOpacity: 0.6
-                    }
+                };
+            $scope.markers = {},
+            $scope.geojson = {
+                data: camdenBoundaries,
+                style: {
+                    fillColor: "#E6E6E6",
+                    weight: 2, 
+                    opacity: 1,
+                    color: 'white', 
+                    dashArray: '3', 
+                    fillOpacity: 0.6
                 }
+            }
 
-            });
 
             $scope.sendHome = buttonHandlers.searchAgain($scope, "/home");
 

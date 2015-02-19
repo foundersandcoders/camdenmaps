@@ -15,6 +15,7 @@
 	background-color: $black;
 	margin: 0;
 	box-shadow: 5px 5px 5px #888888;
+	padding-bottom: 1vh;
 	#postcode-input {
 		padding: 0;
 		input {
@@ -38,7 +39,7 @@
 
 .servicestypeahead {
 	background-color: $black;
-	padding-bottom: 0.5em;
+	//padding-bottom: 0.5em;
 	padding-top: 0.5em;
 	div {
 		padding: 0;

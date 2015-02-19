@@ -4,10 +4,17 @@ camdenmaps
 
 maps.camden.gov.uk site
 
-To run, use command:
+To run, 
+
+install:
+```
+npm install nodemon -g
+```
+
+use command:
 
 ```
-npm start
+npm start 
 ```
 
 To run acceptance tests, use command: 
@@ -26,19 +33,23 @@ gulp unit-test
 ```
 
 To convert yaml files to json, use command: 
+
 ```
 node server/lib/yml2swagger.js server/lib/yaml server/public/output
 ```
+
 where arg[0] is the files to be converted and arg[1] is where the file should be outputed.
-```
+
 
 To run browserify, use command: 
+
 ```
-gulp browserify
+  gulp browserify
 ```
+
 or
 ```
-gulp browserify-watch
+  gulp browserify-watch
 ```
 
 To use the csv to json converter, please run this command:

@@ -1,6 +1,7 @@
  <div class="container-fluid">
     <div class="container-fluid result col-xs-12 col-sm-6" id="local-info-results">
-    	<h4 class="local-info-heading">Political information</h4>
+    	<div class="glyphicon glyphicon-remove" ng-click="exit()"></div>
+        <h4 class="local-info-heading">Political information</h4>
     	<ul  >
             <li ng-hide="{{information.Ward.Value}}">Ward: <a href=" {{ information.Ward.Url }} ">{{ information.Ward.Value }} </a></li>
             <li ng-hide="{{information['European constituency'].Value}}">Eurpean Constituency: <a href="{{ information['European constituency'].Url }}">{{ information["European constituency"].Value }}</a></li>

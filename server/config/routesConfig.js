@@ -35,10 +35,11 @@
                         if (value.hasOwnProperty(key)) {
 
                             return rep(value[key]);
-
+                            
                         } else {
                             // route request to proxy by default (if response not cached)
                             return rep.proxy({
+
                                 mapUri: MapConfig.nearestMapper,
                                 onResponse: ConvertXml.convertToJson
                             });
@@ -102,6 +103,9 @@
                     index: true
                 }
             }
+        },
+        logging: {
+            handler: handlers.getLogs
         }
     };
 }());
