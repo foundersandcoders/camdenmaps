@@ -18,10 +18,10 @@
                     var button = document.getElementsByTagName("button")[0];
                     var form = $('form');
                     
-                    // button.addEventListener('click', function () {
-                    //     search.css("display", "none");
-                    //     form.css("display", "block");
-                    // })
+                    button.addEventListener('click', function () {
+                        search.css("display", "none");
+                        form.css("display", "block");
+                    })
                 }
             }
         }
