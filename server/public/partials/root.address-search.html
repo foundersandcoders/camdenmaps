@@ -5,7 +5,7 @@
     <div ng-swipe-right="prevItems()" ng-swipe-left="nextItems()" class="services-and-categories col-xs-12">
 
         <!-- Search Box for locations & GPS -->
-        <div class="col-xs-12 search-box">
+        <div class="col-xs-12 search-box" id="search-service-and-loc">
             <div class="servicestypeahead row">
                 <servicestypeahead/>
             </div> 
@@ -13,27 +13,33 @@
             <div class="col-xs-12 row errormessage">
             </div>
 
-            <div class="col-xs-12 row">
-                
-                <form>
-                    <div id="postcode-input" class="col-xs-10 col-md-offset-2 col-md-8">
-                        <input type="text" placeholder="{{ placeholder }}" ng-model="address">
+            <div class="col-xs-12 col-md-12" id="search-location-row">
+
+                <div class="row">
+
+                    <form>
+                        <div id="postcode-input" class="col-md-offset-2 col-md-8">
+                            <input type="text" placeholder="{{ placeholder }}" ng-model="address">
+                        </div>
+                        <div class="col-md-1 searchbutton">
+                            <button type="submit" ng-click="search()" id="searchbutton">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div id="yourLocation" class="col-xs-1 col-md-1">
+                        <a href="#" tooltip-placement="top" tooltip="{{ geolocationToolTip }}">
+                            <button button ng-click="geolocateUser()">
+                                <span class="glyphicon glyphicon-screenshot"></span>
+                            </button>
+                        </a>
                     </div>
-                    <div class="col-xs-1 col-md-1">
-                        <button type="submit" ng-click="search()">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </div>
-                </form>
-                <div id="yourLocation" class="col-xs-1 col-md-1">
-                    <a href="#" tooltip-placement="top" tooltip="{{ geolocationToolTip }}">
-                        <button button ng-click="geolocateUser()">
-                            <span class="glyphicon glyphicon-screenshot"></span>
-                        </button>
-                    </a>
+
                 </div>
-            
-            </div>        
+
+            </div>  
+
         </div>
 
 
