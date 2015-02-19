@@ -3,37 +3,6 @@
 *
 *****************************/
 
-function getItems(array) {
-
-    var newArray = [];
-
-    for (var i = array.length - 1; i >= 0; i--) {
-    
-        if (array[i].type === "service") {
-            newArray.push(array[i].title);
-        }
-        
-    };
-    return newArray;
-};
-
-function getAddresses(array) {
-
-    var newArray = [];
-
-    for (var i = array.length - 1; i >= 0; i--) {
-    
-        var string = array[i].BuildingNumber + " " +
-                        array[i].Street + " " +
-                        array[i].Postcode + " " +
-                        array[i].UPRN;
-
-        newArray.push(string);
-        
-    };
-    return newArray;
-};
-
 ;(function () {
     "use strict";
 
@@ -50,19 +19,19 @@ function getAddresses(array) {
 
             if(($location.path().indexOf("/neighbourhood") > -1) || ($location.path().indexOf("/streetworks") > -1) || ($location.path().indexOf("/search") > -1)) { 
 
-                addresses = require("../../lib/address.json")
+                addresses = require("../../lib/address.json");
 
                 $scope.placeholder = 'Enter an address';
-
                 $scope.limitNumber = 20;
+                $scope.typeaheadSearchList = getItems(addresses);
 
-                $scope.typeaheadSearchList = getAddresses(addresses);
-
-                $scope.handler = function handler (address) {
+                $scope.handler = function (address) {
                     var uprn,
                         destination;
 
                     uprn = address.slice(-7);
+
+                    console.log(uprn);
 
                     destination = "/home/neighbourhood/" + uprn;
 
@@ -73,13 +42,13 @@ function getAddresses(array) {
 
                 menu = require("../menu.json");
 
-                $scope.placeholder = 'Enter a service to search'
+                $scope.placeholder = 'Enter a service to search';
 
                 $scope.limitNumber = 8;
 
                 $scope.typeaheadSearchList = getItems(menu);
 
-                $scope.handler = function handler (item) {
+                $scope.handler = function (item) {
                     var service,
                         destination;
 
@@ -89,6 +58,29 @@ function getAddresses(array) {
 
                     $location.path(destination);
                 };
+            }
+
+            function getItems(array) {
+
+                var newArray = [];
+
+                for (var i = array.length - 1; i >= 0; i--) {
+                    if(($location.path().indexOf("/neighbourhood") > -1) || ($location.path().indexOf("/streetworks") > -1) || ($location.path().indexOf("/search") > -1)) {
+                        var title = array[i].Unit + " " +
+                                array[i].BuildingName + " " +
+                                array[i].BuildingNumber + " " +
+                                array[i].Street + " " +
+                                array[i].Postcode + " " +
+                                array[i].UPRN;
+
+                        newArray.push(title);
+                    } else {
+                        if (array[i].type === "service") {
+                            newArray.push(array[i].title);
+                        }
+                    }
+                }
+                return newArray;
             }
         }
     ];
