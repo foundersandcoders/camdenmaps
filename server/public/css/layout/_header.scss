@@ -5,6 +5,13 @@
 
 header {
 	border-bottom: 0.1em solid black;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	right:0;
+	top: 0;
+	z-index: 9999999;
+	background-color: white;
 	div {
 		#camden-logo {
 			width: 12em;
