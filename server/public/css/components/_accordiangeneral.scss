@@ -96,7 +96,7 @@
 			color: $black;
 			font-weight: bold;
 			display:inline;
-			font-size: 1.2em;
+			font-size: 1.1em;
 		}
 		a {
 			color: $exit-button;
@@ -111,6 +111,10 @@
 #category-title-of-services{
 	background-color: $medium-blue;
 
+}
+
+#service-title-of-results{
+	background-color: $light-blue;
 }
 
 .list-items {
@@ -129,12 +133,7 @@
 	h4 {
 		margin: 0;
 		color: $black;
-		font-weight: bold;
 		display:inline;
-	}
-	p {
-		color: $black;
-		margin: 0;
 	}
 	img {
 		width: 2em;
@@ -151,6 +150,7 @@ h2 {
 
 .accordiontext{
 	padding-top: 0.8vh;
+	font-size: 1.2em;
 }
 
 
