@@ -14,8 +14,10 @@
     module.exports = [
             "$scope",
             "$location",
-            function ($scope, $location) {
-         
+            function ($scope, $location, w) {
+       
+                // this allows a mock window to be injected for testing
+                w = w || window;
 
                 //***************** Initialize menu and variables **************
                
@@ -43,9 +45,9 @@
 
                 function getWindowWidth () {
 
-                    if(window.innerWidth < 768) {
+                    if(w.innerWidth < 768) {
                         return 3;
-                    } else if((window.innerWidth < 1200) && (window.innerWidth >=768)) {
+                    } else if((w.innerWidth < 1200) && (w.innerWidth >=768)) {
                         return 4;
                     } else {
                         return 6;
