@@ -25,6 +25,8 @@
                     var uprn,
                         destination;
 
+                    $scope.typeaheadSearchList = getItems(address);
+
                     uprn = address.slice(-7);
 
                     console.log(uprn);
@@ -34,18 +36,18 @@
                     $location.path(destination);
                 };
 
-                $scope.typeaheadSearchList = function(value) {
-                    return $http.get('urlhere/search/' + value, {
-                      params: {
-                        address: value,
-                        sensor: false
-                      }
-                    }).then(function(response){
-                      return response.data.results.map(function (item){
-                        return item;
-                      });
-                    });
-                };
+                // $scope.typeaheadSearchList = function(value) {
+                //     return $http.get('urlhere/search/' + value, {
+                //       params: {
+                //         address: value,
+                //         sensor: false
+                //       }
+                //     }).then(function(response){
+                //       return response.data.results.map(function (item){
+                //         return item;
+                //       });
+                //     });
+                // };
 
             } else {
 
