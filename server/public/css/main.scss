@@ -11,6 +11,7 @@
  	'base/colours',
  	'base/typography',
 	'base/reset',
+	'base/mobile',
 	
 	//Accordian Styling
 	'components/accordiangeneral',
@@ -24,23 +25,14 @@
 	'components/singleresult',
 	'components/buttons',
 	'components/forms',
-	'components/home',
 	'components/localinforesults',
 	'components/pageanimations',
 
+		'components/site-nav/home',
 
 	'helpers/mixins',
 
 	'layout/header',
 	'layout/layout'
 
-
-
-
-
-
-
-
-
 	;
-

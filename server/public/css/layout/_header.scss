@@ -12,31 +12,25 @@ header {
 	top: 0;
 	z-index: 9999999;
 	background-color: white;
-	div {
-		#camden-logo {
-			width: 12em;
-			height: auto;
-			margin: 0.3em 0;
-		}
-	}
 }
 
-@media (max-width: 768px) {
-	header {
-		div {
-			#camden-logo {
-				width: 7.5em;
-			}
-		}
+#camden-logo {
+	width: 12em;
+	height: auto;
+	margin: 0.3em 0;
+	@include respond(mobile) {
+		width: 7.5em;
 	}
 }
-
 /*
 * BETA BANNER
 */
 
 .betabanner {
 	padding-bottom: 0.5em;
+}
+
+.collapse-banner {
 	h5 {
 		text-align: center;
 		color: #fff;
@@ -47,7 +41,7 @@ header {
 	p {
 		margin: 0;
 	}
-} 
+}
 
 /*
 * CLOSE `X` on BETA BANNER
