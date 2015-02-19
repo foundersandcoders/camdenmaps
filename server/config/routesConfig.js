@@ -106,6 +106,9 @@
         },
         logging: {
             handler: handlers.getLogs
+        },
+        issueToken: {
+            handler: handlers.issueToken
         }
     };
 }());
