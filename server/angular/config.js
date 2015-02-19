@@ -55,7 +55,7 @@
   
             //address-search contains search box for entering postcodes/streetnames
             .state("root.address-search", {
-                url: "/{service}/search",
+                url: "/{category}/{service}/search",
                 templateUrl: "partials/root.address-search.html",
                 controller: "SearchController"
             })

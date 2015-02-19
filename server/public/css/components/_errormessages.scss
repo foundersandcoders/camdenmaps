@@ -10,17 +10,17 @@
 	border: 0.3em $dark-red solid;
 	color: $dark-red;
 	position: absolute;
-	top: 7em;
-	height: 4.5em;
-	width: 98.5%;
-	margin: 0 0.7em;
+	top: 2.8em;
+	height: 4em;
+	width: 100%;
+	//margin: 0 0.7em;
 }
 
-@media (max-width: 768px) {
-	.errormessage {
-		top: 4.7em;
-		height: 4.1em;
-		width: 95%;
-		margin: 0 0.7em;
-	}
-}
+// @media (max-width: 768px) {
+// 	.errormessage {
+// 		top: 4.7em;
+// 		height: 4.1em;
+// 		width: 95%;
+// 		margin: 0 0.7em;
+// 	}
+// }

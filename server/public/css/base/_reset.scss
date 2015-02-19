@@ -58,7 +58,17 @@ span {
 }
 
 button {
-	border: none;
+	border: 0;
+	background-color: transparent;
+	&:focus {
+		background-color: transparent;
+	}
+	&:hover {
+		background-color: transparent;
+	}
+	&:visited {
+		background-color: transparent;
+	}
 }
 
 input {

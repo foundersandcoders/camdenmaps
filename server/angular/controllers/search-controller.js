@@ -20,7 +20,9 @@
             var path,
                 destination,
                 noResults,
-                resetActiveMarker;
+                resetActiveMarker,
+                category,
+                menu;
 
             noResults = require("../lib/no-results.js");
             resetActiveMarker = require("../lib/reset-active-marker");
@@ -150,6 +152,16 @@
             $scope.backButtonText = "Pick Another Service";
 
             $scope.toggle = buttonHandlers.toggle($scope);
+            
+            menu = require("../menu.json");
+
+            category = menu.filter(function (item) {
+                if (item.title === $stateParams.category) {
+                    return item;
+                }
+            })
+
+            $scope.category = category[0];
             
         }
     ];
