@@ -11,8 +11,8 @@
     	.service("markers", require("./markers-service.js"))
     	.service("apiSearch", require("./api-search-service.js"))
     	.service("markerHandlers", require("./marker-handlers-service.js"))
-    	.service("buttonHandlers", require("./button-handlers-service.js"));
-
+    	.service("buttonHandlers", require("./button-handlers-service.js"))
+        .service("fetchToken", require("./fetch-token.js"));
 
 
         // .service("apiSearch", require("./api-search.js"));

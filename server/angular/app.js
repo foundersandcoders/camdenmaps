@@ -22,7 +22,28 @@
             "LocalStorageModule",
             "leaflet-directive"
     ])
-    
+    .factory("tokenIntercept", [function() {
+        var token;
+        
+        return {
+           
+            "request": function(config) {
+                console.log("working hard for my money");
+                console.log(config);
+                if (typeof token !== "undefined") {
+                    config.headers["x-access-taken"] = token;
+                }
+                return config;
+            },
+
+           "response": function(response) {
+                token = response["x-access-token"];
+                console.log(token);
+                return response;
+           } 
+            
+        }
+    }])
     .config( require("./config.js") )
 
 	// Set up the cache for initial resources
