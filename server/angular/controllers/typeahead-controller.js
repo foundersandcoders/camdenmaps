@@ -11,19 +11,15 @@
         "$location",
         function ($scope, $location) {
 
-                var menu = [],
-                    addresses = [];
+                var menu = [];
 
                 $scope.selected = '';
 
 
             if(($location.path().indexOf("/neighbourhood") > -1) || ($location.path().indexOf("/streetworks") > -1) || ($location.path().indexOf("/search") > -1)) { 
 
-                addresses = require("../../lib/address.json");
-
                 $scope.placeholder = 'Enter an address';
                 $scope.limitNumber = 20;
-                $scope.typeaheadSearchList = getItems(addresses);
 
                 $scope.handler = function (address) {
                     var uprn,
@@ -36,6 +32,19 @@
                     destination = "/home/neighbourhood/" + uprn;
 
                     $location.path(destination);
+                };
+
+                $scope.typeaheadSearchList = function(value) {
+                    return $http.get('urlhere/search/' + value, {
+                      params: {
+                        address: value,
+                        sensor: false
+                      }
+                    }).then(function(response){
+                      return response.data.results.map(function (item){
+                        return item;
+                      });
+                    });
                 };
 
             } else {
