@@ -9,7 +9,9 @@
     module.exports = [
         "$scope",
         "$location",
-        function ($scope, $location) {
+        function ($scope, $location, fetchToken) {
+
+                fetchToken.getToken();
 
             	var menu = [];
 
