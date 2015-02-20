@@ -9,7 +9,17 @@
     module.exports = [
         "$scope",
         "$location",
-        function ($scope, $location) {
+        "fetchToken",
+        "$http",
+        function ($scope, $location, fetchToken, $http) {
+
+            // fetchToken.getToken().success(function() {
+
+            //     $http.get("http://localhost:8081/search/cam").success(function(data){
+
+            //         console.log(data);
+            //     })
+            // });
 
                 var menu = [];
 
@@ -19,13 +29,12 @@
             if(($location.path().indexOf("/neighbourhood") > -1) || ($location.path().indexOf("/streetworks") > -1) || ($location.path().indexOf("/search") > -1)) { 
 
                 $scope.placeholder = 'Enter an address';
-                $scope.limitNumber = 20;
+
+                // $scope.limitNumber = 20;
 
                 $scope.handler = function (address) {
                     var uprn,
                         destination;
-
-                    $scope.typeaheadSearchList = getItems(address);
 
                     uprn = address.slice(-7);
 
@@ -35,19 +44,30 @@
 
                     $location.path(destination);
                 };
+                fetchToken.getToken().success(function() {
+                    $scope.typeaheadSearchList = function(value) {
 
-                // $scope.typeaheadSearchList = function(value) {
-                //     return $http.get('urlhere/search/' + value, {
-                //       params: {
-                //         address: value,
-                //         sensor: false
-                //       }
-                //     }).then(function(response){
-                //       return response.data.results.map(function (item){
-                //         return item;
-                //       });
-                //     });
-                // };
+                        return $http.get('http://localhost:8081/search/' + value)
+                            .then(function(response){
+
+                                console.log(response);
+                                var data = response.data.slice(0, 10);
+
+
+                                return data.map(function (item, index){
+                                    var displayItem = item.Unit + " " +
+                                        item.BuildingName + " " +
+                                        item.BuildingNumber + " " +
+                                        item.Street + " " +
+                                        item.Postcode + " ";
+                                    return displayItem;
+
+
+                                });
+                            });
+                    
+                    };
+                })
 
             } else {
 

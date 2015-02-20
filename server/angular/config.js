@@ -13,7 +13,10 @@
     "$urlRouterProvider",
     "$stateProvider",
     "localStorageServiceProvider",
-    function ($urlRouterProvider, $stateProvider, localStorageServiceProvider) {
+    "$httpProvider",
+    function ($urlRouterProvider, $stateProvider, localStorageServiceProvider, $httpProvider) {
+
+        $httpProvider.interceptors.push("tokenIntercept");
 
         localStorageServiceProvider
             .setPrefix('maps')
