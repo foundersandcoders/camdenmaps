@@ -12,73 +12,13 @@ header {
 	top: 0;
 	z-index: 9999999;
 	background-color: white;
-	div {
-		#camden-logo {
-			width: 12em;
-			height: auto;
-			margin: 0.3em 0;
-		}
-	}
 }
 
-@media (max-width: 768px) {
-	header {
-		div {
-			#camden-logo {
-				width: 7.5em;
-			}
-		}
+#camden-logo {
+	width: 12em;
+	height: auto;
+	margin: 0.3em 0;
+	@include respond(mobile) {
+		width: 7.5em;
 	}
-}
-
-/*
-* BETA BANNER
-*/
-
-.betabanner {
-	padding-bottom: 0.5em;
-	h5 {
-		text-align: center;
-		color: #fff;
-		background-color: $orange;
-		padding: 0.5em;
-		margin: 0;
-	}
-	p {
-		margin: 0;
-	}
-} 
-
-/*
-* CLOSE `X` on BETA BANNER
-*/
-
-.close-wrapper {
-	right: 0;
-	top: -3em;
-	position: absolute;
-	.close {
-		height: 1.5em;
-		width: 0.1em;
-		margin-left:1em;
-		background-color: black;
-		transform: rotate(45deg);
-		-ms-transform: rotate(45deg); /* IE 9 */
-		-webkit-transform: rotate(45deg); /* Safari and Chrome */
-		Z-index:10;
-		opacity: 1;
-		margin: 1.4em 1em 0;
-		div {
-			height: 1.5em;
-			width: 0.1em;
-			background-color: black;
-			transform: rotate(90deg);
-			-ms-transform: rotate(90deg);
-			-webkit-transform: rotate(90deg); 
-		}
-	}
-}
-
-#open-banner {
-	float: right;
 }
