@@ -64,7 +64,10 @@
             //model for placeholder
             $scope.placeholder = "Please enter a postcode";
 
-
+            //change baseurl depending on whether address-found or address-search 
+            $scope.baseUrl = $stateParams.address ?  "/#/home/" + $stateParams.service + 
+                "/location/" + $stateParams.address + "/" : "/#/home/" + $stateParams.service + 
+                "/search/";
 
             try {
                 //model for image icon
@@ -177,6 +180,10 @@
 
             $scope.toggle = buttonHandlers.toggle($scope);
             
+            $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services")
+            $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service")
+
+
         }
     ];
 }());

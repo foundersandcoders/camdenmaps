@@ -59,13 +59,6 @@
                 templateUrl: "partials/root.address-search.html",
                 controller: "SearchController"
             })
- 
-            //list-view contains view for listing found services
-            .state("root.address-search.list-view", {
-                url: "/list",
-                templateUrl: "partials/list-view.html",
-                controller: "ListController" 
-            })
 
             //single view  contains view for displaying single selected service
             .state("root.address-search.single-view", {
