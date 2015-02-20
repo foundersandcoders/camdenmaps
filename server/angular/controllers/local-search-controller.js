@@ -13,10 +13,6 @@
         "apiSearch",
         function ($scope, $location, localStorageService, apiSearch) {
 
-            //model for placeholder
-            $scope.placeholder = "Please enter a UPRN (5023741)";
-            //model for address input
-            $scope.address = "";
             //model for page title
             $scope.title = "About your Neighbourhood";
 
@@ -52,8 +48,6 @@
             }
             //back button text
             $scope.backButtonText = "Main Menu";
-
-
 
         }
     ];

@@ -4,7 +4,6 @@
 ******************************/
 
 //TODO: Add handler for List Results and Search Again buttons
-//Broken results: recyling, connexions... these could be all results with fewer than 8 results becuase of hard coding 8 markers
 
 ;(function () {
     "use strict";
