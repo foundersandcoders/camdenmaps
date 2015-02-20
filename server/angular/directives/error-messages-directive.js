@@ -17,8 +17,8 @@
                     var inputBox = $('.search-box');
                     var errorBox = $('.errormessage');
 
-                    scope.updateError = function (type, newType){
-                        scope[type] = newType;
+                    scope.updateError = function (message){
+                        scope.error = message;
 
                         element.css('display', 'block');
 
