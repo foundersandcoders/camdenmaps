@@ -108,7 +108,7 @@
             //state for about your neighbourhood search
             .state("root.neighbourhood", {
                 url: "/neighbourhood",
-                templateUrl: "partials/root.address-search.html",
+                templateUrl: "partials/root.neighbourhood-search.html",
                 controller: "LocalSearchController"
             })
 
