@@ -88,16 +88,16 @@
                 path: "/addresses/{uprn}",
                 config: RoutesConfig.local.information
             },
-   // Address Lookup 
-            {
-                method: "GET",
-                path: "/search/{searchTerm}",
-                config: RoutesConfig.addressLookup
-            },
             {
                 method: "GET",
                 path: "/logs",
                 config: RoutesConfig.logging
+            },
+    // Issue token *****************************************
+            {
+                method: "GET",
+                path: "/auth_token",
+                config: RoutesConfig.issueToken
             }
         ]);
     }

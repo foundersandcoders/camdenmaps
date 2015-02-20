@@ -4,7 +4,6 @@
 *   Use: Imported by routes.js
 ********************************************************/
 
-
 var db = require("../lib/addressdb.js");
 var fs = require("fs");
 var path = require("path");
@@ -12,6 +11,11 @@ var path = require("path");
 
 ;(function () {
     "use strict";
+
+    var fs = require("fs");
+    var path = require("path");
+    var jwt = require("jsonwebtoken");
+    var secret = process.env.JWT_SECRET || "changeme";
 
     module.exports = {
         //handler: function (req, res) {  res(handlerbody)  }
@@ -25,10 +29,20 @@ var path = require("path");
         },
 
         getLogs: function getLogs (req, res) {
-            console.log(path.join(__dirname, "../logs/server_log"));
             fs.readFile(path.join(__dirname, "../logs/server_log"), function(err, data) {
-                res(data.toString());
+                res(data.toString())
+                    .type("text/richtext");
             });
+        },
+
+        issueToken: function issueToken (req, res) {
+            var token = jwt.sign({
+                auth: "magic",
+                agent: req.headers["user-agent"],
+                exp: new Date().getTime() + 1000*60*60
+            }, secret);
+
+            res("Heres a token").header( "x-access-token", token );    
         }
 
     };
