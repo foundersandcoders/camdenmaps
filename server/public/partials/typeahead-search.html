@@ -1,14 +1,8 @@
 <form ng-submit="handler(selected)">
 
 	<div class="col-xs-11">
-	    <!-- <input type="text" placeholder="{{ placeholder }}" ng-model="selected" typeahead="searchitem for searchitem in typeaheadSearchList | filter:$viewValue | limitTo: {{ limitNumber }}" class="form-control"/> -->
-
-
-	    <input type="text" ng-model="selected" placeholder="{{ placeholder }}" typeahead="searchitem for searchitem in typeaheadSearchList($viewValue)" typeahead-loading="typeaheadSearchList" class="form-control">
-
-
-    	<input type="text" ng-model="asyncSelected" placeholder="Locations loaded via $http" typeahead="address for address in typeaheadSearchList($viewValue)" class="form-control">
-
+		
+	    <input type="text" placeholder="{{ placeholder }}" ng-model="selected" typeahead="searchitem for searchitem in typeaheadSearchList{{ additions }}" class="form-control"/>
 
 	</div>
 
