@@ -1,5 +1,8 @@
 .slideup {
     height: 500px;
+    @include respond(mobile) {
+        height: initial;
+    }
 }
 .slideup.ng-enter,
 .slideup.ng-leave {

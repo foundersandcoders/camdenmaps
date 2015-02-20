@@ -18,10 +18,10 @@
             <div class="list-items" id="category-list">
                 <div ng-repeat="category in serviceCategories" class="container-list row">
                     <a ng-click="clickHandler(category)">
-                        <div class="col-xs-3 col-md-3">
+                        <div class="col-xs-3 col-xs-offset-1 col-sm-offset-0 col-md-3">
                             <img ng-src="{{ category.img }}" alt="">
                         </div>
-                        <div class="col-xs-9 col-md-9 accordiontext">
+                        <div class="col-xs-7 col-md-9 accordiontext">
                             <h4>{{ category.title }}</h4>
                             <h4 class="hidden-xs">{{ category.text }}</h4>
                         </div>

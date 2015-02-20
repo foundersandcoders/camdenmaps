@@ -26,7 +26,7 @@
         serverTestFiles = ["./test/api/*.js"],
         karmaTestFiles = ["./test/frontend/unit/*.js"],
         protractorTestFiles = ["./test/frontend/acceptance/*.js"],
-        sassFiles = ["./server/public/css/*.scss", "./server/public/css/*/*.scss"],
+        sassFiles = ["./server/public/css/*.scss", "./server/public/css/*/*.scss", "./server/public/css/*/*/*.scss"],
         allFiles = serverFiles.concat(angularFiles);
 
     //Useful for js compression. Used for task browserify
