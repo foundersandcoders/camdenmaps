@@ -2,6 +2,7 @@
 *   ROOT-CONTROLLER.JS
 *
 ***************************/
+
 ;(function () {
     "use strict";
 
@@ -26,7 +27,6 @@
             //this will allow marker colour to change when it is highlighted
             $scope.activeMarker = 0;
         
-
             //functions to update results and location on root level 
             $scope.updateResults = function updateResults (newResults) {
                 var i;
