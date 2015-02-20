@@ -7,32 +7,21 @@
 
 //Imports for our files
 
-@import 
- 	'base/colours',
- 	'base/typography',
-	'base/reset',
-	'base/mobile',
-	
-	//Accordian Styling
-	'components/accordiangeneral',
-	'components/accordiancategories',
-	'components/accordianservices',
+@import 'base/reset',
+	'base/typography',
 
 	'components/errormessages',
 	'components/tooltip',
 	'components/map',
+	'components/accordian',
 	'components/listresults',
 	'components/singleresult',
 	'components/buttons',
 	'components/forms',
 	'components/localinforesults',
-	'components/pageanimations',
-
-		'components/site-nav/home',
 
 	'helpers/mixins',
 
 	'layout/header',
-	'layout/layout'
+	'layout/layout';
 
-	;

@@ -28,6 +28,7 @@
     "good": "^5.1.1",
     "good-file": "^4.0.2",
     "hapi": "^8.0.0",
+    "jsonwebtoken": "^3.2.2",
     "node-cache": "^1.1.0",
     "request": "^2.51.0",
     "xml2js": "^0.4.4"

@@ -1,13 +1,8 @@
 #map-container {
-	height: 100%;
-	width: 100%;
-	position: absolute;
+	height: 80%;
 }
-
 #map {
 	height: 100%;
-	//position: relative;
-
 	.leaflet-control-attribution.leaflet-control{
 		height: 0;
 		top: 95%;

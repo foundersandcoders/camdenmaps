@@ -1,26 +1,15 @@
-<div class="col-xs-2 col-md-2">
-    <a class="col-xs-1 col-md-1" ng-href="/#/home">
-        <img id="backhome" src="../img/icons/backhome.png" alt="back">
-    </a> 
-</div>
-
 <form ng-submit="handler(selected)">
 
-	<div class="col-xs-9 col-md-9" id="forminput">
-	    <input type="text" placeholder="Enter a service to search" ng-model="selected" typeahead="searchitem for searchitem in typeaheadSearchList | filter:$viewValue | limitTo:8" class="form-control">
+	<div class="col-xs-11">
+		
+	    <input type="text" placeholder="{{ placeholder }}" ng-model="selected" typeahead="searchitem for searchitem in typeaheadSearchList{{ additions }}" class="form-control"/>
+
 	</div>
 
-	<div class="col-xs-1 col-md-1">
+	<div class="col-xs-1">
 	    <button type="submit">
 	        <span class="glyphicon glyphicon-search"></span>
 	    </button>
 	</div>
-
+	
 </form>
-
-<!-- <div class="clicktosearch col-xs-1 col-xs-offset-11">
-    <button type="submit">
-        <span class="glyphicon glyphicon-search"></span>
-    </button>
-</div>
- -->
