@@ -5,8 +5,6 @@
 *
 *************************************************************************************/
 
-//TODO: Find out why it only works when controllers and services are registered directly
-
 ;(function () {
     "use strict";
 
@@ -22,6 +20,7 @@
             "LocalStorageModule",
             "leaflet-directive"
     ])
+
     .factory("tokenIntercept", [function () {
         var token;
         
@@ -43,6 +42,7 @@
             
         }
     }])
+
     .config( require("./config.js") )
 
 	// Set up the cache for initial resources
@@ -53,7 +53,6 @@
     require("./directives");
     require("./controllers");
     require("./services");
-
 
 
 }());

@@ -67,7 +67,6 @@
                                 : "/home/" + $stateParams.service + "/search";
 
                     $location.path(path);
-                    console.log("path", path);
                 };
 
 
