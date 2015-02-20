@@ -64,7 +64,7 @@
                     var service,
                         path;
 
-                    $scope.update("error", "");
+                    $scope.updateError("");
 
                     if (item.type === "service") {
 
@@ -86,7 +86,7 @@
                         getCurrentCategory(currentPosition, numberOfItems);
                         getVisibleItems(currentIndex);
                     }
-                };
+                }
                 
                 //adds click handler functions to menu items
                 function addClickHandler (item) {

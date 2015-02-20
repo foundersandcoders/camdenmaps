@@ -20,21 +20,22 @@
                     scope.updateError = function (message){
                         scope.error = message;
 
-                        element.css('display', 'block');
+                        if (message !== "") {
+ 
+                            element.css('display', 'block');
 
-                        if (location.path().indexOf('/neighbourhood') > -1) {
+                            if (location.path().indexOf('/neighbourhood') > -1) {
 
-                            errorBox.css('top', '3em')
-                        } else {
-                            inputBox.css('margin-top', '1.5em');
+                                errorBox.css('top', '3em');
+                            } else {
+                                inputBox.css('margin-top', '1.5em');
+                            }
                         }
                     };
 
-                    if (location.path().indexOf('/neighbourhood')) {
 
-                    }
                 }
-            }
+            };
         }
     ];
 }());
