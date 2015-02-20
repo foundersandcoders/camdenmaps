@@ -1,9 +1,7 @@
 /*************************************
 *   FETCH-TOKEN.JS
-*
+* 	
 *************************************/
-
-//TODO: Make sure caching applies across states so requests aren't made twice
 
 ;(function () {
     "use strict";
@@ -17,8 +15,6 @@
                 return $http({method:"GET", url:"http://camdenmaps.herokuapp.com/auth_token"});
                 
             }
-
-
         }
     ];
 }());

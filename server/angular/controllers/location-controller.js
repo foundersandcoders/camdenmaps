@@ -4,7 +4,6 @@
 ******************************/
 
 //TODO: Add handler for List Results and Search Again buttons
-//Broken results: recyling, connexions... these could be all results with fewer than 8 results becuase of hard coding 8 markers
 
 ;(function () {
     "use strict";
@@ -58,7 +57,6 @@
             // this will only run an API call if location needs to be added
             // will still run if default location used for capped results
             if(!addressUsedinAPIcall($scope)){
-                console.log("api call in location");
 
                 //reloads $scope.results with new data based on address 
                 
