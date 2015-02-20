@@ -47,7 +47,7 @@
 
                     $scope.update("error", "");
 
-                    path = "/home/" + category[0].title + "/" + item.title + "/search/list";
+                    path = "/home/" + item.title + "/search/list";
 
                     $location.path(path);
                 };
