@@ -1,8 +1,12 @@
+/*************************************
+*   RESET-ACTIVE-MARKERS.JS
+*
+*************************************/
+
 ;(function(){
 	"use strict";
 
 	module.exports = function resetActiveMarker (scope) {
-        console.log("resetActiveMarker", scope.activeMarker);
 
         if(scope.activeMarker) {
             //resets active marker

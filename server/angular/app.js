@@ -5,8 +5,6 @@
 *
 *************************************************************************************/
 
-//TODO: Find out why it only works when controllers and services are registered directly
-
 ;(function () {
     "use strict";
 
@@ -22,28 +20,29 @@
             "LocalStorageModule",
             "leaflet-directive"
     ])
-    .factory("tokenIntercept", [function() {
+
+    .factory("tokenIntercept", [function () {
         var token;
         
         return {
            
             "request": function(config) {
-                console.log("working hard for my money");
-                console.log(config);
-                if (typeof token !== "undefined") {
-                    config.headers["x-access-taken"] = token;
+                 if (typeof token !== "undefined") {
+                    config.headers["X-Access-Token"] = token;        
                 }
                 return config;
             },
 
            "response": function(response) {
-                token = response["x-access-token"];
-                console.log(token);
+                if (response.headers("X-Access-Token")) {
+                    token = response.headers("X-Access-Token");     
+                }
                 return response;
            } 
             
         }
     }])
+
     .config( require("./config.js") )
 
 	// Set up the cache for initial resources
@@ -54,7 +53,6 @@
     require("./directives");
     require("./controllers");
     require("./services");
-
 
 
 }());
