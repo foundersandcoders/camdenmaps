@@ -5,7 +5,7 @@
     var xml2js = require('xml2js');
     var parser = new xml2js.Parser();
     var config = require("../config/serverConfig.js");
-    var cache = require("../config/cache.js");
+    var cache = require("../lib/cacheprotocol.js");
     var cap = require("../lib/capitalize.js");
     var serviceArrays = config.map.serviceArrays;
     //strips html from obj (depth of 1 only)
@@ -26,7 +26,8 @@
         convertLocalInformation: function convertLocalInformation (err, res, req, rep) {
 
             var xml, 
-                response;
+                response,
+                key;
 
             if (err) {
                 return rep({error: "Upstream Error", message: "Sorry, it looks like something went wrong on an upstream server"});
@@ -43,14 +44,16 @@
                 if(!response.location.hasOwnProperty("Latitude")) {
                     return rep({error: "Upstream Error", message: "Sorry, that postcode looks invalid" });
                 } 
-    
-                return rep(response);
+                
+                key = req.raw.req.url; 
+                return cache.setCache(key, response, rep);
             });
         },
         convertStreetworks: function convertStreetworks (err, res, req, rep) {
 
             var xml, 
-                response;
+                response,
+                key;
 
             xml = "";
             response = {};
@@ -71,7 +74,8 @@
                     return rep({error: "Upstream Error", message: "Sorry, that postcode looks invalid" });
                 } 
                 
-                return rep(response);
+                key = req.raw.req.url;
+                return cache.setCache(key, response, rep);
             });
         },
         convertToJson: function convertToJson (err, res, req, rep) {
@@ -103,15 +107,8 @@
             res.on("end", function() {
                 response = converter(xml);
                 key = req.raw.req.url;
-                
-                cache.set(key, response, function (err, success) {
-                    if (!err && success) {
-                        return rep(response);
-                    } else {
-                        console.log(err);
-                        return rep(response);
-                    }
-                });
+               
+                return cache.setCache(key, response, rep);
            });
         }
     };

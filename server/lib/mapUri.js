@@ -9,7 +9,8 @@ var Config = require("../config/serverConfig.js"),
     lngs = Config.map.query.lng,
     cap = require("../lib/capitalize.js"),
     aliasServices = require("./alias.js"),
-    defaultLocation = "N1C 4AG";
+    defaultLocation = "N1C 4AG",
+    exactLocations = Config.map.query.uprn;
 
 function mapQuery (req) {
     var service = aliasServices(cap(req.params.service));
@@ -17,6 +18,25 @@ function mapQuery (req) {
             : (req.params.location === undefined) ? "?" + services + service + "&" + locations + defaultLocation
             : (service === undefined)  ? "?" + locations + req.params.location 
             : "?" + locations + req.params.location + "&" + services + service;
+}
+
+function mapStreetworks (req) {
+
+    var location, query, lat, lng;
+    location = req.params.postcode;
+    lat = req.params.latitude;
+    lng = req.params.longitude;
+    query = (req.params.latitude && req.params.longitude)   ? "?" + lats + req.params.latitude + "&" + lngs + req.params.longitude
+                                                                    : "?" + locations + req.params.postcode;
+    return url.streetworksApi + query; 
+}
+
+function mapLocalInformation (req) {
+    
+    var uprn = req.params.uprn;
+    var query = "?" + exactLocations + uprn + "&tab=m";
+    
+    return url.nearestApi + query;
 }
 
 function mapUri (req) {
@@ -48,5 +68,7 @@ function mapUri (req) {
 
 module.exports = {
     mapUri: mapUri,
-    mapQuery: mapQuery
+    mapQuery: mapQuery,
+    mapStreetworks: mapStreetworks,
+    mapLocalInformation: mapLocalInformation
 };
