@@ -30,7 +30,7 @@
                         return $http.get('https://camdenmaps-addresslookup.herokuapp.com/search/' + value)
                             .then(function(response){
 
-                                var data = response.data.slice(10);
+                                var data = response.data.slice(0, 10);
 
                                 return data.map(function (item, index){
                                     var displayItem = item.Unit + " " +
