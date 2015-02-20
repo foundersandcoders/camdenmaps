@@ -76,7 +76,7 @@
                     .success(function success (data) {
 
                         if(data.hasOwnProperty("error")){
-                            $scope.update("error", data.message);
+                            $scope.updateError(data.message);
                             return $location.path($location.path().substr(0, $location.path().indexOf("location")) + "search");
                         }
 
@@ -99,13 +99,13 @@
                                 zoom: markers.zoomCheck($scope)()
                             });
                         } else {
-                            $scope.update("error", "Sorry, we couldn't find the right information for this location");
+                            $scope.updateError("Sorry, we couldn't find the right information for this location");
                             return $location.path($location.path().substr(0, $location.path().indexOf("location")) + "search");
                         }
 
                     })
                     .error(function error(err) {
-                        return $scope.update("error", err.message);
+                        return $scope.updateError(err.message);
 
                     });
             }

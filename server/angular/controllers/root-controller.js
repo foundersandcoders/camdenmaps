@@ -62,11 +62,11 @@
                 }
             };
             $scope.defaults = {
-                    scrollWheelZoom: true,
-                    tileLayer: "http://otile3.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png",
-                    zoomControlPosition: "bottomright",
-                };
-            $scope.markers = {},
+                scrollWheelZoom: true,
+                tileLayer: "http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png",
+                zoomControlPosition: "bottomright",
+            };
+            $scope.markers = {};
             $scope.geojson = {
                 data: camdenBoundaries,
                 style: {
@@ -77,7 +77,7 @@
                     dashArray: '3', 
                     fillOpacity: 0.6
                 }
-            }
+            };
 
 
             $scope.sendHome = buttonHandlers.searchAgain($scope, "/home");

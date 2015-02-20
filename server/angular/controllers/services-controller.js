@@ -82,7 +82,7 @@
                         getCurrentCategory(currentPosition, numberOfItems);
                         getVisibleItems(currentIndex);
                     }
-                };
+                }
                 
                 //adds click handler functions to menu items
                 function addClickHandler (item) {

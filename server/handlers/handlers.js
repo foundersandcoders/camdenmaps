@@ -4,6 +4,10 @@
 *   Use: Imported by routes.js
 ********************************************************/
 
+var db = require("../lib/addressdb.js");
+var fs = require("fs");
+var path = require("path");
+
 
 ;(function () {
     "use strict";
