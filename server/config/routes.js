@@ -87,6 +87,17 @@
                 method: "GET",
                 path: "/addresses/{uprn}",
                 config: RoutesConfig.local.information
+            },
+            {
+                method: "GET",
+                path: "/logs",
+                config: RoutesConfig.logging
+            },
+    // Issue token *****************************************
+            {
+                method: "GET",
+                path: "/auth_token",
+                config: RoutesConfig.issueToken
             }
         ]);
     }

@@ -32,7 +32,7 @@
 
             it("Name", function () {
 
-            	var name = element.all(by.tagName('h5')).get(1);
+            	var name = element.all(by.tagName('h5')).get(2);
 
                 expect(name.getText()).toBe('St Pancras Community Centre Lunch Club');
 

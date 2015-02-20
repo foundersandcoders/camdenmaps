@@ -41,8 +41,6 @@
                         //correct path will depend on if it is called from search or location controller
                         path    = scope.address ? "/home/" + service + "/location/" + scope.address + "/" + scope.markers[args.markerName].name
                                 : "/home/" + service + "/search/" + scope.markers[args.markerName].name;
-                        
-                        console.log("path", $location.path());
 
                         if($location.path() !== path) {
                             $location.path(path);

@@ -40,7 +40,7 @@
             opsInterval: 1000,
             reporters: [{
                 reporter: require("good-file"),
-                args: [__dirname + "/../logs/server_log", {error: "*"}]   
+                args: [__dirname + "/../logs/server_log.txt", {error: "*"}]   
             }]
         }        
     };
