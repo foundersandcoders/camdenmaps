@@ -24,7 +24,10 @@ server.connection({
     port: process.env.PORT || config.server.port,
     labels: ["api"],
     routes: {
-        cors: true,
+        cors: {
+            additionalHeaders: ["X-Access-Token"],
+            additionalExposedHeaders: ["X-Access-Token"]
+        },
     	files: {
     		relativeTo: path.join(__dirname, 'server')
     	}

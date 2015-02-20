@@ -29,7 +29,8 @@
            
             "request": function(config) {
                  if (typeof token !== "undefined") {
-                    config.headers["X-Access-Token"] = token;         
+                    config.headers["X-Access-Token"] = token;  
+                    console.log(token);       
                 }
                 return config;
             },
@@ -37,7 +38,7 @@
            "response": function(response) {
                 if (response.headers("X-Access-Token")) {
                     token = response.headers("X-Access-Token");
-
+                    console.log(token);       
                 }
                 return response;
            } 

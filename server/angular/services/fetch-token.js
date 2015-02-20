@@ -13,7 +13,10 @@
         function ($http) {
 
             this.getToken = function getToken () {
-                return $http({method:"GET", url:"/auth_token"});
+            	return $http.get('http://camdenmaps.herokuapp.com/auth_token').then(function(response){
+            		console.log(response);
+            	})
+                
             }
 
 
