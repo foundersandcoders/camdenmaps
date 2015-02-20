@@ -22,8 +22,8 @@ module.exports = function addressdb (json) {
             error.message = "Sorry, could not find any matches";
             return cb(error);
         }
-    }
+    };
 
 
     return that;
-}
+};

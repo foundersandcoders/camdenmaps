@@ -38,7 +38,9 @@
                 exp: new Date().getTime() + 1000*60*60
             }, secret);
 
-            res("Heres a token").header( "x-access-token", token );    
+            return res("Heres a token")
+                .header( "X-Access-Token", token );
+
         }
 
     };
