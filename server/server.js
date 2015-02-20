@@ -1,4 +1,4 @@
-/***********************************************
+/**********************************************
 *   SERVER.JS
 *   Description: Initializes and configures server
 *   Use: This is where the server starts!

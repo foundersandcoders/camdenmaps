@@ -21,51 +21,15 @@
         lats = Config.map.query.lat,
         exactLocations = Config.map.query.uprn,
         cap = require("../lib/capitalize.js"),
-        aliasServices = require("../lib/alias.js");
+        aliasServices = require("../lib/alias.js"),
+        mapUri = require("../lib/mapUri.js").mapUri;
 
     module.exports = {
 
         nearestMapper: function nearestMapper (req, cb, err, next) {
 
-            var service, location, query, lat, lng, apiUrl, defaultLocation;
-
-            service = cap(req.params.service);
-            location = req.params.postcode;
-            lat = req.params.latitude;
-            lng = req.params.longitude;
-            defaultLocation = "N1C 4AG";
-            lat = req.params.latitude;
-            lng = req.params.longitude;
-
-            //TODO: green query is not the same, needs to be changed depending on service requested
-
-            //api url routed based on service requested
-            apiUrl  = (serviceArray.parking.indexOf(service) !== -1)    ? url.parkingApi
-                    : (serviceArray.recycling.indexOf(service) !== -1)  ? url.recyclingApi
-                    : url.nearestApi;
-
-            
-            //change value of services query depending on service being searched
-            services    = (serviceArray.recycling.indexOf(service) !== -1) ? "recycle="
-                        : "find=";
-
-            console.log(service);
-           
-            //map our service names to camden service names
-            service = aliasServices(service);
-
-            console.log(service);
-
-            //query constructed based on combination of services and/or address
-
-            query   = (lat !== undefined) ? "?" + services + service + "&" + lats + lat + "&" + lngs + lng
-
-                    : (location === undefined) ? "?" + services + service + "&" + locations + defaultLocation
-                    : (service === undefined)  ? query = "?" + locations + location 
-                    : "?" + locations + location + "&" + services + service;
-
             //redirect request to proxy
-            return cb(null, apiUrl + query, { "Accept": "application/json" });
+            return cb(null, mapUri(req), { "Accept": "application/json" });
 
         },
         localMapper: function localInfoMapper (req, cb) {
