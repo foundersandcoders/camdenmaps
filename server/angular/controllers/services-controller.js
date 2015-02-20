@@ -64,7 +64,7 @@
                     var service,
                         path;
 
-                    $scope.updateError("");
+                    $scope.update("error", "");
 
                     if (item.type === "service") {
 

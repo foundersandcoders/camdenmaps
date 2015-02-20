@@ -23,10 +23,12 @@
             //search api for uprn
             apiSearch.searchNeighbourhood($stateParams.uprn)
                 .success(function(data) {
+                    
                     if (data.hasOwnProperty("error")) {
+                        $location.path("/home/neighbourhood");
                         return $scope.updateError(data.message);
                     }
-                
+                    $scope.updateError("");
                     return $scope.update("information", data.information);
                 })
                 .error(function(data) {

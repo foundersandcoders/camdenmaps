@@ -63,7 +63,7 @@
             };
             $scope.defaults = {
                 scrollWheelZoom: true,
-                tileLayer: "http://otile3.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png",
+                tileLayer: "http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png",
                 zoomControlPosition: "bottomright",
             };
             $scope.markers = {};

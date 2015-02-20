@@ -22,11 +22,13 @@
 
             //function for searching uprn
             $scope.search = function () {
+
                 if ($scope.address) {
 
                     apiSearch.searchNeighbourhood($scope.address)
                         .success(function(data) {
                             if (data.hasOwnProperty("error")) {
+                                $location.path("/home/neighbourhood");
                                 return $scope.updateError(data.message);
                             }
                             
