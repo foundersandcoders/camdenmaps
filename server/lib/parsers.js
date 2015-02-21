@@ -7,12 +7,23 @@
     var cap = require("../lib/capitalize.js");
     var clean = require("../lib/cleanobj.js");
 
+    
+    //creates an includes function to search strings
+    if (!('contains' in String.prototype)) {
+      String.prototype.contains = function(str, startIndex) {
+        return ''.indexOf.call(this, str, startIndex) !== -1;
+      };
+    }
+
     function toTitleCase(str) {
         return str.replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     }
 
+    //prevents web addresses being changed
     function replaceSlashes(str) {
-        return str.replace("/", " and ");
+        if(!str.contains("http://")) {
+            return str.replace("/", " and ");
+        }
     }
 
 
