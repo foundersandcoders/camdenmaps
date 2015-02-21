@@ -3,11 +3,6 @@
 *	Description: to reset or normalise
 ************************************************/
 
-//IMPORTS FILES
-@import '../base/typography',
-	'../base/colours';
-
-
 //BASID RESETS
 body, html {
 	font-family: $default-font;
@@ -63,7 +58,17 @@ span {
 }
 
 button {
-	border: none;
+	border: 0;
+	background-color: transparent;
+	&:focus {
+		background-color: transparent;
+	}
+	&:hover {
+		background-color: transparent;
+	}
+	&:visited {
+		background-color: transparent;
+	}
 }
 
 input {

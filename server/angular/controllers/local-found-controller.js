@@ -16,6 +16,10 @@
 
             $scope.information;
 
+            $scope.exit = function exit() {
+                $location.path("/home/neighbourhood");
+            };
+
             //search api for uprn
             apiSearch.searchNeighbourhood($stateParams.uprn)
                 .success(function(data) {

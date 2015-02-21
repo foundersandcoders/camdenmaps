@@ -1,0 +1,35 @@
+<!-- ROOT.CATEGORIES BEGINS -->
+
+<div class="container-fluid">
+    <div ng-swipe-right="prevItems()" ng-swipe-left="nextItems()" class="services-and-categories col-xs-12">
+
+        <!-- Search Box for locations & GPS -->
+        <div class="col-xs-12 row search-box">   
+            <div class="servicestypeahead row">
+                <servicestypeahead/>
+            </div> 
+            <div class="col-md-12">
+                <h3>Search a service or select one category from below</h3>
+            </div>        
+        </div>
+
+        <!-- Container with all the categories listed -->
+        <div class="item-container col-xs-12">
+            <div class="list-items" id="category-list">
+                <div ng-repeat="category in serviceCategories" class="container-list row">
+                    <a ng-click="clickHandler(category)">
+                        <div class="col-xs-3 col-xs-offset-1 col-sm-offset-0 col-md-3">
+                            <img ng-src="{{ category.img }}" alt="">
+                        </div>
+                        <div class="col-xs-7 col-md-9 accordiontext">
+                            <h4>{{ category.title }}</h4>
+                            <h4 class="hidden-xs">{{ category.text }}</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<!-- ROOT.CATEGORIES ENDS-->

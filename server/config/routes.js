@@ -87,6 +87,11 @@
                 method: "GET",
                 path: "/addresses/{uprn}",
                 config: RoutesConfig.local.information
+            },
+            {
+                method: "GET",
+                path: "/logs",
+                config: RoutesConfig.logging
             }
         ]);
     }
