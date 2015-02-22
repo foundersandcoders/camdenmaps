@@ -9,20 +9,20 @@
         protractor = require("gulp-protractor").protractor,
         webdriver_update = require("gulp-protractor").webdriver_update,
         sass = require("gulp-sass"),
-        concat = require("gulp-concat"),
         uglify = require("gulp-uglify"),
         sourcemaps = require("gulp-sourcemaps"),
         source = require("vinyl-source-stream"),
         buffer = require("vinyl-buffer"),
-        watchify = require("watchify"),
         shell = require ("gulp-shell"),
         nodemon = require("gulp-nodemon"),
+        htmlmin = require('gulp-htmlmin'),
         browserify = require("browserify");
 
     //file arrays
     var serverFiles = ["./server/*.js", "./server/**/*.js"],
         angularFiles = ["./server/public/angular/*.js", "./server/public/angular/**/*.js"],
         serverTestFiles = ["./test/api/*.js"],
+        htmlFiles = ["./server/public/partials/*.html", "./server/public/*.html"],
         karmaTestFiles = ["./test/frontend/unit/*.js"],
         protractorTestFiles = ["./test/frontend/acceptance/*.js"],
         sassFiles = ["./server/public/css/*.scss", "./server/public/css/*/*.scss"],
@@ -130,6 +130,12 @@
         return shell.task([
             "watchify ./server/angular/app.js -o ./server/public/js/1.0.0.camdenmaps.min.js -v"
         ]);
+    });
+
+    gulp.task('html', function() {
+      return gulp.src(htmlFiles)
+        .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(gulp.dest('./server/public/templates'))
     });
 
     gulp.task("dependencies", function() {

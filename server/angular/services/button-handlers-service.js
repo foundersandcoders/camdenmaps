@@ -36,7 +36,9 @@
                     // better to have a watch function that triggers when markers changes??
                     if($location.path === "/home") {
                         $location.path(destination);
-                        $timeout(function() { scope.update("markers", {})}, 1000);
+                        $timeout(function() { 
+                            scope.update("markers");
+                        }, 1000);
                     } else {
                         $location.path(destination); 
                     }
@@ -65,12 +67,14 @@
                     // better to have a watch functiont that triggers when markers changes??
                     if($location.path === "/home") {
                         $location.path(destination);
-                        $timeout(function() { scope.update("markers", {})}, 1000);
+                        $timeout(function() { 
+                            scope.update("markers");
+                        }, 1000);
                     } else {
                         $location.path(destination); 
                     }
                 };
-            }
+            };
 
             this.toggle = function (functionScope) {
                 
