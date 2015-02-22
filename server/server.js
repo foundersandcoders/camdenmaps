@@ -62,7 +62,5 @@ server.register({
     }
 });
 
-console.log(__dirname)
-
 //exports server for testing
 module.exports = server;

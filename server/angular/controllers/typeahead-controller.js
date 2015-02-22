@@ -90,7 +90,7 @@
                 if (($location.path().indexOf("/neighbourhood") > -1) || 
                     ($location.path().indexOf("/streetworks") > -1) || 
                     ($location.path().indexOf("/search") > -1)) {
-                    console.log("true");
+
                     return true;
                 } else {
                     return false;
