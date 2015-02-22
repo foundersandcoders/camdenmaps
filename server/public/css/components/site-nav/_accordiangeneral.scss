@@ -4,10 +4,34 @@
 *	mixins and variables.
 ************************************************/
 
-//IMPORTS FILES
-
 #accordionBox{
 	width: 100%;
+}
+
+.services-and-categories {
+	// width: inherit;
+	padding: 0;
+	border-bottom: 0.1em solid black;
+	color: $light-blue;
+	text-align: center;
+	h2 {
+		margin: 0.7em 0em;
+		text-align: center;
+		color: $white;
+		//font-size: 
+	}
+	#back {
+		width: 2.6em;
+	}
+}
+
+@media (max-width: 768px) {
+	.services-and-categories {
+		height: 11.5em;
+		h2 {
+			margin: 0.3em 0em;
+		}
+	}
 }
 
 #address-search {
@@ -42,6 +66,13 @@
 	}
 }
 
+.item-container {
+	padding: 0;
+	// box-shadow: 0.5em 0.5em 0.5em #888888;
+	border-top: solid 0.2em $light-grey;
+	margin-top: 1em;
+}
+
 .title-list-items{
 	//border-bottom: solid 0.2em $dark-grey;
 	box-shadow: 0.5em 0.2em 0.5em #888888;
@@ -74,6 +105,10 @@
 #category-title-of-services{
 	background-color: $medium-blue;
 
+}
+
+#service-title-of-results{
+	background-color: $light-blue;
 }
 
 .item-container {
