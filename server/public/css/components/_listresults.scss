@@ -22,6 +22,14 @@
 		min-height: 5em;
 		max-height: 100%;
 	}
+	.display-result {
+		display: none;
+		visibility: hidden;
+	}
+	.display-result.active {
+		display: block;
+		visibility: visible;
+	}
 	.distance {
 		text-align: right;
 	}
