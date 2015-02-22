@@ -57,22 +57,7 @@
 
                                 } else {
            
-                                    scope.markers.m0 = {
-                                        lat: e.latitude,
-                                        lng: e.longitude,
-                                        icon: {
-                                            iconSize: [28],
-                                            iconUrl: "../img/icons/location-marker.png"
-                                        },
-                                        message: "Your location",
-                                        focus: true,
-                                        geolocation: true
-                                    };
-
-                                    var path = "/home/" + $stateParams.service + "/location/" + "your location";
-                                    $location.path(path);
-                                    console.log("outside Camden");
-
+                                    scope.updateError("That location is outside Camden");
                                 }
                             })
                             .on('locationerror', function(e){
