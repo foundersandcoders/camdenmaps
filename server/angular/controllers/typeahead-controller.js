@@ -30,7 +30,7 @@
 
                                 var data = response.data.slice(0, 10);
 
-                                return data.map(function (item, index){
+                                return data.map(function (item){
                                     var displayItem = item.Unit + " " +
                                         item.BuildingName + " " +
                                         item.BuildingNumber + " " +
