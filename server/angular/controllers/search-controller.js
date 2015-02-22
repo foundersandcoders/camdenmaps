@@ -22,7 +22,35 @@
                 noResults,
                 resetActiveMarker,
                 category,
+                categoryId,
+                parentId,
                 menu;
+
+            menu = require("../menu.json");
+
+            // Ensuring that the service that displays is decoded
+            $scope.service = decodeURI($stateParams.service);
+
+            // Ensuring that the service name in the URL is Encoded
+            $stateParams.service = encodeURIComponent($scope.service);
+
+            parentId = menu.filter(function (item) {
+                if ($scope.service === item.title) {
+                    return item;
+                }
+            });
+
+            categoryId = parentId[0].parentId;
+            
+            category = menu.filter (function (item) {
+                if (categoryId === item.id){
+                    return item;
+                } 
+            });
+
+            $scope.category = category[0];
+
+            console.log(parentId[0]);
 
             noResults = require("../lib/no-results.js");
             resetActiveMarker = require("../lib/reset-active-marker");
@@ -36,15 +64,14 @@
             //model for placeholder
             $scope.placeholder = "Please enter a postcode";
 
-            // Ensuring that the service that displays is decoded
-            $scope.service = decodeURI($stateParams.service);
-
-            // Ensuring that the service name in the URL is Encoded
-            $stateParams.service = encodeURIComponent($scope.service);;
+            //change baseurl depending on whether address-found or address-search 
+            $scope.baseUrl = $stateParams.address ?  "/#/home/" + $stateParams.service + 
+                "/location/" + $stateParams.address + "/" : "/#/home/" + $stateParams.service + 
+                "/search/";
 
             try {
                 //model for image icon
-                $scope.icon = require("../menu.json").filter(function filterImg (item) {
+                $scope.icon = menu.filter(function filterImg (item) {
                     var name = item.title + item.text;
                     return name.toLowerCase() === $scope.service.toLowerCase();
                 })[0].img;
@@ -153,16 +180,10 @@
 
             $scope.toggle = buttonHandlers.toggle($scope);
             
-            menu = require("../menu.json");
+            $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services")
+            $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service")
 
-            category = menu.filter(function (item) {
-                if (item.title === $stateParams.category) {
-                    return item;
-                }
-            })
 
-            $scope.category = category[0];
-            
         }
     ];
 }());

@@ -9,11 +9,14 @@
     module.exports = [
         "$scope",
         "$location",
-        function ($scope, $location) {
+        "buttonHandlers",
+        function ($scope, $location, buttonHandlers) {
 
             	var menu = [];
 
             	menu = require("../menu.json");
+
+                $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
 
                 $scope.selected = '';
 

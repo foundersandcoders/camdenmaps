@@ -14,7 +14,8 @@
             "$scope",
             "$location",
             "$stateParams",
-            function ($scope, $location, $stateParams) {
+            "buttonHandlers",
+            function ($scope, $location, $stateParams, buttonHandlers) {
          
 
                 //***************** Initialize menu and variables **************
@@ -47,10 +48,12 @@
 
                     $scope.update("error", "");
 
-                    path = "/home/" + category[0].title + "/" + item.title + "/search/list";
+                    path = "/home/" + item.title + "/search";
 
                     $location.path(path);
                 };
+
+                $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services")
             }
         ];
 
