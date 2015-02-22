@@ -29,13 +29,13 @@
                          map.locate({setView: false, watch: false})
                             .on('locationfound', function (e){
 
-                            var insideCamden = false;
+                                var insideCamden = false;
 
-                            if(51.57878 > e.latitude > 51.450089 && -0.094538 > e.longitude > -0.218650) {
-                                    insideCamden = true;
-                            };
+                                //coordinates represent a square around Camden to roughly test if location is inside boundary
+                                if(51.57878 > e.latitude > 51.450089 && -0.094538 > e.longitude > -0.218650) {
+                                        insideCamden = true;
+                                }
     
-                                //this checks if the location returned is within the map boundaries i.e. larger than Camden
                                 if (insideCamden) {
                             
                                     scope.markers.m0 = {
@@ -50,8 +50,7 @@
                                         message: "Your location",
                                         focus: true
                                     };
-                                    //if we are within Camden then it will auto-centre the map on the user's location
-                                    // map.locate({setView: true, watch: false});
+
                                     path = "/home/" + $stateParams.service + "/location/" + "your location";
                                     $location.path(path);
 
