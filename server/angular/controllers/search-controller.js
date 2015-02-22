@@ -50,8 +50,6 @@
 
             $scope.category = category[0];
 
-            console.log(parentId[0]);
-
             noResults = require("../lib/no-results.js");
             resetActiveMarker = require("../lib/reset-active-marker");
 
@@ -83,26 +81,26 @@
             if( noResults($scope) ) {        
 
                 apiSearch.search($stateParams.service)
-                        .success(function success (data) {
-                            if(data.hasOwnProperty("error")) {
-                                // display error message
-                                $scope.updateError(data.message);
-                                // and redirect back to services menu to try again
-                                $location.path("/home/services");
-                            }
-                            $scope.updateResults(data.properties);
-                            //selects item from results with matching {id}
-                            $scope.result = $scope.results.filter(function (result) {
-                                return result.display.Name === $stateParams.id;
-                            })[0];
+                    .success(function success (data) {
+                        if(data.hasOwnProperty("error")) {
+                            // display error message
+                            $scope.updateError(data.message);
+                            // and redirect back to services menu to try again
+                            $location.path("/home/services");
+                        }
+                        $scope.updateResults(data.properties);
+                        //selects item from results with matching {id}
+                        $scope.result = $scope.results.filter(function (result) {
+                            return result.display.Name === $stateParams.id;
+                        })[0];
 
-                            $scope.addMarkers();
-                            // $scope.centre = markers.centreCheck($scope)();
-                            $scope.centre.zoom = markers.zoomCheck($scope)();
-                        })
-                        .error(function error(err) {
-                            return $scope.updateError(err.message);
-                        });
+                        $scope.addMarkers();
+                        // $scope.centre = markers.centreCheck($scope)();
+                        $scope.centre.zoom = markers.zoomCheck($scope)();
+                    })
+                    .error(function error(err) {
+                        return $scope.updateError(err.message);
+                    });
 
             }
 
