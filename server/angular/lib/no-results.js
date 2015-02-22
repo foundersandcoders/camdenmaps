@@ -1,3 +1,9 @@
+/*************************************
+*   NO RESULTS.JS
+*	Use: To check if there are any 
+*	results on the map.
+*************************************/
+
 ;(function() {
 	"use strict";
 
