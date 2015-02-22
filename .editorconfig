@@ -10,4 +10,4 @@ indent_style = space
 indent_size = 4
 trim_trailing_whitespace = true
 spaces_around_operators = true
-indent_brace_style = 1TBS
+indent_brace_style = 1TBS 
