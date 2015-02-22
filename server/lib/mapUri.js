@@ -21,8 +21,9 @@ function mapQuery (req) {
 }
 
 function mapStreetworks (req) {
-
+    
     var location, query, lat, lng;
+    services = "find=";
     location = req.params.postcode;
     lat = req.params.latitude;
     lng = req.params.longitude;
@@ -34,7 +35,7 @@ function mapStreetworks (req) {
 function mapLocalInformation (req) {
     
     var uprn = req.params.uprn;
-    var query = "?" + exactLocations + uprn + "&tab=m";
+    var query = "?" +b exactLocations + uprn + "&tab=m";
     
     return url.nearestApi + query;
 }
