@@ -1,6 +1,6 @@
 <!-- TYPEAHEAD-SEARCH -->
 <div class="col-xs-2 col-md-2">
-    <a ng-href="/#/home">
+    <a class="col-xs-1 col-md-1" ng-click="searchAgain()">
         <img id="backhome" src="../img/icons/backhome.png" alt="back">
     </a> 
 </div>
@@ -9,7 +9,7 @@
 
 
 	<div class="col-xs-8 col-md-9" id="forminput">
-	    <input type="text" placeholder="Enter a service to search" ng-model="selected" typeahead="searchitem for searchitem in typeaheadSearchList | filter:$viewValue | limitTo:8" class="form-control">
+	    <input type="text" placeholder="{{ placeholder }}" ng-model="selected" typeahead="searchitem for searchitem in typeaheadSearchList{{ additions }}" class="form-control"/>
 	</div>
 
 	<div class="col-xs-2 col-md-1">
@@ -19,10 +19,4 @@
 	</div>
 
 </form>
-
-<!-- <div class="clicktosearch col-xs-1 col-xs-offset-11">
-    <button type="submit">
-        <span class="glyphicon glyphicon-search"></span>
-    </button>
-</div>
- -->
+<!-- TYPEAHEAD-SEARCH END -->

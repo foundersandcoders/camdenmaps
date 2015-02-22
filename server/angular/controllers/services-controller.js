@@ -1,7 +1,6 @@
 /*******************************************
 *   SERVICES-CONTROLLER.JS
 *
-*
 ********************************************/
 
 //TODO: Write service to access menu
@@ -11,47 +10,49 @@
     "use strict";
 
     module.exports = [
-            "$scope",
-            "$location",
-            "$stateParams",
-            function ($scope, $location, $stateParams) {
-         
+        "$scope",
+        "$location",
+        "$stateParams",
+        "buttonHandlers",
+        function ($scope, $location, $stateParams, buttonHandlers) {
+            
+           //***************** Initialize menu and variables **************
 
-                //***************** Initialize menu and variables **************
+            var menu,
+                category;
 
-                var menu,
-                    category;
+            //***************** Initialize service menu items **************
 
-                //***************** Initialize service menu items **************
+            menu = require("../menu.json");
 
-                menu = require("../menu.json");
+            category = menu.filter(function (item) {
+                if (item.title === $stateParams.category) {
+                    return item;
+                }
+            })
 
-                category = menu.filter(function (item) {
-                    if (item.title === $stateParams.category) {
-                        return item;
-                    }
-                })
+            $scope.category = category[0];
 
-                $scope.category = category[0];
+            $scope.services = menu.filter(function (item) {
+                if (item.parentId === category[0].id) {
+                    return  item;
+                }
+            });
 
-                $scope.services = menu.filter(function (item) {
-                    if (item.parentId === category[0].id) {
-                        return  item;
-                    }
-                });
+            //handler that opens new category 
+            $scope.clickHandler = function (item) {
 
-                //handler that opens new category 
-                $scope.clickHandler = function (item) {
+                var path;
 
-                    var path;
+                $scope.update("error", "");
 
-                    $scope.update("error", "");
+                path = "/home/" + item.title + "/search";
 
-                    path = "/home/" + category[0].title + "/" + item.title + "/search/list";
+                $location.path(path);
+            };
 
-                    $location.path(path);
-                };
-            }
-        ];
+            $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services")
 
+        }
+    ];
 }());

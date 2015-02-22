@@ -13,7 +13,10 @@
     "$urlRouterProvider",
     "$stateProvider",
     "localStorageServiceProvider",
-    function ($urlRouterProvider, $stateProvider, localStorageServiceProvider) {
+    "$httpProvider",
+    function ($urlRouterProvider, $stateProvider, localStorageServiceProvider, $httpProvider) {
+
+        $httpProvider.interceptors.push("tokenIntercept");
 
         localStorageServiceProvider
             .setPrefix('maps')
@@ -52,19 +55,11 @@
                 templateUrl: "partials/root.services.html",
                 controller: "ServicesController" 
             })
-  
             //address-search contains search box for entering postcodes/streetnames
             .state("root.address-search", {
-                url: "/{category}/{service}/search",
+                url: "/{service}/search",
                 templateUrl: "partials/root.address-search.html",
                 controller: "SearchController"
-            })
- 
-            //list-view contains view for listing found services
-            .state("root.address-search.list-view", {
-                url: "/list",
-                templateUrl: "partials/list-view.html",
-                controller: "ListController" 
             })
 
             //single view  contains view for displaying single selected service
@@ -112,7 +107,7 @@
             //state for about your neighbourhood search
             .state("root.neighbourhood", {
                 url: "/neighbourhood",
-                templateUrl: "partials/root.address-search.html",
+                templateUrl: "partials/root.neighbourhood-search.html",
                 controller: "LocalSearchController"
             })
 
@@ -122,8 +117,6 @@
                 templateUrl: "partials/root.neighbourhood.local-information.html",
                 controller: "LocalFoundController"
             })
-
-        
-
+            
     }];
 }());
