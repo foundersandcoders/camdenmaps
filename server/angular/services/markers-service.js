@@ -18,6 +18,7 @@
             };  
             
 
+
             this.geolocateUser = function (functionScope, cb) {
                 
                 return function(scope) {
@@ -27,9 +28,15 @@
                          //this will return the location but not auto-centre on it or continuously watch
                          map.locate({setView: false, watch: false})
                             .on('locationfound', function (e){
+
+                            var insideCamden = false;
+
+                            if(51.57878 > e.latitude > 51.450089 && -0.094538 > e.longitude > -0.218650) {
+                                    insideCamden = true;
+                            };
     
                                 //this checks if the location returned is within the map boundaries i.e. larger than Camden
-                                if (51.57878 > e.latitude > 51.450089 && -0.094538 > e.longitude > -0.218650) {
+                                if (insideCamden) {
                             
                                     scope.markers.m0 = {
                                         lat: e.latitude,
@@ -64,6 +71,7 @@
 
                                     var path = "/home/" + $stateParams.service + "/location/" + "your location";
                                     $location.path(path);
+                                    console.log("outside Camden");
 
                                 }
                             })
