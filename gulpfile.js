@@ -5,7 +5,6 @@
     //import modules
     var gulp = require("gulp"),
         eslint = require("gulp-eslint"),
-        karma = require("gulp-karma"),
         lab = require("gulp-lab"),
         protractor = require("gulp-protractor").protractor,
         webdriver_update = require("gulp-protractor").webdriver_update,
@@ -50,15 +49,9 @@
     });
 
     //task for angular unit test
-    gulp.task("unit-test", function () {
-        return gulp.src(karmaTestFiles)
-            .pipe(karma({
-                configFile: "./test/frontend/config/karma.config.js",
-            }))
-            .on("error", function (err) {
-                throw err;
-            });
-    });
+    gulp.task("unit-test", shell.task([
+        "./node_modules/tape/bin/tape ./test/frontend/unit/*.js | ./node_modules/.bin/tap-spec"            
+    ]));
 
     //task for lab test
     gulp.task("server-test", function () {
@@ -95,10 +88,6 @@
             .pipe(gulp.dest("./server/public/css/"));
     });
 
-    gulp.task("sass-watch", function () {
-        gulp.watch(sassFiles, ["sass-dev"]);
-    });
-
     //task for travis
     gulp.task("travis", ["sass-production", "browserify"], function () {
         nodemon({ script: 'server/server.js'})
@@ -117,23 +106,10 @@
         
     });
 
-    gulp.task("test-watch", function () {
-        gulp.watch(karmaTestFiles, angularFiles, ["unit-test"]);
-        gulp.watch(serverFiles.concat(serverTestFiles), ["server-test"]);
-        console.log("gulp is watching for test changes...");
-    });
-
     //task for converting yaml files to json
     gulp.task("convertyaml", shell.task([
         "node server/lib/yml2swagger.js server/lib/yaml server/public/output"
     ]));
-
-    //task for when developing
-    gulp.task("file-watch",  function () {
-        gulp.watch(allFiles, ["lint"]);
-        gulp.watch(sassFiles, ["sass-dev"]);
-        console.log("gulp is watching for linting and sass changes...");
-    });
 
     gulp.task("browserify", function () {
 
@@ -150,8 +126,32 @@
         return bundle();
     });
 
-    gulp.task("watchify", shell.task([
-        "watchify ./server/angular/app.js -o ./server/public/js/1.0.0.camdenmaps.min.js -v"
-    ]));
+    gulp.task("watchify", function() {
+        return shell.task([
+            "watchify ./server/angular/app.js -o ./server/public/js/1.0.0.camdenmaps.min.js -v"
+        ]);
+    });
+
+    gulp.task("dependencies", function() {
+        return shell.task([
+            "npm install"            
+        ])
+    });
+
+    gulp.task("build", ["dependencies", "sass-dev", "browserify"] , function() {
+        return console.log("done building"); 
+    });
+
+    gulp.task("default",["build"],  function() {
+        nodemon({
+            script: "server/server.js",
+            ext: "html js",
+            ignore: ["node_modules"]
+        })
+        .on("restart", function(){
+            console.log("restarted");
+        }); 
+    });
+
 
 }());
