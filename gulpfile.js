@@ -9,12 +9,10 @@
         protractor = require("gulp-protractor").protractor,
         webdriver_update = require("gulp-protractor").webdriver_update,
         sass = require("gulp-sass"),
-        concat = require("gulp-concat"),
         uglify = require("gulp-uglify"),
         sourcemaps = require("gulp-sourcemaps"),
         source = require("vinyl-source-stream"),
         buffer = require("vinyl-buffer"),
-        watchify = require("watchify"),
         shell = require ("gulp-shell"),
         nodemon = require("gulp-nodemon"),
         browserify = require("browserify");
@@ -153,5 +151,10 @@
         }); 
     });
 
+    gulp.task("csvtojson", function() {
+        return shell.task([
+            "node ./server/lib/csvtojson.js"    
+        ]);
+    });
 
 }());
