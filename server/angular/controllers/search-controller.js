@@ -33,6 +33,7 @@
             $scope.title = "Find your Nearest";
             //model for placeholder
             $scope.placeholder = "Please enter a postcode";
+            $scope.icon = "";
 
             // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
@@ -59,7 +60,7 @@
                                 // display error message
                                 $scope.updateError(data.message);
                                 // and redirect back to services menu to try again
-                                $location.path("/home/services");
+                                return $location.path("/home/services");
                             }
                             $scope.updateResults(data.properties);
                             //selects item from results with matching {id}
@@ -70,9 +71,6 @@
                             $scope.addMarkers();
                             // $scope.centre = markers.centreCheck($scope)();
                             $scope.centre.zoom = markers.zoomCheck($scope)();
-                        })
-                        .error(function error(err) {
-                            return $scope.updateError(err.message);
                         });
 
             }
