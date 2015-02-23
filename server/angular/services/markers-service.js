@@ -1,6 +1,15 @@
 ;(function () {
 	"use strict";
 
+    function isWithinCamden (latitude, longitude) {
+    	//coordinates represent a square around Camden to roughly test if location is inside boundary
+        if(51.57878 > latitude > 51.450089 && -0.094538 > longitude > -0.218650) {
+            return true;
+        } else {
+            return false
+        }
+    }
+
     var cappedResults = require("../lib/capped-results.js");
 
 	module.exports = [
@@ -16,7 +25,7 @@
                 }
                 return size;
             };  
-            
+
 
             this.geolocateUser = function (functionScope, cb) {
                 
@@ -27,9 +36,9 @@
                          //this will return the location but not auto-centre on it or continuously watch
                          map.locate({setView: false, watch: false})
                             .on('locationfound', function (e){
+
     
-                                //this checks if the location returned is within the map boundaries i.e. larger than Camden
-                                if (51.57878 > e.latitude > 51.450089 && -0.094538 > e.longitude > -0.218650) {
+                                if (isWithinCamden(e.latitude, e.longitude)) {
                             
                                     scope.markers.m0 = {
                                         lat: e.latitude,
@@ -43,28 +52,13 @@
                                         message: "Your location",
                                         focus: true
                                     };
-                                    //if we are within Camden then it will auto-centre the map on the user's location
-                                    // map.locate({setView: true, watch: false});
+
                                     path = "/home/" + $stateParams.service + "/location/" + "your location";
                                     $location.path(path);
 
                                 } else {
            
-                                    scope.markers.m0 = {
-                                        lat: e.latitude,
-                                        lng: e.longitude,
-                                        icon: {
-                                            iconSize: [28],
-                                            iconUrl: "../img/icons/location-marker.png"
-                                        },
-                                        message: "Your location",
-                                        focus: true,
-                                        geolocation: true
-                                    };
-
-                                    var path = "/home/" + $stateParams.service + "/location/" + "your location";
-                                    $location.path(path);
-
+                                    scope.updateError("That location is outside Camden");
                                 }
                             })
                             .on('locationerror', function(e){

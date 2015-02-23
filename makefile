@@ -1,5 +1,5 @@
 s:
-	./node_modules/nodemon/bin/nodemon server/server.js
+	node server/server.js
 
 t:
 	./node_modules/tape/bin/tape test/frontend/unit/*.js | ./node_modules/.bin/tap-spec

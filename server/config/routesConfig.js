@@ -18,6 +18,24 @@
 
     module.exports = {
 
+        staticFiles: {
+            handler: {
+                directory: {
+                    path: "../public",
+                    listing: true,
+                    index: true
+                }
+            }
+        },
+        angularDirectiveFiles: {
+            handler: {
+                directory: {
+                    path: "../angular/directives",
+                    listing: true,
+                    index: true
+                }
+            }
+        },
         getHome: {
             handler: handlers.getHome
         },
@@ -44,24 +62,6 @@
                 }
             },
         },
-        apiDocs: {
-            handler: handlers.showDocsHome
-        },
-       
-        local: {
-            information: {
-                handler: function(req, rep) {
-                    
-                    var key = req.raw.req.url;
-                    
-                    cache.getCache(req, key, rep, mapUri.mapLocalInformation, parsers.localInformationApiParser, {
-                        mapUri: MapConfig.localMapper,
-                        onResponse: ConvertXml.convertLocalInformation
-                    });
-
-                }
-            }
-        },
         streetworks: {
             handler: function(req, rep) {
                 
@@ -73,21 +73,20 @@
                 }) 
             }
         }, 
-        staticFiles: {
-            handler: {
-                directory: {
-                    path: "../public",
-                    listing: true,
-                    index: true
-                }
-            }
+        apiDocs: {
+            handler: handlers.showDocsHome
         },
-        angularDirectiveFiles: {
-            handler: {
-                directory: {
-                    path: "../angular/directives",
-                    listing: true,
-                    index: true
+        local: {
+            information: {
+                handler: function(req, rep) {
+                    
+                    var key = req.raw.req.url;
+                    
+                    cache.getCache(req, key, rep, mapUri.mapLocalInformation, parsers.localInformationApiParser, {
+                        mapUri: MapConfig.localMapper,
+                        onResponse: ConvertXml.convertLocalInformation
+                    });
+
                 }
             }
         },

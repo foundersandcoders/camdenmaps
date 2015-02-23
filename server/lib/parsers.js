@@ -11,11 +11,6 @@
         return str.replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     }
 
-    function replaceSlashes(str) {
-        return str.replace("/", " and ");
-    }
-
-
     function streetworksApiParser (xml) {
         var json = {};
         
