@@ -1,0 +1,27 @@
+/***********************************************
+*   MEDIA QUERIES MIXIN
+*   Description: Responsive Breakpoints
+************************************************/
+
+$tablet-size: 768px;
+$small-size: 992px;
+$large-size: 1200px;
+
+// Small Mobile Devices (less than 768px wide)
+@mixin respond($size) {
+    @if $size == mobile {
+        @media (max-width: $tablet-size) {
+            @content;
+        }
+    }
+    @else if $size == tablet {
+        @media (min-width: $tablet-size + 1) and (max-width: $small-size) {
+            @content;
+        }
+    }
+    @else if $size == screen {
+        @media (min-width: $large-size) {
+            @content;
+        }
+    }
+}

@@ -5,8 +5,6 @@
 *
 *************************************************************************************/
 
-//TODO: Find out why it only works when controllers and services are registered directly
-
 ;(function () {
     "use strict";
 
@@ -16,12 +14,13 @@
     require("angular-local-storage");
 
     angular.module("maps", [
-            require("angular-ui-router"),
-            "ngTouch",
-            "ui.bootstrap",
-            "LocalStorageModule",
-            "leaflet-directive"
+        require("angular-ui-router"),
+        "ngTouch",
+        "ui.bootstrap",
+        "LocalStorageModule",
+        "leaflet-directive"
     ])
+
     .factory("tokenIntercept", [function () {
         var token;
         
@@ -29,22 +28,21 @@
            
             "request": function(config) {
                  if (typeof token !== "undefined") {
-                    config.headers["X-Access-Token"] = token;  
-                    console.log(token);       
+                    config.headers["X-Access-Token"] = token;        
                 }
                 return config;
             },
 
            "response": function(response) {
                 if (response.headers("X-Access-Token")) {
-                    token = response.headers("X-Access-Token");
-                    console.log(token);       
+                    token = response.headers("X-Access-Token");     
                 }
                 return response;
            } 
             
         }
     }])
+
     .config( require("./config.js") )
 
 	// Set up the cache for initial resources
@@ -55,7 +53,6 @@
     require("./directives");
     require("./controllers");
     require("./services");
-
 
 
 }());

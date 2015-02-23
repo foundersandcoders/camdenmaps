@@ -1,17 +1,10 @@
-<divclass="container-fluid">
+<div>
 	<div id="first-level-options" class="col-xs-12">
-	    <div landingTitleToggle class="col-xs-12">
-	        <h1>Choose one of the following</h1>
-	    </div>
-
-	    <div ng-repeat="button in buttons" class="landing-options col-xs-4 col-sm-3 col-sm-offset-1 col-">
-	        <a id="{{ button.id }}" ng-click="executeFn(button.handler)" >    
-	            <img class="icon" ng-src="{{ button.iconUrl }}" alt="">
-	        	<titletoggle/>
-	        </a>
-	    </div>
+		<div ng-repeat="button in buttons" class="landing-options col-xs-4 col-sm-4 col-md-4 col-lg-4"> 
+			<a id="{{ button.id }}" ng-click="executeFn(button.handler)" > 
+		        <img class="icon" ng-src="{{ button.iconUrl }}" alt="">
+		    	<h4>{{ button.title }}</h4>
+		    </a>
+		</div>
 	</div>
-
 </div>
-
-<div ui-view></div>

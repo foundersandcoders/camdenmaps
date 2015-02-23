@@ -54,8 +54,6 @@
             //back button text
             $scope.backButtonText = "Main Menu";
 
-
-
         }
     ];
 }());

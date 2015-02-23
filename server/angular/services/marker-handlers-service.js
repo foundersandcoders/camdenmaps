@@ -10,13 +10,14 @@
 
 
     module.exports = [
-    "$location",
-    "$stateParams",
+        "$location",
+        "$stateParams",
         function ($location, $stateParams) {
 
-        var path; 
+            var path; 
 
             this.markerClick = function(functionScope) {
+
                 return function(e, args, scope) {
                     scope = scope || functionScope;
 
@@ -45,27 +46,6 @@
                         if($location.path() !== path) {
                             $location.path(path);
                         }
-
-                        //Make sure that on mobiles, the pin centers near the top of the map
-                        // if(window.innerWidth < 360) {
-                        //     scope.update("centre", {
-                        //         lat: args.leafletEvent.latlng.lat-0.0032,
-                        //         lng: args.leafletEvent.latlng.lng,
-                        //         zoom: 15
-                        //     });
-                        // } else if(window.innerWidth < 768) {
-                        //     scope.update("centre", {
-                        //         lat: args.leafletEvent.latlng.lat-0.004,
-                        //         lng: args.leafletEvent.latlng.lng,
-                        //         zoom: 15
-                        //     });
-                        // } else {
-                        //     scope.update("centre", {
-                        //         lat: args.leafletEvent.latlng.lat,
-                        //         lng: args.leafletEvent.latlng.lng,
-                        //         zoom: 15
-                        //     });
-                        // }
                     }
                 };
             };
@@ -83,7 +63,6 @@
 
                 };
             };
-
         }
     ];
 }());

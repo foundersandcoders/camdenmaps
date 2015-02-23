@@ -17,24 +17,28 @@
                     var inputBox = $('.search-box');
                     var errorBox = $('.errormessage');
 
-                    scope.updateError = function (type, newType){
-                        scope[type] = newType;
+                    scope.updateError = function (message){
+                        scope.error = message;                    
 
-                        element.css('display', 'block');
-
-                        if (location.path().indexOf('/neighbourhood') > -1) {
-
-                            errorBox.css('top', '3em')
+                        if (message === "") {
+                            element.css("display", "none");
+    
                         } else {
-                            inputBox.css('margin-top', '1.5em');
+ 
+                            element.css('display', 'block');
+
+                            if (location.path().indexOf('/neighbourhood') > -1) {
+
+                                errorBox.css('top', '3em');
+                            } else {
+                                inputBox.css('margin-top', '1.5em');
+                            }
                         }
                     };
 
-                    if (location.path().indexOf('/neighbourhood')) {
 
-                    }
                 }
-            }
+            };
         }
     ];
 }());

@@ -41,26 +41,25 @@
                 templateUrl: "partials/root.landing.html",
                 controller: "LandingController"
             })
-  
-            //services contains menu for searching and selecting services
-            .state("root.landing.services", {
+    
+            //services contains menu for searching and selecting service category
+            .state("root.categories", {
                 url: "/services",
-                templateUrl: "partials/root.landing.services.html",
+                templateUrl: "partials/root.categories.html",
+                controller: "CategoriesController" 
+            })
+
+            //services contains menu for searching and selecting services
+            .state("root.services", {
+                url: "/{category}/service",
+                templateUrl: "partials/root.services.html",
                 controller: "ServicesController" 
             })
-  
             //address-search contains search box for entering postcodes/streetnames
             .state("root.address-search", {
                 url: "/{service}/search",
                 templateUrl: "partials/root.address-search.html",
                 controller: "SearchController"
-            })
- 
-            //list-view contains view for listing found services
-            .state("root.address-search.list-view", {
-                url: "/list",
-                templateUrl: "partials/list-view.html",
-                controller: "ListController" 
             })
 
             //single view  contains view for displaying single selected service
@@ -118,8 +117,6 @@
                 templateUrl: "partials/root.neighbourhood.local-information.html",
                 controller: "LocalFoundController"
             })
-
-        
-
+            
     }];
 }());

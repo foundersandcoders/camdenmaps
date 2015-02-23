@@ -1,4 +1,4 @@
-/***********************************************
+/**********************************************
 *   SERVER.JS
 *   Description: Initializes and configures server
 *   Use: This is where the server starts!
@@ -61,8 +61,6 @@ server.register({
         }
     }
 });
-
-console.log(__dirname)
 
 //exports server for testing
 module.exports = server;

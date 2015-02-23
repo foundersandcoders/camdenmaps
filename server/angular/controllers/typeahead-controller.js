@@ -9,19 +9,22 @@
     module.exports = [
         "$scope",
         "$location",
+        "buttonHandlers",
         "fetchToken",
         "$http",
-        function ($scope, $location, fetchToken, $http) {
+        function ($scope, $location, buttonHandlers, fetchToken, $http) {
 
             var menu = [];
-            $scope.selected = '';
 
-            if( ($location.path().indexOf("/neighbourhood") > -1) || 
-                ($location.path().indexOf("/streetworks") > -1) || 
-                ($location.path().indexOf("/search") > -1)) { 
+            $scope.selected = '';
+             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
+
+            if(isAddressSearch()) { 
 
                 $scope.placeholder = 'Enter an address';
                 $scope.additions = '(($viewValue))';
+                //geolocate button only shows on address search
+                $scope.geolocate = !$scope.geolocate;
 
                 fetchToken.getToken().success(function() {
 
@@ -32,7 +35,7 @@
 
                                 var data = response.data.slice(0, 10);
 
-                                return data.map(function (item, index){
+                                return data.map(function (item){
                                     var displayItem = item.Unit + " " +
                                         item.BuildingName + " " +
                                         item.BuildingNumber + " " +
@@ -42,9 +45,8 @@
                                     return displayItem;
                                 });
                             });
-                    
                     };
-                })
+                });
 
             } else {
 
@@ -61,9 +63,7 @@
                     uprn,
                     destination;
 
-                if( ($location.path().indexOf("/neighbourhood") > -1) || 
-                    ($location.path().indexOf("/streetworks") > -1) || 
-                    ($location.path().indexOf("/search") > -1)) {
+                if(isAddressSearch()) {
 
                     uprn = item.slice(-7);
 
@@ -89,8 +89,18 @@
                 }
                 return newArray;
             }
+
+            function isAddressSearch () {
+
+                if (($location.path().indexOf("/neighbourhood") > -1) || 
+                    ($location.path().indexOf("/streetworks") > -1) || 
+                    ($location.path().indexOf("/search") > -1)) {
+
+                    return true;
+                } else {
+                    return false;
+                }
+            }            
         }
     ];
 }());
-                    
-        			
