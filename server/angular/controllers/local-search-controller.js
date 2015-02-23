@@ -21,6 +21,8 @@
 
                 if ($scope.address) {
 
+                    $scope.information = 'undefined'
+
                     apiSearch.searchNeighbourhood($scope.address)
                         .success(function(data) {
                             if (data.hasOwnProperty("error")) {
