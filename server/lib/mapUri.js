@@ -35,7 +35,7 @@ function mapStreetworks (req) {
 function mapLocalInformation (req) {
     
     var uprn = req.params.uprn;
-    var query = "?" +b exactLocations + uprn + "&tab=m";
+    var query = "?" + exactLocations + uprn + "&tab=m";
     
     return url.nearestApi + query;
 }
