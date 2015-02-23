@@ -61,6 +61,7 @@
             $scope.title = "Find your Nearest";
             //model for placeholder
             $scope.placeholder = "Please enter a postcode";
+            $scope.icon = "";
 
             //change baseurl depending on whether address-found or address-search 
             $scope.baseUrl = $stateParams.address ?  "/#/home/" + $stateParams.service + 

@@ -21,8 +21,9 @@ function mapQuery (req) {
 }
 
 function mapStreetworks (req) {
-
+    
     var location, query, lat, lng;
+    services = "find=";
     location = req.params.postcode;
     lat = req.params.latitude;
     lng = req.params.longitude;

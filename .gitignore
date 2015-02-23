@@ -7,6 +7,4 @@ node_modules/
 *.map
 *.min.js
 *maps.min.js
-server/public/js/*min.js
-server/public/js/*min.js.map
-address.json
+coverage/
