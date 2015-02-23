@@ -1,6 +1,15 @@
 ;(function () {
 	"use strict";
 
+    function isWithinCamden (latitude, longitude) {
+    	//coordinates represent a square around Camden to roughly test if location is inside boundary
+        if(51.57878 > latitude > 51.450089 && -0.094538 > longitude > -0.218650) {
+            return true;
+        } else {
+            return false
+        }
+    }
+
     var cappedResults = require("../lib/capped-results.js");
 
 	module.exports = [
@@ -16,7 +25,6 @@
                 }
                 return size;
             };  
-            
 
 
             this.geolocateUser = function (functionScope, cb) {
@@ -29,14 +37,8 @@
                          map.locate({setView: false, watch: false})
                             .on('locationfound', function (e){
 
-                                var insideCamden = false;
-
-                                //coordinates represent a square around Camden to roughly test if location is inside boundary
-                                if(51.57878 > e.latitude > 51.450089 && -0.094538 > e.longitude > -0.218650) {
-                                        insideCamden = true;
-                                }
     
-                                if (insideCamden) {
+                                if (isWithinCamden(e.latitude, e.longitude)) {
                             
                                     scope.markers.m0 = {
                                         lat: e.latitude,
