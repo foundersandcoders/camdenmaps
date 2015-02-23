@@ -80,8 +80,6 @@
 			if(fiveortenmarkers.indexOf(service) > -1) {
 				return true;
 			}
-		
-
 
 	};
 }());

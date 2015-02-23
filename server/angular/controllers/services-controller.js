@@ -1,10 +1,8 @@
 /*******************************************
 *   SERVICES-CONTROLLER.JS
 *
-*
 ********************************************/
 
-//TODO: Write menu JSON
 //TODO: Write service to access menu
 //TODO: Preload visible items in a resolve
 
@@ -20,8 +18,6 @@
                 w = w || window;
 
                 //***************** Initialize menu and variables **************
-               
-                //Put in state object
 
                 //current index of visibleItems within currentCategory
                 var currentIndex = 0, 
@@ -88,7 +84,7 @@
                         getCurrentCategory(currentPosition, numberOfItems);
                         getVisibleItems(currentIndex);
                     }
-                };
+                }
                 
                 //adds click handler functions to menu items
                 function addClickHandler (item) {

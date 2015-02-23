@@ -57,7 +57,7 @@
                         .success(function success (data) {
                             if(data.hasOwnProperty("error")) {
                                 // display error message
-                                $scope.updateError("error", data.message);
+                                $scope.updateError(data.message);
                                 // and redirect back to services menu to try again
                                 $location.path("/home/services");
                             }
@@ -72,7 +72,7 @@
                             $scope.centre.zoom = markers.zoomCheck($scope)();
                         })
                         .error(function error(err) {
-                            return $scope.updateError("error", err.message);
+                            return $scope.updateError(err.message);
                         });
 
             }
@@ -108,7 +108,7 @@
                     apiSearch.search($stateParams.service, $scope.address)
                         .success(function success (data) {
                             if(data.hasOwnProperty("error")) {
-                                return $scope.updateError("error", data.message);
+                                return $scope.updateError(data.message);
                             }
 
                             $scope.updateResults(data.properties);

@@ -13,7 +13,10 @@
     "$urlRouterProvider",
     "$stateProvider",
     "localStorageServiceProvider",
-    function ($urlRouterProvider, $stateProvider, localStorageServiceProvider) {
+    "$httpProvider",
+    function ($urlRouterProvider, $stateProvider, localStorageServiceProvider, $httpProvider) {
+
+        $httpProvider.interceptors.push("tokenIntercept");
 
         localStorageServiceProvider
             .setPrefix('maps')
@@ -105,7 +108,7 @@
             //state for about your neighbourhood search
             .state("root.neighbourhood", {
                 url: "/neighbourhood",
-                templateUrl: "partials/root.address-search.html",
+                templateUrl: "partials/root.neighbourhood-search.html",
                 controller: "LocalSearchController"
             })
 
@@ -115,8 +118,6 @@
                 templateUrl: "partials/root.neighbourhood.local-information.html",
                 controller: "LocalFoundController"
             })
-
-        
-
+            
     }];
 }());

@@ -10,82 +10,14 @@
     var handlers = require("../handlers/handlers.js");
     var ConvertXml = require("../handlers/convertXml.js");
     var MapConfig = require("./mapConfig.js");
-    var cache = require("../config/cache.js");
-
+    var cache = require("../lib/cacheprotocol.js");
+    var mapUri = require("../lib/mapUri.js");
+    var parsers = require("../lib/parsers.js");
+    var serviceArrays = require("../config/serverConfig.js").map.serviceArrays;
+    var cap = require("../lib/capitalize.js");
 
     module.exports = {
 
-        getHome: {
-            handler: handlers.getHome
-        },
-        nearest: {
-            services: {
-                handler: function (req, rep) {
-                    
-                    var key = req.raw.req.url;
-
-                    cache.get(key, function (err, value) {
-                        
-                        // print error if something went wrong
-                        if (err) {
-                            console.log(err);
-                        }
-
-                        // return cached response if it exists
-                        if (value.hasOwnProperty(key)) {
-
-                            return rep(value[key]);
-                            
-                        } else {
-                            // route request to proxy by default (if response not cached)
-                            return rep.proxy({
-
-                                mapUri: MapConfig.nearestMapper,
-                                onResponse: ConvertXml.convertToJson
-                            });
-                        }
-                    });
-                }
-            },
-        },
-        apiDocs: {
-            handler: handlers.showDocsHome
-        },
-       
-        local: {
-            information: {
-                handler: {
-                    proxy: {
-                        mapUri: MapConfig.localMapper,
-                        onResponse: ConvertXml.convertLocalInformation
-                    }
-                }
-            }
-        },
-        streetworks: {
-            handler: function(req, rep) {
-                
-                var key = req.raw.req.url;
-                
-                cache.get(key, function (err, value) {
-                    
-                    // print error if something went wrong
-                    if (err) {
-                        console.log(err);
-                    }
-
-                    // return cached response if it exists
-                    if (value.hasOwnProperty(key)) {
-                        return rep(value[key]);
-                    } 
-                    // route request to proxy by default (if response not cached)
-                    return rep.proxy({
-                        mapUri: MapConfig.streetworksMapper,
-                        onResponse: ConvertXml.convertStreetworks
-                    });
-                }); 
-            }
-        }, 
         staticFiles: {
             handler: {
                 directory: {
@@ -104,8 +36,65 @@
                 }
             }
         },
+        getHome: {
+            handler: handlers.getHome
+        },
+        nearest: {
+            services: {
+                handler: function (req, rep) {
+                    
+                    var converter, service;
+                    service = cap(req.params.service);
+                    var key = req.raw.req.url;
+            
+                    if (serviceArrays.recycling.indexOf(service) > -1) {
+                        converter = parsers.recyclingApiParser;
+                    } else if (serviceArrays.parking.indexOf(service) > -1) {
+                        converter = parsers.parkingApiParser;
+                    } else {
+                        converter = parsers.nearestApiParser;
+                    }
+                    cache.getCache(req, key, rep, mapUri.mapUri, converter, {
+                        mapUri: MapConfig.nearestMapper,
+                        onResponse: ConvertXml.convertToJson
+                    });
+
+                }
+            },
+        },
+        streetworks: {
+            handler: function(req, rep) {
+                
+                var key = req.raw.req.url;
+                
+                cache.getCache(req, key, rep, mapUri.mapStreetworks, parsers.streetworksApiParser, {
+                    mapUri: MapConfig.streetworksMapper,
+                    onResponse: ConvertXml.convertStreetworks
+                }) 
+            }
+        }, 
+        apiDocs: {
+            handler: handlers.showDocsHome
+        },
+        local: {
+            information: {
+                handler: function(req, rep) {
+                    
+                    var key = req.raw.req.url;
+                    
+                    cache.getCache(req, key, rep, mapUri.mapLocalInformation, parsers.localInformationApiParser, {
+                        mapUri: MapConfig.localMapper,
+                        onResponse: ConvertXml.convertLocalInformation
+                    });
+
+                }
+            }
+        },
         logging: {
             handler: handlers.getLogs
+        },
+        issueToken: {
+            handler: handlers.issueToken
         }
     };
 }());

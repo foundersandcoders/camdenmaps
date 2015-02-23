@@ -4,7 +4,7 @@
 *		on what has been rendered
 *************************************/
 
-
+// TODO: DELETE WHEN NEW STYLING TAKES PLACE
 ;(function () {
     "use strict";
 

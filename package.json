@@ -28,6 +28,7 @@
     "good": "^5.1.1",
     "good-file": "^4.0.2",
     "hapi": "^8.0.0",
+    "jsonwebtoken": "^3.2.2",
     "node-cache": "^1.1.0",
     "request": "^2.51.0",
     "xml2js": "^0.4.4"
@@ -42,9 +43,9 @@
     "csvtojson": "^0.3.18",
     "govuk_frontend_toolkit": "^3.1.0",
     "gulp": "^3.8.10",
-    "gulp-concat": "^2.4.2",
     "gulp-connect": "^2.2.0",
     "gulp-eslint": "^0.2.0",
+    "gulp-htmlmin": "^1.1.1",
     "gulp-karma": "0.0.4",
     "gulp-lab": "^1.0.4",
     "gulp-ng-annotate": "^0.4.3",
@@ -66,7 +67,6 @@
     "protractor": "^1.5.0",
     "tap-spec": "^2.2.1",
     "tape": "^3.5.0",
-    "test": "^0.6.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^2.2.1"
