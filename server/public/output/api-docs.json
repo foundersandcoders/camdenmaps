@@ -5,9 +5,9 @@
     "description": "Investigate and explore the Camden maps API",
     "version": "1.0.0"
   },
-  "host": "0.0.0.0:8080",
+  "host": "camdenmaps-beta.herokuapp.com",
   "schemes": [
-    "http"
+    "https"
   ],
   "basePath": "/",
   "produces": [
