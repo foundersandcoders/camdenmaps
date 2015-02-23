@@ -7,10 +7,11 @@
     "use strict";
 
     module.exports = [
+            "$location",
             "$stateParams",
             "$scope",
             "apiSearch",
-            function ($stateParams, $scope, apiSearch) {
+            function ($location, $stateParams, $scope, apiSearch) {
 
                 var uri,
                     marker,
@@ -60,34 +61,13 @@
                     } 
                 }
 
+                $scope.exit = function exit () {
 
-                // // if(noResults($scope) || typeof $scope.result === undefined ) {
-                // apiSearch.search(service, $stateParams.address)
-                //     .success(function success (data) {
-                //         console.log("apisearch in SINGLE-CONTROLLER");
-                //         if(data.hasOwnProperty("error")){
-                //             return $scope.update("error", data.message);
-                //         }
-                //         $scope.updateResults(data.properties);
-                //         $scope.update("locationSelected", data.location);
-                        
-                        // // selects item from results with matching {id}
-                        // $scope.result = $scope.results.filter(function (result) {
-                        //     return result.display.Name === $stateParams.id;
-                        // })[0];
+                    var path    = $scope.address ? "/home/" + $stateParams.service + "/location/" + $scope.address
+                                : "/home/" + $stateParams.service + "/search";
 
-                        // if($stateParams.id) {
-                        //     // linkResultToMarker(); 
-                        // }
-
-                        // console.log("scope.results at end of SINGLE-CONTROLLER", $scope.results);
-
-                //     })
-                //     .error(function error (err) {
-                //         return $scope.update("error", err.message);
-                //     });
-
-                //  // }
+                    $location.path(path);
+                };
 
 
             }
