@@ -159,5 +159,10 @@
         }); 
     });
 
+    gulp.task("csvtojson", function() {
+        return shell.task([
+            "node ./server/lib/csvtojson.js"    
+        ]);
+    });
 
 }());
