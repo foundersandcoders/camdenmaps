@@ -23,7 +23,11 @@
                     : "/services/" + service + "/locations/" + address);
                 
                 //return http promise to be processed in controllers
-                return $http({ method: "GET", url: apiUrl, cache: true });
+                return $http({ 
+                    method: "GET", 
+                    url: apiUrl, 
+                    cache: true 
+                });
 
             };
 
