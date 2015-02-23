@@ -31,13 +31,13 @@
                     formattedProperty.externalref = p.$.externalref;
                     formattedProperty.display = {};
                     formattedProperty.display.Organisation = p.$.Organisation;
-                    formattedProperty.display.Name = replaceSlashes(p.$.Street) + " - " + p.$.externalref.split("-")[p.$.externalref.split("-").length - 1];
+                    formattedProperty.display.Name = p.$.Street + " - " + p.$.externalref.split("-")[p.$.externalref.split("-").length - 1];
                     formattedProperty.display.StartDate = p.$.StartDate;
                     formattedProperty.display.EndDate = p.$.EndDate;
                     formattedProperty.display.Telephone = p.$.Telephone;
                     formattedProperty.display.Street = p.$.Street;
                     formattedProperty.display.Description = p.$.Description;
-                    formattedProperty.display = clean(formattedProperty.display)
+                    formattedProperty.display = clean(formattedProperty.display);
                     formattedProperty = clean(formattedProperty);
                     json.properties.push(formattedProperty);
                 });
