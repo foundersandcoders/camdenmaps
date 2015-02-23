@@ -80,7 +80,7 @@ var markers = {
         };
     }
 };
-//***********
+//*** TESTS ****
 
 function createController() {
     controller(scope, stateParams, location, apiSearch, markers, markerHandlers, buttonHandlers, localStorageService);
@@ -108,8 +108,6 @@ test("services-controller.js should exist", function(t) {
        
         
         st.equals(typeof scope.geolocateUser, "function","scope.geolocateUser is a function");
-        st.equals(typeof scope.searchAgain, "function","scope.searchAgain is a function");
-        st.equals(typeof scope.toggle, "function","scope.toggle exists is a function");
 
         st.end();
 
