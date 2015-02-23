@@ -2,7 +2,6 @@
 	position: absolute;
 	z-index: 999;
 	margin: 11vh 3vh 0 3vh;
-	width: 27%;
 	@include respond(mobile) {
 		width: 100%;
 		padding: 0;
@@ -25,15 +24,14 @@
 		box-shadow: none;
 	}
 }
-	
+
 .landing-options {
 	padding: 0;
 	h4 {
 		text-align: center;
 		color: $white;
 		margin: 0 0 1em;
-		margin-bottom: 0.5em;
-		width: 100%;
+		//width: 100%;
 		@include respond(mobile) {
 			color: $light-grey; 
 			font-size: 0.8em; 
