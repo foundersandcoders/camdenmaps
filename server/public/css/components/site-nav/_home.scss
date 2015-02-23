@@ -1,0 +1,48 @@
+#main-container {
+	position: absolute;
+	z-index: 999;
+	margin: 11vh 3vh 0 3vh;
+	@include respond(mobile) {
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		margin-top: 2em;
+	}
+}
+
+#menubar{
+	position: fixed;
+}
+
+#first-level-options {
+	background-color: $black;
+	padding: 0;
+	box-shadow: 5px 5px 5px #888888;
+	width: 100%;
+	@include respond(mobile) {
+		padding: 0.3em 0;
+		box-shadow: none;
+	}
+}
+	
+.landing-options {
+	padding: 0;
+	h4 {
+		text-align: center;
+		color: $white;
+		margin: 0 0 1em;
+		margin-bottom: 0.5em;
+		width: 100%;
+		@include respond(mobile) {
+			color: $light-grey; 
+			font-size: 0.8em; 
+		}
+	}
+}
+
+.icon {
+	margin: 0.5em auto;
+	display: block;
+	width: 4em;
+}
+

@@ -9,17 +9,22 @@
     module.exports = [
         "$scope",
         "$location",
+        "buttonHandlers",
         "fetchToken",
         "$http",
-        function ($scope, $location, fetchToken, $http) {
+        function ($scope, $location, buttonHandlers, fetchToken, $http) {
 
             var menu = [];
+
             $scope.selected = '';
+             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
 
             if(isAddressSearch()) { 
 
                 $scope.placeholder = 'Enter an address';
                 $scope.additions = '(($viewValue))';
+                //geolocate button only shows on address search
+                $scope.geolocate = !$scope.geolocate;
 
                 fetchToken.getToken().success(function() {
 
