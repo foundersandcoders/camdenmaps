@@ -8,7 +8,7 @@
 <form ng-submit="handler(selected)">
 
 
-	<div class="col-xs-8 col-md-9" id="forminput">
+	<div class="col-xs-8 col-md-8" id="forminput">
 	    <input type="text" placeholder="{{ placeholder }}" ng-model="selected" typeahead="searchitem for searchitem in typeaheadSearchList{{ additions }}" class="form-control"/>
 	</div>
 
@@ -17,6 +17,14 @@
 	        <span class="glyphicon glyphicon-search"></span>
 	    </button>
 	</div>
+
+    <div id="yourLocation" class="col-xs-1 col-md-1">
+        <a href="#" tooltip-placement="top" tooltip="{{ geolocationToolTip }}">
+            <button button ng-click="geolocateUser()">
+                <span class="glyphicon glyphicon-screenshot"></span>
+            </button>
+        </a>
+    </div>
 
 </form>
 <!-- TYPEAHEAD-SEARCH END -->

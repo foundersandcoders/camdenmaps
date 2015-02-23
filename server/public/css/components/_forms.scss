@@ -40,6 +40,8 @@
 .servicestypeahead {
 	background-color: $black;
 	padding-top: 0.5em;
+	margin: 0;
+	//padding-bottom: 0.5em;
 
 	@include respond(mobile) {
 		padding-top: 0.7em;
@@ -93,17 +95,23 @@
 }
 
 #search-service-and-loc {
-	height: 13vh;
+	height: 6vh;
+	@include respond(mobile) {
+		height: inherit;
+	}
 }
 
 #backhome {
 	width: 1.8em;
-	@include respond(mobile) {
-		vertical-align: text-top;
-	}
 }
+
 #search-location-row {
 	margin-top: 1.5em;
+	@include respond(mobile) {
+		margin-top: 0;
+		margin: 0.3em 0;
+	}
+
 }
 
 .search-box {
@@ -135,10 +143,3 @@
 	}
 }
 
-@media (max-width: 768px) {
-	.search-box {
-		#postcode-input {
-			width: 80%;
-		}
-	}
-}

@@ -16,7 +16,8 @@
                 var uri,
                     marker,
                     service = encodeURIComponent($stateParams.service),
-                    noResults = require("../lib/no-results.js");
+                    noResults = require("../lib/no-results.js"),
+                    resetActiveMarker = require("../lib/reset-active-marker.js");
       
                 // Ensuring that the service name in the URL is Encoded properly
                 $stateParams.service = decodeURI($stateParams.service);
@@ -36,6 +37,7 @@
                     
                     // if single list view loaded from click this marker will already be the active marker
                     if(marker !== $scope.activeMarker) {
+                        resetActiveMarker($scope); 
                         $scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
                         $scope.update("activeMarker", $scope.markers[marker]);
                         
@@ -56,7 +58,7 @@
                         return result.display.Name === $stateParams.id;
                     })[0];
 
-                    if(!$scope.activeMarker && $scope.results.indexOf($scope.result) > -1) { 
+                    if($scope.results.indexOf($scope.result) > -1) { 
                         linkResultToMarker(); 
                     } 
                 }
@@ -68,6 +70,7 @@
 
                     $location.path(path);
                 };
+
 
 
             }
