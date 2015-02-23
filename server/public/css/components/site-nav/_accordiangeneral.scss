@@ -4,6 +4,10 @@
 *	mixins and variables.
 ************************************************/
 
+@import '../../base/colours';
+
+
+
 #accordionBox{
 	width: 100%;
 }
@@ -14,23 +18,17 @@
 	border-bottom: 0.1em solid black;
 	color: $light-blue;
 	text-align: center;
+	@include respond(mobile) {
+		height: 11.5em;
+		h2 {
+			margin: 0.3em 0em;
+		}
+	}
 	h2 {
 		margin: 0.7em 0em;
 		text-align: center;
 		color: $white;
 		//font-size: 
-	}
-	#back {
-		width: 2.6em;
-	}
-}
-
-@media (max-width: 768px) {
-	.services-and-categories {
-		height: 11.5em;
-		h2 {
-			margin: 0.3em 0em;
-		}
 	}
 }
 
@@ -44,10 +42,7 @@
 		display: block;
 		padding-bottom: 0.5em;
 	}
-}
-
-@media (max-width: 768px) {
-	#address-search {
+	@include respond(mobile) {
 		h1 {
 			margin: 0.3em 0;
 		}
@@ -56,6 +51,7 @@
 		}
 	}
 }
+
 
 #services {
 	img {
@@ -78,12 +74,23 @@
 	box-shadow: 0.5em 0.2em 0.5em #888888;
 	margin: 0 0 0.5vh 0;
 	padding: 0.2vh 0;
+	@include respond(mobile) {
+		margin: 0;
+		padding: 0.4vh 0;
+		border-bottom: 1px solid black;
+	}
 	div{
 		img{
 			width: 2.5em;
 			margin-left: 2em;
 			display: inline-block;
 			float: left;
+			@include respond (mobile) {
+				margin-left: auto;
+				margin-right: auto;
+				display: block;
+				float: none;
+			}
 		}
 		h4{
 			margin: 0;
@@ -102,6 +109,13 @@
 	}
 }
 
+.cancel {
+	@include respond(mobile) {
+		padding: 0.1em;
+		font-size: 1.5em;
+	}
+} 
+
 #category-title-of-services{
 	background-color: $medium-blue;
 
@@ -111,14 +125,11 @@
 	background-color: $light-blue;
 }
 
-.item-container {
-	padding: 0;
-}
-
 .list-items {
 	overflow-y: scroll;
 	max-height: 35em;
 	width:100%;
+	box-shadow: 0.5em 0.5em 0.5em #888888;
 }
 
 .container-list {
@@ -133,6 +144,9 @@
 	}
 	img {
 		width: 2em;
+		margin-left: 2em;
+        display: inline-block;
+        float: left;
 	}
 }
 
@@ -144,4 +158,12 @@ h2 {
 .accordiontext{
 	padding-top: 0.8vh;
 	font-size: 1.2em;
+}
+
+#category-list{
+	background-color: $medium-blue;
+}
+
+#services-list{
+	background-color: $light-blue;
 }
