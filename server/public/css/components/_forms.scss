@@ -87,7 +87,7 @@
 }
 
 #search-service-and-loc {
-	height: 6vh;
+	height: 100%;
 	@include respond(mobile) {
 		height: inherit;
 	}
