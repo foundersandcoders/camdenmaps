@@ -23,6 +23,8 @@
 
                 $scope.placeholder = 'Enter an address';
                 $scope.additions = '(($viewValue))';
+                //geolocate button only shows on address search
+                $scope.geolocate = !$scope.geolocate;
 
                 fetchToken.getToken().success(function() {
 

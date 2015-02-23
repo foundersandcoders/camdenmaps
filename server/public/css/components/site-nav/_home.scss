@@ -2,7 +2,6 @@
 	position: absolute;
 	z-index: 999;
 	margin: 11vh 3vh 0 3vh;
-	width: 27%;
 	@include respond(mobile) {
 		width: 100%;
 		padding: 0;
