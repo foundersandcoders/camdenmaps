@@ -28,8 +28,13 @@
                 lng,
                 round = require("../lib/round.js"),
                 noResults = require("../lib/no-results.js"),
-                addressUsedinAPIcall = require("../lib/address-used-in-api-call.js");
+                addressUsedinAPIcall = require("../lib/address-used-in-api-call.js"),
+                parentId,
+                categoryId,
+                category,
+                menu;
 
+            menu = require("../menu.json");
 
             // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
@@ -43,6 +48,21 @@
             // Args will contain the marker name and other relevant information 
             $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
 
+            parentId = menu.filter(function (item) {
+                if ($scope.service === item.title) {
+                    return item;
+                }
+            });
+
+            categoryId = parentId[0].parentId;
+            
+            category = menu.filter (function (item) {
+                if (categoryId === item.id){
+                    return item;
+                } 
+            });
+
+            $scope.category = category[0];
 
             if($scope.service.toLowerCase() !== "streetworks") {
                 //model for image icon
