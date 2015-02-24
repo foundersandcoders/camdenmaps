@@ -3,6 +3,9 @@
 *
 *****************************/
 
+//TODO: Auto center list on focus
+//TODO: Hide uprn
+
 ;(function () {
     "use strict";
 
@@ -28,9 +31,7 @@
                         return $http.get('https://camdenmaps-addresslookup.herokuapp.com/search/' + value)
                             .then(function(response){
 
-                                var data = response.data.slice(0, 10);
-
-                                return data.map(function (item){
+                                return response.data.map(function (item){
                                     var displayItem = item.Unit + " " +
                                         item.BuildingName + " " +
                                         item.BuildingNumber + " " +
@@ -41,6 +42,7 @@
                                 });
                             });
                     };
+
                 });
 
             } else {
@@ -95,7 +97,7 @@
                 } else {
                     return false;
                 }
-            }            
+            }     
         }
     ];
 }());
