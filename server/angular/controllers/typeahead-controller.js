@@ -126,8 +126,8 @@
                 if (localStorageService.isSupported) {
 
                     address = localStorageService.get("userLocation");
-
-                    if(address && address[0].title) {
+                    console.log(address);
+                    if(address && address[0] && address[0].title) {
 
                         if($scope.activeMarker) {
                             //resets active marker
