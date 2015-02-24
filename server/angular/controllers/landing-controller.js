@@ -27,6 +27,16 @@
                 };
             }
 
+            $scope.show = true;
+
+            $scope.$watch(function() {return $location.path() }, function(newPath) {
+                console.log(newPath);
+                if (newPath === "/home") {
+                    $scope.show = true;
+                } else {
+                    $scope.show = false;
+                }
+            });
 
             //stores function names and corresponding paths for landing-page buttons
             $scope.buttons = [
