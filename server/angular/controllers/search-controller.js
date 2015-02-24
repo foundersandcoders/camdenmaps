@@ -14,8 +14,7 @@
         "markers",
         "markerHandlers",
         "buttonHandlers",
-        "localStorageService",
-        function ($scope, $stateParams, $location, apiSearch, markers, markerHandlers, buttonHandlers, localStorageService) {
+        function ($scope, $stateParams, $location, apiSearch, markers, markerHandlers, buttonHandlers) {
 
             var path,
                 destination,
@@ -80,25 +79,6 @@
 
             $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
 
-
-            //check support before using it to avoid breaking the app
-            if (localStorageService.isSupported) {
-
-                $scope.address = localStorageService.get("userLocation");
-
-                if($scope.address) {
-                    if($scope.activeMarker) {
-                        //resets active marker
-                        $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
-                        $scope.update("activeMarker", 0);
-                    }
-                    path = "/home/" + $stateParams.service + "/location/" + $scope.address;
-                    //redirects to new path and runs location controller
-                    $location.path(path);
-
-                }
-            }
-
             //redirects to next state when provided with address
             $scope.search = function search () {
 
@@ -118,13 +98,7 @@
                             // $scope.centre = markers.centreCheck($scope)();
                             $scope.centre.zoom = markers.zoomCheck($scope)();
 
-
-                            if (localStorageService.isSupported) {
-                                localStorageService.set( "userLocation", $scope.address);
-                            }
-
                             resetActiveMarker($scope);
-
 
                             path = "/home/" + $stateParams.service + "/location/" + $scope.address;
                             //redirects to new path and runs location controller

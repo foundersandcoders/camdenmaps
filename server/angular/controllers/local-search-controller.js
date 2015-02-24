@@ -9,9 +9,8 @@
     module.exports = [
         "$scope",
         "$location",
-        "localStorageService",
         "apiSearch",
-        function ($scope, $location, localStorageService, apiSearch) {
+        function ($scope, $location, apiSearch) {
 
             //model for page title
             $scope.title = "About your Neighbourhood";
