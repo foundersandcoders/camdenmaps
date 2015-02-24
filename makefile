@@ -26,4 +26,14 @@ cw:
 dep:
 	npm install
 
+b:
+	./node_modules/.bin/browserify \
+	    server/angular/app.js \
+	    -o server/public/js/1.0.0.camdenmaps.min.js
+
+bw:
+	./node_modules/.bin/watchify \
+	    server/angular/app.js \
+	    -o server/public/js/1.0.0.camdenmaps.min.js
+
 .PHONY: s t dep
