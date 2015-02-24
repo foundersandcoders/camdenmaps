@@ -48,6 +48,7 @@
 
                 var service,
                     address,
+                    checkService,
                     destination;
 
                 if(isAddressSearch()) {
@@ -66,9 +67,22 @@
 
                 }  else {
 
-                    service = encodeURIComponent(selected);
+                    checkService = $scope.typeaheadSearchList.filter(function (item) {
+                        if (item.title === selected) {
+                            return item;
+                        }
+                    })
 
-                    destination = "/home/" + service + "/search";
+                    if (checkService[0] === undefined) {
+
+                        return $scope.updateError("Sorry, it looks like that isn't a valid camden service");
+                    
+                    } else {
+
+                        service = encodeURIComponent(selected);
+
+                        destination = "/home/" + service + "/search";
+                    }
                 }
 
                 $location.path(destination);
