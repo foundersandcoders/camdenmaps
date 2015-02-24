@@ -22,7 +22,7 @@
     var serverFiles = ["./server/*.js", "./server/**/*.js"],
         angularFiles = ["./server/public/angular/*.js", "./server/public/angular/**/*.js"],
         serverTestFiles = ["./test/api/*.js"],
-        htmlFiles = ["./server/public/partials/*.html", "./server/public/*.html"],
+        htmlFiles = ["./server/angular/partials/*.html"],
         karmaTestFiles = ["./test/frontend/unit/*.js"],
         protractorTestFiles = ["./test/frontend/acceptance/*.js"],
         sassFiles = ["./server/public/css/*.scss", "./server/public/css/*/*.scss"],
@@ -137,7 +137,7 @@
     gulp.task('html', function() {
       return gulp.src(htmlFiles)
         .pipe(htmlmin({collapseWhitespace: true}))
-        .pipe(gulp.dest('./server/public/templates'))
+        .pipe(gulp.dest('./server/public/partials'))
     });
 
     gulp.task("dependencies", function() {

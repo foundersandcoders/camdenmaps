@@ -1,0 +1,49 @@
+<!-- ROOT.LANDING.SERVICES BEGINS -->
+
+<div class="container-fluid">
+    <div ng-swipe-right="prevItems()" ng-swipe-left="nextItems()" id="find-your-nearest" class="services-and-categories col-xs-12">
+
+        <div class="col-xs-4 col-sm-3 col-sm-offset-1">
+            <div class="arrow-up"></div>
+        </div>
+
+        <a id="back" ng-click="backOneCategory()">
+            <img src="../img/back.png" alt="back">
+        </a>
+
+        <div class="col-xs-12 col-sm-4 col-md-6 col-md-offset-3">
+            <h2>Find Your Nearest ...</h2>
+        </div>
+
+        <div class="servicestypeahead col-xs-12 col-sm-4 col-md-3">
+            <typeaheadsearch/>
+        </div>
+
+        <div class="col-xs-12 errormessage">
+        </div>
+
+        <div class="col-xs-1 navigation-arrow">
+            <a ng-hide="page === 0" ng-click="prevItems()">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+
+        <div class="col-xs-10 visible-item-container">
+            <div ng-repeat="item in visibleItems" class="service col-xs-4 col-sm-3 col-md-3 col-lg-2" >
+                <a ng-click="execute(item.handler)">    
+                    <img ng-src="{{ item.img }}" alt="">
+                    <h4>{{ item.title }}</h4>
+                    <p class="hidden-xs">{{ item.text }}</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-xs-1 navigation-arrow">
+            <a ng-hide="page === lastPage" ng-click="nextItems()">
+                <span class=" glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+
+    </div>
+</div>
+<!-- ROOT.LANDING.SERVICES ENDS-->
