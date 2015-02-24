@@ -4,7 +4,7 @@
 *****************************/
 
 //TODO: Auto center list on focus
-//TODO: Hide uprn
+//TODO: Add Error messages
 
 ;(function () {
     "use strict";
@@ -20,6 +20,8 @@
             var menu = [],
                 uprnArray = [];
             $scope.selected = '';
+
+            $scope.geolocate = isPostcodeSearch();
 
             if(isAddressSearch()) { 
 
@@ -38,44 +40,26 @@
                 $scope.typeaheadSearchList = getServices(menu);
             }
 
-        /*
-        * HELPER FUNCTIONS:
-        * TODO: Move into services.
-        */
-
             $scope.handler = function (selected) {
+
                 var service,
-                    uprn,
-                    postcode,
-                    findObject,
+                    address,
                     destination;
 
                 if(($location.path().indexOf("/neighbourhood") > -1)) {
 
-                    findObject = uprnArray.filter(function (item) {
-                        if (selected === item.title) {
-                            return item;
-                        }
-                    });
+                    address = getObject(uprnArray, selected)
 
-                    uprn = findObject[0].UPRN;
-
-                    destination = "/home/neighbourhood/" + uprn;
+                    destination = "/home/neighbourhood/" + address[0].UPRN;
 
                 } else if (isPostcodeSearch()) {
 
-                    findObject = uprnArray.filter(function (item) {
-                        if (selected === item.title) {
-                            return item;
-                        }
-                    });
-
-                    postcode = findObject[0].Postcode;
+                    address = getObject(uprnArray, selected)
 
                     if ($location.path().indexOf("/streetworks") > -1) {
-                        destination = "/home/streetworks/location/" + postcode;
+                        destination = "/home/streetworks/location/" + address[0].Postcode;
                     } else {
-                        destination = "/home/" + $stateParams.service + "/location/" + postcode;
+                        destination = "/home/" + $stateParams.service + "/location/" + address[0].Postcode;
                     }
 
                 }  else {
@@ -87,6 +71,7 @@
 
                 $location.path(destination);
             };
+
 
             function getAddresses () {
 
@@ -102,8 +87,7 @@
                                         item.BuildingName + " " +
                                         item.BuildingNumber + " " +
                                         item.Street + " " +
-                                        item.Postcode + " " +
-                                        item.UPRN;
+                                        item.Postcode;
 
                                     uprnArray.push(item);
 
@@ -111,6 +95,19 @@
                                 });
                             });
                     };
+                });
+            }
+
+            /*
+            * HELPER FUNCTIONS:
+            * TODO: Move into services.
+            */
+
+            function getObject (array, selected) {
+                return array.filter(function (item) {
+                    if (selected === item.title) {
+                        return item;
+                    }
                 });
             }
 
