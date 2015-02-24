@@ -13,6 +13,7 @@
         "$stateParams",
         function ($scope, $location, apiSearch, $stateParams) {
 
+
             $scope.information;
 
             $scope.exit = function exit() {
@@ -28,7 +29,6 @@
                         return $scope.updateError(data.message);
                     }
                     $scope.updateError("");
-                    console.log(data.location);
 
                     $scope.markers.neighbourhood = {
                         lat: Number(data.location.Latitude),
