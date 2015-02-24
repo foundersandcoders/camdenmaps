@@ -11,8 +11,7 @@
     module.exports = [
         "$scope",
         "$location",
-        "localStorageService",
-        function ($scope, $location, localStorageService) {
+        function ($scope, $location) {
 
             //model for placeholder
             $scope.placeholder = "Please enter a postcode";
@@ -21,25 +20,10 @@
             //model for page title
             $scope.title = "Live Streetworks";
 
-            if (localStorageService.isSupported) {
-
-                $scope.address = localStorageService.get("userLocation");
-
-                if($scope.address) {
-                    $location.path("/home/streetworks/location/" + $scope.address);
-                } else {
-                    $scope.error = "Sorry, that didn't look right";
-                } 
-            }
-
             //function for searching uprn
             $scope.search = function () {
 
                 if ($scope.address) {
-
-                    if (localStorageService.isSupported) {
-                        localStorageService.set( "userLocation", $scope.address);
-                    }
 
                     $location.path("/home/streetworks/location/" + $scope.address);
                 } else {

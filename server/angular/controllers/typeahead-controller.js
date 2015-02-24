@@ -5,7 +5,6 @@
 
 //TODO: Auto center list on focus for long typeahead lists
 //TODO: Add Error messages
-//TODO: Add remember location here.
 
 ;(function () {
     "use strict";
@@ -16,7 +15,8 @@
         "fetchToken",
         "$http",
         "$stateParams",
-        function ($scope, $location, fetchToken, $http, $stateParams) {
+        "localStorageService",
+        function ($scope, $location, fetchToken, $http, $stateParams, localStorageService) {
 
             var menu = [],
                 uprnArray = [];
@@ -24,7 +24,9 @@
 
             $scope.geolocate = isPostcodeSearch();
 
-            if(isAddressSearch()) { 
+            if(isAddressSearch()) {
+
+                locationGet();
 
                 $scope.placeholder = 'Enter an address';
                 $scope.additions = '(($viewValue))';
@@ -51,11 +53,9 @@
 
                     address = getObject(uprnArray, selected)
 
-                    destination = ($location.path().indexOf("/neighbourhood") > -1)
-                                ? "/home/neighbourhood/" + address[0].UPRN
-                                : ($location.path().indexOf("/streetworks") > -1)
-                                ? "/home/streetworks/location/" + address[0].Postcode
-                                : "/home/" + $stateParams.service + "/location/" + address[0].Postcode;
+                    locationSave(address);
+
+                    destination = getAddressDestination(address);
 
                 }  else {
 
@@ -97,6 +97,48 @@
             * HELPER FUNCTIONS:
             * TODO: Move into services.
             */
+
+            function locationGet () {
+
+                var destination,
+                    address;
+
+                if (localStorageService.isSupported) {
+
+                    address = localStorageService.get("userLocation");
+
+                    if(address) {
+                        if($scope.activeMarker) {
+                            //resets active marker
+                            $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
+                            $scope.update("activeMarker", 0);
+                        }
+
+                        $scope.value = address[0].title;
+
+                        destination = getAddressDestination(address);
+                        //redirects to new path and runs location controller
+                        $location.path(destination);
+
+                    }
+                }
+            }
+
+            function locationSave(address) {
+                if (localStorageService.isSupported) {
+                    localStorageService.set("userLocation", address);
+                }
+            }
+
+            function getAddressDestination (address) {
+
+                return ($location.path().indexOf("/neighbourhood") > -1)
+                        ? "/home/neighbourhood/" + address[0].UPRN
+                        : ($location.path().indexOf("/streetworks") > -1)
+                        ? "/home/streetworks/location/" + address[0].Postcode
+                        : "/home/" + $stateParams.service + "/location/" + address[0].Postcode;
+
+            }
 
             function getObject (array, selected) {
                 return array.filter(function (item) {
