@@ -18,9 +18,13 @@
             //back button function
             $scope.searchAgain = function() {
                 return $location.path("/home");
-            }
+            };
+
             //back button text
             $scope.backButtonText = "Main Menu";
+
+            $scope.icon = "img/icons/your-neighbourhood-white.png";
+            
 
         }
     ];
