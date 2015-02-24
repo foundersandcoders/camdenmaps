@@ -497,10 +497,6 @@ ul.dropdown-menu {
   border-bottom: 0.2em black solid;
   border-left: 0.2em black solid;
   z-index: 50;
-<<<<<<< HEAD
-  min-height: 69.5%;
-=======
->>>>>>> b82d920e421056cfad3d046857fbeac8617c1027
   max-height: 30em; }
   #local-info-results .local-info-heading {
     font-weight: bold; }
