@@ -28,7 +28,6 @@
             }
 
             $scope.show = true;
-            $scope.path = $location.path();
 
             $scope.$watch(function() {return $location.path() }, function(newPath) {
                 console.log(newPath);
