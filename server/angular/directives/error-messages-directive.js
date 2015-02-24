@@ -28,8 +28,12 @@
                             element.css('display', 'block');
 
                             if (location.path().indexOf('/neighbourhood') > -1) {
-
                                 errorBox.css('top', '3em');
+                            } else if (location.path().indexOf('/services') > -1) {
+                                console.log(errorBox)
+                                errorBox.css('top', '-3.5em');
+                                errorBox.css('position', 'absolute');
+                                errorBox.css('z-index', '1');
                             } else {
                                 inputBox.css('margin-top', '1.5em');
                             }
