@@ -45,7 +45,7 @@
 		}
 	}
 	input {
-		// border: 0.2em solid $dark-grey;
+		border: 0.2em solid $dark-grey;
 		background-color: $white;
 		color: black;
 		width: 100%;
@@ -95,6 +95,7 @@
 
 #backhome {
 	width: 1.8em;
+	margin-left: 0.8em;
 }
 
 #search-location-row {

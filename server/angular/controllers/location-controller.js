@@ -142,6 +142,8 @@
 
             $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/" + $stateParams.service + "/search");
 
+            $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services")
+            $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service")
 
 
         }

@@ -10,7 +10,7 @@
 
 .services-and-categories {
 	padding: 0;
-	border-bottom: 0.1em solid black;
+	//border-bottom: 0.1em solid black;
 	color: $light-blue;
 	text-align: center;
 	@include respond(mobile) {
@@ -108,10 +108,10 @@
 			font-size: 1.1em;
 		}
 		a {
-			color: $exit-button;
+			color: $exit-button-hover;
 		}
 		a:hover {
-			color:$exit-button-hover;
+			color:$exit-button;
 			font-weight:bold;
 		}
 	}
@@ -182,6 +182,7 @@ h2 {
 
 #locations {
 	color: white;
+	margin-top: 10px;
 }
 
 .change-address {

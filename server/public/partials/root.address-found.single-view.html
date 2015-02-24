@@ -1,25 +1,21 @@
- <div ng-show="result" class="row">
-    <div>
-        <div ng-show="showDistance" class="col-xs-2">
-            <h5>{{ result.Distance + ' miles' }}</h5>
+ <div ng-show="result">
+    <hr id="hr-single-view">
+    <div class="single-view-info">
+        <p ng-show="result.display.Location"> Location of streetworks {{ result.display.Location }} </p>
+        <p ng-show="result.display.Description"> <b> Description: </b> {{ result.display.Description }} </p>
+        <p ng-show= "result.display.StartDate"> <b> Start Date: </b> {{ result.display.StartDate }} </p>
+        <p ng-show= "result.display.EndDate"> <b> End Date </b> {{ result.display.EndDate }} </p>
+        <a href= "tel: {{ result.display.Telephone }}"> <p>{{ result.display.Telephone }}</p></a>
+        <a ng-show="result.display.URL" href="{{ result.display.URL }}" target="_blank" id="url">{{ result.display.URL }}
+        </a>
+        <div class="row">
+            <div class="col-md-7">
+                <h5 ng-show="result.display.OpeningHours">Opening Hours</h5>
+                <p>{{ result.display.OpeningHours }}</p>
+            </div>
+            <div ng-show="showDistance" class="col-md-offset-1 col-md-4">
+                <h5>{{ result.Distance + ' miles away' }}</h5>
+            </div>
         </div>
-
-        <div class="col-xs-10">
-            <p ng-show="result.display.Location"> Location of streetworks {{ result.display.Location }} </p>
-            <p ng-show="result.display.Description"> <b> Description: </b> {{ result.display.Description }} </p>
-            <p ng-show= "result.display.StartDate"> <b> Start Date: </b> {{ result.display.StartDate }} </p>
-            <p ng-show= "result.display.EndDate"> <b> End Date </b> {{ result.display.EndDate }} </p>
-            <a href= "tel: {{ result.display.Telephone }}"> <p>{{ result.display.Telephone }}</p></a>
-            <a ng-show="result.display.URL" href="{{ result.display.URL }}" target="_blank">
-                <br><p>{{ result.display.URL }}</p>
-            </a>
-            <h5 ng-show="result.display.OpeningHours" class="opening-hours">Opening Hours</h5>
-            <p>{{ result.display.OpeningHours }}</p>
-
-        </div>
-
-
-
-
     </div>
  </div>
