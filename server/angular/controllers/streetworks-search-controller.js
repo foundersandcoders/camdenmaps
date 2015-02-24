@@ -28,7 +28,7 @@
                 if($scope.address) {
                     $location.path("/home/streetworks/location/" + $scope.address);
                 } else {
-                    // $scope.error = "Sorry, that didn't look right";
+                    $scope.error = "Sorry, that didn't look right";
                 } 
             }
 
@@ -43,7 +43,7 @@
 
                     $location.path("/home/streetworks/location/" + $scope.address);
                 } else {
-                    // $scope.error = "Sorry, that didn't look right";
+                    $scope.error = "Sorry, that didn't look right";
                 } 
             };
 
