@@ -51,7 +51,7 @@
                     return name.toLowerCase() === $scope.service.toLowerCase();
                 })[0].img;
             } else {
-                $scope.icon = "img/icons/streetworks.png";
+                $scope.icon = "img/icons/streetworks-white.png";
             }
         
             // this will only run an API call if location needs to be added
