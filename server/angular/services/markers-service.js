@@ -117,7 +117,7 @@
                                 iconUrl: "../img/icons/location-marker.png",
                             },
                             focus: true,
-                            message: "<b>N1C 4AG</b> <br> Please enter a postcode <br> above for nearby results.",
+                            message: "Searching for results near <strong>N1C 4AG</strong>, <br> enter another post code above for more results",
 
                         };
                     }
@@ -159,12 +159,19 @@
                         size = Object.size(scope.markers);
 
                     //if results are less than 5 markers zooms out to fit them all in
-                    if (size < 5 ) {
+                    if (size === 0 ) {
+                        zoomLevel = 13;
+                    }
+                    else if (size < 5 ) {
                         zoomLevel = 12;
+                    }
+                    else if (scope.service.toLowerCase() === "streetworks") {
+                        zoomLevel = 16;
                     }
                     else {
                         zoomLevel = 13;
                     }
+
 
                     return zoomLevel;
 
