@@ -20,8 +20,9 @@
 
             var menu = [],
                 uprnArray = [];
-            $scope.selected = '';
 
+            $scope.selected = '';
+            $scope.geolocationToolTip = 'Use my current location';
             $scope.geolocate = isPostcodeSearch();
 
             if(isAddressSearch()) {
