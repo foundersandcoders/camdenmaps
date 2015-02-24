@@ -36,10 +36,10 @@
                 </div>
 
             </div>
-            <div id="locations" class="row">
-                <h3 class="col-md-offset-2 col-md-8">These are the services near {{ address }}</h3>
-                <a class="col-md-1 change-address" ng-click="changeAddress()">
-                    <h4>X</h4>
+            <div>
+                <h3 id="locations">Services near {{ address }}</h3>
+                <a class="change-address" ng-click="changeAddress()">
+                    <p>Click here to reset the location</p>
                 </a>
             </div>
         </div>
@@ -58,7 +58,7 @@
                     <h4>{{ category.title }}</h4>
                 </div>
                 <div class="col-xs-1 col-md-1 cancel">
-                    <a ng-click="returnToCategories()">x</a>
+                    <a ng-click="returnToCategories()">X</a>
                 </div>
             </div>    
 
@@ -70,7 +70,7 @@
                     <h4>{{ service }}</h4>
                 </div>
                 <div class="col-xs-1 col-md-1 cancel">
-                    <a ng-click="returnToServices()">x</a>
+                    <a ng-click="returnToServices()">X</a>
                 </div>
             </div>    
 
