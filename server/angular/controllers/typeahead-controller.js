@@ -54,9 +54,15 @@
 
                     address = getObject(uprnArray, selected)
 
-                    locationSave(address);
+                    if (address[0] === undefined) {
 
-                    destination = getAddressDestination(address);
+                        return $scope.updateError("Sorry, it looks like that isn't a valid camden address");
+                    
+                    } else {
+                        locationSave(address);
+
+                        destination = getAddressDestination(address);
+                    }
 
                 }  else {
 
@@ -177,7 +183,7 @@
                 } else {
                     return false;
                 }
-            }     
+            }
         }
     ];
 }());
