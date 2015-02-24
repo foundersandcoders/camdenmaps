@@ -63,7 +63,6 @@ function mapUri (req) {
         //query constructed based on combination of services and/or address
         query = mapQuery(req);
 
-        console.log(decodeURIComponent(apiUrl + query));
         return apiUrl + query;
 
 }
