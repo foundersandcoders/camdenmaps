@@ -64,11 +64,12 @@
                         destination = getAddressDestination(address);
                     }
 
-                }  else {
+                }  else if(isValidService(selected)) {
+                        service = encodeURIComponent(selected);
 
-                    service = encodeURIComponent(selected);
-
-                    destination = "/home/" + service + "/search";
+                        destination = "/home/" + service + "/search";
+                } else {
+                    return;
                 }
 
                 $location.path(destination);
@@ -100,6 +101,7 @@
                 });
             }
 
+            
             /*
             * HELPER FUNCTIONS:
             * TODO: Move into services.
@@ -184,6 +186,17 @@
                     return false;
                 }
             }
+<<<<<<< HEAD
+=======
+
+            function isValidService (service) {
+                var menu = require("../menu.json");
+                var match = menu.filter(function(i) {
+                    return i.title === service;
+                });
+                return (match.length >= 1);
+            }
+>>>>>>> b9f17baceade204b3ff6888cb8cce179af285ba9
         }
     ];
 }());
