@@ -31,14 +31,33 @@
 		}
 	}
 	a {
-		color: black;
+		color: $blue;
+		p {
+			color: $blue;
+		}
+		&:hover {
+			text-decoration: underline; 
+		}
+
 	}
+
 	p, h5 {
 		color: black;
 		margin: 0;
 	}
 	.opening-hours {
 		margin-top: 1em;
+	}
+
+
+}
+
+#telephone {
+	p {
+		color: black;
+	}
+	&:hover {
+		text-decoration: none;
 	}
 }
 
