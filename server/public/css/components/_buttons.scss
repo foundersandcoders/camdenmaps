@@ -13,8 +13,6 @@
 	.button {
 		padding: 0;
 		button {
-			border-right: 0.1em white solid;
-			border-left: 0.1em white solid;
 			border-radius: 0;
 			background-color: $blue;
 			font-size: 1em;
@@ -30,6 +28,9 @@
 				background-color: $dark-blue;
 			}
 		}
+	}
+	.leftbutton {
+		border-right: 0.1em white solid;
 	}
 }
 
@@ -59,9 +60,11 @@
 	#search {
 		button {
 			span {
-				left: 0em;
+				left: -0.4em;
 			}
 		}
+
+
 	}
 	#yourLocation {
 		button {
