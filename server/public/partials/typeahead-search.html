@@ -1,8 +1,9 @@
+<!-- TYPEAHEAD FORM STARTS HERE -->
 <form ng-submit="handler(selected)">
 
 	<div class="col-xs-11">
 		
-	    <input type="text" placeholder="{{ placeholder }}" ng-model="selected" typeahead="searchitem for searchitem in typeaheadSearchList{{ additions }}" class="form-control"/>
+	    <input type="text" placeholder="{{ placeholder }}" ng-model="selected" typeahead="searchitem.title for searchitem in typeaheadSearchList{{ additions }}" class="form-control"/>
 
 	</div>
 
@@ -13,3 +14,12 @@
 	</div>
 	
 </form>
+
+<div id="yourLocation" class="col-xs-1" ng-show="geolocate">
+    <a href="#" tooltip-placement="top" tooltip="{{ geolocationToolTip }}">
+        <button button ng-click="geolocateUser()">
+            <span class="glyphicon glyphicon-screenshot"></span>
+        </button>
+    </a>
+</div>
+<!-- TYPEAHEAD FORM ENDS HERE -->
