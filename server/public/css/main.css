@@ -385,7 +385,7 @@ h2 {
 
 @media (max-width: 320px) {
   #search button span {
-    left: -0.4em; }
+    left: 0em; }
   #yourLocation button span {
     left: -0.4em; } }
 
@@ -406,7 +406,7 @@ h2 {
 
 #back {
   position: absolute;
-  top: 0.3em;
+  top: -0.2em;
   left: 0.3em;
   z-index: 1; }
 
@@ -449,7 +449,8 @@ ul.dropdown-menu {
   overflow-y: scroll; }
 
 .servicestypeahead {
-  margin-bottom: 1.2em; }
+  margin-top: 0.25em;
+  margin-bottom: 0.5em; }
   .servicestypeahead div {
     padding: 0; }
   .servicestypeahead input {
@@ -497,10 +498,6 @@ ul.dropdown-menu {
   border-bottom: 0.2em black solid;
   border-left: 0.2em black solid;
   z-index: 50;
-<<<<<<< HEAD
-  min-height: 69.5%;
-=======
->>>>>>> b82d920e421056cfad3d046857fbeac8617c1027
   max-height: 30em; }
   #local-info-results .local-info-heading {
     font-weight: bold; }
