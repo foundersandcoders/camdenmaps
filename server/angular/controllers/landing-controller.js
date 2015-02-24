@@ -32,7 +32,7 @@
             $scope.buttons = [
                 {
                     id: "findYourNearest",
-                    title: "Find Your Nearest",
+                    title: "Camden Services",
                     handler: addLandingButtonHandler("/home/services"),
                     iconUrl: "img/icons/find-your-nearest.png"
                 },
