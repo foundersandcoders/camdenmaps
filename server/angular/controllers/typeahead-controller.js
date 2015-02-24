@@ -48,22 +48,33 @@
 
                 var service,
                     address,
+                    checkService,
                     destination;
 
                 if(isAddressSearch()) {
 
                     address = getObject(uprnArray, selected)
 
-                    locationSave(address);
+                    if (address[0] === undefined) {
 
-                    destination = getAddressDestination(address);
+                        return $scope.updateError("Sorry, it looks like that isn't a valid camden address");
+                    
+                    } else {
+                        locationSave(address);
+
+                        destination = getAddressDestination(address);
+                    }
 
                 }  else if(isValidService(selected)) {
-                        service = encodeURIComponent(selected);
 
-                        destination = "/home/" + service + "/search";
+                    service = encodeURIComponent(selected);
+
+                    service = encodeURIComponent(selected);
+
+                    destination = "/home/" + service + "/search";
+
                 } else {
-                    return;
+                    return $scope.updateError("Sorry, it looks like that isn't a valid camden service");
                 }
 
                 $location.path(destination);
@@ -95,6 +106,12 @@
                 });
             }
 
+            function isValidService (service) {
+                var match = $scope.typeaheadSearchList.filter(function (item) {
+                    return item.title === service;
+                });
+                return (match.length >= 1);
+            }
             
             /*
             * HELPER FUNCTIONS:
@@ -110,7 +127,8 @@
 
                     address = localStorageService.get("userLocation");
 
-                    if(address) {
+                    if(address && address[0].title) {
+
                         if($scope.activeMarker) {
                             //resets active marker
                             $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
@@ -123,6 +141,9 @@
                         //redirects to new path and runs location controller
                         $location.path(destination);
 
+                    } else {
+                        console.log("remove");
+                        localStorageService.remove("userLocation");
                     }
                 }
             }
@@ -179,14 +200,6 @@
                 } else {
                     return false;
                 }
-            }
-
-            function isValidService (service) {
-                var menu = require("../menu.json");
-                var match = menu.filter(function(i) {
-                    return i.title === service;
-                });
-                return (match.length >= 1);
             }
         }
     ];
