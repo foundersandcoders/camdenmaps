@@ -73,14 +73,14 @@
                     <a href ui-sref="root.address-search.single-view({id: '{{ result.display.Name }}' })" ng-repeat="result in results">
                         <div class="list-item col-xs-12">
                             <div class="col-xs-9">
-                                <h5>{{ result.display.Name }}</h5>
+                                <h3 id="service-title">{{ result.display.Name }}</h3>
                                 <p>{{ result.StreetNum + ' ' + result.Street }}</p>
                                 <p>{{ result.PostCode }}</p>
                                 <div ui-sref="root.address-search.single-view({id: '{{ result.display.Name }}' })" ui-sref-active="active" class="display-result" ui-view></div>
                             </div>
-                            <div ng-show="showDistance" >
+ <!--                            <div ng-show="showDistance" >
                                 <h5 class="distance">{{ result.Distance + ' miles'}}</h5>
-                            </div>
+                            </div> -->
                         </div>
                     </a>
                 </div>

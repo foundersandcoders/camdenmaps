@@ -3,10 +3,13 @@
 *   Description: for single result view related
 *	mixins and variables.
 ************************************************/
-
+.single-view-info {
+	padding: 0;
+	margin-top: 5px;
+}
 
 .result {
-	background-color: white;
+	//background-color: white;
 	text-align: left;
 	color: black;
 	padding: 0.5em 0;
@@ -29,14 +32,7 @@
 		}
 	}
 	a {
-		color: black;
-	}
-	p, h5 {
-		color: black;
-		margin: 0;
-	}
-	.opening-hours {
-		margin-top: 1em;
+		color: $dark-blue;
 	}
 }
 
@@ -57,4 +53,20 @@
 	.call-mobile {
 		display: block;
 	}
+}
+
+#url {
+	color: $dark-blue;
+	font-size: 0.875em
+}
+
+#hr-single-view {
+    margin: 5px 0;
+    border: 0;
+    height: 1px;
+    background: #777;
+    background-image: -webkit-linear-gradient(left, #ccc, #777, #ccc); 
+    background-image:    -moz-linear-gradient(left, #ccc, #777, #ccc); 
+    background-image:     -ms-linear-gradient(left, #ccc, #777, #ccc); 
+    background-image:      -o-linear-gradient(left, #ccc, #777, #ccc); 
 }

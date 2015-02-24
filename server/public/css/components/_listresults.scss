@@ -33,23 +33,18 @@
 	.distance {
 		text-align: right;
 	}
-	h5, p {
+	p {
 		color: black;
 		margin: 0;
 	}
+	h5 {
+		margin-bottom: 5px;
+		color: $dark-grey;
+	}
 }
 
-// @media (max-width: 768px) {
-// 	#list-results-container {
-// 		padding: 0;
-// 		position: absolute;
-// 		height: 80%;
-// 	}
-// 	#list-results {
-// 		// height: 70%;
-// 		.list-item {
-// 			height: 7em;
-// 		}
-// 	}
-// }
-
+#service-title {
+	color: $dark-blue;
+	font-weight: bold;
+	margin: 0 0 10px 0;
+}
