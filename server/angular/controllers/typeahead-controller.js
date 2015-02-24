@@ -127,7 +127,8 @@
 
                     address = localStorageService.get("userLocation");
 
-                    if(address) {
+                    if(address && address[0].title) {
+
                         if($scope.activeMarker) {
                             //resets active marker
                             $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
@@ -140,6 +141,9 @@
                         //redirects to new path and runs location controller
                         $location.path(destination);
 
+                    } else {
+                        console.log("remove");
+                        localStorageService.remove("userLocation");
                     }
                 }
             }
