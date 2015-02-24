@@ -16,7 +16,8 @@
         "$http",
         function ($scope, $location, fetchToken, $http) {
 
-            var menu = [];
+            var menu = [],
+                uprnArray = [];
             $scope.selected = '';
 
             if(isAddressSearch()) { 
@@ -24,26 +25,7 @@
                 $scope.placeholder = 'Enter an address';
                 $scope.additions = '(($viewValue))';
 
-                fetchToken.getToken().success(function() {
-
-                    $scope.typeaheadSearchList = function(value) {
-
-                        return $http.get('https://camdenmaps-addresslookup.herokuapp.com/search/' + value)
-                            .then(function(response){
-
-                                return response.data.map(function (item){
-                                    var displayItem = item.Unit + " " +
-                                        item.BuildingName + " " +
-                                        item.BuildingNumber + " " +
-                                        item.Street + " " +
-                                        item.Postcode + " " +
-                                        item.UPRN;
-                                    return displayItem;
-                                });
-                            });
-                    };
-
-                });
+                getAddresses();
 
             } else {
 
@@ -52,45 +34,96 @@
                 $scope.placeholder = 'Enter a service to search';
                 $scope.additions = ' | filter:$viewValue | limitTo: 8';
 
-                $scope.typeaheadSearchList = getItems(menu);
+                $scope.typeaheadSearchList = getServices(menu);
             }
 
-            $scope.handler = function (item) {
+        /*
+        * HELPER FUNCTIONS:
+        * TODO: Move into services.
+        */
+
+            $scope.handler = function (selected) {
                 var service,
                     uprn,
+                    postcode,
+                    filter,
                     destination;
 
-                if(isAddressSearch()) {
+                if(($location.path().indexOf("/neighbourhood") > -1)) {
 
-                    uprn = item.slice(-7);
+                    filter = uprnArray.filter(function (item) {
+                        if (selected === item.title) {
+                            return item;
+                        }
+                    })
+
+                    uprn = filter[0].UPRN;
+
+                    console.log(uprn);
 
                     destination = "/home/neighbourhood/" + uprn;
 
-                } else {
+                } else if (isPostcodeSearch()) {
 
-                    service = encodeURIComponent(item);
+                    destination = "/home/streetworks/locations" + postcode;
+
+                }  else {
+
+                    service = encodeURIComponent(selected);
 
                     destination = "/home/" + service + "/search";
                 }
                 $location.path(destination);
             };
 
-            function getItems(array) {
+            function getAddresses () {
 
-                var newArray = [];
+                return fetchToken.getToken().success(function() {
 
-                for (var i = array.length - 1; i >= 0; i--) {
-                    if (array[i].type === "service") {
-                        newArray.push(array[i].title);
+                    $scope.typeaheadSearchList = function(value) {
+
+                        return $http.get('https://camdenmaps-addresslookup.herokuapp.com/search/' + value)
+                            .then(function(response){
+
+                                return response.data.map(function (item){
+                                    item.title = item.Unit + " " +
+                                        item.BuildingName + " " +
+                                        item.BuildingNumber + " " +
+                                        item.Street + " " +
+                                        item.Postcode + " " +
+                                        item.UPRN;
+
+                                    uprnArray.push(item);
+
+                                    return item;
+                                });
+                            });
+                    };
+                });
+            };
+
+            function getServices (array) {
+                return array.filter(function (item) {
+                    if (item.type === "service") {
+                        return item;
                     }
-                }
-                return newArray;
+                });
             }
 
             function isAddressSearch () {
 
                 if (($location.path().indexOf("/neighbourhood") > -1) || 
                     ($location.path().indexOf("/streetworks") > -1) || 
+                    ($location.path().indexOf("/search") > -1)) {
+
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            function isPostcodeSearch () {
+
+                if (($location.path().indexOf("/streetworks") > -1) || 
                     ($location.path().indexOf("/search") > -1)) {
 
                     return true;
