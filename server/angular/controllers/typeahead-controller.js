@@ -18,6 +18,7 @@
         "localStorageService",
         function ($scope, $location, fetchToken, $http, $stateParams, localStorageService) {
 
+
             var menu = [],
                 uprnArray = [];
 
