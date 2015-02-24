@@ -29,7 +29,7 @@ var path = require("path");
         },
 
         getLogs: function getLogs (req, res) {
-            fs.readFile(path.join(__dirname, "../logs/server_log"), function(err, data) {
+            fs.readFile(path.join(__dirname, "../logs/server_log.txt"), function(err, data) {
                 res(data.toString())
                     .type("text/richtext");
             });
