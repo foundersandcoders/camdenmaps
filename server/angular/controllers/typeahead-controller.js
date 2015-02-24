@@ -14,7 +14,8 @@
         "$location",
         "fetchToken",
         "$http",
-        function ($scope, $location, fetchToken, $http) {
+        "$stateParams",
+        function ($scope, $location, fetchToken, $http, $stateParams) {
 
             var menu = [],
                 uprnArray = [];
@@ -46,26 +47,36 @@
                 var service,
                     uprn,
                     postcode,
-                    filter,
+                    findObject,
                     destination;
 
                 if(($location.path().indexOf("/neighbourhood") > -1)) {
 
-                    filter = uprnArray.filter(function (item) {
+                    findObject = uprnArray.filter(function (item) {
                         if (selected === item.title) {
                             return item;
                         }
-                    })
+                    });
 
-                    uprn = filter[0].UPRN;
-
-                    console.log(uprn);
+                    uprn = findObject[0].UPRN;
 
                     destination = "/home/neighbourhood/" + uprn;
 
                 } else if (isPostcodeSearch()) {
 
-                    destination = "/home/streetworks/locations" + postcode;
+                    findObject = uprnArray.filter(function (item) {
+                        if (selected === item.title) {
+                            return item;
+                        }
+                    });
+
+                    postcode = findObject[0].Postcode;
+
+                    if ($location.path().indexOf("/streetworks") > -1) {
+                        destination = "/home/streetworks/location/" + postcode;
+                    } else {
+                        destination = "/home/" + $stateParams.service + "/location/" + postcode;
+                    }
 
                 }  else {
 
@@ -73,6 +84,7 @@
 
                     destination = "/home/" + service + "/search";
                 }
+
                 $location.path(destination);
             };
 
@@ -100,7 +112,7 @@
                             });
                     };
                 });
-            };
+            }
 
             function getServices (array) {
                 return array.filter(function (item) {
@@ -123,7 +135,7 @@
             }
             function isPostcodeSearch () {
 
-                if (($location.path().indexOf("/streetworks") > -1) || 
+                if (($location.path().indexOf("/streetworks") > -1)|| 
                     ($location.path().indexOf("/search") > -1)) {
 
                     return true;
