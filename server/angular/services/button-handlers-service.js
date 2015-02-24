@@ -50,6 +50,7 @@
 
                     if (localStorageService.isSupported) {
                         localStorageService.remove("userLocation");
+                        localStorageService.remove("USER-LOCATION");
                     }
 
                     scope = scope || functionScope;             

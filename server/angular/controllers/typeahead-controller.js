@@ -4,7 +4,6 @@
 *****************************/
 
 //TODO: Auto center list on focus for long typeahead lists
-//TODO: Add Error messages
 
 ;(function () {
     "use strict";
@@ -125,7 +124,7 @@
 
                 if (localStorageService.isSupported) {
 
-                    address = localStorageService.get("userLocation");
+                    address = localStorageService.get("USER-LOCATION");
                     console.log(address);
                     if(address && address[0] && address[0].title) {
 
@@ -142,15 +141,15 @@
                         $location.path(destination);
 
                     } else {
-                        console.log("remove");
                         localStorageService.remove("userLocation");
+                        localStorageService.remove("USER-LOCATION");
                     }
                 }
             }
 
             function locationSave(address) {
                 if (localStorageService.isSupported) {
-                    localStorageService.set("userLocation", address);
+                    localStorageService.set("USER-LOCATION", address);
                 }
             }
 
