@@ -3,8 +3,9 @@
 *
 *****************************/
 
-//TODO: Auto center list on focus
+//TODO: Auto center list on focus for long typeahead lists
 //TODO: Add Error messages
+//TODO: Add remember location here.
 
 ;(function () {
     "use strict";
@@ -46,21 +47,15 @@
                     address,
                     destination;
 
-                if(($location.path().indexOf("/neighbourhood") > -1)) {
+                if(isAddressSearch()) {
 
                     address = getObject(uprnArray, selected)
 
-                    destination = "/home/neighbourhood/" + address[0].UPRN;
-
-                } else if (isPostcodeSearch()) {
-
-                    address = getObject(uprnArray, selected)
-
-                    if ($location.path().indexOf("/streetworks") > -1) {
-                        destination = "/home/streetworks/location/" + address[0].Postcode;
-                    } else {
-                        destination = "/home/" + $stateParams.service + "/location/" + address[0].Postcode;
-                    }
+                    destination = ($location.path().indexOf("/neighbourhood") > -1)
+                                ? "/home/neighbourhood/" + address[0].UPRN
+                                : ($location.path().indexOf("/streetworks") > -1)
+                                ? "/home/streetworks/location/" + address[0].Postcode
+                                : "/home/" + $stateParams.service + "/location/" + address[0].Postcode;
 
                 }  else {
 
