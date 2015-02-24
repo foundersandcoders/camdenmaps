@@ -23,6 +23,8 @@
             //back button text
             $scope.backButtonText = "Main Menu";
 
+            $scope.icon = "img/icons/streetworks-white.png";
+            
         }
     ];
 }());
