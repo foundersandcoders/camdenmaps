@@ -35,6 +35,12 @@
 	}
 }
 
+ul.dropdown-menu {
+	min-height: 100%;
+	max-height: 19.5em;
+	overflow: hidden;
+	overflow-y: scroll;
+}
 
 .servicestypeahead {
 	margin-bottom: 1.2em;

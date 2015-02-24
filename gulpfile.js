@@ -88,6 +88,10 @@
             .pipe(gulp.dest("./server/public/css/"));
     });
 
+    gulp.task("sass-watch", function () {
+        gulp.watch(sassFiles, ["sass-dev"]);
+    });
+
     //task for travis
     gulp.task("travis", ["sass-production", "browserify"], function () {
         nodemon({ script: 'server/server.js'})
@@ -126,11 +130,9 @@
         return bundle();
     });
 
-    gulp.task("watchify", function() {
-        return shell.task([
-            "watchify ./server/angular/app.js -o ./server/public/js/1.0.0.camdenmaps.min.js -v"
-        ]);
-    });
+    gulp.task("watchify", shell.task([
+        "watchify ./server/angular/app.js -o ./server/public/js/1.0.0.camdenmaps.min.js -v"
+    ]));
 
     gulp.task('html', function() {
       return gulp.src(htmlFiles)

@@ -3,6 +3,10 @@
 *
 *****************************/
 
+//TODO: Auto center list on focus for long typeahead lists
+//TODO: Add Error messages
+//TODO: Add remember location here.
+
 ;(function () {
     "use strict";
 
@@ -11,37 +15,21 @@
         "$location",
         "fetchToken",
         "$http",
-        function ($scope, $location, fetchToken, $http) {
+        "$stateParams",
+        function ($scope, $location, fetchToken, $http, $stateParams) {
 
-            var menu = [];
+            var menu = [],
+                uprnArray = [];
             $scope.selected = '';
+
+            $scope.geolocate = isPostcodeSearch();
 
             if(isAddressSearch()) { 
 
                 $scope.placeholder = 'Enter an address';
                 $scope.additions = '(($viewValue))';
 
-                fetchToken.getToken().success(function() {
-
-                    $scope.typeaheadSearchList = function(value) {
-
-                        return $http.get('https://camdenmaps-addresslookup.herokuapp.com/search/' + value)
-                            .then(function(response){
-
-                                var data = response.data.slice(0, 10);
-
-                                return data.map(function (item){
-                                    var displayItem = item.Unit + " " +
-                                        item.BuildingName + " " +
-                                        item.BuildingNumber + " " +
-                                        item.Street + " " +
-                                        item.Postcode + " " +
-                                        item.UPRN;
-                                    return displayItem;
-                                });
-                            });
-                    };
-                });
+                getAddresses();
 
             } else {
 
@@ -50,39 +38,80 @@
                 $scope.placeholder = 'Enter a service to search';
                 $scope.additions = ' | filter:$viewValue | limitTo: 8';
 
-                $scope.typeaheadSearchList = getItems(menu);
+                $scope.typeaheadSearchList = getServices(menu);
             }
 
-            $scope.handler = function (item) {
+            $scope.handler = function (selected) {
+
                 var service,
-                    uprn,
+                    address,
                     destination;
 
                 if(isAddressSearch()) {
 
-                    uprn = item.slice(-7);
+                    address = getObject(uprnArray, selected)
 
-                    destination = "/home/neighbourhood/" + uprn;
+                    destination = ($location.path().indexOf("/neighbourhood") > -1)
+                                ? "/home/neighbourhood/" + address[0].UPRN
+                                : ($location.path().indexOf("/streetworks") > -1)
+                                ? "/home/streetworks/location/" + address[0].Postcode
+                                : "/home/" + $stateParams.service + "/location/" + address[0].Postcode;
 
-                } else {
+                }  else {
 
-                    service = encodeURIComponent(item);
+                    service = encodeURIComponent(selected);
 
                     destination = "/home/" + service + "/search";
                 }
+
                 $location.path(destination);
             };
 
-            function getItems(array) {
 
-                var newArray = [];
+            function getAddresses () {
 
-                for (var i = array.length - 1; i >= 0; i--) {
-                    if (array[i].type === "service") {
-                        newArray.push(array[i].title);
+                return fetchToken.getToken().success(function() {
+
+                    $scope.typeaheadSearchList = function(value) {
+
+                        return $http.get('https://camdenmaps-addresslookup.herokuapp.com/search/' + value)
+                            .then(function(response){
+
+                                return response.data.map(function (item){
+                                    item.title = item.Unit + " " +
+                                        item.BuildingName + " " +
+                                        item.BuildingNumber + " " +
+                                        item.Street + " " +
+                                        item.Postcode;
+
+                                    uprnArray.push(item);
+
+                                    return item;
+                                });
+                            });
+                    };
+                });
+            }
+
+            /*
+            * HELPER FUNCTIONS:
+            * TODO: Move into services.
+            */
+
+            function getObject (array, selected) {
+                return array.filter(function (item) {
+                    if (selected === item.title) {
+                        return item;
                     }
-                }
-                return newArray;
+                });
+            }
+
+            function getServices (array) {
+                return array.filter(function (item) {
+                    if (item.type === "service") {
+                        return item;
+                    }
+                });
             }
 
             function isAddressSearch () {
@@ -95,7 +124,17 @@
                 } else {
                     return false;
                 }
-            }            
+            }
+            function isPostcodeSearch () {
+
+                if (($location.path().indexOf("/streetworks") > -1)|| 
+                    ($location.path().indexOf("/search") > -1)) {
+
+                    return true;
+                } else {
+                    return false;
+                }
+            }     
         }
     ];
 }());
