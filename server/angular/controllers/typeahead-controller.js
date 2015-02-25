@@ -15,7 +15,9 @@
         "$http",
         "$stateParams",
         "localStorageService",
-        function ($scope, $location, fetchToken, $http, $stateParams, localStorageService) {
+        "apiSearch",
+        "markers",
+        function ($scope, $location, fetchToken, $http, $stateParams, localStorageService, apiSearch, markers) {
 
             var menu = [],
                 uprnArray = [];
@@ -52,13 +54,20 @@
 
                 if(isAddressSearch()) {
 
+                    //if address has been selected by typeahead, then will exist in saved array
                     address = getObject(uprnArray, selected)
 
+                    //if address has not been selected by typeahead
                     if (address[0] === undefined) {
 
-                        return $scope.updateError("Sorry, it looks like that isn't a valid camden address");
+                        //searchApi checks if valid address, if not, will throw error.
+                        searchApi(selected);
+
+                        return;
                     
                     } else {
+                        
+                        //saves location in localStorage
                         locationSave(address);
 
                         destination = getAddressDestination(address);
@@ -125,7 +134,7 @@
                 if (localStorageService.isSupported) {
 
                     address = localStorageService.get("USER-LOCATION");
-                    console.log(address);
+
                     if(address && address[0] && address[0].title) {
 
                         if($scope.activeMarker) {
@@ -200,6 +209,54 @@
                     return false;
                 }
             }
+
+
+            function searchApi (address) {
+
+                var path,
+                    noResults = require("../lib/no-results.js"),
+                    resetActiveMarker = require("../lib/reset-active-marker");
+
+                if (isPostcodeSearch()){
+
+                    if(address) {
+                        apiSearch.search($stateParams.service, address)
+                            .success(function success (data) {
+                                if(data.hasOwnProperty("error")) {
+                                    return $scope.updateError(data.message);
+                                }
+
+                                $scope.updateResults(data.properties);
+                                $scope.result = $scope.results.filter(function (result) {
+                                    return result.display.Name === $stateParams.id;
+                                })[0];
+
+                                $scope.addMarkers();
+                                // $scope.centre = markers.centreCheck($scope)();
+                                $scope.centre.zoom = markers.zoomCheck($scope)();
+
+
+                                if (localStorageService.isSupported) {
+                                    localStorageService.set( "userLocation", address);
+                                }
+
+                                resetActiveMarker($scope);
+
+
+                                path = "/home/" + $stateParams.service + "/location/" + address;
+                                //redirects to new path and runs location controller
+                                $location.path(path);
+
+                            });
+                    }
+
+                } else {
+
+                    //TODO: need a error phrase for when a non-typeahead search is done on `about your neighbourhood`
+                    return $scope.updateError("Sorry, something went wrong");
+                }
+            }
+
         }
     ];
 }());
