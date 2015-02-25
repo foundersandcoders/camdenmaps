@@ -31,7 +31,7 @@
                     formattedProperty.externalref = p.$.externalref;
                     formattedProperty.display = {};
                     formattedProperty.display.Organisation = p.$.Organisation;
-                    formattedProperty.display.Name = replaceSlashes(p.$.Street) + " - " + p.$.externalref.split("-")[p.$.externalref.split("-").length - 1];
+                    formattedProperty.display.Name = p.$.Street + " - " + p.$.externalref.split("-")[p.$.externalref.split("-").length - 1];
                     formattedProperty.display.StartDate = p.$.StartDate;
                     formattedProperty.display.EndDate = p.$.EndDate;
                     formattedProperty.display.Telephone = p.$.Telephone;
