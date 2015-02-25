@@ -3,12 +3,13 @@
 
     function isWithinCamden (latitude, longitude) {
     	//coordinates represent a square around Camden to roughly test if location is inside boundary
-        if(51.57878 > latitude > 51.450089 && -0.094538 > longitude > -0.218650) {
+        if(51.590 > latitude > 51.495 && -0.0750 > longitude > -0.255) {
             return true;
         } else {
-            return false
+            return false;
         }
     }
+
 
     var cappedResults = require("../lib/capped-results.js");
 
@@ -62,8 +63,7 @@
                                 }
                             })
                             .on('locationerror', function(e){
-                                console.log(e);
-                                alert("Location access denied.");
+                                scope.updateError("Geolocation error. Please use an address");
                             });
 
                     });

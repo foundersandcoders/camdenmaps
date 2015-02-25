@@ -54,6 +54,9 @@
                 return function(e, args, scope) {
                     scope = scope || functionScope;
                     
+                    
+                    console.log(args.leafletEvent.latlng);  
+
                     resetActiveMarker(scope);
 
                     path    = scope.address ? "/home/" + scope.service + "/location/" + scope.address

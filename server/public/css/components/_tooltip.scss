@@ -17,3 +17,11 @@
 		border-top-color: #fff !important;
 	}
 }
+
+@media (max-device-width: 768px) {
+
+	.tooltip {
+		visibility: hidden;
+		display: none;
+	}
+}

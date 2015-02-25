@@ -27,7 +27,7 @@
                     scope.update("error", "");
                     scope.update("locationSelected", {});
                     scope.update("centre", {
-                            lat: 51.535923,
+                            lat: 51.541,
                             lng: -0.139991,
                             zoom: 13
                     });
