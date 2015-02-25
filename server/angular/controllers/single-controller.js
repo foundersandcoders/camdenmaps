@@ -58,7 +58,7 @@
 
                     if(!$scope.activeMarker && $scope.results.indexOf($scope.result) > -1) { 
                         linkResultToMarker(); 
-                    } 
+                    }
                 }
 
                 $scope.exit = function exit () {

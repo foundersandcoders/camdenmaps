@@ -121,7 +121,7 @@
                             : $stateParams.address.replace(/\b./g, function(m){ return m.toUpperCase(); });
 
             searchAgainDestination = ($location.path().indexOf("/streetworks") > -1)
-                ? "/home/streetworks"
+                ? "/home"
                 : "/home/services";
                 
             $scope.searchAgain = buttonHandlers.searchAgain($scope, searchAgainDestination);
