@@ -48,21 +48,31 @@
             // Args will contain the marker name and other relevant information 
             $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
 
-            parentId = menu.filter(function (item) {
-                if ($scope.service === item.title) {
-                    return item;
-                }
-            });
+            if ($stateParams.service == "streetworks") {
+                
+                //$scope.returnTo
 
-            categoryId = parentId[0].parentId;
-            
-            category = menu.filter (function (item) {
-                if (categoryId === item.id){
-                    return item;
-                } 
-            });
+            } else {
+                parentId = menu.filter(function (item) {
+                    if ($scope.service === item.title) {
+                        return item;
+                    }
+                });
 
-            $scope.category = category[0];
+                categoryId = parentId[0].parentId;
+                
+                category = menu.filter (function (item) {
+                    if (categoryId === item.id){
+                        return item;
+                    } 
+                });
+
+                $scope.category = category[0];
+
+                $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service")
+                $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services")
+ 
+            }
 
             if($scope.service.toLowerCase() !== "streetworks") {
                 //model for image icon
@@ -142,8 +152,6 @@
 
             $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/" + $stateParams.service + "/search");
 
-            $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services")
-            $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service")
 
 
         }
