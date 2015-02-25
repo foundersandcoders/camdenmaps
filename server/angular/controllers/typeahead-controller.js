@@ -16,14 +16,14 @@
         "localStorageService",
         "apiSearch",
         "markers",
-        function ($scope, $location, fetchToken, $http, $stateParams, localStorageService, apiSearch, markers) {
+        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, localStorageService, apiSearch, markers) {
 
             var menu = [],
                 uprnArray = [];
 
             $scope.selected = '';
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
-            scope.geolocationToolTip = 'Click to use my current location';
+            $scope.geolocationToolTip = 'Click to use my current location';
             $scope.geolocate = isPostcodeSearch();
 
             $scope.geolocateUser = function() {
@@ -105,17 +105,18 @@
                                     return;
                                 } else {
 
-                                return response.data.map(function (item){
-                                    item.title = item.Unit + " " +
-                                        item.BuildingName + " " +
-                                        item.BuildingNumber + " " +
-                                        item.Street + " " +
-                                        item.Postcode;
+                                    return response.data.map(function (item){
+                                        item.title = item.Unit + " " +
+                                            item.BuildingName + " " +
+                                            item.BuildingNumber + " " +
+                                            item.Street + " " +
+                                            item.Postcode;
 
-                                    uprnArray.push(item);
+                                        uprnArray.push(item);
 
-                                    return item;
-                                });
+                                        return item;
+                                    });
+                                }
                             });
                     };
                 });
