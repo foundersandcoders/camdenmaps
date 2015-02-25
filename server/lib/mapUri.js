@@ -15,9 +15,9 @@ var Config = require("../config/serverConfig.js"),
 function mapQuery (req) {
     var service = aliasServices(cap(req.params.service));
     return (req.params.latitude !== undefined) ? "?" + services + service + "&" + lats + req.params.latitude + "&" + lngs + req.params.longitude
-            : (req.params.location === undefined) ? "?" + services + service + "&" + locations + defaultLocation
-            : (service === undefined)  ? "?" + locations + req.params.location 
-            : "?" + locations + req.params.location + "&" + services + service;
+            : (req.params.postcode === undefined) ? "?" + services + service + "&" + locations + defaultLocation
+            : (service === undefined)  ? "?" + locations + req.params.postcode 
+            : "?" + locations + req.params.postcode + "&" + services + service;
 }
 
 function mapStreetworks (req) {
@@ -32,7 +32,7 @@ function mapStreetworks (req) {
     return url.streetworksApi + query; 
 }
 
-function mapLocalInformation (req) {
+function mapLocalInformation (req) {location
     
     var uprn = req.params.uprn;
     var query = "?" + exactLocations + uprn + "&tab=m";
