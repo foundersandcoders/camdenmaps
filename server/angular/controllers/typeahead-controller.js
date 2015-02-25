@@ -26,6 +26,11 @@
             $scope.geolocationToolTip = 'Use my current location';
             $scope.geolocate = isPostcodeSearch();
 
+            $scope.geolocateUser = function() {
+                markers.geolocateUser($scope)();
+                resetActiveMarker($scope);
+            };
+
             if(isAddressSearch()) {
 
                 locationGet();
