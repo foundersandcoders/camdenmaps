@@ -19,6 +19,7 @@
 	.glyphicon-remove {
 		float: right;
 		color: $exit-button;
+		padding: 0 0.5em;
 		&:hover {
 			color: $exit-button-hover;
 		}
