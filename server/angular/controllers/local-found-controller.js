@@ -13,7 +13,6 @@
         "$stateParams",
         function ($scope, $location, apiSearch, $stateParams) {
 
-
             $scope.information;
 
             $scope.exit = function exit() {
