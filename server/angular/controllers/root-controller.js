@@ -46,7 +46,7 @@
             //************ MAP MANIPULATIONS ***************
 
             $scope.centre = {
-                    lat: 51.535923,
+                    lat: 51.54,
                     lng: -0.139991,
                     zoom: 13,
                     // autoDiscover: true
