@@ -39,8 +39,8 @@
                             .on('locationfound', function (e){
 
     
-                                if (isWithinCamden(e.latitude, e.longitude)) {
-                            
+                                // if (isWithinCamden(e.latitude, e.longitude)) {
+                                if(true) {
                                     scope.markers.m0 = {
                                         lat: e.latitude,
                                         lng: e.longitude,
@@ -51,15 +51,23 @@
                                 
                                         //not sure this is necessary if we have a location symbol used 
                                         message: "Your location",
-                                        focus: true
+                                        focus: true,
+                                        geolocation: true
                                     };
 
-                                    path = "/home/" + $stateParams.service + "/location/" + "your location";
+                                    console.log("streetworks location path", ($location.path().indexOf("/streetworks") > -1));
+                                    console.log("location", $location.path());
+                                    console.log($stateParams.service);
+
+                                    var path = ($location.path().indexOf("/streetworks") > -1)
+                                    ? "home/streetworks/location/your location"
+                                    : "/home/" + $stateParams.service + "/location/" + "your location";
+
                                     $location.path(path);
 
                                 } else {
-           
                                     scope.updateError("That location is outside Camden");
+                                    $location.path("home/streetworks");
                                 }
                             })
                             .on('locationerror', function(e){
@@ -80,30 +88,25 @@
                         return Number(scope.results[i][latlng]);
                     };
         
-
-                    // this creates the marker objects to plot the locations on the map
-                    // this will run on refreshes
-                    // it will run if there are capped results
-                    if( Object.size(markers) === 0 || cappedResults(decodeURI($stateParams.service), scope) ) {
                         
-                        var i, 
-                        	resultLength = Object.size(root);
-                        
-                        for (i = 0; i<resultLength; i++) {
+                    var i, 
+                    	resultLength = Object.size(root);
+                    
+                    for (i = 0; i<resultLength; i++) {
 
-                            property = "m" + (i+1);
-                           
-                            markers[property] = {};
-                            markers[property].icon = {};
-                            markers[property].lat = coord(i, "Latitude");
-                            markers[property].lng = coord(i, "Longitude");
-                            markers[property].name = scope.results[i]["display"]["Name"];
-                            markers[property].icon.iconUrl = "../img/icons/marker-hi.png";
-                            markers[property].icon.iconSize = [28];
+                        property = "m" + (i+1);
+                       
+                        markers[property] = {};
+                        markers[property].icon = {};
+                        markers[property].lat = coord(i, "Latitude");
+                        markers[property].lng = coord(i, "Longitude");
+                        markers[property].name = scope.results[i]["display"]["Name"];
+                        markers[property].icon.iconUrl = "../img/icons/marker-hi.png";
+                        markers[property].icon.iconSize = [28];
 
-                        }
+                    }
                         
-                    }   
+                    
 
                     //loads default location marker if results are capped
                     //but not if searching with geolocate 

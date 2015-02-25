@@ -20,7 +20,8 @@
         function ($scope, $location, fetchToken, $http, $stateParams, localStorageService, apiSearch, markers) {
 
             var menu = [],
-                uprnArray = [];
+                uprnArray = [],
+                resetActiveMarker = require("../lib/reset-active-marker");
 
             $scope.selected = '';
             $scope.geolocationToolTip = 'Click to use my current location';
