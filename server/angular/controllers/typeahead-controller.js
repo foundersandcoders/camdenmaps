@@ -3,6 +3,28 @@
 *
 *****************************/
 
+//todo: autofocus on huge typeahead lists
+
+/*
+* HELPER FUNCTIONS:
+*/
+
+function getObject (array, selected) {
+    return array.filter(function (item) {
+        if (selected === item.title) {
+            return item;
+        }
+    });
+}
+
+function getServices (array) {
+    return array.filter(function (item) {
+        if (item.type === "service") {
+            return item;
+        }
+    });
+}
+
 ;(function () {
     "use strict";
 
@@ -13,10 +35,11 @@
         "fetchToken",
         "$http",
         "$stateParams",
-        "localStorageService",
         "apiSearch",
         "markers",
-        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, localStorageService, apiSearch, markers) {
+        "localstorage",
+        "locationCheck",
+        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck) {
 
             var menu = [],
                 uprnArray = [];
@@ -24,16 +47,16 @@
             $scope.selected = '';
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
             $scope.geolocationToolTip = 'Click to use my current location';
-            $scope.geolocate = isPostcodeSearch();
+            $scope.geolocate = locationCheck.postcodeSearch();
 
             $scope.geolocateUser = function() {
                 markers.geolocateUser($scope)();
                 resetActiveMarker($scope);
             };
 
-            if(isAddressSearch()) {
+            if(locationCheck.addressSearch()) {
 
-                locationGet();
+                localstorage.get($scope)();
 
                 $scope.placeholder = 'Enter an address';
                 $scope.additions = '(($viewValue))';
@@ -57,7 +80,7 @@
                     checkService,
                     destination;
 
-                if(isAddressSearch()) {
+                if(locationCheck.addressSearch()) {
 
                     //if address has been selected by typeahead, then will exist in saved array
                     address = getObject(uprnArray, selected);
@@ -73,12 +96,12 @@
                     } else {
                         
                         //saves location in localStorage
-                        locationSave(address);
+                        localstorage.save(address);
 
-                        destination = getAddressDestination(address);
+                        destination = locationCheck.destination(address);
                     }
 
-                }  else if(isValidService(selected)) {
+                }  else if(validate.service(service, $scope.typeaheadSearchList)) {
 
                     service = encodeURIComponent(selected);
 
@@ -122,110 +145,13 @@
                 });
             }
 
-            
-            /*
-            * HELPER FUNCTIONS:
-            * TODO: Move into services.
-            */
-
-            function isValidService (service) {
-                var match = $scope.typeaheadSearchList.filter(function (item) {
-                    return item.title.toLowerCase() === service.toLowerCase();
-                });
-                return (match.length >= 1);
-            }
-
-            function locationGet () {
-
-                var destination,
-                    address;
-
-                if (localStorageService.isSupported) {
-
-                    address = localStorageService.get("USER-LOCATION");
-
-                    if(address && address[0] && address[0].title) {
-
-                        if($scope.activeMarker) {
-                            //resets active marker
-                            $scope.activeMarker.icon.iconUrl = "../img/icons/marker-hi.png";
-                            $scope.update("activeMarker", 0);
-                        }
-
-                        $scope.value = address[0].title;
-
-                        destination = getAddressDestination(address);
-                        //redirects to new path and runs location controller
-                        $location.path(destination);
-
-                    } else {
-                        localStorageService.remove("userLocation");
-                        localStorageService.remove("USER-LOCATION");
-                    }
-                }
-            }
-
-            function locationSave(address) {
-                if (localStorageService.isSupported) {
-                    localStorageService.set("USER-LOCATION", address);
-                }
-            }
-
-            function getAddressDestination (address) {
-
-                return ($location.path().indexOf("/neighbourhood") > -1)
-                        ? "/home/neighbourhood/" + address[0].UPRN
-                        : ($location.path().indexOf("/streetworks") > -1)
-                        ? "/home/streetworks/location/" + address[0].Postcode
-                        : "/home/" + $stateParams.service + "/location/" + address[0].Postcode;
-
-            }
-
-            function getObject (array, selected) {
-                return array.filter(function (item) {
-                    if (selected === item.title) {
-                        return item;
-                    }
-                });
-            }
-
-            function getServices (array) {
-                return array.filter(function (item) {
-                    if (item.type === "service") {
-                        return item;
-                    }
-                });
-            }
-
-            function isAddressSearch () {
-
-                if (($location.path().indexOf("/neighbourhood") > -1) || 
-                    ($location.path().indexOf("/streetworks") > -1) || 
-                    ($location.path().indexOf("/search") > -1)) {
-
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-            function isPostcodeSearch () {
-
-                if (($location.path().indexOf("/streetworks") > -1)|| 
-                    ($location.path().indexOf("/search") > -1)) {
-
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-
             function searchApi (address) {
 
                 var path,
                     noResults = require("../lib/no-results.js"),
                     resetActiveMarker = require("../lib/reset-active-marker");
 
-                if (isPostcodeSearch()){
+                if (locationCheck.postcodeSearch()){
 
                     if(address) {
                         apiSearch.search($stateParams.service, address)
@@ -246,16 +172,9 @@
                                 // $scope.centre = markers.centreCheck($scope)();
                                 $scope.centre.zoom = markers.zoomCheck($scope)();
 
-
-                                if (localStorageService.isSupported) {
-                                    localStorageService.set( "userLocation", address);
-                                }
-
                                 resetActiveMarker($scope);
 
                                 if ($location.path().indexOf("/streetworks") > -1) {
-
-                                    console.log(address);
 
                                     path = "/home/streetworks/location/" + address;
 
