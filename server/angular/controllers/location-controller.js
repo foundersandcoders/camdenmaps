@@ -18,6 +18,7 @@
         "$location",
         "localStorageService",
         function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers, $location, localStorageService) {
+    
 
             //model for page title
             $scope.title = "Find your Nearest...";
@@ -28,7 +29,9 @@
                 lng,
                 round = require("../lib/round.js"),
                 noResults = require("../lib/no-results.js"),
-                addressUsedinAPIcall = require("../lib/address-used-in-api-call.js");
+                addressUsedinAPIcall = require("../lib/address-used-in-api-call.js"),
+                searchAgainDestination,
+                changeAddressDestination;
 
 
             // Ensuring that the service that displays is decoded
@@ -115,12 +118,19 @@
                             ? $stateParams.address.toUpperCase()
                             : $stateParams.address.replace(/\b./g, function(m){ return m.toUpperCase(); });
 
-
-            $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home/services");
+            searchAgainDestination = ($location.path().indexOf("/streetworks") > -1)
+                ? "/home/streetworks"
+                : "/home/services";
+                
+            $scope.searchAgain = buttonHandlers.searchAgain($scope, searchAgainDestination);
 
             $scope.toggle = buttonHandlers.toggle($scope);
 
-            $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/" + $stateParams.service + "/search");
+            changeAddressDestination = ($location.path().indexOf("/streetworks") > -1)
+                ? "home/streetworks"
+                : "home/" + $stateParams.service + "/search";
+
+            $scope.changeAddress = buttonHandlers.changeUserLocation($scope, changeAddressDestination);
 
 
 
