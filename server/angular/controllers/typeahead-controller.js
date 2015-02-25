@@ -23,7 +23,7 @@
                 uprnArray = [];
 
             $scope.selected = '';
-            $scope.geolocationToolTip = 'Use my current location';
+            $scope.geolocationToolTip = 'Click to use my current location';
             $scope.geolocate = isPostcodeSearch();
 
             $scope.geolocateUser = function() {
@@ -60,7 +60,7 @@
                 if(isAddressSearch()) {
 
                     //if address has been selected by typeahead, then will exist in saved array
-                    address = getObject(uprnArray, selected)
+                    address = getObject(uprnArray, selected);
 
                     //if address has not been selected by typeahead
                     if (address[0] === undefined) {
