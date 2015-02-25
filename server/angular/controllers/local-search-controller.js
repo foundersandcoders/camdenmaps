@@ -24,7 +24,7 @@
 
             $scope.icon = "img/icons/your-neighbourhood-white.png";
             
-
+            
         }
     ];
 }());

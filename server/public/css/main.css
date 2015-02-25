@@ -363,8 +363,8 @@ h2 {
         background-color: #00019F; }
       #buttons .button button:focus {
         background-color: #00019F; }
-  #buttons .leftbutton {
-    border-right: 0.1em white solid; }
+  #buttons .rightbutton {
+    border-left: 0.1em white solid; }
 
 @media (max-width: 768px) {
   #buttons {
