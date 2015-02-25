@@ -98,17 +98,24 @@
                         return $http.get('https://camdenmaps-addresslookup.herokuapp.com/search/' + value)
                             .then(function(response){
 
-                                return response.data.map(function (item){
-                                    item.title = item.Unit + " " +
-                                        item.BuildingName + " " +
-                                        item.BuildingNumber + " " +
-                                        item.Street + " " +
-                                        item.Postcode;
+                                console.log(typeof response.data);
 
-                                    uprnArray.push(item);
+                                if(typeof response.data === 'string') {
+                                    return;
+                                } else {
 
-                                    return item;
-                                });
+                                    return response.data.map(function (item){
+                                        item.title = item.Unit + " " +
+                                            item.BuildingName + " " +
+                                            item.BuildingNumber + " " +
+                                            item.Street + " " +
+                                            item.Postcode;
+
+                                        uprnArray.push(item);
+
+                                        return item;
+                                    });
+                                }
                             });
                     };
                 });
@@ -242,12 +249,16 @@
 
                                 resetActiveMarker($scope);
 
+                                console.log($stateParams.service);
 
                                 path = "/home/" + $stateParams.service + "/location/" + address;
                                 //redirects to new path and runs location controller
                                 $location.path(path);
 
-                            });
+                            })
+                            .error(function (data) {
+                                return $scope.updateError("Sorry, that doesn't appear to be a valid camden address");
+                            })
                     }
 
                 } else {
