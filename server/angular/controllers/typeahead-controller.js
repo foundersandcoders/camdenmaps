@@ -82,8 +82,6 @@
 
                     service = encodeURIComponent(selected);
 
-                    service = encodeURIComponent(selected);
-
                     destination = "/home/" + service + "/search";
 
                 } else {
@@ -126,7 +124,7 @@
 
             function isValidService (service) {
                 var match = $scope.typeaheadSearchList.filter(function (item) {
-                    return item.title === service;
+                    return item.title.toLowerCase() === service.toLowerCase();
                 });
                 return (match.length >= 1);
             }
