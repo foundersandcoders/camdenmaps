@@ -66,7 +66,7 @@
                                     $location.path(path);
 
                                 } else {
-                                    scope.updateError("That location is outside Camden");
+                                    scope.updateError("Your location is not working please use an address");
                                     $location.path("home/streetworks");
                                 }
                             })

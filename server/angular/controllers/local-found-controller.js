@@ -36,9 +36,6 @@
                             iconSize: [28],
                             iconUrl: "../img/icons/location-marker.png"
                         },
-                
-                        message: "Your neighbourhood",
-                        focus: true
                     };
 
                     $scope.update("centre", {
