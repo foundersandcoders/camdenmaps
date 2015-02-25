@@ -4,7 +4,7 @@
     var strip = require("./striphtml.js");
 
     //creates an includes function to search strings
-    if (!('contains' in String.prototype)) {
+    if (!String.prototype.hasOwnProperty("contains")) {
       String.prototype.contains = function(str, startIndex) {
         return ''.indexOf.call(this, str, startIndex) !== -1;
       };
