@@ -103,8 +103,6 @@
                         return $http.get('https://camdenmaps-addresslookup.herokuapp.com/search/' + value)
                             .then(function(response){
 
-                                console.log(typeof response.data);
-
                                 if(typeof response.data === 'string') {
                                     return;
                                 } else {
@@ -233,6 +231,9 @@
 
                     if(address) {
                         apiSearch.search($stateParams.service, address)
+                            .error(function (data) {
+                                return $scope.updateError("Sorry, that doesn't appear to be a valid camden address");
+                            })
                             .success(function success (data) {
                                 if(data.hasOwnProperty("error")) {
                                     return $scope.updateError(data.message);
@@ -254,16 +255,20 @@
 
                                 resetActiveMarker($scope);
 
-                                console.log($stateParams.service);
+                                if ($location.path().indexOf("/streetworks") > -1) {
 
-                                path = "/home/" + $stateParams.service + "/location/" + address;
-                                //redirects to new path and runs location controller
+                                    console.log(address);
+
+                                    path = "/home/streetworks/location/" + address;
+
+                                } else {
+
+                                    path = "/home/" + $stateParams.service + "/location/" + address;
+                                    //redirects to new path and runs location controller
+                                }
                                 $location.path(path);
 
-                            })
-                            .error(function (data) {
-                                return $scope.updateError("Sorry, that doesn't appear to be a valid camden address");
-                            })
+                            });
                     }
 
                 } else {
