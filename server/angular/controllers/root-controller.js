@@ -53,13 +53,14 @@
                 };
             $scope.maxbounds = {
                 northEast: {
-                    lat: 51.57878,
-                    lng: -0.094538
+                    lat: 51.593,
+                    lng: -0.0745
                 },
                 southWest: {
-                    lat: 51.450089,
-                    lng: -0.218650
+                    lat: 51.490,
+                    lng: -0.259
                 }
+
             };
             $scope.defaults = {
                 scrollWheelZoom: true,
