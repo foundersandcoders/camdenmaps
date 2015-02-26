@@ -1,53 +1,78 @@
-// /*************************************************
-// *   LANDING TESTS
-// *   Description: Acceptance tests are written here
-// *   Use: run tests by npm test
-// **************************************************/
+/*************************************************
+*   LANDING TESTS
+*   Description: Acceptance tests are written here
+*   Use: run tests by npm test
+**************************************************/
 
+var Config,
+	landing,
+	buttons,
+	buttonTitles;
 
-// (function () {
-//     "use strict";
+Config = require('../config/testConfig.js');
+landing = Config.landing;
+buttons = element.all(by.css('[ng-click="executeFn(button.handler)"]'));
 
-//     describe("As a user, I want to have clear call to actions when I arrive on the landing page", function () {
+(function () {
+    "use strict";
 
-//         it("title to be Camden Council: Find Your Nearest", function() {
+    describe("As a user, I want to have clear call to actions when I arrive on the landing page", function () {
 
-//             browser.get('#/home');
+    	beforeEach(function(){
+			browser.get(Config.path.home);
+		});
 
-//             var title = browser.getTitle();
+        it("title to be Camden Council: Find Your Nearest", function() {
 
-//             expect(title).toEqual('Camden Council: Find Your Nearest');
+            var title = browser.getTitle();
 
-//         });
-//         describe("There are three call to actions with icons, ", function() {
+            expect(title).toEqual('Camden Council: Find Your Nearest');
 
-//             it("Find your nearest, ", function () {
-                
-//                 var nearestText = element(by.id('findYourNearest')).getText();
-                
-//                 expect(nearestText).toEqual('Find Your Nearest');
-//             });
-//             it("About Your Neighbourhood, ", function () {
+        });
 
-//                 var neighbourhoodText = element(by.id('aboutYourNeighbourhood')).getText();
-                
-//                 expect(neighbourhoodText).toEqual('About Your Neighbourhood');
-//             });
-//             it("and Live Streetworks", function () {
+        it("The header includes Camden Logo and correct alternate text", function() {
 
-//                 var streetworksText = element(by.id('liveStreetworks')).getText();
-                
-//                 expect(streetworksText).toEqual('Live Streetworks');
-//             });
+            var logo = element(by.id('camden-logo'));
+            var alt = logo.getAttribute("alt");
 
-//         });
-//         it("The header includes Camden Logo and correct alternate text", function() {
+            expect(logo.isDisplayed()).toBe(true);
+            expect(alt).toBe('Camden');
+        });
 
-//             var logo = element(by.id('camden-logo'));
-//             var alt = logo.getAttribute("alt");
+        describe("There are three call to actions buttons, ", function() {
 
-//             expect(logo.isDisplayed()).toBe(true);
-//             expect(alt).toBe('Camden');
-//         });
-//     });
-// }());
+        	var i,
+        		length = landing.buttons.title.length;
+
+        	function runTest(j) {
+
+        		it("text is correct for: " + landing.buttons.title[j], function () {
+
+	        		var text = buttons.get(j).getText();
+	                
+	                expect(text).toEqual(landing.buttons.title[j]);
+	            });
+
+	            it("images are correct for: " + landing.buttons.title[j], function () {
+
+	        		var img = buttons.get(j).element(by.tagName('img'));
+	        		var src = img.getAttribute('src');
+	                
+	                expect(src).toEqual(Config.path.main + landing.buttons.imgSrc[j]);
+	            });
+
+	            it("alt text for images are correct for: " + landing.buttons.title[j], function () {
+
+	        		var img = buttons.get(j).element(by.tagName('img'));
+	        		var alt = img.getAttribute('alt');
+	                
+	                expect(alt).toEqual(landing.buttons.title[j]);
+	            });
+        	}
+
+        	for (i = 0; i < length; i++) {
+        		runTest(i);
+        	};
+        });
+    });
+}());

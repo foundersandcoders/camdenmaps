@@ -3,7 +3,7 @@ exports.config = {
   allScriptsTimeout: 11000,
 
   specs: [
-    './test/frontend/acceptance/landing.e2e.js'
+    './test/frontend/cache/*.js'
   ],
 
   sauceUser: process.env.SAUCE_USERNAME ,
@@ -18,7 +18,7 @@ exports.config = {
     'name': 'App Tests'
   },
 
-  baseUrl: 'http://localhost:'+ (process.env.HTTP_PORT || '8080'),
+  baseUrl: 'https://camdenmaps.herokuapp.com',
 
   framework: 'jasmine',
 
