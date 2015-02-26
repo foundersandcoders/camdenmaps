@@ -19,7 +19,7 @@
 
             this.isWithinCamden = function (lat, long) {
                 //coordinates represent a square around Camden to roughly test if location is inside boundary
-                if(51.57878 > latitude > 51.450089 && -0.094538 > longitude > -0.218650) {
+                if((51.57878 > latitude && latitude > 51.450089) && (-0.094538 > longitude && longitude > -0.218650)) {
                     return true;
                 } else {
                     return false
