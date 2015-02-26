@@ -17,6 +17,7 @@
 
             function addLandingButtonHandler (path) {
                 return function () {
+
                     var findYourNearest = $('#find-your-nearest');
 
                     var destination = findYourNearest.length === 0
@@ -30,6 +31,7 @@
             $scope.show = true;
 
             $scope.$watch(function() {return $location.path() }, function(newPath) {
+
                 if (newPath === "/home") {
                     $scope.show = true;
                 } else {
