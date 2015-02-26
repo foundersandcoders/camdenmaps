@@ -19,6 +19,7 @@
         "markers",
         function ($scope, $location, fetchToken, $http, $stateParams, localStorageService, apiSearch, markers) {
 
+
             var menu = [],
                 uprnArray = [],
                 resetActiveMarker = require("../lib/reset-active-marker");
@@ -28,7 +29,7 @@
             $scope.geolocate = isPostcodeSearch();
 
             $scope.geolocateUser = function() {
-                markers.geolocateUser($scope)();
+                markers.geolocateUser($scope, $location.path())();
                 resetActiveMarker($scope);
             };
 

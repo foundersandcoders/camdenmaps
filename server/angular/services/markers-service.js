@@ -28,7 +28,7 @@
             };  
 
 
-            this.geolocateUser = function (functionScope, cb) {
+            this.geolocateUser = function (functionScope, location, cb) {
                 
                 return function(scope) {
                     scope = scope || functionScope; 
@@ -55,14 +55,11 @@
                                         geolocation: true
                                     };
 
-                                    console.log("location", window.location.href);
-                                    console.log(window.location.href.indexOf("/streetworks") > -1);
+                                    var path = (location.indexOf("/streetworks") > -1)
+                                    ? "home/streetworks/location/your location"
+                                    : "/home/" + $stateParams.service + "/location/" + "your location";
 
-                                    // var path = ($location.path().indexOf("/streetworks") > -1)
-                                    // ? "home/streetworks/location/your location"
-                                    // : "/home/" + $stateParams.service + "/location/" + "your location";
-
-                                    // $location.path(path);
+                                    $location.path(path);
 
                                 } else {
                                     scope.updateError("Your location is not working please use an address");
