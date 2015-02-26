@@ -25,7 +25,7 @@ var path = require("path");
         },
 
         getHome: function getHome (req, res) {
-            if (/MSIE 8.0/.test(req.headers["user-agent")) {
+            if (/MSIE 8.0/.test(req.headers["user-agent"])) {
                 return res.redirect("http://maps.camden.gov.uk/nearest.aspx");
             } else {
                 return res.file("../public/index.html");
