@@ -16,8 +16,8 @@
         "apiSearch",
         "buttonHandlers",
         "$location",
-        "localStorageService",
-        function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers, $location, localStorageService) {
+        "menuFind",
+        function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers, $location, menuFind) {
 
             //model for page title
             $scope.title = "Find your Nearest...";
@@ -28,13 +28,7 @@
                 lng,
                 round = require("../lib/round.js"),
                 noResults = require("../lib/no-results.js"),
-                addressUsedinAPIcall = require("../lib/address-used-in-api-call.js"),
-                parentId,
-                categoryId,
-                category,
-                menu;
-
-            menu = require("../menu.json");
+                addressUsedinAPIcall = require("../lib/address-used-in-api-call.js");
 
             // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
@@ -47,28 +41,18 @@
 
             // Args will contain the marker name and other relevant information 
             $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
+            
 
-            if ($stateParams.service == "streetworks") {
+            if ($stateParams.service === "streetworks") {
                 
-                //$scope.returnTo
+                $scope.showCategoriesTitle = false;
+                $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/")
+
 
             } else {
-                parentId = menu.filter(function (item) {
-                    if ($scope.service === item.title) {
-                        return item;
-                    }
-                });
 
-                categoryId = parentId[0].parentId;
-                
-                category = menu.filter (function (item) {
-                    if (categoryId === item.id){
-                        return item;
-                    } 
-                });
-
-                $scope.category = category[0];
-
+                $scope.showCategoriesTitle = true;
+                $scope.category = menuFind.categoryByService($scope.service);
                 $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service")
                 $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services")
  
@@ -76,10 +60,7 @@
 
             if($scope.service.toLowerCase() !== "streetworks") {
                 //model for image icon
-                $scope.icon = require("../menu.json").filter(function filterImg (item) {
-                    var name = item.title + item.text;
-                    return name.toLowerCase() === $scope.service.toLowerCase();
-                })[0].img;
+                $scope.icon = menuFind.serviceImg($scope.service);
             } else {
                 $scope.icon = "img/icons/streetworks.png";
             }
@@ -146,7 +127,7 @@
                             : $stateParams.address.replace(/\b./g, function(m){ return m.toUpperCase(); });
 
 
-            $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home/services");
+            $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
 
             $scope.toggle = buttonHandlers.toggle($scope);
 

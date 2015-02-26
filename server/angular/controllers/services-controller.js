@@ -14,30 +14,12 @@
         "$location",
         "$stateParams",
         "buttonHandlers",
-        function ($scope, $location, $stateParams, buttonHandlers) {
-            
-           //***************** Initialize menu and variables **************
+        "menuFind",
+        function ($scope, $location, $stateParams, buttonHandlers, menuFind) {
 
-            var menu,
-                category;
+            $scope.category = menuFind.category($stateParams.category);
 
-            //***************** Initialize service menu items **************
-
-            menu = require("../menu.json");
-
-            category = menu.filter(function (item) {
-                if (item.title === $stateParams.category) {
-                    return item;
-                }
-            })
-
-            $scope.category = category[0];
-
-            $scope.services = menu.filter(function (item) {
-                if (item.parentId === category[0].id) {
-                    return  item;
-                }
-            });
+            $scope.services = menuFind.servicesById($scope.category.id);
 
             //handler that opens new category 
             $scope.clickHandler = function (item) {
