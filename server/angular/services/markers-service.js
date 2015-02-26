@@ -35,7 +35,7 @@
                     
                     leafletData.getMap().then(function(map) {
                          //this will return the location but not auto-centre on it or continuously watch
-                         map.locate({setView: false, watch: false})
+                         map.locate({setView: true, watch: false})
                             .on('locationfound', function (e){
 
     
@@ -55,15 +55,14 @@
                                         geolocation: true
                                     };
 
-                                    console.log("streetworks location path", ($location.path().indexOf("/streetworks") > -1));
-                                    console.log("location", $location.path());
-                                    console.log($stateParams.service);
+                                    console.log("location", window.location.href);
+                                    console.log(window.location.href.indexOf("/streetworks") > -1);
 
-                                    var path = ($location.path().indexOf("/streetworks") > -1)
-                                    ? "home/streetworks/location/your location"
-                                    : "/home/" + $stateParams.service + "/location/" + "your location";
+                                    // var path = ($location.path().indexOf("/streetworks") > -1)
+                                    // ? "home/streetworks/location/your location"
+                                    // : "/home/" + $stateParams.service + "/location/" + "your location";
 
-                                    $location.path(path);
+                                    // $location.path(path);
 
                                 } else {
                                     scope.updateError("Your location is not working please use an address");
@@ -106,7 +105,6 @@
 
                     }
                         
-                    
 
                     //loads default location marker if results are capped
                     //but not if searching with geolocate 
@@ -169,7 +167,7 @@
                         zoomLevel = 12;
                     }
                     else if (scope.service.toLowerCase() === "streetworks") {
-                        zoomLevel = 16;
+                        zoomLevel = 15;
                     }
                     else {
                         zoomLevel = 13;
