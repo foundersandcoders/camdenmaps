@@ -21,7 +21,8 @@
                 // Ensuring that the service name in the URL is Encoded properly
                 $stateParams.service = decodeURI($stateParams.service);
 
-                $scope.showDistance = $stateParams.address ? true : false; 
+                $scope.showDistance = ($stateParams.address && ($location.path().indexOf("/streetworks") === -1)) ? true : false; 
+
            
                 uri = ($stateParams.address) ? "/services/" + service + "/locations/" + $stateParams.address
                 : "/services/" + service; 

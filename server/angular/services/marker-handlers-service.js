@@ -54,8 +54,6 @@
                 return function(e, args, scope) {
                     scope = scope || functionScope;
                     
-                    
-                    console.log(args.leafletEvent.latlng);  
 
                     resetActiveMarker(scope);
 
