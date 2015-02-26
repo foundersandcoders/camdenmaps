@@ -49,8 +49,8 @@
                 },
                 {
                     id: "aboutYourNeighbourhood",
-                    title: addLandingButtonHandler("/home/neighbourhood"),
-                    handler: nearestUrl,
+                    title: "About Your Neighbourhood",
+                    handler: addLandingButtonHandler("/home/neighbourhood"),
                     iconUrl: "img/icons/your-neighbourhood.png"
                 },
                 {
