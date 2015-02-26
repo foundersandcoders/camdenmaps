@@ -12,9 +12,10 @@
         "buttonHandlers",
         function ($scope, $location, buttonHandlers) {
 
-            if ( (screen.width < 1024) && (screen.height < 768) ) { 
-                window.location = 'http://maps.camden.gov.uk/nearest/nearest.aspx?tab=m';
-            } 
+
+//            if ( (screen.width < 1024) && (screen.height < 768) ) { 
+ //               window.location = 'http://maps.camden.gov.uk/nearest/nearest.aspx?tab=m';
+ //           } 
 
             //model for page title
             $scope.title = "About your Neighbourhood";
