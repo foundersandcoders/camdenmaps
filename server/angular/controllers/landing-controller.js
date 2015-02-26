@@ -11,6 +11,14 @@
         "$location",
         function ($scope, $location) {
 
+            var nearestUrl;
+
+            if ( (screen.width < 1024) && (screen.height < 768) ) { 
+                nearestUrl = 'http://maps.camden.gov.uk/nearest/nearest.aspx?tab=m';
+            } else {
+                nearestUrl = "/home/neighbourhood";
+            }
+
             $scope.executeFn = function executeFn(fn) {
                 fn();
             };
@@ -49,7 +57,7 @@
                 {
                     id: "aboutYourNeighbourhood",
                     title: "About Your Neighbourhood",
-                    handler: addLandingButtonHandler("/home/neighbourhood"),
+                    handler: nearestUrl,
                     iconUrl: "img/icons/your-neighbourhood.png"
                 },
                 {
