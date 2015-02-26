@@ -11,20 +11,13 @@
         "$location",
         function ($scope, $location) {
 
-            var nearestUrl;
-
-            if ( (screen.width < 1024) && (screen.height < 768) ) { 
-                nearestUrl = 'http://maps.camden.gov.uk/nearest/nearest.aspx?tab=m';
-            } else {
-                nearestUrl = "/home/neighbourhood";
-            }
-
             $scope.executeFn = function executeFn(fn) {
                 fn();
             };
 
             function addLandingButtonHandler (path) {
                 return function () {
+
                     var findYourNearest = $('#find-your-nearest');
 
                     var destination = findYourNearest.length === 0
@@ -38,7 +31,7 @@
             $scope.show = true;
 
             $scope.$watch(function() {return $location.path() }, function(newPath) {
-                console.log(newPath);
+
                 if (newPath === "/home") {
                     $scope.show = true;
                 } else {
@@ -56,7 +49,7 @@
                 },
                 {
                     id: "aboutYourNeighbourhood",
-                    title: "About Your Neighbourhood",
+                    title: addLandingButtonHandler("/home/neighbourhood"),
                     handler: nearestUrl,
                     iconUrl: "img/icons/your-neighbourhood.png"
                 },
