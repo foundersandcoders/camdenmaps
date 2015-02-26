@@ -10,10 +10,19 @@
         "$http",
         function ($http) {
 
+            this.tokenIssued = false;
+
             this.getToken = function getToken () {
-                
-                return $http({method:"GET", url:"http://camdenmaps-beta.herokuapp.com/auth_token"});
-                
+                if (!this.tokenIssued) {
+                    this.tokenIssued = true;
+                    return $http({method:"GET", url:"https://camdenmaps-beta.herokuapp.com/auth_token"});
+                } else {
+                    return {
+                        success: function(cb) {
+                            cb(); 
+                        }
+                    }
+                } 
             }
         }
     ];
