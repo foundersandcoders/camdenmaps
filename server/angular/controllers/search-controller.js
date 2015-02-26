@@ -30,6 +30,8 @@
 
             $scope.category = menuFind.categoryByService($scope.service);
 
+            console.log($scope.category)
+
             noResults = require("../lib/no-results.js");
             resetActiveMarker = require("../lib/reset-active-marker");
 
@@ -98,6 +100,22 @@
             $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services");
             $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service");
 
+            if ($stateParams.service === "streetworks") {
+                
+                $scope.showAccordion = false;
+                // $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/")
+
+
+            } else {
+
+                $scope.showAccordion = true;
+                // $scope.category = menuFind.categoryByService($scope.service);
+                // $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service")
+                // $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services")
+ 
+            }
+
+            console.log($stateParams.service);
 
         }
     ];

@@ -54,7 +54,7 @@
                 var parentId,
                     categoryId,
                     category;
-
+                console.log(service);
                 parentId = menu.filter(function (item) {
                     if(service === item.title) {
                         return item;

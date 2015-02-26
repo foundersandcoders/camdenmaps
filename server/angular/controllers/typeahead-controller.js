@@ -136,7 +136,6 @@ function getServices (array) {
                                             item.Postcode;
 
                                         uprnArray.push(item);
-
                                         return item;
                                     });
                                 }
