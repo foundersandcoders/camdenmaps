@@ -17,7 +17,8 @@
         "buttonHandlers",
         "$location",
         "menuFind",
-        function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers, $location, menuFind) {
+        "validate",
+        function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers, $location, menuFind, validate) {
 
             //model for page title
             $scope.title = "Find your Nearest...";
@@ -108,9 +109,7 @@
             }
 
             //this will uppercase postcodes and capitalise street addresses 
-            $scope.address  = $stateParams.address.replace(/\s/g, "").length < 7
-                            ? $stateParams.address.toUpperCase()
-                            : $stateParams.address.replace(/\b./g, function(m){ return m.toUpperCase(); });
+            $scope.address  = validate.cleanDisplayAddress($stateParams.address);
 
 
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home/services");
@@ -119,8 +118,8 @@
 
             $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/" + $stateParams.service + "/search");
 
-            $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services")
-            $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service")
+            $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services");
+            $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service");
 
 
         }

@@ -1,22 +1,14 @@
 ;(function () {
 	"use strict";
 
-    function isWithinCamden (latitude, longitude) {
-    	//coordinates represent a square around Camden to roughly test if location is inside boundary
-        if(51.57878 > latitude > 51.450089 && -0.094538 > longitude > -0.218650) {
-            return true;
-        } else {
-            return false
-        }
-    }
-
     var cappedResults = require("../lib/capped-results.js");
 
 	module.exports = [
         "$stateParams",
         "leafletData",
         "$location",
-        function ($stateParams, leafletData, $location) {
+        "validate",
+        function ($stateParams, leafletData, $location, validate) {
 
             Object.size = function(obj) {
                 var size = 0, key;
@@ -38,7 +30,7 @@
                             .on('locationfound', function (e){
 
     
-                                if (isWithinCamden(e.latitude, e.longitude)) {
+                                if (validate.isWithinCamden(e.latitude, e.longitude)) {
                             
                                     scope.markers.m0 = {
                                         lat: e.latitude,
@@ -134,11 +126,8 @@
                             popupOptions: {
                                 closeOnClick: false
                              },
-                             //this will capitalise street addresses
-                             //and upper case postcodes
-                            message: ($stateParams.address.replace(/\s/g, "").length < 7
-                                    ? $stateParams.address.toUpperCase()
-                                    : $stateParams.address.replace(/\b./g, function(m){ return m.toUpperCase(); })),
+                             
+                            message: validate.cleanDisplayAddress($stateParams.address),
                             icon: {
                                 iconUrl: "../img/icons/location-marker.png",
                                 iconSize: [28]
