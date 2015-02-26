@@ -1,8 +1,9 @@
  <div ng-show="result">
-    <hr id="hr-single-view">
+    
     <div class="single-view-info">
         <p ng-show="result.display.Location"> Location of streetworks {{ result.display.Location }} </p>
         <p ng-show="result.display.Description"> <b> Description: </b> {{ result.display.Description }} </p>
+        <hr id="hr-single-view">
         <p ng-show= "result.display.StartDate"> <b> Start Date: </b> {{ result.display.StartDate }} </p>
         <p ng-show= "result.display.EndDate"> <b> End Date </b> {{ result.display.EndDate }} </p>
         <a href= "tel: {{ result.display.Telephone }}"> <p>{{ result.display.Telephone }}</p></a>

@@ -125,7 +125,6 @@
             //this will uppercase postcodes and capitalise street addresses 
             $scope.address  = validate.cleanDisplayAddress($stateParams.address);
 
-
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
 
             $scope.toggle = buttonHandlers.toggle($scope);

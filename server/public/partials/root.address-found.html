@@ -55,7 +55,7 @@
                     <img ng-src="{{ category.img }}"  alt="">
                 </div>
                 <div class="accordiontext col-xs-8 col-md-8">
-                    <h4>{{ category.title }}</h4>
+                    <h4 id="title-of-accordion">{{ category.title }}</h4>
                 </div>
                 <div class="col-xs-1 col-md-1 cancel">
                     <a ng-click="returnToCategories()">X</a>
@@ -67,7 +67,7 @@
                     <img ng-src="{{ icon }}"  alt="">
                 </div>
                 <div class="accordiontext col-xs-8 col-md-8">
-                    <h4>{{ service }}</h4>
+                    <h4 id="title-of-accordion">{{ service }}</h4>
                 </div>
                 <div class="col-xs-1 col-md-1 cancel">
                     <a ng-click="returnToServices()">X</a>
