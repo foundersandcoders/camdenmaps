@@ -10,25 +10,10 @@
     module.exports = [
             "$scope",
             "$location",
-            function ($scope, $location) {
-         
+            "menuFind",
+            function ($scope, $location, menuFind) {
 
-                //***************** Initialize menu and variables **************
-
-                //stores full menu
-                   var menu = [];
-
-                //***************** Initialize category menu items **************
-
-                menu = require("../menu.json");
-
-                $scope.serviceCategories = menu.filter(function (item) {
-                    if (item.type === "category") {
-                        return  item;
-                    }
-                });
-
-                //****************** Menu population functions ***************** 
+                $scope.serviceCategories = menuFind.categories();
                 
                 //handler that opens new category 
                 $scope.clickHandler = function (item) {
