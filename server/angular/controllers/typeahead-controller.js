@@ -29,8 +29,14 @@
             $scope.geolocate = isPostcodeSearch();
 
             $scope.geolocateUser = function() {
-                markers.geolocateUser($scope, $location.path())();
+                // runs geolocate and returns relevant destination depending on service or streetworks
+                // and if geolocate return location or error
+                var destination = markers.geolocateUser($scope, $location.path())();
+
+                //$location not working in geolocate function in markers service
+                // $location.path(destination);
                 resetActiveMarker($scope);
+
             };
 
             if(isAddressSearch()) {
