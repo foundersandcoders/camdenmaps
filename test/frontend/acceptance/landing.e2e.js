@@ -4,43 +4,32 @@
 *   Use: run tests by npm test
 **************************************************/
 
+var Config,
+	landing,
+	buttons,
+	buttonTitles;
+
+Config = require('../config/testConfig.js');
+landing = Config.landing;
+buttons = element.all(by.css('[ng-click="executeFn(button.handler)"]'));
 
 (function () {
     "use strict";
 
     describe("As a user, I want to have clear call to actions when I arrive on the landing page", function () {
 
-        it("title to be Camden Council: Find Your Nearest", function() {
+    	beforeEach(function(){
+			browser.get(Config.path.home);
+		});
 
-            browser.get('#/home');
+        it("title to be Camden Council: Find Your Nearest", function() {
 
             var title = browser.getTitle();
 
             expect(title).toEqual('Camden Council: Find Your Nearest');
 
         });
-        describe("There are three call to actions with icons, ", function() {
 
-            it("Find your nearest, ", function () {
-                
-                var nearestText = element(by.id('findYourNearest')).getText();
-                
-                expect(nearestText).toEqual('Find Your Nearest');
-            });
-            it("About Your Neighbourhood, ", function () {
-
-                var neighbourhoodText = element(by.id('aboutYourNeighbourhood')).getText();
-                
-                expect(neighbourhoodText).toEqual('About Your Neighbourhood');
-            });
-            it("and Live Streetworks", function () {
-
-                var streetworksText = element(by.id('liveStreetworks')).getText();
-                
-                expect(streetworksText).toEqual('Live Streetworks');
-            });
-
-        });
         it("The header includes Camden Logo and correct alternate text", function() {
 
             var logo = element(by.id('camden-logo'));
@@ -48,6 +37,42 @@
 
             expect(logo.isDisplayed()).toBe(true);
             expect(alt).toBe('Camden');
+        });
+
+        describe("There are three call to actions buttons, ", function() {
+
+        	var i,
+        		length = landing.buttons.title.length;
+
+        	function runTest(j) {
+
+        		it("text is correct for: " + landing.buttons.title[j], function () {
+
+	        		var text = buttons.get(j).getText();
+	                
+	                expect(text).toEqual(landing.buttons.title[j]);
+	            });
+
+	            it("images are correct for: " + landing.buttons.title[j], function () {
+
+	        		var img = buttons.get(j).element(by.tagName('img'));
+	        		var src = img.getAttribute('src');
+	                
+	                expect(src).toEqual(Config.path.main + landing.buttons.imgSrc[j]);
+	            });
+
+	            it("alt text for images are correct for: " + landing.buttons.title[j], function () {
+
+	        		var img = buttons.get(j).element(by.tagName('img'));
+	        		var alt = img.getAttribute('alt');
+	                
+	                expect(alt).toEqual(landing.buttons.title[j]);
+	            });
+        	}
+
+        	for (i = 0; i < length; i++) {
+        		runTest(i);
+        	};
         });
     });
 }());
