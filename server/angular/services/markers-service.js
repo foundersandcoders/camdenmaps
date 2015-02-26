@@ -30,8 +30,17 @@
 
             this.geolocateUser = function (functionScope, location, cb) {
                 
+                var remainOnPage = function() {
+                    var path = (location.indexOf("/streetworks") > -1)
+                        ? "home/streetworks"
+                        : "/home/" + $stateParams.service + "/search";
+                       
+                    $location.path(path);
+                }; 
+
                 return function(scope) {
-                    scope = scope || functionScope; 
+                    scope = scope || functionScope;
+                                   
                     
                     leafletData.getMap().then(function(map) {
                          //this will return the location but not auto-centre on it or continuously watch
@@ -48,7 +57,6 @@
                                             iconUrl: "../img/icons/location-marker.png"
                                         },
                                 
-                                        //not sure this is necessary if we have a location symbol used 
                                         message: "Your location",
                                         focus: true,
                                         geolocation: true
@@ -67,12 +75,21 @@
                                     $location.path(path);
 
                                 } else {
+
                                     scope.updateError("Your location is not working please use an address");
-                                    $location.path("home/streetworks");
+                                    
+                                    remainOnPage();
+
                                 }
                             })
                             .on('locationerror', function(e){
                                 scope.updateError("Geolocation error. Please use an address");
+                                var path = (location.indexOf("/streetworks") > -1)
+                                    ? "home/streetworks"
+                                    : "/home/" + $stateParams.service + "/search";
+                                       
+                                remainOnPage();
+
                             });
 
                     });
@@ -83,14 +100,12 @@
 
                 return function () {
                     var root = scope.results,
-                    markers = scope.markers,
-                    property, 
-                    coord = function coord(i, latlng){
-                        return Number(scope.results[i][latlng]);
-                    };
-        
-                        
-                    var i, 
+                        markers = scope.markers,
+                        property, 
+                        coord = function coord(i, latlng){
+                            return Number(scope.results[i][latlng]);
+                        },
+                        i, 
                     	resultLength = Object.size(root);
                     
                     for (i = 0; i<resultLength; i++) {
