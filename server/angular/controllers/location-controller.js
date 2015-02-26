@@ -74,8 +74,6 @@
                     lng = null;
                 }
 
-                console.log("lat", lat);
-
                 apiSearch.search($stateParams.service, $stateParams.address, lat, lng)
 
                     .success(function success (data) {
