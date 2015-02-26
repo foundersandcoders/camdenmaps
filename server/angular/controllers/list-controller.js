@@ -25,7 +25,7 @@
                 "/location/" + $stateParams.address + "/" : "/#/home/" + service + 
                 "/search/";
 
-            $scope.showDistance = $stateParams.address ? true : false; 
+            $scope.showDistance = ($stateParams.address && ($location.path().indexOf("/streetworks") === -1)) ? true : false; 
 
             //handler for each result
             function createResultsHandler (id) {
