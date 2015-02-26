@@ -35,12 +35,11 @@
                     
                     leafletData.getMap().then(function(map) {
                          //this will return the location but not auto-centre on it or continuously watch
-                         map.locate({setView: true, watch: false})
+                         map.locate({setView: false, watch: false})
                             .on('locationfound', function (e){
 
     
-                                // if (isWithinCamden(e.latitude, e.longitude)) {
-                                if(true) {
+                                if (isWithinCamden(e.latitude, e.longitude)) {
                                     scope.markers.m0 = {
                                         lat: e.latitude,
                                         lng: e.longitude,
@@ -54,6 +53,12 @@
                                         focus: true,
                                         geolocation: true
                                     };
+
+                                    scope.update("centre", {
+                                        lat: e.latitude,
+                                        lng: e.longitude,
+                                        zoom: 14
+                                    });
 
                                     var path = (location.indexOf("/streetworks") > -1)
                                     ? "home/streetworks/location/your location"
