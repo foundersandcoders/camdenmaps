@@ -32,7 +32,7 @@ function mapStreetworks (req) {
     return url.streetworksApi + query; 
 }
 
-function mapLocalInformation (req) {location
+function mapLocalInformation (req) {
     
     var uprn = req.params.uprn;
     var query = "?" + exactLocations + uprn + "&tab=m";
@@ -62,7 +62,7 @@ function mapUri (req) {
 
         //query constructed based on combination of services and/or address
         query = mapQuery(req);
-
+        
         return apiUrl + query;
 
 }
