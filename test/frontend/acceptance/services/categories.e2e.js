@@ -4,12 +4,10 @@
 *   Use: run tests by npm test
 **************************************************/
 
-//TODO: test services typeahead
-
 var Config,
 	categories;
 
-Config = require('../config/testConfig.js');
+Config = require('../../config/testConfig.js');
 category = Config.category;
 							
 var categoriesRepeater = element.all(by.repeater('category in serviceCategories'));
