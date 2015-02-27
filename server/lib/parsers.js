@@ -177,15 +177,15 @@
         return json;
     }
 
-    function whichParser (service) {
+    function whichParser (xml, service) {
         service = cap(service);
 
         if (serviceArrays.recycling.indexOf(service) > -1) {
-            return recyclingApiParser;
+            return recyclingApiParser(xml);
         } else if (serviceArrays.parking.indexOf(service) > -1) {
-            return parkingApiParser;
+            return parkingApiParser(xml);
         } else {
-            return nearestApiParser;
+            return nearestApiParser(xml);
         }
     }
 

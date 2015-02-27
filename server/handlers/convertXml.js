@@ -26,7 +26,7 @@
             });
 
             res.on("end", function() {
-                response = converter(xml);
+                response = converter(xml, req.params.service);
                 
                 if(!response.location.hasOwnProperty("Latitude")) {
                     return rep({error: "Upstream Error", message: "Sorry, that postcode looks invalid" });
@@ -47,30 +47,7 @@
         
         convertStreetworks: parserRouter(parsers.streetworksApiParser),
         
-        convertToJson: function convertToJson (err, res, req, rep) {
-
-            var xml, response, key, service, converter;
-            
-            if (err) {
-                return rep({error: "Upstream Error", message: "Sorry, it looks like something went wrong on an upstream server"});
-            }
-            
-            
-            converter = parsers.whichParser(req.params.service);
-
-            xml = "";
-            
-            res.on("data", function(data) {
-                xml = xml + data;
-            });
-
-           
-            res.on("end", function() {
-                response = converter(xml);
-                key = req.raw.req.url;
-               
-                return cache.setCache(key, response, rep);
-           });
-        }
+        convertToJson: parserRouter(parsers.whichParser) 
+    
     };
 }());
