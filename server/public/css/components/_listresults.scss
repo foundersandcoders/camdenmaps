@@ -23,11 +23,16 @@
 		color: black;
 		padding: 0.7em 0;
 		min-height: 5em;
-		max-height: 100%;
-		@include respond(mobile) {
-			border-top: none;
+		max-height: 100%; 
+	}
+	a:first-child {
+		.list-item {
+			@include respond(mobile) {
+				border-top: none;
+			} 
 		}
 	}
+
 	.display-result {
 		display: none;
 		visibility: hidden;

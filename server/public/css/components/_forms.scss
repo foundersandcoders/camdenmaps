@@ -101,7 +101,7 @@
 #search-service-and-loc {
 	height: 100%;
 	@include respond(mobile) {
-		height: inherit;
+		height: initial;
 		box-shadow: 0px 0px 5px 0px black;
 	}
 }
