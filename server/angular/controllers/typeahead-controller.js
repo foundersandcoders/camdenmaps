@@ -17,13 +17,13 @@ function getObject (array, selected) {
     });
 }
 
-function getServices (array) {
-    return array.filter(function (item) {
-        if (item.type === "service") {
-            return item;
-        }
-    });
-}
+// function getServices (array) {
+//     return array.filter(function (item) {
+//         if (item.type === "service") {
+//             return item;
+//         }
+//     });
+// }
 
 ;(function () {
     "use strict";
@@ -39,7 +39,9 @@ function getServices (array) {
         "markers",
         "localstorage",
         "locationCheck",
-        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck) {
+        "validate",
+        "menuFind",
+        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind) {
 
             var menu = [],
                 uprnArray = [];
@@ -65,12 +67,10 @@ function getServices (array) {
 
             } else {
 
-                menu = require("../menu.json");
-
                 $scope.placeholder = 'Enter a service to search';
                 $scope.additions = ' | filter:$viewValue | limitTo: 8';
 
-                $scope.typeaheadSearchList = getServices(menu);
+                $scope.typeaheadSearchList = menuFind.services();
             }
 
             $scope.handler = function (selected) {
@@ -101,7 +101,7 @@ function getServices (array) {
                         destination = locationCheck.destination(address);
                     }
 
-                }  else if(validate.service(service, $scope.typeaheadSearchList)) {
+                }  else if(validate.service(selected)) {
 
                     service = encodeURIComponent(selected);
 
