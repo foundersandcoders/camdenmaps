@@ -2,6 +2,7 @@
 *   LOCATION CHECKER SERVICE.JS
 *
 *************************************/
+var menu = require("../menu.json");
 
 ;(function () {
     "use strict";
@@ -9,9 +10,9 @@
     module.exports = [
         function () {
 
-            this.service = function (service, list) {
+            this.service = function (service) {
 
-                var match = list.filter(function (item) {
+                var match = menu.filter(function (item) {
                     return item.title.toLowerCase() === service.toLowerCase();
                 });
                 return (match.length >= 1);

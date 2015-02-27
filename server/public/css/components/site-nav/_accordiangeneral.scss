@@ -14,26 +14,18 @@
 	text-align: center;
 	@include respond(mobile) {
        height: 11.5em;
-       h2 {
-               margin: 0.3em 0em;
-       }
-   }
+       height: initial;
+    }
 	h2 {
 		margin: 0.7em 0em;
 		text-align: center;
 		color: $white;
+		@include respond(mobile) {
+			margin: 0.3em 0em;
+		}
 	}
 	#back {
 		width: 2.6em;
-	}
-}
-
-@media (max-width: 768px) {
-	.services-and-categories {
-		height: 11.5em;
-		h2 {
-			margin: 0.3em 0em;
-		}
 	}
 }
 

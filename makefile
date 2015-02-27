@@ -1,15 +1,28 @@
 s:
 	node server/server.js
 
-t:
+tf:
 	./node_modules/tape/bin/tape \
 	    test/frontend/unit/*.js \
 	    | ./node_modules/.bin/tap-spec
 
-tc:
+tfc:
 	./node_modules/.bin/istanbul \
 	    cover \
+	    ./node_modules/tape/bin/tape \
 	    test/frontend/unit/*.js \
+	    | ./node_modules/.bin/tap-spec
+
+ts:
+	./node_modules/tape/bin/tape \
+	    test/api/*.test.js \
+	    | ./node_modules/.bin/tap-spec
+
+tsc:
+	./node_modules/.bin/istanbul \
+	    cover \
+	    ./node_modules/tape/bin/tape \
+	    test/api/*.test.js \
 	    | ./node_modules/.bin/tap-spec
 
 c:
@@ -37,4 +50,4 @@ bw:
 	    -o server/public/js/1.0.0.camdenmaps.min.js \
 	    -v
 
-.PHONY: s t dep
+.PHONY: s t dep tf tfc ts tsc c cw b bw

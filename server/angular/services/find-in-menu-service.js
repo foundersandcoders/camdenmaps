@@ -3,13 +3,23 @@
 *
 *************************************/
 
+var menu = require("../menu.json");
+
 ;(function () {
     "use strict";
 
     module.exports = [
         function () {
 
-            var menu = require("../menu.json");
+            this.services = function () {
+                var services = menu.filter(function (item) {
+                    if (item.type === "service") {
+                        return item;
+                    }
+                });
+
+                return services;
+            };
 
             this.servicesById = function (catId) {
                 var services = menu.filter(function (item) {
@@ -54,7 +64,7 @@
                 var parentId,
                     categoryId,
                     category;
-                console.log(service);
+
                 parentId = menu.filter(function (item) {
                     if(service === item.title) {
                         return item;

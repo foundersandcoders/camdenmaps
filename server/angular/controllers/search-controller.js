@@ -30,8 +30,6 @@
 
             $scope.category = menuFind.categoryByService($scope.service);
 
-            console.log($scope.category)
-
             noResults = require("../lib/no-results.js");
             resetActiveMarker = require("../lib/reset-active-marker");
 
@@ -114,8 +112,6 @@
                 // $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services")
  
             }
-
-            console.log($stateParams.service);
 
         }
     ];
