@@ -4,7 +4,7 @@ var streetnameLookup = require("../../server/lib/streetnameLookup.js");
 test("streetnameLookup should contain an object", function(t) {
 
     t.equals(typeof streetnameLookup, "object", "streetnameLookup contains an object");
-    t.ok(streetnameLookup.hasOwnProperty("fetchPostcode"), "streetnameLookup.fetchPostcode exists");
+    t.ok(streetnameLookup.hasOwnProperty("fetchCoordinates"), "streetnameLookup.fetchCoordinates exists");
     t.ok(streetnameLookup.hasOwnProperty("validatePostcode"), "streetnameLookup.validatePostcode exists");
     t.ok(streetnameLookup.hasOwnProperty("registerPreHandler"), "streetnameLookup.registerPreHandler exists");
 
@@ -40,5 +40,36 @@ test("registerPreHandler attaches fetchPostcode to server extension point onPreH
     t.ok(server.hasOwnProperty("onPreHandler"), "server has property onPreHandler");
     t.equals(typeof server.onPreHandler, "function", "server.onPreHandler is a function");
     t.end();
+
+});
+
+test("fetchCoordinates only redirects if postcode and invalid postcode");
+
+test("fetchCoordinates throws error if err");
+
+test("fetchCoordinates redirects user to /locations/lat/{latitude}/lng/{longitude} if successful", function(t) {
+
+    var req = {
+        params: {
+            postcode: "Well Road"
+        } 
+    };
+    var current = "";
+    var rep = function rep (path) {
+    
+        t.equals(path, "hello");
+
+    };
+    rep.continue = function() {},
+    rep.redirect = function(path) {
+        current = path
+    }
+
+    var mockXml = require("../fixtures/parking.mock.js");
+    function request (url, cb) {
+        return cb(null, null, mockXml.xml);
+    } 
+
+    streetnameLookup.fetchCoordinates(req, rep, request);
 
 });

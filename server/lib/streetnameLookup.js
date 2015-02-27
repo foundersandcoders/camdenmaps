@@ -16,17 +16,21 @@
 
     }
 
-    function fetchPostcode (req, rep) {
+    function fetchCoordinates (req, rep, requestInjection) {
         var uri; 
         if (req.params.postcode && !validatePostcode(req.params.postcode) ) {
+
+            requestInjection = requestInjection || request;
 
             //STREETNAMES DO NOT RETURN LAT OR LNG VALUES FROM ANY API EXCEPT THE PARKING API`
             //THIS SOLUTION IS A HACK: IF A STREETNAME IS SENT, A "SECRET" REQUEST IS SENT TO THE PARKING API
             //construct request to parking API in order to get lat and lng values for street names
             uri = serverConfig.map.url.parkingApi + "?" + serverConfig.map.query.location  + req.params.postcode;
             
-            request(uri, function(err, res, body) {
+            requestInjection(uri, function(err, res, body) {
                 parser.parseString(body, function(err, result) {
+                console.log(result);    
+                console.log(err);
                     var path;
                     if (!err && result.Locations.$.hasOwnProperty("Lat") && result.Locations.$.hasOwnProperty("Lng")) {
                         path = req.raw.req.url.split("/");
@@ -49,11 +53,11 @@
     }
 
     function registerPreHandler (server) {
-        server.ext("onPreHandler", fetchPostcode);
+        server.ext("onPreHandler", fetchCoordinates);
     }
 
     module.exports = {
-        fetchPostcode: fetchPostcode,
+        fetchCoordinates: fetchCoordinates,
         validatePostcode: validatePostcode,
         registerPreHandler: registerPreHandler
     } 
