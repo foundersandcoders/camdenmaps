@@ -63,7 +63,8 @@
                 //model for image icon
                 $scope.icon = menuFind.serviceImg($scope.service);
             } else {
-                $scope.icon = "img/icons/streetworks.png";
+                $scope.icon = "img/icons/streetworks-black.png";
+
             }
         
             // this will only run an API call if location needs to be added
@@ -129,7 +130,15 @@
 
             $scope.toggle = buttonHandlers.toggle($scope);
 
-            $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/" + $stateParams.service + "/search");
+            console.log($stateParams.service);
+            if ($stateParams.service === "streetworks") {
+
+                $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/" + $stateParams.service);
+
+            } else {
+
+                $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/" + $stateParams.service + "/search");
+            }
 
         }
     ];
