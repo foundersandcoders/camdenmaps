@@ -62,6 +62,7 @@
             if($scope.service.toLowerCase() !== "streetworks") {
                 //model for image icon
                 $scope.icon = menuFind.serviceImg($scope.service);
+
             } else {
                 $scope.icon = "img/icons/streetworks-black.png";
 
