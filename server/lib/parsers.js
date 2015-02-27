@@ -6,6 +6,7 @@
     var parser = new xml2js.Parser();
     var cap = require("../lib/capitalize.js");
     var clean = require("../lib/cleanobj.js");
+    var serviceArrays = require("../config/serverConfig").map.serviceArrays; 
 
     function toTitleCase(str) {
         return str.replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -176,12 +177,25 @@
         return json;
     }
 
+    function whichParser (service) {
+        service = cap(service);
+
+        if (serviceArrays.recycling.indexOf(service) > -1) {
+            return recyclingApiParser;
+        } else if (serviceArrays.parking.indexOf(service) > -1) {
+            return parkingApiParser;
+        } else {
+            return nearestApiParser;
+        }
+    }
+
     module.exports = {
         nearestApiParser: nearestApiParser,
         parkingApiParser: parkingApiParser,
         recyclingApiParser: recyclingApiParser,
         localInformationApiParser: localInformationApiParser,
-        streetworksApiParser: streetworksApiParser
+        streetworksApiParser: streetworksApiParser,
+        whichParser: whichParser
     }
 
 }());
