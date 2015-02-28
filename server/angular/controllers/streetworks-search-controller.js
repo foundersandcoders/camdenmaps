@@ -10,11 +10,13 @@
         "$scope",
         "$location",
         function ($scope, $location) {
+            
+            $scope.showAccordion = false;
 
-            //model for placeholder
-            $scope.placeholder = "Please enter a postcode";
-            //model for page title
-            $scope.title = "Live Streetworks";
+            $scope.category = {
+                title: "Live streetworks",
+                img: "img/icons/streetworks-black.png"
+            }
 
             //back button function
             $scope.searchAgain = function() {
