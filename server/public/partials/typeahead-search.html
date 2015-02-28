@@ -5,7 +5,7 @@
     </a> 
 </div>
 
-<form ng-submit="handler(selected)">
+<form ng-submit="handler(selected)" id="address-input">
 
 	<div class="col-xs-8 col-md-8" id="forminput">
 	    <input type="text" placeholder="{{ placeholder }}" ng-model="selected" typeahead="searchitem.title for searchitem in typeaheadSearchList{{ additions }}" class="form-control"/>
