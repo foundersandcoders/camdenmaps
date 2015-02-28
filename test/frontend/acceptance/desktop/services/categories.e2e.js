@@ -1,17 +1,20 @@
 /*************************************************
 *   CAMDEN SERVICE CATEGORIES TESTS
 *   Description: Acceptance tests are written here
-*   Use: run tests by npm test
+*   Use: run tests by gulp acceptance-test
 **************************************************/
 
 var Config,
-	categories;
+	categories,
+	servicesTypeaheadTests,
+	buttons,
+	categoriesRepeater;
 
-Config = require('../../config/testConfig.js');
-category = Config.category;
-							
-var categoriesRepeater = element.all(by.repeater('category in serviceCategories'));
-var buttons = element.all(by.repeater('button in buttons'));
+Config = require('../../config.js');
+category = Config.category;					
+categoriesRepeater = element.all(by.repeater('category in serviceCategories'));
+buttons = element.all(by.repeater('button in buttons'));
+servicesTypeaheadTests = require('../../typeahead/servicestypeahead.e2e.js');
 
 (function () {
     "use strict";
@@ -22,6 +25,8 @@ var buttons = element.all(by.repeater('button in buttons'));
 			browser.get(Config.path.home);
 			buttons.get(0).click();
 		});
+
+        servicesTypeaheadTests();
 
 		describe("Home bar appears ", function() {
 

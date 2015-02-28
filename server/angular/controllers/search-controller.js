@@ -28,8 +28,6 @@
             // Ensuring that the service name in the URL is Encoded
             $stateParams.service = encodeURIComponent($scope.service);
 
-            $scope.category = menuFind.categoryByService($scope.service);
-
             noResults = require("../lib/no-results.js");
             resetActiveMarker = require("../lib/reset-active-marker");
 
@@ -38,6 +36,13 @@
             //model for placeholder
             $scope.placeholder = "Please enter a postcode";
             $scope.icon = "";
+
+
+            $scope.showAccordion = true;
+            $scope.category = menuFind.categoryByService($scope.service);
+            // $scope.category = menuFind.categoryByService($scope.service);
+            // $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service")
+            // $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services")
 
             //change baseurl depending on whether address-found or address-search 
             $scope.baseUrl = $stateParams.address ?  "/#/home/" + $stateParams.service + 
@@ -96,22 +101,8 @@
             $scope.toggle = buttonHandlers.toggle($scope);
             
             $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services");
+            
             $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service");
-
-            if ($stateParams.service === "streetworks") {
-                
-                $scope.showAccordion = false;
-                // $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/")
-
-
-            } else {
-
-                $scope.showAccordion = true;
-                // $scope.category = menuFind.categoryByService($scope.service);
-                // $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service")
-                // $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services")
- 
-            }
 
         }
     ];

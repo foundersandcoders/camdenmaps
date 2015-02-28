@@ -66,7 +66,8 @@ var menu = require("../menu.json");
                     category;
 
                 parentId = menu.filter(function (item) {
-                    if(service === item.title) {
+                    var title = item.title;
+                    if(service.toLowerCase() === title.toLowerCase()) {
                         return item;
                     }
                 });
