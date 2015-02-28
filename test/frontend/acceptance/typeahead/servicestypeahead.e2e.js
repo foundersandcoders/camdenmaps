@@ -87,7 +87,7 @@ buttons = element.all(by.repeater('button in buttons'));
 			        });
 		        });
 
-		        describe("when full address has been entered", function() {
+		        describe("when full service has been entered", function() {
 		        	it("pressing the search button works", function() {
 			        	var input = element(by.tagName('input'));
 						input.sendKeys('Post office');
