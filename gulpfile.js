@@ -25,8 +25,8 @@
         htmlFiles = ["./server/public/partials/*.html", "./server/public/*.html"],
         karmaTestFiles = ["./test/frontend/unit/*.js"],
         protractorTestFiles = [
-                            // './test/frontend/acceptance/landing.e2e.js',
-                            // './test/frontend/acceptance/services/categories.e2e.js',
+                            './test/frontend/acceptance/landing.e2e.js',
+                            './test/frontend/acceptance/services/categories.e2e.js',
                             './test/frontend/acceptance/services/services.e2e.js'
                             ],
         sassFiles = ["./server/public/css/*.scss", "./server/public/css/*/*.scss"],
