@@ -68,43 +68,47 @@ function getObject (array, selected) {
             $scope.handler = function (selected) {
 
                 var service,
-                    address,
                     checkService,
                     destination;
 
                 if(locationCheck.addressSearch()) {
 
-                    //if address has been selected by typeahead, then will exist in saved array
-                    address = getObject(uprnArray, selected);
-
-                    //if address has not been selected by typeahead
-                    if (address[0] === undefined) {
-
-                        //searchApi checks if valid address, if not, will throw error.
-                        searchApi(selected);
-
-                        return;
-                    
-                    } else {
-                        
-                        //saves location in localStorage
-                        localstorage.save(address);
-
-                        destination = locationCheck.destination(address);
-                    }
+                    destination = addressHandler(uprnArray, selected);
 
                 }  else if(validate.service(selected)) {
 
-                    service = encodeURIComponent(selected);
-
-                    destination = "/home/" + service + "/search";
-
+                    destination = servicesHandler(selected);
                 } else {
                     return $scope.updateError("Sorry, it looks like that isn't a valid camden service");
                 }
 
                 $location.path(destination);
             };
+
+            function servicesHandler (serv) {
+                var service = serv.toLowerCase();
+
+                return "/home/" + service + "/search";
+            }
+
+            function addressHandler (array, add) {
+                //if address has been selected by typeahead, then will exist in saved array
+                var address = getObject(array, add);
+
+                //if address has not been selected by typeahead
+                if (address[0] === undefined) {
+                    //searchApi checks if valid address, if not, will throw error.
+                    searchApi(add);
+
+                    return;
+                
+                } else {
+                    //saves location in localStorage
+                    localstorage.save(address);
+
+                   return locationCheck.destination(address);
+                }
+            }
 
 
             function getAddresses () {

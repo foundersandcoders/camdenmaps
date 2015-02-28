@@ -1,7 +1,7 @@
 /*************************************************
-*   LANDING TESTS
+*   MOBILE LANDING TESTS
 *   Description: Acceptance tests are written here
-*   Use: run tests by npm test
+*   Use: run tests by gulp acceptance-test
 **************************************************/
 
 var Config,
@@ -16,7 +16,7 @@ buttons = element.all(by.css('[ng-click="executeFn(button.handler)"]'));
 (function () {
     "use strict";
 
-    describe("As a user, I want to have clear call to actions when I arrive on the landing page", function () {
+    describe("On mobile as a user, I want to have clear call to actions when I arrive on the landing page", function () {
 
     	beforeEach(function(){
             browser.manage().window().setSize(320, 480);

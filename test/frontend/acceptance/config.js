@@ -12,6 +12,8 @@ var category = menu.filter(function (item) {
     }
 })
 
+// var servicesTypeaheadTests = require('./desktop/typeahead/servicestypeahead.e2e.js');
+
 /*
 * Config
 */

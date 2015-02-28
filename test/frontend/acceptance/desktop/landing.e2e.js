@@ -1,7 +1,7 @@
 /*************************************************
 *   LANDING TESTS
 *   Description: Acceptance tests are written here
-*   Use: run tests by npm test
+*   Use: run tests by gulp acceptance-test
 **************************************************/
 
 var Config,

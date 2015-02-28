@@ -1,22 +1,25 @@
 /*************************************************
-*   SERVICES AND CATEGORIES TESTS
+*   MOBILE SERVICES AND CATEGORIES TESTS
 *   Description: Acceptance tests are written here
-*   Use: run tests by npm test
+*   Use: run tests by gulp acceptance-test
 **************************************************/
 
 var Config,
-	categories;
+	categories,
+	categoriesRepeater,
+	buttons,
+	servicesTypeaheadTests;
 
 Config = require('../../config.js');
 category = Config.category;
-							
-var categoriesRepeater = element.all(by.repeater('category in serviceCategories'));
-var buttons = element.all(by.repeater('button in buttons'));
+categoriesRepeater = element.all(by.repeater('category in serviceCategories'));
+buttons = element.all(by.repeater('button in buttons'));
+servicesTypeaheadTests = require('../typeahead/servicestypeahead.e2e.js');
 
 (function () {
     "use strict";
 
-    describe("Once a category has been selected ", function () {
+    describe("On mobile, once a category has been selected ", function () {
 
 		beforeEach(function () {
 			browser.manage().window().setSize(320, 480);
@@ -24,6 +27,8 @@ var buttons = element.all(by.repeater('button in buttons'));
 			buttons.get(0).click();
 		});
 
+		servicesTypeaheadTests();
+		
 		describe("Home bar appears ", function() {
 
 	        describe("containing 'Home' button ", function() {
