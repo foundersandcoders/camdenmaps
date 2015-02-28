@@ -17,14 +17,6 @@ function getObject (array, selected) {
     });
 }
 
-// function getServices (array) {
-//     return array.filter(function (item) {
-//         if (item.type === "service") {
-//             return item;
-//         }
-//     });
-// }
-
 ;(function () {
     "use strict";
 

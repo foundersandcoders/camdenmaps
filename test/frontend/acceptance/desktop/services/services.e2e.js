@@ -7,7 +7,7 @@
 var Config,
 	categories;
 
-Config = require('../../config/testConfig.js');
+Config = require('../../config.js');
 category = Config.category;
 							
 var categoriesRepeater = element.all(by.repeater('category in serviceCategories'));

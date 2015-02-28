@@ -7,7 +7,7 @@
 var Config,
 	categories;
 
-Config = require('../../config/testConfig.js');
+Config = require('../../config.js');
 category = Config.category;
 							
 var categoriesRepeater = element.all(by.repeater('category in serviceCategories'));
@@ -19,6 +19,7 @@ var buttons = element.all(by.repeater('button in buttons'));
     describe("If the button 'Camden Services' is clicked ", function () {
 
     	beforeEach(function(){
+    		browser.manage().window().setSize(320, 480);
 			browser.get(Config.path.home);
 			buttons.get(0).click();
 		});
@@ -87,7 +88,7 @@ var buttons = element.all(by.repeater('button in buttons'));
 
 	            	var title = currentCat.getText();
 
-		        	expect(title).toEqual(category[j].title + category[j].text);
+		        	expect(title).toEqual(category[j].title);
 		        });
 
 		        it("Image " + category[j].title + " is correct", function() {

@@ -101,6 +101,7 @@
             $scope.toggle = buttonHandlers.toggle($scope);
             
             $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services");
+            
             $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service");
 
         }

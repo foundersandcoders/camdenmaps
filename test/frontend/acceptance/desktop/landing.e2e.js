@@ -9,7 +9,7 @@ var Config,
 	buttons,
 	buttonTitles;
 
-Config = require('../config/testConfig.js');
+Config = require('../config.js');
 landing = Config.landing;
 buttons = element.all(by.css('[ng-click="executeFn(button.handler)"]'));
 
