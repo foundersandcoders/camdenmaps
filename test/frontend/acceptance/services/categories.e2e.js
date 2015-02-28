@@ -4,12 +4,10 @@
 *   Use: run tests by npm test
 **************************************************/
 
-//TODO: test services typeahead
-
 var Config,
 	categories;
 
-Config = require('../config/testConfig.js');
+Config = require('../../config/testConfig.js');
 category = Config.category;
 							
 var categoriesRepeater = element.all(by.repeater('category in serviceCategories'));
@@ -27,10 +25,20 @@ var buttons = element.all(by.repeater('button in buttons'));
 
 		describe("Home bar appears ", function() {
 
-	        it("containing 'Home' button", function() {
+	        describe("containing 'Home' button ", function() {
 	        	var home = element(by.id('backhome'));
 
-	        	expect(home.isDisplayed()).toBe(true);
+	        	it("is displayed", function() {
+
+		        	expect(home.isDisplayed()).toBe(true);
+		        });
+		        it("when clicked takes you path to home", function() {
+		        	home.click();
+		        	
+		        	var url = browser.getCurrentUrl();
+
+		        	expect(url).toBe(Config.path.main + Config.path.home);
+		        });
 	        });
 
 	        it("containing correct text", function() {
