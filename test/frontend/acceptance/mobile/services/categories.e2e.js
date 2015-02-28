@@ -15,7 +15,7 @@ Config = require('../../config.js');
 category = Config.category;
 categoriesRepeater = element.all(by.repeater('category in serviceCategories'));
 buttons = element.all(by.repeater('button in buttons'));
-servicesTypeaheadTests = require('../typeahead/servicestypeahead.e2e.js');
+servicesTypeaheadTests = require('../../typeahead/servicestypeahead.e2e.js');
 
 (function () {
     "use strict";

@@ -1,5 +1,5 @@
 /*************************************************
-*   MOBILE SERVICES TYPEAHEAD E2E TESTS
+*   SERVICES TYPEAHEAD E2E TESTS
 *   Description: Acceptance tests are written here
 *   Use: run tests by gulp acceptance-test
 **************************************************/
@@ -11,8 +11,8 @@ var Config,
 	categoriesRepeater,
 	buttons;
 
-Config = require('../../config.js');
-category = Config.category;						
+Config = require('../config.js');
+category = Config.category;
 categoriesRepeater = element.all(by.repeater('category in serviceCategories'));
 buttons = element.all(by.repeater('button in buttons'));
 
@@ -28,6 +28,14 @@ buttons = element.all(by.repeater('button in buttons'));
 	        	var input = element(by.tagName('input'));
 
 	        	expect(input.isDisplayed()).toBe(true);
+	        });
+
+	        it("has correct placeholder text", function() {
+
+	        	var input = element(by.tagName('input'));
+	        	var placeholderText = input.getAttribute('placeholder');
+
+	        	expect(placeholderText).toBe('Enter a service to search');
 	        });
 
 	        describe("when type starts ", function () {

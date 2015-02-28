@@ -14,7 +14,7 @@ Config = require('../../config.js');
 category = Config.category;
 categoriesRepeater = element.all(by.repeater('category in serviceCategories'));
 buttons = element.all(by.repeater('button in buttons'));
-servicesTypeaheadTests = require('../typeahead/servicestypeahead.e2e.js');
+servicesTypeaheadTests = require('../../typeahead/servicestypeahead.e2e.js');
 
 (function () {
     "use strict";
@@ -82,7 +82,7 @@ servicesTypeaheadTests = require('../typeahead/servicestypeahead.e2e.js');
 
 	            it(" title is correct", function () {
 	            	var currentCat = element(by.id("category-title-of-services"));
-	            	var title = currentCat.element(by.tagName('h4')).getText();
+	            	var title = element.all(by.tagName('h4')).get(j).getText();
 
 	            	expect(title).toEqual(category[j].title);
 	            });
