@@ -7,7 +7,7 @@
 
 var Config;
 
-Config = require("../config/testConfig.js");
+Config = require("../config.js");
 
 (function() {
 
@@ -25,33 +25,31 @@ Config = require("../config/testConfig.js");
 // }()); 
 
 
-	describe("Getting to streetworks from homepage", function() {
+	describe("Streetworks on home page", function() {
 		
-		beforeEach(function() {
-			
+		beforeEach(function() {			
 			browser.get(Config.path.home);
 		});
 
-		it("redirects to streetworks when you click on the streetworks button", function(){
+		var streetworks = element(by.id("liveStreetworks"));
 
-			//click on button
+		it("appears ", function(){
+			
 
-			var url = browser.getCurrentUrl();
-
-			element(by.id(liveStreetworks)).click();
-
-			expect(url).toEqual("/#/streetworks"); 
+			expect(streetworks.isDisplayed()).toBe(true);
 		});
 
-		// it("redirects to streetworks when you click on the streetworks text", function(){
+		it("redirects to streetworks when you click on the streetworks icon", function(){
 
-		// 	//click on text
+			//click on text
+			streetworks.click();
+
+			var url = browser.getCurrentUrl();
 		
-		// 	expect(browser.get()).toEqual("/#/streetworks"); 
-		// });
+			expect(url).toBe(Config.path.main + Config.path.home + "/streetworks"); 
+		});
 
 
-		// it()
 	});
 
 }());
