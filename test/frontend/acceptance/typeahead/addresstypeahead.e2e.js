@@ -9,12 +9,14 @@ var Config,
 	dropDownList, 
 	testList,
 	categoriesRepeater,
-	buttons;
+	buttons,
+	addressFoundListTests;
 
 Config = require('../config.js');
 category = Config.category;
 categoriesRepeater = element.all(by.repeater('category in serviceCategories'));
 buttons = element.all(by.repeater('button in buttons'));
+addressFoundListTests = require('../list/address-found-list.e2e.js');
 
 (function () {
     "use strict";
@@ -41,7 +43,6 @@ buttons = element.all(by.repeater('button in buttons'));
 	        describe("when type starts ", function () {
 
 		        it("dropdown menu is displayed", function() {
-
 		        	var input = element(by.tagName('input'));
 	            	input.sendKeys('w');
 
@@ -53,7 +54,6 @@ buttons = element.all(by.repeater('button in buttons'));
 		        });
 
 		        it("and changse as you keep typing", function() {
-		        	//doesn't work.
 					var input = element(by.tagName('input'));
 					input.sendKeys('w');
 					dropDownList = element.all(by.repeater('match in matches'));
@@ -67,6 +67,7 @@ buttons = element.all(by.repeater('button in buttons'));
 		        });
 
 		        describe("if a wrong service has been entered ", function() {
+		        	
 		        	it("error message appears", function() {
 			        	var input = element(by.tagName('input'));
 						input.sendKeys('bytctrdvre');
@@ -76,6 +77,7 @@ buttons = element.all(by.repeater('button in buttons'));
 
 						expect(errorMessage.isDisplayed()).toBe(true);
 			        });
+
 		        	it("with the correct text", function() {
 		        		var input = element(by.tagName('input'));
 						input.sendKeys('gtydresewst');
@@ -88,9 +90,11 @@ buttons = element.all(by.repeater('button in buttons'));
 		        });
 
 		        describe("when full address has been entered", function() {
+		        	
 		        	afterEach(function () {
 		        		browser.executeScript('window.localStorage.clear();');
 		        	})
+
 		        	it("pressing the search button works", function() {
 			        	var input = element(by.tagName('input'));
 						input.sendKeys('NW1 0NE');
@@ -103,6 +107,7 @@ buttons = element.all(by.repeater('button in buttons'));
 
 			        	expect(currentUrl).toContain("location/NW1%200NE");
 			        });
+
 		        	it("pressing enter also works", function() {
 			        	var input = element(by.tagName('input'));
 						input.sendKeys('NW1 0NE');
@@ -113,6 +118,8 @@ buttons = element.all(by.repeater('button in buttons'));
 
 			        	expect(currentUrl).toContain("location/NW1%200NE");
 			        });
+
+			        addressFoundListTests();
 		        });
 		    });
     	});

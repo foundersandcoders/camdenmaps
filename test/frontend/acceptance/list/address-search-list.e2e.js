@@ -49,25 +49,6 @@ listItem = element.all(by.css('.list-item')).get(0);
 					expect(initialHeight).toBeLessThan(nextHeight);
 	        		
 		        });
-
-	        	// describe("contains ", function () {
-
-		        //     it("telephone number ", function () {
-		        //     	// is open
-			       //  });
-
-			    //     it("website", function () {
-
-			    //     });
-
-			    //     it("website has working link", function () {
-
-			    //     });
-
-			    //     it("Opening Hours", function () {
-
-			    //     });
-			    // });
 		    });
 
 	    });

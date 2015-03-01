@@ -15,9 +15,16 @@ listItem = element.all(by.css('.list-item')).get(0);
 (function () {
     "use strict";
 
-	function addressFoundListTests () { 
+	function addressFoundListTests () {
 
     	describe("list results ", function () {
+
+            beforeEach(function () {
+                var input = element(by.tagName('input'));
+                input.sendKeys('NW1 0NE');
+                input.sendKeys(protractor.Key.ENTER);
+                input.sendKeys(protractor.Key.ENTER);
+            })
 
             it("have more than 1 result", function () {
                 expect(listResults.count()).toBeGreaterThan(1);
@@ -54,25 +61,6 @@ listItem = element.all(by.css('.list-item')).get(0);
                     expect(initialHeight).toBeLessThan(nextHeight);
                     
                 });
-
-                // describe("contains ", function () {
-
-                //     it("telephone number ", function () {
-                //      // is open
-                   //  });
-
-                //     it("website", function () {
-
-                //     });
-
-                //     it("website has working link", function () {
-
-                //     });
-
-                //     it("Opening Hours", function () {
-
-                //     });
-                // });
             });
 
 	    });
