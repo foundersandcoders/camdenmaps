@@ -29,6 +29,7 @@
 	}
 	div {
 		h3 {
+			color: $light-blue;
 			@include respond(mobile) {
 				margin: 0.5em 0 0.7em;
 				font-size: 0.9em;
