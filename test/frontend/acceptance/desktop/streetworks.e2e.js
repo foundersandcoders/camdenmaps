@@ -5,24 +5,24 @@
 **************************************************/
 
 
-var Config;
+var Config,
+	buttons,
+	streetworksTitle,
+	streetworksImage,
+	baseUrl,
+	home;
 
 Config = require("../config.js");
+buttons = element.all(by.repeater('button in buttons'));
+streetworksTitle = Config.landing.buttons.title[2];
+streetworksImage = Config.landing.buttons.imgSrc[2];
+baseUrl = Config.path.main;
+home = Config.path.home;
+
 
 (function() {
 
 "use strict";
-
-
-	// describe("aaaaaaa", function() {
-	// 	it('aaaaaaaa', function() {
-	// 		browser.get("#/home/streetworks");
-
-	// 		expect(aaaaa).toEqual("aaaaa");
-	// 	});
-	// });
-
-// }()); 
 
 
 	describe("Streetworks on home page", function() {
@@ -31,22 +31,49 @@ Config = require("../config.js");
 			browser.get(Config.path.home);
 		});
 
-		var streetworks = element(by.id("liveStreetworks"));
+		var streetworks = buttons.get(2),
+			img = streetworks.element(by.tagName("a")).element(by.className("icon")),
+			text = streetworks.element(by.tagName("a")).element(by.tagName("h4"));
+			
 
 		it("appears ", function(){
-			
 
 			expect(streetworks.isDisplayed()).toBe(true);
 		});
 
+		it("has an image showing", function() {
+
+			expect(img.isDisplayed()).toBe(true);
+
+		});
+
+
+		it("has the correct image", function() {
+
+			var src = img.getAttribute("src");
+
+			expect(src).toEqual(baseUrl + streetworksImage);
+
+
+		});
+
+		it("has the correct title", function() {
+
+			var title = text.getText();
+
+        	expect(title).toEqual(streetworksTitle);
+			
+
+		});
+
 		it("redirects to streetworks when you click on the streetworks icon", function(){
 
-			//click on text
+			//click on button
 			streetworks.click();
 
 			var url = browser.getCurrentUrl();
 		
-			expect(url).toBe(Config.path.main + Config.path.home + "/streetworks"); 
+			expect(url).toBe(baseUrl + home + "/streetworks"); 
 		});
 
 
