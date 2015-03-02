@@ -37,7 +37,8 @@ function getObject (array, selected) {
         function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind) {
 
             var menu = [],
-                uprnArray = [];
+                uprnArray = [],
+                url = $location.path();
 
             $scope.selected = '';
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
@@ -45,7 +46,7 @@ function getObject (array, selected) {
             $scope.geolocate = locationCheck.postcodeSearch();
 
             $scope.geolocateUser = function() {
-                markers.geolocateUser($scope)();
+                markers.geolocateUser($scope, url)();
                 resetActiveMarker($scope);
             };
 
