@@ -42,7 +42,8 @@
                          map.locate({setView: false, watch: false})
                             .on('locationfound', function (e){
 
-                                if (validate.isWithinCamden(e.latitude, e.longitude)) {
+                                // if (validate.isWithinCamden(e.latitude, e.longitude)) {
+                                    if (true) {
                                     scope.markers.m0 = {
                                         lat: e.latitude,
                                         lng: e.longitude,
@@ -53,13 +54,13 @@
                                 
                                         //not sure this is necessary if we have a location symbol used 
                                         message: "Your location",
-                                        focus: true
+                                        focus: true,
+                                        geolocation: true
                                     };
 
                                     var service = $stateParams.service || 'streetworks';
 
                                     var path = "/home/" + service + "/location/" + "your location";
-
 
                                     $location.path(path);
 
@@ -89,28 +90,26 @@
         
 
                     // this creates the marker objects to plot the locations on the map
-                    // this will run on refreshes
-                    // it will run if there are capped results
-                    if( Object.size(markers) === 0 || cappedResults(decodeURI($stateParams.service), scope) ) {
-                        
-                        var i, 
-                        	resultLength = Object.size(root);
-                        
-                        for (i = 0; i<resultLength; i++) {
 
-                            property = "m" + (i+1);
-                           
-                            markers[property] = {};
-                            markers[property].icon = {};
-                            markers[property].lat = coord(i, "Latitude");
-                            markers[property].lng = coord(i, "Longitude");
-                            markers[property].name = scope.results[i]["display"]["Name"];
-                            markers[property].icon.iconUrl = "../img/icons/marker-hi.png";
-                            markers[property].icon.iconSize = [28];
-
-                        }
                         
-                    }   
+                    var i, 
+                    	resultLength = Object.size(root);
+                    
+                    for (i = 0; i<resultLength; i++) {
+
+                        property = "m" + (i+1);
+                       
+                        markers[property] = {};
+                        markers[property].icon = {};
+                        markers[property].lat = coord(i, "Latitude");
+                        markers[property].lng = coord(i, "Longitude");
+                        markers[property].name = scope.results[i]["display"]["Name"];
+                        markers[property].icon.iconUrl = "../img/icons/marker-hi.png";
+                        markers[property].icon.iconSize = [28];
+
+                    }
+                        
+                    
 
                     //loads default location marker if results are capped
                     //but not if searching with geolocate 
