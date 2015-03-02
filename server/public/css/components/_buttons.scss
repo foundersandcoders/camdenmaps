@@ -36,6 +36,21 @@
 	}
 }
 
+.servicestypeahead {
+	button {
+		background-color: $black;
+		span {
+			color: white;
+			&:hover {
+				color: $hover-grey;
+				cursor: pointer;
+			}
+			@include respond(mobile) {
+				font-size: 1.4em;
+			}	
+		}
+	}
+}
 
 #search, #yourLocation {
 	padding: 0;
@@ -44,6 +59,7 @@
 
 	@include respond(mobile) {
 		min-width: initial;
+		vertical-align: baseline;
 	}
 	button {
 		width: 100%;
@@ -59,7 +75,7 @@
 			color: $white;
 
 			@include respond(mobile) {
-				left: -0.4em;
+				font-size: 1.4em;
 			}
 		}
 	}
