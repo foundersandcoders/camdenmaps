@@ -12,9 +12,17 @@
                 </div>
                 <typeaheadsearch/>
             </div>
-            <div>
+
+            <div ng-show="showEnterLocation">
                 <h3>Please enter your location.</h3>
             </div>
+
+            <div ng-show="showResetLocation" class="row">
+                <a class="change-address" ng-click="changeAddress()">
+                    <p>Reset location</p>
+                </a>
+            </div>
+
         </div>
 
         <div class="col-xs-12 item-container" id="item-container">

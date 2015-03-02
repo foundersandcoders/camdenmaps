@@ -34,7 +34,8 @@
                     $scope.updateError("Sorry, it looks like something went wrong");
                     return $location.path("/home/neighbourhood");
                 });
-            console.log($scope.information);
+
+            //$scope.noLocationNeighbourhood = false;
 
         }
     ];
