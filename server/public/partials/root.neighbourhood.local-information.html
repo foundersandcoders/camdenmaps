@@ -1,6 +1,5 @@
- <div class="container-fluid" ng-show="information">
-    <div class="result col-xs-12 col-sm-6" id="local-info-results">
-    	<div class="glyphicon glyphicon-remove" ng-click="exit()"></div>
+ <div class="container-fluid list-items" id="list-results" ng-show="information">
+    <div class="col-xs-12 container-list" id="neighbourhood-info" >
         <h4 class="local-info-heading">Political information</h4>
     	<ul  >
             <li ng-hide="{{information.Ward.Value}}">Ward: <a href=" {{ information.Ward.Url }} ">{{ information.Ward.Value }} </a></li>

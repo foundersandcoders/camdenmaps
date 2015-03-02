@@ -41,7 +41,7 @@ function getCache (req, key, rep, mapUri, parse, proxyConfig) {
                 request(mapUri(req), function(err, head, body) {
                     if(!err && head.statusCode === 200) {
                         
-                        var parsedResponse = parse(body);
+                        var parsedResponse = parse(body, req.params.service);
                         if(!parsedResponse.hasOwnProperty("error")) {
                             setCache(key, parse(body), console.log);
                         }

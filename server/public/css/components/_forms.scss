@@ -33,6 +33,7 @@
 	}
 	div {
 		h3 {
+			color: $light-blue;
 			@include respond(mobile) {
 				margin: 0.5em 0 0.7em;
 				font-size: 0.9em;
@@ -128,7 +129,7 @@
 
 #backhome {
 	width: 1.8em;
-	margin-left: 0.8em;
+	margin-right: 0.8em;
 	@include respond (mobile) {
 		width: 1.6em;
 		margin: auto;
