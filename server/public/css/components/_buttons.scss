@@ -55,7 +55,7 @@
 #search, #yourLocation {
 	padding: 0;
 	max-width: 100%;
-	min-width: 2.3em;
+	// min-width: 2.3em;
 
 	@include respond(mobile) {
 		min-width: initial;
