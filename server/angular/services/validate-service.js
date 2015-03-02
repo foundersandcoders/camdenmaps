@@ -1,5 +1,5 @@
 /*************************************
-*   LOCATION CHECKER SERVICE.JS
+*   VALIDATE SERVICE.JS
 *
 *************************************/
 var menu = require("../menu.json");
@@ -18,9 +18,9 @@ var menu = require("../menu.json");
                 return (match.length >= 1);
             }
 
-            this.isWithinCamden = function (lat, long) {
+            this.isWithinCamden = function (lat, lon) {
                 //coordinates represent a square around Camden to roughly test if location is inside boundary
-                if((51.57878 > latitude && latitude > 51.450089) && (-0.094538 > longitude && longitude > -0.218650)) {
+                if((51.57878 > lat && lat > 51.450089) && (-0.094538 > lon && lon > -0.218650)) {
                     return true;
                 } else {
                     return false

@@ -8,6 +8,7 @@
 /*
 * HELPER FUNCTIONS:
 */
+var resetActiveMarker = require('../lib/reset-active-marker.js');
 
 function getObject (array, selected) {
     return array.filter(function (item) {

@@ -1,3 +1,8 @@
+/*************************************
+*   MARKERS SERVICE.JS
+*
+*************************************/
+
 ;(function () {
 	"use strict";
 
@@ -45,7 +50,7 @@
                                         focus: true
                                     };
 
-                                    path = "/home/" + $stateParams.service + "/location/" + "your location";
+                                    var path = "/home/" + $stateParams.service + "/location/" + "your location";
                                     $location.path(path);
 
                                 } else {
