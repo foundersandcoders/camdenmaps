@@ -122,19 +122,19 @@
 
     //task for travis
     gulp.task("travis", ["webdriver_update", "browserify", "convertyaml", "sass-production"], function () {
-        nodemon({ script: 'server/server.js'})
-        .on('start', function () {
-            return gulp.src(protractorTestFiles)
-                .pipe(protractor({
-                    configFile: "./test/frontend/config/protractor.conf.js"
-                }))
-                .on("error", function (err) {
-                    throw err;
-                })
-                .on('end', function () {
-                    process.exit();
-                });
-        });
+        // nodemon({ script: 'server/server.js'})
+        // .on('start', function () {
+        //     return gulp.src(protractorTestFiles)
+        //         .pipe(protractor({
+        //             configFile: "./test/frontend/config/protractor.conf.js"
+        //         }))
+        //         .on("error", function (err) {
+        //             throw err;
+        //         })
+        //         .on('end', function () {
+        //             process.exit();
+        //         });
+        // });
         
     });
 
