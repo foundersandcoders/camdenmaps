@@ -1,0 +1,35 @@
+ <div class="container-fluid list-items" id="list-results" ng-show="information">
+    <div class="container-fluid result col-xs-12 col-sm-6 col-md-4" id="local-info-results">
+    	<div class="glyphicon glyphicon-remove" ng-click="exit()"></div>
+        <h4 class="local-info-heading">Political information</h4>
+    	<ul  >
+            <li ng-show="information.Ward.Value">Ward: <a href="{{  information.Ward.Url }} ">{{ information.Ward.Value }} </a></li>
+            <li ng-show="information['European constituency'].Value">Eurpean Constituency: <a href="{{ information['European constituency'].Url }}">{{ information["European constituency"].Value }}</a></li>
+            <li ng-show="information['Parliamentary Constituency'].Value">Parlimentary Constituency: <a href="{{ information['Parliamentary Constituency'].Url}}">{{ information["Parliamentary Constituency"].Value }} </a></li> 
+    	</ul>
+        
+    	<h4 ng-show="information['Recycling Kerbside Collection Day']Value || information['Domestic Refuse Collection Day. Refuse should be put out by 7am on the morning of collection']Value" class="local-info-heading">Recycling and rubbish</h4>
+    	<ul>
+            <li ng-show="information['Domestic Refuse Collection Day. Refuse should be put out by 7am on the morning of collection']Value">Domestic rubbish collection: {{ information["Domestic Refuse Collection Day. Refuse should be put out by 7am on the morning of collection"].Value }}</li>
+            <li ng-show="information['Recycling Kerbside Collection Day']Value">Recycling Collection: {{ information["Recycling Kerbside Collection Day"].Value }}</li>
+        </ul> 
+    	<h4 ng-show="information['Conservation Area'].Value" class="local-info-heading">Environment</h4>
+    	<ul>
+            <li ng-show="information['Conservation Area'].Value">Conservation area: <a href=" {{ information['Conservation Area'].Url }} ">{{ information["Conservation Area"].Value }}</a></li>
+    	</ul>
+    	<h4 class="local-info-heading">Housing</h4>
+    	<ul  >
+            <li ng-show="information['Ward housing team'].Value">Ward Housing Team: <a href=" {{ information['Ward housing team'].Url }} ">{{ information["Ward housing team"].Value }}</a></li>
+            <li ng-show="information['Ward district management committee'].Value">District management committee: <a href=" {{ information['Ward district management comittee'].Url }} ">{{ information["Ward district management committee"].Value }}</a></li>
+    	</ul>
+    	<h4 class="local-info-heading">Parking</h4>
+    	<ul  >
+            <li ng-show="information['Controlled Parking Main Zone'].Value">Controlled parking zone:<a href=" {{ information['Controlled Parking Main Zone'].Url }} ">{{ information["Controlled Parking Main Zone"].Value }}</a> </li>
+    	</ul>
+    	<h4 class="local-info-heading">Licensing Enforcement</h4>
+    	<ul  >
+            <li ng-show="information['Licensing Enforcement Areas'].Value">Licensing enforcement Officer: <a href=" {{information['Licensing Enforcement Areas'].Url }} ">{{ information["Licensing Enforcement Areas"].Value }}</a></li>
+    	</ul>
+    	<!-- <p>{{ information }}</p> -->
+    </div>
+ </div>
