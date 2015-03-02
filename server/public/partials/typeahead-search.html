@@ -1,5 +1,5 @@
 <!-- TYPEAHEAD-SEARCH -->
-<div class="col-xs-2 col-md-2">
+<div class="col-md-2">
     <a ng-click="searchAgain()">
         <img id="backhome" src="../img/icons/backhome.png" alt="back">
     </a> 
@@ -7,11 +7,11 @@
 
 <form ng-submit="handler(selected)" id="address-input">
 
-	<div class="col-xs-7 col-md-8" id="forminput">
+	<div class="col-md-8" id="forminput">
 	    <input type="text" placeholder="{{ placeholder }}" ng-model="selected" typeahead="searchitem.title for searchitem in typeaheadSearchList{{ additions }}" class="form-control"/>
 	</div>
 
-	<div class="col-xs-1 col-md-1">
+	<div class="col-md-1 submit-wrapper">
 	    <button type="submit">
 	        <span class="glyphicon glyphicon-search"></span>
 	    </button>
@@ -19,7 +19,7 @@
 
 </form>
 
-<div id="yourLocation" class="col-xs-2 col-md-1" ng-show="geolocate">
+<div id="yourLocation" class="col-md-1" ng-show="geolocate">
     <a tooltip-placement="right" tooltip="{{ geolocationToolTip }}">
         <button button ng-click="geolocateUser()">
             <span class="glyphicon glyphicon-screenshot"></span>
