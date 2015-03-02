@@ -51,7 +51,7 @@ addressSearchListTests = require('../../list/address-search-list.e2e.js');
 	        });
 
 	        it("containing correct text", function() {
-	        	var elem = element(by.tagName('h3')).get(0);
+	        	var elem = element.all(by.tagName('h3')).get(0);
 	        	var text = elem.getText();
 
 	        	var testText = 'Search a service or select one category from below';
