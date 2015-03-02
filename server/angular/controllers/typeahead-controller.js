@@ -38,7 +38,7 @@ function getObject (array, selected) {
 
             var menu = [],
                 uprnArray = [],
-                url = location.path();
+                url = $location.path();
 
             $scope.selected = '';
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");

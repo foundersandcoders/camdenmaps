@@ -18,7 +18,7 @@ var menu = require("../menu.json");
                 return (match.length >= 1);
             };
 
-            this.isWithinCamden = function (lat, lon) {
+            this.isWithinCamden = function (latitude, longitude) {
                 //coordinates represent a square around Camden to roughly test if location is inside boundary
                 if((51.590 > latitude && latitude > 51.495) && (-0.0750 > longitude && longitude > -0.255)) {
                     return true;
