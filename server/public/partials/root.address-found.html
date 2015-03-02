@@ -38,9 +38,9 @@
                 </div>
 
             </div>
-            <div>
+            <div class="row">
                 <h3 id="locations" class="col-md-offset-2 col-md-7">Services near {{ address }}</h3>
-                <a class="change-address" ng-click="changeAddress()">
+                <a class="change-address col-md-3" ng-click="changeAddress()">
                     <p>Reset location</p>
                 </a>
             </div>
@@ -90,7 +90,6 @@
                                     <div class="col-md-6" ng-show="{{ result.Distance }}">
                                         <h5 class="distance">{{ result.Distance + ' miles away'}}</h5>
                                     </div>
-
                                 </div>  
                                 <div ui-sref="root.address-found.single-view({id: '{{ result.display.Name }}' })" ui-sref-active="active" class="display-result" ui-view></div>
                             </div>
