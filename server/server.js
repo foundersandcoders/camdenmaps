@@ -39,7 +39,7 @@ server.connection({
 routes(server);
 
 //register prehandler extension
-require("./lib/streetnameLookup.js")(server);
+require("./lib/streetnameLookup.js").registerPreHandler(server);
 
 server.register({
     register: require("good"),

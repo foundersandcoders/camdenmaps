@@ -194,9 +194,9 @@ addressSearchListTests = require('../../list/address-search-list.e2e.js');
 					        	var elem = element(by.tagName('h3'));
 					        	var text = elem.getText();
 
-					        	var testText = 'Please enter your location.';
+					        	var testText = 'Please enter your location';
 
-					        	expect(text).toEqual(testText);
+					        	expect(text).toContain(testText);
 					        });
 
 					        it("containing an input box", function() {

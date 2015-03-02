@@ -1,5 +1,5 @@
 /*************************************************
-*   SERVICES AND CATEGORIES TESTS
+*   SERVICES TESTS
 *   Description: Acceptance tests are written here
 *   Use: run tests by gulp acceptance-test
 **************************************************/
@@ -23,7 +23,7 @@ addressSearchListTests = require('../../list/address-search-list.e2e.js');
 (function () {
     "use strict";
 
-    describe("Once a category has been selected ", function () {
+    describe("On mobile, once a category has been selected ", function () {
 
 		beforeEach(function () {
    			browser.get(Config.path.home);
@@ -193,9 +193,9 @@ addressSearchListTests = require('../../list/address-search-list.e2e.js');
 					        	var elem = element(by.tagName('h3'));
 					        	var text = elem.getText();
 
-					        	var testText = 'Please enter your location.';
+					        	var testText = 'Please enter your location';
 
-					        	expect(text).toEqual(testText);
+					        	expect(text).toContain(testText);
 					        });
 
 					        it("containing an input box", function() {
@@ -269,7 +269,7 @@ addressSearchListTests = require('../../list/address-search-list.e2e.js');
 					        });
 						});
 
-						describe(" (imported tests) ", function () {
+        				describe(" (imported tests) ", function () {
 	        				addressTypeaheadTests();
 		            		addressSearchListTests();
 		            		// TODO: put map tests here

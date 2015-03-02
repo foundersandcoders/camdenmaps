@@ -13,6 +13,9 @@ tfc:
 	    test/frontend/unit/*.js \
 	    | ./node_modules/.bin/tap-spec
 
+ta:
+	./node_modules/protractor/bin/webdriver-manager update && ./node_modules/protractor/bin/protractor ./test/frontend/config/protractor.conf.js --verbose
+
 ts:
 	./node_modules/tape/bin/tape \
 	    test/api/*.test.js \

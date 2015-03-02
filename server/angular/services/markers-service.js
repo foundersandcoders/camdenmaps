@@ -1,3 +1,8 @@
+/*************************************
+*   MARKERS SERVICE.JS
+*
+*************************************/
+
 ;(function () {
 	"use strict";
 
@@ -29,9 +34,7 @@
                          map.locate({setView: false, watch: false})
                             .on('locationfound', function (e){
 
-    
                                 if (validate.isWithinCamden(e.latitude, e.longitude)) {
-                            
                                     scope.markers.m0 = {
                                         lat: e.latitude,
                                         lng: e.longitude,
@@ -45,11 +48,11 @@
                                         focus: true
                                     };
 
-                                    path = "/home/" + $stateParams.service + "/location/" + "your location";
+                                    var path = "/home/" + $stateParams.service + "/location/" + "your location";
+
                                     $location.path(path);
 
                                 } else {
-           
                                     scope.updateError("That location is outside Camden");
                                 }
                             })
