@@ -121,6 +121,31 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 
 			        addressFoundListTests();
 		        });
+		        
+                        describe("when an address has been searched", function() {
+		           
+                                beforeEach(function() {
+                                    var input = element(by.tagName('input'));
+                                    
+                                    input.sendKeys('NW1 0NE');
+                                    input.sendKeys(protractor.Key.ENTER);
+                                    input.sendKeys(protractor.Key.ENTER);
+
+                                    var returnToServices = element(by.css('[ng-click="returnToServices()"]'));
+                                    returnToServices.click();
+
+                                });
+
+		        	it("it should be remembered for the next search", function() {
+		       			var nextService = element.all(by.repeater("service in services")).get(0);
+                                        nextService.click();
+                                    
+                                        var currentUrl = browser.getCurrentUrl();
+
+			        	expect(currentUrl).toContain("/NW1%200NE");
+			        });
+
+		        });
 		    });
     	});
 	}

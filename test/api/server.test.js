@@ -9,7 +9,7 @@ function dataProperties () {
     var prop = {};
     
     prop.services = {};
-    prop.services.propertiesKeys = ["StreetNum", "Street", "PostCode", "Longitude", "Latitude", "ViewLat", "ViewLng", "View", "Distance", "display"];
+    prop.services.propertiesKeys = ["Street", "PostCode", "Longitude", "Latitude", "ViewLat", "ViewLng", "View", "Distance", "display"];
     prop.services.locationsKeys = ["Area", "Longitude", "Latitude"];
 
     prop.parking = {};
