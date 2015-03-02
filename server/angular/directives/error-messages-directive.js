@@ -18,7 +18,7 @@
                     var errorBox = $('.errormessage');
 
                     scope.updateError = function (message){
-                        scope.error = message;                    
+                        scope.error = message;                 
 
                         if (message === "") {
                             element.css("display", "none");
