@@ -50,15 +50,10 @@
                 $scope.showEnterLocation = false;
                 $scope.showResetLocation = true;
 
-                console.log("with uprn", $scope.showEnterLocation)
-
-
             } else {
 
                 $scope.showEnterLocation = true;
                 $scope.showResetLocation = false;
-
-                console.log("without uprn", $scope.showEnterLocation);
 
             };
 
