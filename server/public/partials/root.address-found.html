@@ -84,7 +84,7 @@
                                 <p>{{ result.PostCode }}</p>
                                 <div ui-sref="root.address-found.single-view({id: '{{ result.display.Name }}' })" ui-sref-active="active" class="display-result" ui-view></div>
                             </div>
-                            <div ng-show="{{ showDistarnce && result.Distance }}">
+                            <div ng-show="{{ result.Distance }}">
                                 <h5 class="distance">{{ result.Distance + ' miles'}}</h5>
                             </div>
                         </div>
