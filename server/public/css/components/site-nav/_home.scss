@@ -1,5 +1,6 @@
 #main-container {
 	z-index: 999;
+	position: absolute;
 	@include respond(mobile) {
 		width: 100%;
 		padding: 0;
@@ -7,7 +8,6 @@
 	}
 	@include respond(screen) {
 		margin: 5vh 3vh 0 3vh;
-		position: absolute;
 	}
 }
 
