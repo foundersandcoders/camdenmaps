@@ -12,6 +12,12 @@ var category = menu.filter(function (item) {
     }
 })
 
+// var servicesTypeaheadTests = require('./desktop/typeahead/servicestypeahead.e2e.js');
+
+/*
+* Config
+*/
+
 ;(function() {
     "use strict";
     module.exports = {
@@ -25,7 +31,28 @@ var category = menu.filter(function (item) {
     			imgSrc: ["img/icons/find-your-nearest.png", "img/icons/your-neighbourhood.png", "img/icons/streetworks.png"]
     		}
     	},
-        category: category
+        category: category,
+        servicesByCat: function (cat) {
+            var parentId,
+                services,
+                category;
+
+            category = menu.filter (function (item) {
+                if (cat === item.title){
+                    return item;
+                } 
+            });
+
+            parentId = category[0].id;
+
+            services = menu.filter(function (item) {
+                if( parentId === item.parentId) {
+                    return item;
+                }
+            });
+
+            return services;
+        }
     }
 
 }());

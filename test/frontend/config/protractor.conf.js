@@ -1,4 +1,4 @@
-var Config = require('../config/testConfig.js');
+var Config = require('../acceptance/config.js');
 
 
 exports.config = {
@@ -6,7 +6,8 @@ exports.config = {
   allScriptsTimeout: 11000,
 
   specs: [
-    './test/frontend/acceptance/categories.e2e.js'
+    './test/frontend/acceptance/*/*/*.js',
+    './test/frontend/acceptance/*/*.js'
   ],
 
   sauceUser: process.env.SAUCE_USERNAME ,
