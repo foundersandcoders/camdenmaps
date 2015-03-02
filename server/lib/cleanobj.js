@@ -19,7 +19,7 @@
                 obj[prop] = strip(obj[prop]);
                 
                 if(!obj[prop].contains("http://")) {
-                    obj[prop] = obj[prop].replace("/", " and ");
+                    obj[prop] = obj[prop].replace("/\//g", " and ");
                 }
             }
         }
