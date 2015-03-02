@@ -84,7 +84,7 @@ function getObject (array, selected) {
 
                     destination = servicesHandler(selected);
                 } else {
-                    return $scope.updateError("Sorry, it looks like that isn't a valid camden service");
+                    return $scope.updateError("Sorry, that is not a valid camden service. Please search again.");
                 }
 
                 $location.path(destination);
@@ -164,7 +164,7 @@ function getObject (array, selected) {
 
                         apiSearch.search(service, address)
                             .error(function (data) {
-                                return $scope.updateError("Sorry, that doesn't appear to be a valid camden address");
+                                return $scope.updateError("Sorry, that does not appear to be a valid camden address.");
                             })
                             .success(function success (data) {
                                 if(data.hasOwnProperty("error")) {
