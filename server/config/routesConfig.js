@@ -46,14 +46,9 @@
                     var converter, service;
                     service = cap(req.params.service);
                     var key = req.raw.req.url;
-            
-                    if (serviceArrays.recycling.indexOf(service) > -1) {
-                        converter = parsers.recyclingApiParser;
-                    } else if (serviceArrays.parking.indexOf(service) > -1) {
-                        converter = parsers.parkingApiParser;
-                    } else {
-                        converter = parsers.nearestApiParser;
-                    }
+           
+                    converter = parsers.whichParser(req.params.service); 
+                    
                     cache.getCache(req, key, rep, mapUri.mapUri, converter, {
                         mapUri: MapConfig.nearestMapper,
                         onResponse: ConvertXml.convertToJson
@@ -98,3 +93,4 @@
         }
     };
 }());
+
