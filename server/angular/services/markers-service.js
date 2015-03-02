@@ -57,8 +57,7 @@
                                 }
                             })
                             .on('locationerror', function(e){
-                                console.log(e);
-                                alert("Location access denied.");
+                                scope.updateError("Your location is not working please use an address");
                             });
 
                     });

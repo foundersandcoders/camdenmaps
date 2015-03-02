@@ -16,16 +16,17 @@ var menu = require("../menu.json");
                     return item.title.toLowerCase() === service.toLowerCase();
                 });
                 return (match.length >= 1);
-            }
+            };
 
             this.isWithinCamden = function (lat, lon) {
                 //coordinates represent a square around Camden to roughly test if location is inside boundary
-                if((51.57878 > lat && lat > 51.450089) && (-0.094538 > lon && lon > -0.218650)) {
+                if((51.590 > latitude && latitude > 51.495) && (-0.0750 > longitude && longitude > -0.255)) {
                     return true;
                 } else {
-                    return false
+                    return false;
                 }
-            }
+            };
+
             //this will capitalise street addresses
             //and upper case postcodes
             this.cleanDisplayAddress = function (address) {
@@ -34,7 +35,7 @@ var menu = require("../menu.json");
                                     : address.replace(/\b./g, function(m){ return m.toUpperCase()});
 
                 return displayAddress;
-            }
+            };
         }
     ];
 
