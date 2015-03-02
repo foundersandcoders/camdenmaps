@@ -7,6 +7,10 @@
 #buttons {
 	margin-top: 1em;
 	padding: 0;
+
+	@include respond(mobile) {
+		margin-top: 0.3em;
+	}
 	.button {
 		padding: 0;
 		button {
@@ -26,13 +30,25 @@
 			// &:focus {
 			// 	background-color: $dark-blue;
 			// }
+
+
 		}
 	}
 }
 
-@media (max-width: 768px) {
-	#buttons {
-		margin-top: 0.3em;
+.servicestypeahead {
+	button {
+		background-color: $black;
+		span {
+			color: white;
+			&:hover {
+				color: $hover-grey;
+				cursor: pointer;
+			}
+			@include respond(mobile) {
+				font-size: 1.4em;
+			}	
+		}
 	}
 }
 
@@ -40,8 +56,10 @@
 	padding: 0;
 	max-width: 100%;
 	min-width: 2.3em;
+
 	@include respond(mobile) {
 		min-width: initial;
+		vertical-align: baseline;
 	}
 	button {
 		width: 100%;
@@ -49,10 +67,15 @@
 		//border-left: 0.1em $dark-grey solid;
 		//background-color: $light-grey;
 		text-align: center;
+
+		@include respond(mobile) {
+			width: initial;
+		}
 		span {
 			color: $white;
+
 			@include respond(mobile) {
-				left: -0.4em;
+				font-size: 1.4em;
 			}
 		}
 	}
