@@ -55,7 +55,7 @@
 		margin: auto;
 		width: 95%;
 	}
-	div {
+	div:not(.errormessage) {
 		padding: 0;
 
 		@include respond(mobile) {
@@ -76,7 +76,12 @@
 			padding: 0 0.4em;
 		}
 	}
-
+	.submit-wrapper {
+		@include respond(mobile) {
+			margin-right: -0.4em;
+			padding-left: 0.3em;	
+		}
+	}
 
 	input {
 		border: 0.2em solid $dark-grey;
