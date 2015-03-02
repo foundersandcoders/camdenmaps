@@ -13,7 +13,7 @@
 	@include respond(mobile) {
 		padding-bottom: 0;
 		padding-right: 0;
-		padding-left: 6px;
+		padding-left: 0;
 		height: initial;
 		box-shadow: 0px 0px 5px 0px black;
 	}
@@ -50,17 +50,34 @@
 	background-color: $black;
 	padding-top: 0.5em;
 	margin: 0;
-	//padding-bottom: 0.5em;
 
 	@include respond(mobile) {
-		padding-top: 0.7em;
+		margin: auto;
+		width: 95%;
 	}
 	div {
 		padding: 0;
+
+		@include respond(mobile) {
+			display: inline-block;
+			vertical-align: baseline;
+		}
 		a {
 			padding: 0.3em;
+
+			@include respond(mobile) {
+				padding: 0;
+			}
 		}
 	}
+	// Specific div style for home-wrapper
+	.home-wrapper {
+		@include respond(mobile) {
+			padding: 0 0.4em;
+		}
+	}
+
+
 	input {
 		border: 0.2em solid $dark-grey;
 		background-color: $white;
@@ -70,16 +87,6 @@
 		height: 2em;
 		&:focus {
 			outline: $orange solid 0.2em;
-		}
-	}
-	button {
-		background-color: $black;
-		span {
-			color: white;
-			&:hover {
-				color: $hover-grey;
-				cursor: pointer;
-			}
 		}
 	}
 	span {
@@ -100,7 +107,20 @@
 	}
 	form {
 		display: block;
+		@include respond(mobile) {
+			display: inline-block;
+			width: 70%;
+			vertical-align: baseline;
+		}
 	}
+}
+
+#forminput {
+	@include respond(mobile) {
+		width: 80%;
+		vertical-align: bottom;
+	}
+	
 }
 
 #search-service-and-loc {
@@ -111,12 +131,15 @@
 	width: 1.8em;
 	margin-right: 0.8em;
 	@include respond (mobile) {
+		width: 1.6em;
 		margin: auto;
+		vertical-align: sub;
 	}
 }
 
 #search-location-row {
 	margin-top: 1.5em;
+
 	@include respond(mobile) {
 		margin-top: 0;
 		margin: 0.3em 0;

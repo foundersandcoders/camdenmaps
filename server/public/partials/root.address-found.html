@@ -6,8 +6,10 @@
 
         <!-- Search Box for locations & GPS -->
         <div class="col-xs-12 search-box" id="search-service-and-loc">
-            <div class="servicestypeahead row">
-                <div class="col-xs-2 col-md-2">
+
+            <!-- TYPEAHEAD FROM root.address-found.html -->
+            <div class="servicestypeahead">
+                <div class="home-wrapper col-md-2">
                     <a ng-click="searchAgain()">
                         <img id="backhome" src="../img/icons/backhome.png" alt="back">
                     </a> 
@@ -15,11 +17,11 @@
                 <form>
 
 
-                    <div class="col-xs-7 col-md-8" id="forminput">
+                    <div class="col-md-8" id="forminput">
                         <input type="text" placeholder="{{ placeholder }}" ng-model="address" class="form-control"/>
                     </div>
 
-                    <div class="col-xs-1 col-md-1">
+                    <div class="col-md-1">
                         <button type="submit" ng-click="search()">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
@@ -27,7 +29,7 @@
 
                 </form>
 
-                <div id="yourLocation" class="col-xs-2 col-md-1">
+                <div id="yourLocation" class="col-md-1">
                     <a href="#" tooltip-placement="right" tooltip="{{ geolocationToolTip }}">
                         <button button ng-click="geolocateUser()">
                             <span class="glyphicon glyphicon-screenshot"></span>
@@ -36,7 +38,7 @@
                 </div>
 
             </div>
-            <div class="row">
+            <div>
                 <h3 id="locations" class="col-md-offset-2 col-md-7">Services near {{ address }}</h3>
                 <a class="change-address" ng-click="changeAddress()">
                     <p>Reset location</p>
