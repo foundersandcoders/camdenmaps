@@ -34,9 +34,7 @@
                          map.locate({setView: false, watch: false})
                             .on('locationfound', function (e){
 
-    
                                 if (validate.isWithinCamden(e.latitude, e.longitude)) {
-                            
                                     scope.markers.m0 = {
                                         lat: e.latitude,
                                         lng: e.longitude,
@@ -51,10 +49,10 @@
                                     };
 
                                     var path = "/home/" + $stateParams.service + "/location/" + "your location";
+
                                     $location.path(path);
 
                                 } else {
-           
                                     scope.updateError("That location is outside Camden");
                                 }
                             })
