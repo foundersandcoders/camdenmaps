@@ -48,7 +48,9 @@
                                         focus: true
                                     };
 
-                                    var path = "/home/" + $stateParams.service + "/location/" + "your location";
+                                    var service = $stateParams.service || 'streetworks';
+
+                                    var path = "/home/" + service + "/location/" + "your location";
 
                                     $location.path(path);
 
