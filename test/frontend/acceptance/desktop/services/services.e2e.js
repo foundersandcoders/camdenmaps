@@ -10,7 +10,8 @@ var Config,
 	buttons,
 	servicesTypeaheadTests,
 	addressTypeaheadTests,
-	addressSearchListTests;
+	addressSearchListTests,
+	mapMarkerTests;
 
 Config = require('../../config.js');
 category = Config.category;
@@ -19,6 +20,7 @@ buttons = element.all(by.repeater('button in buttons'));
 servicesTypeaheadTests = require('../../typeahead/servicestypeahead.e2e.js');
 addressTypeaheadTests = require('../../typeahead/addresstypeahead.e2e.js');
 addressSearchListTests = require('../../list/address-search-list.e2e.js');
+mapMarkerTests = require('../../map/map-markers.e2e.js');
 
 (function () {
     "use strict";
@@ -100,7 +102,7 @@ addressSearchListTests = require('../../list/address-search-list.e2e.js');
 
 			        it("containing correct text", function() {
 
-			        	var elem = element(by.tagName('h3'));
+			        	var elem = element.all(by.tagName('h3')).get(0);
 			        	var text = elem.getText();
 
 			        	var testText = 'Search a service or select one category from below';
@@ -190,12 +192,12 @@ addressSearchListTests = require('../../list/address-search-list.e2e.js');
 
 					        it("containing correct text", function() {
 
-					        	var elem = element(by.tagName('h3'));
+					        	var elem = element.all(by.tagName('h3')).get(0);
 					        	var text = elem.getText();
 
-					        	var testText = 'Please enter your location.';
+					        	var testText = 'Please enter your location';
 
-					        	expect(text).toEqual(testText);
+					        	expect(text).toContain(testText);
 					        });
 
 					        it("containing an input box", function() {
@@ -272,7 +274,7 @@ addressSearchListTests = require('../../list/address-search-list.e2e.js');
 						describe(" (imported tests) ", function () {
 	        				addressTypeaheadTests();
 		            		addressSearchListTests();
-		            		// TODO: put map tests here
+		            		mapMarkerTests();
 		            	});
 		            });
             	}
