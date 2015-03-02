@@ -75,6 +75,10 @@ function getObject (array, selected) {
                 if(locationCheck.addressSearch()) {
 
                     destination = addressHandler(uprnArray, selected);
+                
+                    $scope.showEnterLocation = false;
+                    $scope.showResetLocation = true;
+
 
                 }  else if(validate.service(selected)) {
 
