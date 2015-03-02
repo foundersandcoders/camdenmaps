@@ -80,12 +80,17 @@
                         <div class="list-item col-xs-12">
                             <div class="col-md-12">
                                 <h3 id="service-title">{{ result.display.Name }}</h3>
-                                <p>{{ result.StreetNum + ' ' + result.Street }}</p>
-                                <p>{{ result.PostCode }}</p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>{{ result.StreetNum + ' ' + result.Street }}</p>
+                                        <p>{{ result.PostCode }}</p>
+                                    </div>
+                                    <div class="col-md-6" ng-show="{{ result.Distance }}">
+                                        <h5 class="distance">{{ result.Distance + ' miles away'}}</h5>
+                                    </div>
+
+                                </div>  
                                 <div ui-sref="root.address-found.single-view({id: '{{ result.display.Name }}' })" ui-sref-active="active" class="display-result" ui-view></div>
-                            </div>
-                            <div ng-show="{{ showDistarnce && result.Distance }}">
-                                <h5 class="distance">{{ result.Distance + ' miles'}}</h5>
                             </div>
                         </div>
                     </a>
