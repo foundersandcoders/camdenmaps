@@ -12,12 +12,8 @@
         <a href= "tel: {{ result.display.Telephone }}"> <p><b> Tel.: </b> {{ result.display.Telephone }}</p></a>
         <a ng-show="result.display.URL" href="{{ result.display.URL }}" target="_blank" id="url">{{ result.display.URL }}
         </a>
-        <div class="row">
-            <div class="col-md-7">
-                <h5 ng-show="result.display.OpeningHours">Opening Hours</h5>
-                <p>{{ result.display.OpeningHours }}</p>
-            </div>
-        </div>
+        <h5 ng-show="result.display.OpeningHours">Opening Hours</h5>
+        <p>{{ result.display.OpeningHours }}</p>
 
     </div>
  </div>
