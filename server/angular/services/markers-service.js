@@ -45,7 +45,8 @@
                                 
                                         //not sure this is necessary if we have a location symbol used 
                                         message: "Your location",
-                                        focus: true
+                                        focus: true,
+                                        geolocation: true
                                     };
 
                                     var service = $stateParams.service || 'streetworks';
