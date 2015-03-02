@@ -10,31 +10,22 @@
 
 .services-and-categories {
 	padding: 0;
-	border-bottom: 0.1em solid black;
 	color: $light-blue;
 	text-align: center;
 	@include respond(mobile) {
        height: 11.5em;
-       h2 {
-               margin: 0.3em 0em;
-       }
-   }
+       height: initial;
+    }
 	h2 {
 		margin: 0.7em 0em;
 		text-align: center;
 		color: $white;
+		@include respond(mobile) {
+			margin: 0.3em 0em;
+		}
 	}
 	#back {
 		width: 2.6em;
-	}
-}
-
-@media (max-width: 768px) {
-	.services-and-categories {
-		height: 11.5em;
-		h2 {
-			margin: 0.3em 0em;
-		}
 	}
 }
 
@@ -75,6 +66,10 @@
 	// box-shadow: 0.5em 0.5em 0.5em #888888;
 	border-top: solid 0.2em $light-grey;
 	margin-top: 1em;
+	@include respond(mobile) {
+		margin-top: 0;
+		border-top: none;
+	}
 }
 
 .title-list-items{
@@ -84,8 +79,9 @@
 	padding: 0.2vh 0;
 	@include respond(mobile) {
        margin: 0;
-       padding: 0.4vh 0;
+       padding: 0.8em 0 0.4em 0;
        border-bottom: 1px solid black;
+       box-shadow: none;
    }
 	div{
 		img{
@@ -100,18 +96,11 @@
 	            float: none;
 	       	}
 		}
-		h4{
-			margin: 0;
-			color: $black;
-			font-weight: bold;
-			display:inline;
-			font-size: 1.1em;
-		}
 		a {
-			color: $exit-button;
+			color: $exit-button-hover;
 		}
 		a:hover {
-			color:$exit-button-hover;
+			color:$exit-button;
 			font-weight:bold;
 		}
 	}
@@ -133,15 +122,15 @@
 	background-color: $light-blue;
 }
 
-.item-container {
-	padding: 0;
-}
-
 .list-items {
 	overflow-y: scroll;
 	max-height: 35em;
 	width:100%;
 	box-shadow: 0.5em 0.5em 0.5em #888888;
+	@include respond(mobile) {
+		// max-height: ;
+		box-shadow: 0em 3em 6em -3em #888888;	
+	}
 }
 
 .container-list {
@@ -177,5 +166,31 @@ h2 {
 
 .accordiontext{
 	padding-top: 0.8vh;
-	font-size: 1.2em;
+	font-size: 1.1em;
+	@include respond(mobile) {
+		padding-top: 0.1em;
+	}
+	h4{
+		margin: 0;
+		color: $black;
+		display:inline;
+		font-size: 1.1em;
+		@include respond(mobile) {
+			font-size: 1em;
+			vertical-align: text-bottom;
+		}
+	}
+}
+
+#locations {
+	color: white;
+	margin-top: 10px;
+}
+
+.change-address {
+	margin-top: 10px;
+}
+
+#title-of-accordion {
+	font-weight: bold;
 }

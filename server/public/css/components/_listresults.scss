@@ -15,13 +15,24 @@
 	z-index: 999;
 	min-height: 100%;
 	max-height: 32em;
+	@include respond(mobile) {
+		background-color: rgba(255,255,255,1);
+	}
 	.list-item {
-		border-top: 0.1em black solid;
+		border-top: 0.1em $menu-stroke-grey solid;
 		color: black;
 		padding: 0.7em 0;
 		min-height: 5em;
-		max-height: 100%;
+		max-height: 100%; 
 	}
+	a:first-child {
+		.list-item {
+			@include respond(mobile) {
+				border-top: none;
+			} 
+		}
+	}
+
 	.display-result {
 		display: none;
 		visibility: hidden;
@@ -33,23 +44,18 @@
 	.distance {
 		text-align: right;
 	}
-	h5, p {
+	p {
 		color: black;
 		margin: 0;
 	}
+	h5 {
+		margin-bottom: 5px;
+		color: $dark-grey;
+	}
 }
 
-// @media (max-width: 768px) {
-// 	#list-results-container {
-// 		padding: 0;
-// 		position: absolute;
-// 		height: 80%;
-// 	}
-// 	#list-results {
-// 		// height: 70%;
-// 		.list-item {
-// 			height: 7em;
-// 		}
-// 	}
-// }
-
+#service-title {
+	color: $dark-blue;
+	font-weight: bold;
+	margin: 0 0 10px 0;
+}

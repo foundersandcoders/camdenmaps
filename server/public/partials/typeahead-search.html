@@ -1,30 +1,29 @@
 <!-- TYPEAHEAD-SEARCH -->
 <div class="col-xs-2 col-md-2">
-    <a class="col-xs-1 col-md-1" ng-click="searchAgain()">
+    <a class="col-xs-1" ng-click="searchAgain()">
         <img id="backhome" src="../img/icons/backhome.png" alt="back">
     </a> 
 </div>
 
-<form ng-submit="handler(selected)">
-
+<form ng-submit="handler(selected)" id="address-input">
 
 	<div class="col-xs-8 col-md-8" id="forminput">
-	    <input type="text" placeholder="{{ placeholder }}" ng-model="selected" typeahead="searchitem for searchitem in typeaheadSearchList{{ additions }}" class="form-control"/>
+	    <input type="text" placeholder="{{ placeholder }}" ng-model="selected" typeahead="searchitem.title for searchitem in typeaheadSearchList{{ additions }}" class="form-control"/>
 	</div>
 
-	<div class="col-xs-2 col-md-1">
+	<div class="col-xs-1 col-md-1">
 	    <button type="submit">
 	        <span class="glyphicon glyphicon-search"></span>
 	    </button>
 	</div>
 
-    <!-- <div id="yourLocation" class="col-xs-1 col-md-1" ng-show="geolocate">
-        <a href="#" tooltip-placement="right" tooltip="{{ geolocationToolTip }}">
-            <button button ng-click="geolocateUser()">
-                <span class="glyphicon glyphicon-screenshot"></span>
-            </button>
-        </a>
-    </div> -->
-
 </form>
-<!-- TYPEAHEAD-SEARCH END
+
+<div id="yourLocation" class="col-xs-1 col-md-1" ng-show="geolocate">
+    <a href="#" tooltip-placement="right" tooltip="{{ geolocationToolTip }}">
+        <button button ng-click="geolocateUser()">
+            <span class="glyphicon glyphicon-screenshot"></span>
+        </button>
+    </a>
+</div>
+<!-- TYPEAHEAD-SEARCH END -->

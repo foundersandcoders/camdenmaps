@@ -3,6 +3,9 @@
 <div class="container-fluid">
     <div ng-swipe-right="prevItems()" ng-swipe-left="nextItems()" class="services-and-categories col-xs-12">
 
+        <div class="col-xs-12 errormessage">
+        </div>
+        
         <!-- Search Box for locations & GPS -->
         <div class="col-xs-12 row search-box">
             <div class="servicestypeahead row">
@@ -23,11 +26,11 @@
             <div class="col-xs-3 col-md-3">
                 <img ng-src="{{ category.img }}"  alt="">
             </div>
-            <div class="accordiontext col-xs-9 col-md-8">
-                <h4>{{category.title}}</h4>
+            <div class="accordiontext col-xs-8 col-md-8">
+                <h4 id="title-of-accordion">{{category.title}}</h4>
             </div>
             <div class="col-xs-1 col-md-1 cancel">
-                <a ng-click="returnToCategories()">x</a>
+                <a ng-click="returnToCategories()">X</a>
             </div>
         </div>            
 

@@ -41,7 +41,6 @@ routes(server);
 //register prehandler extension
 require("./lib/streetnameLookup.js")(server);
 
-
 server.register({
     register: require("good"),
     options: config.logging

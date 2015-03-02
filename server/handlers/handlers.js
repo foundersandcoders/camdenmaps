@@ -4,7 +4,6 @@
 *   Use: Imported by routes.js
 ********************************************************/
 
-var db = require("../lib/addressdb.js");
 var fs = require("fs");
 var path = require("path");
 
@@ -25,12 +24,19 @@ var path = require("path");
         },
 
         getHome: function getHome (req, res) {
-            res.file("../public/index.html");
+            if (/MSIE 8.0/.test(req.headers["user-agent"])) {
+                return res.redirect("http://maps.camden.gov.uk/nearest.aspx");
+            } else {
+                return res.file("../public/index.html");
+            }
         },
 
         getLogs: function getLogs (req, res) {
-            fs.readFile(path.join(__dirname, "../logs/server_log"), function(err, data) {
-                res(data.toString())
+            fs.readFile(path.join(__dirname, "../logs/server_log.txt"), function(err, data) {
+                if (data) {
+                    data = data.toString();
+                }
+                return res(data)
                     .type("text/richtext");
             });
         },

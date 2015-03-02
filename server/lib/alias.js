@@ -7,14 +7,13 @@
                 : service === "Cardboard and paper"                     ? "Cardboard"
                 : service === "Clothing and textiles"                   ? "Textiles and shoes"
                 : service === "Nappies"                                 ? "Nappies"
-                : service === "Funiture"                                ? "Furniture (not reusable)"
+                : service === "Furniture"                                ? "Furniture (not reusable)"
                 : service === "Garden waste"                            ? "Grass cuttings and leaves"
                 : service === "Light bulbs"                             ? "Light bulbs"
                 : service === "Glass"                                   ? "Glass bottles and jars (all colours)"
                 : service === "Clinical waste"                          ? "Sharps" 
                 : service === "Paint"                                   ? "Paint"
                 : service === "Chemical and hazardous waste"            ? "Household chemicals"
-                : service === "Household electronics/appliances"        ? "Microwaves"
                 : service === "Aluminium cans"                          ? "Aluminium cans"
                 : service === "Vehicles"                                ? "Cars and end of life vehicles"
                 : service === "Foil"                                    ? "Foil"
@@ -27,7 +26,7 @@
                 : service === "Residents and tenants association"       ? "Residents%2Ftenants association"
                 : service === "Marriage and civil partnership venues"   ? "Marriage%2Fcivil partnership venue"
                 : service === "Pay and display"                         ? "Pay and display%2Fmeter"
-                : service === "Household electronics and appliances"    ? "Household electronics%2Fappliances"
+                : service === "Household electronics and appliances"    ? "Microwaves"
                 : service;
     }
 }());

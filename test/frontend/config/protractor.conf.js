@@ -1,8 +1,13 @@
+var Config = require('../acceptance/config.js');
+
+
 exports.config = {
+
   allScriptsTimeout: 11000,
 
   specs: [
-    './test/frontend/acceptance/*.js'
+    './test/frontend/acceptance/*/*/*.js',
+    './test/frontend/acceptance/*/*.js'
   ],
 
   sauceUser: process.env.SAUCE_USERNAME ,
@@ -17,14 +22,13 @@ exports.config = {
     'name': 'App Tests'
   },
 
-  baseUrl: 'http://localhost:'+ (process.env.HTTP_PORT || '8080'),
-
-  // baseUrl: 'https://camdenmaps.herokuapp.com',
+  baseUrl: Config.path.main,
 
   framework: 'jasmine',
 
   jasmineNodeOpts: {
     defaultTimeoutInterval: 30000
   }
+  
 };
 
