@@ -46,19 +46,19 @@
             //************ MAP MANIPULATIONS ***************
 
             $scope.centre = {
-                    lat: 51.535923,
+                    lat: 51.541,
                     lng: -0.139991,
                     zoom: 13,
                     // autoDiscover: true
                 };
             $scope.maxbounds = {
                 northEast: {
-                    lat: 51.57878,
-                    lng: -0.094538
+                    lat: 51.593,
+                    lng: -0.0745
                 },
                 southWest: {
-                    lat: 51.450089,
-                    lng: -0.218650
+                    lat: 51.490,
+                    lng: -0.259
                 }
             };
             $scope.defaults = {

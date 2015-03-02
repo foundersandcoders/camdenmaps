@@ -162,12 +162,19 @@
                         size = Object.size(scope.markers);
 
                     //if results are less than 5 markers zooms out to fit them all in
-                    if (size < 5 ) {
+                    if (size === 0 ) {
+                        zoomLevel = 13;
+                    }
+                    else if (size < 5 ) {
                         zoomLevel = 12;
+                    }
+                    else if (scope.service.toLowerCase() === "streetworks") {
+                        zoomLevel = 15;
                     }
                     else {
                         zoomLevel = 13;
                     }
+
 
                     return zoomLevel;
 
