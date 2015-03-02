@@ -38,6 +38,7 @@ listItem = element.all(by.css('.list-item')).get(0);
                     expect(title.isDisplayed()).toBe(true);
                 });
                 it("distace", function () {
+                    browser.pause();
                     var distance = listItem.element(by.css(".distance"));
                     
                     expect(distance.isDisplayed()).toBe(true);
