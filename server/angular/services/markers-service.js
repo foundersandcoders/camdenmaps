@@ -112,7 +112,7 @@
                                 iconUrl: "../img/icons/location-marker.png",
                             },
                             focus: true,
-                            message: "<b>N1C 4AG</b> <br> Please enter a postcode <br> above for nearby results.",
+                            message: "Searching for results near <strong>N1C 4AG</strong>, <br> enter another post code above for more results",
 
                         };
                     }
