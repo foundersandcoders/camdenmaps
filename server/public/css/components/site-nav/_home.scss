@@ -6,6 +6,12 @@
 		padding: 0;
 		margin: 0;
 	}
+	@include respond(tablet) {
+		margin-top: 1em;
+	}
+	@include respond(mdscreen) {
+		margin-top: 5vh;
+	}
 	@include respond(screen) {
 		margin: 5vh 3vh 0 3vh;
 	}
