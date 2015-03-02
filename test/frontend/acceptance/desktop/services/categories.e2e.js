@@ -1,19 +1,20 @@
 /*************************************************
 *   CAMDEN SERVICE CATEGORIES TESTS
 *   Description: Acceptance tests are written here
-*   Use: run tests by npm test
+*   Use: run tests by gulp acceptance-test
 **************************************************/
 
-//TODO: test services typeahead
-
 var Config,
-	categories;
+	categories,
+	servicesTypeaheadTests,
+	buttons,
+	categoriesRepeater;
 
-Config = require('../config/testConfig.js');
-category = Config.category;
-							
-var categoriesRepeater = element.all(by.repeater('category in serviceCategories'));
-var buttons = element.all(by.repeater('button in buttons'));
+Config = require('../../config.js');
+category = Config.category;					
+categoriesRepeater = element.all(by.repeater('category in serviceCategories'));
+buttons = element.all(by.repeater('button in buttons'));
+servicesTypeaheadTests = require('../../typeahead/servicestypeahead.e2e.js');
 
 (function () {
     "use strict";
@@ -25,12 +26,24 @@ var buttons = element.all(by.repeater('button in buttons'));
 			buttons.get(0).click();
 		});
 
+        servicesTypeaheadTests();
+
 		describe("Home bar appears ", function() {
 
-	        it("containing 'Home' button", function() {
+	        describe("containing 'Home' button ", function() {
 	        	var home = element(by.id('backhome'));
 
-	        	expect(home.isDisplayed()).toBe(true);
+	        	it("is displayed", function() {
+
+		        	expect(home.isDisplayed()).toBe(true);
+		        });
+		        it("when clicked takes you path to home", function() {
+		        	home.click();
+		        	
+		        	var url = browser.getCurrentUrl();
+
+		        	expect(url).toBe(Config.path.main + Config.path.home);
+		        });
 	        });
 
 	        it("containing correct text", function() {
