@@ -1,4 +1,12 @@
 #neighbourhood-info {
 	padding: 0.7em 1.5em;
+	ul {
+		list-style-type: none;
+		padding-left: 1.5em;
+		margin-bottom: 1.5em;
+	}
+}
 
+.local-info-heading {
+	font-weight: bold;
 }
