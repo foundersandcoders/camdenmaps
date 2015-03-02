@@ -24,8 +24,16 @@
             };  
 
 
-            this.geolocateUser = function (functionScope, cb) {
+            this.geolocateUser = function (functionScope, location, cb) {     
                 
+                var remainOnPage = function() {
+                    var path = (location.indexOf("/streetworks") > -1)
+                        ? "home/streetworks"
+                        : "/home/" + $stateParams.service + "/search";
+                       
+                    $location.path(path);
+                }; 
+
                 return function(scope) {
                     scope = scope || functionScope; 
                     
@@ -48,16 +56,20 @@
                                         focus: true
                                     };
 
-                                    var path = "/home/" + $stateParams.service + "/location/" + "your location";
+                                     var path = (location.indexOf("/streetworks") > -1)
+                                        ? "home/streetworks/location/your location"
+                                        : "/home/" + $stateParams.service + "/location/" + "your location";
 
                                     $location.path(path);
 
                                 } else {
-                                    scope.updateError("That location is outside Camden");
+                                    scope.updateError("Your location is not working please use an address");
+                                    remainOnPage();
                                 }
                             })
                             .on('locationerror', function(e){
-                                scope.updateError("Your location is not working please use an address");
+                                scope.updateError("Geolocation error. Please use an address");      
+                                remainOnPage();
                             });
 
                     });
