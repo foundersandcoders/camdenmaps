@@ -122,7 +122,7 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 			        addressFoundListTests();
 		        });
 		        
-                        ddescribe("when an address has been searched", function() {
+                        describe("when an address has been searched", function() {
 		           
                                 beforeEach(function() {
                                     var input = element(by.tagName('input'));
