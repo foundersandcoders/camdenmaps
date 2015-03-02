@@ -29,8 +29,6 @@
             
             requestInjection(uri, function(err, res, body) {
                 parser.parseString(body, function(err, result) {
-                console.log(result);    
-                console.log(err);
                     var path;
                     if (!err && result.Locations.$.hasOwnProperty("Lat") && result.Locations.$.hasOwnProperty("Lng")) {
                         path = req.raw.req.url.split("/");
