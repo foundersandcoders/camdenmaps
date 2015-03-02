@@ -1,37 +1,40 @@
+#neighbourhood-info {
+	padding: 0.7em 1.5em;
+}
 
-#local-info-results {
-	text-align: left;
-	background-color: white;
-	position: absolute;
-	padding: 0;
-	overflow: hidden;
-	overflow-y: scroll;
-	border-bottom: 0.2em black solid;
-	border-left: 0.2em black solid;
-	z-index: 50;
-	min-height: 69.5%;
-	max-height: 30em;
-	.local-info-heading {
-		font-weight: bold;
-	}
-	a {
-		color: $hover-blue;
-	}
-	.glyphicon-remove {
-		float: right;
-		padding: 0.5em;
-		color: $exit-button;
-		&:hover {
-			color: $exit-button-hover;
-		}
-	}
+// #local-info-results {
+// 	text-align: left;
+// 	background-color: white;
+// 	position: absolute;
+// 	padding: 0;
+// 	overflow: hidden;
+// 	overflow-y: scroll;
+// 	border-bottom: 0.2em black solid;
+// 	border-left: 0.2em black solid;
+// 	z-index: 50;
+// 	min-height: 69.5%;
+// 	max-height: 30em;
+// 	.local-info-heading {
+// 		font-weight: bold;
+// 	}
+// 	a {
+// 		color: $hover-blue;
+// 	}
+// 	.glyphicon-remove {
+// 		float: right;
+// 		padding: 0.5em;
+// 		color: $exit-button;
+// 		&:hover {
+// 			color: $exit-button-hover;
+// 		}
+// 	}
 	
-}
+// }
 
-@media (max-width: 768px) {
-	#local-info-results {
-		padding: 0;
-		position: absolute;
-		min-height: 77%;
-	}
-}
+// @media (max-width: 768px) {
+// 	#local-info-results {
+// 		padding: 0;
+// 		position: absolute;
+// 		min-height: 77%;
+// 	}
+// }
