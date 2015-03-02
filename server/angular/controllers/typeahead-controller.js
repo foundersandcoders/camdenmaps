@@ -144,13 +144,21 @@ function getObject (array, selected) {
             function searchApi (address) {
 
                 var path,
+                    service,
                     noResults = require("../lib/no-results.js"),
                     resetActiveMarker = require("../lib/reset-active-marker");
 
                 if (locationCheck.postcodeSearch()){
 
                     if(address) {
-                        apiSearch.search($stateParams.service, address)
+
+                        if ($location.path().indexOf('streetworks') > -1) {
+                            service = 'streetworks';
+                        } else {
+                            service = $stateParams.service;
+                        }
+
+                        apiSearch.search(service, address)
                             .error(function (data) {
                                 return $scope.updateError("Sorry, that doesn't appear to be a valid camden address");
                             })
