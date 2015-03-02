@@ -3,7 +3,7 @@
 var Config = require("../config/serverConfig.js"),
     url = Config.map.url,
     serviceArray = Config.map.serviceArrays,
-    services,
+    services = "find=",
     locations = Config.map.query.location,
     lats = Config.map.query.lat,
     lngs = Config.map.query.lng,
@@ -13,6 +13,9 @@ var Config = require("../config/serverConfig.js"),
     exactLocations = Config.map.query.uprn;
 
 function mapQuery (req) {
+    if (typeof req !== "object") {
+        return req;
+    }
     var service = aliasServices(cap(req.params.service));
     return (req.params.latitude !== undefined) ? "?" + services + service + "&" + lats + req.params.latitude + "&" + lngs + req.params.longitude
             : (req.params.postcode === undefined) ? "?" + services + service + "&" + locations + defaultLocation
@@ -23,7 +26,6 @@ function mapQuery (req) {
 function mapStreetworks (req) {
     
     var location, query, lat, lng;
-    services = "find=";
     location = req.params.postcode;
     lat = req.params.latitude;
     lng = req.params.longitude;

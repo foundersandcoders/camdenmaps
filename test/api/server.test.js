@@ -436,6 +436,7 @@ server.start(function(){
         });
     
     });
+        
 
 // LOGS
     test("server should expose /logs endpoint", function(t) {
@@ -446,14 +447,8 @@ server.start(function(){
             t.ok(/text\/richtext/.test(h.headers["content-type"]), "content type is rich text");
             t.end();
         
+            server.stop();
         });
-    
-    });
-
-    test("stop server", function(t) {
-    
-        t.end();
-        server.stop();
     
     });
 

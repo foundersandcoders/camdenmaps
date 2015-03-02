@@ -1,7 +1,7 @@
 /*************************************************
 *   LANDING TESTS
 *   Description: Acceptance tests are written here
-*   Use: run tests by npm test
+*   Use: run tests by gulp acceptance-test
 **************************************************/
 
 var Config,
@@ -9,7 +9,7 @@ var Config,
 	buttons,
 	buttonTitles;
 
-Config = require('../config/testConfig.js');
+Config = require('../config.js');
 landing = Config.landing;
 buttons = element.all(by.css('[ng-click="executeFn(button.handler)"]'));
 
