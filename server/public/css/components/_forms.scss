@@ -12,6 +12,10 @@
 
 	@include respond(mobile) {
 		padding-bottom: 0;
+		padding-right: 0;
+		padding-left: 6px;
+		height: initial;
+		box-shadow: 0px 0px 5px 0px black;
 	}
 	#postcode-input {
 		padding: 0;
@@ -101,15 +105,14 @@
 
 #search-service-and-loc {
 	height: 100%;
-	@include respond(mobile) {
-		height: initial;
-		box-shadow: 0px 0px 5px 0px black;
-	}
 }
 
 #backhome {
 	width: 1.8em;
-	margin-left: 0.8em;
+	margin-right: 0.8em;
+	@include respond (mobile) {
+		margin: auto;
+	}
 }
 
 #search-location-row {
