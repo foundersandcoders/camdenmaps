@@ -29,6 +29,7 @@
                             './test/frontend/acceptance/desktop/landing.e2e.js',
                             './test/frontend/acceptance/desktop/services/categories.e2e.js',
                             './test/frontend/acceptance/desktop/services/services.e2e.js',
+                            './test/frontend/acceptance/desktop/streetworks/streetworks.e2e.js',
                         // Mobile Tests below
                             './test/frontend/acceptance/mobile/landing.e2e.js',
                             './test/frontend/acceptance/mobile/services/categories.e2e.js',
@@ -121,7 +122,7 @@
     });
 
     //task for travis
-    gulp.task("travis", ["webdriver_update", "browserify", "convertyaml", "sass-production"], function () {
+    gulp.task("travis", ["browserify", "convertyaml", "sass-production"], function () {
         // nodemon({ script: 'server/server.js'})
         // .on('start', function () {
         //     return gulp.src(protractorTestFiles)

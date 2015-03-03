@@ -19,6 +19,11 @@ $large-size: 1200px;
             @content;
         }
     }
+    @else if $size == mdscreen {
+        @media (min-width: $small-size + 1) and (max-width: $large-size) {
+            @content;
+        }
+    }
     @else if $size == screen {
         @media (min-width: $large-size) {
             @content;

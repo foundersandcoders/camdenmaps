@@ -83,7 +83,7 @@ buttons = element.all(by.repeater('button in buttons'));
 
 		        		var errorMessageText = element(by.css('.errormessage')).getText();
 
-			        	expect(errorMessageText).toEqual("Sorry, it looks like that isn't a valid camden service");
+			        	expect(errorMessageText).toContain("Sorry, that is not a valid camden service");
 			        });
 		        });
 

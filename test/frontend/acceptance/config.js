@@ -13,7 +13,12 @@ var category = menu.filter(function (item) {
 })
 
 /*
-* Config
+* SELECTOR FUNCTIONS
+*/
+
+
+/*
+* EXPORTED CONFIG
 */
 
 ;(function() {
@@ -21,7 +26,8 @@ var category = menu.filter(function (item) {
     module.exports = {
     	path: {
     		main: 'http://localhost:8080/',
-    		home: '#/home'
+    		home: '#/home',
+            streetworks: 'streetworks'
     	},
     	landing: {
     		buttons: {
