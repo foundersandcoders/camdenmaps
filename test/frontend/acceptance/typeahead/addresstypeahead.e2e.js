@@ -89,7 +89,7 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 			        });
 		        });
 
-		        describe("when full address has been entered", function() {
+		        describe("when full Post Code has been entered", function() {
 		        	
 		        	afterEach(function () {
 		        		browser.executeScript('window.localStorage.clear();');
@@ -116,6 +116,38 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 						var currentUrl = browser.getCurrentUrl();
 
 			        	expect(currentUrl).toContain("location/NW1%200NE");
+			        });
+
+			        addressFoundListTests();
+		        });
+
+				describe("when full Street Name has been entered", function() {
+		        	
+		        	afterEach(function () {
+		        		browser.executeScript('window.localStorage.clear();');
+		        	})
+		        	//Does not work for streetworks
+		        	it("pressing the search button works", function() {
+			        	var input = element(by.tagName('input'));
+						input.sendKeys('Kingdon Road');
+
+						var searchButton = element.all(by.tagName('button')).get(0);
+						searchButton.click();
+		       			
+		       			var currentUrl = browser.getCurrentUrl();
+
+			        	expect(currentUrl).toContain("location/Kingdon%20Road");
+			        });
+
+		        	it("pressing enter also works", function() {
+			        	var input = element(by.tagName('input'));
+						input.sendKeys('Kingdon Road');
+						input.sendKeys(protractor.Key.ENTER);
+						input.sendKeys(protractor.Key.ENTER);
+
+						var currentUrl = browser.getCurrentUrl();
+
+			        	expect(currentUrl).toContain("location/Kingdon%20Road");
 			        });
 
 			        addressFoundListTests();
