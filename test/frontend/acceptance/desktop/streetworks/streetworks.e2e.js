@@ -15,7 +15,8 @@ var Config,
 	menuBarTests,
 	mapMarkerTests,
 	streetworks,
-	addressTypeaheadTests;
+	addressTypeaheadTests,
+	geolocationTests;
 
 Config = require("../../config.js");
 buttons = element.all(by.repeater('button in buttons'));
@@ -29,6 +30,7 @@ streetworks = buttons.get(2);
 menuBarTests = require('../../menubar/menubar.e2e.js');
 mapMarkerTests = require('../../map/map-markers.e2e.js');
 addressTypeaheadTests = require('../../typeahead/addresstypeahead.e2e.js');
+geolocationTests = require('../../geolocation/geolocation.e2e.js');
 
 (function() {
 
@@ -98,6 +100,7 @@ addressTypeaheadTests = require('../../typeahead/addresstypeahead.e2e.js');
 			menuBarTests();
 			// and here
 			addressTypeaheadTests();
+			geolocationTests();
 		});
 	});
 
