@@ -11,21 +11,28 @@ var Config,
 	streetworksImage,
 	baseUrl,
 	home,
-	streetworksUrl;
+	streetworksUrl,
+	menuBarTests,
+	mapMarkerTests,
+	streetworks,
+	addressTypeaheadTests;
 
-Config = require("../config.js");
+Config = require("../../config.js");
 buttons = element.all(by.repeater('button in buttons'));
 streetworksTitle = Config.landing.buttons.title[2];
 streetworksImage = Config.landing.buttons.imgSrc[2];
 baseUrl = Config.path.main;
 homeUrl = Config.path.home;
 streetworksUrl = Config.path.streetworks;
-
+streetworks = buttons.get(2);
+// Use (and improve!) these tests for your needs.
+menuBarTests = require('../../menubar/menubar.e2e.js');
+mapMarkerTests = require('../../map/map-markers.e2e.js');
+addressTypeaheadTests = require('../../typeahead/addresstypeahead.e2e.js');
 
 (function() {
 
 "use strict";
-
 
 	describe("Streetworks on landing page", function() {
 		
@@ -33,8 +40,7 @@ streetworksUrl = Config.path.streetworks;
 			browser.get(homeUrl);
 		});
 
-		var streetworks = buttons.get(2),
-			img = streetworks.element(by.tagName("a")).element(by.className("icon")),
+		var img = streetworks.element(by.tagName("a")).element(by.className("icon")),
 			text = streetworks.element(by.tagName("a")).element(by.tagName("h4"));
 			
 
@@ -69,70 +75,30 @@ streetworksUrl = Config.path.streetworks;
 		});
 
 		it("redirects to streetworks when you click on the streetworks icon", function(){
-
 			//click on button
 			streetworks.click();
-
 			var url = browser.getCurrentUrl();
 		
-			expect(url).toBe(baseUrl + homeUrl + streetworksUrl); 
+			expect(url).toContain(streetworksUrl); 
 		});
 
 
 	});
 
-	describe("once live streetworks has been clicked on", function() {
+	describe("once live streetworks", function() {
 
-		beforeEach(function() {			
-			browser.get(homeUrl + streetworksUrl);
+		beforeEach(function() {	
+			browser.get(homeUrl);		
+			streetworks.click();
 		});
-
-		describe("there is a menu bar with a home button", function() {
-			var home = element(by.id("backhome"));
-
-			it("which is visible", function() {
-			
-				expect(home.isDisplayed()).toBe(true);
-			});
-
-			it("which redirects to the landing page", function() {
-			
-				home.click();
-				var url = browser.getCurrentUrl();
-
-				expect(url).toEqual(baseUrl + homeUrl);
-
-			});
+	
+		describe(" has been clicked on", function() {
+			//Hello Emma :).
+			// To avoid repetition, I added your tests here.
+			menuBarTests();
+			// and here
+			addressTypeaheadTests();
 		});
-
-		describe("As a user, I want to be able to enter a Camden street name so that I can find the nearest service to me.", function() {
-		
-			var addressSearch = element(by.id("forminput")).element(by.tagName("input"));
-			var searchButton = element(by.className("glyphicon-search"));
-
-			it("the input box which is visible", function() {
-			
-				expect(addressSearch.isDisplayed()).toBe(true);
-			});
-
-			it("the search button is visible", function() {
-			
-				expect(searchButton.isDisplayed()).toBe(true);
-			});
-
-			it("Given that I have entered a Camden streetname, I can press a search button in order to search with that streetname.", function() {
-
-				var address = "NW10NE";
-
-				addressSearch.click().sendKeys(address);
-				searchButton.click();
-
-				var url = browser.getCurrentUrl();
-
-				expect(url).toEqual(baseUrl + homeUrl + streetworksUrl + "/location/" + address);
-			});
-		});
-
 	});
 
 	// describe("Once an address has been entered", function() {

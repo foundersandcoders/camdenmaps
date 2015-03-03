@@ -37,11 +37,14 @@ listItem = element.all(by.css('.list-item')).get(0);
                     
                     expect(title.isDisplayed()).toBe(true);
                 });
-                it("distace", function () {
-                    browser.pause();
-                    var distance = listItem.element(by.css(".distance"));
-                    
-                    expect(distance.isDisplayed()).toBe(true);
+                it("distace only for services, not for streetworks", function () {
+                    browser.getCurrentUrl().then(function (url) {
+                        if (url.indexOf('streetworks') === -1) {
+                            var distance = listItem.element(by.css(".distance"));
+                            
+                            expect(distance.isDisplayed()).toBe(true);
+                        }
+                    })
                 });
             });
 
@@ -58,7 +61,6 @@ listItem = element.all(by.css('.list-item')).get(0);
                     var nextHeight = listItem.getSize().then(function (data) {
                       return data.height;
                     });
-
                     expect(initialHeight).toBeLessThan(nextHeight);
                     
                 });

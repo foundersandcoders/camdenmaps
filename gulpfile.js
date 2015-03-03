@@ -29,6 +29,7 @@
                             './test/frontend/acceptance/desktop/landing.e2e.js',
                             './test/frontend/acceptance/desktop/services/categories.e2e.js',
                             './test/frontend/acceptance/desktop/services/services.e2e.js',
+                            './test/frontend/acceptance/desktop/streetworks/streetworks.e2e.js',
                         // Mobile Tests below
                             './test/frontend/acceptance/mobile/landing.e2e.js',
                             './test/frontend/acceptance/mobile/services/categories.e2e.js',

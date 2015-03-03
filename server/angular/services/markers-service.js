@@ -168,7 +168,7 @@
                     else if (size < 5 ) {
                         zoomLevel = 12;
                     }
-                    else if (scope.service.toLowerCase() === "streetworks") {
+                    else if (scope.category === "Live streetworks") {
                         zoomLevel = 15;
                     }
                     else {
