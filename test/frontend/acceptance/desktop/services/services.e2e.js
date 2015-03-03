@@ -11,7 +11,8 @@ var Config,
 	servicesTypeaheadTests,
 	addressTypeaheadTests,
 	addressSearchListTests,
-	mapMarkerTests;
+	mapMarkerTests,
+	menuBarTests;
 
 Config = require('../../config.js');
 category = Config.category;
@@ -21,6 +22,7 @@ servicesTypeaheadTests = require('../../typeahead/servicestypeahead.e2e.js');
 addressTypeaheadTests = require('../../typeahead/addresstypeahead.e2e.js');
 addressSearchListTests = require('../../list/address-search-list.e2e.js');
 mapMarkerTests = require('../../map/map-markers.e2e.js');
+menuBarTests = require('../../menubar/menubar.e2e.js');
 
 (function () {
     "use strict";
@@ -33,41 +35,7 @@ mapMarkerTests = require('../../map/map-markers.e2e.js');
 		});
 
 		servicesTypeaheadTests();
-
-		describe("Home bar appears ", function() {
-
-	        describe("containing 'Home' button ", function() {
-	        	var home = element(by.id('backhome'));
-
-	        	it("is displayed", function() {
-
-		        	expect(home.isDisplayed()).toBe(true);
-		        });
-		        it("when clicked takes you path to home", function() {
-		        	home.click();
-		        	
-		        	var url = browser.getCurrentUrl();
-
-		        	expect(url).toBe(Config.path.main + Config.path.home);
-		        });
-	        });
-
-	        it("containing correct text", function() {
-	        	var elem = element.all(by.tagName('h3')).get(0);
-	        	var text = elem.getText();
-
-	        	var testText = 'Search a service or select one category from below';
-
-	        	expect(text).toEqual(testText);
-	        });
-
-	        it("containing an input box", function() {
-	        	var input = element(by.tagName('input'));
-
-	        	expect(input.isDisplayed()).toBe(true);
-	        });
-
-	    });
+		menuBarTests();
 
     	var i,
     		length = category.length;
@@ -82,42 +50,7 @@ mapMarkerTests = require('../../map/map-markers.e2e.js');
         			categoriesRepeater.get(j).click();
         		});
 
-        		describe("Home bar appears ", function() {
-
-			        describe("containing 'Home' button ", function() {
-			        	var home = element(by.id('backhome'));
-
-			        	it("is displayed", function() {
-
-				        	expect(home.isDisplayed()).toBe(true);
-				        });
-				        it("when clicked takes you path to home", function() {
-				        	home.click();
-				        	
-				        	var url = browser.getCurrentUrl();
-
-				        	expect(url).toBe(Config.path.main + Config.path.home);
-				        });
-			        });
-
-			        it("containing correct text", function() {
-
-			        	var elem = element.all(by.tagName('h3')).get(0);
-			        	var text = elem.getText();
-
-			        	var testText = 'Search a service or select one category from below';
-
-			        	expect(text).toEqual(testText);
-			        });
-
-			        it("containing an input box", function() {
-
-			        	var input = element(by.tagName('input'));
-
-			        	expect(input.isDisplayed()).toBe(true);
-			        });
-
-			    });
+        		menuBarTests();
 
 	            it(" title is correct", function () {
 	            	var currentCat = element(by.id("category-title-of-services"));
@@ -172,42 +105,7 @@ mapMarkerTests = require('../../map/map-markers.e2e.js');
 		        			currentService.click();
 		        		});
 
-						describe("Home bar appears ", function() {
-
-					        describe("containing 'Home' button ", function() {
-					        	var home = element(by.id('backhome'));
-
-					        	it("is displayed", function() {
-
-						        	expect(home.isDisplayed()).toBe(true);
-						        });
-						        it("when clicked takes you path to home", function() {
-						        	home.click();
-						        	
-						        	var url = browser.getCurrentUrl();
-
-						        	expect(url).toBe(Config.path.main + Config.path.home);
-						        });
-					        });
-
-					        it("containing correct text", function() {
-
-					        	var elem = element.all(by.tagName('h3')).get(0);
-					        	var text = elem.getText();
-
-					        	var testText = 'Please enter your location';
-
-					        	expect(text).toContain(testText);
-					        });
-
-					        it("containing an input box", function() {
-
-					        	var input = element(by.tagName('input'));
-
-					        	expect(input.isDisplayed()).toBe(true);
-					        });
-
-					    });
+						menuBarTests();
 						
 						describe("Category ", function () {
 

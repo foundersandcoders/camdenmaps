@@ -6,13 +6,15 @@ exports.config = {
   allScriptsTimeout: 11000,
 
   specs: [
+    // Desktop Tests below
         '../acceptance/desktop/landing.e2e.js',
         '../acceptance/desktop/services/categories.e2e.js',
         '../acceptance/desktop/services/services.e2e.js',
-    // Mobil
+        '../acceptance/desktop/streetworks/streetworks.e2e.js',
+    // Mobile Tests below
         '../acceptance/mobile/landing.e2e.js',
         '../acceptance/mobile/services/categories.e2e.js',
-        '../acceptance/mobile/services/services.e2e.js',
+        '../acceptance/mobile/services/services.e2e.js'
   ],
 
   sauceUser: process.env.SAUCE_USERNAME ,
