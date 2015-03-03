@@ -15,6 +15,7 @@
                 
                 if (($location.path().indexOf("/neighbourhood") > -1) || 
                     ($location.path().indexOf("/streetworks") > -1) || 
+                    ($location.path().indexOf("/location") > -1) || 
                     ($location.path().indexOf("/search") > -1)) {
 
                     return true;
@@ -25,10 +26,12 @@
 
             this.postcodeSearch = function () {
 
-                if (($location.path().indexOf("/streetworks") > -1)|| 
+                if (($location.path().indexOf("/streetworks") > -1)||
+                    (($location.path().indexOf("/neighbourhood") === -1) && 
+                    ($location.path().indexOf("/location") > -1)) || 
                     ($location.path().indexOf("/search") > -1)) {
-
-                    return true;
+            
+;                    return true;
                 } else {
                     return false;
                 }

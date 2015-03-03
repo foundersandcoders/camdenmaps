@@ -3,11 +3,10 @@
 *
 *****************************/
 
-//todo: autofocus on huge typeahead lists
+//TODO: autofocus on huge typeahead lists
+//TODO: FOR TYPEAHEAD SEARCH: need to redraw markers on new address search on found. 
+//      (both position markers, and result markers)
 
-/*
-* HELPER FUNCTIONS:
-*/
 var resetActiveMarker = require('../lib/reset-active-marker.js');
 
 function getObject (array, selected) {
@@ -52,7 +51,9 @@ function getObject (array, selected) {
 
             if(locationCheck.addressSearch()) {
 
-                localstorage.get($scope)();
+                if ($location.path().indexOf('location') === -1) {
+                    localstorage.get($scope)();
+                }
 
                 $scope.placeholder = 'Enter an address';
                 $scope.additions = '(($viewValue))';
@@ -80,7 +81,6 @@ function getObject (array, selected) {
                     $scope.showEnterLocation = false;
                     $scope.showResetLocation = true;
 
-
                 }  else if(validate.service(selected)) {
 
                     destination = servicesHandler(selected);
@@ -100,18 +100,21 @@ function getObject (array, selected) {
             function addressHandler (array, add) {
                 //if address has been selected by typeahead, then will exist in saved array
                 var address = getObject(array, add);
-
+                
                 //if address has not been selected by typeahead
                 if (address[0] === undefined) {
                     //searchApi checks if valid address, if not, will throw error.
                     searchApi(add);
-
                     return;
                 
                 } else {
-                    //saves location in localStorage
                     localstorage.save(address);
 
+                    if (locationCheck.postcodeSearch()) {
+                        $scope.update("locationSelected", address[0].Postcode);
+                    } else {
+                        $scope.update("locationSelected", address[0].UPRN);
+                    }
                    return locationCheck.destination(address);
                 }
             }
@@ -174,6 +177,8 @@ function getObject (array, selected) {
                                 localstorage.save(address);
 
                                 $scope.updateResults(data.properties);
+                                $scope.update("locationSelected", data.location);
+
                                 $scope.result = $scope.results.filter(function (result) {
                                     return result.display.Name === $stateParams.id;
                                 })[0];

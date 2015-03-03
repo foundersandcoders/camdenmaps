@@ -68,6 +68,14 @@
 
                 }
             };
+
+            this.delete = function (address) {
+                if (localStorageService.isSupported) {
+                    localStorageService.remove("userLocation");
+                    localStorageService.remove("USER-LOCATION");
+                    localStorageService.remove("S-USER-LOCATION");
+                }
+            };
         }
     ];
 
