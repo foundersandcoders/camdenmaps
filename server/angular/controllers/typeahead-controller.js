@@ -171,7 +171,6 @@ function getObject (array, selected) {
                                 if(data.hasOwnProperty("error")) {
                                     return $scope.updateError(data.message);
                                 }
-                                console.log(address, "address in TYPEAHEAD-CONTROLLER");
                                 localstorage.save(address);
 
                                 $scope.updateResults(data.properties);
