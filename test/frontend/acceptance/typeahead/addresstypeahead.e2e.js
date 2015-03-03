@@ -121,7 +121,7 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 			        addressFoundListTests();
 		        });
 
-                describe("when an address has been searched", function() {
+                describe("when an address has been searched using the typeahead", function() {
            
                     beforeEach(function() {
                         var input = element(by.tagName('input'));
@@ -129,7 +129,6 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
                         input.sendKeys('NW1 0NE');
                         input.sendKeys(protractor.Key.ENTER);
                         input.sendKeys(protractor.Key.ENTER);
-                        var currentUrl;
 
                         browser.getCurrentUrl().then(function (url) {
                     		if (url.indexOf('streetworks') > -1) {
@@ -142,12 +141,49 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 		                        var nextService = element.all(by.repeater("service in services")).get(0);
 	                       		nextService.click();
 		                    }
-                    	})
+                    	});
                     });
 					
 					afterEach(function () {
 		        		browser.executeScript('window.localStorage.clear();');
-		        	})
+		        	});
+
+		        	it("it should be remembered for the next search", function() {
+                        var currentUrl = browser.getCurrentUrl();
+
+			        	expect(currentUrl).toContain("/NW1%200NE");
+			        });
+
+		        });
+				
+				describe("when an address has been searched using a string", function() {
+           
+                    beforeEach(function() {
+                        var input = element(by.tagName('input')),
+                        	searchButton = element.all(by.tagName('button')).get(0);
+                        
+                        input.sendKeys('NW1 0NE');
+
+						searchButton.click();
+
+
+                        browser.getCurrentUrl().then(function (url) {
+                    		if (url.indexOf('streetworks') > -1) {
+	                        	var home = element(by.id('backhome'));
+	                        	home.click();
+	                        	buttons.get(2).click();
+	                        } else {
+		                        var returnToServices = element(by.css('[ng-click="returnToServices()"]'));
+		                        returnToServices.click();
+		                        var nextService = element.all(by.repeater("service in services")).get(0);
+	                       		nextService.click();
+		                    }
+                    	});
+                    });
+					
+					afterEach(function () {
+		        		browser.executeScript('window.localStorage.clear();');
+		        	});
 
 		        	it("it should be remembered for the next search", function() {
                         var currentUrl = browser.getCurrentUrl();
