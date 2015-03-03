@@ -96,13 +96,17 @@
             json.location.Area = result.Locations.$.Area;
             
             json.properties = [];
-            if (result.hasOwnProperty("Locations")) {
+            if (result.hasOwnProperty("Locations") && 
+                    (result.Locations.hasOwnProperty("RecycleCentre") ||
+                     result.Locations.hasOwnProperty("RecyclePoint") ) {
+                console.log(result);
                 var property;
                 if (result.Locations.hasOwnProperty("RecycleCentre")) { 
                     property = "RecycleCentre";
                 } else if (result.Locations.hasOwnProperty("RecyclePoint")) {
                     property = "RecyclePoint";
                 }
+                console.log(property);
                 result.Locations[property].map(function(p) {
                     var formatProperty = {};
                     formatProperty.Latitude = p.$.Lat;
@@ -116,6 +120,11 @@
                     formatProperty = clean(formatProperty);
                     json.properties.push(formatProperty);
                 });
+            } else {
+                return {
+                    error: "Service Not Found",
+                    message: "Sorry, we could not find the right information on that location"
+                };
             }
         });
         return json;

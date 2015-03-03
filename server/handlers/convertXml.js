@@ -27,8 +27,9 @@
 
             res.on("end", function() {
                 response = converter(xml, req.params.service);
-                
-                if(!response.location.hasOwnProperty("Latitude")) {
+               
+                if(serviceArrays.recycling.indexOf(cap(req.params.service)) === -1 &&
+                        !response.location.hasOwnProperty("Latitude")) {
                     return rep({error: "Upstream Error", message: "Sorry, that postcode looks invalid" });
                 } 
                 
