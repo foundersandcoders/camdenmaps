@@ -96,7 +96,6 @@
             json.location.Area = result.Locations.$.Area;
             json.properties = [];
             
-            console.dir(result);
             if (result.hasOwnProperty("Locations") && 
                     (result.Locations.hasOwnProperty("RecycleCentre") ||
                      result.Locations.hasOwnProperty("RecyclePoint"))) {
@@ -106,7 +105,6 @@
                 } else if (result.Locations.hasOwnProperty("RecyclePoint")) {
                     property = "RecyclePoint";
                 }
-                console.log(property);
                 result.Locations[property].map(function(p) {
                     var formatProperty = {};
                     formatProperty.Latitude = p.$.Lat;
