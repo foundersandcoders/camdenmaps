@@ -48,7 +48,7 @@
                 $scope.category = {
                     title: "Live Streetworks",
                     img: "img/icons/streetworks-black.png"
-                }
+                };
 
                 $scope.showCategoriesTitle = true;
                 $scope.showServicesTitle =  false;
