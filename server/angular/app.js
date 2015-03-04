@@ -7,8 +7,8 @@
 
 ;(function () {
     "use strict";
-
-    var angular = require("angular");
+    
+    //var angular = require("angularjs-ie8-build");
     require("angular-touch");
     require("angular-bootstrap");
     require("angular-local-storage");
