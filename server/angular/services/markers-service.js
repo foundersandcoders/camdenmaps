@@ -158,6 +158,7 @@
             this.zoomCheck = function (scope) {
                 return function () {
 
+                    console.log("zoom");
                     var zoomLevel,
                         size = Object.size(scope.markers);
 
@@ -168,7 +169,7 @@
                     else if (size < 5 ) {
                         zoomLevel = 12;
                     }
-                    else if (scope.category === "Live streetworks") {
+                    else if (scope.category.title === "Live Streetworks") {
                         zoomLevel = 15;
                     }
                     else {

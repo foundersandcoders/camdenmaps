@@ -110,6 +110,9 @@
                         //will only update if the address is valid
                         //only valid addresses have a Latitude property
                         if(data.location.Latitude) {
+                            console.log($scope.category.title === "Live Streetworks");
+                            console.log($scope.category.title);
+
                             $scope.update("centre", {
                                 lat: Number($scope.locationSelected.Latitude),
                                 lng: Number($scope.locationSelected.Longitude),
