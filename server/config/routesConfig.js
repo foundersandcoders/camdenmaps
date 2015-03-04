@@ -13,7 +13,6 @@
     var cache = require("../lib/cacheprotocol.js");
     var mapUri = require("../lib/mapUri.js");
     var parsers = require("../lib/parsers.js");
-    var serviceArrays = require("../config/serverConfig.js").map.serviceArrays;
     var cap = require("../lib/capitalize.js");
 
     function cacheHandler (uriMapper, xmlParser, mapHandler, responseHandler) {
