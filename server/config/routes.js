@@ -61,11 +61,6 @@
             },
             {
                 method: "GET",
-                path: "/locations/{postcode}",
-                config: RoutesConfig.nearest.services 
-            },
-            {
-                method: "GET",
                 path: "/services/{service}/locations/{postcode}",
                 config: RoutesConfig.nearest.services 
             },
