@@ -101,6 +101,7 @@
                         $scope.update("locationSelected", data.location);
                         $scope.addMarkers();
 
+
                         //this rounds results to max two decimal place s
                         $scope.results.forEach(function(entry) {
                             entry.Distance = round(entry.Distance);
@@ -110,9 +111,6 @@
                         //will only update if the address is valid
                         //only valid addresses have a Latitude property
                         if(data.location.Latitude) {
-                            console.log($scope.category.title === "Live Streetworks");
-                            console.log($scope.category.title);
-
                             $scope.update("centre", {
                                 lat: Number($scope.locationSelected.Latitude),
                                 lng: Number($scope.locationSelected.Longitude),

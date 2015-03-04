@@ -158,7 +158,6 @@
             this.zoomCheck = function (scope) {
                 return function () {
 
-                    console.log("zoom");
                     var zoomLevel,
                         size = Object.size(scope.markers);
 
