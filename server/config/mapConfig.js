@@ -17,8 +17,7 @@
     module.exports = {
 
         nearestMapper: function nearestMapper (req, cb, err, next) {
-            
-            console.log(mapUri.mapUri(req));
+
             //redirect request to proxy
             return cb(null, mapUri.mapUri(req), { "Accept": "application/json" });
 
