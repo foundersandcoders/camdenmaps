@@ -6,7 +6,7 @@
 
         <!-- Search Box for locations & GPS -->
         
-        <div class="col-xs-12 search-box" id="search-service-and-loc">
+        <div class="col-xs-12 search-box" id="search-service-and-loc" ng-swipe-right="toggleView()">
             <div class="servicestypeahead row">
                 <div class="col-xs-12 errormessage">
                 </div>
@@ -23,9 +23,15 @@
                 </a>
             </div>
 
+            <div class="visible-xs-block">
+                <a class="change-address" ng-click="toggleView()">
+                    <p>Click to see the {{ mapOrList }}</p>
+                </a>
+            </div>
+
         </div>
 
-        <div class="col-xs-12 item-container" id="item-container">
+        <div class="col-xs-12 item-container" id="item-container" collapse-width="maplisttoggle" ng-swipe-left="toggleView()">
 
         <!-- Title of service and category that are listed in container -->
 
