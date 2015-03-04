@@ -46,7 +46,22 @@
                         if($location.path() !== path) {
                             $location.path(path);
                         }
-                    }
+                    };
+
+                    $(document).ready(function () {
+                        $(".leaflet-clickable").click(function() {
+                            var activeItem = $(".active").offset().top;
+                            $("#list-results").animate({
+                                scrollTop: activeItem
+                            },1000);
+                            //$("#list-results").scrollTop($("#list-results").scrollTop() + $(".active").position().top);
+                            //$("#list-results").scrollTop(activeItem);
+
+                            console.log("Im inside click function on marker")
+                        });
+                        
+                        console.log("marker has been clicked");
+                    });
                 };
             };
 

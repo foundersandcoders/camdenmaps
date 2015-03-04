@@ -104,6 +104,14 @@
             
             $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service");
 
+            $(".display-active-result.active").click(function(event){
+                //event.preventDefault();
+                //$('html,body').animate({scrollTop:$(this.hash).offset().top},500);
+                $(".display-active-result.active").animate({
+                    scrollTop: $(".display-active-result.active")
+                });
+            });
+
         }
     ];
 }());
