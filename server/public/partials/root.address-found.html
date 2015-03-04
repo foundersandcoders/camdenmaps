@@ -78,7 +78,7 @@
 
             <div class="list-items">
                 <div class="col-xs-12 container-list" id="list-results">
-                    <a href ui-sref="root.address-found.single-view({id: '{{ result.display.Name }}' })" ng-repeat="result in results">
+                    <a href ui-sref='root.address-found.single-view({id: "{{ result.display.Name }}" })' ng-repeat="result in results">
                         <div class="list-item col-xs-12">
                             <div class="col-md-12">
                                 <h3 id="service-title">{{ result.display.Name }}</h3>
@@ -91,7 +91,7 @@
                                         <h5 class="distance">{{ result.Distance + ' miles away'}}</h5>
                                     </div>
                                 </div>  
-                                <div ui-sref="root.address-found.single-view({id: '{{ result.display.Name }}' })" ui-sref-active="active" class="display-result" ui-view></div>
+                                <div ui-sref='root.address-found.single-view({id: "{{ result.display.Name }}" })' ui-sref-active="active" class="display-result" ui-view></div>
                             </div>
                         </div>
                     </a>
