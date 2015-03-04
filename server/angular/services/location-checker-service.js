@@ -21,7 +21,7 @@
                 } else {
                     return false;
                 }
-            } 
+            }; 
 
             this.postcodeSearch = function () {
 
@@ -32,7 +32,7 @@
                 } else {
                     return false;
                 }
-            }
+            };
 
             this.destination = function (address) {
                 return ($location.path().indexOf("/neighbourhood") > -1)
@@ -40,7 +40,13 @@
                         : ($location.path().indexOf("/streetworks") > -1)
                         ? "/home/streetworks/location/" + address[0].Postcode
                         : "/home/" + $stateParams.service + "/location/" + address[0].Postcode;
-            }
+            };
+
+            this.stringDestination = function (address) {
+                return ($location.path().indexOf("/streetworks") > -1)
+                        ? "/home/streetworks/location/" + address
+                        : "/home/" + $stateParams.service + "/location/" + address;
+            };
         }
     ];
 
