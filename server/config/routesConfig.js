@@ -13,7 +13,6 @@
     var cache = require("../lib/cacheprotocol.js");
     var mapUri = require("../lib/mapUri.js");
     var parsers = require("../lib/parsers.js");
-    var serviceArrays = require("../config/serverConfig.js").map.serviceArrays;
     var cap = require("../lib/capitalize.js");
 
     module.exports = {
@@ -65,7 +64,7 @@
                 cache.getCache(req, key, rep, mapUri.mapStreetworks, parsers.streetworksApiParser, {
                     mapUri: MapConfig.streetworksMapper,
                     onResponse: ConvertXml.convertStreetworks
-                }) 
+                });
             }
         }, 
         apiDocs: {
@@ -81,7 +80,6 @@
                         mapUri: MapConfig.localMapper,
                         onResponse: ConvertXml.convertLocalInformation
                     });
-
                 }
             }
         },

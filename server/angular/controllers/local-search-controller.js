@@ -54,13 +54,12 @@
 
                 $scope.showEnterLocation = true;
                 $scope.showResetLocation = false;
-
-            };
+            }
 
             //back button function
             $scope.searchAgain = function() {
                 return $location.path("/home");
-            }
+            };
             //back button text
             $scope.backButtonText = "Main Menu";
 
