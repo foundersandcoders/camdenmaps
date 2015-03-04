@@ -54,7 +54,10 @@
 
                     if (localStorageService.isSupported) {
                         localStorageService.remove("userLocation");
+                        // this removes addresses added using the typeahead
                         localStorageService.remove("USER-LOCATION");
+                        // this reoves addresses added as a string
+                        localStorageService.remove("S-USER-LOCATION");
                     }
 
                     scope = scope || functionScope;             

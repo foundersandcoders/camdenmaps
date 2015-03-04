@@ -12,7 +12,8 @@ var Config,
 	addressTypeaheadTests,
 	addressSearchListTests,
 	mapMarkerTests,
-	menuBarTests;
+	menuBarTests,
+	geolocationTests;
 
 Config = require('../../config.js');
 category = Config.category;
@@ -23,6 +24,7 @@ addressTypeaheadTests = require('../../typeahead/addresstypeahead.e2e.js');
 addressSearchListTests = require('../../list/address-search-list.e2e.js');
 mapMarkerTests = require('../../map/map-markers.e2e.js');
 menuBarTests = require('../../menubar/menubar.e2e.js');
+geolocationTests = require('../../geolocation/geolocation.e2e.js');
 
 (function () {
     "use strict";
@@ -173,6 +175,7 @@ menuBarTests = require('../../menubar/menubar.e2e.js');
 	        				addressTypeaheadTests();
 		            		addressSearchListTests();
 		            		mapMarkerTests();
+		            		geolocationTests();
 		            	});
 		            });
             	}

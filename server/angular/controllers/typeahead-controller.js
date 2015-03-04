@@ -171,6 +171,7 @@ function getObject (array, selected) {
                                 if(data.hasOwnProperty("error")) {
                                     return $scope.updateError(data.message);
                                 }
+                                localstorage.save(address);
 
                                 $scope.updateResults(data.properties);
                                 $scope.result = $scope.results.filter(function (result) {

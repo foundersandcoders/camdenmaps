@@ -72,7 +72,15 @@
 			}
 		}
 	}
-	// Specific div style for home-wrapper
+	// Specific div styles
+	.typeahead {
+		@include respond(mobile) {
+			width: 100%;
+		}
+		@include respond(tablet) {
+			width: 100%;
+		}
+	}
 	.home-wrapper {
 		@include respond(mobile) {
 			padding: 0 0.4em;
@@ -151,10 +159,10 @@
 		margin: auto;
 		vertical-align: sub;
 	}
-	@include respond (mobile) {
+	@include respond (tablet) {
 		width: 1.9em;
 		margin: auto;
-		vertical-align: sub;
+		vertical-align: bottom;
 	}
 }
 
