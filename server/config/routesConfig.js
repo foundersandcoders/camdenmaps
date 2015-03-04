@@ -65,7 +65,7 @@
                 cache.getCache(req, key, rep, mapUri.mapStreetworks, parsers.streetworksApiParser, {
                     mapUri: MapConfig.streetworksMapper,
                     onResponse: ConvertXml.convertStreetworks
-                }) 
+                });
             }
         }, 
         apiDocs: {
