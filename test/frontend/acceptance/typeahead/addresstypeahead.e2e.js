@@ -147,7 +147,7 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 
 						var currentUrl = browser.getCurrentUrl();
 
-			        	expect(currentUrl).toContain("location/Kingdon%20Road");
+			        	expect(currentUrl).toContain("location/NW6%201QU");
 			        });
 
 			        addressFoundListTests();
