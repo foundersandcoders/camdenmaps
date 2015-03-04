@@ -1,7 +1,7 @@
 /*************************************************
 *   STREETWORKS TESTS
 *   Description: Acceptance tests are written here
-*   Use: run tests by npm test
+*   Use: run tests by gulp acceptance-test
 **************************************************/
 
 
@@ -26,7 +26,6 @@ baseUrl = Config.path.main;
 homeUrl = Config.path.home;
 streetworksUrl = Config.path.streetworks;
 streetworks = buttons.get(2);
-// Use (and improve!) these tests for your needs.
 menuBarTests = require('../../menubar/menubar.e2e.js');
 mapMarkerTests = require('../../map/map-markers.e2e.js');
 addressTypeaheadTests = require('../../typeahead/addresstypeahead.e2e.js');
