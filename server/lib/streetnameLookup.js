@@ -5,6 +5,8 @@
     var serverConfig = require("../config/serverConfig");
     var xml2js = require("xml2js");
     var parser = new xml2js.Parser();
+    var recyclingArray = serverConfig.map.serviceArrays.recycling;
+    var capitalize = require("./capitalize");
 
     function validatePostcode(postcode) {
         if (typeof postcode !== "string") {
@@ -18,7 +20,7 @@
 
     function fetchCoordinates (req, rep, requestInjection) {
         var uri; 
-        if (req.params.postcode && !validatePostcode(req.params.postcode) ) {
+        if (req.params.postcode && !validatePostcode(req.params.postcode)) {
 
             requestInjection = requestInjection || request;
 
