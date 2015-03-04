@@ -8,6 +8,7 @@
 /*
 * HELPER FUNCTIONS:
 */
+var resetActiveMarker = require('../lib/reset-active-marker.js');
 
 function getObject (array, selected) {
     return array.filter(function (item) {
@@ -36,7 +37,8 @@ function getObject (array, selected) {
         function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind) {
 
             var menu = [],
-                uprnArray = [];
+                uprnArray = [],
+                url = $location.path();
 
             $scope.selected = '';
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
@@ -44,7 +46,7 @@ function getObject (array, selected) {
             $scope.geolocate = locationCheck.postcodeSearch();
 
             $scope.geolocateUser = function() {
-                markers.geolocateUser($scope)();
+                markers.geolocateUser($scope, url)();
                 resetActiveMarker($scope);
             };
 
@@ -74,12 +76,16 @@ function getObject (array, selected) {
                 if(locationCheck.addressSearch()) {
 
                     destination = addressHandler(uprnArray, selected);
+                
+                    $scope.showEnterLocation = false;
+                    $scope.showResetLocation = true;
+
 
                 }  else if(validate.service(selected)) {
 
                     destination = servicesHandler(selected);
                 } else {
-                    return $scope.updateError("Sorry, it looks like that isn't a valid camden service");
+                    return $scope.updateError("Sorry, that is not a valid camden service. Please search again.");
                 }
 
                 $location.path(destination);
@@ -143,20 +149,29 @@ function getObject (array, selected) {
             function searchApi (address) {
 
                 var path,
+                    service,
                     noResults = require("../lib/no-results.js"),
                     resetActiveMarker = require("../lib/reset-active-marker");
 
                 if (locationCheck.postcodeSearch()){
 
                     if(address) {
-                        apiSearch.search($stateParams.service, address)
+
+                        if ($location.path().indexOf('streetworks') > -1) {
+                            service = 'streetworks';
+                        } else {
+                            service = $stateParams.service;
+                        }
+
+                        apiSearch.search(service, address)
                             .error(function (data) {
-                                return $scope.updateError("Sorry, that doesn't appear to be a valid camden address");
+                                return $scope.updateError("Sorry, that does not appear to be a valid camden address.");
                             })
                             .success(function success (data) {
                                 if(data.hasOwnProperty("error")) {
                                     return $scope.updateError(data.message);
                                 }
+                                localstorage.save(address);
 
                                 $scope.updateResults(data.properties);
                                 $scope.result = $scope.results.filter(function (result) {

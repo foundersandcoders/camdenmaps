@@ -18,7 +18,7 @@
                     var errorBox = $('.errormessage');
 
                     scope.updateError = function (message){
-                        scope.error = message;                    
+                        scope.error = message;                 
 
                         if (message === "") {
                             element.css("display", "none");
@@ -26,13 +26,7 @@
                         } else {
  
                             element.css('display', 'block');
-
-                            if (location.path().indexOf('/neighbourhood') > -1) {
-
-                                errorBox.css('top', '3em');
-                            } else {
-                                inputBox.css('margin-top', '1.5em');
-                            }
+                            
                         }
                     };
 

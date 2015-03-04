@@ -11,18 +11,15 @@
 	}
 	display: none;
 	background: $light-pink;
-	border: 0.1em $dark-red solid;
+	border-bottom: 0.1em $dark-red solid;
+	border-top: 0.1em $dark-red solid;
 	color: $dark-red;
+	height: 2em;
+	margin-bottom: 0.5em;
+	//margin-left: -15px;
+	width: 100%;
 
-	position: static;
-	top: 7em;
-	margin-bottom: 0.5em; 
-
-	// position: absolute;
-	// top: 2.8em;
-	// height: 4em;
-	// width: 100%;
-	//margin: 0 0.7em;
+	position: relative;
 
 }
 

@@ -5,15 +5,14 @@
     <div ng-swipe-right="prevItems()" ng-swipe-left="nextItems()" class="services-and-categories col-xs-12">
 
         <!-- Search Box for locations & GPS -->
-        <div class="col-xs-12 errormessage">
-        </div>
-        
-        <div class="col-xs-12 search-box" id="search-service-and-loc">
-            <div class="servicestypeahead row">
+        <div class="col-xs-12 row search-box" id="search-service-and-loc">
+            <div class="servicestypeahead">
+                <div class="col-xs-12 errormessage">
+                </div>
                 <typeaheadsearch/>
             </div>
-            <div>
-                <h3>Please enter your location.</h3>
+            <div class="col-md-12 enter-loc">
+                <h3>Please enter your location</h3>
             </div>
         </div>
 
@@ -57,9 +56,6 @@
                                 <p>{{ result.PostCode }}</p>
                                 <div ui-sref="root.address-search.single-view({id: '{{ result.display.Name }}' })" ui-sref-active="active" class="display-result" ui-view></div>
                             </div>
- <!--                            <div ng-show="showDistance" >
-                                <h5 class="distance">{{ result.Distance + ' miles'}}</h5>
-                            </div> -->
                         </div>
                     </a>
                 </div>

@@ -10,7 +10,6 @@
 
 .services-and-categories {
 	padding: 0;
-	color: $light-blue;
 	text-align: center;
 	@include respond(mobile) {
        height: 11.5em;
@@ -123,7 +122,7 @@
 }
 
 .list-items {
-	overflow-y: scroll;
+	overflow-y: auto;
 	max-height: 35em;
 	width:100%;
 	box-shadow: 0.5em 0.5em 0.5em #888888;
@@ -187,7 +186,7 @@ h2 {
 	margin-top: 10px;
 }
 
-.change-address {
+.change-address p {
 	margin-top: 10px;
 }
 

@@ -12,10 +12,13 @@ var category = menu.filter(function (item) {
     }
 })
 
-// var servicesTypeaheadTests = require('./desktop/typeahead/servicestypeahead.e2e.js');
+/*
+* SELECTOR FUNCTIONS
+*/
+
 
 /*
-* Config
+* EXPORTED CONFIG
 */
 
 ;(function() {
@@ -24,7 +27,8 @@ var category = menu.filter(function (item) {
     	path: {
     		main: 'http://localhost:8080/',
     		home: '#/home',
-            streetworks: "/streetworks",
+            streetworks: 'streetworks'
+
     	},
     	landing: {
     		buttons: {
@@ -54,7 +58,7 @@ var category = menu.filter(function (item) {
 
             return services;
         }
-    }
+    };
 
 }());
 

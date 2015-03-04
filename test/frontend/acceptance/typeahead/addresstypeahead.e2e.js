@@ -9,19 +9,21 @@ var Config,
 	dropDownList, 
 	testList,
 	categoriesRepeater,
-	buttons;
+	buttons,
+	addressFoundListTests;
 
 Config = require('../config.js');
 category = Config.category;
 categoriesRepeater = element.all(by.repeater('category in serviceCategories'));
 buttons = element.all(by.repeater('button in buttons'));
+addressFoundListTests = require('../list/address-found-list.e2e.js');
 
 (function () {
     "use strict";
 
 	function addressTypeaheadTests () { 
 
-    	describe("services typeahead ", function () {
+    	describe("address typeahead ", function () {
 
 	        it("is displayed", function() {
 
@@ -41,7 +43,6 @@ buttons = element.all(by.repeater('button in buttons'));
 	        describe("when type starts ", function () {
 
 		        it("dropdown menu is displayed", function() {
-
 		        	var input = element(by.tagName('input'));
 	            	input.sendKeys('w');
 
@@ -52,8 +53,7 @@ buttons = element.all(by.repeater('button in buttons'));
 		        	expect(dropDownList.count()).toBeGreaterThan(1);
 		        });
 
-		        it("and changse as you keep typing", function() {
-		        	//doesn't work.
+		        it("and changes as you keep typing", function() {
 					var input = element(by.tagName('input'));
 					input.sendKeys('w');
 					dropDownList = element.all(by.repeater('match in matches'));
@@ -67,6 +67,7 @@ buttons = element.all(by.repeater('button in buttons'));
 		        });
 
 		        describe("if a wrong service has been entered ", function() {
+		        	
 		        	it("error message appears", function() {
 			        	var input = element(by.tagName('input'));
 						input.sendKeys('bytctrdvre');
@@ -76,6 +77,7 @@ buttons = element.all(by.repeater('button in buttons'));
 
 						expect(errorMessage.isDisplayed()).toBe(true);
 			        });
+
 		        	it("with the correct text", function() {
 		        		var input = element(by.tagName('input'));
 						input.sendKeys('gtydresewst');
@@ -87,19 +89,24 @@ buttons = element.all(by.repeater('button in buttons'));
 			        });
 		        });
 
-		        describe("when full address has been entered", function() {
+		        describe("when full Post Code has been entered", function() {
+		        	
+		        	afterEach(function () {
+		        		browser.executeScript('window.localStorage.clear();');
+		        	})
+		        	//Does not work for streetworks
 		        	it("pressing the search button works", function() {
 			        	var input = element(by.tagName('input'));
 						input.sendKeys('NW1 0NE');
 
 						var searchButton = element.all(by.tagName('button')).get(0);
-
 						searchButton.click();
 		       			
 		       			var currentUrl = browser.getCurrentUrl();
 
 			        	expect(currentUrl).toContain("location/NW1%200NE");
 			        });
+
 		        	it("pressing enter also works", function() {
 			        	var input = element(by.tagName('input'));
 						input.sendKeys('NW1 0NE');
@@ -110,6 +117,112 @@ buttons = element.all(by.repeater('button in buttons'));
 
 			        	expect(currentUrl).toContain("location/NW1%200NE");
 			        });
+
+			        addressFoundListTests();
+		        });
+
+				describe("when full Street Name has been entered", function() {
+		        	
+		        	afterEach(function () {
+		        		browser.executeScript('window.localStorage.clear();');
+		        	})
+		        	//Does not work for streetworks
+		        	it("pressing the search button works", function() {
+			        	var input = element(by.tagName('input'));
+						input.sendKeys('Kingdon Road');
+
+						var searchButton = element.all(by.tagName('button')).get(0);
+						searchButton.click();
+		       			
+		       			var currentUrl = browser.getCurrentUrl();
+
+			        	expect(currentUrl).toContain("location/Kingdon%20Road");
+			        });
+
+		        	it("pressing enter also works", function() {
+			        	var input = element(by.tagName('input'));
+						input.sendKeys('Kingdon Road');
+						input.sendKeys(protractor.Key.ENTER);
+						input.sendKeys(protractor.Key.ENTER);
+
+						var currentUrl = browser.getCurrentUrl();
+
+			        	expect(currentUrl).toContain("location/Kingdon%20Road");
+			        });
+
+			        addressFoundListTests();
+		        });
+
+                describe("when an address has been searched using the typeahead", function() {
+           
+                    beforeEach(function() {
+                        var input = element(by.tagName('input'));
+                        
+                        input.sendKeys('NW1 0NE');
+                        input.sendKeys(protractor.Key.ENTER);
+                        input.sendKeys(protractor.Key.ENTER);
+
+                        browser.getCurrentUrl().then(function (url) {
+                    		if (url.indexOf('streetworks') > -1) {
+	                        	var home = element(by.id('backhome'));
+	                        	home.click();
+	                        	buttons.get(2).click();
+	                        } else {
+		                        var returnToServices = element(by.css('[ng-click="returnToServices()"]'));
+		                        returnToServices.click();
+		                        var nextService = element.all(by.repeater("service in services")).get(0);
+	                       		nextService.click();
+		                    }
+                    	});
+                    });
+					
+					afterEach(function () {
+		        		browser.executeScript('window.localStorage.clear();');
+		        	});
+
+		        	it("it should be remembered for the next search", function() {
+                        var currentUrl = browser.getCurrentUrl();
+
+			        	expect(currentUrl).toContain("/NW1%200NE");
+			        });
+
+		        });
+				
+				describe("when an address has been searched using a string", function() {
+           
+                    beforeEach(function() {
+                        var input = element(by.tagName('input')),
+                        	searchButton = element.all(by.tagName('button')).get(0);
+                        
+                        input.sendKeys('NW1 0NE');
+
+						searchButton.click();
+
+
+                        browser.getCurrentUrl().then(function (url) {
+                    		if (url.indexOf('streetworks') > -1) {
+	                        	var home = element(by.id('backhome'));
+	                        	home.click();
+	                        	buttons.get(2).click();
+	                        } else {
+		                        var returnToServices = element(by.css('[ng-click="returnToServices()"]'));
+		                        returnToServices.click();
+		                        var nextService = element.all(by.repeater("service in services")).get(0);
+	                       		nextService.click();
+		                    }
+                    	});
+                    });
+					
+					afterEach(function () {
+		        		browser.executeScript('window.localStorage.clear();');
+		        	});
+
+		        	it("it should be remembered for the next search", function() {
+                        var currentUrl = browser.getCurrentUrl();
+
+			        	expect(currentUrl).toContain("/NW1%200NE");
+			        });
+
 		        });
 		    });
     	});

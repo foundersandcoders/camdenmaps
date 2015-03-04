@@ -11,7 +11,9 @@
         "$location",
         "localStorageService",
         "apiSearch",
-        function ($scope, $location, localStorageService, apiSearch) {
+        "$stateParams",
+        "buttonHandlers",
+        function ($scope, $location, localStorageService, apiSearch, $stateParams, buttonHandlers) {
 
             //model for page title
             $scope.title = "About your Neighbourhood";
@@ -31,6 +33,7 @@
                             $scope.update("error", "");
                             $scope.update("information", data.information);
                             return $location.path("/home/neighbourhood/" + $scope.address);
+
                         })
                         .error(function(data) {
                             return $scope.updateError("Sorry, it looks like something went wrong");
@@ -42,12 +45,28 @@
                 
             };
 
+            if ($stateParams.uprn) {
+
+                $scope.showEnterLocation = false;
+                $scope.showResetLocation = true;
+
+            } else {
+
+                $scope.showEnterLocation = true;
+                $scope.showResetLocation = false;
+
+            };
+
             //back button function
             $scope.searchAgain = function() {
                 return $location.path("/home");
             }
             //back button text
             $scope.backButtonText = "Main Menu";
+
+            $scope.icon = "img/icons/your-neighbourhood-black.png";
+
+            $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/neighbourhood");
 
         }
     ];

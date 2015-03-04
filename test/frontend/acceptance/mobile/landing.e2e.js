@@ -7,11 +7,13 @@
 var Config,
 	landing,
 	buttons,
-	buttonTitles;
+	buttonTitles,
+    mapLandingTests;
 
 Config = require('../config.js');
 landing = Config.landing;
 buttons = element.all(by.css('[ng-click="executeFn(button.handler)"]'));
+mapLandingTests = require('../map/map-landing.e2e.js');
 
 (function () {
     "use strict";
@@ -39,6 +41,8 @@ buttons = element.all(by.css('[ng-click="executeFn(button.handler)"]'));
             expect(logo.isDisplayed()).toBe(true);
             expect(alt).toBe('Camden');
         });
+
+        mapLandingTests();
 
         describe("There are three call to actions buttons, ", function() {
 
