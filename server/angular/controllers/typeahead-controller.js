@@ -57,6 +57,7 @@ function getObject (array, selected) {
 
                 $scope.placeholder = 'Enter an address';
                 $scope.additions = '(($viewValue))';
+                $scope.minLength = '1';
 
                 getAddresses();
 
@@ -64,6 +65,7 @@ function getObject (array, selected) {
 
                 $scope.placeholder = 'Enter a service to search';
                 $scope.additions = ' | filter:$viewValue | limitTo: 8';
+                $scope.minLength = '2';
 
                 $scope.typeaheadSearchList = menuFind.services();
             }
