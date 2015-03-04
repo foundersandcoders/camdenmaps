@@ -29,7 +29,8 @@
                 response = converter(xml, req.params.service);
                
                 if(serviceArrays.recycling.indexOf(cap(req.params.service)) === -1 &&
-                        !response.location.hasOwnProperty("Latitude")) {
+                        (!response.hasOwnProperty("location") ||
+                        !response.location.hasOwnProperty("Latitude"))) {
                     return rep({error: "Upstream Error", message: "Sorry, that postcode looks invalid" });
                 } 
                 

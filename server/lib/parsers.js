@@ -94,12 +94,12 @@
         parser.parseString(xml, function(err, result) {
             json.location = {};
             json.location.Area = result.Locations.$.Area;
-            
             json.properties = [];
+            
+            console.dir(result);
             if (result.hasOwnProperty("Locations") && 
                     (result.Locations.hasOwnProperty("RecycleCentre") ||
-                     result.Locations.hasOwnProperty("RecyclePoint") ) {
-                console.log(result);
+                     result.Locations.hasOwnProperty("RecyclePoint"))) {
                 var property;
                 if (result.Locations.hasOwnProperty("RecycleCentre")) { 
                     property = "RecycleCentre";
