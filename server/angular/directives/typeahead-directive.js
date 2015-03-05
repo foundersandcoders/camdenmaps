@@ -13,7 +13,7 @@
                 transclude: true,
             	templateUrl: 'partials/typeahead-search.html',
                 controller: 'typeahead'
-            }
+            };
         }
     ];
 }());

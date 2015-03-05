@@ -28,12 +28,11 @@
                 lat,
                 lng,
                 round = require("../lib/round.js"),
-                noResults = require("../lib/no-results.js"),
                 addressUsedinAPIcall = require("../lib/address-used-in-api-call.js");
 
             // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
-
+    
             // Ensuring that the service name in the URL is Encoded
             $stateParams.service = encodeURIComponent($scope.service);
 
@@ -43,7 +42,7 @@
             // Args will contain the marker name and other relevant information 
             $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
 
-            if($stateParams.service == "streetworks") {
+            if($stateParams.service === "streetworks") {
                 
                 $scope.category = {
                     title: "Live Streetworks",
@@ -55,7 +54,8 @@
 
                 $scope.streetworks = true;
 
-                $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/")
+                $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/");
+
                 $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/" + $stateParams.service);
 
             } else {
@@ -68,7 +68,7 @@
 
                 $scope.category = menuFind.categoryByService($scope.service);
                 $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services");
-                $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service")
+                $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service");
                 $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/" + $stateParams.service + "/search");
 
             }

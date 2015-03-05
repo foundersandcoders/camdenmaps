@@ -8,10 +8,10 @@
             <li ng-show="information['Polling Station'].Value">Polling Station: {{ information["Polling Station"].Value }} </li> 
         </ul>
          
-    	<h4 ng-show="information['Recycling Kerbside Collection Day']Value || information['Domestic Refuse Collection Day. Refuse should be put out by 7am on the morning of collection']Value" class="local-info-heading">Recycling and rubbish</h4>
+    	<h4 ng-show="information['Recycling Kerbside Collection Day'].Value || information['Domestic Refuse Collection Day. Refuse should be put out by 7am on the morning of collection'].Value" class="local-info-heading">Recycling and rubbish</h4>
     	<ul>
-            <li ng-show="information['Domestic Refuse Collection Day. Refuse should be put out by 7am on the morning of collection']Value">Domestic rubbish collection: {{ information["Domestic Refuse Collection Day. Refuse should be put out by 7am on the morning of collection"].Value }}</li>
-            <li ng-show="information['Recycling Kerbside Collection Day']Value">Recycling Collection: {{ information["Recycling Kerbside Collection Day"].Value }}</li>
+            <li ng-show="information['Domestic Refuse Collection Day. Refuse should be put out by 7am on the morning of collection'].Value">Domestic rubbish collection: {{ information["Domestic Refuse Collection Day. Refuse should be put out by 7am on the morning of collection"].Value }}</li>
+            <li ng-show="information['Recycling Kerbside Collection Day'].Value">Recycling Collection: {{ information["Recycling Kerbside Collection Day"].Value }}</li>
         </ul> 
     	<h4 ng-show="information['Conservation Area'].Value" class="local-info-heading">Environment</h4>
     	<ul>

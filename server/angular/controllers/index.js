@@ -20,5 +20,5 @@
         .controller("LocalSearchController", require("./local-search-controller.js"))
         .controller("LocalFoundController", require("./local-found-controller.js"))
         .controller("StreetworksSearchController", require("./streetworks-search-controller.js"))
-        .controller("typeahead", require("./typeahead-controller.js"))
+        .controller("typeahead", require("./typeahead-controller.js"));
 }());

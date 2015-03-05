@@ -38,14 +38,24 @@ function getObject (array, selected) {
         "localStorageService",
         function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService) {
 
-            var menu = [],
-                uprnArray = [],
+            var uprnArray = [],
                 url = $location.path();
 
             $scope.selected = '';
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
             $scope.geolocationToolTip = 'Click to use my current location';
             $scope.geolocate = locationCheck.postcodeSearch();
+            $scope.maplisttoggle = false;
+            $scope.mapOrList = 'map';
+
+            $scope.toggleView = function () {
+                $scope.maplisttoggle = !$scope.maplisttoggle
+                if ($scope.maplisttoggle) {
+                    $scope.mapOrList = 'list';
+                } else {
+                    $scope.mapOrList = 'map';
+                }
+            }
 
             $scope.geolocateUser = function() {
                 markers.geolocateUser($scope, url)();
@@ -104,9 +114,7 @@ function getObject (array, selected) {
 
             $scope.handler = function (selected) {
 
-                var service,
-                    checkService,
-                    destination;
+                var destination;
 
                 if(locationCheck.addressSearch()) {
 
@@ -187,7 +195,6 @@ function getObject (array, selected) {
 
                 var path,
                     service,
-                    noResults = require("../lib/no-results.js"),
                     resetActiveMarker = require("../lib/reset-active-marker");
 
                 if (locationCheck.postcodeSearch()){
