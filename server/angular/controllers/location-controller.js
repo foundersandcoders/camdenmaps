@@ -43,8 +43,6 @@
             // Args will contain the marker name and other relevant information 
             $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
 
-            $scope.refNumber; 
-
             if($stateParams.service == "streetworks") {
                 
                 $scope.category = {
@@ -105,28 +103,10 @@
                         $scope.update("locationSelected", data.location);
                         $scope.addMarkers();
 
-
-                        //this rounds results to max two decimal place s
+                        //this rounds results to one decimal place 
                         $scope.results.forEach(function(entry) {
                             entry.Distance = round(entry.Distance);
                         });
-
-                        var splitStreetworks = function split(fullName) {
-                            var mid  = fullName.indexOf("-");
-                            var end = fullName.length;
-                            
-                            var ref = fullName.slice((mid + 2), end);
-                            
-                            return ref;
-                        };
-
-                        // $scope.results.forEach(function(entry) {
-                        //     $scope.refNumber = splitStreetworks(entry.display.Name)();
-                        // });
-
-
-
-
                         
                         //will only update if the address is valid
                         //only valid addresses have a Latitude property

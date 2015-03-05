@@ -15,6 +15,7 @@
         "markerHandlers",
         "buttonHandlers",
         "menuFind",
+        
         function ($scope, $stateParams, $location, apiSearch, markers, markerHandlers, buttonHandlers, menuFind) {
 
             var path,
@@ -57,31 +58,35 @@
                 console.log(err);
             } 
 
-            if( noResults($scope) ) {        
+            // console.log("location", localStorage.get($scope));
+        
 
-                apiSearch.search($stateParams.service)
-                    .success(function success (data) {
-                        if(data.hasOwnProperty("error")) {
-                            // display error message
-                            $scope.updateError(data.message);
-                            // and redirect back to services menu to try again
-                            $location.path("/home/services");
-                        }
-                        $scope.updateResults(data.properties);
-                        //selects item from results with matching {id}
-                        $scope.result = $scope.results.filter(function (result) {
-                            return result.display.Name === $stateParams.id;
-                        })[0];
+            // if( noResults($scope)) {        
 
-                        $scope.addMarkers();
-                        // $scope.centre = markers.centreCheck($scope)();
-                        $scope.centre.zoom = markers.zoomCheck($scope)();
-                    })
-                    .error(function error(err) {
-                        return $scope.updateError(err.message);
-                    });
+            //     apiSearch.search($stateParams.service)
+            //         .success(function success (data) {
+            //             if(data.hasOwnProperty("error")) {
+            //                 // display error message
+            //                 $scope.updateError(data.message);
+            //                 // and redirect back to services menu to try again
+            //                 $location.path("/home/services");
+            //             }
+            //             $scope.updateResults(data.properties);
+            //             //selects item from results with matching {id}
+            //             $scope.result = $scope.results.filter(function (result) {
+            //                 return result.display.Name === $stateParams.id;
+            //             })[0];
 
-            }
+            //             console.log("SEARCH-CONTROLLER");
+            //             $scope.addMarkers();
+            //             // $scope.centre = markers.centreCheck($scope)();
+            //             $scope.centre.zoom = markers.zoomCheck($scope)();
+            //         })
+            //         .error(function error(err) {
+            //             return $scope.updateError(err.message);
+            //         });
+
+            // }
 
 
             $scope.$on('leafletDirectiveMarker.click', markerHandlers.markerClick($scope));
