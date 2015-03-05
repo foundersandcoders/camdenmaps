@@ -10,8 +10,8 @@
         "$location",
         "$stateParams",
         "$timeout",
-        "localStorageService",
-        function ($location, $stateParams, $timeout, localStorageService) {
+        "localstorage",
+        function ($location, $stateParams, $timeout, localstorage) {
 
             var current,
                 destination,
@@ -52,13 +52,7 @@
             this.changeUserLocation = function (functionScope, destination) {
                 return function (scope) { 
 
-                    if (localStorageService.isSupported) {
-                        localStorageService.remove("userLocation");
-                        // this removes addresses added using the typeahead
-                        localStorageService.remove("USER-LOCATION");
-                        // this reoves addresses added as a string
-                        localStorageService.remove("S-USER-LOCATION");
-                    }
+                    localstorage.del();
 
                     scope = scope || functionScope;             
                     scope.update("results", []);

@@ -35,8 +35,7 @@ function getObject (array, selected) {
         "menuFind",
         function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind) {
 
-            var menu = [],
-                uprnArray = [],
+            var uprnArray = [],
                 url = $location.path();
 
             $scope.selected = '';
@@ -83,9 +82,7 @@ function getObject (array, selected) {
 
             $scope.handler = function (selected) {
 
-                var service,
-                    checkService,
-                    destination;
+                var destination;
 
                 if(locationCheck.addressSearch()) {
 
@@ -166,7 +163,6 @@ function getObject (array, selected) {
 
                 var path,
                     service,
-                    noResults = require("../lib/no-results.js"),
                     resetActiveMarker = require("../lib/reset-active-marker");
 
                 if (locationCheck.postcodeSearch()){
