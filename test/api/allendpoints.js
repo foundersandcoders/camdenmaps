@@ -22,9 +22,9 @@ console.log(whichArrays("lunch club"));
 
 function dataProperties () {
     var prop = {};
-    
+
     prop.services = {};
-    prop.services.propertiesKeys = ["Street", "PostCode", "Longitude", "Latitude", "ViewLat", "ViewLng", "View", "Distance", "display"];
+    prop.services.propertiesKeys = ["Longitude", "Latitude", "ViewLat", "ViewLng", "View", "Distance", "display"];
     prop.services.locationsKeys = ["Area", "Longitude", "Latitude"];
 
     prop.parking = {};
@@ -36,9 +36,9 @@ function dataProperties () {
     prop.neighbourhood.locationsKeys = ["Area", "Latitude", "Longitude"];
 
     prop.recycling = {};
-    prop.recycling.propertiesKeys = ["Street", "Latitude", "Longitude", "display"];
+    prop.recycling.propertiesKeys = ["Latitude", "Longitude", "display"];
     prop.recycling.locationsKeys = ["Area"];
-    
+
     return prop;
 }
 
@@ -48,27 +48,27 @@ function checkService (service) {
         var servicesProperties = dataProperties().services;
 
         request(apiUrl + "/services/" + service, function(e, h, b) {
-       
-            //console.log(b); 
+
+            //console.log(b);
             var properties, location, firstProperty;
             b = JSON.parse(b);
-            
+
             t.ok(b.hasOwnProperty("properties"), "response has properties property");
             t.ok(b.hasOwnProperty("location"), "response has location property");
 
             properties = b.properties;
-            location = b.location 
+            location = b.location
 
             t.ok(properties.length >= 1, "properties is populated");
             t.equals(typeof location, "object", "location is an object");
 
             firstProperty = properties[0];
-           
+
             whichArrays(service).propertiesKeys.map(function(k) {
                 t.ok(firstProperty.hasOwnProperty(k), "properties contain " + k);
-            }); 
+            });
             whichArrays(service).locationsKeys.map(function(k) {
-            
+
                 t.ok(location.hasOwnProperty(k), "location contains " + k);
             });
 
@@ -82,28 +82,28 @@ function checkService (service) {
 function checkServiceAndPostcode (service, postcode) {
 
     test("server should return expected data structure from /services/" + service + "/locations/" + postcode + " with services and postcode", function(t) {
-    
+
         var servicesProperties = dataProperties().services;
-        
+
         request(apiUrl + "/services/" + service + "/locations/" + postcode, function(e, h, b) {
-            
+
             var properties, location, firstProperty;
             b = JSON.parse(b);
-            
+
             t.ok(b.hasOwnProperty("properties"), "response has properties property");
             t.ok(b.hasOwnProperty("location"), "response has location property");
-    
+
             properties = b.properties;
-            location = b.location 
+            location = b.location
 
             t.ok(properties.length >= 1, "properties is populated");
             t.equals(typeof location, "object", "location is an object");
 
             firstProperty = properties[0];
-           
+
             whichArrays(service).propertiesKeys.map(function(k) {
                 t.ok(firstProperty.hasOwnProperty(k), "properties contain " + k);
-            }); 
+            });
             whichArrays(service).locationsKeys.map(function(k) {
                 t.ok(location.hasOwnProperty(k), "location contains " + k);
             });
@@ -120,28 +120,28 @@ function checkServiceAndStreetname (service, streetname) {
 
 
     test("server should return expected data structure from /services/" + service + "/locations/" + streetname + " with services and streetname", function(t) {
-    
+
         var servicesProperties = dataProperties().services;
-        
+
         request(apiUrl + "/services/Lunch club/locations/well road", function(e, h, b) {
-            
+
             var properties, location, firstProperty;
             b = JSON.parse(b);
-            
+
             t.ok(b.hasOwnProperty("properties"), "response has properties property");
             t.ok(b.hasOwnProperty("location"), "response has location property");
-    
+
             properties = b.properties;
-            location = b.location 
+            location = b.location
 
             t.ok(properties.length >= 1, "properties is populated");
             t.equals(typeof location, "object", "location is an object");
 
             firstProperty = properties[0];
-           
+
             whichArrays(service).propertiesKeys.map(function(k) {
                 t.ok(firstProperty.hasOwnProperty(k), "properties contain " + k);
-            }); 
+            });
             whichArrays(service).locationsKeys.map(function(k) {
                 if(k !== "Area"){
                     t.ok(location.hasOwnProperty(k), "location contains " + k);
@@ -151,7 +151,7 @@ function checkServiceAndStreetname (service, streetname) {
             t.end();
 
         });
-    
+
     });
 
 }
@@ -160,19 +160,19 @@ server.start(function(){
     console.log("server started and tests running ...");
 
     test("server should return 200", function(t) {
-    
+
         request(apiUrl, function(e, h, b) {
-        
+
             t.equals(h.statusCode, 200, "server is working");
             t.end();
-        
+
         });
 
     });
-    
+
 
     menu.map(function(i) {
-        
+
         var item;
         if (i.type === "service") {
             item = i.title + i.text;
