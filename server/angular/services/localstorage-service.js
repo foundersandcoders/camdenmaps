@@ -17,8 +17,7 @@
 
                 return function (scope) {
                     var destination,
-                        address, 
-                        scope,
+                        address,
                         postcode;
 
                     scope = scope || functionScope;
@@ -69,7 +68,7 @@
                 }
             };
 
-            this.delete = function (address) {
+            this.del = function () {
                 if (localStorageService.isSupported) {
                     localStorageService.remove("userLocation");
                     localStorageService.remove("USER-LOCATION");

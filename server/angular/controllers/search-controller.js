@@ -17,9 +17,7 @@
         "menuFind",
         function ($scope, $stateParams, $location, apiSearch, markers, markerHandlers, buttonHandlers, menuFind) {
 
-            var path,
-                destination,
-                noResults,
+            var noResults,
                 resetActiveMarker;
 
             // Ensuring that the service that displays is decoded

@@ -22,10 +22,9 @@
                         success: function(cb) {
                             cb();
                         }
-                    }
+                    };
                 }
-                
-            }
+            };
         }
     ];
 }());

@@ -10,13 +10,11 @@
             "$location",
             "$stateParams",
             "$scope",
-            "apiSearch",
-            function ($location, $stateParams, $scope, apiSearch) {
+            function ($location, $stateParams, $scope) {
 
                 var uri,
                     marker,
                     service = encodeURIComponent($stateParams.service),
-                    noResults = require("../lib/no-results.js"),
                     resetActiveMarker = require("../lib/reset-active-marker.js");
       
                 // Ensuring that the service name in the URL is Encoded properly
@@ -76,9 +74,6 @@
 
                     $location.path(path);
                 };
-
-
-
             }
         ];
 }());
