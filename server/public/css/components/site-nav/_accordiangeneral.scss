@@ -123,12 +123,12 @@
 
 .list-items {
 	overflow-y: auto;
-	max-height: 35em;
+	max-height: 30em;
 	width:100%;
 	box-shadow: 0.5em 0.5em 0.5em #888888;
 	@include respond(mobile) {
 		// max-height: ;
-		box-shadow: 0em 3em 6em -3em #888888;	
+		box-shadow: 0em 3em 6em -3em #888888;
 	}
 }
 
