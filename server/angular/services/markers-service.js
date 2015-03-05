@@ -123,7 +123,7 @@
                                 iconUrl: "../img/icons/location-marker.png",
                             },
                             focus: true,
-                            message: "Searching for results near <strong>N1C 4AG</strong>, <br> enter another post code above for more results",
+                            message: "Searching for results near <strong>N1C 4AG</strong>, <br> enter another post code for more results",
 
                         };
                     }
@@ -168,7 +168,7 @@
                     else if (size < 5 ) {
                         zoomLevel = 12;
                     }
-                    else if (scope.category === "Live streetworks") {
+                    else if (scope.category.title === "Live Streetworks") {
                         zoomLevel = 15;
                     }
                     else {
