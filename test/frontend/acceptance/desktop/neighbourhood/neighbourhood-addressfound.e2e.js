@@ -14,7 +14,6 @@ var information = element.all(by.tagName('p'));
 
     	describe("neighbourhood information ", function () {
     		it("is displayed", function() {
-    			browser.pause();
     			var neighbourhoodInfo = element(by.id('neighbourhood-info'));
     			expect(neighbourhoodInfo.isDisplayed()).toBe(true);
 	        });
