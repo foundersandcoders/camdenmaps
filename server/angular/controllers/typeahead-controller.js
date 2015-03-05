@@ -4,8 +4,6 @@
 *****************************/
 
 //TODO: autofocus on huge typeahead lists
-//TODO: FOR TYPEAHEAD SEARCH: need to redraw markers on new address search on found. 
-//      (both position markers, and result markers)
 
 var resetActiveMarker = require('../lib/reset-active-marker.js'),
     servicesSearchWithoutAddress = require('../lib/services-search-without-address.js'),
@@ -39,7 +37,8 @@ function getObject (array, selected) {
         function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService) {
 
             var uprnArray,
-                url = $location.path();
+                url = $location.path(),
+                round = require("../lib/round.js");
 
             $scope.selected = '';
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
@@ -61,6 +60,12 @@ function getObject (array, selected) {
                 markers.geolocateUser($scope, url)();
                 resetActiveMarker($scope);
             };
+
+            // on page load, if address is in the uri, api call will be made
+            if (locationCheck.locationFound()) {
+                var address = $stateParams.address || $stateParams.uprn;
+                searchApi(address)
+            }
 
             //this replaces the api call in search controller
             //runs on services to display all the results or those around the default location
@@ -148,14 +153,15 @@ function getObject (array, selected) {
                     //searchApi checks if valid address, if not, will throw error.
                     searchApi(add);
                     return;
-                
                 } else {
                     localstorage.save(address);
 
-                    if (locationCheck.postcodeSearch()) {
+                     if (locationCheck.postcodeSearch()) {
                         $scope.update("locationSelected", address[0].Postcode);
+                         searchApi(address[0].Postcode);
                     } else {
                         $scope.update("locationSelected", address[0].UPRN);
+                        searchApi(address[0].UPRN);
                     }
                    return locationCheck.destination(address);
                 }
@@ -192,6 +198,8 @@ function getObject (array, selected) {
                 });
             }
 
+
+
             function searchApi (address) {
 
                 var path,
@@ -225,6 +233,11 @@ function getObject (array, selected) {
                                 $scope.result = $scope.results.filter(function (result) {
                                     return result.display.Name === $stateParams.id;
                                 })[0];
+
+                                // this rounds results to one decimal place 
+                                // $scope.results.forEach(function(entry) {
+                                //     entry.Distance = round(entry.Distance);
+                                // });
 
                                 $scope.addMarkers();
                                 // $scope.centre = markers.centreCheck($scope)();

@@ -31,7 +31,17 @@
                     ($location.path().indexOf("/location") > -1)) || 
                     ($location.path().indexOf("/search") > -1)) {
             
-;                    return true;
+                     return true;
+                } else {
+                    return false;
+                }
+            };
+
+            this.locationFound = function () {
+                console.log($stateParams.address);
+                if ($stateParams.uprn || $stateParams.address || $stateParams.id) {
+            
+                    return true;
                 } else {
                     return false;
                 }
