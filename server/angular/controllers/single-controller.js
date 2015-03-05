@@ -50,7 +50,7 @@
                         $scope.update("centre", {
                             lat: Number($scope.result.Latitude),
                             lng: Number($scope.result.Longitude),
-                            zoom: 14
+                            zoom: $scope.centre.zoom,
                         });
                     }
                 }

@@ -7,7 +7,9 @@
 //TODO: FOR TYPEAHEAD SEARCH: need to redraw markers on new address search on found. 
 //      (both position markers, and result markers)
 
-var resetActiveMarker = require('../lib/reset-active-marker.js');
+var resetActiveMarker = require('../lib/reset-active-marker.js'),
+    servicesSearchWithoutAddress = require('../lib/services-search-without-address.js'),
+    storageInUse = require('../lib/storage-in-use.js');
 
 function getObject (array, selected) {
     return array.filter(function (item) {
@@ -33,7 +35,8 @@ function getObject (array, selected) {
         "locationCheck",
         "validate",
         "menuFind",
-        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind) {
+        "localStorageService",
+        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService) {
 
             var uprnArray = [],
                 url = $location.path();
@@ -58,6 +61,35 @@ function getObject (array, selected) {
                 markers.geolocateUser($scope, url)();
                 resetActiveMarker($scope);
             };
+
+            //this replaces the api call in search controller
+            //runs on services to display all the results or those around the default location
+            if(!storageInUse(localStorageService)) {
+                if(servicesSearchWithoutAddress($location.path())) {
+                    apiSearch.search($stateParams.service)
+                        .success(function success (data) {
+                            if(data.hasOwnProperty("error")) {
+                                // display error message
+                                $scope.updateError(data.message);
+                                // and redirect back to services menu to try again
+                                $location.path("/home/services");
+                            }
+                            $scope.updateResults(data.properties);
+                            //selects item from results with matching {id}
+                            $scope.result = $scope.results.filter(function (result) {
+                                return result.display.Name === $stateParams.id;
+                            })[0];
+
+                            $scope.addMarkers();
+    
+                            $scope.centre.zoom = markers.zoomCheck($scope)();
+                        })
+                        .error(function error(err) {
+                            return $scope.updateError(err.message);
+                        });  
+                }
+            }
+            
 
             if(locationCheck.addressSearch()) {
 
@@ -183,6 +215,7 @@ function getObject (array, selected) {
                                 if(data.hasOwnProperty("error")) {
                                     return $scope.updateError(data.message);
                                 }
+                                
                                 localstorage.save(address);
 
                                 $scope.updateResults(data.properties);
