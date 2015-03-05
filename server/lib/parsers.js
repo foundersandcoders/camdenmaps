@@ -94,9 +94,11 @@
         parser.parseString(xml, function(err, result) {
             json.location = {};
             json.location.Area = result.Locations.$.Area;
-            
             json.properties = [];
-            if (result.hasOwnProperty("Locations")) {
+            
+            if (result.hasOwnProperty("Locations") && 
+                    (result.Locations.hasOwnProperty("RecycleCentre") ||
+                     result.Locations.hasOwnProperty("RecyclePoint"))) {
                 var property;
                 if (result.Locations.hasOwnProperty("RecycleCentre")) { 
                     property = "RecycleCentre";
@@ -116,6 +118,11 @@
                     formatProperty = clean(formatProperty);
                     json.properties.push(formatProperty);
                 });
+            } else {
+                return {
+                    error: "Service Not Found",
+                    message: "Sorry, we could not find the right information on that location"
+                };
             }
         });
         return json;

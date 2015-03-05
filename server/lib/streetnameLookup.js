@@ -18,7 +18,7 @@
 
     function fetchCoordinates (req, rep, requestInjection) {
         var uri; 
-        if (req.params.postcode && !validatePostcode(req.params.postcode) ) {
+        if (req.params.postcode && !validatePostcode(req.params.postcode)) {
 
             requestInjection = requestInjection || request;
 

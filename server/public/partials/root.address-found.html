@@ -9,34 +9,7 @@
 
             <!-- TYPEAHEAD FROM root.address-found.html -->
             <div class="servicestypeahead row">
-                <div class="home-wrapper col-md-2">
-                    <a ng-click="searchAgain()">
-                        <img id="backhome" src="../img/icons/backhome.png" alt="back">
-                    </a> 
-                </div>
-                <form>
-
-
-                    <div class="col-md-8" id="forminput">
-                        <input type="text" placeholder="{{ placeholder }}" ng-model="address" class="form-control"/>
-                    </div>
-
-                    <div class="col-md-1 submit-wrapper">
-                        <button type="submit" ng-click="search()">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </div>
-
-                </form>
-
-                <div id="yourLocation" class="col-md-1">
-                    <a href="#" tooltip-placement="right" tooltip="{{ geolocationToolTip }}">
-                        <button button ng-click="geolocateUser()">
-                            <span class="glyphicon glyphicon-screenshot"></span>
-                        </button>
-                    </a>
-                </div>
-
+                <typeaheadsearch/>
             </div>
             <div class="serv-near">
                 <h3 id="locations" class="col-md-offset-2 col-md-7">Services near {{ address }}</h3>
@@ -78,7 +51,9 @@
 
             <div class="list-items">
                 <div class="col-xs-12 container-list" id="list-results">
-                    <a href ui-sref='root.address-found.single-view({id: "{{ result.display.Name }}" })' ng-repeat="result in results">
+
+                    <a href ui-sref='root.address-found.single-view({id: "{{ result.display.Name }}" })' ui-sref-active="active" class="display-active-result" ng-repeat="result in results">
+
                         <div class="list-item col-xs-12">
                             <div class="col-md-12">
                                 <h3 class="service-title" ng-hide="streetworks">{{ result.display.Name }}</h3>

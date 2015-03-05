@@ -1,5 +1,5 @@
 /*************************************************
-*   Address TYPEAHEAD E2E TESTS
+*   NEIGHBOUDHOOD ADDRESS TYPEAHEAD E2E TESTS
 *   Description: Acceptance tests are written here
 *   Use: run tests by gulp acceptance-test
 **************************************************/
@@ -10,21 +10,19 @@ var Config,
 	testList,
 	categoriesRepeater,
 	buttons,
-	addressFoundListTests;
+	neighbourhoodAddressFound;
 
-Config = require('../config.js');
-category = Config.category;
-categoriesRepeater = element.all(by.repeater('category in serviceCategories'));
+Config = require('../../config.js');
 buttons = element.all(by.repeater('button in buttons'));
-addressFoundListTests = require('../list/address-found-list.e2e.js');
+neighbourhoodAddressFound = require('./neighbourhood-addressfound.e2e.js');
 
 (function () {
     "use strict";
 
-	function addressTypeaheadTests () { 
+	function neighbourhoodAddressTypeahead () { 
 
     	describe("address typeahead ", function () {
-
+    	
 	        it("is displayed", function() {
 
 	        	var input = element(by.tagName('input'));
@@ -67,7 +65,19 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 		        });
 
 		        describe("if a wrong service has been entered ", function() {
-		        	
+		        	beforeEach(function () {
+				        this.addMatchers({
+				            toBeCorrectText: function () {
+				                var actual = this.actual;
+
+				                this.message = function () {
+				                    return "Expected " + actual + " to be either either text";
+				                };
+				                return actual === 'Sorry, gtydresewst could not be found within Camden' || 'Sorry, something went wrong';
+				            }
+				        });
+				    });
+
 		        	it("error message appears", function() {
 			        	var input = element(by.tagName('input'));
 						input.sendKeys('bytctrdvre');
@@ -85,7 +95,7 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 
 		        		var errorMessageText = element(by.css('.errormessage')).getText();
 
-			        	expect(errorMessageText).toEqual("Sorry, gtydresewst could not be found within Camden");
+			        	expect(errorMessageText).toBeCorrectText();
 			        });
 		        });
 
@@ -93,21 +103,9 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 		        	
 		        	afterEach(function () {
 		        		browser.executeScript('window.localStorage.clear();');
-		        	})
-		        	//Does not work for streetworks
-		        	it("pressing the search button works", function() {
-			        	var input = element(by.tagName('input'));
-						input.sendKeys('NW1 0NE');
+		        	});
 
-						var searchButton = element.all(by.tagName('button')).get(0);
-						searchButton.click();
-		       			
-		       			var currentUrl = browser.getCurrentUrl();
-
-			        	expect(currentUrl).toContain("location/NW1%200NE");
-			        });
-
-		        	it("pressing enter also works", function() {
+		        	it("pressing enter works", function() {
 			        	var input = element(by.tagName('input'));
 						input.sendKeys('NW1 0NE');
 						input.sendKeys(protractor.Key.ENTER);
@@ -115,31 +113,32 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 
 						var currentUrl = browser.getCurrentUrl();
 
-			        	expect(currentUrl).toContain("location/NW1%200NE");
+			        	expect(currentUrl).toContain("5048636");
 			        });
 
-			        addressFoundListTests();
+		        	it("pressing the search button also works", function() {
+			        	var input = element(by.tagName('input'));
+						input.sendKeys('NW1 0NE');
+
+						var dropDownList = element.all(by.repeater('match in matches'));
+						var searchButton = element.all(by.tagName('button')).get(0);
+
+						dropDownList.get(0).click();
+						searchButton.click();
+		       			
+		       			var currentUrl = browser.getCurrentUrl();
+
+			        	expect(currentUrl).toContain("5048636");
+			        });
 		        });
 
 				describe("when full Street Name has been entered", function() {
 		        	
 		        	afterEach(function () {
 		        		browser.executeScript('window.localStorage.clear();');
-		        	})
-		        	//Does not work for streetworks
-		        	it("pressing the search button works", function() {
-			        	var input = element(by.tagName('input'));
-						input.sendKeys('Kingdon Road');
-
-						var searchButton = element.all(by.tagName('button')).get(0);
-						searchButton.click();
-		       			
-		       			var currentUrl = browser.getCurrentUrl();
-
-			        	expect(currentUrl).toContain("location/Kingdon%20Road");
-			        });
-
-		        	it("pressing enter also works", function() {
+		        	});
+		        	
+		        	it("pressing enter works", function() {
 			        	var input = element(by.tagName('input'));
 						input.sendKeys('Kingdon Road');
 						input.sendKeys(protractor.Key.ENTER);
@@ -147,33 +146,37 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 
 						var currentUrl = browser.getCurrentUrl();
 
-			        	expect(currentUrl).toContain("location/NW6%201QU");
+			        	expect(currentUrl).toContain("5021380");
 			        });
 
-			        addressFoundListTests();
+			        it("pressing the search button also works", function() {
+			        	var input = element(by.tagName('input'));
+						input.sendKeys('Kingdon Road');
+
+						var dropDownList = element.all(by.repeater('match in matches'));
+						var searchButton = element.all(by.tagName('button')).get(0);
+
+						dropDownList.get(0).click();
+						searchButton.click();
+		       			
+		       			var currentUrl = browser.getCurrentUrl();
+
+			        	expect(currentUrl).toContain("5021380");
+			        });
 		        });
 
                 describe("when an address has been searched using the typeahead", function() {
            
                     beforeEach(function() {
                         var input = element(by.tagName('input'));
-                        
+                        var home = element(by.id('backhome'));
+
                         input.sendKeys('NW1 0NE');
                         input.sendKeys(protractor.Key.ENTER);
                         input.sendKeys(protractor.Key.ENTER);
 
-                        browser.getCurrentUrl().then(function (url) {
-                    		if (url.indexOf('streetworks') > -1) {
-	                        	var home = element(by.id('backhome'));
-	                        	home.click();
-	                        	buttons.get(2).click();
-	                        } else {
-		                        var returnToServices = element(by.css('[ng-click="returnToServices()"]'));
-		                        returnToServices.click();
-		                        var nextService = element.all(by.repeater("service in services")).get(0);
-	                       		nextService.click();
-		                    }
-                    	});
+                    	home.click();
+                    	buttons.get(1).click();
                     });
 					
 					afterEach(function () {
@@ -182,52 +185,16 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 
 		        	it("it should be remembered for the next search", function() {
                         var currentUrl = browser.getCurrentUrl();
+                        var expectedUrl = "/5048636";
 
-			        	expect(currentUrl).toContain("/NW1%200NE");
+			        	expect(currentUrl).toContain(expectedUrl);
 			        });
 
-		        });
-				
-				describe("when an address has been searched using a string", function() {
-           
-                    beforeEach(function() {
-                        var input = element(by.tagName('input')),
-                        	searchButton = element.all(by.tagName('button')).get(0);
-                        
-                        input.sendKeys('NW1 0NE');
-
-						searchButton.click();
-
-
-                        browser.getCurrentUrl().then(function (url) {
-                    		if (url.indexOf('streetworks') > -1) {
-	                        	var home = element(by.id('backhome'));
-	                        	home.click();
-	                        	buttons.get(2).click();
-	                        } else {
-		                        var returnToServices = element(by.css('[ng-click="returnToServices()"]'));
-		                        returnToServices.click();
-		                        var nextService = element.all(by.repeater("service in services")).get(0);
-	                       		nextService.click();
-		                    }
-                    	});
-                    });
-					
-					afterEach(function () {
-		        		browser.executeScript('window.localStorage.clear();');
-		        	});
-
-		        	it("it should be remembered for the next search", function() {
-                        var currentUrl = browser.getCurrentUrl();
-
-			        	expect(currentUrl).toContain("/NW1%200NE");
-			        });
-
+		        	neighbourhoodAddressFound();
 		        });
 		    });
     	});
 	}
 
-module.exports = addressTypeaheadTests;
-
+	module.exports = neighbourhoodAddressTypeahead;
 }());
