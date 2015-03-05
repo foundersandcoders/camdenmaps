@@ -52,6 +52,12 @@
 		margin-bottom: 5px;
 		color: $dark-grey;
 	}
+	.display-active-result.active {
+		> div:first-child {
+			box-shadow: inset 0px 0px 6px 2px $orange;
+			background-color: rgba(255,255,255,0.95);
+		}
+	}
 }
 
 #service-title {

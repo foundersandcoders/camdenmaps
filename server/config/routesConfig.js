@@ -15,8 +15,22 @@
     var parsers = require("../lib/parsers.js");
     var cap = require("../lib/capitalize.js");
 
-    module.exports = {
+    function cacheHandler (uriMapper, xmlParser, mapHandler, responseHandler) {
+        return function (req, rep) {
 
+            var key = req.raw.req.url;
+            
+            cache.getCache(req, key, rep, uriMapper, xmlParser, {
+                mapUri: mapHandler,
+                onResponse: responseHandler 
+            });
+
+
+        }
+    }
+    
+    module.exports = {
+        cacheHandler: cacheHandler,
         staticFiles: {
             handler: {
                 directory: {
@@ -57,30 +71,14 @@
             },
         },
         streetworks: {
-            handler: function(req, rep) {
-                
-                var key = req.raw.req.url;
-                
-                cache.getCache(req, key, rep, mapUri.mapStreetworks, parsers.streetworksApiParser, {
-                    mapUri: MapConfig.streetworksMapper,
-                    onResponse: ConvertXml.convertStreetworks
-                });
-            }
+            handler: cacheHandler(mapUri.mapStreetworks, parsers.streetworksApiParser, MapConfig.streetworksMapper, ConvertXml.convertStreetworks)
         }, 
         apiDocs: {
             handler: handlers.showDocsHome
         },
         local: {
             information: {
-                handler: function(req, rep) {
-                    
-                    var key = req.raw.req.url;
-                    
-                    cache.getCache(req, key, rep, mapUri.mapLocalInformation, parsers.localInformationApiParser, {
-                        mapUri: MapConfig.localMapper,
-                        onResponse: ConvertXml.convertLocalInformation
-                    });
-                }
+                handler: cacheHandler(mapUri.mapLocalInformation, parsers.localInformationApiParser, MapConfig.localMapper, ConvertXml.convertLocalInformation)
             }
         },
         logging: {
@@ -91,4 +89,5 @@
         }
     };
 }());
+
 

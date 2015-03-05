@@ -36,8 +36,7 @@
                 
                 //if there is an active marker the list view was accessed
                 //by marker click and map already recentred
-                function linkResultToMarker() {                         
-
+                function linkResultToMarker() {
                     //links list result with relevant marker
                     marker = "m" + ($scope.results.indexOf($scope.result) + 1);
                     
@@ -54,7 +53,6 @@
                             zoom: 14
                         });
                     }
-
                 }
                 
                 //if single view accessed through list it will link to map

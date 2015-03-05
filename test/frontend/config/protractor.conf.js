@@ -6,42 +6,35 @@ exports.config = {
   specs: [
     // Desktop Tests below
         '../acceptance/desktop/landing.e2e.js',
-        // '../acceptance/desktop/services/categories.e2e.js',
-        // '../acceptance/desktop/services/services.e2e.js',
-        // '../acceptance/desktop/streetworks/streetworks.e2e.js',
+        '../acceptance/desktop/services/categories.e2e.js',
+        '../acceptance/desktop/services/services.e2e.js',
+        '../acceptance/desktop/streetworks/streetworks.e2e.js',
+        '../acceptance/desktop/neighbourhood/neighbourhood.e2e.js',
     // Mobile Tests below
-        // '../acceptance/mobile/landing.e2e.js',
-        // '../acceptance/mobile/services/categories.e2e.js',
-        // '../acceptance/mobile/services/services.e2e.js'
+        '../acceptance/mobile/landing.e2e.js',
+        '../acceptance/mobile/services/categories.e2e.js',
+        '../acceptance/mobile/services/services.e2e.js'
   ],
 
   sauceUser: process.env.SAUCE_USERNAME ,
 
   sauceKey: process.env.SAUCE_ACCESS_KEY, 
 
-  capabilities: {
+  multiCapabilities: [
+    {
       'browserName': 'chrome',
       'platform': 'ANY',
       'tunnel-identifier': (process.env.TRAVIS) ? process.env.TRAVIS_JOB_NUMBER : process.env.TUNNEL_ID,
       'build': process.env.TRAVIS_BUILD_NUMBER,
       'name': 'App Tests'
-  },
-
-  // multiCapabilities: [
-  //   {
-  //     'browserName': 'chrome',
-  //     'platform': 'ANY',
-  //     'tunnel-identifier': (process.env.TRAVIS) ? process.env.TRAVIS_JOB_NUMBER : process.env.TUNNEL_ID,
-  //     'build': process.env.TRAVIS_BUILD_NUMBER,
-  //     'name': 'App Tests'
-  //   }, 
-    // {
-    //   'browserName': 'firefox',
-    //   'platform': 'ANY',
-    //   'tunnel-identifier': (process.env.TRAVIS) ? process.env.TRAVIS_JOB_NUMBER : process.env.TUNNEL_ID,
-    //   'build': process.env.TRAVIS_BUILD_NUMBER,
-    //   'name': 'App Tests'
-    // }, 
+    }, 
+    {
+      'browserName': 'firefox',
+      'platform': 'ANY',
+      'tunnel-identifier': (process.env.TRAVIS) ? process.env.TRAVIS_JOB_NUMBER : process.env.TUNNEL_ID,
+      'build': process.env.TRAVIS_BUILD_NUMBER,
+      'name': 'App Tests'
+    }, 
     // {
     //   'browserName': 'safari',
     //   'platform': 'ANY',
@@ -56,7 +49,7 @@ exports.config = {
     //   'build': process.env.TRAVIS_BUILD_NUMBER,
     //   'name': 'App Tests'
     // }
-  // ],
+  ],
 
   baseUrl: Config.path.main,
 
