@@ -41,6 +41,15 @@ mapLandingTests = require('../map/map-landing.e2e.js');
             expect(alt).toBe('Camden');
         });
 
+        it("Given that I click on the logo, I am taken to the Camden site", function() {
+
+            var logo = element(by.id("camden-logo")).element(by.xpath(".."));
+            var href = logo.getAttribute("href");
+
+            expect(href).toBe("http://www.camden.gov.uk/");
+
+        });
+
         mapLandingTests();
 
         describe("There are three call to actions buttons, ", function() {
@@ -53,7 +62,7 @@ mapLandingTests = require('../map/map-landing.e2e.js');
         		it("text is correct for: " + landing.buttons.title[j], function () {
 
 	        		var text = buttons.get(j).getText();
-	                
+
 	                expect(text).toEqual(landing.buttons.title[j]);
 	            });
 
@@ -61,7 +70,7 @@ mapLandingTests = require('../map/map-landing.e2e.js');
 
 	        		var img = buttons.get(j).element(by.tagName('img'));
 	        		var src = img.getAttribute('src');
-	                
+
 	                expect(src).toEqual(Config.path.main + landing.buttons.imgSrc[j]);
 	            });
 
@@ -69,7 +78,7 @@ mapLandingTests = require('../map/map-landing.e2e.js');
 
 	        		var img = buttons.get(j).element(by.tagName('img'));
 	        		var alt = img.getAttribute('alt');
-	                
+
 	                expect(alt).toEqual(landing.buttons.title[j]);
 	            });
         	}
