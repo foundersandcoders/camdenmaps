@@ -115,6 +115,8 @@
 }
 
 .list-toggle-button {
+	display: none;
+	visibility: hidden;
 	background-color: $light-grey;
 	width: 2.5em;
 	border-radius: 0.1em;
@@ -127,5 +129,17 @@
 	border: 0.1em $menu-stroke-grey solid;
 	&:hover {
 		background-color: $hover-grey;
+	}
+}
+
+.change-address {
+	display: none;
+	visibility: hidden;
+}
+
+@media only screen and (max-device-width: 768px) {
+	.list-toggle-button, .change-address {
+		display: block;
+		visibility: visible;
 	}
 }

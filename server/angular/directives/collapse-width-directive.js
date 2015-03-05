@@ -15,14 +15,17 @@
             return {
                 link: function (scope, element, attrs) {
 
-                    //Ensure loading 
-                    var catContainer = $("#category-title-of-services");
-                    catContainer.width($window.innerWidth);
+                    // Ensure loading of element is still 100% of page.
+                    if (screen.width < 768) {
+                        var catContainer = $("#category-title-of-services");
+                        catContainer.width($window.innerWidth);
+                    
 
-                    var initialAnimSkip = true;
-                    var currentTransition;
-                    var fullWidth = $window.innerWidth;
-                    element.css("width", fullWidth);
+                        var initialAnimSkip = true;
+                        var currentTransition;
+                        var fullWidth = $window.innerWidth;
+                        element.css("width", fullWidth);
+                    }
 
                     function doTransition(change) {
                         var newTransition = $transition(element, change);
