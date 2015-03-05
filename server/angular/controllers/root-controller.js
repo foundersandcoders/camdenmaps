@@ -48,7 +48,6 @@
                     lat: 51.541,
                     lng: -0.139991,
                     zoom: 13,
-                    // autoDiscover: true
                 };
             $scope.maxbounds = {
                 northEast: {

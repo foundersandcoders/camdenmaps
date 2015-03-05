@@ -52,7 +52,10 @@
                 $scope.showCategoriesTitle = true;
                 $scope.showServicesTitle =  false;
 
+                $scope.streetworks = true;
+
                 $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/");
+
                 $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/" + $stateParams.service);
 
             } else {
@@ -100,11 +103,10 @@
                         $scope.update("locationSelected", data.location);
                         $scope.addMarkers();
 
-                        //this rounds results to max two decimal place s
+                        //this rounds results to one decimal place 
                         $scope.results.forEach(function(entry) {
                             entry.Distance = round(entry.Distance);
                         });
-
                         
                         //will only update if the address is valid
                         //only valid addresses have a Latitude property
