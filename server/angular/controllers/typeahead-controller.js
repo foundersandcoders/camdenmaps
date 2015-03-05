@@ -5,12 +5,11 @@
 
 //TODO: autofocus on huge typeahead lists
 
-var resetActiveMarker = require('../lib/reset-active-marker.js'),
-    storageInUse = require('../lib/storage-in-use.js');
+var resetActiveMarker = require('../lib/reset-active-marker.js');
 
 function getObject (array, selected) {
     return array.filter(function (item) {
-        if (selected === item.title) {
+        if (item.title.indexOf(selected) > -1) {
             return item;
         }
     });
@@ -44,15 +43,16 @@ function getObject (array, selected) {
             $scope.geolocate = locationCheck.postcodeSearch();
             $scope.maplisttoggle = false;
             $scope.mapOrList = 'map';
+            uprnArray = [];
 
             $scope.toggleView = function () {
-                $scope.maplisttoggle = !$scope.maplisttoggle
+                $scope.maplisttoggle = !$scope.maplisttoggle;
                 if ($scope.maplisttoggle) {
                     $scope.mapOrList = 'list';
                 } else {
                     $scope.mapOrList = 'map';
                 }
-            }
+            };
 
             $scope.geolocateUser = function() {
                 markers.geolocateUser($scope, url)();
@@ -62,7 +62,7 @@ function getObject (array, selected) {
             // on page load, if address is in the uri, api call will be made
             if (locationCheck.locationFound()) {
                 var address = $stateParams.address || $stateParams.uprn;
-                searchApi(address)
+                searchApi(address);
             }
 
             if(locationCheck.addressSearch()) {
@@ -116,7 +116,6 @@ function getObject (array, selected) {
                 var destination;
 
                 if(locationCheck.addressSearch()) {
-
                     destination = addressHandler(uprnArray, selected);
                 
                     $scope.showEnterLocation = false;
@@ -128,6 +127,9 @@ function getObject (array, selected) {
                 } else {
                     return $scope.updateError("Sorry, that is not a valid camden service. Please search again.");
                 }
+
+                "Chestnut Lodge  Squire's Mount NW3 1EG"
+                " Chestnut Lodge  Squire's Mount NW3 1EG"
 
                 $location.path(destination);
             };
@@ -141,7 +143,6 @@ function getObject (array, selected) {
             function addressHandler (array, add) {
                 //if address has been selected by typeahead, then will exist in saved array
                 var address = getObject(array, add);
-                
                 //if address has not been selected by typeahead
                 if (address[0] === undefined) {
                     //searchApi checks if valid address, if not, will throw error.
@@ -160,8 +161,6 @@ function getObject (array, selected) {
                    return locationCheck.destination(address);
                 }
             }
-    
-            uprnArray = []
 
             function getAddresses () {
 
@@ -191,8 +190,6 @@ function getObject (array, selected) {
                     };
                 });
             }
-
-
 
             function searchApi (address) {
 
@@ -254,7 +251,6 @@ function getObject (array, selected) {
                     }
 
                 } else {
-
                     //TODO: need a error phrase for when a non-typeahead search is done on `about your neighbourhood`
                     return $scope.updateError("Sorry, something went wrong");
                 }

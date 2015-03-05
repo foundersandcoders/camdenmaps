@@ -33,8 +33,7 @@ listItem = element.all(by.css('.list-item')).get(0);
             describe ("has the right information ", function () {
 
                 it("title", function () {
-                    // NOT FOUND
-                    var title = listItem.element(by.id("service-title"));
+                    var title = listItem.element(by.className("service-title"));
                     
                     expect(title.isDisplayed()).toBe(true);
                 });
