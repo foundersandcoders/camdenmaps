@@ -6,7 +6,6 @@
 //TODO: autofocus on huge typeahead lists
 
 var resetActiveMarker = require('../lib/reset-active-marker.js'),
-    servicesSearchWithoutAddress = require('../lib/services-search-without-address.js'),
     storageInUse = require('../lib/storage-in-use.js');
 
 function getObject (array, selected) {
@@ -37,7 +36,6 @@ function getObject (array, selected) {
         function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService) {
 
             var uprnArray,
-                url = $location.path(),
                 round = require("../lib/round.js");
 
             $scope.selected = '';
@@ -67,10 +65,14 @@ function getObject (array, selected) {
                 searchApi(address)
             }
 
-            //this replaces the api call in search controller
-            //runs on services to display all the results or those around the default location
-            if(!storageInUse(localStorageService)) {
-                if(servicesSearchWithoutAddress($location.path())) {
+            if(locationCheck.addressSearch()) {
+
+                if ($location.path().indexOf('location') === -1) {
+                    localstorage.get($scope)();
+                }
+
+                //runs on services to display all the results or those around the default location
+                if(locationCheck.serviceSearch()) {
                     apiSearch.search($stateParams.service)
                         .success(function success (data) {
                             if(data.hasOwnProperty("error")) {
@@ -92,14 +94,6 @@ function getObject (array, selected) {
                         .error(function error(err) {
                             return $scope.updateError(err.message);
                         });  
-                }
-            }
-            
-
-            if(locationCheck.addressSearch()) {
-
-                if ($location.path().indexOf('location') === -1) {
-                    localstorage.get($scope)();
                 }
 
                 $scope.placeholder = 'Enter an address';
@@ -235,9 +229,9 @@ function getObject (array, selected) {
                                 })[0];
 
                                 // this rounds results to one decimal place 
-                                // $scope.results.forEach(function(entry) {
-                                //     entry.Distance = round(entry.Distance);
-                                // });
+                                $scope.results.forEach(function(entry) {
+                                    entry.Distance = round(entry.Distance);
+                                });
 
                                 $scope.addMarkers();
                                 // $scope.centre = markers.centreCheck($scope)();
