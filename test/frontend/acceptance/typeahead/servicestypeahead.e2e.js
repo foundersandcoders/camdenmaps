@@ -59,7 +59,7 @@ buttons = element.all(by.repeater('button in buttons'));
 					dropDownList = element.all(by.repeater('match in matches'));
 					var testTextOne = dropDownList.get(0).getText();
 
-	            	input.sendKeys('poi');
+	            	input.sendKeys('i');
 	            	testList = element.all(by.repeater('match in matches'));
 					var testTextTwo = testList.get(0).getText();
 

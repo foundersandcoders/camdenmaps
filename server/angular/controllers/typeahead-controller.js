@@ -42,6 +42,17 @@ function getObject (array, selected) {
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
             $scope.geolocationToolTip = 'Click to use my current location';
             $scope.geolocate = locationCheck.postcodeSearch();
+            $scope.maplisttoggle = false;
+            $scope.mapOrList = 'map';
+
+            $scope.toggleView = function () {
+                $scope.maplisttoggle = !$scope.maplisttoggle
+                if ($scope.maplisttoggle) {
+                    $scope.mapOrList = 'list';
+                } else {
+                    $scope.mapOrList = 'map';
+                }
+            }
 
             $scope.geolocateUser = function() {
                 markers.geolocateUser($scope, url)();
