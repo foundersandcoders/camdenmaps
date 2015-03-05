@@ -99,6 +99,7 @@
 
     module.exports = {
 
+        createQuery: createQuery,
         makeRequest: makeRequest,
         registerPreHandler: registerPreHandler,
         fetchCoordinates: fetchCoordinates,
