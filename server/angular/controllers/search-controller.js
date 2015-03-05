@@ -39,9 +39,6 @@
 
             $scope.showAccordion = true;
             $scope.category = menuFind.categoryByService($scope.service);
-            // $scope.category = menuFind.categoryByService($scope.service);
-            // $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service")
-            // $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services")
 
             //change baseurl depending on whether address-found or address-search 
             $scope.baseUrl = $stateParams.address ?  "/#/home/" + $stateParams.service + 
@@ -55,37 +52,6 @@
                 // don't break if image couldn't load
                 console.log(err);
             } 
-
-            // console.log("location", localStorage.get($scope));
-        
-
-            // if( noResults($scope)) {        
-
-            //     apiSearch.search($stateParams.service)
-            //         .success(function success (data) {
-            //             if(data.hasOwnProperty("error")) {
-            //                 // display error message
-            //                 $scope.updateError(data.message);
-            //                 // and redirect back to services menu to try again
-            //                 $location.path("/home/services");
-            //             }
-            //             $scope.updateResults(data.properties);
-            //             //selects item from results with matching {id}
-            //             $scope.result = $scope.results.filter(function (result) {
-            //                 return result.display.Name === $stateParams.id;
-            //             })[0];
-
-            //             console.log("SEARCH-CONTROLLER");
-            //             $scope.addMarkers();
-            //             // $scope.centre = markers.centreCheck($scope)();
-            //             $scope.centre.zoom = markers.zoomCheck($scope)();
-            //         })
-            //         .error(function error(err) {
-            //             return $scope.updateError(err.message);
-            //         });
-
-            // }
-
 
             $scope.$on('leafletDirectiveMarker.click', markerHandlers.markerClick($scope));
 
