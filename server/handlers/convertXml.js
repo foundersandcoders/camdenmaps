@@ -31,7 +31,7 @@
                 if (req.app.hasOwnProperty("latitude") && req.app.hasOwnProperty("longitude")) {
 
                     response.location.Latitude = req.app.latitude;
-                    response.location.longitude = req.app.longitude;
+                    response.location.Longitude = req.app.longitude;
 
                 }
 
