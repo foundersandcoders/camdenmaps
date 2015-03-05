@@ -34,9 +34,10 @@
 
                             lat: Number(data.location.Latitude),
                             lng: Number(data.location.Longitude),
-                            //icon: {
-                            //    iconSize: [28]
-                            //}
+                            icon: {
+                                iconSize: [28],
+                                iconUrl: "img/icons/marker-hi.png"
+                            }
 
                         }
 
