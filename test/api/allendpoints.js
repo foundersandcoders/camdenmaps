@@ -68,8 +68,9 @@ function checkService (service) {
                 t.ok(firstProperty.hasOwnProperty(k), "properties contain " + k);
             });
             whichArrays(service).locationsKeys.map(function(k) {
-
-                t.ok(location.hasOwnProperty(k), "location contains " + k);
+                if(k !== "Street") {
+                    t.ok(location.hasOwnProperty(k), "location contains " + k);
+                }
             });
 
             t.equals(location.Area, "N1C 4AG", "location has default postcode");
