@@ -15,6 +15,10 @@
             return {
                 link: function (scope, element, attrs) {
 
+                    //Ensure loading 
+                    var catContainer = $("#category-title-of-services");
+                    catContainer.width($window.innerWidth);
+
                     var initialAnimSkip = true;
                     var currentTransition;
                     var fullWidth = $window.innerWidth;
@@ -59,15 +63,9 @@
                             collapseDone();
                             element.css({width: 0});
                         } else {
-                            // CSS transitions don't work with height: auto, so we have to manually change the height to a specific value
                             element.css({ width: fullWidth + 'px' });
-                            // element.css({ width: element[0].scrollWidth + 'px' });
-                            // console.log(element.css({ width: element[0].scrollWidth + 'px' }));
-                            //trigger reflow so a browser realizes that height was updated from auto to a specific value
                             var x = element[0].offsetHeight;
-
                             element.removeClass('collapse in').addClass('collapsing-width');
-
                             doTransition({ width: 0 }).then(collapseDone);
                         }
                     }

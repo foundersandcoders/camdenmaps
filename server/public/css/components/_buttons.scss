@@ -113,3 +113,19 @@
 #searchbutton {
 	background-color: black;
 }
+
+.list-toggle-button {
+	background-color: $light-grey;
+	width: 2.5em;
+	border-radius: 0.1em;
+	position: absolute;
+	top: 7.2em;
+	left: 0.5em;
+	box-shadow: 5px 5px 5px #888888;
+	padding: 0.2em 0;
+	text-align: center;
+	border: 0.1em $menu-stroke-grey solid;
+	&:hover {
+		background-color: $hover-grey;
+	}
+}
