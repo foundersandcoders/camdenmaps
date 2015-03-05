@@ -23,7 +23,6 @@
         angularFiles = ["./server/public/angular/*.js", "./server/public/angular/**/*.js"],
         serverTestFiles = ["./test/api/*.js"],
         htmlFiles = ["./server/public/partials/*.html", "./server/public/*.html"],
-        karmaTestFiles = ["./test/frontend/unit/*.js"],
         protractorTestFiles = [
                         // Desktop Tests below
                             './test/frontend/acceptance/desktop/landing.e2e.js',
@@ -148,7 +147,7 @@
     gulp.task('html', function() {
       return gulp.src(htmlFiles)
         .pipe(htmlmin({collapseWhitespace: true}))
-        .pipe(gulp.dest('./server/public/templates'))
+        .pipe(gulp.dest('./server/public/templates'));
     });
 
     gulp.task("dependencies", function() {

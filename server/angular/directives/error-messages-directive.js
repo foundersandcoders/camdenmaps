@@ -7,15 +7,11 @@
     "use strict";
 
     module.exports = [
-        "$location",
-        function (location) {
+        function () {
         	return {
         		restrict: 'AEC',
             	template: '<p ng-hide={{error}}>{{error}}</p>',
                 link: function(scope, element, attribute) {
-
-                    var inputBox = $('.search-box');
-                    var errorBox = $('.errormessage');
 
                     scope.updateError = function (message){
                         scope.error = message;                 
