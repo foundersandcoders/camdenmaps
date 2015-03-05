@@ -38,7 +38,7 @@ function getObject (array, selected) {
         "localStorageService",
         function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService) {
 
-            var uprnArray = [],
+            var uprnArray,
                 url = $location.path();
 
             $scope.selected = '';
@@ -160,7 +160,8 @@ function getObject (array, selected) {
                    return locationCheck.destination(address);
                 }
             }
-
+    
+            uprnArray = []
 
             function getAddresses () {
 
