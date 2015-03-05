@@ -66,7 +66,7 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 	            	expect(testTextOne).toNotEqual(testTextTwo);
 		        });
 
-		        describe("if a wrong service has been entered ", function() {
+		        describe("if a wrong address has been entered ", function() {
 		        	
 		        	it("error message appears", function() {
 			        	var input = element(by.tagName('input'));

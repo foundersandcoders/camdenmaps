@@ -33,7 +33,7 @@
 
             // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
-
+    
             // Ensuring that the service name in the URL is Encoded
             $stateParams.service = encodeURIComponent($scope.service);
 

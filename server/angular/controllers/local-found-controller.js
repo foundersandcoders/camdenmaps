@@ -15,6 +15,8 @@
 
             $scope.information;
 
+            $scope.isListShowing = true;
+
             $scope.exit = function exit() {
                 $location.path("/home/neighbourhood");
             };
