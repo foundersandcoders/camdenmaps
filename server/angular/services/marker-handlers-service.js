@@ -43,31 +43,17 @@
                         path    = scope.address ? "/home/" + service + "/location/" + scope.address + "/" + scope.markers[args.markerName].name
                                 : "/home/" + service + "/search/" + scope.markers[args.markerName].name;
 
+                        $(".leaflet-clickable").click(function() {
+                            var activeItem = $(".display-active-result").position().top;
+                            $("#list-results").animate({
+                                scrollTop: activeItem
+                            },500);
+                        });                        
+
                         if($location.path() !== path) {
                             $location.path(path);
                         }
                     };
-
-                    $(document).ready(function () {
-                        $(".leaflet-clickable").click(function() {
-                            var activeItem = $(".display-active-result.active>div").offset().top;
-                            event.preventDefault();
-                            $("#list-results").animate({
-                                scrollTop: activeItem
-                            },1000);
-
-                            // $(".display-active-result.active").animate({
-                            //     scrollTop: 0
-                            // }, 1000);
-
-                            //$("#list-results").scrollTop($("#list-results").scrollTop() + $(".active").position().top);
-                            //$("#list-results").scrollTop(activeItem);
-                            //$(".display-active-result.active").scrollTop(0);
-                            console.log("scroll log", $(".display-active-result.active").scrollTop(20));
-                            console.log("Im inside click function on marker");
-                            //return false;
-                        });
-                    });
                 };
             };
 
