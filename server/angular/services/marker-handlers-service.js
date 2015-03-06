@@ -43,10 +43,17 @@
                         path    = scope.address ? "/home/" + service + "/location/" + scope.address + "/" + scope.markers[args.markerName].name
                                 : "/home/" + service + "/search/" + scope.markers[args.markerName].name;
 
+                        $(".leaflet-clickable").click(function() {
+                            var activeItem = $(".display-active-result").position().top;
+                            $("#list-results").animate({
+                                scrollTop: activeItem
+                            },500);
+                        });                        
+
                         if($location.path() !== path) {
                             $location.path(path);
                         }
-                    }
+                    };
                 };
             };
 

@@ -24,34 +24,12 @@ paths:
           required: true
           type: string
       tags:
-        - services
+        - Services
       responses:
         200:
           description: An array of organisations that provide required service
           schema:
             $ref: 'Service'
-        default:
-          description: Unexpected error
-          schema:
-            $ref: 'Error'
-  /locations/{postcode}:
-    get:
-      summary: Location of user
-      description: |
-        The Location endpoint returns information about location of Camden postcode selected by the user.
-      parameters:
-        - name: postcode
-          in: path
-          description: Camden postcode
-          required: true
-          type: string
-      tags:
-        - Location
-      responses:
-        200:
-          description: An array containing information about location 
-          schema:
-            $ref: 'Location'
         default:
           description: Unexpected error
           schema:

@@ -14,8 +14,7 @@
         "$scope",
         "markers",
         "buttonHandlers",
-        "leafletData",
-        function ($scope, markers, buttonHandlers, leafletData) {
+        function ($scope, markers, buttonHandlers) {
 
             //stores geo data for camden borough boundaries
             var camdenBoundaries = require("../../public/lib/camdenBorough.geo.json");
@@ -26,8 +25,8 @@
 
             //this will allow marker colour to change when it is highlighted
             $scope.activeMarker = 0;
-        
-            //functions to update results and location on root level 
+
+            //functions to update results and location on root level
             $scope.updateResults = function updateResults (newResults) {
                 var i;
                 for(i = 0; i < newResults.length; i += 1) {
@@ -38,7 +37,7 @@
                 $scope.results = newResults;
             };
 
-            //used for updating centre, markers, active markers and location selected 
+            //used for updating centre, markers, active markers and location selected
             $scope.update = function update (type, newType){
                 $scope[type] = newType;
             };
@@ -49,7 +48,6 @@
                     lat: 51.541,
                     lng: -0.139991,
                     zoom: 13,
-                    // autoDiscover: true
                 };
             $scope.maxbounds = {
                 northEast: {
@@ -71,16 +69,13 @@
                 data: camdenBoundaries,
                 style: {
                     fillColor: "#E6E6E6",
-                    weight: 2, 
+                    weight: 2,
                     opacity: 1,
-                    color: 'white', 
-                    dashArray: '3', 
+                    color: 'white',
+                    dashArray: '3',
                     fillOpacity: 0.6
                 }
             };
-
-
-            $scope.sendHome = buttonHandlers.searchAgain($scope, "/home");
 
             $scope.addMarkers = markers.addMarkers($scope);
 

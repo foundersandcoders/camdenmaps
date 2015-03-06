@@ -39,6 +39,7 @@ server.connection({
 routes(server);
 
 //register prehandler extension
+require("./lib/getRecyclingCoordinates.js").registerPreHandler(server);
 require("./lib/streetnameLookup.js").registerPreHandler(server);
 
 server.register({

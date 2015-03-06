@@ -1,12 +1,12 @@
-;(function() { 
+;(function() {
     "use strict";
-    
-    // module for converting XML to JSON 
+
+    // module for converting XML to JSON
     var xml2js = require('xml2js');
     var parser = new xml2js.Parser();
     var cap = require("../lib/capitalize.js");
     var clean = require("../lib/cleanobj.js");
-    var serviceArrays = require("../config/serverConfig").map.serviceArrays; 
+    var serviceArrays = require("../config/serverConfig").map.serviceArrays;
 
     function toTitleCase(str) {
         return str.replace(/\w\S*/g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -14,18 +14,18 @@
 
     function streetworksApiParser (xml) {
         var json = {};
-        
+
         parser.parseString(xml, function(err, result) {
-            
+
             if (result.hasOwnProperty("Locations") && typeof result !== "undefined" && result.hasOwnProperty("Locations") && result.Locations.hasOwnProperty("StreetWorks")) {
                 json.location = {};
-                json.location.Area = result.Locations.$.postcode; 
+                json.location.Area = result.Locations.$.postcode;
                 json.location.Latitude = result.Locations.$.Lat;
                 json.location.Longitude = result.Locations.$.Lng;
                 json.properties = [];
                 result.Locations.StreetWorks.map(function(p) {
                     var formattedProperty = {};
-                    
+
                     formattedProperty.Longitude = p.$.Lng;
                     formattedProperty.Latitude = p.$.Lat;
                     formattedProperty.LAref = p.$.LAref;
@@ -44,13 +44,13 @@
                 });
             } else {
                 return {
-                    error: "Service Not Found", 
+                    error: "Service Not Found",
                     message: "Sorry, we could not find the right information on that service or location"
                 };
             }
         });
         return json;
-    } 
+    }
 
 
     function localInformationApiParser (xml) {
@@ -63,11 +63,11 @@
                 json.location.Area = result.Locations.AddressSearchResults[0].$.sPostcode;
                 json.location.Latitude = result.Locations.AddressSearchResults[0].$.Latitude;
                 json.location.Longitude = result.Locations.AddressSearchResults[0].$.Longitude;
-                json.location.BuildingName = result.Locations.AddressSearchResults[0].$.sBuildingName; 
-                json.location.Street = result.Locations.AddressSearchResults[0].$.sStreet; 
+                json.location.BuildingName = result.Locations.AddressSearchResults[0].$.sBuildingName;
+                json.location.Street = result.Locations.AddressSearchResults[0].$.sStreet;
             } else {
                 return {
-                    error: "Service Not Found", 
+                    error: "Service Not Found",
                     message: "Sorry, we could not find the right information on that location"
                 };
             }
@@ -80,42 +80,52 @@
                 });
             } else {
                 return {
-                    error: "Service Not Found", 
+                    error: "Service Not Found",
                     message: "Sorry, we could not find the right information on that location"
                 };
-            }  
+            }
         });
         return json;
-    } 
-    
+    }
+
     function recyclingApiParser (xml) {
         var json = {};
 
         parser.parseString(xml, function(err, result) {
             json.location = {};
             json.location.Area = result.Locations.$.Area;
-            
             json.properties = [];
-            if (result.hasOwnProperty("Locations")) {
-                var property;
-                if (result.Locations.hasOwnProperty("RecycleCentre")) { 
-                    property = "RecycleCentre";
-                } else if (result.Locations.hasOwnProperty("RecyclePoint")) {
-                    property = "RecyclePoint";
+
+            if (result.hasOwnProperty("Locations") &&
+                    (result.Locations.hasOwnProperty("RecycleCentre") ||
+                     result.Locations.hasOwnProperty("RecyclePoint"))) {
+                var properties = [];
+                if (result.Locations.hasOwnProperty("RecycleCentre")) {
+                    properties.push("RecycleCentre");
                 }
-                result.Locations[property].map(function(p) {
-                    var formatProperty = {};
-                    formatProperty.Latitude = p.$.Lat;
-                    formatProperty.Longitude = p.$.Lng;
-                    formatProperty.display = {};
-                    formatProperty.display.Name = p.$.Name;
-                    formatProperty.display.OpeningHours = p.$.OpeningHours;
-                    formatProperty.display.Telephone = p.$.Telephone;
-                    formatProperty.display.URL = p.$.URL;
-                    formatProperty.display = clean(formatProperty.display);
-                    formatProperty = clean(formatProperty);
-                    json.properties.push(formatProperty);
-                });
+                if (result.Locations.hasOwnProperty("RecyclePoint")) {
+                    properties.push("RecyclePoint");
+                }
+                properties.map(function(property) {
+                    result.Locations[property].map(function(p) {
+                        var formatProperty = {};
+                        formatProperty.Latitude = p.$.Lat;
+                        formatProperty.Longitude = p.$.Lng;
+                        formatProperty.display = {};
+                        formatProperty.display.Name = p.$.Name;
+                        formatProperty.display.OpeningHours = p.$.OpeningHours;
+                        formatProperty.display.Telephone = p.$.Telephone;
+                        formatProperty.display.URL = p.$.URL;
+                        formatProperty.display = clean(formatProperty.display);
+                        formatProperty = clean(formatProperty);
+                        json.properties.push(formatProperty);
+                    });
+                 });
+            } else {
+                return {
+                    error: "Service Not Found",
+                    message: "Sorry, we could not find the right information on that location"
+                };
             }
         });
         return json;
@@ -126,7 +136,7 @@
         parser.parseString(xml, function(err, result) {
 
             json.location = {};
-            
+
             if(typeof result !== undefined && result.hasOwnProperty("Locations") && result.Locations.hasOwnProperty("ParkingBay")) {
                 json.location.Latitude = result.Locations.$.Lat;
                 json.location.Longitude = result.Locations.$.Lng;
@@ -152,13 +162,13 @@
             }
         });
         return json;
-    } 
-               
+    }
+
     function nearestApiParser (xml) {
         var json = {};
         json.properties = [];
         parser.parseString(xml, function (err, result) {
-            if(typeof result !== "undefined" && result.hasOwnProperty("Locations") && result.Locations.hasOwnProperty("Properties") && result.Locations.Properties[0].hasOwnProperty("Property")) { 
+            if(typeof result !== "undefined" && result.hasOwnProperty("Locations") && result.Locations.hasOwnProperty("Properties") && result.Locations.Properties[0].hasOwnProperty("Property")) {
                 if(result.Locations.hasOwnProperty("AddressSearchResults")) {
                     json.location = result.Locations.AddressSearchResults[0]['$'];
                 } else {

@@ -2,53 +2,25 @@
 <!-- ROOT.ADDRESS-SEARCH BEGINS -->
 
 <div class="container-fluid">
-    <div ng-swipe-right="prevItems()" ng-swipe-left="nextItems()" class="services-and-categories col-xs-12">
+    <div class="services-and-categories col-xs-12">
 
         <!-- Search Box for locations & GPS -->
         <div class="col-xs-12 search-box" id="search-service-and-loc">
 
             <!-- TYPEAHEAD FROM root.address-found.html -->
             <div class="servicestypeahead row">
-                <div class="home-wrapper col-md-2">
-                    <a ng-click="searchAgain()">
-                        <img id="backhome" src="../img/icons/backhome.png" alt="back">
-                    </a> 
-                </div>
-                <form>
-
-
-                    <div class="col-md-8" id="forminput">
-                        <input type="text" placeholder="{{ placeholder }}" ng-model="address" class="form-control"/>
-                    </div>
-
-                    <div class="col-md-1 submit-wrapper">
-                        <button type="submit" ng-click="search()">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </div>
-
-                </form>
-
-                <div id="yourLocation" class="col-md-1">
-                    <a href="#" tooltip-placement="right" tooltip="{{ geolocationToolTip }}">
-                        <button button ng-click="geolocateUser()">
-                            <span class="glyphicon glyphicon-screenshot"></span>
-                        </button>
-                    </a>
-                </div>
-
+                <typeaheadsearch/>
             </div>
-            <div class="serv-near row">
+            <div class="serv-near">
                 <h3 id="locations" class="col-md-offset-2 col-md-7">Services near {{ address }}</h3>
-                <a class="change-address col-md-3" ng-click="changeAddress()">
-                    <p>Reset location</p>
-                </a>
             </div>
         </div>
 
+        <div ng-click="toggleView()" class="list-toggle-button visible-xs-block col-xs-1">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+        </div>
 
-
-        <div class="col-xs-12 item-container">
+        <div class="col-xs-12 item-container" collapse-width="maplisttoggle" ng-swipe-left="toggleView()">
 
         <!-- Title of service and category that are listed in container -->
 
@@ -62,7 +34,7 @@
                 <div class="col-xs-1 col-md-1 cancel" ng-show="showServicesTitle">
                     <a ng-click="returnToCategories()">X</a>
                 </div>
-            </div>    
+            </div>
 
             <div class="title-list-items row" id="service-title-of-results" ng-show="showServicesTitle">
                 <div class="col-xs-3 col-md-3">
@@ -74,30 +46,38 @@
                 <div class="col-xs-1 col-md-1 cancel">
                     <a ng-click="returnToServices()">X</a>
                 </div>
-            </div>    
+            </div>
 
             <div class="list-items">
                 <div class="col-xs-12 container-list" id="list-results">
-                    <a href ui-sref="root.address-found.single-view({id: '{{ result.display.Name }}' })" ng-repeat="result in results">
-                        <div class="list-item col-xs-12">
+
+                    <a href ui-sref='root.address-found.single-view({id: "{{ result.display.Name }}" })' ng-repeat="result in results">
+
+                        <div class="list-item col-xs-12" ui-sref='root.address-found.single-view({id: "{{ result.display.Name }}" })' ui-sref-active="display-active-result">
                             <div class="col-md-12">
-                                <h3 id="service-title">{{ result.display.Name }}</h3>
+                                <h3 class="service-title" ng-hide="streetworks">{{ result.display.Name }}</h3>
+                                <h3 class="service-title" ng-show="streetworks">{{ result.display.Street }}</h3>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6" ng-hide="streetworks">
                                         <p>{{ result.StreetNum + ' ' + result.Street }}</p>
                                         <p>{{ result.PostCode }}</p>
+                                    </div>
+
+                                    <div class="col-md-6" ng-show="streetworks">
+                                        <p ng-show= "result.display.StartDate"> <b> Start Date: </b> {{ result.display.StartDate }} </p>
+                                        <p ng-show= "result.display.EndDate"> <b> End Date </b> {{ result.display.EndDate }} </p>
                                     </div>
                                     <div class="col-md-6" ng-show="{{ result.Distance }}">
                                         <h5 class="distance">{{ result.Distance + ' miles away'}}</h5>
                                     </div>
-                                </div>  
-                                <div ui-sref="root.address-found.single-view({id: '{{ result.display.Name }}' })" ui-sref-active="active" class="display-result" ui-view></div>
+                                </div>
+                                <div ui-sref='root.address-found.single-view({id: "{{ result.display.Name }}" })' ui-sref-active="active" class="display-result" ui-view></div>
                             </div>
                         </div>
                     </a>
                 </div>
             </div>
-  
+
         </div>
     </div>
 </div>

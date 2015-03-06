@@ -18,6 +18,7 @@
 					"Car club",
 					"Cardboard and Paper",
 					"Car park",
+					"Cash point",
 					"CCTV camera",
 					"Chemist",
 					"Children's club",
