@@ -4,7 +4,7 @@ var c = require("../config/cache.js");
 var request = require("request");
 var staleTime = 1000 * 60 * 60 * 24; // one day
 
-function setCache (key, response, cache) {
+function setCache (key, response, cb, cache) {
 
     cache = cache || c;
 
