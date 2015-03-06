@@ -23,7 +23,15 @@
 		color: black;
 		padding: 0.7em 0;
 		min-height: 5em;
-		max-height: 100%;
+
+		max-height: 100%; 
+
+		.service-title {
+			color: $dark-blue;
+			font-weight: bold;
+			margin: 0 0 10px 0;
+		}
+
 	}
 	a:first-child {
 		.list-item {
@@ -60,8 +68,4 @@
 	}
 }
 
-#service-title {
-	color: $dark-blue;
-	font-weight: bold;
-	margin: 0 0 10px 0;
-}
+

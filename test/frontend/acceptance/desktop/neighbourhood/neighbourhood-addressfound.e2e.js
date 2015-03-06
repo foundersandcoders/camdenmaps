@@ -10,18 +10,34 @@ var information = element.all(by.tagName('p'));
 (function () {
     "use strict";
 
-	function neighbourhoodAddressFound () { 
+	function neighbourhoodAddressFound () {
 
-    	describe("neighbourhood information ", function () {
+    	ddescribe("neighbourhood information ", function () {
+
     		it("is displayed", function() {
     			var neighbourhoodInfo = element(by.id('neighbourhood-info'));
     			expect(neighbourhoodInfo.isDisplayed()).toBe(true);
 	        });
+
 	        it("position marker appears ", function () {
 	        	var position = element(by.css('[src="../img/icons/location-marker.png"]'));
 
 	        	expect(position.isDisplayed()).toBe(true);
 	        });
+            
+            it("given that polling station is clicked and isn't currently displaying, its corresponding marker appears", function() {
+                var pollingStation = element(by.css('[ng-click="togglePollingStation()"]'));
+
+                pollingStation.click();
+
+	        	var pollingMarker = element(by.css('[src="../img/icons/marker-hi.png"]'));
+
+                expect(pollingStation.isDisplayed()).toBe(true);
+
+                pollingStation.click();
+
+	        	expect(element(by.css('[src="../img/icons/marker-hi.png"]')).isPresent()).toBe(false);
+            });
     	});
 	}
 

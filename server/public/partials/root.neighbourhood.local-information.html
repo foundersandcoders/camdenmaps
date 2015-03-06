@@ -4,15 +4,15 @@
     	<ul  >
             <li ng-show="information.Ward.Value">Ward: <a href="{{  information.Ward.Url }} ">{{ information.Ward.Value }} </a></li>
             <li ng-show="information['European constituency'].Value">European Constituency: <a href="{{ information['European constituency'].Url }}">{{ information["European constituency"].Value }}</a></li>
-            <li ng-show="information['Parliamentary Constituency'].Value">Parlimentary Constituency: <a href="{{ information['Parliamentary Constituency'].Url}}">{{ information["Parliamentary Constituency"].Value }} </a></li> 
-            <li ng-show="information['Polling Station'].Value">Polling Station: {{ information["Polling Station"].Value }} </li> 
+            <li ng-show="information['Parliamentary Constituency'].Value">Parlimentary Constituency: <a href="{{ information['Parliamentary Constituency'].Url}}">{{ information["Parliamentary Constituency"].Value }} </a></li>
+            <li ng-show="information['Polling Station'].Value">Polling Station: <a ng-click="togglePollingStation()"> {{ information["Polling Station"].Value }}</a> </li>
         </ul>
-         
+
     	<h4 ng-show="information['Recycling Kerbside Collection Day'].Value || information['Domestic Refuse Collection Day. Refuse should be put out by 7am on the morning of collection'].Value" class="local-info-heading">Recycling and rubbish</h4>
     	<ul>
             <li ng-show="information['Domestic Refuse Collection Day. Refuse should be put out by 7am on the morning of collection'].Value">Domestic rubbish collection: {{ information["Domestic Refuse Collection Day. Refuse should be put out by 7am on the morning of collection"].Value }}</li>
             <li ng-show="information['Recycling Kerbside Collection Day'].Value">Recycling Collection: {{ information["Recycling Kerbside Collection Day"].Value }}</li>
-        </ul> 
+        </ul>
     	<h4 ng-show="information['Conservation Area'].Value" class="local-info-heading">Environment</h4>
     	<ul>
             <li ng-show="information['Conservation Area'].Value">Conservation area: <a href=" {{ information['Conservation Area'].Url }} ">{{ information["Conservation Area"].Value }}</a></li>
