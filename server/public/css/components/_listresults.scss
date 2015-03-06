@@ -23,21 +23,13 @@
 		color: black;
 		padding: 0.7em 0;
 		min-height: 5em;
-
 		max-height: 100%; 
-
-		.service-title {
-			color: $dark-blue;
-			font-weight: bold;
-			margin: 0 0 10px 0;
-		}
-
 	}
 	a:first-child {
 		.list-item {
 			@include respond(mobile) {
 				border-top: none;
-			}
+			} 
 		}
 	}
 
@@ -60,12 +52,14 @@
 		margin-bottom: 5px;
 		color: $dark-grey;
 	}
-	.display-active-result.active {
-		> div:first-child {
-			box-shadow: inset 0px 0px 6px 2px $orange;
-			background-color: rgba(255,255,255,0.95);
-		}
+	.display-active-result {
+		box-shadow: inset 0px 0px 6px 2px $orange;
+		background-color: rgba(255,255,255,0.95);
 	}
 }
 
-
+.service-title {
+	color: $dark-blue;
+	font-weight: bold;
+	margin: 0 0 10px 0;
+}
