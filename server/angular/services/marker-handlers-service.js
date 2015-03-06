@@ -50,17 +50,19 @@
 
                     $(document).ready(function () {
                         $(".leaflet-clickable").click(function() {
-                            var activeItem = $(".active").offset().top;
+                            var activeItem = $(".display-active-result.active").offset().top;
                             $("#list-results").animate({
                                 scrollTop: activeItem
                             },1000);
                             //$("#list-results").scrollTop($("#list-results").scrollTop() + $(".active").position().top);
                             //$("#list-results").scrollTop(activeItem);
+                            //$(".display-active-result.active").scrollTop(0);
+                            console.log("scroll log", $(".display-active-result.active").scrollTop(20));
 
                             console.log("Im inside click function on marker")
                         });
                         
-                        console.log("marker has been clicked");
+                        //console.log("marker has been clicked");
                     });
                 };
             };
