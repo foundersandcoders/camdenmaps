@@ -1,15 +1,17 @@
 "use strict";
 
-var cache = require("../config/cache.js");
-var request = require("request");
+var c = require("../config/cache.js");
+var r = require("request");
 var staleTime = 1000 * 60 * 60 * 24; // one day
 
-function setCache (key, response, cb) {
+function setCache (key, response, cb, cache) {
+
+    cache = cache || c;
 
     cache.set(key, response, function (err, success) {
         var currentTime = new Date().getTime();
         response.staleAt = currentTime + ( staleTime );
-        
+
         if (!err && success) {
             return cb(response);
         } else {
@@ -21,26 +23,28 @@ function setCache (key, response, cb) {
 
 function isStale(staleAt) {
    var currentTime = new Date().getTime();
-   return currentTime > staleAt; 
+   return currentTime > staleAt;
 }
 
 
-function getCache (req, key, rep, mapUri, parse, proxyConfig) {
+function getCache (req, key, rep, mapUri, parse, proxyConfig, cache, request) {
+
+    cache = cache || c;
+    request = request || r;
 
     cache.get(key, function (err, value) {
-        
-        // print error if something went wrong
+
         if (err) {
             console.log(err);
+            return rep.proxy(proxyConfig);
         }
 
-        // return cached response if it exists
         if (value.hasOwnProperty(key)) {
             rep(value[key]);
             if(isStale(value[key].staleAt)) {
                 request(mapUri(req), function(err, head, body) {
                     if(!err && head.statusCode === 200) {
-                        
+
                         var parsedResponse = parse(body, req.params.service);
                         if(!parsedResponse.hasOwnProperty("error")) {
                             setCache(key, parse(body), console.log);
@@ -50,7 +54,7 @@ function getCache (req, key, rep, mapUri, parse, proxyConfig) {
 
             }
         } else {
-            rep.proxy(proxyConfig);
+            return rep.proxy(proxyConfig);
         }
     });
 }

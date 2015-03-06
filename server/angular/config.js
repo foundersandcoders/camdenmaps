@@ -116,7 +116,7 @@
                 url: "/{uprn}",
                 templateUrl: "partials/root.neighbourhood.local-information.html",
                 controller: "LocalFoundController"
-            })
+            });
             
     }];
 }());

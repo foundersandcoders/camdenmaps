@@ -10,13 +10,11 @@
             "$location",
             "$stateParams",
             "$scope",
-            "apiSearch",
-            function ($location, $stateParams, $scope, apiSearch) {
+            function ($location, $stateParams, $scope) {
 
                 var uri,
                     marker,
                     service = encodeURIComponent($stateParams.service),
-                    noResults = require("../lib/no-results.js"),
                     resetActiveMarker = require("../lib/reset-active-marker.js");
       
                 // Ensuring that the service name in the URL is Encoded properly
@@ -38,8 +36,7 @@
                 
                 //if there is an active marker the list view was accessed
                 //by marker click and map already recentred
-                function linkResultToMarker() {                         
-
+                function linkResultToMarker() {
                     //links list result with relevant marker
                     marker = "m" + ($scope.results.indexOf($scope.result) + 1);
                     
@@ -53,10 +50,9 @@
                         $scope.update("centre", {
                             lat: Number($scope.result.Latitude),
                             lng: Number($scope.result.Longitude),
-                            zoom: 14
+                            zoom: $scope.centre.zoom,
                         });
                     }
-
                 }
                 
                 //if single view accessed through list it will link to map
@@ -78,9 +74,6 @@
 
                     $location.path(path);
                 };
-
-
-
             }
         ];
 }());

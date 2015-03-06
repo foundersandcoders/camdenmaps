@@ -1,10 +1,11 @@
 ;(function() {
     "use strict";
-   
+
     var request = require("request");
     var serverConfig = require("../config/serverConfig");
     var xml2js = require("xml2js");
     var parser = new xml2js.Parser();
+    var isRecyclingService = require("./getRecyclingCoordinates.js").isRecyclingService;
 
     function validatePostcode(postcode) {
         if (typeof postcode !== "string") {
@@ -17,8 +18,9 @@
     }
 
     function fetchCoordinates (req, rep, requestInjection) {
-        var uri; 
-        if (req.params.postcode && !validatePostcode(req.params.postcode) ) {
+        var uri;
+        if (req.params.postcode && !validatePostcode(req.params.postcode)
+           && !isRecyclingService(req.params.service)) {
 
             requestInjection = requestInjection || request;
 
@@ -26,7 +28,7 @@
             //THIS SOLUTION IS A HACK: IF A STREETNAME IS SENT, A "SECRET" REQUEST IS SENT TO THE PARKING API
             //construct request to parking API in order to get lat and lng values for street names
             uri = serverConfig.map.url.parkingApi + "?" + serverConfig.map.query.location  + req.params.postcode;
-            
+
             requestInjection(uri, function(err, res, body) {
                 parser.parseString(body, function(err, result) {
                     var path;
@@ -35,15 +37,15 @@
                         path[path.length-1] = "lats/" + result.Locations.$.Lat + "/lngs/" + result.Locations.$.Lng;
                         path = path.join("/");
                         return rep.redirect(path);
-                    
+
                     } else {
-                     
+
                         return rep({error: "Streetname Not Found", message: "Sorry, " + req.params.postcode + " could not be found within Camden"});
-                    
+
                     }
                 });
             });
-        
+
         } else {
 
             return rep.continue();
@@ -58,6 +60,6 @@
         fetchCoordinates: fetchCoordinates,
         validatePostcode: validatePostcode,
         registerPreHandler: registerPreHandler
-    } 
+    }
 
 }());

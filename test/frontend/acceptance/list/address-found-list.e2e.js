@@ -33,18 +33,38 @@ listItem = element.all(by.css('.list-item')).get(0);
             describe ("has the right information ", function () {
 
                 it("title", function () {
-                    var title = listItem.element(by.id("service-title"));
+                    browser.getCurrentUrl().then(function (url) {
+                        if (url.indexOf('streetworks') === -1) {
+                            var title = listItem.element(by.className("service-title"));
                     
-                    expect(title.isDisplayed()).toBe(true);
+                            expect(title.isDisplayed()).toBe(true);
+                        } else {
+                            var title = listItem.element(by.css('[ng-show="streetworks"]'));
+                    
+                            expect(title.isDisplayed()).toBe(true);
+                        }
+                    });
                 });
-                it("distace only for services, not for streetworks", function () {
+
+                it("distaces are displayed only for services, not for streetworks", function () {
                     browser.getCurrentUrl().then(function (url) {
                         if (url.indexOf('streetworks') === -1) {
                             var distance = listItem.element(by.css(".distance"));
                             
                             expect(distance.isDisplayed()).toBe(true);
                         }
-                    })
+                    });
+                });
+
+                it("distace are rounded to one decimal place, not for streetworks", function () {
+                    browser.getCurrentUrl().then(function (url) {
+                        if (url.indexOf('streetworks') === -1) {
+                            var distance = listItem.element(by.css(".distance"));
+                            var text = distance.getText();
+                            
+                            expect(text).toMatch(/\d*\.\d{1} miles away/);
+                        }
+                    });
                 });
             });
 

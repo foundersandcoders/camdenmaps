@@ -43,7 +43,7 @@ buttons = element.all(by.repeater('button in buttons'));
 		        it("dropdown menu is displayed", function() {
 
 		        	var input = element(by.tagName('input'));
-	            	input.sendKeys('p');
+	            	input.sendKeys('po');
 
 	            	var dropDown = element(by.css("ul.dropdown-menu"));
 	            	dropDownList = element.all(by.repeater('match in matches'));
@@ -55,11 +55,11 @@ buttons = element.all(by.repeater('button in buttons'));
 		        it("and changse as you keep typing", function() {
 
 					var input = element(by.tagName('input'));
-					input.sendKeys('p');
+					input.sendKeys('po');
 					dropDownList = element.all(by.repeater('match in matches'));
 					var testTextOne = dropDownList.get(0).getText();
 
-	            	input.sendKeys('po');
+	            	input.sendKeys('i');
 	            	testList = element.all(by.repeater('match in matches'));
 					var testTextTwo = testList.get(0).getText();
 

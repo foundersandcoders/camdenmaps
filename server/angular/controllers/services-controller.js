@@ -33,7 +33,7 @@
                 $location.path(path);
             };
 
-            $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services")
+            $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services");
 
         }
     ];

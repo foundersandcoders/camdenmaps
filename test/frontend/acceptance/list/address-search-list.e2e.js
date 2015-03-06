@@ -15,7 +15,7 @@ listItem = element.all(by.css('.list-item')).get(0);
 (function () {
     "use strict";
 
-	function addressSearchListTests () { 
+	function addressSearchListTests () {
 
     	describe("list results ", function () {
 
@@ -27,28 +27,45 @@ listItem = element.all(by.css('.list-item')).get(0);
 
                 it("title", function () {
                 	var title = listItem.element(by.id("service-title"));
-                	
+
                 	expect(title.isDisplayed()).toBe(true);
                 });
             });
 
-            describe("Once clicked, result ", function () {
-            	
-	        	it("expands", function () {
+            ddescribe("Once clicked, ", function () {
 
-	        		var initialHeight = listItem.getSize().then(function (data) {
+	        	it("result expands", function () {
+
+                    var initialHeight, nextHeight;
+
+	        		initialHeight = listItem.getSize().then(function (data) {
 					  return data.height;
 					});
 
 	        		listResults.get(0).click();
 
-	        		var nextHeight = listItem.getSize().then(function (data) {
+	        		nextHeight = listItem.getSize().then(function (data) {
 					  return data.height;
 					});
 
 					expect(initialHeight).toBeLessThan(nextHeight);
-	        		
+
 		        });
+
+                it("marker is highlighted", function () {
+
+                    var marker;
+
+                    listResults.get(0).click();
+
+                    marker = element.all(by.css(".leaflet-marker-icon"))
+                            .get(0)
+                            .getAttribute("src").then(function(attr) {
+                                expect(attr).toContain("/img/icons/yellow-marker.png");
+                            });
+
+                });
+
 		    });
 
 	    });

@@ -66,7 +66,7 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 	            	expect(testTextOne).toNotEqual(testTextTwo);
 		        });
 
-		        describe("if a wrong service has been entered ", function() {
+		        describe("if a wrong address has been entered ", function() {
 		        	
 		        	it("error message appears", function() {
 			        	var input = element(by.tagName('input'));
@@ -136,7 +136,7 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 		       			
 		       			var currentUrl = browser.getCurrentUrl();
 
-			        	expect(currentUrl).toContain("location/Kingdon%20Road");
+			        	expect(currentUrl).toContain("location/NW6%201QU");
 			        });
 
 		        	it("pressing enter also works", function() {
@@ -147,7 +147,7 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 
 						var currentUrl = browser.getCurrentUrl();
 
-			        	expect(currentUrl).toContain("location/Kingdon%20Road");
+			        	expect(currentUrl).toContain("location/NW6%201QU");
 			        });
 
 			        addressFoundListTests();
@@ -166,11 +166,12 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
                     		if (url.indexOf('streetworks') > -1) {
 	                        	var home = element(by.id('backhome'));
 	                        	home.click();
-	                        	buttons.get(2).click();
+	                        	buttons.get(2).element(by.tagName('h4')).click();
 	                        } else {
 		                        var returnToServices = element(by.css('[ng-click="returnToServices()"]'));
 		                        returnToServices.click();
-		                        var nextService = element.all(by.repeater("service in services")).get(0);
+		                        var service = element.all(by.repeater("service in services")).get(0);
+	                       		var nextService = service.element(by.tagName('img'));
 	                       		nextService.click();
 		                    }
                     	});
@@ -203,11 +204,12 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
                     		if (url.indexOf('streetworks') > -1) {
 	                        	var home = element(by.id('backhome'));
 	                        	home.click();
-	                        	buttons.get(2).click();
+	                        	buttons.get(2).element(by.tagName('h4')).click();
 	                        } else {
 		                        var returnToServices = element(by.css('[ng-click="returnToServices()"]'));
 		                        returnToServices.click();
-		                        var nextService = element.all(by.repeater("service in services")).get(0);
+		                        var service = element.all(by.repeater("service in services")).get(0);
+	                       		var nextService = service.element(by.tagName('img'));
 	                       		nextService.click();
 		                    }
                     	});
