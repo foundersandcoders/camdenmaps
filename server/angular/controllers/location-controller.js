@@ -3,8 +3,6 @@
 *
 ******************************/
 
-//TODO: Add handler for List Results and Search Again buttons
-
 ;(function () {
     "use strict";
 
@@ -13,12 +11,11 @@
         "$stateParams",
         "markers",
         "markerHandlers",
-        "apiSearch",
         "buttonHandlers",
         "$location",
         "menuFind",
         "validate",
-        function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers, $location, menuFind, validate) {
+        function ($scope, $stateParams, markers, markerHandlers, buttonHandlers, $location, menuFind, validate) {
 
             //model for page title
             $scope.title = "Find your Nearest...";
@@ -89,43 +86,6 @@
                     lat = null;
                     lng = null;
                 }
-
-                apiSearch.search($stateParams.service, $stateParams.address, lat, lng)
-
-                    .success(function success (data) {
-
-                        if(data.hasOwnProperty("error")){
-                            $scope.updateError(data.message);
-                            return $location.path($location.path().substr(0, $location.path().indexOf("location")) + "search");
-                        }
-
-                        $scope.updateResults(data.properties);
-                        $scope.update("locationSelected", data.location);
-                        $scope.addMarkers();
-
-                        //this rounds results to one decimal place 
-                        $scope.results.forEach(function(entry) {
-                            entry.Distance = round(entry.Distance);
-                        });
-                        
-                        //will only update if the address is valid
-                        //only valid addresses have a Latitude property
-                        if(data.location.Latitude) {
-                            $scope.update("centre", {
-                                lat: Number($scope.locationSelected.Latitude),
-                                lng: Number($scope.locationSelected.Longitude),
-                                zoom: markers.zoomCheck($scope)()
-                            });
-                        } else {
-                            $scope.updateError("Sorry, we couldn't find the right information for this location");
-                            return $location.path($location.path().substr(0, $location.path().indexOf("location")) + "search");
-                        }
-
-                    })
-                    .error(function error(err) {
-                        return $scope.updateError(err.message);
-
-                    });
             }
 
             //this will uppercase postcodes and capitalise street addresses 

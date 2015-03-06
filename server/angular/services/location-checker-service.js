@@ -9,7 +9,8 @@
     module.exports = [
         "$location",
         "$stateParams",
-        function ($location, $stateParams) {
+        "apiSearch",
+        function ($location, $stateParams, apiSearch) {
 
             this.addressSearch = function () {
                 
@@ -31,10 +32,34 @@
                     ($location.path().indexOf("/location") > -1)) || 
                     ($location.path().indexOf("/search") > -1)) {
             
-;                    return true;
+                     return true;
                 } else {
                     return false;
                 }
+            };
+
+            this.locationFound = function () {
+                if ($stateParams.uprn || $stateParams.address || $stateParams.id) {
+            
+                    return true;
+                } else {
+                    return false;
+                }
+            };
+
+            this.serviceSearch = function () {
+                var url = $location.path(),
+                    streetworks = (url.indexOf("streetworks") > -1),
+                    neighbourhood = (url.indexOf("neighbourhood") > -1),
+                    location = (url.indexOf("location") > -1),
+                    search = (url.indexOf("search") > -1);
+
+                if(search && !streetworks && !neighbourhood && !location) {
+                    return true;
+                } else {
+                    return false;
+                }
+
             };
 
             this.destination = function (address) {

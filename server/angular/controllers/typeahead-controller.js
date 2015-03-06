@@ -4,16 +4,12 @@
 *****************************/
 
 //TODO: autofocus on huge typeahead lists
-//TODO: FOR TYPEAHEAD SEARCH: need to redraw markers on new address search on found. 
-//      (both position markers, and result markers)
 
-var resetActiveMarker = require('../lib/reset-active-marker.js'),
-    servicesSearchWithoutAddress = require('../lib/services-search-without-address.js'),
-    storageInUse = require('../lib/storage-in-use.js');
+var resetActiveMarker = require('../lib/reset-active-marker.js');
 
 function getObject (array, selected) {
     return array.filter(function (item) {
-        if (selected === item.title) {
+        if (item.title.indexOf(selected) > -1) {
             return item;
         }
     });
@@ -38,8 +34,8 @@ function getObject (array, selected) {
         "localStorageService",
         function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService) {
 
-            var uprnArray = [],
-                url = $location.path();
+            var uprnArray,
+                round = require("../lib/round.js");
 
             $scope.selected = '';
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
@@ -47,25 +43,36 @@ function getObject (array, selected) {
             $scope.geolocate = locationCheck.postcodeSearch();
             $scope.maplisttoggle = false;
             $scope.mapOrList = 'map';
+            uprnArray = [];
 
             $scope.toggleView = function () {
-                $scope.maplisttoggle = !$scope.maplisttoggle
+                $scope.maplisttoggle = !$scope.maplisttoggle;
                 if ($scope.maplisttoggle) {
                     $scope.mapOrList = 'list';
                 } else {
                     $scope.mapOrList = 'map';
                 }
-            }
+            };
 
             $scope.geolocateUser = function() {
                 markers.geolocateUser($scope, url)();
                 resetActiveMarker($scope);
             };
 
-            //this replaces the api call in search controller
-            //runs on services to display all the results or those around the default location
-            if(!storageInUse(localStorageService)) {
-                if(servicesSearchWithoutAddress($location.path())) {
+            // on page load, if address is in the uri, api call will be made
+            if (locationCheck.locationFound()) {
+                var address = $stateParams.address || $stateParams.uprn;
+                searchApi(address);
+            }
+
+            if(locationCheck.addressSearch()) {
+
+                if ($location.path().indexOf('location') === -1) {
+                    localstorage.get($scope)();
+                }
+
+                //runs on services to display all the results or those around the default location
+                if(locationCheck.serviceSearch()) {
                     apiSearch.search($stateParams.service)
                         .success(function success (data) {
                             if(data.hasOwnProperty("error")) {
@@ -88,14 +95,6 @@ function getObject (array, selected) {
                             return $scope.updateError(err.message);
                         });  
                 }
-            }
-            
-
-            if(locationCheck.addressSearch()) {
-
-                if ($location.path().indexOf('location') === -1) {
-                    localstorage.get($scope)();
-                }
 
                 $scope.placeholder = 'Enter an address';
                 $scope.additions = '(($viewValue))';
@@ -117,7 +116,6 @@ function getObject (array, selected) {
                 var destination;
 
                 if(locationCheck.addressSearch()) {
-
                     destination = addressHandler(uprnArray, selected);
                 
                     $scope.showEnterLocation = false;
@@ -129,6 +127,9 @@ function getObject (array, selected) {
                 } else {
                     return $scope.updateError("Sorry, that is not a valid camden service. Please search again.");
                 }
+
+                "Chestnut Lodge  Squire's Mount NW3 1EG"
+                " Chestnut Lodge  Squire's Mount NW3 1EG"
 
                 $location.path(destination);
             };
@@ -142,25 +143,24 @@ function getObject (array, selected) {
             function addressHandler (array, add) {
                 //if address has been selected by typeahead, then will exist in saved array
                 var address = getObject(array, add);
-                
                 //if address has not been selected by typeahead
                 if (address[0] === undefined) {
                     //searchApi checks if valid address, if not, will throw error.
                     searchApi(add);
                     return;
-                
                 } else {
                     localstorage.save(address);
 
-                    if (locationCheck.postcodeSearch()) {
+                     if (locationCheck.postcodeSearch()) {
                         $scope.update("locationSelected", address[0].Postcode);
+                         searchApi(address[0].Postcode);
                     } else {
                         $scope.update("locationSelected", address[0].UPRN);
+                        searchApi(address[0].UPRN);
                     }
                    return locationCheck.destination(address);
                 }
             }
-
 
             function getAddresses () {
 
@@ -225,6 +225,11 @@ function getObject (array, selected) {
                                     return result.display.Name === $stateParams.id;
                                 })[0];
 
+                                // this rounds results to one decimal place 
+                                $scope.results.forEach(function(entry) {
+                                    entry.Distance = round(entry.Distance);
+                                });
+
                                 $scope.addMarkers();
                                 // $scope.centre = markers.centreCheck($scope)();
                                 $scope.centre.zoom = markers.zoomCheck($scope)();
@@ -246,7 +251,6 @@ function getObject (array, selected) {
                     }
 
                 } else {
-
                     //TODO: need a error phrase for when a non-typeahead search is done on `about your neighbourhood`
                     return $scope.updateError("Sorry, something went wrong");
                 }
