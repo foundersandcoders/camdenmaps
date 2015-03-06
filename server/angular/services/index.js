@@ -1,7 +1,9 @@
-/*  SERVICE.JS
-*   Description: Defines a single angular service
-*   Use: Registers service with service module and injects to core module 
-*/
+/************************************************
+* SERVICE.JS
+* Description: Defines a single angular service
+* Use: Registers service with service module and 
+        injects to core module 
+*************************************************/
 
 ;(function () {
     "use strict";
@@ -11,16 +13,11 @@
     	.service("markers", require("./markers-service.js"))
     	.service("apiSearch", require("./api-search-service.js"))
     	.service("markerHandlers", require("./marker-handlers-service.js"))
-    	.service("buttonHandlers", require("./button-handlers-service.js"));
-
-
-
-        // .service("apiSearch", require("./api-search.js"));
+    	.service("buttonHandlers", require("./button-handlers-service.js"))
+        .service("fetchToken", require("./fetch-token-service.js"))
+        .service("localstorage", require("./localstorage-service.js"))
+        .service("locationCheck", require("./location-checker-service.js"))
+        .service("validate", require("./validate-service.js"))
+        .service("menuFind", require("./find-in-menu-service.js"));
 
 }());
-
-
-
-    // angular.module("maps")
-
-    //     .controller("RootController", require("./root-controller.js"))

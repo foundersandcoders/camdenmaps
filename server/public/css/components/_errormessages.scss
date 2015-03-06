@@ -4,26 +4,30 @@
 *
 ************************************************/
 
-//IMPORTS FILES
-@import '../base/colours';
-
 .errormessage {
+	p {
+		margin: 0px; 
+		padding: 0.5em;
+	}
 	display: none;
 	background: $light-pink;
-	border: 0.3em $dark-red solid;
+	border-bottom: 0.1em $dark-red solid;
+	border-top: 0.1em $dark-red solid;
 	color: $dark-red;
-	position: absolute;
-	top: 7em;
-	height: 4.5em;
-	width: 98.5%;
-	margin: 0 0.7em;
+	height: 2em;
+	margin-bottom: 0.5em;
+	//margin-left: -15px;
+	width: 100%;
+
+	position: relative;
+
 }
 
-@media (max-width: 768px) {
-	.errormessage {
-		top: 4.7em;
-		height: 4.1em;
-		width: 95%;
-		margin: 0 0.7em;
-	}
-}
+// @media (max-width: 768px) {
+// 	.errormessage {
+// 		top: 4.7em;
+// 		height: 4.1em;
+// 		width: 95%;
+// 		margin: 0 0.7em;
+// 	}
+// }

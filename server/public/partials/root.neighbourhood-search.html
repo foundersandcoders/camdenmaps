@@ -1,0 +1,51 @@
+
+<!-- ROOT.ADDRESS-SEARCH BEGINS -->
+
+<div class="container-fluid">
+    <div ng-swipe-right="prevItems()" ng-swipe-left="nextItems()" class="services-and-categories col-xs-12">
+
+        <!-- Search Box for locations & GPS -->
+        
+        <div class="col-xs-12 search-box" id="search-service-and-loc">
+            <div class="servicestypeahead row">
+                <div class="col-xs-12 errormessage">
+                </div>
+                <typeaheadsearch/>
+            </div>
+
+            <div ng-show="showEnterLocation" class="col-md-12 enter-loc">
+                <h3>Please enter your location.</h3>
+            </div>
+
+            <div ng-show="showResetLocation" class="row">
+                <a class="change-address" ng-click="changeAddress()">
+                    <p>Reset location</p>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="col-xs-12 item-container" id="item-container">
+
+        <!-- Title of service and category that are listed in container -->
+
+            <div class="title-list-items row" id="category-title-of-services">
+                <div class="col-xs-3 col-md-3">
+                    <img ng-src="{{ icon }}"  alt="">
+                </div>
+                <div class="accordiontext col-xs-8 col-md-8">
+                    <h4 id="title-of-accordion">{{ title }}</h4>
+                </div>
+                <div class="col-xs-1 col-md-1 cancel" ng-show="showAccordion">
+                    <a ng-click="searchAgain()">X</a>
+                </div>
+            </div>    
+
+            <div ui-view ></div>       
+
+        </div>
+    </div>
+</div>
+
+<!-- ROOT.ADDRESS-SEARCH ENDS-->
+

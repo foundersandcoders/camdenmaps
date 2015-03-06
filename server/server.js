@@ -1,4 +1,4 @@
-/***********************************************
+/**********************************************
 *   SERVER.JS
 *   Description: Initializes and configures server
 *   Use: This is where the server starts!
@@ -24,7 +24,10 @@ server.connection({
     port: process.env.PORT || config.server.port,
     labels: ["api"],
     routes: {
-        cors: true,
+        cors: {
+            additionalHeaders: ["X-Access-Token"],
+            additionalExposedHeaders: ["X-Access-Token"]
+        },
     	files: {
     		relativeTo: path.join(__dirname, 'server')
     	}
@@ -36,8 +39,7 @@ server.connection({
 routes(server);
 
 //register prehandler extension
-require("./lib/streetnameLookup.js")(server);
-
+require("./lib/streetnameLookup.js").registerPreHandler(server);
 
 server.register({
     register: require("good"),
@@ -58,8 +60,6 @@ server.register({
         }
     }
 });
-
-console.log(__dirname)
 
 //exports server for testing
 module.exports = server;

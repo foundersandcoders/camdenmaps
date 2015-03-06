@@ -4,7 +4,6 @@
 ******************************/
 
 //TODO: Add handler for List Results and Search Again buttons
-//Broken results: recyling, connexions... these could be all results with fewer than 8 results becuase of hard coding 8 markers
 
 ;(function () {
     "use strict";
@@ -17,8 +16,9 @@
         "apiSearch",
         "buttonHandlers",
         "$location",
-        "localStorageService",
-        function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers, $location, localStorageService) {
+        "menuFind",
+        "validate",
+        function ($scope, $stateParams, markers, markerHandlers, apiSearch, buttonHandlers, $location, menuFind, validate) {
 
             //model for page title
             $scope.title = "Find your Nearest...";
@@ -30,7 +30,6 @@
                 round = require("../lib/round.js"),
                 noResults = require("../lib/no-results.js"),
                 addressUsedinAPIcall = require("../lib/address-used-in-api-call.js");
-
 
             // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
@@ -44,21 +43,37 @@
             // Args will contain the marker name and other relevant information 
             $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
 
+            if($stateParams.service == "streetworks") {
+                
+                $scope.category = {
+                    title: "Live Streetworks",
+                    img: "img/icons/streetworks-black.png"
+                }
 
-            if($scope.service.toLowerCase() !== "streetworks") {
-                //model for image icon
-                $scope.icon = require("../menu.json").filter(function filterImg (item) {
-                    var name = item.title + item.text;
-                    return name.toLowerCase() === $scope.service.toLowerCase();
-                })[0].img;
+                $scope.showCategoriesTitle = true;
+                $scope.showServicesTitle =  false;
+
+                $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/")
+                $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/" + $stateParams.service);
+
             } else {
-                $scope.icon = "img/icons/streetworks.png";
+
+                //model for image icon
+                $scope.icon = menuFind.serviceImg($scope.service);
+
+                $scope.showCategoriesTitle = true;
+                $scope.showServicesTitle =  true;
+
+                $scope.category = menuFind.categoryByService($scope.service);
+                $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services");
+                $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service")
+                $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/" + $stateParams.service + "/search");
+
             }
         
             // this will only run an API call if location needs to be added
             // will still run if default location used for capped results
             if(!addressUsedinAPIcall($scope)){
-                console.log("api call in location");
 
                 //reloads $scope.results with new data based on address 
                 
@@ -78,7 +93,7 @@
                     .success(function success (data) {
 
                         if(data.hasOwnProperty("error")){
-                            $scope.update("error", data.message);
+                            $scope.updateError(data.message);
                             return $location.path($location.path().substr(0, $location.path().indexOf("location")) + "search");
                         }
 
@@ -101,30 +116,23 @@
                                 zoom: markers.zoomCheck($scope)()
                             });
                         } else {
-                            $scope.update("error", "Sorry, we couldn't find the right information for this location");
+                            $scope.updateError("Sorry, we couldn't find the right information for this location");
                             return $location.path($location.path().substr(0, $location.path().indexOf("location")) + "search");
                         }
 
                     })
                     .error(function error(err) {
-                        return $scope.update("error", err.message);
+                        return $scope.updateError(err.message);
 
                     });
             }
 
             //this will uppercase postcodes and capitalise street addresses 
-            $scope.address  = $stateParams.address.replace(/\s/g, "").length < 7
-                            ? $stateParams.address.toUpperCase()
-                            : $stateParams.address.replace(/\b./g, function(m){ return m.toUpperCase(); });
+            $scope.address  = validate.cleanDisplayAddress($stateParams.address);
 
-
-            $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home/services");
+            $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
 
             $scope.toggle = buttonHandlers.toggle($scope);
-
-            $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/" + $stateParams.service + "/search");
-
-
 
         }
     ];

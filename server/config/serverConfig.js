@@ -24,12 +24,10 @@
                 streetworksApi: "http://maps.camden.gov.uk/streetworks/streetworksrest.aspx"
             },
             query: {
-                // service: "find=",
                 location: "area=",
                 uprn: "uprn=",
                 lat: "lat=",
-                lng: "lng=",
-
+                lng: "lng="
             },
             serviceArrays: {
                 parking:["Car club bay","Parking space", "Car park", "Car club", "Coach parking", "Disabled blue badge", "Disabled green badge", "Electric recharging point", "Loading bay", "Pay and display", "Permit holders", "Solo motorcycles", "Bicycle stand"],
@@ -40,7 +38,7 @@
             opsInterval: 1000,
             reporters: [{
                 reporter: require("good-file"),
-                args: [__dirname + "/../logs/server_log", {error: "*"}]   
+                args: [__dirname + "/../logs/server_log.txt", {error: "*"}]   
             }]
         }        
     };

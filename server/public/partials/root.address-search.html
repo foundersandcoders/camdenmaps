@@ -1,55 +1,67 @@
+
+<!-- ROOT.ADDRESS-SEARCH BEGINS -->
+
 <div class="container-fluid">
-    <div id="address-search" class="services-and-categories col-xs-12">
-        <div class="col-xs-12">
-            <h1>{{ title }}</h1>
-        </div>
+    <div ng-swipe-right="prevItems()" ng-swipe-left="nextItems()" class="services-and-categories col-xs-12">
 
-         <div class="col-xs-2">
-             <img class="icon" ng-src="{{ icon }}">
-        </div>
-
-        <div class="col-xs-10">
-            <h2>{{ service }}</h2>
-        </div>
-
-        <div class="col-xs-12 errormessage">
-        </div>
-
-        <div class="col-xs-12 search-box">
-            
-            <form>
-                <div id="postcode-input" class="col-xs-10">
-                    <input placeholder="{{ placeholder }}" ng-model="address">
+        <!-- Search Box for locations & GPS -->
+        <div class="col-xs-12 row search-box" id="search-service-and-loc">
+            <div class="servicestypeahead">
+                <div class="col-xs-12 errormessage">
                 </div>
-                <div id="search" class="col-xs-1">
-                    <button type="submit" ng-click="search()">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                </div>
-            </form>
-            <div id="yourLocation" class="col-xs-1">
-                <a href="#" tooltip-placement="top" tooltip="{{ geolocationToolTip }}">
-                    <button button ng-click="geolocateUser()">
-                        <span class="glyphicon glyphicon-screenshot"></span>
-                    </button>
-                </a>
+                <typeaheadsearch/>
             </div>
-        
+            <div class="col-md-12 enter-loc">
+                <h3>Please enter your location</h3>
+            </div>
         </div>
 
-        <div id="buttons" class="col-xs-12">
-            
-            <div class="button col-xs-6">
-                <button ng-click="searchAgain()" class="btn">Pick another service</button>
+        <div class="col-xs-12 item-container" id="item-container">
+
+        <!-- Title of service and category that are listed in container -->
+
+            <div class="title-list-items row" id="category-title-of-services">
+                <div class="col-xs-3 col-md-3">
+                    <img ng-src="{{ category.img }}"  alt="">
+                </div>
+                <div class="accordiontext col-xs-8 col-md-8">
+                    <h4 id="title-of-accordion">{{ category.title }}</h4>
+                </div>
+                <div class="col-xs-1 col-md-1 cancel" ng-show="showAccordion">
+                    <a ng-click="returnToCategories()">X</a>
+                </div>
+            </div>    
+
+            <div class="title-list-items row" id="service-title-of-results" ng-show="showAccordion">
+                <div class="col-xs-3 col-md-3">
+                    <img ng-src="{{ icon }}"  alt="">
+                </div>
+                <div class="accordiontext col-xs-8 col-md-8">
+                    <h4 id="title-of-accordion">{{ service }}</h4>
+                </div>
+                <div class="col-xs-1 col-md-1 cancel">
+                    <a ng-click="returnToServices()">X</a>
+                </div>
+            </div>    
+
+            <div class="list-items" ng-show="showAccordion">
+                <div class="col-xs-12 container-list" id="list-results">
+                    <a href ui-sref="root.address-search.single-view({id: '{{ result.display.Name }}' })" ng-repeat="result in results">
+                        <div class="list-item col-xs-12">
+                            <div class="col-md-12">
+                                <h3 id="service-title">{{ result.display.Name }}</h3>
+                                <p>{{ result.StreetNum + ' ' + result.Street }}</p>
+                                <p>{{ result.PostCode }}</p>
+                                <div ui-sref="root.address-search.single-view({id: '{{ result.display.Name }}' })" ui-sref-active="active" class="display-result" ui-view></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
             </div>
-            
-            <div class="button col-xs-6">
-            <!-- this will toggle between listResults() and exit() -->
-                <button ng-click="toggle()" class="btn">List results</button>
-            </div>
-        
+  
         </div>
     </div>
-
-    <div ui-view></div>
 </div>
+
+<!-- ROOT.ADDRESS-SEARCH ENDS-->

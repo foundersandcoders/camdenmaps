@@ -3,58 +3,206 @@
 *
 *****************************/
 
+//todo: autofocus on huge typeahead lists
+
+/*
+* HELPER FUNCTIONS:
+*/
+var resetActiveMarker = require('../lib/reset-active-marker.js');
+
+function getObject (array, selected) {
+    return array.filter(function (item) {
+        if (selected === item.title) {
+            return item;
+        }
+    });
+}
+
 ;(function () {
     "use strict";
 
     module.exports = [
         "$scope",
         "$location",
-        function ($scope, $location) {
+        "buttonHandlers",
+        "fetchToken",
+        "$http",
+        "$stateParams",
+        "apiSearch",
+        "markers",
+        "localstorage",
+        "locationCheck",
+        "validate",
+        "menuFind",
+        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind) {
 
-            	var menu = [];
+            var menu = [],
+                uprnArray = [],
+                url = $location.path();
 
-            	menu = require("../menu.json");
+            $scope.selected = '';
+            $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
+            $scope.geolocationToolTip = 'Click to use my current location';
+            $scope.geolocate = locationCheck.postcodeSearch();
 
-                $scope.selected = '';
+            $scope.geolocateUser = function() {
+                markers.geolocateUser($scope, url)();
+                resetActiveMarker($scope);
+            };
 
-                function getItems() {
+            if(locationCheck.addressSearch()) {
 
-                    var newArray = [];
+                localstorage.get($scope)();
 
-                    for (var i = menu.length - 1; i >= 0; i--) {
-                    
-                        if (menu[i].type === "service") {
-                            newArray.push(menu[i].title);
-                        }
-                        
-                    };
-                    return newArray;
-                };
+                $scope.placeholder = 'Enter an address';
+                $scope.additions = '(($viewValue))';
 
-            if(($location.path().indexOf("/neighbourhood") > -1) || ($location.path().indexOf("/streetworks") > -1)) { 
-
-                console.log("address search goes here");
+                getAddresses();
 
             } else {
 
-                $scope.typeaheadSearchList = getItems();
+                $scope.placeholder = 'Enter a service to search';
+                $scope.additions = ' | filter:$viewValue | limitTo: 8';
 
-                $scope.handler = function handler (item) {
-                    var service,
-                        destination;
+                $scope.typeaheadSearchList = menuFind.services();
+            }
 
-                    service = encodeURIComponent(item);
+            $scope.handler = function (selected) {
 
-                    destination = "/home/" + service + "/search";
+                var service,
+                    checkService,
+                    destination;
 
-                    $location.path(destination);
-                };
+                if(locationCheck.addressSearch()) {
+
+                    destination = addressHandler(uprnArray, selected);
+                
+                    $scope.showEnterLocation = false;
+                    $scope.showResetLocation = true;
+
+
+                }  else if(validate.service(selected)) {
+
+                    destination = servicesHandler(selected);
+                } else {
+                    return $scope.updateError("Sorry, that is not a valid camden service. Please search again.");
+                }
+
+                $location.path(destination);
+            };
+
+            function servicesHandler (serv) {
+                var service = serv.toLowerCase();
+
+                return "/home/" + service + "/search";
+            }
+
+            function addressHandler (array, add) {
+                //if address has been selected by typeahead, then will exist in saved array
+                var address = getObject(array, add);
+
+                //if address has not been selected by typeahead
+                if (address[0] === undefined) {
+                    //searchApi checks if valid address, if not, will throw error.
+                    searchApi(add);
+
+                    return;
+                
+                } else {
+                    //saves location in localStorage
+                    localstorage.save(address);
+
+                   return locationCheck.destination(address);
+                }
+            }
+
+
+            function getAddresses () {
+
+                return fetchToken.getToken().success(function() {
+
+                    $scope.typeaheadSearchList = function(value) {
+
+                        return $http.get('https://camdenmaps-addresslookup.herokuapp.com/search/' + value)
+                            .then(function(response){
+
+                                if(typeof response.data === 'string') {
+                                    return;
+                                } else {
+
+                                    return response.data.map(function (item){
+                                        item.title = item.Unit + " " +
+                                            item.BuildingName + " " +
+                                            item.BuildingNumber + " " +
+                                            item.Street + " " +
+                                            item.Postcode;
+
+                                        uprnArray.push(item);
+                                        return item;
+                                    });
+                                }
+                            });
+                    };
+                });
+            }
+
+            function searchApi (address) {
+
+                var path,
+                    service,
+                    noResults = require("../lib/no-results.js"),
+                    resetActiveMarker = require("../lib/reset-active-marker");
+
+                if (locationCheck.postcodeSearch()){
+
+                    if(address) {
+
+                        if ($location.path().indexOf('streetworks') > -1) {
+                            service = 'streetworks';
+                        } else {
+                            service = $stateParams.service;
+                        }
+
+                        apiSearch.search(service, address)
+                            .error(function (data) {
+                                return $scope.updateError("Sorry, that does not appear to be a valid camden address.");
+                            })
+                            .success(function success (data) {
+                                if(data.hasOwnProperty("error")) {
+                                    return $scope.updateError(data.message);
+                                }
+
+                                $scope.updateResults(data.properties);
+                                $scope.result = $scope.results.filter(function (result) {
+                                    return result.display.Name === $stateParams.id;
+                                })[0];
+
+                                $scope.addMarkers();
+                                // $scope.centre = markers.centreCheck($scope)();
+                                $scope.centre.zoom = markers.zoomCheck($scope)();
+
+                                resetActiveMarker($scope);
+
+                                if ($location.path().indexOf("/streetworks") > -1) {
+
+                                    path = "/home/streetworks/location/" + address;
+
+                                } else {
+
+                                    path = "/home/" + $stateParams.service + "/location/" + address;
+                                    //redirects to new path and runs location controller
+                                }
+                                $location.path(path);
+
+                            });
+                    }
+
+                } else {
+
+                    //TODO: need a error phrase for when a non-typeahead search is done on `about your neighbourhood`
+                    return $scope.updateError("Sorry, something went wrong");
+                }
             }
         }
     ];
 }());
-
-
-
-                    
-        			

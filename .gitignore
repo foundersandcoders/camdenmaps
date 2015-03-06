@@ -2,4 +2,4 @@
 npm-debug.log
 .sass-cache/
 prep/
-address.json
+coverage/

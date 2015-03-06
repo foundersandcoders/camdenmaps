@@ -4,66 +4,96 @@
 *	mixins and variables.
 ************************************************/
 
-//IMPORTS FILES
-@import '../base/colours';
-
-//Imports for Gov Files
-@import '../../../../node_modules/govuk_frontend_toolkit/stylesheets/colours',
-	//below for box shadow and other css3 functions
-	'../../../../node_modules/govuk_frontend_toolkit/stylesheets/css3',
-	//to normalise old browsers
-	'../../../../node_modules/govuk_frontend_toolkit/stylesheets/shims';
-
 .search-box {
+	background-color: $black;
+	margin: 0;
+	box-shadow: 5px 5px 5px #888888;
+	padding-bottom: 1vh;
+	color: $light-blue;
+
+	@include respond(mobile) {
+		padding: 0;
+		height: initial;
+		box-shadow: 0px 0px 5px 0px black;
+	}
 	#postcode-input {
 		padding: 0;
+		background-color: white;
 		input {
 			width: 100%;
 			height: 2.1em;
+			padding: 6px 12px;
 			text-align: center;
+			background-color: white;
 			color: $dark-grey;
 			border-radius: 0;
 		}
 	}
-}
-
-@media (max-width: 768px) {
-	.search-box {
-		#postcode-input {
-			width: 80%;
+	.enter-loc {
+		h3 {
+			color: $light-blue;
+			margin: 0.5em 0;
+			@include respond(mobile) {
+				margin: 0.5em 0 0.7em;
+				font-size: 0.9em;
+			}
 		}
 	}
 }
 
+.searchbutton {
+	padding: 0;
+}
 
 .servicestypeahead {
-	margin-bottom: 1.2em;
-	div {
-		padding: 0;
+	background-color: $black;
+	padding-top: 0.5em;
+	margin: 0;
+
+	@include respond(mobile) {
+		margin: auto;
+		width: 95%;
 	}
+	div:not(.errormessage) {
+		padding: 0;
+
+		@include respond(mobile) {
+			display: inline-block;
+			vertical-align: baseline;
+		}
+		@include respond(tablet) {
+			display: inline-block;
+		}
+		a {
+			padding: 0.3em;
+
+			@include respond(mobile) {
+				padding: 0;
+			}
+		}
+	}
+	// Specific div style for home-wrapper
+	.home-wrapper {
+		@include respond(mobile) {
+			padding: 0 0.4em;
+		}
+	}
+	.submit-wrapper {
+		@include respond(mobile) {
+			margin-right: -0.4em;
+			padding-left: 0.3em;	
+		}
+	}
+
 	input {
-		border: none;
-		border-bottom: 0.1em solid white;
-		background-color: $dark-grey;
-		color: white;
+		border: 0.2em solid $dark-grey;
+		background-color: $white;
+		color: black;
 		width: 100%;
 		border-radius: 0;
 		height: 2em;
-		&:hover {
-			border-bottom: 0.1em solid white;
-		}
 		&:focus {
-			border-bottom: 0.1em solid white;
-		}
-	}
-	button {
-		background-color: $dark-grey;
-		span {
-			color: white;
-			&:hover {
-				color: $hover-grey;
-				cursor: pointer;
-			}
+			outline: $orange solid 0.2em;
 		}
 	}
 	span {
@@ -83,6 +113,66 @@
         }
 	}
 	form {
-		display: none;
+		display: block;
+		@include respond(mobile) {
+			display: inline-block;
+			width: 70%;
+			vertical-align: baseline;
+		}
+		@include respond(tablet) {
+			display: inline-block;
+			width: 70%;
+			vertical-align: baseline;
+		}
 	}
 }
+
+#forminput {
+	@include respond(mobile) {
+		width: 80%;
+		vertical-align: bottom;
+	}
+	@include respond(tablet) {
+		width: 80%;
+		vertical-align: bottom;
+	}
+}
+
+#search-service-and-loc {
+	height: 100%;
+}
+
+#backhome {
+	width: 1.8em;
+	margin-right: 0.8em;
+	vertical-align: text-top;
+	@include respond (mobile) {
+		width: 1.6em;
+		margin: auto;
+		vertical-align: sub;
+	}
+	@include respond (mobile) {
+		width: 1.9em;
+		margin: auto;
+		vertical-align: sub;
+	}
+}
+
+#search-location-row {
+	margin-top: 1.5em;
+
+	@include respond(mobile) {
+		margin: 0.3em 0;
+	}
+
+}
+
+#address-input { 
+	div > ul {
+		max-height: 30em;
+		overflow-y: scroll;
+		// z-index: 999;
+	}
+}
+
+

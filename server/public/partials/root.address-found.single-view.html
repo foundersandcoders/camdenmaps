@@ -1,39 +1,19 @@
-
- <div ng-show="result" class="container-fluid">
-    <div class="result col-xs-12 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-6 col-lg-4 col-lg-offset-8">
-        <div class="col-xs-10">
-            <a href="link-to-url">
-                <h5>{{ result.display.Name }}</h5>
-            </a>
-            <a ng-show="result.display.URL" href="{{ result.display.URL }}" target="_blank">
-                <p>{{ result.display.URL }}</p>
-            </a>
-            <a href= "tel: {{ result.display.Telephone }}">
-                <p>{{ result.display.Telephone }}</p>
-            </a>
-
-            <p>{{ result.StreetNum + " " + result.Street }}</p>
-            
-            <p>London, {{result.PostCode}}</p>
-
-            <p ng-show="result.display.Location"> Location of streetworks {{ result.display.Location }} </p>
-
-            <p ng-show="result.display.Description"> <b> Description: </b> {{ result.display.Description }} </p>
-
-            <p ng-show= "result.display.StartDate"> <b> Start Date: </b> {{ result.display.StartDate }} </p>
-
-            <p ng-show= "result.display.EndDate"> <b> End Date </b> {{ result.display.EndDate }} </p>
-            
-            <h5 ng-show="result.display.OpeningHours" class="opening-hours">Opening Hours</h5>
-            
-            <p>{{ result.display.OpeningHours }}</p>
-
+ <div ng-show="result">
+    
+    <div class="single-view-info">
+        <p ng-show="result.display.Location"> Location of streetworks {{ result.display.Location }} </p>
+        <p ng-show="result.display.Description"> <b> Description: </b> <br> {{ result.display.Description }} </p>
+        <hr id="hr-single-view">
+        <div class="row">
+            <p ng-show= "result.display.StartDate" class="col-md-6"> <b> Start Date: </b> {{ result.display.StartDate }} </p>
+            <p ng-show= "result.display.EndDate" class="col-md-6"> <b> End Date </b> {{ result.display.EndDate }} </p>
         </div>
-
-        <div ng-show="showDistance" class="col-xs-2">
-            <h5>{{ result.Distance + ' miles' }}</h5>
-        </div>
-
+        <br>
+        <a ng-show="result.display.Telephone" href= "tel: {{ result.display.Telephone }}"> <p><b> Tel.: </b> {{ result.display.Telephone }}</p></a>
+        <a ng-show="result.display.URL" href="{{ result.display.URL }}" target="_blank" id="url">{{ result.display.URL }}
+        </a>
+        <h5 ng-show="result.display.OpeningHours">Opening Hours</h5>
+        <p>{{ result.display.OpeningHours }}</p>
 
     </div>
  </div>

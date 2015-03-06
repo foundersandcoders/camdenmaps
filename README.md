@@ -1,15 +1,30 @@
 camdenmaps
 ==========
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/foundersandcoders/camdenmaps?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/foundersandcoders/camdenmaps.svg?branch=master)](https://travis-ci.org/foundersandcoders/camdenmaps) [![Code Climate](https://codeclimate.com/repos/54b662d26956803c3300e1b5/badges/6f7863dabadfdeacb710/gpa.svg)](https://codeclimate.com/repos/54b662d26956803c3300e1b5/feed)[![Test Coverage](https://codeclimate.com/github/foundersandcoders/camdenmaps/badges/coverage.svg)](https://codeclimate.com/github/foundersandcoders/camdenmaps)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/foundersandcoders/camdenmaps?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/foundersandcoders/camdenmaps.svg?branch=master)](https://travis-ci.org/foundersandcoders/camdenmaps) [![Code Climate](https://codeclimate.com/github/foundersandcoders/camdenmaps/badges/gpa.svg)](https://codeclimate.com/github/foundersandcoders/camdenmaps)[![Test Coverage](https://codeclimate.com/github/foundersandcoders/camdenmaps/badges/coverage.svg)](https://codeclimate.com/github/foundersandcoders/camdenmaps)
 
  
 maps.camden.gov.uk site
 
-To run, use command:
+# Developing
+
+### Installation
+
+Once you have cloned with git, run:
+
+install:
+```
+npm install gulp -g
+```
+
+and use command:
 
 ```
-npm start
+gulp 
 ```
+
+to install dependencies, run the sass compiler and browserify the app.
+
+### Tests
 
 To run acceptance tests, use command: 
 ```
@@ -25,37 +40,45 @@ To run unit tests, use command:
 ```
 gulp unit-test
 ```
+### Yaml to JSON
 
-To convert yaml files to json, use command: 
+When altering the Swagger config yaml file, you can covert it to JSON using:
+
 ```
-node server/lib/yml2swagger.js server/lib/yaml server/public/output
+gulp convertyaml
 ```
-where arg[0] is the files to be converted and arg[1] is where the file should be outputed.
-```
+
+### Browserify
+
+Browserify must be run when altering the angular files. 
 
 To run browserify, use command: 
+
 ```
 gulp browserify
 ```
+
 or
 ```
-gulp browserify-watch
+gulp watchify
 ```
 
-To use the csv to json converter, please run this command:
-```
-node server/lib/csvtojson.js
-```
+### Sass
 
-To include gov.uk sass files in our project simply import to begin to use!
+When altering and .scss files, you must compile it to css with:
 
 ```
-@import '_conditionals';
-@import '_typography';
+gulp sass-dev
 ```
 
 For more information on using gov.uk styles see documentation here: https://github.com/alphagov/govuk_frontend_toolkit
 
-Example (old) URI:
-http://maps.camden.gov.uk/nearest/nearestrest.aspx?area=nw1%200ne&find=library
+### CSV to JSON
+
+When altering the CSV file for constructing the services menu, convert it to JSON with this command:
+```
+gulp csvtojson
+```
+>>>>>>> dev
+
 

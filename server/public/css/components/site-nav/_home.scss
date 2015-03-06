@@ -1,0 +1,55 @@
+#main-container {
+	z-index: 999;
+	position: absolute;
+	@include respond(mobile) {
+		width: 100%;
+		padding: 0;
+		margin: 0;
+	}
+	@include respond(tablet) {
+		margin-top: 1em;
+	}
+	@include respond(mdscreen) {
+		margin-top: 5vh;
+	}
+	@include respond(screen) {
+		margin: 5vh 3vh 0 3vh;
+	}
+}
+
+#menubar{
+	position: fixed;
+}
+
+#first-level-options {
+	background-color: $black;
+	padding: 0;
+	box-shadow: 5px 5px 5px #888888;
+	width: 100%;
+	@include respond(mobile) {
+		padding: 0.3em 0;
+		box-shadow: none;
+	}
+}
+	
+.landing-options {
+	padding: 0;
+	h4 {
+		text-align: center;
+		color: $white;
+		margin: 0 0 1em;
+		margin-bottom: 0.5em;
+		width: 100%;
+		@include respond(mobile) {
+			color: $light-grey; 
+			font-size: 0.8em; 
+		}
+	}
+}
+
+.icon {
+	margin: 0.5em auto;
+	display: block;
+	width: 4em;
+}
+

@@ -42,6 +42,17 @@
                 path: "/",
                 config: RoutesConfig.getHome
             },
+    //Streetworks Routes *********************************
+            {
+                method: "GET",
+                path: "/services/streetworks/locations/{postcode}",
+                config: RoutesConfig.streetworks
+            },
+            {
+                method: "GET",
+                path: "/services/streetworks/locations/lats/{latitude}/lngs/{longitude}",
+                config: RoutesConfig.streetworks
+            },
     //Find Your  Nearest Routes ***************************
             {
                 method: "GET",
@@ -63,17 +74,6 @@
                 path: "/services/{service}/locations/lats/{latitude}/lngs/{longitude}",
                 config: RoutesConfig.nearest.services
             },
-    //Streetworks Routes *********************************
-            {
-                method: "GET",
-                path: "/services/streetworks/locations/{postcode}",
-                config: RoutesConfig.streetworks
-            },
-            {
-                method: "GET",
-                path: "/services/streetworks/locations/lats/{latitude}/lngs/{longitude}",
-                config: RoutesConfig.streetworks
-            },
      //Swagger API Route *********************8*************
             {
                 method: "GET",
@@ -87,6 +87,18 @@
                 method: "GET",
                 path: "/addresses/{uprn}",
                 config: RoutesConfig.local.information
+            },
+    // Logs
+            {
+                method: "GET",
+                path: "/logs",
+                config: RoutesConfig.logging
+            },
+    // Issue token *****************************************
+            {
+                method: "GET",
+                path: "/auth_token",
+                config: RoutesConfig.issueToken
             }
         ]);
     }
