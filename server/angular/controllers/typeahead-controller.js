@@ -59,7 +59,6 @@ function getObject (array, selected) {
                 resetActiveMarker($scope);
             };
 
-            // on page load, if address is in the uri, api call will be made
             if (locationCheck.locationFound()) {
                 var address = $stateParams.address || $stateParams.uprn;
                 searchApi(address);
@@ -127,9 +126,6 @@ function getObject (array, selected) {
                 } else {
                     return $scope.updateError("Sorry, that is not a valid camden service. Please search again.");
                 }
-
-                "Chestnut Lodge  Squire's Mount NW3 1EG"
-                " Chestnut Lodge  Squire's Mount NW3 1EG"
 
                 $location.path(destination);
             };
@@ -208,9 +204,6 @@ function getObject (array, selected) {
                         }
 
                         apiSearch.search(service, address)
-                            .error(function (data) {
-                                return $scope.updateError("Sorry, that does not appear to be a valid camden address.");
-                            })
                             .success(function success (data) {
                                 if(data.hasOwnProperty("error")) {
                                     return $scope.updateError(data.message);
@@ -220,17 +213,17 @@ function getObject (array, selected) {
 
                                 $scope.updateResults(data.properties);
                                 $scope.update("locationSelected", data.location);
-
-                                $scope.result = $scope.results.filter(function (result) {
-                                    return result.display.Name === $stateParams.id;
-                                })[0];
-
+                                $scope.addMarkers();
+                                
                                 // this rounds results to one decimal place 
                                 $scope.results.forEach(function(entry) {
                                     entry.Distance = round(entry.Distance);
                                 });
 
-                                $scope.addMarkers();
+                                $scope.result = $scope.results.filter(function (result) {
+                                    return result.display.Name === $stateParams.id;
+                                })[0];
+
                                 // $scope.centre = markers.centreCheck($scope)();
                                 $scope.centre.zoom = markers.zoomCheck($scope)();
 
@@ -247,6 +240,9 @@ function getObject (array, selected) {
                                 }
                                 $location.path(path);
 
+                            })
+                            .error(function (data) {
+                                return $scope.updateError("Sorry, that does not appear to be a valid camden address.");
                             });
                     }
 
