@@ -52,19 +52,23 @@
 
                     $(document).ready(function () {
                         $(".leaflet-clickable").click(function() {
-                            var activeItem = $(".display-active-result.active").offset().top;
+                            var activeItem = $(".display-active-result.active>div").offset().top;
+                            event.preventDefault();
                             $("#list-results").animate({
                                 scrollTop: activeItem
                             },1000);
+
+                            // $(".display-active-result.active").animate({
+                            //     scrollTop: 0
+                            // }, 1000);
+
                             //$("#list-results").scrollTop($("#list-results").scrollTop() + $(".active").position().top);
                             //$("#list-results").scrollTop(activeItem);
                             //$(".display-active-result.active").scrollTop(0);
                             console.log("scroll log", $(".display-active-result.active").scrollTop(20));
-
-                            console.log("Im inside click function on marker")
+                            console.log("Im inside click function on marker");
+                            //return false;
                         });
-                        
-                        //console.log("marker has been clicked");
                     });
                 };
             };

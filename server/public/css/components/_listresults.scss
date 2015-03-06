@@ -16,28 +16,20 @@
 	min-height: 100%;
 	max-height: 32em;
 	@include respond(mobile) {
-		background-color: rgba(255,255,255,0.7);
+		background-color: rgba(255,255,255,1);
 	}
 	.list-item {
 		border-top: 0.1em $menu-stroke-grey solid;
 		color: black;
 		padding: 0.7em 0;
 		min-height: 5em;
-
 		max-height: 100%; 
-
-		.service-title {
-			color: $dark-blue;
-			font-weight: bold;
-			margin: 0 0 10px 0;
-		}
-
 	}
 	a:first-child {
 		.list-item {
 			@include respond(mobile) {
 				border-top: none;
-			}
+			} 
 		}
 	}
 
@@ -68,4 +60,8 @@
 	}
 }
 
-
+#service-title {
+	color: $dark-blue;
+	font-weight: bold;
+	margin: 0 0 10px 0;
+}
