@@ -39,7 +39,8 @@
             };
 
             this.locationFound = function () {
-                if ($stateParams.uprn || $stateParams.address || $stateParams.id) {
+                if (($stateParams.uprn && !$stateParams.id) || 
+                    ($stateParams.address && !$stateParams.id)) {
             
                     return true;
                 } else {
