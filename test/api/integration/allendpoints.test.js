@@ -1,8 +1,8 @@
 var test = require("tape");
-var server = require("../../server/server.js");
+var server = require("../../../server/server.js");
 var request = require("request");
-var serviceArrays = require("../../server/config/serverConfig.js").map.serviceArrays;
-var menu = require("../../server/angular/menu.json");
+var serviceArrays = require("../../../server/config/serverConfig.js").map.serviceArrays;
+var menu = require("../../../server/angular/menu.json");
 
 var apiUrl = "http://0.0.0.0:8080";
 
