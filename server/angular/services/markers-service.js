@@ -27,9 +27,7 @@
             this.geolocateUser = function (functionScope, location, cb) {     
                 
                 var remainOnPage = function() {
-                    var path = (location.indexOf("/streetworks") > -1)
-                        ? "home/streetworks"
-                        : "/home/" + $stateParams.service + "/search";
+                    var path = location;
                        
                     $location.path(path);
                 }; 
