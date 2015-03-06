@@ -21,8 +21,6 @@
                 return function(e, args, scope) {
                     scope = scope || functionScope;
 
-                    console.log("zoom", scope.centre.zoom);
-
                     //ensuring that the uri is encoded correctly
                     $stateParams.service = decodeURI($stateParams.service);
                     var service = encodeURIComponent($stateParams.service);
