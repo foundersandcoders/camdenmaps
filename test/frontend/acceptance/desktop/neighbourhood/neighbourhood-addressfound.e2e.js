@@ -13,15 +13,18 @@ var information = element.all(by.tagName('p'));
 	function neighbourhoodAddressFound () {
 
     	ddescribe("neighbourhood information ", function () {
+
     		it("is displayed", function() {
     			var neighbourhoodInfo = element(by.id('neighbourhood-info'));
     			expect(neighbourhoodInfo.isDisplayed()).toBe(true);
 	        });
+
 	        it("position marker appears ", function () {
 	        	var position = element(by.css('[src="../img/icons/location-marker.png"]'));
 
 	        	expect(position.isDisplayed()).toBe(true);
 	        });
+            
             it("given that polling station is clicked and isn't currently displaying, its corresponding marker appears", function() {
                 var pollingStation = element(by.css('[ng-click="togglePollingStation()"]'));
 
