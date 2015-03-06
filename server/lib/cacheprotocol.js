@@ -1,7 +1,7 @@
 "use strict";
 
 var c = require("../config/cache.js");
-var request = require("request");
+var r = require("request");
 var staleTime = 1000 * 60 * 60 * 24; // one day
 
 function setCache (key, response, cb, cache) {
@@ -27,18 +27,18 @@ function isStale(staleAt) {
 }
 
 
-function getCache (req, key, rep, mapUri, parse, proxyConfig, cache) {
+function getCache (req, key, rep, mapUri, parse, proxyConfig, cache, request) {
 
     cache = cache || c;
+    request = request || r;
 
     cache.get(key, function (err, value) {
 
-        // print error if something went wrong
         if (err) {
             console.log(err);
+            return rep.proxy(proxyConfig);
         }
 
-        // return cached response if it exists
         if (value.hasOwnProperty(key)) {
             rep(value[key]);
             if(isStale(value[key].staleAt)) {
@@ -54,7 +54,7 @@ function getCache (req, key, rep, mapUri, parse, proxyConfig, cache) {
 
             }
         } else {
-            rep.proxy(proxyConfig);
+            return rep.proxy(proxyConfig);
         }
     });
 }

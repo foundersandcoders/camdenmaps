@@ -81,6 +81,17 @@ test("createQuery returns url string with if req.params.latitude", function(t) {
 
 });
 
+test("createQuery returns baseUrl if req doesn't have any params", function(t) {
+
+    var req = {
+        params: {}
+    };
+
+    t.equals(getRecyclingCoordinates.createQuery(req), "http://maps.camden.gov.uk/parkingbays/parkingbaysrest.aspx", "base Url returned");
+
+    t.end();
+
+});
 
 test("getRecyclingCoordinates has makeRequest function", function(t) {
 
@@ -213,6 +224,29 @@ test("fetchCoordinates should skip if not recycling service or location not spec
         }
     }
 
+    getRecyclingCoordinates.fetchCoordinates(req, res);
+
+
+});
+
+
+test("fetchCoordinates should call makeRequest if recycling service and location is specified", function(t) {
+
+    t.plan(1);
+    var req = {
+        params: {
+            service: "Wood",
+            postcode: "NW1 0NE"
+        },
+        app: {}
+    };
+    var res = {
+        continue: function() {
+            if(req.app.hasOwnProperty("latitude")) {
+                t.ok(true, "res.continue() called directly");
+            }
+        }
+    };
     getRecyclingCoordinates.fetchCoordinates(req, res);
 
 
