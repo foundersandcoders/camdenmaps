@@ -233,8 +233,9 @@ function getObject (array, selected) {
                                     return result.display.Name === $stateParams.id;
                                 })[0];
 
-                                // $scope.centre = markers.centreCheck($scope)();
                                 $scope.centre.zoom = markers.zoomCheck($scope)();
+                                $scope.centre.lat = Number(data.location.Latitude);
+                                $scope.centre.lng = Number(data.location.Longitude);
 
                                 resetActiveMarker($scope);
 
