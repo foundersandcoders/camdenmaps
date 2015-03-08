@@ -9,16 +9,14 @@ var Config,
 	activeMarkerSrc,
 	inactiveMakerSrc,
 	leafletmarkers,
-	firstMarker;
-
-
+	retry;
 
 Config = require("../config.js");
 baseUrl = Config.path.main;
 activeMarkerSrc = Config.markers.active;
 inactiveMarkerSrc = Config.markers.inactive;
-leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
-firstMarker = leafletmarkers.get(0);
+
+retry = require('webdriverjs-retry');
 
 
 (function () {
@@ -29,7 +27,9 @@ firstMarker = leafletmarkers.get(0);
     	describe("markers ", function () {
 
 	        it("are displayed", function() {
-	            
+	            var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
+
+
 	        	expect(leafletmarkers.get(0).isDisplayed()).toBe(true);
 	        	expect(leafletmarkers.count()).toBeGreaterThan(1);
 	        });
@@ -38,13 +38,20 @@ firstMarker = leafletmarkers.get(0);
 
 	        	it("marker links with view", function() {
 		        	
-		        	firstMarker.click().then(function(){
-		        		var singleView = element.all(by.css('.single-view-info')).get(0);
-		        		var icon = firstMarker.getAttribute("src");
+		        	var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
 
-		        		expect(icon).toEqual(baseUrl + activeMarkerSrc); 
-		        		expect(singleView.isDisplayed()).toBe(true);
-		        	});
+		        	var firstMarker = leafletmarkers.get(0);
+
+		        	retry.run(function(){
+
+		        		firstMarker.click().then(function(){
+			        		var singleView = element.all(by.css('.single-view-info')).get(0);
+			        		var icon = firstMarker.getAttribute("src");
+
+			        		expect(icon).toEqual(baseUrl + activeMarkerSrc); 
+			        		expect(singleView.isDisplayed()).toBe(true);
+			        	});
+			        }, 5000);
 		        	 	
 		        });
 
@@ -55,20 +62,27 @@ firstMarker = leafletmarkers.get(0);
 
 	        	it("only one marker is active", function() {
 	        		
+	        		var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
+
+	        		var firstM = leafletmarkers.get(0);
 	        		var secondMarker = leafletmarkers.get(2);
 
-					firstMarker.click();
-					secondMarker.click().then(function() {
-						var inactiveMarker = firstMarker.getAttribute("src"); 
-						var activeMarker = secondMarker.getAttribute("src"); 
-	        			
-	        			expect(inactiveMarker).toEqual(baseUrl + inactiveMarkerSrc); 
-	        			expect(activeMarker).toEqual(baseUrl + activeMarkerSrc);       		
-	        		}); 		      		 		
-	        		
-	        	});
+					retry.run(function(){
+						firstM.click();
+					}, 5000).then(function(){
+						retry.run(function(){
+							secondMarker.click();
+						}, 5000).then(function() {
+							var inactiveMarker = firstM.getAttribute("src"); 
+							var activeMarker = secondMarker.getAttribute("src"); 
+		        			
+		        			expect(inactiveMarker).toEqual(baseUrl + inactiveMarkerSrc); 
+		        			expect(activeMarker).toEqual(baseUrl + activeMarkerSrc);       		
+	        			}); 	  		 		
+		        	});
 
-	        });
+		        });
+		    });
 
 	        describe("if address is entered ", function() {
 

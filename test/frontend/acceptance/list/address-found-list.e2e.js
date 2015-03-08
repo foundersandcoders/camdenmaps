@@ -27,7 +27,7 @@ activeMarker = Config.markers.active;
                 input.sendKeys('NW1 0NE');
                 input.sendKeys(protractor.Key.ENTER);
                 input.sendKeys(protractor.Key.ENTER);
-            })
+            });
 
             it("have more than 1 result", function () {
                 expect(listResults.count()).toBeGreaterThan(1);
