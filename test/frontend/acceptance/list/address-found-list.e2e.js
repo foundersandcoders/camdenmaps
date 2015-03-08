@@ -7,12 +7,14 @@
 var Config,
     listResults,
     listItem,
-    activeMarker;
+    activeMarker,
+    baseUrl;
 
 Config = require('../config.js');
 listResults = element.all(by.repeater('result in results'));
 listItem = element.all(by.css('.list-item')).get(0);
 activeMarker = Config.markers.active;
+baseUrl = Config.path.main;
 
 
 (function () {
@@ -49,7 +51,7 @@ activeMarker = Config.markers.active;
                     });
                 });
 
-                it("distaces are displayed only for services, not for streetworks", function () {
+                it("distances are displayed only for services, not for streetworks", function () {
                     browser.getCurrentUrl().then(function (url) {
                         if (url.indexOf('streetworks') === -1) {
                             var distance = listItem.element(by.css(".distance"));
@@ -59,7 +61,7 @@ activeMarker = Config.markers.active;
                     });
                 });
 
-                it("distace are rounded to one decimal place, not for streetworks", function () {
+                it("distances are rounded to one decimal place, not for streetworks", function () {
                     browser.getCurrentUrl().then(function (url) {
                         if (url.indexOf('streetworks') === -1) {
                             var distance = listItem.element(by.css(".distance"));
@@ -90,10 +92,11 @@ activeMarker = Config.markers.active;
 
                 it("links to a marker", function(){
                     listResults.get(0).click();
-
+                    
+                    var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
                     var icon = leafletmarkers.get(0).getAttribute("src"); 
 
-                    expect(icon).toEqual(activeMarker);
+                    expect(icon).toEqual(baseUrl + activeMarker);
                 });
             });
 
