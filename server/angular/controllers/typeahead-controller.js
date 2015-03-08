@@ -32,7 +32,8 @@ function getObject (array, selected) {
         "validate",
         "menuFind",
         "localStorageService",
-        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService) {
+        "scrollElement",
+        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService, scrollElement) {
 
             var uprnArray,
                 round = require("../lib/round.js");
@@ -110,6 +111,22 @@ function getObject (array, selected) {
                 $scope.typeaheadSearchList = menuFind.services();
             }
 
+            $scope.$watch(function(){
+
+                var typeaheadActivated = $("input").attr('aria-expanded');
+                var data = $(".dropdown-menu").html()//("aria-activedescendant");
+                console.log(data);
+
+                if (typeaheadActivated === "true") {
+                    var dropDown = $(".dropdown-menu");
+                    var currentMatch = $("li.active").change( function() {
+                        console.log('hello');
+                    })
+                    // console.log(currentMatch);
+                    // scrollElement.stop(dropDown, currentMatch);                      
+                }
+            });
+
             $scope.handler = function (selected) {
 
                 var destination;
@@ -182,7 +199,7 @@ function getObject (array, selected) {
                                         return item;
                                     });
                                 }
-                            });
+                            })
                     };
                 });
             }

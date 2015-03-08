@@ -12,7 +12,8 @@
     module.exports = [
         "$location",
         "$stateParams",
-        function ($location, $stateParams) {
+        "scrollElement",
+        function ($location, $stateParams, scrollElement) {
 
             var path; 
 
@@ -44,12 +45,9 @@
                                 : "/home/" + service + "/search/" + scope.markers[args.markerName].name;
 
                         $(".leaflet-clickable").click(function() {
-                            var activeItem = $(".display-active-result").position().top;
-                            $("#list-results").animate({
-                                scrollTop: activeItem
-                            },500);
-                        });                        
-
+                            scrollElement.toTop($("#list-results"), $(".display-active-result"));                      
+                        })
+                        
                         if($location.path() !== path) {
                             $location.path(path);
                         }

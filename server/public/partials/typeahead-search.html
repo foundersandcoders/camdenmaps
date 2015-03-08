@@ -9,7 +9,7 @@
 	<form ng-submit="handler(selected)" id="address-input">
 
 		<div class="col-md-8" id="forminput">
-		    <input type="text" placeholder="{{ placeholder }}" ng-model="selected" typeahead="searchitem.title for searchitem in typeaheadSearchList{{ additions }}" typeahead-min-length="{{ minLength }}" class="form-control"/>
+		    <input type="text" placeholder="{{ placeholder }}" ng-model="selected" typeahead="searchitem.title for searchitem in typeaheadSearchList{{ additions }}" typeahead-min-length="{{ minLength }}" class="form-control" typeahead-loading="loadingResults"/>
 		</div>
 
 		<div class="col-md-1 submit-wrapper">
