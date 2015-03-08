@@ -6,11 +6,13 @@
 
 var Config,
     listResults,
-    listItem;
+    listItem,
+    mapMarkerTests;
 
 Config = require('../config.js');
 listResults = element.all(by.repeater('result in results'));
 listItem = element.all(by.css('.list-item')).get(0);
+mapMarkerTests = require('../map/map-markers.e2e.js');
 
 (function () {
     "use strict";
@@ -85,7 +87,8 @@ listItem = element.all(by.css('.list-item')).get(0);
                     
                 });
             });
-
+            
+            mapMarkerTests();
 	    });
 	}
 
