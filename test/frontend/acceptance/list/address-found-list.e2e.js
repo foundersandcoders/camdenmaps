@@ -43,7 +43,7 @@ listItem = element.all(by.css('.list-item')).get(0);
                     
                             expect(title.isDisplayed()).toBe(true);
                         }
-                    })
+                    });
                 });
 
                 it("distaces are displayed only for services, not for streetworks", function () {
@@ -53,7 +53,7 @@ listItem = element.all(by.css('.list-item')).get(0);
                             
                             expect(distance.isDisplayed()).toBe(true);
                         }
-                    })
+                    });
                 });
 
                 it("distace are rounded to one decimal place, not for streetworks", function () {
@@ -64,7 +64,7 @@ listItem = element.all(by.css('.list-item')).get(0);
                             
                             expect(text).toMatch(/\d*\.\d{1} miles away/);
                         }
-                    })
+                    });
                 });
             });
 
