@@ -25,15 +25,15 @@
         htmlFiles = ["./server/public/partials/*.html", "./server/public/*.html"],
         protractorTestFiles = [
                         // Desktop Tests below
-                            './test/frontend/acceptance/desktop/landing.e2e.js',
-                            './test/frontend/acceptance/desktop/services/categories.e2e.js',
-                            './test/frontend/acceptance/desktop/services/services.e2e.js',
+                            // './test/frontend/acceptance/desktop/landing.e2e.js',
+                            // './test/frontend/acceptance/desktop/services/categories.e2e.js',
+                            // './test/frontend/acceptance/desktop/services/services.e2e.js',
                             './test/frontend/acceptance/desktop/streetworks/streetworks.e2e.js',
-                            './test/frontend/acceptance/desktop/neighbourhood/neighbourhood.e2e.js',
+                            // './test/frontend/acceptance/desktop/neighbourhood/neighbourhood.e2e.js',
                         // Mobile Tests below
-                            './test/frontend/acceptance/mobile/landing.e2e.js',
-                            './test/frontend/acceptance/mobile/services/categories.e2e.js',
-                            './test/frontend/acceptance/mobile/services/services.e2e.js',
+                            // './test/frontend/acceptance/mobile/landing.e2e.js',
+                            // './test/frontend/acceptance/mobile/services/categories.e2e.js',
+                            // './test/frontend/acceptance/mobile/services/services.e2e.js',
                             ],
         sassFiles = ["./server/public/css/*.scss", "./server/public/css/*/*.scss"],
         allFiles = serverFiles.concat(angularFiles);

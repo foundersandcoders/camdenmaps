@@ -6,11 +6,14 @@
 
 var Config,
     listResults,
-    listItem;
+    listItem,
+    activeMarker;
 
 Config = require('../config.js');
 listResults = element.all(by.repeater('result in results'));
 listItem = element.all(by.css('.list-item')).get(0);
+activeMarker = Config.markers.active;
+
 
 (function () {
     "use strict";
@@ -83,6 +86,14 @@ listItem = element.all(by.css('.list-item')).get(0);
                     });
                     expect(initialHeight).toBeLessThan(nextHeight);
                     
+                });
+
+                it("links to a marker", function(){
+                    listResults.get(0).click();
+
+                    var icon = leafletmarkers.get(0).getAttribute("src"); 
+
+                    expect(icon).toEqual(activeMarker);
                 });
             });
 
