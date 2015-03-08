@@ -8,13 +8,16 @@ var Config,
     listResults,
     listItem,
     activeMarker,
-    baseUrl;
+    baseUrl,
+    mapMarkerTests;
+
 
 Config = require('../config.js');
 listResults = element.all(by.repeater('result in results'));
 listItem = element.all(by.css('.list-item')).get(0);
 activeMarker = Config.markers.active;
 baseUrl = Config.path.main;
+mapMarkerTests = require('../map/map-markers.e2e.js');
 
 
 (function () {
@@ -44,9 +47,9 @@ baseUrl = Config.path.main;
                     
                             expect(title.isDisplayed()).toBe(true);
                         } else {
-                            var title = listItem.element(by.css('[ng-show="streetworks"]'));
+                            var titleS = listItem.element(by.css('[ng-show="streetworks"]'));
                     
-                            expect(title.isDisplayed()).toBe(true);
+                            expect(titleS.isDisplayed()).toBe(true);
                         }
                     });
                 });
@@ -98,10 +101,23 @@ baseUrl = Config.path.main;
 
                     expect(icon).toEqual(baseUrl + activeMarker);
                 });
-            });
+                
 
-	    });
-	}
+                it(" marker tests", function() {
+                    browser.getCurrentUrl().then(function (url) {
+                        if (url.indexOf('streetworks') === -1) {
+                        mapMarkerTests();
+                        }
+                    });
+                });
+
+            });
+            
+
+        });
+    
+    }
+
 
 module.exports = addressFoundListTests;
 

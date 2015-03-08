@@ -149,8 +149,6 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 
 			        	expect(currentUrl).toContain("location/NW6%201QU");
 			        });
-
-			        addressFoundListTests();
 		        });
 
                 describe("when an address has been searched using the typeahead", function() {

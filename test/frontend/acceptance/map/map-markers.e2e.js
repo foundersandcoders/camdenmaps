@@ -27,36 +27,42 @@ retry = require('webdriverjs-retry');
     	describe("markers ", function () {
 
 	        it("are displayed", function() {
-	            var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
 
+	            var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
 
 	        	expect(leafletmarkers.get(0).isDisplayed()).toBe(true);
 	        	expect(leafletmarkers.count()).toBeGreaterThan(1);
 	        });
 
-	        describe("if clicked", function() {
+	        it("with the correct number", function() {
+	            var listResults = element.all(by.repeater('result in results'));
+	        	var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
 
-	        	it("marker links with view", function() {
-		        	
-		        	var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
-
-		        	var firstMarker = leafletmarkers.get(0);
-
-		        	retry.run(function(){
-
-		        		firstMarker.click().then(function(){
-			        		var singleView = element.all(by.css('.single-view-info')).get(0);
-			        		var icon = firstMarker.getAttribute("src");
-
-			        		expect(icon).toEqual(baseUrl + activeMarkerSrc); 
-			        		expect(singleView.isDisplayed()).toBe(true);
-			        	});
-			        }, 5000);
-		        	 	
-		        });
-
-
+	        	leafletmarkers.count().then(function (num) {
+	        		expect(listResults.count()).toEqual(num -2);
+	        	});
 	        });
+
+        	it("marker links with view", function() {
+	        	
+	        	var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
+
+	        	var firstMarker = leafletmarkers.get(0);
+
+	        	retry.run(function(){
+
+	        		firstMarker.click().then(function(){
+		        		var singleView = element.all(by.css('.single-view-info')).get(0);
+		        		var icon = firstMarker.getAttribute("src");
+
+
+		        		expect(icon).toEqual(baseUrl + activeMarkerSrc); 
+		        		expect(singleView.isDisplayed()).toBe(true);
+		        	});
+		        }, 5000);
+	        	 	
+	        });
+
 
 	        describe("when clicking through markers", function() {
 
