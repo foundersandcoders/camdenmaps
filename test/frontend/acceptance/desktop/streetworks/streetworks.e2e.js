@@ -10,7 +10,7 @@ var Config,
 	streetworksTitle,
 	streetworksImage,
 	baseUrl,
-	home,
+	homeUrl,
 	streetworksUrl,
 	menuBarTests,
 	mapMarkerTests,
@@ -35,63 +35,84 @@ geolocationTests = require('../../geolocation/geolocation.e2e.js');
 
 "use strict";
 
-	describe("Streetworks on landing page", function() {
+	// describe("Streetworks on landing page", function() {
 		
-		beforeEach(function() {			
-			browser.get(homeUrl);
-		});
+	// 	beforeEach(function() {			
+	// 		browser.get(homeUrl);
+	// 	});
 
-		var img = streetworks.element(by.tagName("a")).element(by.className("icon")),
-			text = streetworks.element(by.tagName("a")).element(by.tagName("h4"));
+	// 	var img = streetworks.element(by.tagName("a")).element(by.className("icon")),
+	// 		text = streetworks.element(by.tagName("a")).element(by.tagName("h4"));
 			
 
-		it("appears ", function(){
+	// 	it("appears ", function(){
 
-			expect(streetworks.isDisplayed()).toBe(true);
-		});
+	// 		expect(streetworks.isDisplayed()).toBe(true);
+	// 	});
 
-		it("has an image showing", function() {
+	// 	it("has an image showing", function() {
 
-			expect(img.isDisplayed()).toBe(true);
-		});
+	// 		expect(img.isDisplayed()).toBe(true);
+	// 	});
 
 
-		it("has the correct image", function() {
+	// 	it("has the correct image", function() {
 
-			var src = img.getAttribute("src");
+	// 		var src = img.getAttribute("src");
 
-			expect(src).toEqual(baseUrl + streetworksImage);
-		});
+	// 		expect(src).toEqual(baseUrl + streetworksImage);
+	// 	});
 
-		it("has the correct title", function() {
+	// 	it("has the correct title", function() {
 
-			var title = text.getText();
+	// 		var title = text.getText();
 
-        	expect(title).toEqual(streetworksTitle);
-		});
+ //        	expect(title).toEqual(streetworksTitle);
+	// 	});
 
-		it("redirects to streetworks when you click on the streetworks icon", function(){
-			//click on button
-			streetworksButton.click();
-			var url = browser.getCurrentUrl();
+	// 	it("redirects to streetworks when you click on the streetworks icon", function(){
+	// 		//click on button
+	// 		streetworksButton.click();
+	// 		var url = browser.getCurrentUrl();
 		
-			expect(url).toContain(streetworksUrl); 
-		});
-	});
+	// 		expect(url).toContain(streetworksUrl); 
+	// 	});
+	// });
 
-	describe("once live streetworks", function() {
+	// describe("once live streetworks", function() {
 
-		beforeEach(function() {	
+	// 	beforeEach(function() {	
 
-			browser.get(homeUrl);		
-			streetworksButton.click();
-		});
+	// 		browser.get(homeUrl);		
+	// 		streetworksButton.click();
+	// 	});
 	
-		describe(" has been clicked on", function() {
+	// 	describe(" has been clicked on", function() {
 			
-			menuBarTests();
-			addressTypeaheadTests();
-			geolocationTests();
+	// 		menuBarTests();
+	// 		addressTypeaheadTests();
+	// 		geolocationTests();
+	// 	});
+	// });
+
+	describe("once an address has been entered", function() {
+
+		beforeEach(function() {
+			browser.manage().window().setSize(1600, 1000);
+			browser.get(homeUrl);
+			streetworksButton.click();
+			var input = element(by.tagName('input'));
+						input.sendKeys('NW1 0NE');
+						input.sendKeys(protractor.Key.ENTER);
+						input.sendKeys(protractor.Key.ENTER);
+
 		});
+
+		afterEach(function () {
+		    browser.executeScript('window.localStorage.clear();');
+		});
+
+		mapMarkerTests();
+
 	});
 }());

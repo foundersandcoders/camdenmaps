@@ -59,7 +59,8 @@ exports.config = {
     //Timeout 30min.
     defaultTimeoutInterval: 60 *1000 * 30,
     isVerbose: true
-  }
+  },
+
   
 };
 
