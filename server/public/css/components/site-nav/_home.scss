@@ -1,6 +1,8 @@
 #main-container {
 	z-index: 999;
 	position: absolute;
+	margin: 1.7em;
+	width: 35.5em;
 	@include respond(mobile) {
 		width: 100%;
 		padding: 0;
