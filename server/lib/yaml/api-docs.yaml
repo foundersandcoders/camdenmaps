@@ -7,7 +7,7 @@ info:
 host: camdenmaps.herokuapp.com
 # array of all schemes that your API supports
 schemes:
-  - https
+  - http
 basePath: /
 produces:
   - application/json

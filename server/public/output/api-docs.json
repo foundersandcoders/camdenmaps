@@ -7,7 +7,7 @@
   },
   "host": "camdenmaps.herokuapp.com",
   "schemes": [
-    "https"
+    "http"
   ],
   "basePath": "/",
   "produces": [
