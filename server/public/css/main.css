@@ -294,7 +294,7 @@ input:focus {
     border-right: 0.1em white solid;
     border-left: 0.1em white solid;
     border-radius: 0;
-    background-color: #0000E9;
+    background-color: #00019F;
     font-size: 1em;
     color: white;
     width: 100%; }
@@ -306,6 +306,12 @@ input:focus {
   top: 0.3em;
   left: 0.3em;
   z-index: 1; }
+
+#polling-station button {
+  display: block-inline;
+  background-color: #00019F;
+  border-radius: 0.1em;
+  color: white; }
 
 .navigation-arrow {
   margin: 0.9em 0 2.5em;
