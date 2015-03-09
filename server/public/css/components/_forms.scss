@@ -120,6 +120,10 @@
 			border-bottom: 0.1em $menu-stroke-grey solid;  
 			a {
 				font-size: 0.9em;
+				line-height: 1.5em;
+				@include respond(mobile) {
+					line-height: 2em;
+				}
 			}     
         }
 	}
