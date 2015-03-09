@@ -16,6 +16,7 @@ exports.config = {
         '../acceptance/mobile/services/services.e2e.js'
   ],
 
+  sauceUser: process.env.SAUCE_USERNAME,
 
   sauceKey: process.env.SAUCE_ACCESS_KEY, 
 
