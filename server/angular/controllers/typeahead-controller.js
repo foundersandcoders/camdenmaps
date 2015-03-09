@@ -65,6 +65,9 @@ function getObject (array, selected) {
                 searchApi(address);
             }
 
+            if (locationCheck.resultsLoaded()) {
+                $scope.mapToggle = true
+            }
             if(locationCheck.addressSearch()) {
 
                 if ($location.path().indexOf('location') === -1) {

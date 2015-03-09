@@ -117,7 +117,10 @@
 		padding: 0;
 		overflow: hidden;
 		li {
-			border-bottom: 0.1em $menu-stroke-grey solid;       
+			border-bottom: 0.1em $menu-stroke-grey solid;  
+			a {
+				font-size: 0.9em;
+			}     
         }
 	}
 	form {
@@ -182,5 +185,4 @@
 		// z-index: 999;
 	}
 }
-
 

@@ -121,7 +121,7 @@
 	width: 2.5em;
 	border-radius: 0.1em;
 	position: absolute;
-	top: 7.2em;
+	top: 7.5em;
 	left: 0.5em;
 	box-shadow: 5px 5px 5px #888888;
 	padding: 0.2em 0;
@@ -135,6 +135,9 @@
 .change-address {
 	display: none;
 	visibility: hidden;
+	p {
+		color: #7BBFF7;
+	}
 }
 
 @media only screen and (max-device-width: 768px) {
