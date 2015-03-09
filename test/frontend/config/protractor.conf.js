@@ -16,7 +16,7 @@ exports.config = {
         '../acceptance/mobile/services/services.e2e.js'
   ],
 
-  sauceUser: process.env.SAUCE_USERNAME ,
+  sauceUser: process.env.SAUCE_USERNAME,
 
   sauceKey: process.env.SAUCE_ACCESS_KEY, 
 
@@ -60,7 +60,8 @@ exports.config = {
     //Timeout 30min.
     defaultTimeoutInterval: 60 *1000 * 30,
     isVerbose: true
-  }
+  },
+
   
 };
 

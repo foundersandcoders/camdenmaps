@@ -9,19 +9,13 @@
     module.exports = [
         function () {
 
+            //First time you click on marker, doesn't activate
             this.toTop = function (outerElement, innerElement) {
-                // console.log(innerElement);
+                
                 var activeItem = innerElement.position().top;
+                
+                outerElement.scrollTop(0);
 
-                outerElement.animate({
-                    scrollTop: activeItem
-                },500);  
-            };
-
-            this.stop = function (outerElement, innerElement) {
-                // console.log(innerElement);
-                var activeItem = innerElement.position().top;
-                // console.log(activeItem);
                 outerElement.animate({
                     scrollTop: activeItem
                 },500);  

@@ -4,9 +4,10 @@ info:
   description: Investigate and explore the Camden maps API 
   version: "1.0.0"
 # the domain of the service
-host: 0.0.0.0:8080
+host: localhost:8080
 # array of all schemes that your API supports
 schemes:
+  - https
   - http
 basePath: /
 produces:

@@ -93,7 +93,7 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 		        	
 		        	afterEach(function () {
 		        		browser.executeScript('window.localStorage.clear();');
-		        	})
+		        	});
 		        	//Does not work for streetworks
 		        	it("pressing the search button works", function() {
 			        	var input = element(by.tagName('input'));
@@ -125,7 +125,7 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 		        	
 		        	afterEach(function () {
 		        		browser.executeScript('window.localStorage.clear();');
-		        	})
+		        	});
 		        	//Does not work for streetworks
 		        	it("pressing the search button works", function() {
 			        	var input = element(by.tagName('input'));
@@ -149,9 +149,61 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 
 			        	expect(currentUrl).toContain("location/NW6%201QU");
 			        });
-
-			        addressFoundListTests();
 		        });
+
+                describe("when an address has been searched using the typeahead", function() {
+			        beforeEach(function() {
+                        var input = element(by.tagName('input'));
+                        
+                        input.sendKeys('NW1 0NE');
+                        input.sendKeys(protractor.Key.ENTER);
+                        input.sendKeys(protractor.Key.ENTER);
+
+                    });
+					
+					afterEach(function () {
+		        		browser.executeScript('window.localStorage.clear();');
+		        	});
+
+			        it("should show an error when a new incorrect address is entered", function(){
+			        	var input = element(by.tagName('input'));
+							input.sendKeys('bytctrdvre');
+							input.sendKeys(protractor.Key.ENTER);
+							input.sendKeys(protractor.Key.ENTER);
+
+							var errorMessage = element(by.css('.errormessage'));
+
+							expect(errorMessage.isDisplayed()).toBe(true);
+			        });
+                });
+
+                describe("when an address has been searched using a string", function() {
+			        beforeEach(function() {
+                        var input = element(by.tagName('input'));
+                        
+                        input.sendKeys('NW1 0NE');
+                        input.sendKeys(protractor.Key.ENTER);
+                        input.sendKeys(protractor.Key.ENTER);
+
+                    });
+					
+					afterEach(function () {
+		        		browser.executeScript('window.localStorage.clear();');
+		        	});
+
+			        it("should show an error when a new incorrect address is entered using a string", function(){
+			        	var input = element(by.tagName('input'));
+						input.sendKeys('bytctrdvre');
+						input.sendKeys(protractor.Key.ENTER);
+						input.sendKeys(protractor.Key.ENTER);
+
+						var errorMessage = element(by.css('.errormessage'));
+
+						expect(errorMessage.isDisplayed()).toBe(true);
+				        
+			        });
+                });
+				
 
                 describe("when an address has been searched using the typeahead", function() {
            

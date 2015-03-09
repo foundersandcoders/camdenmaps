@@ -27,9 +27,7 @@
             this.geolocateUser = function (functionScope, location, cb) {     
                 
                 var remainOnPage = function() {
-                    var path = (location.indexOf("/streetworks") > -1)
-                        ? "home/streetworks"
-                        : "/home/" + $stateParams.service + "/search";
+                    var path = location;
                        
                     $location.path(path);
                 }; 
@@ -87,11 +85,8 @@
                     coord = function coord(i, latlng){
                         return Number(scope.results[i][latlng]);
                     };
-        
-
-                    // this creates the marker objects to plot the locations on the map
-
-                        
+                    
+                    // this creates the marker objects to plot the locations on the map     
                     var i, 
                     	resultLength = Object.size(root);
                     
@@ -108,8 +103,6 @@
                         markers[property].icon.iconSize = [28];
 
                     }
-                        
-                    
 
                     //loads default location marker if results are capped
                     //but not if searching with geolocate 
@@ -148,7 +141,7 @@
                             }
                         };
                     } 
-
+                    scope.markers = {};
                     scope.update("markers", markers);
                 };
 
@@ -174,8 +167,6 @@
                     else {
                         zoomLevel = 13;
                     }
-
-
                     return zoomLevel;
 
                 };

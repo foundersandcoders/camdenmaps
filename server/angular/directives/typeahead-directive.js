@@ -7,7 +7,8 @@
     "use strict";
 
     module.exports = [
-        function () {
+        "$window",
+        function ($window) {
         	return {
         		restrict: 'AEC',
                 transclude: true,

@@ -39,7 +39,6 @@
                         //changes colour of marker selected
                         scope.markers[args.markerName].icon.iconUrl = "../img/icons/yellow-marker.png";  
 
-
                         //correct path will depend on if it is called from search or location controller
                         path    = scope.address ? "/home/" + service + "/location/" + scope.address + "/" + scope.markers[args.markerName].name
                                 : "/home/" + service + "/search/" + scope.markers[args.markerName].name;
