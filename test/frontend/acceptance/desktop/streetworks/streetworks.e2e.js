@@ -10,13 +10,14 @@ var Config,
 	streetworksTitle,
 	streetworksImage,
 	baseUrl,
-	home,
+	homeUrl,
 	streetworksUrl,
 	menuBarTests,
 	mapMarkerTests,
 	streetworks,
 	addressTypeaheadTests,
-	geolocationTests;
+	geolocationTests,
+	addressFoundListTests;
 
 Config = require("../../config.js");
 streetworks = element.all(by.repeater('button in buttons')).get(2);
@@ -30,6 +31,7 @@ menuBarTests = require('../../menubar/menubar.e2e.js');
 mapMarkerTests = require('../../map/map-markers.e2e.js');
 addressTypeaheadTests = require('../../typeahead/addresstypeahead.e2e.js');
 geolocationTests = require('../../geolocation/geolocation.e2e.js');
+addressFoundListTests = require('../../list/address-found-list.e2e.js');
 
 (function() {
 
@@ -93,5 +95,26 @@ geolocationTests = require('../../geolocation/geolocation.e2e.js');
 			addressTypeaheadTests();
 			geolocationTests();
 		});
+	});
+
+	describe("once an address has been entered", function() {
+
+		beforeEach(function() {
+			browser.manage().window().setSize(1600, 1000);
+			browser.get(homeUrl);
+			streetworksButton.click();
+			var input = element(by.tagName('input'));
+						input.sendKeys('NW1 0NE');
+						input.sendKeys(protractor.Key.ENTER);
+						input.sendKeys(protractor.Key.ENTER);
+
+		});
+
+		afterEach(function () {
+		    browser.executeScript('window.localStorage.clear();');
+		});
+
+		mapMarkerTests();
+
 	});
 }());

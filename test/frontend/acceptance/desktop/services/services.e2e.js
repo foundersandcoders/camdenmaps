@@ -185,13 +185,13 @@ geolocationTests = require('../../geolocation/geolocation.e2e.js');
             	//To run for all services, please change 3 to 0 and 5 to servicelength
             	for (h = 0; h < 1; h++) {
 	        		runServicesTest(h);
-	        	};
+	        	}
 	        });
     	}
 
     	for (i = 0; i < 1; i++) {
     		catTests(i);
-    	};
+    	}
 	});
 
 }());

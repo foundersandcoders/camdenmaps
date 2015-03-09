@@ -12,7 +12,8 @@
     module.exports = [
         "$location",
         "$stateParams",
-        function ($location, $stateParams) {
+        "scrollElement",
+        function ($location, $stateParams, scrollElement) {
 
             var path; 
 
@@ -38,18 +39,14 @@
                         //changes colour of marker selected
                         scope.markers[args.markerName].icon.iconUrl = "../img/icons/yellow-marker.png";  
 
-
                         //correct path will depend on if it is called from search or location controller
                         path    = scope.address ? "/home/" + service + "/location/" + scope.address + "/" + scope.markers[args.markerName].name
                                 : "/home/" + service + "/search/" + scope.markers[args.markerName].name;
 
                         $(".leaflet-clickable").click(function() {
-                            var activeItem = $(".display-active-result").position().top;
-                            $("#list-results").animate({
-                                scrollTop: activeItem
-                            },500);
-                        });                        
-
+                            scrollElement.toTop($("#list-results"), $(".display-active-result"));                      
+                        })
+                        
                         if($location.path() !== path) {
                             $location.path(path);
                         }

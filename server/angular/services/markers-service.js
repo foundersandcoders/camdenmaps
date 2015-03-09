@@ -162,7 +162,7 @@
                         zoomLevel = 12;
                     }
                     else if (scope.category.title === "Live Streetworks") {
-                        zoomLevel = 15;
+                        zoomLevel = 16;
                     }
                     else {
                         zoomLevel = 13;
