@@ -36,7 +36,7 @@
                             lng: Number(data.location.Longitude),
                             icon: {
                                 iconSize: [28],
-                                iconUrl: "img/icons/marker-hi.png"
+                                iconUrl: "img/icons/ballot.png"
                             }
 
                         }

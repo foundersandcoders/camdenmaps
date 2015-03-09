@@ -4,8 +4,15 @@
     	<ul  >
             <li ng-show="information.Ward.Value">Ward: <a href="{{  information.Ward.Url }} ">{{ information.Ward.Value }} </a></li>
             <li ng-show="information['European constituency'].Value">European Constituency: <a href="{{ information['European constituency'].Url }}">{{ information["European constituency"].Value }}</a></li>
-            <li ng-show="information['Parliamentary Constituency'].Value">Parlimentary Constituency: <a href="{{ information['Parliamentary Constituency'].Url}}">{{ information["Parliamentary Constituency"].Value }} </a></li>
-            <li ng-show="information['Polling Station'].Value">Polling Station: <a ng-click="togglePollingStation()"> {{ information["Polling Station"].Value }}</a> </li>
+            <li ng-show="information['Parliamentary Constituency'].Value">Parlimentary Constituency: <a href="{{ information['Parliamentary Constituency'].Url}}">{{ information["Parliamentary Constituency"].Value }} </a></li>    
+            <li ng-show="information['Polling Station'].Value">Polling Station: {{ information["Polling Station"].Value }} &nbsp
+                <a id="polling-station" ng-click="togglePollingStation()"> 
+                    <button type="button" aria-label="Show marker">
+                        <b>Show on map</b>
+                    </button> 
+                </a> 
+            </li>
+
         </ul>
 
     	<h4 ng-show="information['Recycling Kerbside Collection Day'].Value || information['Domestic Refuse Collection Day. Refuse should be put out by 7am on the morning of collection'].Value" class="local-info-heading">Recycling and rubbish</h4>
