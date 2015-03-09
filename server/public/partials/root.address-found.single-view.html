@@ -1,10 +1,12 @@
  <div ng-show="result">
     
     <div class="single-view-info">
+        <hr id="hr-single-view">
+
         <p ng-show="result.display.Location"> Location of streetworks {{ result.display.Location }} </p>
 
         <p ng-show="result.display.Description"> <b> Description: </b> <br> {{ result.display.Description }} </p>
-        <hr id="hr-single-view">
+        
         <br>
         <a ng-show="result.display.Telephone" href= "tel: {{ result.display.Telephone }}"> <p><b> Tel.: </b> {{ result.display.Telephone }}</p></a>
         <a ng-show="result.display.URL" href="{{ result.display.URL }}" target="_blank" id="url">{{ result.display.URL }}
