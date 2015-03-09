@@ -105,6 +105,15 @@
 	z-index: 1;
 }
 
+#polling-station {
+	button {	
+		display: block-inline;
+		background-color: $blue;
+		border-radius: 0.1em;
+		color: white;
+	}
+}
+
 .navigation-arrow {
 	margin: 0.9em 0 2.5em;
 	padding: 0;
