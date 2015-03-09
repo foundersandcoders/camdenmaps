@@ -50,9 +50,9 @@ function getObject (array, selected) {
             $scope.toggleView = function () {
                 $scope.maplisttoggle = !$scope.maplisttoggle;
                 if ($scope.maplisttoggle) {
-                    $scope.mapOrList = 'list';
+                    $scope.mapOrList = 'Click to see the list';
                 } else {
-                    $scope.mapOrList = 'map';
+                    $scope.mapOrList = 'Click or swipe left to see the map';
                 }
             };
 
