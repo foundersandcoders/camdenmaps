@@ -32,7 +32,8 @@ function getObject (array, selected) {
         "validate",
         "menuFind",
         "localStorageService",
-        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService) {
+        "scrollElement",
+        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService, scrollElement) {
 
             var uprnArray,
                 round = require("../lib/round.js"),
@@ -74,9 +75,7 @@ function getObject (array, selected) {
                     localstorage.get($scope)();
                 }
 
-                //runs on services to display all the results or those around the default location
                 serviceApiSearch();
-                // TODO: Problem is this api search. It is running multiple times, when it should only be run once (on initial load)
 
                 $scope.placeholder = 'Enter an address';
                 $scope.additions = '(($viewValue))';
@@ -165,7 +164,7 @@ function getObject (array, selected) {
                                         return item;
                                     });
                                 }
-                            });
+                            })
                     };
                 });
             }
