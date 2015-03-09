@@ -35,7 +35,8 @@ function getObject (array, selected) {
         function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService) {
 
             var uprnArray,
-                round = require("../lib/round.js");
+                round = require("../lib/round.js"),
+                url = $location.path();
 
             $scope.selected = '';
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
@@ -64,6 +65,9 @@ function getObject (array, selected) {
                 searchApi(address);
             }
 
+            if (locationCheck.resultsLoaded()) {
+                $scope.mapToggle = true
+            }
             if(locationCheck.addressSearch()) {
 
                 if ($location.path().indexOf('location') === -1) {
@@ -71,29 +75,8 @@ function getObject (array, selected) {
                 }
 
                 //runs on services to display all the results or those around the default location
-                if(locationCheck.serviceSearch()) {
-                    apiSearch.search($stateParams.service)
-                        .success(function success (data) {
-                            if(data.hasOwnProperty("error")) {
-                                // display error message
-                                $scope.updateError(data.message);
-                                // and redirect back to services menu to try again
-                                $location.path("/home/services");
-                            }
-                            $scope.updateResults(data.properties);
-                            //selects item from results with matching {id}
-                            $scope.result = $scope.results.filter(function (result) {
-                                return result.display.Name === $stateParams.id;
-                            })[0];
-
-                            $scope.addMarkers();
-    
-                            $scope.centre.zoom = markers.zoomCheck($scope)();
-                        })
-                        .error(function error(err) {
-                            return $scope.updateError(err.message);
-                        });  
-                }
+                serviceApiSearch();
+                // TODO: Problem is this api search. It is running multiple times, when it should only be run once (on initial load)
 
                 $scope.placeholder = 'Enter an address';
                 $scope.additions = '(($viewValue))';
@@ -141,7 +124,7 @@ function getObject (array, selected) {
                 var address = getObject(array, add);
                 //if address has not been selected by typeahead
                 if (address[0] === undefined) {
-                    //searchApi checks if valid address, if not, will throw error.
+                     //searchApi checks if valid address, if not, will throw error.
                     searchApi(add);
                     return;
                 } else {
@@ -187,6 +170,32 @@ function getObject (array, selected) {
                 });
             }
 
+            function serviceApiSearch () {
+                if(locationCheck.serviceSearch()) {
+                    apiSearch.search($stateParams.service)
+                        .success(function success (data) {
+                            if(data.hasOwnProperty("error")) {
+                                // display error message
+                                $scope.updateError(data.message);
+                                // and redirect back to services menu to try again
+                                $location.path("/home/services");
+                            }
+                            $scope.updateResults(data.properties);
+                            //selects item from results with matching {id}
+                            $scope.result = $scope.results.filter(function (result) {
+                                return result.display.Name === $stateParams.id;
+                            })[0];
+
+                            $scope.addMarkers();
+    
+                            $scope.centre.zoom = markers.zoomCheck($scope)();
+                        })
+                        .error(function error(err) {
+                            return $scope.updateError(err.message);
+                        });  
+                }
+            }
+
             function searchApi (address) {
 
                 var path,
@@ -196,7 +205,6 @@ function getObject (array, selected) {
                 if (locationCheck.postcodeSearch()){
 
                     if(address) {
-
                         if ($location.path().indexOf('streetworks') > -1) {
                             service = 'streetworks';
                         } else {
@@ -211,10 +219,11 @@ function getObject (array, selected) {
                                 
                                 localstorage.save(address);
 
+                                $scope.update("markers", {});
                                 $scope.updateResults(data.properties);
                                 $scope.update("locationSelected", data.location);
                                 $scope.addMarkers();
-                                
+
                                 // this rounds results to one decimal place 
                                 $scope.results.forEach(function(entry) {
                                     entry.Distance = round(entry.Distance);

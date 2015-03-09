@@ -19,12 +19,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <script type="text/javascript">
     $(function () {
-      var url = window.location.search.match(/url=([^&]+)/);
-      if (url && url.length > 1) {
-        url = url[1];
-      } else {
-        url = "https://camdenmaps.herokuapp.com/output/api-docs.json";
-      }
+      var url = "https://camdenmaps.herokuapp.com/output/api-docs.json";
+
       window.swaggerUi = new SwaggerUi({
         url: url,
         dom_id: "swagger-ui-container",

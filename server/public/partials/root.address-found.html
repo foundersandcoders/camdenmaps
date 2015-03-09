@@ -1,7 +1,7 @@
 
 <!-- ROOT.ADDRESS-SEARCH BEGINS -->
 
-<div class="container-fluid">
+<div class="container-fluid" ng-swipe-left="toggleView()" ng-swipe-right="toggleView()">
     <div class="services-and-categories col-xs-12">
 
         <!-- Search Box for locations & GPS -->
@@ -9,18 +9,22 @@
 
             <!-- TYPEAHEAD FROM root.address-found.html -->
             <div class="servicestypeahead row">
+                <div class="col-xs-12 errormessage"></div>
                 <typeaheadsearch/>
             </div>
             <div class="serv-near">
                 <h3 id="locations" class="col-md-offset-2 col-md-7">Services near {{ address }}</h3>
             </div>
+            <a class="change-address" ng-click="toggleView()" ng-show="mapToggle">
+                <p>Click or swipe left to see the {{ mapOrList }}</p>
+            </a>
         </div>
 
-        <div ng-click="toggleView()" class="list-toggle-button visible-xs-block col-xs-1">
+        <div ng-click="toggleView()" ng-show="mapToggle" class="list-toggle-button visible-xs-block col-xs-1">
             <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
         </div>
 
-        <div class="col-xs-12 item-container" collapse-width="maplisttoggle" ng-swipe-left="toggleView()">
+        <div class="col-xs-12 item-container" collapse-width="maplisttoggle">
 
         <!-- Title of service and category that are listed in container -->
 

@@ -29,6 +29,7 @@
             //functions to update results and location on root level
             $scope.updateResults = function updateResults (newResults) {
                 var i;
+
                 for(i = 0; i < newResults.length; i += 1) {
                     if (newResults[i].display.hasOwnProperty("Telephone")) {
                         newResults[i].display.Telephone = stripText(newResults[i].display.Telephone);
@@ -39,6 +40,8 @@
 
             //used for updating centre, markers, active markers and location selected
             $scope.update = function update (type, newType){
+                if(type === 'markers') {
+                }
                 $scope[type] = newType;
             };
 
@@ -65,6 +68,7 @@
                 zoomControlPosition: "bottomright",
             };
             $scope.markers = {};
+
             $scope.geojson = {
                 data: camdenBoundaries,
                 style: {
@@ -78,7 +82,6 @@
             };
 
             $scope.addMarkers = markers.addMarkers($scope);
-
         }
 
     ];

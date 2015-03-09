@@ -6,11 +6,13 @@
 
 var Config,
     listResults,
-    listItem;
+    listItem,
+    mapMarkerTests;
 
 Config = require('../config.js');
 listResults = element.all(by.repeater('result in results'));
 listItem = element.all(by.css('.list-item')).get(0);
+mapMarkerTests = require('../map/map-markers.e2e.js');
 
 (function () {
     "use strict";
@@ -43,7 +45,7 @@ listItem = element.all(by.css('.list-item')).get(0);
                     
                             expect(title.isDisplayed()).toBe(true);
                         }
-                    })
+                    });
                 });
 
                 it("distaces are displayed only for services, not for streetworks", function () {
@@ -53,7 +55,7 @@ listItem = element.all(by.css('.list-item')).get(0);
                             
                             expect(distance.isDisplayed()).toBe(true);
                         }
-                    })
+                    });
                 });
 
                 it("distace are rounded to one decimal place, not for streetworks", function () {
@@ -64,7 +66,7 @@ listItem = element.all(by.css('.list-item')).get(0);
                             
                             expect(text).toMatch(/\d*\.\d{1} miles away/);
                         }
-                    })
+                    });
                 });
             });
 
@@ -85,7 +87,8 @@ listItem = element.all(by.css('.list-item')).get(0);
                     
                 });
             });
-
+            
+            mapMarkerTests();
 	    });
 	}
 
