@@ -76,6 +76,7 @@
 	.typeahead {
 		@include respond(mobile) {
 			width: 100%;
+			text-align: left;
 		}
 		@include respond(tablet) {
 			width: 100%;
@@ -131,7 +132,7 @@
 		display: block;
 		@include respond(mobile) {
 			display: inline-block;
-			width: 70%;
+			width: 80%;
 			vertical-align: baseline;
 		}
 		@include respond(tablet) {
@@ -144,7 +145,7 @@
 
 #forminput {
 	@include respond(mobile) {
-		width: 80%;
+		width: 90%;
 		vertical-align: bottom;
 	}
 	@include respond(tablet) {

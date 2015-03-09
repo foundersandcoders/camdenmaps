@@ -44,7 +44,7 @@ function getObject (array, selected) {
             $scope.geolocationToolTip = 'Click to use my current location';
             $scope.geolocate = locationCheck.postcodeSearch();
             $scope.maplisttoggle = false;
-            $scope.mapOrList = 'map';
+            $scope.mapOrList = 'Click or swipe left to see the map';
             uprnArray = [];
 
             $scope.toggleView = function () {
