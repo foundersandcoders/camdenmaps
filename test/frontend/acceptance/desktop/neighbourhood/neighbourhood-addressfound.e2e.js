@@ -12,7 +12,7 @@ var information = element.all(by.tagName('p'));
 
 	function neighbourhoodAddressFound () {
 
-    	ddescribe("neighbourhood information ", function () {
+    	describe("neighbourhood information ", function () {
 
     		it("is displayed", function() {
     			var neighbourhoodInfo = element(by.id('neighbourhood-info'));

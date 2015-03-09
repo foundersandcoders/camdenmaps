@@ -67,7 +67,7 @@ function getObject (array, selected) {
             }
 
             if (locationCheck.resultsLoaded()) {
-                $scope.mapToggle = true
+                $scope.mapToggle = true;
             }
             if(locationCheck.addressSearch()) {
 

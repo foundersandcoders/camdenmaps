@@ -68,8 +68,10 @@
                                     </div>
 
                                     <div class="col-md-6" ng-show="streetworks">
+                                        <p ng-show= "result.LAref"> <b> Camden reference: </b> {{ result.LAref }} </p>
+                                        <br>
                                         <p ng-show= "result.display.StartDate"> <b> Start Date: </b> {{ result.display.StartDate }} </p>
-                                        <p ng-show= "result.display.EndDate"> <b> End Date </b> {{ result.display.EndDate }} </p>
+                                        <p ng-show= "result.display.EndDate"> <b> End Date </b> {{ result.display.EndDate }} </p>                                
                                     </div>
                                     <div class="col-md-6" ng-show="{{ result.Distance }}">
                                         <h5 class="distance">{{ result.Distance + ' miles away'}}</h5>
