@@ -74,7 +74,7 @@
 
             this.destination = function (address) {
                 return ($location.path().indexOf("/neighbourhood") > -1)
-                        ? "/home/neighbourhood/" + address[0].UPRN
+                        ? "/home/neighbourhood-found/" + address[0].UPRN
                         : ($location.path().indexOf("/streetworks") > -1)
                         ? "/home/streetworks/location/" + address[0].Postcode
                         : "/home/" + $stateParams.service + "/location/" + address[0].Postcode;
