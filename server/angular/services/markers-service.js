@@ -3,6 +3,30 @@
 *
 *************************************/
 
+function linkResultToMarker(scope, markerName) {
+
+    var result = scope.results.filter(function (res) {
+        return res.display.Name === markerName;
+    })[0];
+
+    //links list result with relevant marker
+    var marker = "m" + (scope.results.indexOf(result) + 1);
+    
+    //if single list view loaded from click this marker will already be the active marker
+    if(marker !== scope.activeMarker) {
+        resetActiveMarker(scope); 
+        scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
+        scope.update("activeMarker", scope.markers[marker]);
+        
+        //recentres map on the list result selected
+        scope.update("centre", {
+            lat: Number(result.Latitude),
+            lng: Number(result.Longitude),
+            zoom: scope.centre.zoom,
+        });
+    }
+}
+
 ;(function () {
 	"use strict";
 
@@ -23,31 +47,6 @@
                 }
                 return size;
             };  
-
-            function linkResultToMarker(scope, markerName) {
-
-                var result = scope.results.filter(function (res) {
-                    return res.display.Name === markerName;
-                })[0];
-
-                //links list result with relevant marker
-                var marker = "m" + (scope.results.indexOf(result) + 1);
-                
-                //if single list view loaded from click this marker will already be the active marker
-                if(marker !== scope.activeMarker) {
-                    resetActiveMarker(scope); 
-                    scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
-                    scope.update("activeMarker", scope.markers[marker]);
-                    
-                    //recentres map on the list result selected
-                    scope.update("centre", {
-                        lat: Number(result.Latitude),
-                        lng: Number(result.Longitude),
-                        zoom: scope.centre.zoom,
-                    });
-                }
-            }
-
 
             this.geolocateUser = function (functionScope, location, cb) {     
                 
