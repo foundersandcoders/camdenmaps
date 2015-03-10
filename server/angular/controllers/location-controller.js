@@ -3,6 +3,8 @@
 *
 ******************************/
 
+var resetActiveMarker = require('../lib/reset-active-marker.js');
+
 ;(function () {
     "use strict";
 
@@ -95,6 +97,67 @@
 
             $scope.toggle = buttonHandlers.toggle($scope);
 
+            $scope.activateListItem = function (resultId) {
+
+                var listItem = $('[id="' + resultId + '"]');
+                var allListItems = $('.list-item');
+                var displayResult = listItem.find('.display-result');
+                var allResults = $('.display-result');
+
+                if (displayResult.hasClass('active')) {
+                    listItem.removeClass('display-active-result');
+                    allResults.removeClass('active');
+
+                    resetActiveMarker($scope); 
+                } else {
+                    allListItems.removeClass('display-active-result');
+                    allResults.removeClass('active');
+
+                    listItem.toggleClass('display-active-result');
+                    displayResult.toggleClass('active');
+
+                    linkResultToMarker(resultId);
+                }
+            }
+
+            function linkResultToMarker(markerName) {
+
+                var result = $scope.results.filter(function (res) {
+                    return res.display.Name === markerName;
+                })[0];
+
+                //links list result with relevant marker
+                var marker = "m" + ($scope.results.indexOf(result) + 1);
+                
+                //if single list view loaded from click this marker will already be the active marker
+                if(marker !== $scope.activeMarker) {
+                    resetActiveMarker($scope); 
+                    $scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
+                    $scope.update("activeMarker", $scope.markers[marker]);
+                    
+                    //recentres map on the list result selected
+                    $scope.update("centre", {
+                        lat: Number(result.Latitude),
+                        lng: Number(result.Longitude),
+                        zoom: $scope.centre.zoom,
+                    });
+                } //else {
+                //     console.log('marker reset')
+                //     $scope.markers[marker].icon.iconUrl = "../img/icons/marker-hi.png";
+                // }
+            }
+
+            //if single view accessed through list it will link to map
+            // if($scope.results) { 
+            //     //selects item from results with matching {id}
+            //     $scope.result = $scope.results.filter(function (result) {
+            //         return result.display.Name === $stateParams.id;
+            //     })[0];
+
+            //     if($scope.results.indexOf($scope.result) > -1) { 
+            //         linkResultToMarker(); 
+            //     } 
+            // }
         }
     ];
 }());

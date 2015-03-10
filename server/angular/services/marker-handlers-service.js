@@ -32,25 +32,37 @@
                         $location.path(path);
                     } else {
                         //resets any existing highlighted marker 
-                        resetActiveMarker(scope);
-
-                        //sets active marker so it can be reset when user clicks elsewhere
-                        scope.update("activeMarker", scope.markers[args.markerName]);
-
-                        //changes colour of marker selected
-                        scope.markers[args.markerName].icon.iconUrl = "../img/icons/yellow-marker.png";  
-
-                        //correct path will depend on if it is called from search or location controller
-                        path    = scope.address ? "/home/" + service + "/location/" + scope.address + "/" + scope.markers[args.markerName].name
-                                : "/home/" + service + "/search/" + scope.markers[args.markerName].name;
-
-                        var activeResult = $("[id='" + scope.markers[args.markerName].name + "']");
-                            
-                        scrollElement.toTop($("#list-results"), activeResult);                      
+                        resetActiveMarker(scope);                  
                         
-                        if($location.path() !== path) {
-                            $location.path(path);
+                        function activateListItem (resultId) {
+
+                            var listItem = $('[id="' + resultId + '"]');
+                            var allListItems = $('.list-item');
+                            var displayResult = listItem.find('.display-result');
+                            var allResults = $('.display-result');
+
+                            if (displayResult.hasClass('active')) {
+                                listItem.removeClass('display-active-result');
+                                allResults.removeClass('active');
+
+                                resetActiveMarker(scope);
+                            } else {
+                                allListItems.removeClass('display-active-result');
+                                allResults.removeClass('active');
+
+                                listItem.toggleClass('display-active-result');
+                                displayResult.toggleClass('active');
+
+                                //sets active marker so it can be reset when user clicks elsewhere
+                                scope.update("activeMarker", scope.markers[args.markerName]);
+
+                                //changes colour of marker selected
+                                scope.markers[args.markerName].icon.iconUrl = "../img/icons/yellow-marker.png";
+                            }
+                            //Todo: scroll top only works on every second click
+                            scrollElement.toTop($("#list-results"), listItem); 
                         }
+                        activateListItem(scope.markers[args.markerName].name)    
                     };
                 };
             };
