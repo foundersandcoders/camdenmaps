@@ -227,7 +227,6 @@ function getObject (array, selected) {
                         apiSearch.search(service, address, lat, lng)
                             .success(function success (data) {
                                 if(data.hasOwnProperty("error")) {
-                                    console.log("line 218");
                                     return $scope.updateError(data.message);
                                 }
                                 
