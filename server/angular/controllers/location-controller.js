@@ -3,6 +3,8 @@
 *
 ******************************/
 
+var resetActiveMarker = require('../lib/reset-active-marker.js');
+
 ;(function () {
     "use strict";
 
@@ -78,6 +80,7 @@
 
             $scope.toggle = buttonHandlers.toggle($scope);
 
+            $scope.activateListItem = markers.activateListItem($scope);
         }
     ];
 }());

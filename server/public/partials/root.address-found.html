@@ -52,38 +52,61 @@
                 </div>
             </div>
 
-            <div class="list-items">
-                <div class="col-xs-12 container-list" id="list-results">
+            <div class="col-xs-12 container-list" id="list-results">
 
-                    <a href ui-sref='root.address-found.single-view({id: "{{ result.display.Name }}" })' ng-repeat="result in results">
+                <a ng-click="activateListItem(result.display.Name)" ng-repeat="result in results">
 
-                        <div class="list-item col-xs-12" ui-sref='root.address-found.single-view({id: "{{ result.display.Name }}" })' ui-sref-active="display-active-result">
-                            <div class="col-md-12">
-                                <h3 class="service-title" ng-hide="streetworks">{{ result.display.Name }}</h3>
-                                <h3 class="service-title" ng-show="streetworks">{{ result.display.Street }}</h3>
-                                <div class="row">
-                                    <div class="col-md-6" ng-hide="streetworks">
-                                        <p>{{ result.StreetNum + ' ' + result.Street }}</p>
-                                        <p>{{ result.PostCode }}</p>
-                                    </div>
+                    <div class="list-item col-xs-12" id="{{ result.display.Name }}">
 
-                                    <div class="col-md-6" ng-show="streetworks">
-                                        <p ng-show= "result.LAref"> <b> Camden reference: </b> {{ result.LAref }} </p>
-                                        <br>
-                                        <p ng-show= "result.display.StartDate"> <b> Start Date: </b> {{ result.display.StartDate }} </p>
-                                        <p ng-show= "result.display.EndDate"> <b> End Date </b> {{ result.display.EndDate }} </p>
-                                    </div>
-                                    <div class="col-md-6" ng-show="{{ result.Distance }}">
-                                        <h5 class="distance">{{ result.Distance + ' miles away'}}</h5>
-                                    </div>
+                        <div class="col-md-12">
+                            <h3 class="service-title" ng-hide="streetworks">{{ result.display.Name }}</h3>
+                            <h3 class="service-title" ng-show="streetworks">{{ result.display.Street }}</h3>
+                            <div class="row">
+                                <div class="col-md-6" ng-hide="streetworks">
+                                    <p>{{ result.StreetNum + ' ' + result.Street }}</p>
+                                    <p>{{ result.PostCode }}</p>
                                 </div>
-                                <div ui-sref='root.address-found.single-view({id: "{{ result.display.Name }}" })' ui-sref-active="active" class="display-result" ui-view></div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
 
+                                <div class="col-md-6" ng-show="streetworks">
+                                    <p ng-show= "result.LAref"> <b> Camden reference: </b> {{ result.LAref }} </p>
+                                    <br>
+                                    <p ng-show= "result.display.StartDate"> <b> Start Date: </b> {{ result.display.StartDate }} </p>
+                                    <p ng-show= "result.display.EndDate"> <b> End Date </b> {{ result.display.EndDate }} </p>
+                                </div>
+                                <div class="col-md-6" ng-show="{{ result.Distance }}">
+                                    <h5 class="distance">{{ result.Distance + ' miles away'}}</h5>
+                                </div>
+                            </div>
+
+                            <div class="display-result">
+
+                                <div class="single-view-info">
+                                    <hr id="hr-single-view">
+
+                                    <p ng-show="result.display.Location"> Location of streetworks {{ result.display.Location }} </p>
+
+                                    <p ng-show="result.display.Description"> <b> Description: </b> <br> {{ result.display.Description }} </p>
+                                    
+                                    <br>
+
+                                    <p ng-show="result.display.Telephone" ng-href= "tel: {{ result.display.Telephone }}" id="tel">
+                                        <b> Tel.: </b> {{ result.display.Telephone }}
+                                    </p>
+
+                                    <p ng-show="result.display.URL" ng-href="{{ result.display.URL }}" target="_blank" id="url">{{ result.display.URL }}
+                                    </p>
+
+                                    <p ng-show="result.display.Organisation"> <b> Responsible company: </b> {{ result.display.Organisation }} </p>  
+                                    <p ng-show="result.externalref"> <b> External reference: </b> {{ result.externalref }} </p>  
+                                    <h5 ng-show="result.display.OpeningHours">Opening Hours</h5>
+                                    <p>{{ result.display.OpeningHours }}</p>
+
+                                </div> 
+                             </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 </div>

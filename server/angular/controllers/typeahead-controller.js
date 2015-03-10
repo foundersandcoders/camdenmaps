@@ -32,8 +32,7 @@ function getObject (array, selected) {
         "validate",
         "menuFind",
         "localStorageService",
-        "scrollElement",
-        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService, scrollElement) {
+        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService) {
 
             var uprnArray,
                 round = require("../lib/round.js"),
