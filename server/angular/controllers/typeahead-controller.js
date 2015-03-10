@@ -123,6 +123,7 @@ function getObject (array, selected) {
                 //if address has not been selected by typeahead
                 if (address[0] === undefined) {
                      //searchApi checks if valid address, if not, will throw error.
+                    
                     searchApi(add);
                     return;
                 } else {
@@ -163,7 +164,7 @@ function getObject (array, selected) {
                                         return item;
                                     });
                                 }
-                            })
+                            });
                     };
                 });
             }
@@ -198,20 +199,35 @@ function getObject (array, selected) {
 
                 var path,
                     service,
+                    lat,
+                    lng,
+                    resetActiveMarker,
+                    mapMarkers;
+
                     resetActiveMarker = require("../lib/reset-active-marker");
+                    mapMarkers = $scope.markers;
 
                 if (locationCheck.postcodeSearch()){
 
                     if(address) {
+                        
+                        lat = null;
+                        lng = null;
+                        service = $stateParams.service;
+
+                        if(address === "your location") {
+                            lat = mapMarkers.m0.lat;
+                            lng = mapMarkers.m0.lng;
+                        }
                         if ($location.path().indexOf('streetworks') > -1) {
                             service = 'streetworks';
-                        } else {
-                            service = $stateParams.service;
-                        }
+                        } 
 
-                        apiSearch.search(service, address)
+
+                        apiSearch.search(service, address, lat, lng)
                             .success(function success (data) {
                                 if(data.hasOwnProperty("error")) {
+                                    console.log("line 218");
                                     return $scope.updateError(data.message);
                                 }
                                 
@@ -313,7 +329,7 @@ function getObject (array, selected) {
                     $scope.markers.pollingStation = pollingStationCoordinates;
                 }
 
-            }
+            };
 
             function getPollingStationCoordinates (uprn) {
 
@@ -329,7 +345,7 @@ function getObject (array, selected) {
                                 iconUrl: "img/icons/ballot.png"
                             }
 
-                        }
+                        };
 
                         if($scope.showPollingStation) {
                             $scope.markers.pollingStation = pollingStationCoordinates;
@@ -341,7 +357,7 @@ function getObject (array, selected) {
 
             function hasPollingStation (data) {
 
-                return data.information.hasOwnProperty("Polling Station")
+                return data.information.hasOwnProperty("Polling Station");
 
             }
         }

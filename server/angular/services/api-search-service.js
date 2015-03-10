@@ -21,7 +21,6 @@
                     : ((service && !address) 
                     ? "/services/" + service 
                     : "/services/" + service + "/locations/" + address);
-                
                 //return http promise to be processed in controllers
                 return $http({ 
                     method: "GET", 
