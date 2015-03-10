@@ -58,9 +58,10 @@
 
                                 //changes colour of marker selected
                                 scope.markers[args.markerName].icon.iconUrl = "../img/icons/yellow-marker.png";
+
+                                //Todo: scroll top only works on every second click
+                                scrollElement.toTop($("#list-results"), listItem); 
                             }
-                            //Todo: scroll top only works on every second click
-                            scrollElement.toTop($("#list-results"), listItem); 
                         }
                         activateListItem(scope.markers[args.markerName].name)    
                     };

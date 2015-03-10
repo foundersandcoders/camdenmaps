@@ -73,14 +73,52 @@
             
             $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service");
 
-            $(".display-active-result.active").click(function(event){
-                //event.preventDefault();
-                //$('html,body').animate({scrollTop:$(this.hash).offset().top},500);
-                $(".display-active-result.active").animate({
-                    scrollTop: $(".display-active-result.active")
-                });
-            });
+            $scope.activateListItem = function (resultId) {
 
+                var listItem = $('[id="' + resultId + '"]');
+                var allListItems = $('.list-item');
+                var displayResult = listItem.find('.display-result');
+                var allResults = $('.display-result');
+
+                if (displayResult.hasClass('active')) {
+                    listItem.removeClass('display-active-result');
+                    allResults.removeClass('active');
+
+                    resetActiveMarker($scope); 
+                } else {
+                    allListItems.removeClass('display-active-result');
+                    allResults.removeClass('active');
+
+                    listItem.toggleClass('display-active-result');
+                    displayResult.toggleClass('active');
+
+                    linkResultToMarker(resultId);
+                }
+            }
+
+            function linkResultToMarker(markerName) {
+
+                var result = $scope.results.filter(function (res) {
+                    return res.display.Name === markerName;
+                })[0];
+
+                //links list result with relevant marker
+                var marker = "m" + ($scope.results.indexOf(result) + 1);
+                
+                //if single list view loaded from click this marker will already be the active marker
+                if(marker !== $scope.activeMarker) {
+                    resetActiveMarker($scope); 
+                    $scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
+                    $scope.update("activeMarker", $scope.markers[marker]);
+                    
+                    //recentres map on the list result selected
+                    $scope.update("centre", {
+                        lat: Number(result.Latitude),
+                        lng: Number(result.Longitude),
+                        zoom: $scope.centre.zoom,
+                    });
+                }
+            }
         }
     ];
 }());

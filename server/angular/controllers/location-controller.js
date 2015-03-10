@@ -141,23 +141,8 @@ var resetActiveMarker = require('../lib/reset-active-marker.js');
                         lng: Number(result.Longitude),
                         zoom: $scope.centre.zoom,
                     });
-                } //else {
-                //     console.log('marker reset')
-                //     $scope.markers[marker].icon.iconUrl = "../img/icons/marker-hi.png";
-                // }
+                }
             }
-
-            //if single view accessed through list it will link to map
-            // if($scope.results) { 
-            //     //selects item from results with matching {id}
-            //     $scope.result = $scope.results.filter(function (result) {
-            //         return result.display.Name === $stateParams.id;
-            //     })[0];
-
-            //     if($scope.results.indexOf($scope.result) > -1) { 
-            //         linkResultToMarker(); 
-            //     } 
-            // }
         }
     ];
 }());
