@@ -44,15 +44,15 @@ function getObject (array, selected) {
             $scope.geolocationToolTip = 'Click to use my current location';
             $scope.geolocate = locationCheck.postcodeSearch();
             $scope.maplisttoggle = false;
-            $scope.mapOrList = 'map';
+            $scope.mapOrList = 'Click or swipe left to see the map';
             uprnArray = [];
 
             $scope.toggleView = function () {
                 $scope.maplisttoggle = !$scope.maplisttoggle;
                 if ($scope.maplisttoggle) {
-                    $scope.mapOrList = 'list';
+                    $scope.mapOrList = 'Click to see the list';
                 } else {
-                    $scope.mapOrList = 'map';
+                    $scope.mapOrList = 'Click or swipe left to see the map';
                 }
             };
 
@@ -108,7 +108,6 @@ function getObject (array, selected) {
                 } else {
                     return $scope.updateError("Sorry, that is not a valid camden service. Please search again.");
                 }
-
                 $location.path(destination);
             };
 
@@ -255,10 +254,95 @@ function getObject (array, selected) {
                             });
                     }
 
+                } else if ($location.path().indexOf('neighbourhood') > -1) {
+
+                    var uprn = $stateParams.uprn || address;
+
+                    apiSearch.searchNeighbourhood(uprn)
+                        .success(function(data) {
+
+                            if (data.hasOwnProperty("error")) {
+                                $location.path("/home/neighbourhood");
+                                return $scope.updateError(data.message);
+                            }
+                            $scope.updateError("");
+                            $scope.markers.neighbourhood = {
+                                lat: Number(data.location.Latitude),
+                                lng: Number(data.location.Longitude),
+                                icon: {
+                                    iconSize: [28],
+                                    iconUrl: "../img/icons/location-marker.png"
+                                },
+                            };
+
+                            $scope.update("centre", {
+                                lat: (Number(data.location.Latitude) - 0.003),
+                                lng: (Number(data.location.Longitude) - 0.004),
+                                zoom: 15
+                            });
+                            if (hasPollingStation(data)) {
+                                var pollingStationUPRN = data.information["Polling Station"].Url.split("uprn=").pop();
+                                getPollingStationCoordinates(pollingStationUPRN);
+                            }
+                            return $scope.update("information", data.information);
+                        })
+                        .error(function(data) {
+                            $scope.updateError("Sorry, it looks like something went wrong");
+                            return $location.path("/home/neighbourhood");
+                        });
                 } else {
                     //TODO: need a error phrase for when a non-typeahead search is done on `about your neighbourhood`
                     return $scope.updateError("Sorry, something went wrong");
                 }
+            }
+
+            /*
+            * HELPER FUNCTIONS
+            */
+
+            var pollingStationCoordinates;
+
+            $scope.showPollingStation = false;
+
+            $scope.togglePollingStation = function() {
+                if ($scope.showPollingStation) {
+                    $scope.showPollingStation = false;
+                    delete $scope.markers.pollingStation;
+                } else {
+                    $scope.showPollingStation = true;
+                    $scope.markers.pollingStation = pollingStationCoordinates;
+                }
+
+            }
+
+            function getPollingStationCoordinates (uprn) {
+
+                apiSearch.searchNeighbourhood(uprn)
+                    .success(function(data) {
+
+                        pollingStationCoordinates = {
+
+                            lat: Number(data.location.Latitude),
+                            lng: Number(data.location.Longitude),
+                            icon: {
+                                iconSize: [28],
+                                iconUrl: "img/icons/ballot.png"
+                            }
+
+                        }
+
+                        if($scope.showPollingStation) {
+                            $scope.markers.pollingStation = pollingStationCoordinates;
+                        }
+
+                    });
+
+            }
+
+            function hasPollingStation (data) {
+
+                return data.information.hasOwnProperty("Polling Station")
+
             }
         }
     ];

@@ -20,6 +20,9 @@ var server = new hapi.Server();
 
 //add connection
 server.connection({
+    state: {
+        clearInvalid: true
+    },
     port: process.env.PORT || config.server.port,
     labels: ["api"],
     routes: {
@@ -29,7 +32,10 @@ server.connection({
         },
     	files: {
     		relativeTo: path.join(__dirname, 'server')
-    	}
+    	},
+        state: {
+            failAction: "log"
+        }
     }
 });
 
