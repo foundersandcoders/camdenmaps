@@ -33,6 +33,7 @@
                     } else {
                         //resets any existing highlighted marker 
                         resetActiveMarker(scope);
+
                         //sets active marker so it can be reset when user clicks elsewhere
                         scope.update("activeMarker", scope.markers[args.markerName]);
 
@@ -43,9 +44,9 @@
                         path    = scope.address ? "/home/" + service + "/location/" + scope.address + "/" + scope.markers[args.markerName].name
                                 : "/home/" + service + "/search/" + scope.markers[args.markerName].name;
 
-                        $(".leaflet-clickable").click(function() {
-                            scrollElement.toTop($("#list-results"), $(".display-active-result"));                      
-                        })
+                        var activeResult = $("[id='" + scope.markers[args.markerName].name + "']");
+                            
+                        scrollElement.toTop($("#list-results"), activeResult);                      
                         
                         if($location.path() !== path) {
                             $location.path(path);

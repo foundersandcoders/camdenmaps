@@ -57,7 +57,7 @@
 
                     <a href ui-sref='root.address-found.single-view({id: "{{ result.display.Name }}" })' ng-repeat="result in results">
 
-                        <div class="list-item col-xs-12" ui-sref='root.address-found.single-view({id: "{{ result.display.Name }}" })' ui-sref-active="display-active-result">
+                        <div class="list-item col-xs-12" ui-sref='root.address-found.single-view({id: "{{ result.display.Name }}" })' ui-sref-active="display-active-result" id="{{ result.display.Name }}">
                             <div class="col-md-12">
                                 <h3 class="service-title" ng-hide="streetworks">{{ result.display.Name }}</h3>
                                 <h3 class="service-title" ng-show="streetworks">{{ result.display.Street }}</h3>
