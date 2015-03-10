@@ -12,8 +12,8 @@
     module.exports = [
         "$location",
         "$stateParams",
-        "scrollElement",
-        function ($location, $stateParams, scrollElement) {
+        "$anchorScroll",
+        function ($location, $stateParams, $anchorScroll) {
 
             var path; 
 
@@ -59,8 +59,10 @@
                                 //changes colour of marker selected
                                 scope.markers[args.markerName].icon.iconUrl = "../img/icons/yellow-marker.png";
 
-                                //Todo: scroll top only works on every second click
-                                scrollElement.toTop($("#list-results"), listItem); 
+                                $location.hash(resultId);
+
+                                $anchorScroll();
+
                             }
                         }
                         activateListItem(scope.markers[args.markerName].name)    

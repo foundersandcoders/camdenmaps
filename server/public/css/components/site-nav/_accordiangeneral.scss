@@ -121,38 +121,6 @@
 	background-color: $light-blue;
 }
 
-.list-items {
-	overflow-y: auto;
-	max-height: 35em;
-	width:100%;
-	box-shadow: 0.5em 0.5em 0.5em #888888;
-	@include respond(mobile) {
-		// max-height: ;
-		box-shadow: 0em 3em 6em -3em #888888;
-	}
-}
-
-.container-list {
-	padding: 0.2em 0;
-	width: 100%;
-	margin:0;
-	border-bottom: solid 0.1em $light-grey;
-	h4 {
-		margin: 0;
-		color: $black;
-		display:inline;
-	}
-	img {
-		width: 2em;
-		margin-left: 2em;
-        display: inline-block;
-        float: left;
-        @include respond(mobile) {
-            margin-left: 0;
-        }
-	}
-}
-
 #category-list{
     background-color: $medium-blue;
 }
