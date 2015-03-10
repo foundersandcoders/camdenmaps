@@ -76,12 +76,12 @@
                 controller: "StreetworksSearchController"
             })
 
-            //state for your local streetworks when address has been found
-            .state("root.streetworks.found", {
-                url: "locations/{address}", 
-                templateUrl: "partials/root.streetworks.local-information.html",
-                controller: "LocalFoundController"
-            })
+            // //state for your local streetworks when address has been found
+            // .state("root.streetworks.found", {
+            //     url: "locations/{address}", 
+            //     templateUrl: "partials/root.streetworks.local-information.html",
+            //     controller: "LocalFoundController"
+            // })
 
             //address-found contains view for when an address+service are found
             .state("root.address-found", {
@@ -112,9 +112,9 @@
             })
 
             //state for about your neighbourhood when address is found
-            .state("root.neighbourhood.found", {
-                url: "/{uprn}",
-                templateUrl: "partials/root.neighbourhood.local-information.html",
+            .state("root.neighbourhood-found", {
+                url: "/neighbourhood-found/{uprn}",
+                templateUrl: "partials/root.neighbourhood-found.html",
                 controller: "LocalFoundController"
             });
             

@@ -18,7 +18,7 @@
 
                 outerElement.animate({
                     scrollTop: activeItem
-                },500);  
+                },200);  
             };
         }
     ];
