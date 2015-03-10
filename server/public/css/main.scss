@@ -1,18 +1,18 @@
 /***********************************************
 *   MAIN SCSS FILE
-*   Description: Include all stylesheets here 
+*   Description: Include all stylesheets here
 	for mapping to css
 ************************************************/
 
 
 //Imports for our files
 
-@import 
+@import
  	'base/colours',
  	'base/typography',
 	'base/reset',
 	'base/mobile',
-	
+
 	'components/errormessages',
 	'components/tooltip',
 	'components/map',
