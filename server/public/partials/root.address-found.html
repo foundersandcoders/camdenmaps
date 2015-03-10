@@ -54,10 +54,9 @@
 
             <div class="col-xs-12 container-list" id="list-results">
 
-                <a ng-click="activateListItem(result.display.Name)" ng-repeat="result in results">
+                <div  ng-repeat="result in results" class="list-item col-xs-12" id="{{ result.display.Name }}">
 
-                    <div class="list-item col-xs-12" id="{{ result.display.Name }}">
-
+                    <a ng-click="activateListItem(result.display.Name)">
                         <div class="col-md-12">
                             <h3 class="service-title" ng-hide="streetworks">{{ result.display.Name }}</h3>
                             <h3 class="service-title" ng-show="streetworks">{{ result.display.Street }}</h3>
@@ -77,35 +76,36 @@
                                     <h5 class="distance">{{ result.Distance + ' miles away'}}</h5>
                                 </div>
                             </div>
+                        </div>
+                    </a>
 
-                            <div class="display-result">
+                    <div class="col-md-12 display-result">
 
-                                <div class="single-view-info">
-                                    <hr id="hr-single-view">
+                        <div class="single-view-info">
+                            <hr id="hr-single-view">
 
-                                    <p ng-show="result.display.Location"> Location of streetworks {{ result.display.Location }} </p>
+                            <p ng-show="result.display.Location"> Location of streetworks {{ result.display.Location }} </p>
 
-                                    <p ng-show="result.display.Description"> <b> Description: </b> <br> {{ result.display.Description }} </p>
+                            <p ng-show="result.display.Description"> <b> Description: </b> <br> {{ result.display.Description }} </p>
                                     
-                                    <br>
+                            <br>
 
-                                    <p ng-show="result.display.Telephone" ng-href= "tel: {{ result.display.Telephone }}" id="tel">
-                                        <b> Tel.: </b> {{ result.display.Telephone }}
-                                    </p>
+                            <a ng-show="result.display.Telephone" ng-href= "tel: {{ result.display.Telephone }}" id="tel">
+                                <p><b> Tel.: </b> {{ result.display.Telephone }}</p>
+                            </a>
 
-                                    <p ng-show="result.display.URL" ng-href="{{ result.display.URL }}" target="_blank" id="url">{{ result.display.URL }}
-                                    </p>
+                            <a ng-show="result.display.URL" ng-href="{{ result.display.URL }}" target="_blank" id="url">
+                                <p>{{ result.display.URL }}</p>
+                            </a>
 
-                                    <p ng-show="result.display.Organisation"> <b> Responsible company: </b> {{ result.display.Organisation }} </p>  
-                                    <p ng-show="result.externalref"> <b> External reference: </b> {{ result.externalref }} </p>  
-                                    <h5 ng-show="result.display.OpeningHours">Opening Hours</h5>
-                                    <p>{{ result.display.OpeningHours }}</p>
+                            <p ng-show="result.display.Organisation"> <b> Responsible company: </b> {{ result.display.Organisation }} </p>  
+                            <p ng-show="result.externalref"> <b> External reference: </b> {{ result.externalref }} </p>  
+                            <h5 ng-show="result.display.OpeningHours">Opening Hours</h5>
+                            <p>{{ result.display.OpeningHours }}</p>
 
-                                </div> 
-                             </div>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
     </div>

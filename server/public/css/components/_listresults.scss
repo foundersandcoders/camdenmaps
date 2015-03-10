@@ -61,6 +61,18 @@
 	.distance {
 		text-align: right;
 	}
+	#url {
+		p {
+			color: $blue;
+		}
+	}
+	#tel {
+		p {
+			@include respond(mobile) {
+				color: $blue;
+			}
+		}
+	}
 	p {
 		color: black;
 		margin: 0;
