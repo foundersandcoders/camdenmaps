@@ -62,7 +62,7 @@
 
 .item-container {
 	padding: 0;
-	// box-shadow: 0.5em 0.5em 0.5em #888888;
+	box-shadow: 0.5em 0.5em 0.5em #888888;
 	border-top: solid 0.2em $light-grey;
 	margin-top: 1em;
 	@include respond(mobile) {
