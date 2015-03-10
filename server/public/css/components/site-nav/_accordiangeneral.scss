@@ -147,6 +147,9 @@
 		margin-left: 2em;
         display: inline-block;
         float: left;
+        @include respond(mobile) {
+            margin-left: 0;
+        }
 	}
 }
 
@@ -168,6 +171,7 @@ h2 {
 	font-size: 1.1em;
 	@include respond(mobile) {
 		padding-top: 0.1em;
+        	text-align: left;
 	}
 	h4{
 		margin: 0;
