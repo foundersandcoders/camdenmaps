@@ -42,6 +42,15 @@ mapLandingTests = require('../map/map-landing.e2e.js');
             expect(alt).toBe('Camden');
         });
 
+        it("Given that I click on the logo, I am taken to the Camden site", function() {
+
+            var logo = element(by.id("camden-logo")).element(by.xpath(".."));
+            var href = logo.getAttribute("href");
+
+            expect(href).toBe("http://www.camden.gov.uk/");
+
+        });
+
         mapLandingTests();
 
         describe("There are three call to actions buttons, ", function() {
