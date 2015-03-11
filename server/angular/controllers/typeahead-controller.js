@@ -325,6 +325,9 @@ function getObject (array, selected) {
                 } else {
                     $scope.showPollingStation = true;
                     $scope.markers.pollingStation = pollingStationCoordinates;
+                    if(screen.width < 768) {
+                        toggleView();
+                    }
                 }
 
             };
