@@ -32,7 +32,7 @@ listItem = element.all(by.css('.list-item')).get(0);
                 });
             });
 
-            ddescribe("Once clicked, ", function () {
+            describe("Once clicked, ", function () {
 
 	        	it("result expands", function () {
 

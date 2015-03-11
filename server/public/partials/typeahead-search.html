@@ -21,7 +21,7 @@
 	</form>
 
 	<div id="yourLocation" class="col-md-1" ng-show="geolocate">
-	    <a tooltip-placement="right" tooltip="{{ geolocationToolTip }}">
+	    <a tooltip-placement="{{ toolTipPlacement }}" tooltip="{{ geolocationToolTip }}">
 	        <button button ng-click="geolocateUser()">
 	            <span class="glyphicon glyphicon-screenshot"></span>
 	        </button>

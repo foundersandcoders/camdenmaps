@@ -16,13 +16,14 @@
                     scope.updateError = function (message){
                         scope.error = message;                 
 
+                        var listButton = $('.list-toggle-button');
+
                         if (message === "") {
                             element.css("display", "none");
-    
                         } else {
  
                             element.css('display', 'block');
-                            
+                            listButton.css('top', '10em');
                         }
                     };
 

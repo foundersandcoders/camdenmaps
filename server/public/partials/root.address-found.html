@@ -28,7 +28,7 @@
 
         <!-- Title of service and category that are listed in container -->
 
-            <div ng-show="showCategoriesTitle" class="title-list-items row" id="category-title-of-services">
+            <div ng-show="showCategoriesTitle" ng-click="returnToCategories()" class="title-list-items row" id="category-title-of-services">
                 <div class="col-xs-3 col-md-3">
                     <img ng-src="{{ category.img }}"  alt="">
                 </div>
@@ -36,11 +36,11 @@
                     <h4 id="title-of-accordion">{{ category.title }}</h4>
                 </div>
                 <div class="col-xs-1 col-md-1 cancel" ng-show="showServicesTitle">
-                    <a ng-click="returnToCategories()">X</a>
+                    <p>X</p>
                 </div>
             </div>
 
-            <div class="title-list-items row" id="service-title-of-results" ng-show="showServicesTitle">
+            <div class="title-list-items row" id="service-title-of-results" ng-show="showServicesTitle" ng-click="returnToServices()">
                 <div class="col-xs-3 col-md-3">
                     <img ng-src="{{ icon }}"  alt="">
                 </div>
@@ -48,7 +48,7 @@
                     <h4 id="title-of-accordion">{{ service }}</h4>
                 </div>
                 <div class="col-xs-1 col-md-1 cancel">
-                    <a ng-click="returnToServices()">X</a>
+                    <p>X</p>
                 </div>
             </div>
 

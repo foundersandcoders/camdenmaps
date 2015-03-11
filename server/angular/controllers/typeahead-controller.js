@@ -32,9 +32,12 @@ function getObject (array, selected) {
         "validate",
         "menuFind",
         "localStorageService",
-        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService) {
+        "$timeout",
+        "httpq",
+        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService, $timeout, httpq) {
 
             var uprnArray,
+                centreLocation,
                 round = require("../lib/round.js"),
                 url = $location.path();
 
@@ -46,12 +49,31 @@ function getObject (array, selected) {
             $scope.mapOrList = 'Click or swipe left to see the map';
             uprnArray = [];
 
+
+            if($stateParams.address) {
+
+                $scope.address = validate.cleanDisplayAddress($stateParams.address);
+
+                $scope.$on('$locationChangeSuccess', function(event) {
+                    var updatedAddress = $location.path().split('/').pop();
+                    $scope.address = validate.cleanDisplayAddress(updatedAddress); 
+                });
+            }
+
+            if (window.innerWidth < 768 || screen.width < 768) {
+                $scope.toolTipPlacement = "bottom";
+            } else {
+                $scope.toolTipPlacement = "right";
+            }
+
             $scope.toggleView = function () {
-                $scope.maplisttoggle = !$scope.maplisttoggle;
-                if ($scope.maplisttoggle) {
-                    $scope.mapOrList = 'Click to see the list';
-                } else {
-                    $scope.mapOrList = 'Click or swipe left to see the map';
+                if(screen.width < 768) {
+                    $scope.maplisttoggle = !$scope.maplisttoggle;
+                    if ($scope.maplisttoggle) {
+                        $scope.mapOrList = 'Click to see the list';
+                    } else {
+                        $scope.mapOrList = 'Click or swipe left to see the map';
+                    }
                 }
             };
 
@@ -104,6 +126,7 @@ function getObject (array, selected) {
                 }  else if(validate.service(selected)) {
 
                     destination = servicesHandler(selected);
+
                 } else {
                     return $scope.updateError("Sorry, that is not a valid camden service. Please search again.");
                 }
@@ -117,24 +140,27 @@ function getObject (array, selected) {
             }
 
             function addressHandler (array, add) {
+                //clears input box between searches
+                $('input').val('');
                 //if address has been selected by typeahead, then will exist in saved array
                 var address = getObject(array, add);
+
                 //if address has not been selected by typeahead
                 if (address[0] === undefined) {
                      //searchApi checks if valid address, if not, will throw error.
-                    
+                    localstorage.save(add);
                     searchApi(add);
                     return;
                 } else {
                     localstorage.save(address);
-
                      if (locationCheck.postcodeSearch()) {
                         $scope.update("locationSelected", address[0].Postcode);
-                         searchApi(address[0].Postcode);
+                        searchApi(address[0].Postcode);
                     } else {
                         $scope.update("locationSelected", address[0].UPRN);
                         searchApi(address[0].UPRN);
                     }
+
                    return locationCheck.destination(address);
                 }
             }
@@ -211,24 +237,19 @@ function getObject (array, selected) {
                         
                         lat = null;
                         lng = null;
-                        service = $stateParams.service;
+                        
+                        service = $stateParams.service || 'streetworks';
 
                         if(address === "your location") {
                             lat = mapMarkers.m0.lat;
                             lng = mapMarkers.m0.lng;
                         }
-                        if ($location.path().indexOf('streetworks') > -1) {
-                            service = 'streetworks';
-                        } 
-
 
                         apiSearch.search(service, address, lat, lng)
                             .success(function success (data) {
                                 if(data.hasOwnProperty("error")) {
                                     return $scope.updateError(data.message);
                                 }
-                                
-                                localstorage.save(address);
 
                                 $scope.update("markers", {});
                                 $scope.updateResults(data.properties);
@@ -244,11 +265,9 @@ function getObject (array, selected) {
                                     return result.display.Name === $stateParams.id;
                                 })[0];
 
-                                $scope.centre.zoom = markers.zoomCheck($scope)();
-                                $scope.centre.lat = Number(data.location.Latitude);
-                                $scope.centre.lng = Number(data.location.Longitude);
-
                                 resetActiveMarker($scope);
+
+                                centreLocation = data.location;
 
                                 if ($location.path().indexOf("/streetworks") > -1) {
 
@@ -259,11 +278,19 @@ function getObject (array, selected) {
                                     path = "/home/" + $stateParams.service + "/location/" + address;
                                     //redirects to new path and runs location controller
                                 }
-                                $location.path(path);
 
+                                $location.path(path);
                             })
                             .error(function (data) {
                                 return $scope.updateError("Sorry, that does not appear to be a valid camden address.");
+                            })
+
+                            .finally(function () {
+                                $scope.update('centre', {
+                                    lat: Number(centreLocation.Latitude),
+                                    lng: Number(centreLocation.Longitude),
+                                    zoom: markers.zoomCheck($scope)()
+                                })
                             });
                     }
 
@@ -271,49 +298,91 @@ function getObject (array, selected) {
 
                     var uprn = $stateParams.uprn || address;
 
+// <<<<<<< HEAD
+//                     if (!$stateParams.uprn) {
+//                         $http.get("/uprn/" + uprn).success(function(res) {
+//                             var path = "/home/neighbourhood-found/" + res;
+//                             $location.path(path);
+//                         });
+//                     } else {
+
+                        
+//                         apiSearch.searchNeighbourhood(uprn)
+//                             .success(function(data) {
+
+//                                 if (data.hasOwnProperty("error")) {
+//                                     $location.path("/home/neighbourhood");
+//                                     return $scope.updateError(data.message);
+//                                 }
+//                                 $scope.updateError("");
+//                                 $scope.markers.neighbourhood = {
+//                                     lat: Number(data.location.Latitude),
+//                                     lng: Number(data.location.Longitude),
+//                                     icon: {
+//                                         iconSize: [28],
+//                                         iconUrl: "../img/icons/location-marker.png"
+//                                     },
+//                                 };
+
+//                                 $scope.update("centre", {
+//                                     lat: (Number(data.location.Latitude) - 0.003),
+//                                     lng: (Number(data.location.Longitude) - 0.004),
+//                                     zoom: 15
+//                                 });
+
+//                                 if (hasPollingStation(data)) {
+//                                     var pollingStationUPRN = data.information["Polling Station"].Url.split("uprn=").pop();
+//                                     getPollingStationCoordinates(pollingStationUPRN);
+//                                 }
+//                                 return $scope.update("information", data.information);
+//                             })
+//                             .error(function(data) {
+//                                 $scope.updateError("Sorry, it looks like something went wrong");
+//                                 return $location.path("/home/neighbourhood");
+//                             });
+//                     }
+
+// =======
                     if (!$stateParams.uprn) {
                         $http.get("/uprn/" + uprn).success(function(res) {
                             var path = "/home/neighbourhood-found/" + res;
                             $location.path(path);
                         });
                     } else {
+                    apiSearch.searchNeighbourhood(uprn)
+                        .success(function(data) {
 
-                        
-                        apiSearch.searchNeighbourhood(uprn)
-                            .success(function(data) {
+                            if (data.hasOwnProperty("error")) {
+                                $location.path("/home/neighbourhood");
+                                return $scope.updateError(data.message);
+                            }
+                            $scope.updateError("");
+                            $scope.markers.neighbourhood = {
+                                lat: Number(data.location.Latitude),
+                                lng: Number(data.location.Longitude),
+                                icon: {
+                                    iconSize: [28],
+                                    iconUrl: "../img/icons/location-marker.png"
+                                },
+                            };
 
-                                if (data.hasOwnProperty("error")) {
-                                    $location.path("/home/neighbourhood");
-                                    return $scope.updateError(data.message);
-                                }
-                                $scope.updateError("");
-                                $scope.markers.neighbourhood = {
-                                    lat: Number(data.location.Latitude),
-                                    lng: Number(data.location.Longitude),
-                                    icon: {
-                                        iconSize: [28],
-                                        iconUrl: "../img/icons/location-marker.png"
-                                    },
-                                };
-
-                                $scope.update("centre", {
-                                    lat: (Number(data.location.Latitude) - 0.003),
-                                    lng: (Number(data.location.Longitude) - 0.004),
-                                    zoom: 15
-                                });
-
-                                if (hasPollingStation(data)) {
-                                    var pollingStationUPRN = data.information["Polling Station"].Url.split("uprn=").pop();
-                                    getPollingStationCoordinates(pollingStationUPRN);
-                                }
-                                return $scope.update("information", data.information);
-                            })
-                            .error(function(data) {
-                                $scope.updateError("Sorry, it looks like something went wrong");
-                                return $location.path("/home/neighbourhood");
+                            $scope.update("centre", {
+                                lat: (Number(data.location.Latitude) - 0.003),
+                                lng: (Number(data.location.Longitude) - 0.004),
+                                zoom: 15
                             });
+                            if (hasPollingStation(data)) {
+                                var pollingStationUPRN = data.information["Polling Station"].Url.split("uprn=").pop();
+                                getPollingStationCoordinates(pollingStationUPRN);
+                            }
+                            return $scope.update("information", data.information);
+                        })
+                        .error(function(data) {
+                            $scope.updateError("Sorry, it looks like something went wrong");
+                            return $location.path("/home/neighbourhood");
+                        });
                     }
-
+// >>>>>>> dev
                 } else {
                     //TODO: need a error phrase for when a non-typeahead search is done on `about your neighbourhood`
                     return $scope.updateError("Sorry, something went wrong");
@@ -335,6 +404,17 @@ function getObject (array, selected) {
                 } else {
                     $scope.showPollingStation = true;
                     $scope.markers.pollingStation = pollingStationCoordinates;
+<<<<<<< HEAD
+=======
+                    if(screen.width < 768) {
+                        $scope.toggleView();
+                        $scope.centre.lat = $scope.markers.pollingStation.lat; 
+                        $scope.centre.lng = $scope.markers.pollingStation.lng; 
+
+
+
+                    }
+>>>>>>> dev
                 }
 
             };

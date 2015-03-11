@@ -24,10 +24,9 @@ var resetActiveMarker = require('../lib/reset-active-marker.js');
 
             //service called markers exists
             var mapMarkers = $scope.markers,
-                lat,
-                lng,
                 round = require("../lib/round.js"),
                 addressUsedinAPIcall = require("../lib/address-used-in-api-call.js");
+
 
             // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
@@ -71,10 +70,6 @@ var resetActiveMarker = require('../lib/reset-active-marker.js');
                 $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/" + $stateParams.service + "/search");
 
             }
-    
-
-            //this will uppercase postcodes and capitalise street addresses 
-            $scope.address  = validate.cleanDisplayAddress($stateParams.address);
 
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
 

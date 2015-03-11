@@ -54,7 +54,7 @@
 		margin: auto;
 		width: 95%;
 	}
-	div:not(.errormessage) {
+	.col-md-2, #forminput, .submit-wrapper, #yourLocation {
 		padding: 0;
 
 		@include respond(mobile) {
