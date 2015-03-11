@@ -140,7 +140,6 @@ function getObject (array, selected) {
             }
 
             function getAddresses () {
-
                 return fetchToken.getToken().success(function() {
 
                     $scope.typeaheadSearchList = function(value) {
@@ -272,38 +271,49 @@ function getObject (array, selected) {
 
                     var uprn = $stateParams.uprn || address;
 
-                    apiSearch.searchNeighbourhood(uprn)
-                        .success(function(data) {
-
-                            if (data.hasOwnProperty("error")) {
-                                $location.path("/home/neighbourhood");
-                                return $scope.updateError(data.message);
-                            }
-                            $scope.updateError("");
-                            $scope.markers.neighbourhood = {
-                                lat: Number(data.location.Latitude),
-                                lng: Number(data.location.Longitude),
-                                icon: {
-                                    iconSize: [28],
-                                    iconUrl: "../img/icons/location-marker.png"
-                                },
-                            };
-
-                            $scope.update("centre", {
-                                lat: (Number(data.location.Latitude) - 0.003),
-                                lng: (Number(data.location.Longitude) - 0.004),
-                                zoom: 15
-                            });
-                            if (hasPollingStation(data)) {
-                                var pollingStationUPRN = data.information["Polling Station"].Url.split("uprn=").pop();
-                                getPollingStationCoordinates(pollingStationUPRN);
-                            }
-                            return $scope.update("information", data.information);
-                        })
-                        .error(function(data) {
-                            $scope.updateError("Sorry, it looks like something went wrong");
-                            return $location.path("/home/neighbourhood");
+                    if (!$stateParams.uprn) {
+                        $http.get("/uprn/" + uprn).success(function(res) {
+                            var path = "/home/neighbourhood-found/" + res;
+                            $location.path(path);
                         });
+                    } else {
+
+                        
+                        apiSearch.searchNeighbourhood(uprn)
+                            .success(function(data) {
+
+                                if (data.hasOwnProperty("error")) {
+                                    $location.path("/home/neighbourhood");
+                                    return $scope.updateError(data.message);
+                                }
+                                $scope.updateError("");
+                                $scope.markers.neighbourhood = {
+                                    lat: Number(data.location.Latitude),
+                                    lng: Number(data.location.Longitude),
+                                    icon: {
+                                        iconSize: [28],
+                                        iconUrl: "../img/icons/location-marker.png"
+                                    },
+                                };
+
+                                $scope.update("centre", {
+                                    lat: (Number(data.location.Latitude) - 0.003),
+                                    lng: (Number(data.location.Longitude) - 0.004),
+                                    zoom: 15
+                                });
+
+                                if (hasPollingStation(data)) {
+                                    var pollingStationUPRN = data.information["Polling Station"].Url.split("uprn=").pop();
+                                    getPollingStationCoordinates(pollingStationUPRN);
+                                }
+                                return $scope.update("information", data.information);
+                            })
+                            .error(function(data) {
+                                $scope.updateError("Sorry, it looks like something went wrong");
+                                return $location.path("/home/neighbourhood");
+                            });
+                    }
+
                 } else {
                     //TODO: need a error phrase for when a non-typeahead search is done on `about your neighbourhood`
                     return $scope.updateError("Sorry, something went wrong");

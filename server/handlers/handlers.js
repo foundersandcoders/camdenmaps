@@ -24,7 +24,12 @@ var path = require("path");
         },
 
         getHome: function getHome (req, res) {
-            return res.file("../public/index.html");
+            if (/MSIE 8.0/.test(req.headers["user-agent"]) ||
+                /MSIE 9.0/.test(req.headers["user-agent"])) {
+                return res.file("../public/ie8index.html");
+            } else {
+                return res.file("../public/index.html");
+            }
         },
 
         getLogs: function getLogs (req, res) {

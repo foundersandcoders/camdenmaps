@@ -15,6 +15,7 @@
     var mapConfig = require("../config/mapConfig.js");
     var convertXml = require("../handlers/convertXml.js");
     var RoutesConfig = require("./routesConfig.js");
+    var request = require("request");
 
     module.exports = function (server){
 
@@ -94,6 +95,32 @@
                 method: "GET",
                 path: "/auth_token",
                 config: RoutesConfig.issueToken
+            },
+            {
+                method: "GET",
+                path: "/uprn/{path}",
+                handler: function(req, res) {
+                    //TODO: Switch to server.inject on deploy to save network time
+                    //server.inject({method: "GET", url: "http://camdenmaps.herokuapp.com/auth_token"}, function(response) {
+                    request("http://camdenmaps.herokuapp.com/auth_token", function(err, response, body) {
+                            var path = "http://camdenmaps-addresslookup.herokuapp.com/search/" + req.params.path;
+                            var opts = {
+                                url: path,
+                                headers: {
+                                    "X-Access-Token": response.headers["x-access-token"]
+                                }
+                            }
+                            request(opts , function(e, h, b) {
+                                var firstItem;
+                                try {
+                                    firstItem = JSON.parse(b)[0]
+                                    return res(firstItem.UPRN);
+                                } catch (error) {
+                                    return res("Not found");
+                                }
+                            });
+                    });
+                }
             }
         ]);
     }

@@ -14,7 +14,6 @@
         "buttonHandlers",
         function ($scope, $location, apiSearch, $stateParams, buttonHandlers) {
 
-            $scope.information;
 
             $scope.isListShowing = true;
 
