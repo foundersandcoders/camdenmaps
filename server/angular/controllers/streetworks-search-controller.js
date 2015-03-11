@@ -9,7 +9,8 @@
     module.exports = [
         "$scope",
         "$location",
-        function ($scope, $location) {
+        "buttonHandlers",
+        function ($scope, $location, buttonHandlers) {
             
             $scope.showAccordion = false;
 
@@ -25,6 +26,7 @@
             //back button text
             $scope.backButtonText = "Main Menu";
 
+            $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/");
         }
     ];
 }());

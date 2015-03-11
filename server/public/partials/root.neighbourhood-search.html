@@ -32,7 +32,7 @@
 
         <!-- Title of service and category that are listed in container -->
 
-            <div class="title-list-items row" id="category-title-of-services">
+            <div class="title-list-items row" id="category-title-of-services" ng-click="searchAgain()">
                 <div class="col-xs-3 col-md-3">
                     <img ng-src="{{ icon }}"  alt="">
                 </div>
@@ -40,7 +40,7 @@
                     <h4 id="title-of-accordion">{{ title }}</h4>
                 </div>
                 <div class="col-xs-1 col-md-1 cancel" ng-show="showAccordion">
-                    <a ng-click="searchAgain()">X</a>
+                    <p>X</p>
                 </div>
             </div>
         </div>

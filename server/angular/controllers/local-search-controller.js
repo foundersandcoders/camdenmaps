@@ -38,6 +38,8 @@
 
             $scope.icon = "img/icons/your-neighbourhood-black.png";
 
+            $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/");
+
             $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/neighbourhood");
 
         }

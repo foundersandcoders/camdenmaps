@@ -8,11 +8,8 @@
 
     module.exports = [
         "$scope",
-        "$location",
-        "apiSearch",
-        "$stateParams",
         "buttonHandlers",
-        function ($scope, $location, apiSearch, $stateParams, buttonHandlers) {
+        function ($scope, buttonHandlers) {
 
             $scope.information;
 
