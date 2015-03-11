@@ -3,6 +3,14 @@
 *
 *************************************/
 
+
+
+;(function () {
+	"use strict";
+
+    var cappedResults = require("../lib/capped-results.js");
+    var resetActiveMarker = require("../lib/reset-active-marker");
+
 function linkResultToMarker(scope, markerName) {
 
     var result = scope.results.filter(function (res) {
@@ -26,12 +34,6 @@ function linkResultToMarker(scope, markerName) {
         });
     }
 }
-
-;(function () {
-	"use strict";
-
-    var cappedResults = require("../lib/capped-results.js");
-    var resetActiveMarker = require("../lib/reset-active-marker");
 
 	module.exports = [
         "$stateParams",
