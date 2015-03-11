@@ -38,6 +38,9 @@
                     //sets active marker so it can be reset when user clicks elsewhere
                     scope.update("activeMarker", scope.markers[args.markerName]);
 
+                    scope.centre.lat = scope.markers[args.markerName].lat;
+                    scope.centre.lng = scope.markers[args.markerName].lng;
+
                     //changes colour of marker selected
                     scope.markers[args.markerName].icon.iconUrl = "../img/icons/yellow-marker.png";
 
