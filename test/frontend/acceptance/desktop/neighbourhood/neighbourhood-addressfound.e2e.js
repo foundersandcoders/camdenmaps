@@ -13,6 +13,13 @@ var information = element.all(by.tagName('p'));
 	function neighbourhoodAddressFound () {
 
     	describe("neighbourhood information ", function () {
+            beforeEach(function() {
+                var input = element(by.tagName('input'));
+
+                input.sendKeys('NW1 0NE');
+                input.sendKeys(protractor.Key.ENTER);
+                input.sendKeys(protractor.Key.ENTER);
+            });
 
     		it("is displayed", function() {
     			var neighbourhoodInfo = element(by.id('neighbourhood-info'));

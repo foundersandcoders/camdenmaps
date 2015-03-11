@@ -28,13 +28,13 @@ exports.config = {
       'build': process.env.TRAVIS_BUILD_NUMBER,
       'name': 'App Tests'
     }, 
-    // {
-    //   'browserName': 'firefox',
-    //   'platform': 'ANY',
-    //   'tunnel-identifier': (process.env.TRAVIS) ? process.env.TRAVIS_JOB_NUMBER : process.env.TUNNEL_ID,
-    //   'build': process.env.TRAVIS_BUILD_NUMBER,
-    //   'name': 'App Tests'
-    // }, 
+    {
+      'browserName': 'firefox',
+      'platform': 'ANY',
+      'tunnel-identifier': (process.env.TRAVIS) ? process.env.TRAVIS_JOB_NUMBER : process.env.TUNNEL_ID,
+      'build': process.env.TRAVIS_BUILD_NUMBER,
+      'name': 'App Tests'
+    }, 
     // {
     //   'browserName': 'safari',
     //   'platform': 'ANY',
