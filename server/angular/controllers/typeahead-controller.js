@@ -50,12 +50,12 @@ function getObject (array, selected) {
             uprnArray = [];
 
             if(locationCheck.locationFound()) {
+
                 $scope.address = validate.cleanDisplayAddress($stateParams.address);
+
                 $scope.$on('$locationChangeSuccess', function(event) {
-                    // if(locationCheck.locationFound()) {
-                        var updatedAddress = $location.path().split('/').pop();
-                        $scope.address = validate.cleanDisplayAddress(updatedAddress); 
-                    // }
+                    var updatedAddress = $location.path().split('/').pop();
+                    $scope.address = validate.cleanDisplayAddress(updatedAddress); 
                 });
             }
 
@@ -141,6 +141,8 @@ function getObject (array, selected) {
             }
 
             function addressHandler (array, add) {
+                //clears input box between searches
+                $('input').val('');
                 //if address has been selected by typeahead, then will exist in saved array
                 var address = getObject(array, add);
 
