@@ -59,6 +59,9 @@
 
             this.save = function (address) {
                 if (localStorageService.isSupported) {
+                    
+                    localStorageService.clearAll()
+
                     if(typeof address === "string"){
                         localStorageService.set("S-USER-LOCATION", address);
                     } else if ( typeof address === "object") {
