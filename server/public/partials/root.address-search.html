@@ -53,40 +53,43 @@
             </div>    
 
             <div class="col-xs-12 container-list" id="list-results" ng-show="showAccordion">
-                <a ng-click="activateListItem(result.display.Name)" ng-repeat="result in results">
-                    <div class="list-item col-xs-12" id="{{ result.display.Name }}">
+                <div class="list-item col-xs-12" ng-repeat="result in results" id="{{ result.display.Name }}">
+
+                    <a ng-click="activateListItem(result.display.Name)">
                         <div class="col-md-12">
                             <h3 class="service-title">{{ result.display.Name }}</h3>
                             <p>{{ result.StreetNum + ' ' + result.Street }}</p>
                             <p>{{ result.PostCode }}</p>
-                            <div class="display-result">
-
-                                <div class="single-view-info">
-                                    <hr id="hr-single-view">
-
-                                    <p ng-show="result.display.Location"> Location of streetworks {{ result.display.Location }} </p>
-
-                                    <p ng-show="result.display.Description"> <b> Description: </b> <br> {{ result.display.Description }} </p>
-                                    
-                                    <br>
-
-                                    <p ng-show="result.display.Telephone" ng-href= "tel: {{ result.display.Telephone }}" id="tel">
-                                        <b> Tel.: </b> {{ result.display.Telephone }}
-                                    </p>
-
-                                    <p ng-show="result.display.URL" ng-href="{{ result.display.URL }}" target="_blank" id="url">{{ result.display.URL }}
-                                    </p>
-
-                                    <p ng-show="result.display.Organisation"> <b> Responsible company: </b> {{ result.display.Organisation }} </p>  
-                                    <p ng-show="result.externalref"> <b> External reference: </b> {{ result.externalref }} </p>  
-                                    <h5 ng-show="result.display.OpeningHours">Opening Hours</h5>
-                                    <p>{{ result.display.OpeningHours }}</p>
-
-                                </div> 
-                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                    
+                    <div class="col-md-12 display-result">
+
+                        <div class="single-view-info">
+                            <hr id="hr-single-view">
+
+                            <p ng-show="result.display.Location"> Location of streetworks {{ result.display.Location }} </p>
+
+                            <p ng-show="result.display.Description"> <b> Description: </b> <br> {{ result.display.Description }} </p>
+                            
+                            <br>
+
+                            <a ng-show="result.display.Telephone" ng-href= "tel: {{ result.display.Telephone }}" id="tel">
+                                <p><b> Tel.: </b> {{ result.display.Telephone }}</p>
+                            </a>
+
+                            <a ng-show="result.display.URL" ng-href="{{ result.display.URL }}" target="_blank" id="url">
+                                <p>{{ result.display.URL }}</p>
+                            </a>
+
+                            <p ng-show="result.display.Organisation"> <b> Responsible company: </b> {{ result.display.Organisation }} </p>  
+                            <p ng-show="result.externalref"> <b> External reference: </b> {{ result.externalref }} </p>  
+                            <h5 ng-show="result.display.OpeningHours">Opening Hours</h5>
+                            <p>{{ result.display.OpeningHours }}</p>
+
+                        </div> 
+                     </div>
+                </div>
             </div>
         </div>
     </div>
