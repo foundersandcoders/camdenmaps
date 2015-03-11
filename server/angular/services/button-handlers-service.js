@@ -64,6 +64,7 @@
                             lng: -0.139991,
                             zoom: 13
                     });
+
                     scope.update("markers", {});
 
                     // better to have a watch functiont that triggers when markers changes??

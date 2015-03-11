@@ -43,6 +43,18 @@
         };
     }])
 
+    .factory('httpq', function($http, $q) {
+        return {
+            get: function() {
+                var deferred = $q.defer();
+                $http.get.apply(null, arguments)
+                .success(deferred.resolve)
+                .error(deferred.resolve);
+                return deferred.promise;
+            }
+        }
+    })
+
     .config( require("./config.js") )
 
 	// Set up the cache for initial resources
