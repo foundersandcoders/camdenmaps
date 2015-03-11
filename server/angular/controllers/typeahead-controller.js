@@ -47,13 +47,17 @@ function getObject (array, selected) {
             uprnArray = [];
 
             $scope.toggleView = function () {
-                $scope.maplisttoggle = !$scope.maplisttoggle;
-                if ($scope.maplisttoggle) {
-                    $scope.mapOrList = 'Click to see the list';
-                } else {
-                    $scope.mapOrList = 'Click or swipe left to see the map';
+                if(screen.width < 768) {
+                    $scope.maplisttoggle = !$scope.maplisttoggle;
+                    if ($scope.maplisttoggle) {
+                        $scope.mapOrList = 'Click to see the list';
+                    } else {
+                        $scope.mapOrList = 'Click or swipe left to see the map';
+                    }
                 }
             };
+
+
 
             $scope.geolocateUser = function() {
                 markers.geolocateUser($scope, url)();
@@ -212,15 +216,14 @@ function getObject (array, selected) {
                         
                         lat = null;
                         lng = null;
-                        service = $stateParams.service;
+                        
+                        service = $stateParams.service || 'streetworks';
 
                         if(address === "your location") {
                             lat = mapMarkers.m0.lat;
                             lng = mapMarkers.m0.lng;
                         }
-                        if ($location.path().indexOf('streetworks') > -1) {
-                            service = 'streetworks';
-                        } 
+
 
 
                         apiSearch.search(service, address, lat, lng)
@@ -325,6 +328,14 @@ function getObject (array, selected) {
                 } else {
                     $scope.showPollingStation = true;
                     $scope.markers.pollingStation = pollingStationCoordinates;
+                    if(screen.width < 768) {
+                        $scope.toggleView();
+                        $scope.centre.lat = $scope.markers.pollingStation.lat; 
+                        $scope.centre.lng = $scope.markers.pollingStation.lng; 
+
+
+
+                    }
                 }
 
             };
