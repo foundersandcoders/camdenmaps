@@ -46,6 +46,12 @@ function getObject (array, selected) {
             $scope.mapOrList = 'Click or swipe left to see the map';
             uprnArray = [];
 
+            if (window.innerWidth < 768 || screen.width < 768) {
+                $scope.toolTipPlacement = "bottom";
+            } else {
+                $scope.toolTipPlacement = "right";
+            }
+
             $scope.toggleView = function () {
                 if(screen.width < 768) {
                     $scope.maplisttoggle = !$scope.maplisttoggle;
