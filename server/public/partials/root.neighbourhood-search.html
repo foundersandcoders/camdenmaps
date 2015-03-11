@@ -2,30 +2,33 @@
 <!-- ROOT.ADDRESS-SEARCH BEGINS -->
 
 <div class="container-fluid">
-    <div ng-swipe-right="prevItems()" ng-swipe-left="nextItems()" class="services-and-categories col-xs-12">
+    <div class="services-and-categories col-xs-12">
 
         <!-- Search Box for locations & GPS -->
         
-        <div class="col-xs-12 search-box" id="search-service-and-loc">
+        <div class="col-xs-12 search-box" id="search-service-and-loc" ng-swipe-right="toggleView()">
             <div class="servicestypeahead row">
                 <div class="col-xs-12 errormessage">
                 </div>
-                <typeaheadsearch/>
+                <div class="typeaheadsearch"></div>
             </div>
 
             <div ng-show="showEnterLocation" class="col-md-12 enter-loc">
-                <h3>Please enter your location.</h3>
+                <h3>Please enter your location</h3>
             </div>
 
-            <div ng-show="showResetLocation" class="row">
-                <a class="change-address" ng-click="changeAddress()">
-                    <p>Reset location</p>
+            <div class="visible-xs-block">
+                <a class="change-address" ng-click="toggleView()">
+                    <p>Click to see the {{ mapOrList }}</p>
                 </a>
             </div>
-
         </div>
 
-        <div class="col-xs-12 item-container" id="item-container">
+        <div ng-click="toggleView()" class="list-toggle-button visible-xs-block col-xs-1">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+        </div>
+
+        <div class="col-xs-12 item-container" id="item-container" collapse-width="maplisttoggle" ng-swipe-left="toggleView()">
 
         <!-- Title of service and category that are listed in container -->
 
@@ -39,10 +42,7 @@
                 <div class="col-xs-1 col-md-1 cancel" ng-show="showAccordion">
                     <a ng-click="searchAgain()">X</a>
                 </div>
-            </div>    
-
-            <div ui-view ></div>       
-
+            </div>
         </div>
     </div>
 </div>

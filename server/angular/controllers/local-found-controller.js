@@ -11,47 +11,23 @@
         "$location",
         "apiSearch",
         "$stateParams",
-        function ($scope, $location, apiSearch, $stateParams) {
+        "buttonHandlers",
+        function ($scope, $location, apiSearch, $stateParams, buttonHandlers) {
 
             $scope.information;
+
+            $scope.isListShowing = true;
 
             $scope.exit = function exit() {
                 $location.path("/home/neighbourhood");
             };
 
-            //search api for uprn
-            apiSearch.searchNeighbourhood($stateParams.uprn)
-                .success(function(data) {
-                    
-                    if (data.hasOwnProperty("error")) {
-                        $location.path("/home/neighbourhood");
-                        return $scope.updateError(data.message);
-                    }
-                    $scope.updateError("");
-                    $scope.markers.neighbourhood = {
-                        lat: Number(data.location.Latitude),
-                        lng: Number(data.location.Longitude),
-                        icon: {
-                            iconSize: [28],
-                            iconUrl: "../img/icons/location-marker.png"
-                        },
-                    };
+            //model for page title
+            $scope.title = "About your Neighbourhood";
 
-                    $scope.update("centre", {
-                        lat: (Number(data.location.Latitude) - 0.003),
-                        lng: (Number(data.location.Longitude) - 0.004),
-                        zoom: 15
-                    });
+            $scope.icon = "img/icons/your-neighbourhood-black.png";
 
-                    return $scope.update("information", data.information);
-                })
-                .error(function(data) {
-                    $scope.updateError("Sorry, it looks like something went wrong");
-                    return $location.path("/home/neighbourhood");
-                });
-
-            //$scope.noLocationNeighbourhood = false;
-
+            $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/neighbourhood");
         }
     ];
 }());

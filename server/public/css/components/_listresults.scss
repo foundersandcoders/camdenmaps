@@ -4,19 +4,37 @@
 *	mixins and variables.
 ************************************************/
 
-
+.container-list {
+	padding: 0.2em 0;
+	width: 100%;
+	margin:0;
+	border-bottom: solid 0.1em $light-grey;
+	h4 {
+		margin: 0;
+		color: $black;
+		display:inline;
+	}
+	img {
+		width: 2em;
+		margin-left: 2em;
+        display: inline-block;
+        float: left;
+        @include respond(mobile) {
+            margin-left: 0;
+        }
+	}
+}
 
 #list-results {
 	text-align: left;
-	background-color: rgba(255,255,255,0.7);
+	background-color: rgba(255,255,255,0.75);
 	padding: 0;
-	//overflow: hidden;
 	overflow-y: scroll;
 	z-index: 999;
 	min-height: 100%;
-	max-height: 32em;
+	max-height: 30em;
 	@include respond(mobile) {
-		background-color: rgba(255,255,255,1);
+		background-color: rgba(255,255,255,0.75);
 	}
 	.list-item {
 		border-top: 0.1em $menu-stroke-grey solid;
@@ -32,7 +50,6 @@
 			} 
 		}
 	}
-
 	.display-result {
 		display: none;
 		visibility: hidden;
@@ -44,6 +61,18 @@
 	.distance {
 		text-align: right;
 	}
+	#url {
+		p {
+			color: $blue;
+		}
+	}
+	#tel {
+		p {
+			@include respond(mobile) {
+				color: $blue;
+			}
+		}
+	}
 	p {
 		color: black;
 		margin: 0;
@@ -52,9 +81,13 @@
 		margin-bottom: 5px;
 		color: $dark-grey;
 	}
+	.display-active-result {
+		box-shadow: inset 0px 0px 6px 2px $orange;
+		background-color: rgba(255,255,255,0.95);
+	}
 }
 
-#service-title {
+.service-title {
 	color: $dark-blue;
 	font-weight: bold;
 	margin: 0 0 10px 0;

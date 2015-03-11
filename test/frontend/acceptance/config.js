@@ -28,6 +28,7 @@ var category = menu.filter(function (item) {
     		main: 'http://localhost:8080/',
     		home: '#/home',
             streetworks: 'streetworks'
+
     	},
     	landing: {
     		buttons: {
@@ -56,8 +57,12 @@ var category = menu.filter(function (item) {
             });
 
             return services;
+        },
+        markers: {
+            inactive: "img/icons/marker-hi.png",
+            active: "img/icons/yellow-marker.png"
         }
-    }
+    };
 
 }());
 

@@ -40,7 +40,7 @@
                 return response;
            } 
             
-        }
+        };
     }])
 
     .config( require("./config.js") )

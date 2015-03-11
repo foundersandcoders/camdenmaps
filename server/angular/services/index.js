@@ -19,5 +19,4 @@
         .service("locationCheck", require("./location-checker-service.js"))
         .service("validate", require("./validate-service.js"))
         .service("menuFind", require("./find-in-menu-service.js"));
-
 }());

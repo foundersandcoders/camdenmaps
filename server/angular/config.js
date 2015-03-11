@@ -62,25 +62,11 @@
                 controller: "SearchController"
             })
 
-            //single view  contains view for displaying single selected service
-            .state("root.address-search.single-view", {
-                url: "/{id}",
-                templateUrl: "partials/root.address-found.single-view.html",
-                controller: "SingleController" 
-            })
-
-            //state for searching streetworks by address
+            // //state for searching streetworks by address
             .state("root.streetworks", {
                 url: "/streetworks",
                 templateUrl: "partials/root.address-search.html",
                 controller: "StreetworksSearchController"
-            })
-
-            //state for your local streetworks when address has been found
-            .state("root.streetworks.found", {
-                url: "locations/{address}", 
-                templateUrl: "partials/root.streetworks.local-information.html",
-                controller: "LocalFoundController"
             })
 
             //address-found contains view for when an address+service are found
@@ -88,20 +74,6 @@
                 url: "/{service}/location/{address}",
                 templateUrl: "partials/root.address-found.html",
                 controller: "LocationController"
-            })
-  
-            //list-view contains view for listing found services
-            .state("root.address-found.list-view", {
-                url: "/list",
-                templateUrl: "partials/list-view.html",
-                controller: "ListController" 
-            })
-  
-            //single view  contains view for displaying single selected service
-            .state("root.address-found.single-view", {
-                url: "/{id}",
-                templateUrl: "partials/root.address-found.single-view.html",
-                controller: "SingleController" 
             })
 
             //state for about your neighbourhood search
@@ -112,11 +84,11 @@
             })
 
             //state for about your neighbourhood when address is found
-            .state("root.neighbourhood.found", {
-                url: "/{uprn}",
-                templateUrl: "partials/root.neighbourhood.local-information.html",
+            .state("root.neighbourhood-found", {
+                url: "/neighbourhood-found/{uprn}",
+                templateUrl: "partials/root.neighbourhood-found.html",
                 controller: "LocalFoundController"
-            })
+            });
             
     }];
 }());

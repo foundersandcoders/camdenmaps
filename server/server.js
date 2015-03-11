@@ -21,6 +21,9 @@ var server = new hapi.Server();
 
 //add connection
 server.connection({
+    state: {
+        clearInvalid: true
+    },
     port: process.env.PORT || config.server.port,
     labels: ["api"],
     routes: {
@@ -30,7 +33,10 @@ server.connection({
         },
     	files: {
     		relativeTo: path.join(__dirname, 'server')
-    	}
+    	},
+        state: {
+            failAction: "log"
+        }
     }
 });
 
@@ -39,6 +45,7 @@ server.connection({
 routes(server);
 
 //register prehandler extension
+require("./lib/getRecyclingCoordinates.js").registerPreHandler(server);
 require("./lib/streetnameLookup.js").registerPreHandler(server);
 
 server.register({

@@ -3,10 +3,37 @@
 *
 *************************************/
 
+
+
 ;(function () {
 	"use strict";
 
     var cappedResults = require("../lib/capped-results.js");
+    var resetActiveMarker = require("../lib/reset-active-marker");
+
+function linkResultToMarker(scope, markerName) {
+
+    var result = scope.results.filter(function (res) {
+        return res.display.Name === markerName;
+    })[0];
+
+    //links list result with relevant marker
+    var marker = "m" + (scope.results.indexOf(result) + 1);
+    
+    //if single list view loaded from click this marker will already be the active marker
+    if(marker !== scope.activeMarker) {
+        resetActiveMarker(scope); 
+        scope.markers[marker].icon.iconUrl = "../img/icons/yellow-marker.png";
+        scope.update("activeMarker", scope.markers[marker]);
+        
+        //recentres map on the list result selected
+        scope.update("centre", {
+            lat: Number(result.Latitude),
+            lng: Number(result.Longitude),
+            zoom: scope.centre.zoom,
+        });
+    }
+}
 
 	module.exports = [
         "$stateParams",
@@ -23,13 +50,10 @@
                 return size;
             };  
 
-
             this.geolocateUser = function (functionScope, location, cb) {     
                 
                 var remainOnPage = function() {
-                    var path = (location.indexOf("/streetworks") > -1)
-                        ? "home/streetworks"
-                        : "/home/" + $stateParams.service + "/search";
+                    var path = location;
                        
                     $location.path(path);
                 }; 
@@ -87,11 +111,8 @@
                     coord = function coord(i, latlng){
                         return Number(scope.results[i][latlng]);
                     };
-        
-
-                    // this creates the marker objects to plot the locations on the map
-
-                        
+                    
+                    // this creates the marker objects to plot the locations on the map     
                     var i, 
                     	resultLength = Object.size(root);
                     
@@ -108,8 +129,6 @@
                         markers[property].icon.iconSize = [28];
 
                     }
-                        
-                    
 
                     //loads default location marker if results are capped
                     //but not if searching with geolocate 
@@ -123,7 +142,7 @@
                                 iconUrl: "../img/icons/location-marker.png",
                             },
                             focus: true,
-                            message: "Searching for results near <strong>N1C 4AG</strong>, <br> enter another post code above for more results",
+                            message: "Searching for results near <strong>N1C 4AG</strong>, <br> enter another post code for more results",
 
                         };
                     }
@@ -148,7 +167,7 @@
                             }
                         };
                     } 
-
+                    scope.markers = {};
                     scope.update("markers", markers);
                 };
 
@@ -168,17 +187,42 @@
                     else if (size < 5 ) {
                         zoomLevel = 12;
                     }
-                    else if (scope.category === "Live streetworks") {
-                        zoomLevel = 15;
+                    else if (scope.category.title === "Live Streetworks") {
+                        zoomLevel = 16;
                     }
                     else {
                         zoomLevel = 13;
                     }
-
-
                     return zoomLevel;
 
                 };
+            };
+
+            this.activateListItem = function (functionScope) {
+                return function (resultId) {
+
+                    var scope = functionScope; 
+
+                    var listItem = $('[id="' + resultId + '"]');
+                    var allListItems = $('.list-item');
+                    var displayResult = listItem.find('.display-result');
+                    var allResults = $('.display-result');
+
+                    if (displayResult.hasClass('active')) {
+                        listItem.removeClass('display-active-result');
+                        allResults.removeClass('active');
+
+                        resetActiveMarker(scope); 
+                    } else {
+                        allListItems.removeClass('display-active-result');
+                        allResults.removeClass('active');
+
+                        listItem.toggleClass('display-active-result');
+                        displayResult.toggleClass('active');
+
+                        linkResultToMarker(scope, resultId);
+                    }
+                }
             };
 		}
 	];

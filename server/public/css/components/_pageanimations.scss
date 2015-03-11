@@ -42,3 +42,13 @@
     -moz-transform:translate3d(100px, 0, 0);
     transform:translate3d(100px, 0, 0);
 }
+
+// BELOW animations are for mobile swipe events
+.collapsing-width {
+    position: relative;
+    overflow: hidden;
+    -webkit-transition: width 0.35s ease;
+    -moz-transition: width 0.35s ease;
+    -o-transition: width 0.35s ease;
+    transition: width 0.35s ease;
+}

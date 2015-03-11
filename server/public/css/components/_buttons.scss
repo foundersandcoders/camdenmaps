@@ -17,21 +17,9 @@
 			border-right: 0.1em white solid;
 			border-left: 0.1em white solid;
 			border-radius: 0;
-			//background-color: $blue;
 			font-size: 1em;
 			color: white;
 			width: 100%;
-			// &:hover {
-			// 	background-color: $hover-blue;
-			// }
-			// &:active {
-			// 	background-color: $dark-blue;
-			// }
-			// &:focus {
-			// 	background-color: $dark-blue;
-			// }
-
-
 		}
 	}
 }
@@ -39,6 +27,9 @@
 .servicestypeahead {
 	button {
 		background-color: $black;
+		@include respond(mobile) {
+			padding: 0;
+		}
 		span {
 			color: white;
 			&:hover {
@@ -68,6 +59,7 @@
 
 		@include respond(mobile) {
 			width: initial;
+			padding: 0;
 		}
 		span {
 			color: $white;
@@ -105,6 +97,15 @@
 	z-index: 1;
 }
 
+#polling-station {
+	button {	
+		display: block-inline;
+		background-color: $blue;
+		border-radius: 0.1em;
+		color: white;
+	}
+}
+
 .navigation-arrow {
 	margin: 0.9em 0 2.5em;
 	padding: 0;
@@ -112,4 +113,37 @@
 
 #searchbutton {
 	background-color: black;
+}
+
+.list-toggle-button {
+	display: none;
+	visibility: hidden;
+	background-color: $light-grey;
+	width: 2.5em;
+	border-radius: 0.1em;
+	position: absolute;
+	top: 7.5em;
+	left: 0.5em;
+	box-shadow: 5px 5px 5px #888888;
+	padding: 0.2em 0;
+	text-align: center;
+	border: 0.1em $menu-stroke-grey solid;
+	&:hover {
+		background-color: $hover-grey;
+	}
+}
+
+.change-address {
+	display: none;
+	visibility: hidden;
+	p {
+		color: #7BBFF7;
+	}
+}
+
+@media only screen and (max-device-width: 768px) {
+	.list-toggle-button, .change-address {
+		display: block;
+		visibility: visible;
+	}
 }

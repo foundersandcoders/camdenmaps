@@ -13,12 +13,14 @@ var Config,
 	addressSearchListTests,
 	mapMarkerTests,
 	menuBarTests,
-	geolocationTests;
+	geolocationTests,
+	camdenServices;
 
 Config = require('../../config.js');
 category = Config.category;
 categoriesRepeater = element.all(by.repeater('category in serviceCategories'));
-buttons = element.all(by.repeater('button in buttons'));
+button = element.all(by.repeater('button in buttons')).get(0);
+camdenServices = button.element(by.tagName('h4'));
 servicesTypeaheadTests = require('../../typeahead/servicestypeahead.e2e.js');
 addressTypeaheadTests = require('../../typeahead/addresstypeahead.e2e.js');
 addressSearchListTests = require('../../list/address-search-list.e2e.js');
@@ -33,7 +35,7 @@ geolocationTests = require('../../geolocation/geolocation.e2e.js');
 
 		beforeEach(function () {
    			browser.get(Config.path.home);
-			buttons.get(0).click();
+			camdenServices.click();
 		});
 
 		servicesTypeaheadTests();
@@ -48,8 +50,9 @@ geolocationTests = require('../../geolocation/geolocation.e2e.js');
 
         		beforeEach(function(){
         			browser.get(Config.path.home);
-					buttons.get(0).click();
-        			categoriesRepeater.get(j).click();
+					camdenServices.click();
+        			var catContainer = categoriesRepeater.get(j);
+        			catContainer.element(by.tagName('img')).click();
         		});
 
         		menuBarTests();
@@ -104,7 +107,7 @@ geolocationTests = require('../../geolocation/geolocation.e2e.js');
             		describe(" once a service has been clicked", function () {
 
             			beforeEach(function(){
-		        			currentService.click();
+		        			currentService.element(by.tagName('img')).click();
 		        		});
 
 						menuBarTests();
@@ -182,13 +185,13 @@ geolocationTests = require('../../geolocation/geolocation.e2e.js');
             	//To run for all services, please change 3 to 0 and 5 to servicelength
             	for (h = 0; h < 1; h++) {
 	        		runServicesTest(h);
-	        	};
+	        	}
 	        });
     	}
 
     	for (i = 0; i < 1; i++) {
     		catTests(i);
-    	};
+    	}
 	});
 
 }());
