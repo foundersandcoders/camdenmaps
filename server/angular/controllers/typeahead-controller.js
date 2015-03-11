@@ -49,7 +49,7 @@ function getObject (array, selected) {
             $scope.mapOrList = 'Click or swipe left to see the map';
             uprnArray = [];
 
-            if(locationCheck.locationFound()) {
+            if($stateParams.address) {
 
                 $scope.address = validate.cleanDisplayAddress($stateParams.address);
 
