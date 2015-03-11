@@ -111,16 +111,10 @@ neighbourhoodAddressFound = require('./neighbourhood-addressfound.e2e.js');
 						input.sendKeys(protractor.Key.ENTER);
 						input.sendKeys(protractor.Key.ENTER);
 
-<<<<<<< HEAD
-						var currentUrl = browser.getCurrentUrl();
-
-			        	expect(currentUrl).toContain("5048636");
-=======
 						var currentUrl = browser.getCurrentUrl().then(function (url) {
 
 		       				expect(url.slice(-7)).toMatch(/\d{7}$/);
 		       			})
->>>>>>> dev
 			        });
 
 		        	it("pressing the search button also works", function() {
@@ -172,16 +166,11 @@ neighbourhoodAddressFound = require('./neighbourhood-addressfound.e2e.js');
 						dropDownList.get(0).click();
 						searchButton.click();
 		       			
-<<<<<<< HEAD
-		       			var currentUrl = browser.getCurrentUrl();
 
-			        	expect(currentUrl).toContain("5021380");
-=======
 		       			var currentUrl = browser.getCurrentUrl().then(function (url) {
 
 		       				expect(url.slice(-7)).toMatch(/\d{7}$/);
 		       			})
->>>>>>> dev
 			        });
 		        });
 
