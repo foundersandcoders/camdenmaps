@@ -290,11 +290,15 @@ function getObject (array, selected) {
 
                             .finally(function () {
 
-                                $scope.update('centre', {
-                                    lat: Number(centreLocation.Latitude),
-                                    lng: Number(centreLocation.Longitude),
-                                    zoom: markers.zoomCheck($scope)()
-                                })
+                                $timeout(function () {
+                                    $scope.update('centre', {
+                                        lat: Number(centreLocation.Latitude),
+                                        lng: Number(centreLocation.Longitude),
+                                        zoom: markers.zoomCheck($scope)()
+                                    })
+
+                                    $scope.markers.m0.message = $scope.address;
+                                }, 1500);
                             });
                     }
 
