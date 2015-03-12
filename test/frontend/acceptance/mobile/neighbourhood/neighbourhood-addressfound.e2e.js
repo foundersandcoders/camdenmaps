@@ -13,7 +13,6 @@ var information = element.all(by.tagName('p'));
 	function neighbourhoodAddressFound () {
 
     	describe("neighbourhood information ", function () {
-
             beforeEach(function() {
                 var input = element(by.tagName('input'));
 

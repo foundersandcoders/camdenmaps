@@ -3,6 +3,8 @@
 *
 ******************************/
 
+var resetActiveMarker = require('../lib/reset-active-marker.js');
+
 ;(function () {
     "use strict";
 
@@ -22,10 +24,9 @@
 
             //service called markers exists
             var mapMarkers = $scope.markers,
-                lat,
-                lng,
                 round = require("../lib/round.js"),
                 addressUsedinAPIcall = require("../lib/address-used-in-api-call.js");
+
 
             // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
@@ -69,32 +70,12 @@
                 $scope.changeAddress = buttonHandlers.changeUserLocation($scope, "home/" + $stateParams.service + "/search");
 
             }
-        
-            // this will only run an API call if location needs to be added
-            // will still run if default location used for capped results
-            if(!addressUsedinAPIcall($scope)){
-
-                //reloads $scope.results with new data based on address 
-                
-                // if geolocation has been used 
-                // will pass through lat lng values to use for api call
-                // otherwise will use address given for api call
-                if (mapMarkers.m0 && mapMarkers.m0.geolocation) {
-                    lat = mapMarkers.m0.lat;
-                    lng = mapMarkers.m0.lng;
-                } else {
-                    lat = null;
-                    lng = null;
-                }
-            }
-
-            //this will uppercase postcodes and capitalise street addresses 
-            $scope.address  = validate.cleanDisplayAddress($stateParams.address);
 
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
 
             $scope.toggle = buttonHandlers.toggle($scope);
 
+            $scope.activateListItem = markers.activateListItem($scope);
         }
     ];
 }());

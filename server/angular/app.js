@@ -7,8 +7,7 @@
 
 ;(function () {
     "use strict";
-
-    var angular = require("angular");
+    
     require("angular-touch");
     require("angular-bootstrap");
     require("angular-local-storage");
@@ -42,6 +41,18 @@
             
         };
     }])
+
+    .factory('httpq', function($http, $q) {
+        return {
+            get: function() {
+                var deferred = $q.defer();
+                $http.get.apply(null, arguments)
+                .success(deferred.resolve)
+                .error(deferred.resolve);
+                return deferred.promise;
+            }
+        }
+    })
 
     .config( require("./config.js") )
 

@@ -10,13 +10,11 @@
         "$scope",
         "$stateParams",
         "$location",
-        "apiSearch",
         "markers",
         "markerHandlers",
         "buttonHandlers",
         "menuFind",
-        
-        function ($scope, $stateParams, $location, apiSearch, markers, markerHandlers, buttonHandlers, menuFind) {
+        function ($scope, $stateParams, $location, markers, markerHandlers, buttonHandlers, menuFind) {
 
             var noResults,
                 resetActiveMarker;
@@ -30,12 +28,9 @@
             noResults = require("../lib/no-results.js");
             resetActiveMarker = require("../lib/reset-active-marker");
 
-            //model for title
-            $scope.title = "Find your Nearest";
             //model for placeholder
             $scope.placeholder = "Please enter a postcode";
             $scope.icon = "";
-
 
             $scope.showAccordion = true;
             $scope.category = menuFind.categoryByService($scope.service);
@@ -71,14 +66,7 @@
             
             $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service");
 
-            $(".display-active-result.active").click(function(event){
-                //event.preventDefault();
-                //$('html,body').animate({scrollTop:$(this.hash).offset().top},500);
-                $(".display-active-result.active").animate({
-                    scrollTop: $(".display-active-result.active")
-                });
-            });
-
+            $scope.activateListItem = markers.activateListItem($scope);
         }
     ];
 }());

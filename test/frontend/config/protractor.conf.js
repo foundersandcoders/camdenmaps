@@ -28,6 +28,7 @@ exports.config = {
       'build': process.env.TRAVIS_BUILD_NUMBER,
       'name': 'App Tests'
     }, 
+
     {
       'browserName': 'firefox',
       'platform': 'ANY',
@@ -35,20 +36,46 @@ exports.config = {
       'build': process.env.TRAVIS_BUILD_NUMBER,
       'name': 'App Tests'
     }, 
-    // {
-    //   'browserName': 'safari',
-    //   'platform': 'ANY',
-    //   'tunnel-identifier': (process.env.TRAVIS) ? process.env.TRAVIS_JOB_NUMBER : process.env.TUNNEL_ID,
-    //   'build': process.env.TRAVIS_BUILD_NUMBER,
-    //   'name': 'App Tests'
-    // }, 
-    // {
-    //   'browserName': 'internet explorer',
-    //   'platform': 'ANY',
-    //   'tunnel-identifier': (process.env.TRAVIS) ? process.env.TRAVIS_JOB_NUMBER : process.env.TUNNEL_ID,
-    //   'build': process.env.TRAVIS_BUILD_NUMBER,
-    //   'name': 'App Tests'
-    // }
+    {
+      'browserName': 'iphone',
+      'deviceName': 'iPad Simulator',
+      'device-orientation': 'landscape',
+      'tunnel-identifier': (process.env.TRAVIS) ? process.env.TRAVIS_JOB_NUMBER : process.env.TUNNEL_ID,
+      'build': process.env.TRAVIS_BUILD_NUMBER,
+      'name': 'App Tests'
+    }, 
+    {
+      'browserName': 'internet explorer',
+      'platform': 'Windows XP',
+      'version': '8.0',
+      'tunnel-identifier': (process.env.TRAVIS) ? process.env.TRAVIS_JOB_NUMBER : process.env.TUNNEL_ID,
+      'build': process.env.TRAVIS_BUILD_NUMBER,
+      'name': 'App Tests'
+    },   
+    {
+      'browserName': 'internet explorer',
+      'platform': 'Windows 7',
+      'version': '9.0',
+      'tunnel-identifier': (process.env.TRAVIS) ? process.env.TRAVIS_JOB_NUMBER : process.env.TUNNEL_ID,
+      'build': process.env.TRAVIS_BUILD_NUMBER,
+      'name': 'App Tests'
+    },
+    {
+      'browserName': 'internet explorer',
+      'platform': 'Windows XP',
+      'version': '10.0',
+      'tunnel-identifier': (process.env.TRAVIS) ? process.env.TRAVIS_JOB_NUMBER : process.env.TUNNEL_ID,
+      'build': process.env.TRAVIS_BUILD_NUMBER,
+      'name': 'App Tests'
+    },
+    {
+      'browserName': 'internet explorer',
+      'platform': 'Windows XP',
+      'version': '11.0',
+      'tunnel-identifier': (process.env.TRAVIS) ? process.env.TRAVIS_JOB_NUMBER : process.env.TUNNEL_ID,
+      'build': process.env.TRAVIS_BUILD_NUMBER,
+      'name': 'App Tests'
+    }
   ],
 
   baseUrl: Config.path.main,
@@ -57,8 +84,8 @@ exports.config = {
 
   jasmineNodeOpts: {
     showColors: true,
-    //Timeout 30min.
-    defaultTimeoutInterval: 60 *1000 * 30,
+    //Timeout 60min.
+    defaultTimeoutInterval: 60 *1000 * 30 *2,
     isVerbose: true
   },
 

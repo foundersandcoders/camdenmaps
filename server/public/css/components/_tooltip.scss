@@ -10,6 +10,10 @@
 		color: black;
 	}
 	.tooltip-arrow {
-		border-top-color: #fff !important;
+		border-right-color: #fff !important;
+		@include respond(mobile) {
+			border-right-color: #000 !important;
+			border-bottom-color: #fff !important;
+		}
 	}
 }
