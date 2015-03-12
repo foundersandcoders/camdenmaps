@@ -63,8 +63,6 @@
     
             //back button functionality
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home/services");
-            //back button text
-            $scope.backButtonText = "Pick Another Service";
 
             $scope.toggle = buttonHandlers.toggle($scope);
             

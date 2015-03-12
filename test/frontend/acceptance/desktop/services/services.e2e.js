@@ -1,5 +1,5 @@
 /*************************************************
-*   SERVICES AND CATEGORIES TESTS
+*   SERVICES TESTS
 *   Description: Acceptance tests are written here
 *   Use: run tests by gulp acceptance-test
 **************************************************/
@@ -31,7 +31,7 @@ geolocationTests = require('../../geolocation/geolocation.e2e.js');
 (function () {
     "use strict";
 
-    describe("Once a category has been selected ", function () {
+    describe("On mobile, once a category has been selected ", function () {
 
 		beforeEach(function () {
    			browser.get(Config.path.home);
@@ -174,7 +174,7 @@ geolocationTests = require('../../geolocation/geolocation.e2e.js');
 					        });
 						});
 
-						describe(" (imported tests) ", function () {
+        				describe(" (imported tests) ", function () {
 	        				addressTypeaheadTests();
 		            		addressSearchListTests();
 		            		mapMarkerTests();

@@ -18,7 +18,6 @@ var internals = {};
 //create server
 var server = new hapi.Server();
 
-
 //add connection
 server.connection({
     state: {

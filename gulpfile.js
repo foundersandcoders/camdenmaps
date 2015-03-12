@@ -101,12 +101,13 @@
             .pipe(gulp.dest("./server/public/css/"));
     });
 
+
     gulp.task("sass-watch", function () {
         gulp.watch(sassFiles, ["sass-dev"]);
     });
 
-    //task for travis
-    gulp.task("travis", ["sass-production", "browserify"], function () {
+    //task for before pushing to master
+    gulp.task("pre-travis", ["webdriver_update","browserify", "convertyaml", "sass-production"], function () {
         nodemon({ script: 'server/server.js'})
         .on('start', function () {
             return gulp.src(protractorTestFiles)
@@ -120,6 +121,24 @@
                     process.exit();
                 });
         });
+        
+    });
+
+    //task for travis
+    gulp.task("travis", ["browserify", "convertyaml", "sass-production"], function () {
+        // nodemon({ script: 'server/server.js'})
+        // .on('start', function () {
+        //     return gulp.src(protractorTestFiles)
+        //         .pipe(protractor({
+        //             configFile: "./test/frontend/config/protractor.conf.js"
+        //         }))
+        //         .on("error", function (err) {
+        //             throw err;
+        //         })
+        //         .on('end', function () {
+        //             process.exit();
+        //         });
+        // });
         
     });
 
