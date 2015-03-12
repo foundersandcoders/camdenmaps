@@ -7,8 +7,7 @@
 
 ;(function () {
     "use strict";
-
-    var angular = require("angular");
+    
     require("angular-touch");
     require("angular-bootstrap");
     require("angular-local-storage");

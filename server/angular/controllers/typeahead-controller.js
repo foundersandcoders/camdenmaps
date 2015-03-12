@@ -3,8 +3,6 @@
 *
 *****************************/
 
-//TODO: autofocus on huge typeahead lists
-
 var resetActiveMarker = require('../lib/reset-active-marker.js');
 
 function getObject (array, selected) {
@@ -32,9 +30,8 @@ function getObject (array, selected) {
         "validate",
         "menuFind",
         "localStorageService",
-        "$timeout",
         "httpq",
-        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService, $timeout, httpq) {
+        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService, httpq) {
 
             var uprnArray,
                 centreLocation,
@@ -48,6 +45,7 @@ function getObject (array, selected) {
             $scope.maplisttoggle = false;
             $scope.mapOrList = 'Click or swipe left to see the map';
             uprnArray = [];
+
 
             if($stateParams.address) {
 
@@ -75,8 +73,6 @@ function getObject (array, selected) {
                     }
                 }
             };
-
-
 
             $scope.geolocateUser = function() {
                 markers.geolocateUser($scope, url)();
@@ -167,7 +163,6 @@ function getObject (array, selected) {
             }
 
             function getAddresses () {
-
                 return fetchToken.getToken().success(function() {
 
                     $scope.typeaheadSearchList = function(value) {
@@ -283,29 +278,31 @@ function getObject (array, selected) {
 
                                 $location.path(path);
                             })
-
                             .error(function (data) {
                                 return $scope.updateError("Sorry, that does not appear to be a valid camden address.");
                             })
 
                             .finally(function () {
 
-                                $timeout(function () {
-                                    $scope.update('centre', {
-                                        lat: Number(centreLocation.Latitude),
-                                        lng: Number(centreLocation.Longitude),
-                                        zoom: markers.zoomCheck($scope)()
-                                    })
+                                $scope.update('centre', {
+                                    lat: Number(centreLocation.Latitude),
+                                    lng: Number(centreLocation.Longitude),
+                                    zoom: markers.zoomCheck($scope)()
+                                })
 
-                                    $scope.markers.m0.message = $scope.address;
-                                }, 1500);
+                                $scope.markers.m0.message = $scope.address;
                             });
                     }
 
                 } else if ($location.path().indexOf('neighbourhood') > -1) {
 
                     var uprn = $stateParams.uprn || address;
-
+                    if (!$stateParams.uprn) {
+                        $http.get("/uprn/" + uprn).success(function(res) {
+                            var path = "/home/neighbourhood-found/" + res;
+                            $location.path(path);
+                        });
+                    } else {
                     apiSearch.searchNeighbourhood(uprn)
                         .success(function(data) {
 
@@ -338,6 +335,7 @@ function getObject (array, selected) {
                             $scope.updateError("Sorry, it looks like something went wrong");
                             return $location.path("/home/neighbourhood");
                         });
+                    }
                 } else {
                     //TODO: need a error phrase for when a non-typeahead search is done on `about your neighbourhood`
                     return $scope.updateError("Sorry, something went wrong");

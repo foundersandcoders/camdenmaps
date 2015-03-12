@@ -13,11 +13,6 @@ var category = menu.filter(function (item) {
 })
 
 /*
-* SELECTOR FUNCTIONS
-*/
-
-
-/*
 * EXPORTED CONFIG
 */
 

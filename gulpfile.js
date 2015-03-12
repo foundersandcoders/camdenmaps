@@ -37,7 +37,7 @@
                              './test/frontend/acceptance/mobile/services/services.e2e.js',
                              './test/frontend/acceptance/mobile/streetworks/streetworks.e2e.js',
                             './test/frontend/acceptance/mobile/neighbourhood/neighbourhood.e2e.js'
-                            ],
+        ],
         sassFiles = ["./server/public/css/*.scss", "./server/public/css/*/*.scss"],
         allFiles = serverFiles.concat(angularFiles);
 

@@ -11,8 +11,6 @@
         "buttonHandlers",
         function ($scope, buttonHandlers) {
 
-            $scope.information;
-
             $scope.isListShowing = true;
 
             $scope.exit = function exit() {
