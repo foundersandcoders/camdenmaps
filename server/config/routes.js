@@ -100,8 +100,6 @@
                 method: "GET",
                 path: "/uprn/{path}",
                 handler: function(req, res) {
-                    //TODO: Switch to server.inject on deploy to save network time
-                    //server.inject({method: "GET", url: "http://camdenmaps.herokuapp.com/auth_token"}, function(response) {
                     request("http://camdenmaps.herokuapp.com/auth_token", function(err, response, body) {
                             var path = "http://camdenmaps-addresslookup.herokuapp.com/search/" + req.params.path;
                             var opts = {
