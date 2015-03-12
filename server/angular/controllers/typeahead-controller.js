@@ -357,8 +357,6 @@ function getObject (array, selected) {
                 } else {
                     $scope.showPollingStation = true;
                     $scope.markers.pollingStation = pollingStationCoordinates;
-<<<<<<< HEAD
-=======
                     if(screen.width < 768) {
                         $scope.toggleView();
                         $scope.centre.lat = $scope.markers.pollingStation.lat; 
@@ -367,7 +365,6 @@ function getObject (array, selected) {
 
 
                     }
->>>>>>> dev
                 }
 
             };
