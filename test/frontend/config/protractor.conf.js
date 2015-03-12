@@ -28,6 +28,7 @@ exports.config = {
       'build': process.env.TRAVIS_BUILD_NUMBER,
       'name': 'App Tests'
     }, 
+
     {
       'browserName': 'firefox',
       'platform': 'ANY',
@@ -35,6 +36,7 @@ exports.config = {
       'build': process.env.TRAVIS_BUILD_NUMBER,
       'name': 'App Tests'
     }, 
+
     // {
     //   'browserName': 'safari',
     //   'platform': 'ANY',

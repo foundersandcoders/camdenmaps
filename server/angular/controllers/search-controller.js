@@ -10,12 +10,11 @@
         "$scope",
         "$stateParams",
         "$location",
-        "apiSearch",
         "markers",
         "markerHandlers",
         "buttonHandlers",
         "menuFind",
-        function ($scope, $stateParams, $location, apiSearch, markers, markerHandlers, buttonHandlers, menuFind) {
+        function ($scope, $stateParams, $location, markers, markerHandlers, buttonHandlers, menuFind) {
 
             var noResults,
                 resetActiveMarker;
@@ -29,12 +28,9 @@
             noResults = require("../lib/no-results.js");
             resetActiveMarker = require("../lib/reset-active-marker");
 
-            //model for title
-            $scope.title = "Find your Nearest";
             //model for placeholder
             $scope.placeholder = "Please enter a postcode";
             $scope.icon = "";
-
 
             $scope.showAccordion = true;
             $scope.category = menuFind.categoryByService($scope.service);
@@ -63,8 +59,6 @@
     
             //back button functionality
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home/services");
-            //back button text
-            $scope.backButtonText = "Pick Another Service";
 
             $scope.toggle = buttonHandlers.toggle($scope);
             

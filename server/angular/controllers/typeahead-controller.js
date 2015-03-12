@@ -49,6 +49,7 @@ function getObject (array, selected) {
             $scope.mapOrList = 'Click or swipe left to see the map';
             uprnArray = [];
 
+
             if($stateParams.address) {
 
                 $scope.address = validate.cleanDisplayAddress($stateParams.address);
@@ -75,8 +76,6 @@ function getObject (array, selected) {
                     }
                 }
             };
-
-
 
             $scope.geolocateUser = function() {
                 markers.geolocateUser($scope, url)();
@@ -167,7 +166,6 @@ function getObject (array, selected) {
             }
 
             function getAddresses () {
-
                 return fetchToken.getToken().success(function() {
 
                     $scope.typeaheadSearchList = function(value) {
@@ -283,13 +281,11 @@ function getObject (array, selected) {
 
                                 $location.path(path);
                             })
-
                             .error(function (data) {
                                 return $scope.updateError("Sorry, that does not appear to be a valid camden address.");
                             })
 
                             .finally(function () {
-
                                 $scope.update('centre', {
                                     lat: Number(centreLocation.Latitude),
                                     lng: Number(centreLocation.Longitude),
@@ -301,7 +297,12 @@ function getObject (array, selected) {
                 } else if ($location.path().indexOf('neighbourhood') > -1) {
 
                     var uprn = $stateParams.uprn || address;
-
+                    if (!$stateParams.uprn) {
+                        $http.get("/uprn/" + uprn).success(function(res) {
+                            var path = "/home/neighbourhood-found/" + res;
+                            $location.path(path);
+                        });
+                    } else {
                     apiSearch.searchNeighbourhood(uprn)
                         .success(function(data) {
 
@@ -334,6 +335,7 @@ function getObject (array, selected) {
                             $scope.updateError("Sorry, it looks like something went wrong");
                             return $location.path("/home/neighbourhood");
                         });
+                    }
                 } else {
                     //TODO: need a error phrase for when a non-typeahead search is done on `about your neighbourhood`
                     return $scope.updateError("Sorry, something went wrong");
