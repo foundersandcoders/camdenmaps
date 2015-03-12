@@ -63,7 +63,7 @@
                             <p>{{ result.PostCode }}</p>
                         </div>
                     </a>
-                    
+
                     <div class="col-md-12 display-result">
 
                         <div class="single-view-info">
@@ -72,7 +72,7 @@
                             <p ng-show="result.display.Location"> Location of streetworks {{ result.display.Location }} </p>
 
                             <p ng-show="result.display.Description"> <b> Description: </b> <br> {{ result.display.Description }} </p>
-                            
+
                             <br>
 
                             <a ng-show="result.display.Telephone" ng-href= "tel: {{ result.display.Telephone }}" id="tel">
@@ -83,12 +83,12 @@
                                 <p>{{ result.display.URL }}</p>
                             </a>
 
-                            <p ng-show="result.display.Organisation"> <b> Responsible company: </b> {{ result.display.Organisation }} </p>  
-                            <p ng-show="result.externalref"> <b> External reference: </b> {{ result.externalref }} </p>  
+                            <p ng-show="result.display.Organisation"> <b> Responsible company: </b> {{ result.display.Organisation }} </p>
+                            <p ng-show="result.externalref"> <b> External reference: </b> {{ result.externalref }} </p>
                             <h5 ng-show="result.display.OpeningHours">Opening Hours</h5>
                             <p>{{ result.display.OpeningHours }}</p>
 
-                        </div> 
+                        </div>
                      </div>
                 </div>
 
