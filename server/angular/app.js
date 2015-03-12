@@ -8,7 +8,6 @@
 ;(function () {
     "use strict";
     
-    //var angular = require("angularjs-ie8-build");
     require("angular-touch");
     require("angular-bootstrap");
     require("angular-local-storage");
