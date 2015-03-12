@@ -28,9 +28,11 @@
 
                 $scope.update("error", "");
 
-                path = "/home/" + item.title + "/search";
+                if (item.title) {
+                    path = "/home/" + item.title + "/search";
 
-                $location.path(path);
+                    $location.path(path);
+                }
             };
 
             $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services");

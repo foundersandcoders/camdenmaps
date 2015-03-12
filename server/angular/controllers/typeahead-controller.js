@@ -3,8 +3,6 @@
 *
 *****************************/
 
-//TODO: autofocus on huge typeahead lists
-
 var resetActiveMarker = require('../lib/reset-active-marker.js');
 
 function getObject (array, selected) {
@@ -32,9 +30,8 @@ function getObject (array, selected) {
         "validate",
         "menuFind",
         "localStorageService",
-        "$timeout",
         "httpq",
-        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService, $timeout, httpq) {
+        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService, httpq) {
 
             var uprnArray,
                 centreLocation,
@@ -130,7 +127,10 @@ function getObject (array, selected) {
                 } else {
                     return $scope.updateError("Sorry, that is not a valid camden service. Please search again.");
                 }
-                $location.path(destination);
+
+                if (destination) {
+                    $location.path(destination);
+                }
             };
 
             function servicesHandler (serv) {
@@ -279,18 +279,23 @@ function getObject (array, selected) {
                                     //redirects to new path and runs location controller
                                 }
 
-                                $location.path(path);
+                                if ($stateParams.service) {
+                                    $location.path(path);
+                                }
                             })
                             .error(function (data) {
                                 return $scope.updateError("Sorry, that does not appear to be a valid camden address.");
                             })
 
-                            .finally(function () {
+                            ["finally"](function () {
+
                                 $scope.update('centre', {
                                     lat: Number(centreLocation.Latitude),
                                     lng: Number(centreLocation.Longitude),
                                     zoom: markers.zoomCheck($scope)()
                                 })
+
+                                $scope.markers.m0.message = $scope.address;
                             });
                     }
 
