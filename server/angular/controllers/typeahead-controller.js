@@ -127,7 +127,10 @@ function getObject (array, selected) {
                 } else {
                     return $scope.updateError("Sorry, that is not a valid camden service. Please search again.");
                 }
-                $location.path(destination);
+
+                if (destination) {
+                    $location.path(destination);
+                }
             };
 
             function servicesHandler (serv) {
@@ -276,13 +279,15 @@ function getObject (array, selected) {
                                     //redirects to new path and runs location controller
                                 }
 
-                                $location.path(path);
+                                if ($stateParams.service) {
+                                    $location.path(path);
+                                }
                             })
                             .error(function (data) {
                                 return $scope.updateError("Sorry, that does not appear to be a valid camden address.");
                             })
 
-                            .finally(function () {
+                            ["finally"](function () {
 
                                 $scope.update('centre', {
                                     lat: Number(centreLocation.Latitude),

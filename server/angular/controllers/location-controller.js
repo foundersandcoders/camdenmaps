@@ -27,7 +27,6 @@ var resetActiveMarker = require('../lib/reset-active-marker.js');
                 round = require("../lib/round.js"),
                 addressUsedinAPIcall = require("../lib/address-used-in-api-call.js");
 
-
             // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
     
