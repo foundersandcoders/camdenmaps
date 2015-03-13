@@ -1,8 +1,6 @@
 ;(function(){
     "use strict";
 
-
-    //import modules
     var gulp = require("gulp"),
         eslint = require("gulp-eslint"),
         lab = require("gulp-lab"),
@@ -17,45 +15,57 @@
         nodemon = require("gulp-nodemon"),
         htmlmin = require('gulp-htmlmin'),
         browserify = require("browserify"),
+        creds = require("./test/frontend/config/sauce.conf.json"),
         sauceConnectLauncher = require('sauce-connect-launcher');
 
-    //file arrays
     var serverFiles = ["./server/*.js", "./server/**/*.js"],
         angularFiles = ["./server/public/angular/*.js", "./server/public/angular/**/*.js"],
         serverTestFiles = ["./test/api/*.js"],
-        htmlFiles = ["./server/public/partials/*.html", "./server/public/*.html"],
+        htmlFiles = ["./server/angular/partials/*.html"],
         protractorTestFiles = [
                         // Desktop Tests below
                             './test/frontend/acceptance/desktop/landing.e2e.js',
-                            // './test/frontend/acceptance/desktop/services/categories.e2e.js',
-                            // './test/frontend/acceptance/desktop/services/services.e2e.js',
-                            // './test/frontend/acceptance/desktop/streetworks/streetworks.e2e.js',
-                            // './test/frontend/acceptance/desktop/neighbourhood/neighbourhood.e2e.js',
+                            './test/frontend/acceptance/desktop/services/categories.e2e.js',
+                            './test/frontend/acceptance/desktop/services/services.e2e.js',
+                            './test/frontend/acceptance/desktop/streetworks/streetworks.e2e.js',
+                            './test/frontend/acceptance/desktop/neighbourhood/neighbourhood.e2e.js',
 
                         // Mobile Tests below
-                            //  './test/frontend/acceptance/mobile/landing.e2e.js',
-                            //  './test/frontend/acceptance/mobile/services/categories.e2e.js',
-                            //  './test/frontend/acceptance/mobile/services/services.e2e.js',
-                            //  './test/frontend/acceptance/mobile/streetworks/streetworks.e2e.js',
-                            // './test/frontend/acceptance/mobile/neighbourhood/neighbourhood.e2e.js'
+                             './test/frontend/acceptance/mobile/landing.e2e.js',
+                             './test/frontend/acceptance/mobile/services/categories.e2e.js',
+                             './test/frontend/acceptance/mobile/services/services.e2e.js',
+                             './test/frontend/acceptance/mobile/streetworks/streetworks.e2e.js',
+                            './test/frontend/acceptance/mobile/neighbourhood/neighbourhood.e2e.js'
         ],
         sassFiles = ["./server/public/css/*.scss", "./server/public/css/*/*.scss"],
-        allFiles = serverFiles.concat(angularFiles);
+        allFiles = serverFiles.concat(angularFiles, htmlFiles, sassFiles);
 
-    //Useful for js compression. Used for task browserify
+    //Used for task browserify
     var getBundleName = function () {
         var version = require('./package.json').version;
         var name = require('./package.json').name;
         return version + '.' + name + '.' + 'min';
     };
 
+    //task for linting
+    gulp.task("lint", function () {
+        return gulp.src(allFiles)
+             .pipe(eslint())
+             .pipe(eslint.format())
+             .pipe(eslint.failOnError());
+    });
+
+/*******************************
+*       TEST TASKS
+********************************/
+
     gulp.task('webdriver_update', webdriver_update);
 
-    //task for angular acceptance test
-    gulp.task("acceptance-test", ["webdriver_update"],function () {
+    //Runs on SauceLabs
+    gulp.task("e2e-local", ["webdriver_update"],function () {
         return gulp.src(protractorTestFiles)
             .pipe(protractor({
-                configFile: "./test/frontend/config/protractor.conf.js"
+                configFile: "./test/frontend/config/local.conf.js"
             }))
             .on("error", function (err) {
                 throw err;
@@ -78,120 +88,15 @@
         "lab test/api/test.js -c"
     ]));
 
-    //task for linting
-    gulp.task("lint", function () {
-        return gulp.src(allFiles)
-             .pipe(eslint())
-             .pipe(eslint.format())
-             .pipe(eslint.failOnError());
-    });
-
-    //task for sassing development
-    gulp.task("sass-dev", function () {
-        return gulp.src("./server/public/css/main.scss")
-            .pipe(sass())
-            .pipe(gulp.dest("./server/public/css/"));
-    });
-
-    //task for sassing production
-    gulp.task("sass-production", function () {
-        return gulp.src("./server/public/css/main.scss")
-            .pipe(sass({
-                outputStyle: "compressed"
-            }))
-            .pipe(gulp.dest("./server/public/css/"));
-    });
-
-    gulp.task("sass-watch", function () {
-        gulp.watch(sassFiles, ["sass-dev"]);
-    });
-
-    //task for travis
-    gulp.task("travis", ["sass-production", "browserify"], function () {
-        nodemon({ script: 'server/server.js'})
-        .on('start', function () {
-            return gulp.src(protractorTestFiles)
-                .pipe(protractor({
-                    configFile: "./test/frontend/config/protractor.conf.js"
-                }))
-                .on("error", function (err) {
-                    throw err;
-                })
-                .on('end', function () {
-                    process.exit();
-                });
-        });
-        
-    });
-
-    //task for converting yaml files to json
-    gulp.task("convertyaml", shell.task([
-        "node server/lib/yml2swagger.js server/lib/yaml server/public/output"
-    ]));
-
-    gulp.task("browserify", function () {
-
-        var bundle = function() {
-            return browserify({ entries: ["./server/angular/app.js"], debug: true })
-                .bundle()
-                .pipe(source(getBundleName() + '.js'))
-                .pipe(buffer())
-                .pipe(sourcemaps.init({loadMaps: true}))
-                .pipe(uglify())
-                .pipe(sourcemaps.write('./'))
-                .pipe(gulp.dest('./server/public/js/'));
-        };
-        return bundle();
-    });
-
-    gulp.task("watchify", shell.task([
-        "watchify ./server/angular/app.js -o ./server/public/js/1.0.0.camdenmaps.min.js -v"
-    ]));
-
-    gulp.task('html', function() {
-      return gulp.src(htmlFiles)
-        .pipe(htmlmin({collapseWhitespace: true}))
-        .pipe(gulp.dest('./server/public/templates'));
-    });
-
-    gulp.task("dependencies", function() {
-        return shell.task([
-            "npm install"            
-        ]);
-    });
-
-    gulp.task("build", ["dependencies", "sass-dev", "browserify"] , function() {
-        return console.log("done building"); 
-    });
-
-    gulp.task("default",["build"],  function() {
-        nodemon({
-            script: "server/server.js",
-            ext: "html js",
-            ignore: ["node_modules"]
-        })
-        .on("restart", function(){
-            console.log("restarted");
-        }); 
-    });
-
-    gulp.task("csvtojson", function() {
-        return shell.task([
-            "node ./server/lib/csvtojson.js"    
-        ]);
-    });
-
-    gulp.task("saucelabs", function() {
+    gulp.task("e2e", function() {
         sauceConnectLauncher({
-            username: 'FilWisher',
-            accessKey: '3c4c0766-2e9f-474d-bc21-f36b47bc7e48',
+            username: creds.uname,
+            accessKey: creds.aKey
         }, function (err, sauceConnectProcess) {
             if (err) {
               console.error(err.message);
               return;
             }
-            console.log("Sauce Connect ready");
-
             gulp.src(protractorTestFiles)
                 .pipe(protractor({
                     configFile: "./test/frontend/config/protractor.conf.js"
@@ -208,5 +113,95 @@
                 });
             });
         });
+    });
+
+    //TODO: add all other tests
+    gulp.task("test", ["e2e"], function() {
+        return console.log("done testing"); 
+    });
+
+/*******************************
+*       COMPILING TASKS
+********************************/
+
+    gulp.task('html', function() {
+      return gulp.src(htmlFiles)
+        .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(gulp.dest('./server/public/partials'));
+    });
+
+    gulp.task("sass-dev", function () {
+        return gulp.src("./server/public/css/main.scss")
+            .pipe(sass())
+            .pipe(gulp.dest("./server/public/css/"));
+    });
+
+    //task for minifying css. Travis uses this
+    gulp.task("sass-production", function () {
+        return gulp.src("./server/public/css/main.scss")
+            .pipe(sass({
+                outputStyle: "compressed"
+            }))
+            .pipe(gulp.dest("./server/public/css/"));
+    });
+
+    //Task for watching, and compiling sass for development
+    gulp.task("sass-watch", function () {
+        gulp.watch(sassFiles, ["sass-dev"]);
+    });
+
+    //Travis uses this command to minify angular before deploying
+    gulp.task("browserify", function () {
+
+        var bundle = function() {
+            return browserify({ entries: ["./server/angular/app.js"], debug: true })
+                .bundle()
+                .pipe(source(getBundleName() + '.js'))
+                .pipe(buffer())
+                .pipe(sourcemaps.init({loadMaps: true}))
+                .pipe(uglify())
+                .pipe(sourcemaps.write('./'))
+                .pipe(gulp.dest('./server/public/js/'));
+        };
+        return bundle();
+    });
+
+    // Watching angular files, and compiling on change for development
+    gulp.task("watchify", shell.task([
+        "watchify ./server/angular/app.js -o ./server/public/js/1.0.0.camdenmaps.min.js -v"
+    ]));
+
+
+/*******************************
+*       BUILD TASKS
+********************************/
+
+    gulp.task("dependencies", function() {
+        return shell.task([
+            "npm install"            
+        ]);
+    });
+
+    gulp.task("build", ["dependencies", "html", "sass-dev", "browserify"] , function() {
+        return console.log("done building"); 
+    });
+
+    //task for travis
+    gulp.task("travis", ["sass-production", "browserify", "html"], function () {
+        return gulp.src(allFiles)
+            .pipe(git.add())
+            .pipe(git.commit('commiting on travis'));
+    });
+
+    //Use this task but simply running `gulp` on your command line.
+    gulp.task("default",["build"],  function() {
+        nodemon({
+            script: "server/server.js",
+            ext: "html js",
+            ignore: ["node_modules"]
+        })
+        .on("restart", function(){
+            console.log("restarted");
+        }); 
     });
 }());
