@@ -66,7 +66,8 @@ function linkResultToMarker(scope, markerName) {
                          map.locate({setView: false, watch: false})
                             .on('locationfound', function (e){
 
-                                if (validate.isWithinCamden(e.latitude, e.longitude)) {
+                                // if (validate.isWithinCamden(e.latitude, e.longitude)) {
+                                    if(e.latitude < 90) {
                                     
                                     scope.markers.m0 = {
                                         lat: e.latitude,
@@ -82,11 +83,15 @@ function linkResultToMarker(scope, markerName) {
                                         geolocation: true
                                     };
 
-                                    var service = $stateParams.service || 'streetworks';
+                                    console.log(e.latitude, e.longitude);
 
-                                    var path = "/home/" + service + "/location/" + "your location";
+                                    // var service = $stateParams.service || 'streetworks';
 
-                                    $location.path(path);
+                                    // var path = "/home/" + service + "/location/" + "your location";
+
+                                    // $location.path(path);
+
+                                    return cb("your location", e.latitude, e.longitude);
 
                                 } else {
                                     scope.updateError("Your location is not working please use an address");

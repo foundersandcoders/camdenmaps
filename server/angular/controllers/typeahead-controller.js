@@ -32,7 +32,7 @@ function getObject (array, selected) {
         "localStorageService",
         "httpq",
         function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService, httpq) {
-
+console.log("typeahead");
             var uprnArray,
                 centreLocation,
                 round = require("../lib/round.js"),
@@ -75,11 +75,13 @@ function getObject (array, selected) {
             };
 
             $scope.geolocateUser = function() {
-                markers.geolocateUser($scope, url)();
+                markers.geolocateUser($scope, url, searchApi)();
                 resetActiveMarker($scope);
             };
 
             if (locationCheck.locationFound()) {
+                
+                console.log("hello");
                 var address = $stateParams.address || $stateParams.uprn;
                 searchApi(address);
             }
@@ -219,7 +221,9 @@ function getObject (array, selected) {
                 }
             }
 
-            function searchApi (address) {
+            function searchApi (address, gLat, gLng) {
+
+                console.log(address, "jolene");
 
                 var path,
                     service,
@@ -234,15 +238,16 @@ function getObject (array, selected) {
                 if (locationCheck.postcodeSearch()){
 
                     if(address) {
-                        
-                        lat = null;
-                        lng = null;
-                        
+                           
                         service = $stateParams.service || 'streetworks';
 
-                        if(address === "your location") {
-                            lat = mapMarkers.m0.lat;
-                            lng = mapMarkers.m0.lng;
+                        if(address === "your location" && mapMarkers.m0.geolocate) {
+                            lat = gLat;
+                            lng = gLng;
+                            console.log("want to be here");
+                        } else {
+                            lat = null;
+                            lng = null;
                         }
 
                         apiSearch.search(service, address, lat, lng)
@@ -255,6 +260,8 @@ function getObject (array, selected) {
                                 $scope.updateResults(data.properties);
                                 $scope.update("locationSelected", data.location);
                                 $scope.addMarkers();
+
+                                console.log(data);
 
                                 // this rounds results to one decimal place 
                                 $scope.results.forEach(function(entry) {
