@@ -57,7 +57,8 @@
         var json = {};
 
         parser.parseString(xml, function(err, result) {
-
+            console.log("RESULT", result);
+            console.log(err);
             json.location = {};
             if(typeof result !== "undefined" && result.hasOwnProperty("Locations") && result.Locations.hasOwnProperty("AddressSearchResults")) {
                 json.location.Area = result.Locations.AddressSearchResults[0].$.sPostcode;
@@ -134,7 +135,6 @@
     function parkingApiParser (xml) {
         var json = {};
         parser.parseString(xml, function(err, result) {
-
             json.location = {};
 
             if(typeof result !== undefined && result.hasOwnProperty("Locations") && result.Locations.hasOwnProperty("ParkingBay")) {

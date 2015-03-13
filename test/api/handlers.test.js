@@ -39,4 +39,58 @@ test("/ should return index.html", function(t) {
 
 });
 
-test("/logs should return error logs");
+test("/logs should return error logs", function(t) {
+
+    var req = createReq("GET", "/logs");
+    server.inject(req, function(res) {
+
+        t.equals(res.statusCode, 200, "200 code received");
+
+        t.end();
+
+    });
+
+
+});
+
+test("/auth_token should return auth_token in header", function(t) {
+
+    var req = createReq("GET", "/auth_token");
+
+    server.inject(req, function(res) {
+
+        t.equals(res.statusCode, 200, "200 code received");
+
+        t.ok(res.headers.hasOwnProperty("x-access-token"), "res has x-access-token header");
+
+        t.end();
+
+    });
+
+});
+
+test("/uprn/{searchterm} should return uprn", function(t) {
+
+    var req = createReq("GET", "/uprn/cam");
+    server.inject(req, function(res){
+        t.equals(res.statusCode, 200, "200 code received");
+
+        t.ok(/\d{0,8}/.test(res.payload), "uprn returned");
+
+        t.end();
+    });
+
+});
+
+test("/uprn/{uprn} should return 'Not found' if not found", function(t) {
+
+    var req = createReq("GET", "/uprn/YOUCANNOTFINDTHIS");
+    server.inject(req, function(res){
+        t.equals(res.statusCode, 200, "200 code received");
+
+        t.ok(/Not found/.test(res.payload), "Not found returned");
+
+        t.end();
+    });
+
+});
