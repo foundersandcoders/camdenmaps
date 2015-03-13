@@ -4,6 +4,7 @@
 *   Use: Imported by routes.js
 *
 ************************************************/
+
 ;(function () {
     "use strict";
 
@@ -13,22 +14,19 @@
     var cache = require("../lib/cacheprotocol.js");
     var mapUri = require("../lib/mapUri.js");
     var parsers = require("../lib/parsers.js");
-    var cap = require("../lib/capitalize.js");
 
     function cacheHandler (uriMapper, xmlParser, mapHandler, responseHandler) {
         return function (req, rep) {
 
             var key = req.raw.req.url;
-            
+
             cache.getCache(req, key, rep, uriMapper, xmlParser, {
                 mapUri: mapHandler,
-                onResponse: responseHandler 
+                onResponse: responseHandler
             });
+        };
+    };
 
-
-        }
-    }
-    
     module.exports = {
         cacheHandler: cacheHandler,
         staticFiles: {
@@ -55,18 +53,16 @@
         nearest: {
             services: {
                 handler: function (req, rep) {
-                    
-                    var converter, service;
-                    service = cap(req.params.service);
-                    var key = req.raw.req.url;
-           
+
+                    var converter, key;
+                    key = req.raw.req.url;
+
                     converter = parsers.whichParser(req.params.service); 
-                    
+
                     cache.getCache(req, key, rep, mapUri.mapUri, converter, {
                         mapUri: MapConfig.nearestMapper,
                         onResponse: ConvertXml.convertToJson
                     });
-
                 }
             },
         },
@@ -89,5 +85,3 @@
         }
     };
 }());
-
-

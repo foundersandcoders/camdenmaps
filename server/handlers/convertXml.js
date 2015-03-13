@@ -45,7 +45,7 @@
                 key = req.raw.req.url;
                 return cacheInj.setCache(key, response, rep);
             });
-        }
+        };
     }
 
 

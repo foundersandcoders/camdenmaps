@@ -8,7 +8,7 @@
         } else {
             return word;
         }
-    }
+    };
 
 }());
 

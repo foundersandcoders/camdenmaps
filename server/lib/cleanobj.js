@@ -9,8 +9,7 @@
         return ''.indexOf.call(this, str, startIndex) !== -1;
       };
     }
-    
-    
+
     module.exports = function (obj) {
         var prop;
         for(prop in obj) {
@@ -24,6 +23,6 @@
             }
         }
         return obj;
-    }
+    };
 
 }());

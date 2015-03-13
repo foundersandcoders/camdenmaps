@@ -19,8 +19,8 @@
         creds = require("./test/frontend/config/sauce.conf.json"),
         sauceConnectLauncher = require('sauce-connect-launcher');
 
-    var serverFiles = ["./server/*.js", "./server/**/*.js"],
-        angularFiles = ["./server/public/angular/*.js", "./server/public/angular/**/*.js"],
+    var serverFiles = ["./server/server.js", "./server/handlers/*.js", "./server/lib/*.js", "./server/config/*.js"],
+        angularFiles = ["./server/angular/*.js", "./server/angular/**/*.js"],
         serverTestFiles = ["./test/api/*.js"],
         htmlFiles = ["./server/angular/partials/*.html"],
         protractorTestFiles = [
@@ -47,14 +47,6 @@
         var name = require('./package.json').name;
         return version + '.' + name + '.' + 'min';
     };
-
-    //task for linting
-    gulp.task("lint", function () {
-        return gulp.src(allFiles)
-             .pipe(eslint())
-             .pipe(eslint.format())
-             .pipe(eslint.failOnError());
-    });
 
 /*******************************
 *       TEST TASKS
