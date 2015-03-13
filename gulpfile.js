@@ -64,7 +64,7 @@
 
     //task for angular unit test
     gulp.task("unit-test", shell.task([
-        "./node_modules/tape/bin/tape ./test/frontend/unit/*.js | ./node_modules/.bin/tap-spec"            
+        "./node_modules/tape/bin/tape ./test/frontend/unit/*.js | ./node_modules/.bin/tap-spec"
     ]));
 
     //task for lab test
@@ -121,7 +121,7 @@
                     process.exit();
                 });
         });
-        
+
     });
 
     //task for converting yaml files to json
@@ -156,12 +156,12 @@
 
     gulp.task("dependencies", function() {
         return shell.task([
-            "npm install"            
+            "npm install"
         ]);
     });
 
     gulp.task("build", ["dependencies", "sass-dev", "browserify"] , function() {
-        return console.log("done building"); 
+        return console.log("done building");
     });
 
     gulp.task("default",["build"],  function() {
@@ -172,14 +172,18 @@
         })
         .on("restart", function(){
             console.log("restarted");
-        }); 
+        });
     });
 
     gulp.task("csvtojson", function() {
         return shell.task([
-            "node ./server/lib/csvtojson.js"    
+            "node ./server/lib/csvtojson.js"
         ]);
     });
+
+    gulp.task("load-test", shell.task([
+        "nab http://camdenmaps.herokuapp.com"
+    ]));
 
     gulp.task("saucelabs", function() {
         sauceConnectLauncher({
