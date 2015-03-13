@@ -59,17 +59,11 @@
                     //ensuring that the uri is encoded correctly
                     $stateParams.service = decodeURI($stateParams.service);
                     var service = encodeURIComponent($stateParams.service);
-
-                    // Args will contain the marker name and other relevant information      
-                    if (args.markerName === "m0") {
-                        path = "/home/" + $stateParams.service + "/location/" + scope.address;
-                        $location.path(path);
-                    } else {
-                        //resets any existing highlighted marker 
-                        resetActiveMarker(scope);                  
-                        
-                        activateListItem(args, scope, scope.markers[args.markerName].name)    
-                    };
+                    
+                    //resets any existing highlighted marker 
+                    resetActiveMarker(scope);                  
+                    
+                    activateListItem(args, scope, scope.markers[args.markerName].name)    
                 };
             };
 
