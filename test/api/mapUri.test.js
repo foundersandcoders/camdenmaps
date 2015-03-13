@@ -43,7 +43,7 @@ test("mapQuery should return argument if not passed an object", function(t) {
 
     req = true;
     t.equals(mapUri.mapQuery(req), true, "doesn't accept a boolean");
-    
+
     t.equals(typeof mapUri.mapQuery(), "undefined", "doesn't accept undefined");
     t.end();
 });
@@ -59,7 +59,7 @@ test("mapQuery with /services/{service}/locations/lat/{latitude/lng/{longitude}"
     }
 
     t.equals(typeof mapUri.mapQuery(req), "string", "mapQuery returns a string");
-    t.equals(mapUri.mapQuery(req), "?find=Library&lat=10&lng=20", "mapQuery returns ?find=service&lat=number&lng=number"); 
+    t.equals(mapUri.mapQuery(req), "?find=Library&lat=10&lng=20", "mapQuery returns ?find=service&lat=number&lng=number");
     t.end();
 
 });
@@ -74,7 +74,7 @@ test("mapQuery with /services/{service}", function(t) {
     }
 
     t.equals(typeof mapUri.mapQuery(req), "string", "mapQuery returns a string");
-    t.equals(mapUri.mapQuery(req), "?find=Library&area=N1C 4AG", "mapQuery returns ?find=service&area=defaultpostcode"); 
+    t.equals(mapUri.mapQuery(req), "?find=Library&area=N1C 4AG", "mapQuery returns ?find=service&area=defaultpostcode");
     t.end();
 
 });
@@ -167,11 +167,11 @@ test("mapUri with /service/{service} with parking service", function(t) {
     req = {
         params: {
             service: "car park"
-        } 
+        }
     };
 
     t.equals(typeof mapUri.mapUri(req), "string", "mapUri returns a string");
-    t.equals(mapUri.mapUri(req), baseUrl + parkingApi + "?find=Car park&area=N1C 4AG", "mapUri returns " + baseUrl + parkingApi + "?find=car park&area=N1C 4AG");
+    t.equals(mapUri.mapUri(req), baseUrl + parkingApi + "?type=Car park&area=N1C 4AG", "mapUri returns " + baseUrl + parkingApi + "?find=car park&area=N1C 4AG");
     t.end();
 
 });
@@ -183,11 +183,11 @@ test("mapUri with /service/{service}/location/{postcode} with parking service", 
         params: {
             service: "car park",
             postcode: "NW1 0NE"
-        } 
+        }
     };
 
     t.equals(typeof mapUri.mapUri(req), "string", "mapUri returns a string");
-    t.equals(mapUri.mapUri(req), baseUrl + parkingApi + "?area=NW1 0NE&find=Car park", "mapUri returns " + baseUrl + parkingApi + "?area=NW1 0NE&find=Car park");
+    t.equals(mapUri.mapUri(req), baseUrl + parkingApi + "?area=NW1 0NE&type=Car park", "mapUri returns " + baseUrl + parkingApi + "?area=NW1 0NE&find=Car park");
     t.end();
 
 });
@@ -198,7 +198,7 @@ test("mapUri with /service/{service} with recycling service", function(t) {
     req = {
         params: {
             service: "Wood"
-        } 
+        }
     };
 
     t.equals(typeof mapUri.mapUri(req), "string", "mapUri returns a string");
@@ -214,7 +214,7 @@ test("mapUri with /service/{service}/locations/{postcode} with recycling service
         params: {
             service: "Wood",
             postcode: "NW1 0NE"
-        } 
+        }
     };
 
     t.equals(typeof mapUri.mapUri(req), "string", "mapUri returns a string");
@@ -228,7 +228,7 @@ test("mapUri with /service/{service} with nearest service", function(t) {
     req = {
         params: {
             service: "Library"
-        } 
+        }
     };
 
     t.equals(typeof mapUri.mapUri(req), "string", "mapUri returns a string");
@@ -243,7 +243,7 @@ test("mapUri with /service/{service}/locations/{postcode} with nearest service",
         params: {
             service: "Library",
             postcode: "NW1 0NE"
-        } 
+        }
     };
 
     t.equals(typeof mapUri.mapUri(req), "string", "mapUri returns a string");
