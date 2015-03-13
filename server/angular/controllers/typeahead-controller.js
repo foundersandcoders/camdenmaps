@@ -170,7 +170,7 @@ function getObject (array, selected) {
 
                     $scope.typeaheadSearchList = function(value) {
 
-                        return $http.get('https://camdenmaps-addresslookup.herokuapp.com/search/' + value)
+                        return $http.get('http://camdenmaps-addresslookup.herokuapp.com/search/' + value)
                             .then(function(response){
 
                                 if(typeof response.data === 'string') {
