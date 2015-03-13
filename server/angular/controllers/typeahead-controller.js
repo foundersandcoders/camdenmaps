@@ -315,11 +315,11 @@ function getObject (array, selected) {
                             
                         });
                     } else {
-                    apiSearch.searchNeighbourhood(uprn)
+                    apiSearch.searchNeighbourhood(address)
                         .success(function(data) {
 
                             if (data.hasOwnProperty("error")) {
-                                $location.path("/home/neighbourhood");
+                                // $location.path("/home/neighbourhood");
                                 return $scope.updateError(data.message);
                             }
                             $scope.updateError("");
