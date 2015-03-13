@@ -11,5 +11,5 @@
     angular.module("maps")
         .directive("typeaheadsearch", require("./typeahead-directive.js"))
         .directive("errormessage", require("./error-messages-directive.js"))
-		.directive('collapseWidth', require("./collapse-width-directive.js"));
+		.directive("collapseWidth", require("./collapse-width-directive.js"));
 }());

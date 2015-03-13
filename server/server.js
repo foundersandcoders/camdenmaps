@@ -31,9 +31,9 @@ server.connection({
             additionalHeaders: ["X-Access-Token"],
             additionalExposedHeaders: ["X-Access-Token"]
         },
-    	files: {
-    		relativeTo: path.join(__dirname, 'server')
-    	},
+        files: {
+            relativeTo: path.join(__dirname, 'server')
+        },
         state: {
             failAction: "log"
         }

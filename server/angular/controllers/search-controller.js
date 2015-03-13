@@ -36,7 +36,7 @@
             $scope.category = menuFind.categoryByService($scope.service);
 
             //change baseurl depending on whether address-found or address-search 
-            $scope.baseUrl = $stateParams.address ?  "/#/home/" + $stateParams.service + 
+            $scope.baseUrl = $stateParams.address ? "/#/home/" + $stateParams.service + 
                 "/location/" + $stateParams.address + "/" : "/#/home/" + $stateParams.service + 
                 "/search/";
 
@@ -56,14 +56,14 @@
                 markers.geolocateUser($scope)();
                 resetActiveMarker($scope);
             };
-    
+
             //back button functionality
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home/services");
 
             $scope.toggle = buttonHandlers.toggle($scope);
-            
+
             $scope.returnToCategories = buttonHandlers.searchAgain($scope, "/home/services");
-            
+
             $scope.returnToServices = buttonHandlers.searchAgain($scope, "/home/" + $scope.category.title + "/service");
 
             $scope.activateListItem = markers.activateListItem($scope);

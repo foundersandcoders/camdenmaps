@@ -13,10 +13,6 @@
 
             $scope.isListShowing = true;
 
-            $scope.exit = function exit() {
-                $location.path("/home/neighbourhood");
-            };
-
             //model for page title
             $scope.title = "About your Neighbourhood";
 

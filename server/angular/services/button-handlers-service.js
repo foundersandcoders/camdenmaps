@@ -28,6 +28,26 @@
                 }
             }
 
+            function listResults (scope) {   
+                
+                scope.update("error", "");
+
+                //clears the active marker
+                resetActiveMarker(scope);
+
+                destination = ($stateParams.address) 
+                            ? "/home/" + scope.service + "/location/" + scope.address + "/list"
+                            :  "/home/" + scope.service + "/search/list";
+                $location.path(destination);
+            }
+
+            function exit () {   
+                //clears the active marker
+                current = $location.path();
+                destination = current.substring(0, current.indexOf("/list"));
+                $location.path(destination);
+            }
+
             this.searchAgain = function (functionScope, destination) { 
 
                 return function (scope) { 
@@ -85,28 +105,6 @@
                 };
 
             };
-            
-            function listResults (scope) {   
-                
-                scope.update("error", "");
-
-                //clears the active marker
-                resetActiveMarker(scope);
-
-                destination = ($stateParams.address) 
-                            ? "/home/" + scope.service + "/location/" + scope.address + "/list"
-                            :  "/home/" + scope.service + "/search/list";
-                $location.path(destination);
-            }
-
-            function exit () {   
-                //clears the active marker
-                current = $location.path();
-                destination = current.substring(0, current.indexOf("/list"));
-                $location.path(destination);
-            }
-
-
         }
     ];
 
