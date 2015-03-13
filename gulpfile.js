@@ -14,6 +14,7 @@
         shell = require ("gulp-shell"),
         nodemon = require("gulp-nodemon"),
         htmlmin = require('gulp-htmlmin'),
+        git = require("gulp-git"),
         browserify = require("browserify"),
         creds = require("./test/frontend/config/sauce.conf.json"),
         sauceConnectLauncher = require('sauce-connect-launcher');
@@ -82,10 +83,13 @@
     ]));
 
     //task for lab test
-    gulp.task("server-test", function () {
-       return gulp.src(serverTestFiles)
-            .pipe(lab());
-    });
+    gulp.task("server-integration", shell.task([
+        "./node_modules/tape/bin/tape ./test/api/integration/*.js | ./node_modules/.bin/tap-spec"
+    ]));
+
+    gulp.task("server-unit", shell.task([
+        "./node_modules/tape/bin/tape ./test/api/*.test.js | ./node_modules/.bin/tap-spec"
+    ]));
 
     gulp.task("e2e", function() {
         sauceConnectLauncher({
@@ -114,8 +118,8 @@
         });
     });
 
-    gulp.task("test", ["e2e", "load-test", "unit-test", "server-test"], function() {
-        return console.log("done testing"); 
+    gulp.task("test", ["e2e", "load-test", "unit-test", "server-integration", "server-unit"], function() {
+        return console.log("done testing");
     });
 
 /*******************************
@@ -181,7 +185,7 @@
     });
 
     gulp.task("build", ["dependencies", "html", "sass-dev", "browserify"] , function() {
-        return console.log("done building"); 
+        return console.log("done building");
     });
 
     //task for travis
