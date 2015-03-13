@@ -1,5 +1,5 @@
 var Config = require('../acceptance/config.js');
-
+var creds = require('./sauce.conf.json');
 
 exports.config = {
 
@@ -16,9 +16,9 @@ exports.config = {
         '../acceptance/mobile/services/services.e2e.js'
   ],
 
-  sauceUser: 'FilWisher',//process.env.SAUCE_USERNAME,
+  sauceUser: creds.uname,
 
-  sauceKey: '3c4c0766-2e9f-474d-bc21-f36b47bc7e48',//process.env.SAUCE_ACCESS_KEY, 
+  sauceKey: creds.aKey,
 
   multiCapabilities: [
     {
