@@ -16,8 +16,6 @@
         "menuFind",
         function ($scope, $stateParams, $location, markers, markerHandlers, buttonHandlers, menuFind) {
 
-            console.log("hello");
-
             var noResults,
                 resetActiveMarker;
 

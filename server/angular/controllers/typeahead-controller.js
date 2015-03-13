@@ -80,9 +80,7 @@ function getObject (array, selected) {
             };
 
             if (locationCheck.locationFound()) {
-                
-                console.log("locationcheck.locationfound, calls api");
-                
+                                
                 var address = $stateParams.address || $stateParams.uprn;
                 searchApi(address);
             }
@@ -224,8 +222,6 @@ function getObject (array, selected) {
 
             function searchApi (address, gLat, gLng) {
 
-                console.log(address, "inside search API, address used");
-
                 var path,
                     service,
                     lat,
@@ -236,7 +232,6 @@ function getObject (array, selected) {
                     resetActiveMarker = require("../lib/reset-active-marker");
                     mapMarkers = $scope.markers;
 
-                console.log('world');
                 
                 if (locationCheck.postcodeSearch()){
 
@@ -247,7 +242,6 @@ function getObject (array, selected) {
                         if(address === "your location" && mapMarkers.m0.geolocation) {
                             lat = gLat;
                             lng = gLng;
-                            console.log("want to be here");
                         } else {
                             lat = null;
                             lng = null;
@@ -263,8 +257,6 @@ function getObject (array, selected) {
                                 $scope.updateResults(data.properties);
                                 $scope.update("locationSelected", data.location);
                                 $scope.addMarkers();
-
-                                console.log(data);
 
                                 // this rounds results to one decimal place 
                                 $scope.results.forEach(function(entry) {
@@ -303,7 +295,7 @@ function getObject (array, selected) {
                                     lat: Number(centreLocation.Latitude),
                                     lng: Number(centreLocation.Longitude),
                                     zoom: markers.zoomCheck($scope)()
-                                })
+                                });
 
                                 $scope.markers.m0.message = $scope.address;
                             });
