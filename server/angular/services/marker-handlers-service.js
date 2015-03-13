@@ -68,8 +68,8 @@
                         //resets any existing highlighted marker 
                         resetActiveMarker(scope);                  
                         
-                        activateListItem(args, scope, scope.markers[args.markerName].name)    
-                    };
+                        activateListItem(args, scope, scope.markers[args.markerName].name);    
+                    }
                 };
             };
 

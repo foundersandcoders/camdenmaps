@@ -32,7 +32,7 @@ function getObject (array, selected) {
         "localStorageService",
         "httpq",
         function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService, httpq) {
-console.log("typeahead");
+
             var uprnArray,
                 centreLocation,
                 round = require("../lib/round.js"),
@@ -81,7 +81,8 @@ console.log("typeahead");
 
             if (locationCheck.locationFound()) {
                 
-                console.log("hello");
+                console.log("locationcheck.locationfound, calls api");
+                
                 var address = $stateParams.address || $stateParams.uprn;
                 searchApi(address);
             }
@@ -223,7 +224,7 @@ console.log("typeahead");
 
             function searchApi (address, gLat, gLng) {
 
-                console.log(address, "jolene");
+                console.log(address, "inside search API, address used");
 
                 var path,
                     service,
@@ -241,7 +242,7 @@ console.log("typeahead");
                            
                         service = $stateParams.service || 'streetworks';
 
-                        if(address === "your location" && mapMarkers.m0.geolocate) {
+                        if(address === "your location" && mapMarkers.m0.geolocation) {
                             lat = gLat;
                             lng = gLng;
                             console.log("want to be here");
