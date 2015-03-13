@@ -58,14 +58,12 @@ function mapUri (req) {
                 : (serviceArray.recycling.indexOf(service) !== -1)  ? url.recyclingApi
                 : url.nearestApi;
 
-        console.log(service);
         services    = (serviceArray.recycling.indexOf(service) !== -1) ? "recycle="
                     : (serviceArray.parking.indexOf(service) !== -1) ? "type="
                     : "find=";
 
         //query constructed based on combination of services and/or address
         query = mapQuery(req);
-        console.log(apiUrl + query);
         return apiUrl + query;
 
 }
