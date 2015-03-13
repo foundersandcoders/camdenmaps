@@ -72,9 +72,13 @@
             });
     });
 
+    gulp.task("load-test", shell.task([
+        "nab http://camdenmaps.herokuapp.com"
+    ]));
+
     //task for angular unit test
     gulp.task("unit-test", shell.task([
-        "./node_modules/tape/bin/tape ./test/frontend/unit/*.js | ./node_modules/.bin/tap-spec"            
+        "./node_modules/tape/bin/tape ./test/frontend/unit/*.js | ./node_modules/.bin/tap-spec"
     ]));
 
     //task for lab test
@@ -82,11 +86,6 @@
        return gulp.src(serverTestFiles)
             .pipe(lab());
     });
-
-    //task for coverage lab test
-    gulp.task("server-test-coverage", shell.task([
-        "lab test/api/test.js -c"
-    ]));
 
     gulp.task("e2e", function() {
         sauceConnectLauncher({
@@ -115,8 +114,7 @@
         });
     });
 
-    //TODO: add all other tests
-    gulp.task("test", ["e2e"], function() {
+    gulp.task("test", ["e2e", "load-test", "unit-test", "server-test"], function() {
         return console.log("done testing"); 
     });
 
@@ -178,7 +176,7 @@
 
     gulp.task("dependencies", function() {
         return shell.task([
-            "npm install"            
+            "npm install"
         ]);
     });
 
@@ -202,6 +200,6 @@
         })
         .on("restart", function(){
             console.log("restarted");
-        }); 
+        });
     });
 }());
