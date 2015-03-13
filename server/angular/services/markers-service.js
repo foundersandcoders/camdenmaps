@@ -50,7 +50,7 @@ function linkResultToMarker(scope, markerName) {
                 return size;
             };  
 
-            this.geolocateUser = function (functionScope, location, cb) {     
+            this.geolocateUser = function (functionScope, location, cb) {  
                 
                 var remainOnPage = function() {
                     var path = location;
@@ -66,7 +66,7 @@ function linkResultToMarker(scope, markerName) {
                          map.locate({setView: false, watch: false})
                             .on('locationfound', function (e){
 
-                                if (validate.isWithinCamden(e.latitude, e.longitude)) {
+                                if (true) {
                                     
                                     scope.markers.m0 = {
                                         lat: e.latitude,
@@ -84,9 +84,15 @@ function linkResultToMarker(scope, markerName) {
 
                                     var service = $stateParams.service || 'streetworks';
 
-                                    var path = "/home/" + service + "/location/" + "your location";
+                                    // var path = "/home/" + service + "/location/" + "your location";
 
-                                    $location.path(path);
+                                    // if (path) {
+
+                                        // $location.path(path);
+                                        console.log('hello');   
+                                        cb("your location");
+
+                                    // }
 
                                 } else {
                                     scope.updateError("Your location is not working please use an address");

@@ -75,7 +75,7 @@ function getObject (array, selected) {
             };
 
             $scope.geolocateUser = function() {
-                markers.geolocateUser($scope, url)();
+                markers.geolocateUser($scope, url, searchApi);
                 resetActiveMarker($scope);
             };
 
@@ -170,7 +170,7 @@ function getObject (array, selected) {
 
                     $scope.typeaheadSearchList = function(value) {
 
-                        return $http.get('https://camdenmaps-addresslookup.herokuapp.com/search/' + value)
+                        return $http.get('http://camdenmaps-addresslookup.herokuapp.com/search/' + value)
                             .then(function(response){
 
                                 if(typeof response.data === 'string') {
@@ -231,6 +231,8 @@ function getObject (array, selected) {
                     resetActiveMarker = require("../lib/reset-active-marker");
                     mapMarkers = $scope.markers;
 
+                console.log('world');
+                
                 if (locationCheck.postcodeSearch()){
 
                     if(address) {
