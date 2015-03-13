@@ -42,7 +42,7 @@
         };
     }])
 
-    .factory('httpq', ["$http", "$q",function($http, $q) {
+    .factory('httpq', ["$http", "$q", function($http, $q) {
         return {
             get: function() {
                 var deferred = $q.defer();

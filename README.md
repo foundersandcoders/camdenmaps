@@ -12,8 +12,10 @@ maps.camden.gov.uk site
 Once you have cloned with git, run:
 
 install:
+
 ```
 npm install gulp -g
+npm install
 ```
 
 and use command:
@@ -22,48 +24,52 @@ and use command:
 gulp 
 ```
 
-to install dependencies, run the sass compiler and browserify the app.
+This will minify the html, and compile the sass and js files (browserify).
+
+
 
 ### Tests
 
 To run acceptance tests, use command: 
+
 ```
-npm test
+gulp test
 ```
 
-To run server tests, use command: 
+If you prefer to run all the tests individually, please use these commands:
+
+To run server tests:
+
 ```
 gulp server-test
 ```
 
 To run unit tests, use command: 
+
 ```
 gulp unit-test
 ```
-### Yaml to JSON
 
-When altering the Swagger config yaml file, you can covert it to JSON using:
+E2E on saucelabs:
 
 ```
-gulp convertyaml
+gulp e2e
+````
+
+E2E locally (with chrome):
+
+```
+gulp e2e-local
 ```
 
-### Browserify
+### Building while developing
 
 Browserify must be run when altering the angular files. 
 
-To run browserify, use command: 
-
-```
-gulp browserify
-```
-
-or
 ```
 gulp watchify
 ```
 
-### Sass
 
 When altering and .scss files, you must compile it to css with:
 
@@ -71,14 +77,20 @@ When altering and .scss files, you must compile it to css with:
 gulp sass-dev
 ```
 
+<<<<<<< HEAD
 For more information on using gov.uk styles see documentation here: https://github.com/alphagov/govuk_frontend_toolkit
 
 ### CSV to JSON
+=======
+>>>>>>> dev
 
-When altering the CSV file for constructing the services menu, convert it to JSON with this command:
+### Travis
+
+Travis is set up so that it runs
+
 ```
-gulp csvtojson
+gulp travis
 ```
 >>>>>>> dev
 
-
+before deploying. This compiles the sass, html, and angular files and minifies them before deploying.

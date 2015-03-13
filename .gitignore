@@ -3,3 +3,4 @@ npm-debug.log
 .sass-cache/
 prep/
 coverage/
+sauce.conf.json

@@ -19,21 +19,21 @@
             function activateListItem (args, scope, resultId) {
 
                 var listItem = $('[id="' + resultId + '"]');
-                var allListItems = $('.list-item');
-                var displayResult = listItem.find('.display-result');
-                var allResults = $('.display-result');
+                var allListItems = $(".list-item");
+                var displayResult = listItem.find(".display-result");
+                var allResults = $(".display-result");
 
-                if (displayResult.hasClass('active')) {
-                    listItem.removeClass('display-active-result');
-                    allResults.removeClass('active');
+                if (displayResult.hasClass("active")) {
+                    listItem.removeClass("display-active-result");
+                    allResults.removeClass("active");
 
                     resetActiveMarker(scope);
                 } else {
-                    allListItems.removeClass('display-active-result');
-                    allResults.removeClass('active');
+                    allListItems.removeClass("display-active-result");
+                    allResults.removeClass("active");
 
-                    listItem.toggleClass('display-active-result');
-                    displayResult.toggleClass('active');
+                    listItem.toggleClass("display-active-result");
+                    displayResult.toggleClass("active");
 
                     //sets active marker so it can be reset when user clicks elsewhere
                     scope.update("activeMarker", scope.markers[args.markerName]);
@@ -59,17 +59,11 @@
                     //ensuring that the uri is encoded correctly
                     $stateParams.service = decodeURI($stateParams.service);
                     var service = encodeURIComponent($stateParams.service);
+                    
+                    //resets any existing highlighted marker 
+                    resetActiveMarker(scope);                  
 
-                    // Args will contain the marker name and other relevant information      
-                    if (args.markerName === "m0") {
-                        path = "/home/" + $stateParams.service + "/location/" + scope.address;
-                        $location.path(path);
-                    } else {
-                        //resets any existing highlighted marker 
-                        resetActiveMarker(scope);                  
-                        
-                        activateListItem(args, scope, scope.markers[args.markerName].name)    
-                    };
+                    activateListItem(args, scope, scope.markers[args.markerName].name);
                 };
             };
 

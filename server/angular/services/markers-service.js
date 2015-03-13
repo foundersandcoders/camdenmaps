@@ -50,7 +50,7 @@ function linkResultToMarker(scope, markerName) {
                 return size;
             };  
 
-            this.geolocateUser = function (functionScope, location, cb) {     
+            this.geolocateUser = function (functionScope, location, cb) {  
                 
                 var remainOnPage = function() {
                     var path = location;
@@ -64,9 +64,9 @@ function linkResultToMarker(scope, markerName) {
                     leafletData.getMap().then(function(map) {
                          //this will return the location but not auto-centre on it or continuously watch
                          map.locate({setView: false, watch: false})
-                            .on('locationfound', function (e){
+                            .on("locationfound", function (e){
 
-                                if (validate.isWithinCamden(e.latitude, e.longitude)) {
+                                if (true) {
                                     
                                     scope.markers.m0 = {
                                         lat: e.latitude,
@@ -82,18 +82,14 @@ function linkResultToMarker(scope, markerName) {
                                         geolocation: true
                                     };
 
-                                    var service = $stateParams.service || 'streetworks';
-
-                                    var path = "/home/" + service + "/location/" + "your location";
-
-                                    $location.path(path);
+                                    cb("your location");
 
                                 } else {
                                     scope.updateError("Your location is not working please use an address");
                                     remainOnPage();
                                 }
                             })
-                            .on('locationerror', function(e){
+                            .on("locationerror", function(e){
                                 scope.updateError("Geolocation error. Please use an address");      
                                 remainOnPage();
                             });
@@ -204,21 +200,21 @@ function linkResultToMarker(scope, markerName) {
                     var scope = functionScope; 
 
                     var listItem = $('[id="' + resultId + '"]');
-                    var allListItems = $('.list-item');
-                    var displayResult = listItem.find('.display-result');
-                    var allResults = $('.display-result');
+                    var allListItems = $(".list-item");
+                    var displayResult = listItem.find(".display-result");
+                    var allResults = $(".display-result");
 
-                    if (displayResult.hasClass('active')) {
-                        listItem.removeClass('display-active-result');
-                        allResults.removeClass('active');
+                    if (displayResult.hasClass("active")) {
+                        listItem.removeClass("display-active-result");
+                        allResults.removeClass("active");
 
                         resetActiveMarker(scope); 
                     } else {
-                        allListItems.removeClass('display-active-result');
-                        allResults.removeClass('active');
+                        allListItems.removeClass("display-active-result");
+                        allResults.removeClass("active");
 
-                        listItem.toggleClass('display-active-result');
-                        displayResult.toggleClass('active');
+                        listItem.toggleClass("display-active-result");
+                        displayResult.toggleClass("active");
 
                         linkResultToMarker(scope, resultId);
                     }

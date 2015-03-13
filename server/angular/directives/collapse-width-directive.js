@@ -7,9 +7,9 @@
     "use strict";
 
     module.exports = [
-        '$transition', 
-        '$timeout', 
-        '$window',
+        "$transition", 
+        "$timeout", 
+        "$window",
         function ($transition, $timeout, $window) {
 
             return {
@@ -49,15 +49,15 @@
                             initialAnimSkip = false;
                             expandDone();
                         } else {
-                            element.removeClass('collapse').addClass('collapsing-width');
-                            doTransition({ width: fullWidth + 'px' }).then(expandDone);
+                            element.removeClass("collapse").addClass("collapsing-width");
+                            doTransition({ width: fullWidth + "px" }).then(expandDone);
                         }
                     }
 
                     function expandDone() {
-                        element.removeClass('collapsing-width');
-                        element.addClass('collapse in');
-                        element.css({width: 'auto'});
+                        element.removeClass("collapsing-width");
+                        element.addClass("collapse in");
+                        element.css({width: "auto"});
                     }
 
                     function collapse() {
@@ -66,16 +66,16 @@
                             collapseDone();
                             element.css({width: 0});
                         } else {
-                            element.css({ width: fullWidth + 'px' });
+                            element.css({ width: fullWidth + "px" });
                             var x = element[0].offsetHeight;
-                            element.removeClass('collapse in').addClass('collapsing-width');
+                            element.removeClass("collapse in").addClass("collapsing-width");
                             doTransition({ width: 0 }).then(collapseDone);
                         }
                     }
 
                     function collapseDone() {
-                        element.removeClass('collapsing-width');
-                        element.addClass('collapse');
+                        element.removeClass("collapsing-width");
+                        element.addClass("collapse");
                     }
 
                     scope.$watch(attrs.collapseWidth, function (shouldCollapse) {

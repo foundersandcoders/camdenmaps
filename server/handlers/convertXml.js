@@ -9,9 +9,10 @@
     //strips html from obj (depth of 1 only)
     var parsers = require("../lib/parsers.js");
 
-    function parserRouter (converter) {
-        return function convertLocalInformation (err, res, req, rep) {
+    function parserRouter (converter, cacheInj) {
+        return function convertXml (err, res, req, rep) {
 
+            cacheInj = cacheInj || cache;
             converter = converter || parsers.whichParser(req.params.service);
 
             var xml, response, key;
@@ -42,9 +43,9 @@
                 }
 
                 key = req.raw.req.url;
-                return cache.setCache(key, response, rep);
+                return cacheInj.setCache(key, response, rep);
             });
-        }
+        };
     }
 
     module.exports = {

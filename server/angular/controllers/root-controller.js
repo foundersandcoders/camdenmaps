@@ -48,7 +48,7 @@
             $scope.centre = {
                     lat: 51.541,
                     lng: -0.139991,
-                    zoom: 13,
+                    zoom: 13
                 };
             $scope.maxbounds = {
                 northEast: {
@@ -63,7 +63,7 @@
             $scope.defaults = {
                 scrollWheelZoom: true,
                 tileLayer: "http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png",
-                zoomControlPosition: "bottomright",
+                zoomControlPosition: "bottomright"
             };
             $scope.markers = {};
 
