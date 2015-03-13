@@ -339,6 +339,7 @@ function getObject (array, selected) {
                             return $scope.update("information", data.information);
                         })
                         .error(function(data) {
+                            console.log("error");
                             $scope.updateError("Sorry, it looks like something went wrong");
                             return $location.path("/home/neighbourhood");
                         });
