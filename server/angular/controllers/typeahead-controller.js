@@ -306,8 +306,13 @@ function getObject (array, selected) {
                     var uprn = $stateParams.uprn || address;
                     if (!$stateParams.uprn) {
                         $http.get("/uprn/" + uprn).success(function(res) {
-                            var path = "/home/neighbourhood-found/" + res;
-                            $location.path(path);
+                            if((/\d{7}$/).test(res)) {
+                                var path = "/home/neighbourhood-found/" + res;
+                                $location.path(path);
+                            } else {
+                                $scope.updateError("Sorry, " + uprn + " is not a valid Camden address");
+                            }
+                            
                         });
                     } else {
                     apiSearch.searchNeighbourhood(uprn)
@@ -339,7 +344,6 @@ function getObject (array, selected) {
                             return $scope.update("information", data.information);
                         })
                         .error(function(data) {
-                            console.log("error");
                             $scope.updateError("Sorry, it looks like something went wrong");
                             return $location.path("/home/neighbourhood");
                         });
