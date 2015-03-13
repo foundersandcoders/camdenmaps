@@ -8,3 +8,4 @@ node_modules/
 *.min.js
 *maps.min.js
 coverage/
+sauce.conf.json
