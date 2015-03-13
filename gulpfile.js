@@ -16,7 +16,8 @@
         shell = require ("gulp-shell"),
         nodemon = require("gulp-nodemon"),
         htmlmin = require('gulp-htmlmin'),
-        browserify = require("browserify");
+        browserify = require("browserify"),
+        sauceConnectLauncher = require('sauce-connect-launcher');
 
     //file arrays
     var serverFiles = ["./server/*.js", "./server/**/*.js"],
@@ -26,17 +27,17 @@
         protractorTestFiles = [
                         // Desktop Tests below
                             './test/frontend/acceptance/desktop/landing.e2e.js',
-                            './test/frontend/acceptance/desktop/services/categories.e2e.js',
-                            './test/frontend/acceptance/desktop/services/services.e2e.js',
-                            './test/frontend/acceptance/desktop/streetworks/streetworks.e2e.js',
-                            './test/frontend/acceptance/desktop/neighbourhood/neighbourhood.e2e.js',
+                            // './test/frontend/acceptance/desktop/services/categories.e2e.js',
+                            // './test/frontend/acceptance/desktop/services/services.e2e.js',
+                            // './test/frontend/acceptance/desktop/streetworks/streetworks.e2e.js',
+                            // './test/frontend/acceptance/desktop/neighbourhood/neighbourhood.e2e.js',
 
                         // Mobile Tests below
-                             './test/frontend/acceptance/mobile/landing.e2e.js',
-                             './test/frontend/acceptance/mobile/services/categories.e2e.js',
-                             './test/frontend/acceptance/mobile/services/services.e2e.js',
-                             './test/frontend/acceptance/mobile/streetworks/streetworks.e2e.js',
-                            './test/frontend/acceptance/mobile/neighbourhood/neighbourhood.e2e.js'
+                            //  './test/frontend/acceptance/mobile/landing.e2e.js',
+                            //  './test/frontend/acceptance/mobile/services/categories.e2e.js',
+                            //  './test/frontend/acceptance/mobile/services/services.e2e.js',
+                            //  './test/frontend/acceptance/mobile/streetworks/streetworks.e2e.js',
+                            // './test/frontend/acceptance/mobile/neighbourhood/neighbourhood.e2e.js'
         ],
         sassFiles = ["./server/public/css/*.scss", "./server/public/css/*/*.scss"],
         allFiles = serverFiles.concat(angularFiles);
@@ -156,7 +157,7 @@
     gulp.task("dependencies", function() {
         return shell.task([
             "npm install"            
-        ])
+        ]);
     });
 
     gulp.task("build", ["dependencies", "sass-dev", "browserify"] , function() {
@@ -180,4 +181,32 @@
         ]);
     });
 
+    gulp.task("saucelabs", function() {
+        sauceConnectLauncher({
+            username: 'FilWisher',
+            accessKey: '3c4c0766-2e9f-474d-bc21-f36b47bc7e48',
+        }, function (err, sauceConnectProcess) {
+            if (err) {
+              console.error(err.message);
+              return;
+            }
+            console.log("Sauce Connect ready");
+
+            gulp.src(protractorTestFiles)
+                .pipe(protractor({
+                    configFile: "./test/frontend/config/protractor.conf.js"
+                }))
+                .on('error', function(e) {
+                    sauceConnectProcess.close(function () {
+                    console.log("Closed Sauce Connect process");
+                });
+                throw e;
+            })
+            .on('end', function(e) {
+                sauceConnectProcess.close(function () {
+                    console.log("Closed Sauce Connect process");
+                });
+            });
+        });
+    });
 }());

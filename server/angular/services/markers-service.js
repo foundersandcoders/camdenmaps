@@ -50,7 +50,7 @@ function linkResultToMarker(scope, markerName) {
                 return size;
             };  
 
-            this.geolocateUser = function (functionScope, location, cb) {     
+            this.geolocateUser = function (functionScope, location, cb) {  
                 
                 var remainOnPage = function() {
                     var path = location;
@@ -66,8 +66,8 @@ function linkResultToMarker(scope, markerName) {
                          map.locate({setView: false, watch: false})
                             .on('locationfound', function (e){
 
-                                // if (validate.isWithinCamden(e.latitude, e.longitude)) {
-                                    if(e.latitude < 90) {
+                                if (validate.isWithinCamden(e.latitude, e.longitude)) {
+                     
                                     scope.markers.m0 = {
                                         lat: e.latitude,
                                         lng: e.longitude,
@@ -219,7 +219,7 @@ function linkResultToMarker(scope, markerName) {
 
                         linkResultToMarker(scope, resultId);
                     }
-                }
+                };
             };
 		}
 	];
