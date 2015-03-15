@@ -252,6 +252,7 @@ function getObject (array, selected) {
                                     return $scope.updateError(data.message);
                                 }
 
+                                $scope.updateError("")
                                 $scope.update("markers", {});
                                 $scope.updateResults(data.properties);
                                 $scope.update("locationSelected", data.location);
