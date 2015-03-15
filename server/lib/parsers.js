@@ -16,7 +16,6 @@
         var json = {};
 
         parser.parseString(xml, function(err, result) {
-
             if (result.hasOwnProperty("Locations") && typeof result !== "undefined" && result.hasOwnProperty("Locations") && result.Locations.hasOwnProperty("StreetWorks")) {
                 json.location = {};
                 json.location.Area = result.Locations.$.postcode;
@@ -94,7 +93,7 @@
         parser.parseString(xml, function(err, result) {
             json.location = {};
             json.location.Area = result.Locations.$.Area;
-            json.properties = [];
+            jsonrecyc.properties = [];
 
             if (result.hasOwnProperty("Locations") &&
                     (result.Locations.hasOwnProperty("RecycleCentre") ||
