@@ -2,7 +2,7 @@
     "use strict";
 
     // module for converting XML to JSON
-    var xml2js = require('xml2js');
+    var xml2js = require("xml2js");
     var parser = new xml2js.Parser();
     var cap = require("../lib/capitalize.js");
     var clean = require("../lib/cleanobj.js");
@@ -16,7 +16,6 @@
         var json = {};
 
         parser.parseString(xml, function(err, result) {
-
             if (result.hasOwnProperty("Locations") && typeof result !== "undefined" && result.hasOwnProperty("Locations") && result.Locations.hasOwnProperty("StreetWorks")) {
                 json.location = {};
                 json.location.Area = result.Locations.$.postcode;
@@ -38,7 +37,7 @@
                     formattedProperty.display.Telephone = p.$.Telephone;
                     formattedProperty.display.Street = p.$.Street;
                     formattedProperty.display.Description = p.$.Description;
-                    formattedProperty.display = clean(formattedProperty.display)
+                    formattedProperty.display = clean(formattedProperty.display);
                     formattedProperty = clean(formattedProperty);
                     json.properties.push(formattedProperty);
                 });
@@ -72,7 +71,7 @@
                 };
             }
             json.information = {};
-            if(result.Locations.hasOwnProperty("LocalInformation") &&  result.Locations.LocalInformation[0].hasOwnProperty("Table")) {
+            if(result.Locations.hasOwnProperty("LocalInformation") && result.Locations.LocalInformation[0].hasOwnProperty("Table")) {
                 result.Locations.LocalInformation[0].Table.map(function(p) {
                     json.information[p.$.TableDesc] = {};
                     json.information[p.$.TableDesc].Value = p.Object[0].$.ObjectDesc;
@@ -170,7 +169,7 @@
         parser.parseString(xml, function (err, result) {
             if(typeof result !== "undefined" && result.hasOwnProperty("Locations") && result.Locations.hasOwnProperty("Properties") && result.Locations.Properties[0].hasOwnProperty("Property")) {
                 if(result.Locations.hasOwnProperty("AddressSearchResults")) {
-                    json.location = result.Locations.AddressSearchResults[0]['$'];
+                    json.location = result.Locations.AddressSearchResults[0]["$"];
                 } else {
                     json.location = {};
                     json.location.Latitude = result.Locations.$.lat;
@@ -178,8 +177,8 @@
                 }
 
                 result.Locations.Properties[0].Property.map(function(p) {
-                    var formatProperty = clean(p['$']);
-                    formatProperty.display = clean(p.PoI[0]['$']);
+                    var formatProperty = clean(p["$"]);
+                    formatProperty.display = clean(p.PoI[0]["$"]);
                     json.properties.push(formatProperty);
                 });
             }
@@ -206,6 +205,6 @@
         localInformationApiParser: localInformationApiParser,
         streetworksApiParser: streetworksApiParser,
         whichParser: whichParser
-    }
+    };
 
 }());

@@ -3,7 +3,7 @@
 *
 *****************************/
 
-var resetActiveMarker = require('../lib/reset-active-marker.js');
+var resetActiveMarker = require("../lib/reset-active-marker.js");
 
 function getObject (array, selected) {
     return array.filter(function (item) {
@@ -29,21 +29,20 @@ function getObject (array, selected) {
         "locationCheck",
         "validate",
         "menuFind",
-        "localStorageService",
         "httpq",
-        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, localStorageService, httpq) {
+        function ($scope, $location, buttonHandlers, fetchToken, $http, $stateParams, apiSearch, markers, localstorage, locationCheck, validate, menuFind, httpq) {
 
             var uprnArray,
                 centreLocation,
                 round = require("../lib/round.js"),
                 url = $location.path();
 
-            $scope.selected = '';
+            $scope.selected = "";
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home");
-            $scope.geolocationToolTip = 'Click to use my current location';
+            $scope.geolocationToolTip = "Click to use my current location";
             $scope.geolocate = locationCheck.postcodeSearch();
             $scope.maplisttoggle = false;
-            $scope.mapOrList = 'Click or swipe left to see the map';
+            $scope.mapOrList = "Click or swipe left to see the map";
             uprnArray = [];
 
 
@@ -51,8 +50,8 @@ function getObject (array, selected) {
 
                 $scope.address = validate.cleanDisplayAddress($stateParams.address);
 
-                $scope.$on('$locationChangeSuccess', function(event) {
-                    var updatedAddress = $location.path().split('/').pop();
+                $scope.$on("$locationChangeSuccess", function() {
+                    var updatedAddress = $location.path().split("/").pop();
                     $scope.address = validate.cleanDisplayAddress(updatedAddress); 
                 });
             }
@@ -67,9 +66,9 @@ function getObject (array, selected) {
                 if(screen.width < 768) {
                     $scope.maplisttoggle = !$scope.maplisttoggle;
                     if ($scope.maplisttoggle) {
-                        $scope.mapOrList = 'Click to see the list';
+                        $scope.mapOrList = "Click to see the list";
                     } else {
-                        $scope.mapOrList = 'Click or swipe left to see the map';
+                        $scope.mapOrList = "Click or swipe left to see the map";
                     }
                 }
             };
@@ -90,23 +89,23 @@ function getObject (array, selected) {
             }
             if(locationCheck.addressSearch()) {
 
-                if ($location.path().indexOf('location') === -1) {
+                if ($location.path().indexOf("location") === -1) {
                     localstorage.get($scope)();
                 }
 
                 serviceApiSearch();
 
-                $scope.placeholder = 'Enter an address';
-                $scope.additions = '(($viewValue))';
-                $scope.minLength = '1';
+                $scope.placeholder = "Enter an address";
+                $scope.additions = "(($viewValue))";
+                $scope.minLength = "1";
 
                 getAddresses();
 
             } else {
 
-                $scope.placeholder = 'Enter a service to search';
-                $scope.additions = ' | filter:$viewValue | limitTo: 8';
-                $scope.minLength = '2';
+                $scope.placeholder = "Enter a service to search";
+                $scope.additions = " | filter:$viewValue | limitTo: 8";
+                $scope.minLength = "2";
 
                 $scope.typeaheadSearchList = menuFind.services();
             }
@@ -142,7 +141,7 @@ function getObject (array, selected) {
 
             function addressHandler (array, add) {
                 //clears input box between searches
-                $('input').val('');
+                $("input").val("");
                 //if address has been selected by typeahead, then will exist in saved array
                 var address = getObject(array, add);
 
@@ -171,10 +170,10 @@ function getObject (array, selected) {
 
                     $scope.typeaheadSearchList = function(value) {
 
-                        return $http.get('http://camdenmaps-addresslookup.herokuapp.com/search/' + value)
+                        return $http.get("http://camdenmaps-addresslookup.herokuapp.com/search/" + value)
                             .then(function(response){
 
-                                if(typeof response.data === 'string') {
+                                if(typeof response.data === "string") {
                                     return;
                                 } else {
 
@@ -285,13 +284,13 @@ function getObject (array, selected) {
                                     $location.path(path);
                                 }
                             })
-                            .error(function (data) {
+                            .error(function () {
                                 return $scope.updateError("Sorry, that does not appear to be a valid camden address.");
                             })
 
                             ["finally"](function () {
 
-                                $scope.update('centre', {
+                                $scope.update("centre", {
                                     lat: Number(centreLocation.Latitude),
                                     lng: Number(centreLocation.Longitude),
                                     zoom: markers.zoomCheck($scope)()
@@ -301,7 +300,7 @@ function getObject (array, selected) {
                             });
                     }
 
-                } else if ($location.path().indexOf('neighbourhood') > -1) {
+                } else if ($location.path().indexOf("neighbourhood") > -1) {
 
                     var uprn = $stateParams.uprn || address;
                     if (!$stateParams.uprn) {
@@ -343,13 +342,12 @@ function getObject (array, selected) {
                             }
                             return $scope.update("information", data.information);
                         })
-                        .error(function(data) {
+                        .error(function () {
                             $scope.updateError("Sorry, it looks like something went wrong");
                             return $location.path("/home/neighbourhood");
                         });
                     }
                 } else {
-                    //TODO: need a error phrase for when a non-typeahead search is done on `about your neighbourhood`
                     return $scope.updateError("Sorry, something went wrong");
                 }
             }

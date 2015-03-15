@@ -4,29 +4,16 @@
 *   Use: Imported by server.js
 *
 ************************************************/
-//
-//  TODOS:
-//  Search by streetname
-//
-//************************************************
+
 (function () {
     "use strict";
 
-    var mapConfig = require("../config/mapConfig.js");
-    var convertXml = require("../handlers/convertXml.js");
     var RoutesConfig = require("./routesConfig.js");
     var request = require("request");
 
     module.exports = function (server){
 
         server.route([
-        /* EXAMPLE ****************************************
-        *    { 
-        *        method:    ":METHOD STRING", 
-        *        path:      ":PATH STRING", 
-        *        config:    ":CONFIG OBJECT" 
-        *    }
-        */
             {
                 method: "GET",
                 path: "/{param*}",
@@ -58,12 +45,12 @@
             {
                 method: "GET",
                 path: "/services/{service}",
-                config: RoutesConfig.nearest.services 
+                config: RoutesConfig.nearest.services
             },
             {
                 method: "GET",
                 path: "/services/{service}/locations/{postcode}",
-                config: RoutesConfig.nearest.services 
+                config: RoutesConfig.nearest.services
             },
             {
                 method: "GET",
@@ -100,18 +87,18 @@
                 method: "GET",
                 path: "/uprn/{path}",
                 handler: function(req, res) {
-                    request("http://camdenmaps.herokuapp.com/auth_token", function(err, response, body) {
+                    request("http://camdenmaps.herokuapp.com/auth_token", function (err, response, body) {
                             var path = "http://camdenmaps-addresslookup.herokuapp.com/search/" + req.params.path;
                             var opts = {
                                 url: path,
                                 headers: {
                                     "X-Access-Token": response.headers["x-access-token"]
                                 }
-                            }
+                            };
                             request(opts , function(e, h, b) {
                                 var firstItem;
                                 try {
-                                    firstItem = JSON.parse(b)[0]
+                                    firstItem = JSON.parse(b)[0];
                                     return res(firstItem.UPRN);
                                 } catch (error) {
                                     return res("Not found");
@@ -121,5 +108,5 @@
                 }
             }
         ]);
-    }
+    };
 }());

@@ -14,6 +14,7 @@ install:
 
 ```
 npm install gulp -g
+npm install
 ```
 
 and use command:
@@ -22,7 +23,7 @@ and use command:
 gulp 
 ```
 
-This will install all dependencies, minify the html, and compile the sass and js files (browserify).
+This will minify the html, and compile the sass and js files (browserify).
 
 
 

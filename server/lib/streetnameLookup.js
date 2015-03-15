@@ -60,6 +60,6 @@
         fetchCoordinates: fetchCoordinates,
         validatePostcode: validatePostcode,
         registerPreHandler: registerPreHandler
-    }
+    };
 
 }());
