@@ -81,6 +81,10 @@
 
     gulp.task("server-unit", shell.task([
         "./node_modules/tape/bin/tape ./test/api/*.test.js | ./node_modules/.bin/tap-spec"
+    ]));    
+
+    gulp.task("performance", shell.task([
+        "node_modules/.bin/protractor ./test/frontend/config/performance.conf.js.tmp"
     ]));
 
     gulp.task("e2e", function() {

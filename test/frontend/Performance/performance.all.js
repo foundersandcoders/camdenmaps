@@ -1,7 +1,9 @@
 var PerfRunner,
 	Config,
 	homeUrl,
+	buttons,
 	camdenServices,
+	categoriesRepeater,
 	communityService,
 	lunchClub,
 	input,
@@ -12,9 +14,11 @@ var PerfRunner,
 
 
 PerfRunner = require("./index.js");
-Config = require('../config.js');
+Config = require('../acceptance/config.js');
 homeUrl = Config.path.home;
+button = element.all(by.repeater('button in buttons')).get(0);
 camdenServices = button.element(by.tagName('h4'));
+categoriesRepeater = element.all(by.repeater('category in serviceCategories'));
 communityService = categoriesRepeater.get(0);
 lunchClub = element.all(by.repeater('service in services')).get(0);
 input = element(by.tagName('input'));
