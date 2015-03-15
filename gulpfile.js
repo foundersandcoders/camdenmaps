@@ -14,8 +14,8 @@
         shell = require ("gulp-shell"),
         nodemon = require("gulp-nodemon"),
         htmlmin = require('gulp-htmlmin'),
-        git = require("gulp-git"),
         browserify = require("browserify"),
+        creds = require('./test/frontend/config/sauce.conf.json'),
         sauceConnectLauncher = require('sauce-connect-launcher');
 
     var serverFiles = ["./server/server.js", "./server/handlers/*.js", "./server/lib/*.js", "./server/config/*.js"],
@@ -181,9 +181,7 @@
 
     //task for travis
     gulp.task("travis", ["sass-production", "browserify", "html"], function () {
-        return gulp.src(allFiles)
-            .pipe(git.add())
-            .pipe(git.commit('commiting on travis'));
+        console.log("done building!");
     });
 
     //Use this task but simply running `gulp` on your command line.

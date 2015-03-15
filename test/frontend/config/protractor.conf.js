@@ -68,14 +68,14 @@ exports.config = {
       'build': process.env.TRAVIS_BUILD_NUMBER,
       'name': 'App Tests'
     },
-    {
-      'browserName': 'internet explorer',
-      'platform': 'Windows 7',
-      'version': '11.0',
-      'tunnel-identifier': (process.env.TRAVIS) ? process.env.TRAVIS_JOB_NUMBER : process.env.TUNNEL_ID,
-      'build': process.env.TRAVIS_BUILD_NUMBER,
-      'name': 'App Tests'
-    }
+    // {
+    //   'browserName': 'internet explorer',
+    //   'platform': 'Windows 7',
+    //   'version': '11.0',
+    //   'tunnel-identifier': (process.env.TRAVIS) ? process.env.TRAVIS_JOB_NUMBER : process.env.TUNNEL_ID,
+    //   'build': process.env.TRAVIS_BUILD_NUMBER,
+    //   'name': 'App Tests'
+    // }
   ],
 
   baseUrl: Config.path.main,
@@ -85,7 +85,7 @@ exports.config = {
   jasmineNodeOpts: {
     showColors: true,
     //Timeout 60min.
-    defaultTimeoutInterval: 60 *1000 * 30 *2,
+    defaultTimeoutInterval: 60 *1000 * 30 * 4,
     isVerbose: true
   },
 

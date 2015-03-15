@@ -77,20 +77,14 @@ When altering and .scss files, you must compile it to css with:
 gulp sass-dev
 ```
 
-<<<<<<< HEAD
-For more information on using gov.uk styles see documentation here: https://github.com/alphagov/govuk_frontend_toolkit
-
-### CSV to JSON
-=======
->>>>>>> dev
 
 ### Travis
 
-Travis is set up so that it runs
+Before deploying to Travis, make sure to run `gulp build`. Travis is set up so that it runs
 
 ```
 gulp travis
 ```
->>>>>>> dev
 
-before deploying. This compiles the sass, html, and angular files and minifies them before deploying.
+
+before deploying. 
