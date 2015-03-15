@@ -93,7 +93,7 @@
         parser.parseString(xml, function(err, result) {
             json.location = {};
             json.location.Area = result.Locations.$.Area;
-            jsonrecyc.properties = [];
+            json.properties = [];
 
             if (result.hasOwnProperty("Locations") &&
                     (result.Locations.hasOwnProperty("RecycleCentre") ||
