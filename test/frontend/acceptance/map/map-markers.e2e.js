@@ -35,16 +35,26 @@ retry = require('webdriverjs-retry');
 	        });
 
 	        it("with the correct number", function() {
-	            var listResults = element.all(by.repeater('result in results'));
-	        	var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
+               	var listResults = element.all(by.repeater('result in results'));
+                var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
 
-	        	leafletmarkers.count().then(function (num) {
-	        		expect(listResults.count()).toEqual(num -2);
-	        	});
-	        });
+                browser.getCurrentUrl().then(function (url) {
+                    if (url.indexOf('streetworks') !== -1) {
+                        leafletmarkers.count().then(function (num) {
+                            expect(listResults.count()).toEqual(num-1);
+                        });
+                    } else {
+                       	leafletmarkers.count().then(function (num) {
+                            expect(listResults.count()).toEqual(num);
+                       	});
+                    }
+                });
+            });
 
         	it("marker links with view", function() {
 	        	
+	        	browser.manage().window().setSize(1600, 1000);
+
 	        	var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
 
 	        	var firstMarker = leafletmarkers.get(0);
@@ -59,8 +69,7 @@ retry = require('webdriverjs-retry');
 		        		expect(icon).toEqual(baseUrl + activeMarkerSrc); 
 		        		expect(singleView.isDisplayed()).toBe(true);
 		        	});
-		        }, 5000);
-	        	 	
+		        }, 5000); 	
 	        });
 
 
@@ -68,6 +77,8 @@ retry = require('webdriverjs-retry');
 
 	        	it("only one marker is active", function() {
 	        		
+	        		browser.manage().window().setSize(1600, 1000);
+
 	        		var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
 
 	        		var firstM = leafletmarkers.get(0);

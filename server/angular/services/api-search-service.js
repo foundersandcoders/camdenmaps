@@ -3,8 +3,6 @@
 *
 *************************************/
 
-//TODO: Make sure caching applies across states so requests aren't made twice
-
 ;(function () {
     "use strict";
 

@@ -72,7 +72,6 @@
             //address-found contains view for when an address+service are found
             .state("root.address-found", {
                 url: "/{service}/location/{address}",
-                reloadOnSearch: false,
                 templateUrl: "partials/root.address-found.html",
                 controller: "LocationController"
             })
