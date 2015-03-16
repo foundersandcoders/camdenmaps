@@ -1,6 +1,7 @@
 var Config = require("../acceptance/config.js");
 var creds = require("./sauce.conf.json");
 
+
 exports.config = {
 
   sauceUser: creds.uname,
@@ -17,7 +18,6 @@ exports.config = {
       //Three hours
       "max-duration": 10800
     }, 
-
     // {
     //   "browserName": "firefox",
     //   "platform": "ANY",

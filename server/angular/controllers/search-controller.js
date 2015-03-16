@@ -52,11 +52,6 @@
 
             $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
 
-            $scope.geolocateUser = function() {
-                markers.geolocateUser($scope)();
-                resetActiveMarker($scope);
-            };
-
             //back button functionality
             $scope.searchAgain = buttonHandlers.searchAgain($scope, "/home/services");
 

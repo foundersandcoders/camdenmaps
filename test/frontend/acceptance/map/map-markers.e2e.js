@@ -53,6 +53,8 @@ retry = require('webdriverjs-retry');
 
         	it("marker links with view", function() {
 	        	
+	        	browser.manage().window().setSize(1600, 1000);
+
 	        	var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
 
 	        	var firstMarker = leafletmarkers.get(0);
@@ -75,6 +77,8 @@ retry = require('webdriverjs-retry');
 
 	        	it("only one marker is active", function() {
 	        		
+	        		browser.manage().window().setSize(1600, 1000);
+
 	        		var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
 
 	        		var firstM = leafletmarkers.get(0);
