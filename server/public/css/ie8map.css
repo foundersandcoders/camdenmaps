@@ -5,3 +5,6 @@
 #list-results {
 	background-color: white;
 }
+#polling-station {
+	display: none;
+}
