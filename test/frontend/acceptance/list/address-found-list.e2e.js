@@ -68,9 +68,14 @@ mapMarkerTests = require('../map/map-markers.e2e.js');
                     browser.getCurrentUrl().then(function (url) {
                         if (url.indexOf('streetworks') === -1) {
                             var distance = listItem.element(by.css(".distance"));
-                            var text = distance.getText();
-                            
-                            expect(text).toMatch(/\d*\.\d{1} miles away/);
+                            var text = distance.getText().then(function (text) {
+                                console.log(text);
+                                if (text.length === 14) {
+                                    expect(text).toMatch(/\d*\.\d{1} miles away/);
+                                } else {
+                                    expect(text).toMatch(/\d{1} miles away/);
+                                }
+                            });
                         }
                     });
                 });
