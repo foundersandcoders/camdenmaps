@@ -33,28 +33,27 @@ baseUrl = Config.path.main;
 
 	describe("user should use camden maps", function(){
 
-	browser.get(Config.path.home);
-
-
 		var perf = new ProtractorPerf(protractor, browser);
 
 		it("to find services ", function() {
+			browser.get(Config.path.home);
+
 			perf.start();
 
 			camdenServices.click();
 			communityService.click();
 			lunchClub.click();
-			input.sendKeys("NW1 ONE");
+			input.sendKeys("NW1 0NE");
 			searchButton.click();
-			listResults.get(0).click();
-
-			browser.getCurrentUrl().then(function (url) {
-				expect(url).toEqual(baseUrl + "services/lunch club/location/nw1 0ne");
-            });
+			listResults.get(0).click();			
 
 			perf.stop().then(function(data) {
 				console.log(data);
 			});
+
+			browser.getCurrentUrl().then(function (url) {
+				expect(url).toEqual(baseUrl + "#/home/Lunch%20club/location/NW1%200NE");
+            });
 
 
 		});
