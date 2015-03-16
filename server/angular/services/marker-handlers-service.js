@@ -52,31 +52,27 @@
             }
 
             this.markerClick = function(functionScope) {
-
                 return function(e, args, scope) {
                     scope = scope || functionScope;
 
                     //ensuring that the uri is encoded correctly
                     $stateParams.service = decodeURI($stateParams.service);
                     var service = encodeURIComponent($stateParams.service);
-                    
+
                     //resets any existing highlighted marker 
                     resetActiveMarker(scope);                  
 
                     activateListItem(args, scope, scope.markers[args.markerName].name);
+
                 };
             };
 
             this.mapClick = function(functionScope) {
                 return function(e, args, scope) {
+
                     scope = scope || functionScope;
                     
                     resetActiveMarker(scope);
-
-                    path    = scope.address ? "/home/" + scope.service + "/location/" + scope.address
-                            : "/home/" + scope.service + "/search";
-                        
-                    $location.path(path);  
 
                 };
             };

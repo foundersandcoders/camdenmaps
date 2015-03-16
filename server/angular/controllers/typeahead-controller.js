@@ -74,11 +74,12 @@ function getObject (array, selected) {
             };
 
             $scope.geolocateUser = function() {
-                markers.geolocateUser($scope, url, searchApi);
+                markers.geolocateUser($scope, url, searchApi)();
                 resetActiveMarker($scope);
             };
 
             if (locationCheck.locationFound()) {
+                                
                 var address = $stateParams.address || $stateParams.uprn;
                 searchApi(address);
             }
@@ -218,7 +219,7 @@ function getObject (array, selected) {
                 }
             }
 
-            function searchApi (address) {
+            function searchApi (address, gLat, gLng) {
 
                 var path,
                     service,
@@ -230,20 +231,19 @@ function getObject (array, selected) {
                     resetActiveMarker = require("../lib/reset-active-marker");
                     mapMarkers = $scope.markers;
 
-                console.log("world");
                 
                 if (locationCheck.postcodeSearch()){
 
                     if(address) {
-                        
-                        lat = null;
-                        lng = null;
-                        
-                        service = $stateParams.service || "streetworks";
+                           
+                        service = $stateParams.service || 'streetworks';
 
-                        if(address === "your location") {
-                            lat = mapMarkers.m0.lat;
-                            lng = mapMarkers.m0.lng;
+                        if(address === "your location" && mapMarkers.m0.geolocation) {
+                            lat = gLat;
+                            lng = gLng;
+                        } else {
+                            lat = null;
+                            lng = null;
                         }
 
                         apiSearch.search(service, address, lat, lng)
@@ -252,6 +252,7 @@ function getObject (array, selected) {
                                     return $scope.updateError(data.message);
                                 }
 
+                                $scope.updateError("")
                                 $scope.update("markers", {});
                                 $scope.updateResults(data.properties);
                                 $scope.update("locationSelected", data.location);
@@ -305,15 +306,20 @@ function getObject (array, selected) {
                     var uprn = $stateParams.uprn || address;
                     if (!$stateParams.uprn) {
                         $http.get("/uprn/" + uprn).success(function(res) {
-                            var path = "/home/neighbourhood-found/" + res;
-                            $location.path(path);
+                            if((/\d{7}$/).test(res)) {
+                                var path = "/home/neighbourhood-found/" + res;
+                                $location.path(path);
+                            } else {
+                                $scope.updateError("Sorry, " + uprn + " is not a valid Camden address");
+                            }
+                            
                         });
                     } else {
-                    apiSearch.searchNeighbourhood(uprn)
+                    apiSearch.searchNeighbourhood(address)
                         .success(function(data) {
 
                             if (data.hasOwnProperty("error")) {
-                                $location.path("/home/neighbourhood");
+                                // $location.path("/home/neighbourhood");
                                 return $scope.updateError(data.message);
                             }
                             $scope.updateError("");
