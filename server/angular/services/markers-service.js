@@ -66,8 +66,8 @@ function linkResultToMarker(scope, markerName) {
                          map.locate({setView: false, watch: false})
                             .on("locationfound", function (e){
 
-                                if (true) {
-                                    
+                                if (validate.isWithinCamden(e.latitude, e.longitude)) {
+                     
                                     scope.markers.m0 = {
                                         lat: e.latitude,
                                         lng: e.longitude,
@@ -82,8 +82,8 @@ function linkResultToMarker(scope, markerName) {
                                         geolocation: true
                                     };
 
-                                    cb("your location");
-
+                                    return cb("your location", e.latitude, e.longitude);
+                          
                                 } else {
                                     scope.updateError("Your location is not working please use an address");
                                     remainOnPage();
@@ -218,7 +218,7 @@ function linkResultToMarker(scope, markerName) {
 
                         linkResultToMarker(scope, resultId);
                     }
-                }
+                };
             };
 		}
 	];
