@@ -68,7 +68,7 @@ function hasPollingStation (data) {
 
                             // this rounds results to one decimal place 
                             scope.results.forEach(function(entry) {
-                                entry.Distance = validate.roundDistance(entry.Distance);
+                                entry.Distance = validate.roundDistances(entry.Distance);
                             });
 
                             scope.result = scope.results.filter(function (result) {
