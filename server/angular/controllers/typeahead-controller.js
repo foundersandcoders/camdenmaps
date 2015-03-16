@@ -45,15 +45,8 @@ function getObject (array, selected) {
             $scope.mapOrList = "Click or swipe left to see the map";
             uprnArray = [];
 
-
             if($stateParams.address) {
-
                 $scope.address = validate.cleanDisplayAddress($stateParams.address);
-
-                $scope.$on("$locationChangeSuccess", function() {
-                    var updatedAddress = $location.path().split("/").pop();
-                    $scope.address = validate.cleanDisplayAddress(updatedAddress); 
-                });
             }
 
             if (window.innerWidth < 768 || screen.width < 768) {
@@ -148,12 +141,13 @@ function getObject (array, selected) {
                 //if address has not been selected by typeahead
                 if (address[0] === undefined) {
                      //searchApi checks if valid address, if not, will throw error.
-                    localstorage.save(add);
                     searchApi(add);
                     return;
                 } else {
+
                     localstorage.save(address);
-                     if (locationCheck.postcodeSearch()) {
+
+                    if (locationCheck.postcodeSearch()) {
                         $scope.update("locationSelected", address[0].Postcode);
                         searchApi(address[0].Postcode);
                     } else {
@@ -230,7 +224,6 @@ function getObject (array, selected) {
 
                     resetActiveMarker = require("../lib/reset-active-marker");
                     mapMarkers = $scope.markers;
-
                 
                 if (locationCheck.postcodeSearch()){
 
@@ -250,39 +243,42 @@ function getObject (array, selected) {
                             .success(function success (data) {
                                 if(data.hasOwnProperty("error")) {
                                     return $scope.updateError(data.message);
-                                }
-
-                                $scope.updateError("")
-                                $scope.update("markers", {});
-                                $scope.updateResults(data.properties);
-                                $scope.update("locationSelected", data.location);
-                                $scope.addMarkers();
-
-                                // this rounds results to one decimal place 
-                                $scope.results.forEach(function(entry) {
-                                    entry.Distance = round(entry.Distance);
-                                });
-
-                                $scope.result = $scope.results.filter(function (result) {
-                                    return result.display.Name === $stateParams.id;
-                                })[0];
-
-                                resetActiveMarker($scope);
-
-                                centreLocation = data.location;
-
-                                if ($location.path().indexOf("/streetworks") > -1) {
-
-                                    path = "/home/streetworks/location/" + address;
-
                                 } else {
 
-                                    path = "/home/" + $stateParams.service + "/location/" + address;
-                                    //redirects to new path and runs location controller
-                                }
+                                    localstorage.checkAndSave(address);
 
-                                if ($stateParams.service) {
-                                    $location.path(path);
+                                    $scope.updateError("")
+                                    $scope.update("markers", {});
+                                    $scope.updateResults(data.properties);
+                                    $scope.update("locationSelected", data.location);
+                                    $scope.addMarkers();
+
+                                    // this rounds results to one decimal place 
+                                    $scope.results.forEach(function(entry) {
+                                        entry.Distance = round(entry.Distance);
+                                    });
+
+                                    $scope.result = $scope.results.filter(function (result) {
+                                        return result.display.Name === $stateParams.id;
+                                    })[0];
+
+                                    resetActiveMarker($scope);
+
+                                    centreLocation = data.location;
+
+                                    if ($location.path().indexOf("/streetworks") > -1) {
+
+                                        path = "/home/streetworks/location/" + address;
+
+                                    } else {
+
+                                        path = "/home/" + $stateParams.service + "/location/" + address;
+                                        //redirects to new path and runs location controller
+                                    }
+
+                                    if ($stateParams.service || $location.path().indexOf("/streetworks") > -1) {
+                                        $location.path(path);
+                                    }
                                 }
                             })
                             .error(function () {
