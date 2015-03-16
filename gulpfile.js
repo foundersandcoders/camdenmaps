@@ -84,7 +84,7 @@
     ]));    
 
     gulp.task("performance", shell.task([
-        "node_modules/.bin/protractor ./test/frontend/config/performance.conf.js.tmp"
+        "node_modules/.bin/protractor-perf ./test/frontend/config/performance.conf.js"
     ]));
 
     gulp.task("e2e", function() {

@@ -1,21 +1,14 @@
-var Config = require('../acceptance/config.js'),
-    Sauce = require("./sauce.conf.json");
+var Config = require('../acceptance/config.js');
 
 
 exports.config = {
 
   specs: [
-    "./performance.all.js"
+    "../performance/performance.all.js"
   ],
+ 
 
-  sauceUser: Sauce.uname,
-
-  sauceKey: Sauce.aKey, 
-
-
-  capabilities: {
-    "browserName": "chrome"
-  },
+ capabilities: {'browserName' : 'chrome'},
 
 
   baseUrl: Config.path.main,

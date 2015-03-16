@@ -1,4 +1,4 @@
-var PerfRunner,
+var ProtractorPerf,
 	Config,
 	homeUrl,
 	buttons,
@@ -13,7 +13,7 @@ var PerfRunner,
 
 
 
-PerfRunner = require("./index.js");
+ProtractorPerf = require('protractor-perf');
 Config = require('../acceptance/config.js');
 homeUrl = Config.path.home;
 button = element.all(by.repeater('button in buttons')).get(0);
@@ -31,46 +31,42 @@ baseUrl = Config.path.main;
 (function (){
 	"use strict";
 
-	function performanceTest (){
-		afterEach(function(){
-			browser.executeScript('window.localStorage.clear();');
-		});
+	describe("user should use camden maps", function(){
 
-		describe("user should use camden maps", function(){
-
-			var perfRunner = PerfRunner(browser.params.perf);
-
-			it("to find services ", function() {
-				perfRunner.start();
-
-				browser.get(homeUrl);
-				camdenServices.click();
-				communityService.click();
-				lunchClub.click();
-				input.sendKeys("NW1 ONE");
-				searchButton.click();
-				listResults.get(0).click();
-
-				browser.getCurrentUrl().then(function (url) {
-					expect(url).toEqual(baseUrl + "services/lunch club/location/nw1 0ne");
-	            });
-
-				perfRunner.stop().then(function(data) {
-					console.log(data);
-				});
+	browser.get(Config.path.home);
 
 
+		var perf = new ProtractorPerf(protractor, browser);
+
+		it("to find services ", function() {
+			perf.start();
+
+			camdenServices.click();
+			communityService.click();
+			lunchClub.click();
+			input.sendKeys("NW1 ONE");
+			searchButton.click();
+			listResults.get(0).click();
+
+			browser.getCurrentUrl().then(function (url) {
+				expect(url).toEqual(baseUrl + "services/lunch club/location/nw1 0ne");
+            });
+
+			perf.stop().then(function(data) {
+				console.log(data);
 			});
-					
 
-			// it("to find information about their neighbourhood ")
 
-			// })		
-
-			// it("to find information on streetworks ")
-
-			// })
 		});
-	}
+				
+
+		// it("to find information about their neighbourhood ")
+
+		// })		
+
+		// it("to find information on streetworks ")
+
+		// })
+	});
 
 }());
