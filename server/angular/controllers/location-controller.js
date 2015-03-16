@@ -3,8 +3,6 @@
 *
 ******************************/
 
-var resetActiveMarker = require('../lib/reset-active-marker.js');
-
 ;(function () {
     "use strict";
 
@@ -16,16 +14,10 @@ var resetActiveMarker = require('../lib/reset-active-marker.js');
         "buttonHandlers",
         "$location",
         "menuFind",
-        "validate",
-        function ($scope, $stateParams, markers, markerHandlers, buttonHandlers, $location, menuFind, validate) {
+        function ($scope, $stateParams, markers, markerHandlers, buttonHandlers, $location, menuFind) {
 
             //model for page title
             $scope.title = "Find your Nearest...";
-
-            //service called markers exists
-            var mapMarkers = $scope.markers,
-                round = require("../lib/round.js"),
-                addressUsedinAPIcall = require("../lib/address-used-in-api-call.js");
 
             // Ensuring that the service that displays is decoded
             $scope.service = decodeURI($stateParams.service);
@@ -34,10 +26,10 @@ var resetActiveMarker = require('../lib/reset-active-marker.js');
             $stateParams.service = encodeURIComponent($scope.service);
 
             // Args will contain the marker name and other relevant information   
-            $scope.$on('leafletDirectiveMarker.click', markerHandlers.markerClick($scope));
+            $scope.$on("leafletDirectiveMarker.click", markerHandlers.markerClick($scope));
 
             // Args will contain the marker name and other relevant information 
-            $scope.$on('leafletDirectiveMap.click', markerHandlers.mapClick($scope));
+            $scope.$on("leafletDirectiveMap.click", markerHandlers.mapClick($scope));
 
             if($stateParams.service === "streetworks") {
                 

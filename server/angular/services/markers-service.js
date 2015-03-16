@@ -64,10 +64,10 @@ function linkResultToMarker(scope, markerName) {
                     leafletData.getMap().then(function(map) {
                          //this will return the location but not auto-centre on it or continuously watch
                          map.locate({setView: false, watch: false})
-                            .on('locationfound', function (e){
+                            .on("locationfound", function (e){
 
-                                if (true) {
-                                    
+                                if (validate.isWithinCamden(e.latitude, e.longitude)) {
+                     
                                     scope.markers.m0 = {
                                         lat: e.latitude,
                                         lng: e.longitude,
@@ -82,24 +82,14 @@ function linkResultToMarker(scope, markerName) {
                                         geolocation: true
                                     };
 
-                                    var service = $stateParams.service || 'streetworks';
-
-                                    // var path = "/home/" + service + "/location/" + "your location";
-
-                                    // if (path) {
-
-                                        // $location.path(path);
-                                        console.log('hello');   
-                                        cb("your location");
-
-                                    // }
-
+                                    return cb("your location", e.latitude, e.longitude);
+                          
                                 } else {
                                     scope.updateError("Your location is not working please use an address");
                                     remainOnPage();
                                 }
                             })
-                            .on('locationerror', function(e){
+                            .on("locationerror", function(e){
                                 scope.updateError("Geolocation error. Please use an address");      
                                 remainOnPage();
                             });
@@ -210,25 +200,25 @@ function linkResultToMarker(scope, markerName) {
                     var scope = functionScope; 
 
                     var listItem = $('[id="' + resultId + '"]');
-                    var allListItems = $('.list-item');
-                    var displayResult = listItem.find('.display-result');
-                    var allResults = $('.display-result');
+                    var allListItems = $(".list-item");
+                    var displayResult = listItem.find(".display-result");
+                    var allResults = $(".display-result");
 
-                    if (displayResult.hasClass('active')) {
-                        listItem.removeClass('display-active-result');
-                        allResults.removeClass('active');
+                    if (displayResult.hasClass("active")) {
+                        listItem.removeClass("display-active-result");
+                        allResults.removeClass("active");
 
                         resetActiveMarker(scope); 
                     } else {
-                        allListItems.removeClass('display-active-result');
-                        allResults.removeClass('active');
+                        allListItems.removeClass("display-active-result");
+                        allResults.removeClass("active");
 
-                        listItem.toggleClass('display-active-result');
-                        displayResult.toggleClass('active');
+                        listItem.toggleClass("display-active-result");
+                        displayResult.toggleClass("active");
 
                         linkResultToMarker(scope, resultId);
                     }
-                }
+                };
             };
 		}
 	];

@@ -49,7 +49,8 @@
             };
 
             this.resultsLoaded = function () {
-                var search = ($location.path().indexOf("/search") > -1)
+                var search = ($location.path().indexOf("/search") > -1);
+
                 if ($stateParams.uprn || $stateParams.address || search) {
                     return true;
                 } else {

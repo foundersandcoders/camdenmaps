@@ -1,70 +1,76 @@
+//TODO: find workaround for JSON trimming null and undefined properties from object while testin recycling parser
+
 var test = require("tape");
 var parsers = require("../../server/lib/parsers.js");
-var xml, json;
 var fs = require("fs");
 var path = require("path");
-var _ = require("underscore");
 
-//fs.writeFile(path.resolve(__dirname, "../fixtures/streetworks.json"), JSON.stringify(json), function (cb) {
+var xml, json;
 
 test("streetworksApiParser should return data as expected", function(t) {
 
-    xml = require("../fixtures/streetworksxml.js");
+    xml = require("../fixtures/streetworks.xml.js");
+    t.ok(parsers.hasOwnProperty("streetworksApiParser"));
     json = parsers.streetworksApiParser(xml);
 
-    t.ok(json, "data returned");
-    t.ok(typeof json, "data is an object");
-    t.deepEquals(json, require("../fixtures/streetworks.json"), "output matches expected");
-
+    t.deepEquals(json, require("../fixtures/streetworks.json"), "output matches expected structure");
     t.end();
+
 });
 
+test("localInformationApiParser should return data as expected", function(t) {
 
-/*test("localInformationApiParser should return data as expected", function(t) {
-
-    xml = require("../fixtures/localinformationxml.js");
+    xml = require("../fixtures/localinformation.xml.js");
+    t.ok(parsers.hasOwnProperty("localInformationApiParser"));
     json = parsers.localInformationApiParser(xml);
-    console.log(json);
 
-fs.writeFile(path.resolve(__dirname, "../fixtures/localinformation.json"), JSON.stringify(json), function (cb) {
-    t.ok(json, "data returned");
-    t.ok(typeof json, "data is an object");
-    t.deepEquals(json, require("../fixtures/localinformation.json"), "output matches expected");
-});
+    t.deepEquals(json, require("../fixtures/localinformation.json"), "output matches expected structure");
     t.end();
 
-});*/
-
-
-
+});
+/*
 test("recyclingApiParser should return data as expected", function(t) {
 
-
-    xml = require("../fixtures/recyclingxml.js");
+    xml = require("../fixtures/recycling.xml.js");
+    t.ok(parsers.hasOwnProperty("recyclingApiParser"));
     json = parsers.recyclingApiParser(xml);
-    json = _.clone(json);
+fs.writeFile(path.join(__dirname, "../fixtures/recycling.json"), JSON.stringify(json), function() {
 
-    t.ok(json, "data returned");
-    t.ok(typeof json, "data is an object");
-
-    t.equals(json.properties.length, require("../fixtures/recycling.json").properties.length, "properties are same length");
-
+    t.deepEquals(json, require("../fixtures/recycling.json"), "output matches expected structure");
     t.end();
+	})
 
-
-});
-
+}); */
 
 test("parkingApiParser should return data as expected", function(t) {
 
-    xml = require("../fixtures/parkingxml.js");
+    xml = require("../fixtures/parking.xml.js");
+    t.ok(parsers.hasOwnProperty("parkingApiParser"));
     json = parsers.parkingApiParser(xml);
 
-fs.writeFile(path.resolve(__dirname, "../fixtures/parking.json"), JSON.stringify(json), function (cb) {
-    t.ok(json, "data returned");
-    t.ok(typeof json, "data is an object");
-    t.deepEquals(json, require("../fixtures/parking.json"), "output matches expected");
-
+    t.deepEquals(json, require("../fixtures/parking.json"), "output matches expected structure");
     t.end();
-})
+
+});
+
+test("nearestApiParser should return data as expected", function(t) {
+
+    xml = require("../fixtures/nearest.xml.js");
+    t.ok(parsers.hasOwnProperty("nearestApiParser"));
+    json = parsers.nearestApiParser(xml);
+
+    t.deepEquals(json, require("../fixtures/nearest.json"), "output matches expected structure");
+    t.end();
+
+});
+
+test("whichParser should parse depending on service", function(t) {
+
+   var nearestService = "Lunch club";
+   t.deepEquals(parsers.whichParser(require("../fixtures/nearest.xml.js"), nearestService), require("../fixtures/nearest.json"));
+   var parkingService = "Car club";
+   t.deepEquals(parsers.whichParser(require("../fixtures/parking.xml.js"), parkingService), require("../fixtures/parking.json"));
+   var recyclingService = "Cardboard";
+ //  t.deepEquals(parsers.whichParser(require("../fixtures/recycling.xml.js"), recyclingService), require("../fixtures/recycling.json"));
+   t.end();
 });

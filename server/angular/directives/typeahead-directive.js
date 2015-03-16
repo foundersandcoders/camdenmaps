@@ -7,13 +7,12 @@
     "use strict";
 
     module.exports = [
-        "$window",
-        function ($window) {
+        function () {
         	return {
-        		restrict: 'AEC',
+        		restrict: "AEC",
                 transclude: true,
-            	templateUrl: 'partials/typeahead-search.html',
-                controller: 'typeahead'
+            	templateUrl: "partials/typeahead-search.html",
+                controller: "typeahead"
             };
         }
     ];

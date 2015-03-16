@@ -89,13 +89,11 @@
         }
     }
 
-
     function registerPreHandler (server) {
 
         server.ext("onPreHandler", fetchCoordinates);
 
     }
-
 
     module.exports = {
 
@@ -105,7 +103,5 @@
         fetchCoordinates: fetchCoordinates,
         isRecyclingService: isRecyclingService
 
-    }
-
-
+    };
 }());

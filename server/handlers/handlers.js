@@ -4,11 +4,6 @@
 *   Use: Imported by routes.js
 ********************************************************/
 
-var fs = require("fs");
-var path = require("path");
-var request = require("request");
-
-
 ;(function () {
     "use strict";
 
@@ -16,9 +11,9 @@ var request = require("request");
     var path = require("path");
     var jwt = require("jsonwebtoken");
     var secret = process.env.JWT_SECRET || "changeme";
+    var request = require("request");
 
     module.exports = {
-        //handler: function (req, res) {  res(handlerbody)  }
 
         showDocsHome: function showDocsHome (req, res) {
             res.file("../public/docs/index.html");

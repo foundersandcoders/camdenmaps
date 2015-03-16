@@ -4,29 +4,16 @@
 *   Use: Imported by server.js
 *
 ************************************************/
-//
-//  TODOS:
-//  Search by streetname
-//
-//************************************************
+
 (function () {
     "use strict";
 
-    var mapConfig = require("../config/mapConfig.js");
-    var convertXml = require("../handlers/convertXml.js");
     var RoutesConfig = require("./routesConfig.js");
     var handlers = require("../handlers/handlers.js");
 
     module.exports = function (server){
 
         server.route([
-        /* EXAMPLE ****************************************
-        *    {
-        *        method:    ":METHOD STRING",
-        *        path:      ":PATH STRING",
-        *        config:    ":CONFIG OBJECT"
-        *    }
-        */
             {
                 method: "GET",
                 path: "/{param*}",
@@ -102,5 +89,5 @@
                 handler: handlers.fetchUPRN
             }
         ]);
-    }
+    };
 }());
