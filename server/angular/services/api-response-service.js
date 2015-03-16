@@ -64,6 +64,8 @@ function hasPollingStation (data) {
                             scope.update("markers", {});
                             scope.updateResults(data.properties);
                             scope.update("locationSelected", data.location);
+                            scope.locationSelected.message = address;
+
                             scope.addMarkers();
 
                             // this rounds results to one decimal place 
@@ -90,24 +92,15 @@ function hasPollingStation (data) {
                             }
 
                             if ($stateParams.service || $location.path().indexOf("/streetworks") > -1) {
-                                $location.path(path);
+                                    $location.path(path);
+                                
                             }
                         }
                     })
                     .error(function () {
                         return scope.updateError("Sorry, that does not appear to be a valid camden address.");
-                    })
-
-                    ["finally"](function () {
-
-                        scope.update("centre", {
-                            lat: Number(centreLocation.Latitude),
-                            lng: Number(centreLocation.Longitude),
-                            zoom: markers.zoomCheck(scope)()
-                        });
-
-                        scope.markers.m0.message = scope.address;
                     });
+
             };
 
             this.service = function (scope) {
