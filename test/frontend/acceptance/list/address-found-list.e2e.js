@@ -101,16 +101,6 @@ mapMarkerTests = require('../map/map-markers.e2e.js');
 
                     expect(icon).toEqual(baseUrl + activeMarker);
                 });
-                
-
-                it(" marker tests", function() {
-                    browser.getCurrentUrl().then(function (url) {
-                        if (url.indexOf('streetworks') === -1) {
-                        mapMarkerTests();
-                        }
-                    });
-                });
-
             });
             
 
