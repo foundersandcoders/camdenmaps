@@ -14,7 +14,7 @@
         nodemon = require("gulp-nodemon"),
         htmlmin = require("gulp-htmlmin"),
         browserify = require("browserify"),
-        creds = require("./test/frontend/config/sauce.conf.json"),
+        // creds = require("./test/frontend/config/sauce.conf.json"),
         sauceConnectLauncher = require("sauce-connect-launcher");
 
     var serverFiles = ["./server/server.js", "./server/handlers/*.js", "./server/lib/*.js", "./server/config/*.js"],
