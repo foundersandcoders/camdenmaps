@@ -36,6 +36,9 @@ var menu = require("../menu.json");
 
                 return displayAddress;
             };
+            this.roundDistances = function (distance) {
+                return (Math.floor( (Number(distance) + 0.05) * 10 )) /10;
+            };
         }
     ];
 

@@ -22,14 +22,12 @@ function getPollingStationCoordinates (scope, apiSearch, uprn) {
             if(scope.showPollingStation) {
                 scope.markers.pollingStation = pollingStationCoordinates;
             }
-
         });
 }
 
 function hasPollingStation (data) {
 
     return data.information.hasOwnProperty("Polling Station");
-
 }
 
 ;(function () {
@@ -43,9 +41,9 @@ function hasPollingStation (data) {
         "$location",
         "markers",
         "locationCheck",
-        function (apiSearch, httpq, localstorage, $stateParams, $location, markers, locationCheck) {
+        "validate",
+        function (apiSearch, httpq, localstorage, $stateParams, $location, markers, locationCheck, validate) {
 
-            var round = require("../lib/round.js");
             var resetActiveMarker = require("../lib/reset-active-marker.js");
             var centreLocation;
             var path;
@@ -62,7 +60,7 @@ function hasPollingStation (data) {
 
                             localstorage.checkAndSave(address);
 
-                            scope.updateError("")
+                            scope.updateError("");
                             scope.update("markers", {});
                             scope.updateResults(data.properties);
                             scope.update("locationSelected", data.location);
@@ -70,7 +68,7 @@ function hasPollingStation (data) {
 
                             // this rounds results to one decimal place 
                             scope.results.forEach(function(entry) {
-                                entry.Distance = round(entry.Distance);
+                                entry.Distance = validate.roundDistance(entry.Distance);
                             });
 
                             scope.result = scope.results.filter(function (result) {
