@@ -14,10 +14,8 @@
         var prop;
         for(prop in obj) {
             if(typeof obj[prop] === "string") {
-                
                 obj[prop] = strip(obj[prop]);
-                
-                if(!obj[prop].contains("http://")) {
+                if(!obj[prop].contains("http://") && obj[prop].indexOf("/") > -1) {
                     obj[prop] = obj[prop].replace(/\//g, " and ");
                 }
             }

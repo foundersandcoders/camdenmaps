@@ -13,7 +13,18 @@ test("streetworksApiParser should return data as expected", function(t) {
     t.ok(parsers.hasOwnProperty("streetworksApiParser"));
     json = parsers.streetworksApiParser(xml);
 
-    t.deepEquals(json, require("../fixtures/streetworks.json"), "output matches expected structure");
+    json.properties.map(function(p) {
+        delete p.display.Name;
+        delete p.externalref;
+    });
+
+    var mockResponse = require("../fixtures/streetworks.json");
+    mockResponse.properties.map(function(p) {
+        delete p.display.Name;
+        delete p.externalref;
+    });
+
+    t.deepEquals(json, mockResponse, "output matches expected structure");
     t.end();
 
 });

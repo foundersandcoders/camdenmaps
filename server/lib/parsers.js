@@ -14,7 +14,6 @@
 
     function streetworksApiParser (xml) {
         var json = {};
-
         parser.parseString(xml, function(err, result) {
             if (result.hasOwnProperty("Locations") && typeof result !== "undefined" && result.hasOwnProperty("Locations") && result.Locations.hasOwnProperty("StreetWorks")) {
                 json.location = {};
