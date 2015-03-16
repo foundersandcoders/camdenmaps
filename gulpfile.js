@@ -44,7 +44,7 @@
 
     gulp.task("webdriver_update", webdriver_update);
 
-    gulp.task("e2e-local", ["webdriver_update"],function () {
+    gulp.task("e2e-local", ["build", "webdriver_update"],function () {
         nodemon({
             script: "server/server.js",
             ext: "html js",
