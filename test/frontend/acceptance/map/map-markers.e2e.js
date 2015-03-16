@@ -35,13 +35,21 @@ retry = require('webdriverjs-retry');
 	        });
 
 	        it("with the correct number", function() {
-	            var listResults = element.all(by.repeater('result in results'));
-	        	var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
+               	var listResults = element.all(by.repeater('result in results'));
+                var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
 
-	        	leafletmarkers.count().then(function (num) {
-	        		expect(listResults.count()).toEqual(num -2);
-	        	});
-	        });
+                browser.getCurrentUrl().then(function (url) {
+                    if (url.indexOf('streetworks') !== -1) {
+                        leafletmarkers.count().then(function (num) {
+                            expect(listResults.count()).toEqual(num-1);
+                        });
+                    } else {
+                       	leafletmarkers.count().then(function (num) {
+                            expect(listResults.count()).toEqual(num);
+                       	});
+                    }
+                });
+            });
 
         	it("marker links with view", function() {
 	        	
@@ -61,8 +69,7 @@ retry = require('webdriverjs-retry');
 		        		expect(icon).toEqual(baseUrl + activeMarkerSrc); 
 		        		expect(singleView.isDisplayed()).toBe(true);
 		        	});
-		        }, 5000);
-	        	 	
+		        }, 5000); 	
 	        });
 
 
