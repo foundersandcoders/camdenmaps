@@ -64,6 +64,34 @@
             });
         });
     });
+    
+    //Runs on SauceLabs
+    gulp.task("e2e", function() {
+        sauceConnectLauncher({
+            username: creds.uname,
+            accessKey: creds.aKey
+        }, function (err, sauceConnectProcess) {
+            if (err) {
+              console.error(err.message);
+              return;
+            }
+            gulp.src(protractorTestFiles)
+                .pipe(protractor({
+                    configFile: "./test/frontend/config/protractor.conf.js"
+                }))
+                .on("error", function(e) {
+                    sauceConnectProcess.close(function () {
+                    console.log("Closed Sauce Connect process");
+                });
+                throw e;
+            })
+            .on("end", function(e) {
+                sauceConnectProcess.close(function () {
+                    console.log("Closed Sauce Connect process");
+                });
+            });
+        });
+    });
 
     gulp.task("load-test", shell.task([
         "nab http://camdenmaps.herokuapp.com"
