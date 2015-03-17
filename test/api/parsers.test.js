@@ -9,22 +9,32 @@ var xml, json;
 
 test("streetworksApiParser should return data as expected", function(t) {
 
+    var mockResponse;
     xml = require("../fixtures/streetworks.xml.js");
     t.ok(parsers.hasOwnProperty("streetworksApiParser"));
     json = parsers.streetworksApiParser(xml);
+
+    //ATTENTION!**********************************************************************************
+    //PROBLEM: The display.Name and externalref properties are unreliable in tests.
+    //DESCRIPTION: The tests pass when running parsers.test.js ONLY but fail when running all server tests.
+    //SOLUTION: They are being deleted temporarily (with the code below) until this issue is resolved.
 
     json.properties.map(function(p) {
         delete p.display.Name;
         delete p.externalref;
     });
 
-    var mockResponse = require("../fixtures/streetworks.json");
+    mockResponse = require("../fixtures/streetworks.json");
     mockResponse.properties.map(function(p) {
         delete p.display.Name;
         delete p.externalref;
     });
 
+    //********************************************************************************************
+
     t.deepEquals(json, mockResponse, "output matches expected structure");
+
+    t.deepEquals(json, require("../fixtures/streetworks.json"), "output matches expected structure");
     t.end();
 
 });
