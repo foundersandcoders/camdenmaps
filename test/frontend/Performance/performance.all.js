@@ -9,7 +9,8 @@ var ProtractorPerf,
 	input,
 	searchButton,
 	listResults,
-	baseUrl;
+	baseUrl,
+	neighbourhood;
 
 
 
@@ -25,6 +26,8 @@ input = element(by.tagName('input'));
 searchButton = element.all(by.tagName('button')).get(0);
 listResults = element.all(by.repeater('result in results'));
 baseUrl = Config.path.main;
+neighbourhood = neighbourhood = element.all(by.repeater('button in buttons')).get(1);
+
 
 						
 
@@ -35,8 +38,16 @@ baseUrl = Config.path.main;
 
 		var perf = new ProtractorPerf(protractor, browser);
 
-		it("to find services ", function() {
+		beforeEach(function(){
 			browser.get(Config.path.home);
+		});
+
+		afterEach(function(){
+			localStorage.clear();
+		});
+
+		it("to find services ", function() {
+			
 
 			perf.start();
 
@@ -48,7 +59,7 @@ baseUrl = Config.path.main;
 			listResults.get(0).click();			
 
 			perf.stop().then(function(data) {
-				console.log(data);
+				console.log("services", data);
 			});
 
 			browser.getCurrentUrl().then(function (url) {
@@ -59,9 +70,23 @@ baseUrl = Config.path.main;
 		});
 				
 
-		// it("to find information about their neighbourhood ")
+		it("to find information about their neighbourhood ", function(){
 
-		// })		
+			perf.start();
+
+			neighbourhood.click();
+			input.sendKeys("NW1 ONE");
+			searchButton.click();
+
+			perf.stop().then(function(data) {
+				console.log("neighbourhood", data);
+			});
+
+			browser.getCurrentUrl().then(function (url) {
+				expect(url).toEqual(baseUrl + "#/home/neighbourhood-found/5048636");
+            });
+		});
+
 
 		// it("to find information on streetworks ")
 
