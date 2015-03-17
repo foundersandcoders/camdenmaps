@@ -9,7 +9,7 @@
     "use strict";
 
     var RoutesConfig = require("./routesConfig.js");
-    var request = require("request");
+    var handlers = require("../handlers/handlers.js");
 
     module.exports = function (server){
 
@@ -62,7 +62,7 @@
                 method: "GET",
                 path: "/api",
                 config: RoutesConfig.apiDocs
-            },               
+            },
 
     //Local Information Routes ******************************
             {
@@ -86,26 +86,7 @@
             {
                 method: "GET",
                 path: "/uprn/{path}",
-                handler: function(req, res) {
-                    request("http://camdenmaps.herokuapp.com/auth_token", function (err, response, body) {
-                            var path = "http://camdenmaps-addresslookup.herokuapp.com/search/" + req.params.path;
-                            var opts = {
-                                url: path,
-                                headers: {
-                                    "X-Access-Token": response.headers["x-access-token"]
-                                }
-                            };
-                            request(opts , function(e, h, b) {
-                                var firstItem;
-                                try {
-                                    firstItem = JSON.parse(b)[0];
-                                    return res(firstItem.UPRN);
-                                } catch (error) {
-                                    return res("Not found");
-                                }
-                            });
-                    });
-                }
+                handler: handlers.fetchUPRN
             }
         ]);
     };

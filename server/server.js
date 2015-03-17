@@ -5,7 +5,6 @@
 *
 ************************************************/
 
-//import routes, controllers, plugins, config, and modules
 var hapi = require("hapi");
 var config = require("../server/config/serverConfig.js");
 var routes = require("../server/config/routes.js");
@@ -15,11 +14,8 @@ var mapConfig = require("./config/mapConfig.js");
 
 var internals = {};
 
-//create server
 var server = new hapi.Server();
 
-
-//add connection
 server.connection({
     state: {
         clearInvalid: true
@@ -40,11 +36,8 @@ server.connection({
     }
 });
 
-
-//route server
 routes(server);
 
-//register prehandler extension
 require("./lib/getRecyclingCoordinates.js").registerPreHandler(server);
 require("./lib/streetnameLookup.js").registerPreHandler(server);
 
@@ -68,5 +61,4 @@ server.register({
     }
 });
 
-//exports server for testing
 module.exports = server;
