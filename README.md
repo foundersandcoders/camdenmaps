@@ -17,6 +17,14 @@ npm install gulp -g
 npm install
 ```
 
+Inside ```test/frontend/config```, create a file named ```sauce.conf.json``` containing:
+```
+{
+    "uname": "<your saucelabs username>",
+    "akey": "<your saucelabs accesskey>"
+}
+```
+
 and use command:
 
 ```
