@@ -40,7 +40,11 @@ If you prefer to run all the tests individually, please use these commands:
 To run server tests:
 
 ```
-gulp server-test
+gulp server-unit
+```
+and
+```
+gulp server-integration
 ```
 
 To run unit tests, use command: 
