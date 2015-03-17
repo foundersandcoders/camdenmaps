@@ -57,6 +57,32 @@
                 };
             };
 
+            this.checkAndSave = function (address) {
+                if (localStorageService.isSupported) {
+
+                    var savedAddress = localStorageService.get("USER-LOCATION");
+
+                    if (savedAddress !== null ) {
+
+                        var postcode = savedAddress[0].Postcode;
+                        var uprn = savedAddress[0].UPRN;
+                        var street = savedAddress[0].Street;
+
+                        if (postcode !== address && 
+                            street !== address &&
+                            uprn !== address) {
+
+                            localStorageService.remove("userLocation");
+                            localStorageService.remove("USER-LOCATION");
+                            
+                            localStorageService.set("S-USER-LOCATION", address);
+                        }
+                    } else {
+                        localStorageService.set("S-USER-LOCATION", address);
+                    }
+                }
+            };
+
             this.save = function (address) {
                 if (localStorageService.isSupported) {
                     

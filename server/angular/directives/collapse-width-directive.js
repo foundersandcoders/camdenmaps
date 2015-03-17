@@ -17,9 +17,6 @@
 
                     // Ensure loading of element is still 100% of page.
                     if (screen.width < 768) {
-                        var catContainer = $("#category-title-of-services");
-                        catContainer.width($window.innerWidth);
-                    
 
                         var initialAnimSkip = true;
                         var currentTransition;
@@ -57,7 +54,7 @@
                     function expandDone() {
                         element.removeClass("collapsing-width");
                         element.addClass("collapse in");
-                        element.css({width: "auto"});
+                        element.css({width: "100%"});
                     }
 
                     function collapse() {

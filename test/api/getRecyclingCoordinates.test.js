@@ -105,7 +105,7 @@ test("getRecyclingCoordinates has makeRequest function", function(t) {
 test("makeRequest should add latitude and longitude to req.app if result contains it", function(t) {
 
     function requester (uri, cb) {
-        cb(null, null, require("../fixtures/parking.mock.js"));
+        cb(null, null, require("../fixtures/parking.xml.js"));
     }
 
     var req = {
@@ -152,7 +152,7 @@ test("makeRequest should add latitude and longitude to req.app if result contain
 test("makeRequest should continue without changing req.app if result doesn't contain latitude/longitude", function(t) {
 
     function requester (uri, cb) {
-        cb(null, null, require("../fixtures/parking.mock.js"));
+        cb(null, null, require("../fixtures/parking.xml.js"));
     }
 
     var req = {

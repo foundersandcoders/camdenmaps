@@ -7,7 +7,7 @@ exports.config = {
     "../performance/performance.all.js"
   ],
  
- seleniumAddress: 'http://localhost:4444/wd/hub',
+ // seleniumAddress: 'http://localhost:4444/wd/hub',
  
  capabilities: {'browserName' : 'chrome'},
 
