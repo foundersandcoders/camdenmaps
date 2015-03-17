@@ -28,7 +28,7 @@ retry = require('webdriverjs-retry');
 
 	        it("are displayed", function() {
 
-	            var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
+	            var leafletmarkers = element.all(by.css('img.leaflet-marker-icon'));
 
 	        	expect(leafletmarkers.get(0).isDisplayed()).toBe(true);
 	        	expect(leafletmarkers.count()).toBeGreaterThan(1);
@@ -52,8 +52,6 @@ retry = require('webdriverjs-retry');
             });
 
         	it("marker links with view", function() {
-	        	
-	        	browser.manage().window().setSize(1600, 1000);
 
 	        	var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
 
@@ -76,15 +74,13 @@ retry = require('webdriverjs-retry');
 	        describe("when clicking through markers", function() {
 
 	        	it("only one marker is active", function() {
-	        		
-	        		browser.manage().window().setSize(1600, 1000);
 
 	        		var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
 
 	        		var firstM = leafletmarkers.get(0);
 	        		var secondMarker = leafletmarkers.get(2);
 
-					retry.run(function(){
+					retry .run(function(){
 						firstM.click();
 					}, 5000).then(function(){
 						retry.run(function(){

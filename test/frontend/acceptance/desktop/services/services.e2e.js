@@ -174,11 +174,17 @@ geolocationTests = require('../../geolocation/geolocation.e2e.js');
 					        });
 						});
 
-						describe(" (imported tests) ", function () {
+						describe(" address Typeahead Tests", function () {
 	        				addressTypeaheadTests();
+		            	});
+		            	describe(" address Search List Tests", function () {
 		            		addressSearchListTests();
+		            	});
+		            	describe(" mapMarkerTests ", function () {
 		            		mapMarkerTests();
-		            		// geolocationTests();
+		            	});
+		            	describe(" geolocation Tests", function () {
+		            		geolocationTests();
 		            	});
 		            });
             	}

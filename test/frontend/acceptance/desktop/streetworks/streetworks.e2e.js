@@ -73,7 +73,6 @@ addressFoundListTests = require('../../list/address-found-list.e2e.js');
 		});
 
 		it("redirects to streetworks when you click on the streetworks icon", function(){
-			//click on button
 			streetworksButton.click();
 			var url = browser.getCurrentUrl();
 		
@@ -88,6 +87,10 @@ addressFoundListTests = require('../../list/address-found-list.e2e.js');
 			browser.get(homeUrl);		
 			streetworksButton.click();
 		});
+
+		afterEach(function () {
+		    browser.executeScript('window.localStorage.clear();');
+		});
 	
 		describe(" has been clicked on", function() {
 			
@@ -100,13 +103,10 @@ addressFoundListTests = require('../../list/address-found-list.e2e.js');
 	describe("once an address has been entered", function() {
 
 		beforeEach(function() {
-			browser.manage().window().setSize(1600, 1000);
-			browser.get(homeUrl);
-			streetworksButton.click();
 			var input = element(by.tagName('input'));
-						input.sendKeys('NW1 0NE');
-						input.sendKeys(protractor.Key.ENTER);
-						input.sendKeys(protractor.Key.ENTER);
+			input.sendKeys('NW1 0NE');
+			input.sendKeys(protractor.Key.ENTER);
+			input.sendKeys(protractor.Key.ENTER);
 
 		});
 
