@@ -29,6 +29,7 @@
 
     }
 
+    
     function createQuery(req) {
 
         var uri = serverConfig.map.url.parkingApi;
@@ -48,19 +49,22 @@
 
     }
 
+    
     function makeRequest (req, requester, responseParser, res) {
-
 
         var uri = createQuery(req);
 
         requester(uri, function(err, head, body) {
+ 
             responseParser(body, function parseForCoordinates (err, result) {
 
                 if(!err && result.Locations.$.hasOwnProperty("Lat")
                    && result.Locations.$.hasOwnProperty("Lng")) {
 
                     req.app.latitude = result.Locations.$.Lat;
+ 
                     req.app.longitude = result.Locations.$.Lng;
+ 
                     return res.continue();
 
                 } else {

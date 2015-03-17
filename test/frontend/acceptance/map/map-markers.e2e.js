@@ -8,15 +8,12 @@ var Config,
 	baseUrl,
 	activeMarkerSrc,
 	inactiveMakerSrc,
-	leafletmarkers,
-	retry;
+	leafletmarkers;
 
 Config = require("../config.js");
 baseUrl = Config.path.main;
 activeMarkerSrc = Config.markers.active;
 inactiveMarkerSrc = Config.markers.inactive;
-
-retry = require('webdriverjs-retry');
 
 
 (function () {
@@ -28,7 +25,7 @@ retry = require('webdriverjs-retry');
 
 	        it("are displayed", function() {
 
-	            var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
+	            var leafletmarkers = element.all(by.css('img.leaflet-marker-icon'));
 
 	        	expect(leafletmarkers.get(0).isDisplayed()).toBe(true);
 	        	expect(leafletmarkers.count()).toBeGreaterThan(1);
@@ -52,44 +49,35 @@ retry = require('webdriverjs-retry');
             });
 
         	it("marker links with view", function() {
-	        	
-	        	browser.manage().window().setSize(1600, 1000);
 
 	        	var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
 
 	        	var firstMarker = leafletmarkers.get(0);
 
-	        	retry.run(function(){
-
-	        		firstMarker.click().then(function(){
-		        		var singleView = element.all(by.css('.single-view-info')).get(0);
-		        		var icon = firstMarker.getAttribute("src");
+        		firstMarker.click().then(function(){
+	        		var singleView = element.all(by.css('.single-view-info')).get(0);
+	        		var icon = firstMarker.getAttribute("src");
 
 
-		        		expect(icon).toEqual(baseUrl + activeMarkerSrc); 
-		        		expect(singleView.isDisplayed()).toBe(true);
-		        	});
-		        }, 5000); 	
+	        		expect(icon).toEqual(baseUrl + activeMarkerSrc); 
+	        		expect(singleView.isDisplayed()).toBe(true);
+	        	});	
 	        });
 
 
 	        describe("when clicking through markers", function() {
 
 	        	it("only one marker is active", function() {
-	        		
-	        		browser.manage().window().setSize(1600, 1000);
 
 	        		var leafletmarkers = element.all(by.css('.leaflet-marker-icon'));
 
 	        		var firstM = leafletmarkers.get(0);
 	        		var secondMarker = leafletmarkers.get(2);
 
-					retry.run(function(){
-						firstM.click();
-					}, 5000).then(function(){
-						retry.run(function(){
-							secondMarker.click();
-						}, 5000).then(function() {
+						firstM.click().then(function(){
+
+							secondMarker.click().then(function() {
+
 							var inactiveMarker = firstM.getAttribute("src"); 
 							var activeMarker = secondMarker.getAttribute("src"); 
 		        			

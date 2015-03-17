@@ -76,7 +76,6 @@ function linkResultToMarker(scope, markerName) {
                                             iconUrl: "../img/icons/location-marker.png"
                                         },
                                 
-                                        //not sure this is necessary if we have a location symbol used 
                                         message: "Your location",
                                         focus: true,
                                         geolocation: true
@@ -156,16 +155,19 @@ function linkResultToMarker(scope, markerName) {
                                 closeOnClick: false
                              },
                              
-                            message: validate.cleanDisplayAddress($stateParams.address),
+                            message: validate.cleanDisplayAddress(scope.locationSelected.message),
                             icon: {
                                 iconUrl: "../img/icons/location-marker.png",
                                 iconSize: [28]
                             }
                         };
+
                     } 
                     scope.markers = {};
                     scope.update("markers", markers);
                 };
+
+
 
 
 			};

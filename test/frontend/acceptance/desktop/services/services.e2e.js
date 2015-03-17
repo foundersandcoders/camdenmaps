@@ -174,12 +174,10 @@ geolocationTests = require('../../geolocation/geolocation.e2e.js');
 					        });
 						});
 
-        				describe(" (imported tests) ", function () {
-	        				addressTypeaheadTests();
-		            		addressSearchListTests();
-		            		mapMarkerTests();
-		            		// geolocationTests();
-		            	});
+						mapMarkerTests();
+	        			addressTypeaheadTests();
+		            	ddressSearchListTests();
+		            	geolocationTests();
 		            });
             	}
             	//To run for all services, please change 3 to 0 and 5 to servicelength

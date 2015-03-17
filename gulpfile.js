@@ -44,7 +44,7 @@
 
     gulp.task("webdriver_update", webdriver_update);
 
-    gulp.task("e2e-local", ["build", "webdriver_update"],function () {
+    gulp.task("e2e-local", ["webdriver_update"],function () {
         nodemon({
             script: "server/server.js",
             ext: "html js",
@@ -73,7 +73,6 @@
         "./node_modules/tape/bin/tape ./test/frontend/unit/*.js | ./node_modules/.bin/tap-spec"
     ]));
 
-    //task for lab test
     gulp.task("server-integration", shell.task([
         "./node_modules/tape/bin/tape ./test/api/integration/*.js | ./node_modules/.bin/tap-spec"
     ]));
@@ -110,7 +109,7 @@
         });
     });
 
-    gulp.task("test", ["e2e", "load-test", "unit-test", "server-integration", "server-unit"], function() {
+    gulp.task("test", ["e2e-local", "load-test", "unit-test", "server-integration", "server-unit"], function() {
         return console.log("done testing");
     });
 
@@ -180,7 +179,6 @@
         return console.log("done building");
     });
 
-    //TODO: run tests?
     gulp.task("travis", function () {
         console.log("Ready to Deploy");
     });

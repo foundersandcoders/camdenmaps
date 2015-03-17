@@ -70,7 +70,8 @@
 
                         if (postcode !== address && 
                             street !== address &&
-                            uprn !== address) {
+                            uprn !== address &&
+                            address !== "your location") {
 
                             localStorageService.remove("userLocation");
                             localStorageService.remove("USER-LOCATION");

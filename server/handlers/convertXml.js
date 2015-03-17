@@ -1,20 +1,19 @@
 
 ;(function() {
     "use strict";
-    // module for converting XML to JSON
+
     var config = require("../config/serverConfig.js");
     var cache = require("../lib/cacheprotocol.js");
     var cap = require("../lib/capitalize.js");
     var serviceArrays = config.map.serviceArrays;
-    //strips html from obj (depth of 1 only)
     var parsers = require("../lib/parsers.js");
 
     function parserRouter (converter, cacheInj) {
+        
         return function convertXml (err, res, req, rep) {
 
             cacheInj = cacheInj || cache;
             converter = converter || parsers.whichParser(req.params.service);
-
             var xml, response, key;
 
             if (err) {
@@ -27,8 +26,8 @@
             });
 
             res.on("end", function() {
-                response = converter(xml, req.params.service);
 
+                response = converter(xml, req.params.service);
                 if (req.app.hasOwnProperty("latitude") && req.app.hasOwnProperty("longitude")) {
 
                     response.location.Latitude = req.app.latitude;
@@ -44,6 +43,7 @@
 
                 key = req.raw.req.url;
                 return cacheInj.setCache(key, response, rep);
+                
             });
         };
     }
