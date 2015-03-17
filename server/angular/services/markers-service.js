@@ -76,9 +76,9 @@ function linkResultToMarker(scope, markerName) {
                                             iconUrl: "../img/icons/location-marker.png"
                                         },
                                 
+                                        //not sure this is necessary if we have a location symbol used 
                                         message: "Your location",
                                         focus: true,
-                                        //used in if statment to pass lat and lng into api call
                                         geolocation: true
                                     };
 
@@ -162,6 +162,8 @@ function linkResultToMarker(scope, markerName) {
                                 iconSize: [28]
                             }
                         };
+
+                        console.log("message", markers.m0.message);
                     } 
                     scope.markers = {};
                     scope.update("markers", markers);

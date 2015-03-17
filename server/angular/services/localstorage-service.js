@@ -70,15 +70,14 @@
 
                         if (postcode !== address && 
                             street !== address &&
-                            uprn !== address &&
-                            address !== "your location") {
+                            uprn !== address) {
 
                             localStorageService.remove("userLocation");
                             localStorageService.remove("USER-LOCATION");
                             
                             localStorageService.set("S-USER-LOCATION", address);
                         }
-                    } else if (address !== "your location") {
+                    } else {
                         localStorageService.set("S-USER-LOCATION", address);
                     }
                 }

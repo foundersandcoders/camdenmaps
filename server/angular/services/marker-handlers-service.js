@@ -62,10 +62,7 @@
                     //resets any existing highlighted marker 
                     resetActiveMarker(scope);                  
 
-                    if(args.markerName !== "m0") {
-                        activateListItem(args, scope, scope.markers[args.markerName].name);
-                    }
-                    
+                    activateListItem(args, scope, scope.markers[args.markerName].name);
 
                 };
             };

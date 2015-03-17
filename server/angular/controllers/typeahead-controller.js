@@ -202,7 +202,7 @@ function getObject (array, selected) {
                            
                         service = $stateParams.service || 'streetworks';
 
-                        if(address === "your location" && mapMarkers.m0 && mapMarkers.m0.geolocation) {
+                        if(address === "your location" && mapMarkers.m0.geolocation) {
                             lat = gLat;
                             lng = gLng;
                         } else {
