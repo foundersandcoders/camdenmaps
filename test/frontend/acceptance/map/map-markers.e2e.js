@@ -80,12 +80,10 @@ retry = require('webdriverjs-retry');
 	        		var firstM = leafletmarkers.get(0);
 	        		var secondMarker = leafletmarkers.get(2);
 
-					retry .run(function(){
-						firstM.click();
-					}, 5000).then(function(){
-						retry.run(function(){
-							secondMarker.click();
-						}, 5000).then(function() {
+						firstM.click().then(function(){
+
+							secondMarker.click().then(function() {
+
 							var inactiveMarker = firstM.getAttribute("src"); 
 							var activeMarker = secondMarker.getAttribute("src"); 
 		        			

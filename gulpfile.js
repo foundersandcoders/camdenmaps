@@ -22,9 +22,9 @@
         serverTestFiles = ["./test/api/*.js"],
         htmlFiles = ["./server/angular/partials/*.html"],
         protractorTestFiles = [
-            // "./test/frontend/acceptance/desktop/landing.e2e.js",
-            // "./test/frontend/acceptance/desktop/services/categories.e2e.js",
-            // "./test/frontend/acceptance/desktop/services/services.e2e.js",
+            "./test/frontend/acceptance/desktop/landing.e2e.js",
+            "./test/frontend/acceptance/desktop/services/categories.e2e.js",
+            "./test/frontend/acceptance/desktop/services/services.e2e.js",
             "./test/frontend/acceptance/desktop/streetworks/streetworks.e2e.js",
             "./test/frontend/acceptance/desktop/neighbourhood/neighbourhood.e2e.js"
         ],
@@ -181,7 +181,6 @@
     });
 
     //task for travis
-    //TODO: run tests?
     gulp.task("travis", function () {
         console.log("Ready to Deploy");
     });
