@@ -54,6 +54,10 @@
 
     gulp.task('webdriver_update', webdriver_update);
 
+    gulp.task('webdriver_start', shell.task([
+        "webdriver-manager start"
+    ]));
+
     //Runs on SauceLabs
     gulp.task("e2e-local", ["webdriver_update"],function () {
         return gulp.src(protractorTestFiles)
@@ -83,9 +87,11 @@
         "./node_modules/tape/bin/tape ./test/api/*.test.js | ./node_modules/.bin/tap-spec"
     ]));    
 
-    gulp.task("performance", shell.task([
-        "webriver-manager start | node_modules/.bin/protractor-perf ./test/frontend/config/performance.conf.js"
-    ]));
+    gulp.task("performance", ["webdriver_update", "webdriver_start"], function(){
+        return shell.task([
+            "node_modules/.bin/protractor-perf ./test/frontend/config/performance.conf.js"
+        ]);
+    });
 
     gulp.task("e2e", function() {
         sauceConnectLauncher({

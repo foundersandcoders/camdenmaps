@@ -10,7 +10,8 @@ var ProtractorPerf,
 	searchButton,
 	listResults,
 	baseUrl,
-	neighbourhood;
+	neighbourhood,
+	streetworks;
 
 
 
@@ -27,6 +28,7 @@ searchButton = element.all(by.tagName('button')).get(0);
 listResults = element.all(by.repeater('result in results'));
 baseUrl = Config.path.main;
 neighbourhood = neighbourhood = element.all(by.repeater('button in buttons')).get(1);
+streetworks = streetworks = element.all(by.repeater('button in buttons')).get(2);
 
 
 						
@@ -42,8 +44,8 @@ neighbourhood = neighbourhood = element.all(by.repeater('button in buttons')).ge
 			browser.get(Config.path.home);
 		});
 
-		afterEach(function(){
-			localStorage.clear();
+		afterEach(function () {
+		    browser.executeScript('window.localStorage.clear();');
 		});
 
 		it("to find services ", function() {
@@ -75,7 +77,7 @@ neighbourhood = neighbourhood = element.all(by.repeater('button in buttons')).ge
 			perf.start();
 
 			neighbourhood.click();
-			input.sendKeys("NW1 ONE");
+			input.sendKeys("NW1 0NE");
 			searchButton.click();
 
 			perf.stop().then(function(data) {
@@ -88,9 +90,25 @@ neighbourhood = neighbourhood = element.all(by.repeater('button in buttons')).ge
 		});
 
 
-		// it("to find information on streetworks ")
+		it("to find information on streetworks ", function(){
 
-		// })
+			perf.start();
+
+			streetworks.click();
+			input.sendKeys("NW1 0NE");
+			searchButton.click();
+
+			perf.stop().then(function(data) {
+				console.log("streetworks", data);
+			});
+
+			browser.getCurrentUrl().then(function (url) {
+				expect(url).toEqual(baseUrl + "#/home/streetworks/location/NW1%200NE");
+            });
+
+		});
+
+
 	});
 
 }());
