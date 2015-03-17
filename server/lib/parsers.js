@@ -1,7 +1,6 @@
 ;(function() {
     "use strict";
 
-    // module for converting XML to JSON
     var xml2js = require("xml2js");
     var parser = new xml2js.Parser();
     var cap = require("../lib/capitalize.js");
