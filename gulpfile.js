@@ -87,11 +87,9 @@
         "./node_modules/tape/bin/tape ./test/api/*.test.js | ./node_modules/.bin/tap-spec"
     ]));    
 
-    gulp.task("performance", ["webdriver_update", "webdriver_start"], function(){
-        return shell.task([
-            "node_modules/.bin/protractor-perf ./test/frontend/config/performance.conf.js"
-        ]);
-    });
+    gulp.task("performance", shell.task([
+        "node_modules/.bin/protractor-perf ./test/frontend/config/performance.conf.js"
+    ]));
 
     gulp.task("e2e", function() {
         sauceConnectLauncher({
