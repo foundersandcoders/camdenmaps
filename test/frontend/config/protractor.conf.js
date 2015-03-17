@@ -62,15 +62,15 @@ exports.config = {
       "name": "App Tests",
      "max-duration": 10800
     },
-    // {
-    //   "browserName": "internet explorer",
-    //   "platform": "Windows 7",
-    //   "version": "11.0",
-    //   "tunnel-identifier": (process.env.TRAVIS) ? process.env.TRAVIS_JOB_NUMBER : process.env.TUNNEL_ID,
-    //   "build": process.env.TRAVIS_BUILD_NUMBER,
-    //   "name": "App Tests",
-    //  "max-duration": 10800
-    // }
+    {
+      "browserName": "internet explorer",
+      "platform": "Windows 7",
+      "version": "11.0",
+      "tunnel-identifier": (process.env.TRAVIS) ? process.env.TRAVIS_JOB_NUMBER : process.env.TUNNEL_ID,
+      "build": process.env.TRAVIS_BUILD_NUMBER,
+      "name": "App Tests",
+     "max-duration": 10800
+    }
   ],
 
   baseUrl: Config.path.main,
