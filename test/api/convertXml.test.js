@@ -3,7 +3,7 @@ var convertXml = require("../../server/handlers/convertXml.js");
 var parsers = require("../../server/lib/parsers.js");
 
 var parser = function (xml) {
-    var json = xml;
+    var json = {test:"mockdata", location: {}};
     return json;
 };
 
@@ -39,21 +39,78 @@ test("convertXml should add latitude and longitude properties to response.app if
             latitude: 20,
             longitude: 10
         },
-        params: {}
+        params: {},
+        raw: { req: { url: "hello" } }
     };
     var res = {
         on: function(ev, cb) {
-            cb({test:"mockdata", location: {}})
+            cb()
         }
     };
     var cache = {
         setCache: function (key, response, rep) {
-            t.ok(response.hasOwnProperty("latitude"), "response has latitude");
-            t.ok(response.hasOwnProperty("longitude"), "response has latitude");
+            t.ok(response.location.hasOwnProperty("Latitude"), "response has latitude");
+            t.ok(response.location.hasOwnProperty("Longitude"), "response has latitude");
         }
     };
     var convert = convertXml.parserRouter(parser, cache);
     convert(null, res, req, null);
 
+
+});
+
+
+test("convertXml should call cache.setCache() at the end if no errors", function(t) {
+
+    var req = {
+        app: {
+            latitude: 20,
+            longitude: 10
+        },
+        params: {},
+        raw: { req: { url: "hello" } }
+    };
+    var res = {
+        on: function(ev, cb) {
+            cb()
+        }
+    };
+    var cache = {
+        setCache: function (key, response, rep) {
+            t.ok(true, "setCache called");
+            t.end();
+        }
+    };
+    var convert = convertXml.parserRouter(parser, cache);
+    convert(null, res, req, null);
+
+});
+
+test("convertXml should return error if not recycling service AND doesn't have location details", function(t) {
+
+    var req = {
+        app: {},
+        params: {
+            service: "Lunch club"
+        },
+        raw: { req: { url: "hello" } }
+    };
+    var res = {
+        on: function(ev, cb) {
+            cb()
+        }
+    };
+    var cache = {
+        setCache: function (key, response, rep) {
+            t.ok(true, "setCache called");
+            t.end();
+        }
+    };
+    var rep = function(response) {
+        t.ok(response.hasOwnProperty("error"), "error returned to client");
+        t.end();
+    };
+    var convert = convertXml.parserRouter(parser, cache);
+    convert(null, res, req, rep);
 
 });

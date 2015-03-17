@@ -14,7 +14,6 @@
 
             cacheInj = cacheInj || cache;
             converter = converter || parsers.whichParser(req.params.service);
-
             var xml, response, key;
 
             if (err) {
@@ -27,8 +26,8 @@
             });
 
             res.on("end", function() {
-                response = converter(xml, req.params.service);
 
+                response = converter(xml, req.params.service);
                 if (req.app.hasOwnProperty("latitude") && req.app.hasOwnProperty("longitude")) {
 
                     response.location.Latitude = req.app.latitude;
