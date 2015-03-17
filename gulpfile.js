@@ -83,64 +83,9 @@
         "./node_modules/tape/bin/tape ./test/api/*.test.js | ./node_modules/.bin/tap-spec"
     ]));    
 
-    // gulp.task("performance", shell.task([
-    //     "node_modules/.bin/protractor-perf ./test/frontend/config/performance.conf.js"
-    // ]));
-
-    //Runs on SauceLabs
-        gulp.task("performance", function() {
-        sauceConnectLauncher({
-            username: creds.uname,
-            accessKey: creds.aKey
-        }, function (err, sauceConnectProcess) {
-            if (err) {
-              console.error(err.message);
-              return;
-            }
-            gulp.src(performanceFile)
-                .pipe(protractor({
-                    configFile: "./test/frontend/config/performance.conf.js"
-                }))
-                .on("error", function(e) {
-                    sauceConnectProcess.close(function () {
-                    console.log("Closed Sauce Connect process");
-                });
-                throw e;
-            })
-            .on("end", function(e) {
-                sauceConnectProcess.close(function () {
-                    console.log("Closed Sauce Connect process");
-                });
-            });
-        });
-    });
-
-    gulp.task("e2e", function() {
-        sauceConnectLauncher({
-            username: creds.uname,
-            accessKey: creds.aKey
-        }, function (err, sauceConnectProcess) {
-            if (err) {
-              console.error(err.message);
-              return;
-            }
-            gulp.src(protractorTestFiles)
-                .pipe(protractor({
-                    configFile: "./test/frontend/config/protractor.conf.js"
-                }))
-                .on("error", function(e) {
-                    sauceConnectProcess.close(function () {
-                    console.log("Closed Sauce Connect process");
-                });
-                throw e;
-            })
-            .on("end", function(e) {
-                sauceConnectProcess.close(function () {
-                    console.log("Closed Sauce Connect process");
-                });
-            });
-        });
-    });
+    gulp.task("performance", shell.task([
+        "node_modules/.bin/protractor-perf ./test/frontend/config/performance.conf.js"
+    ]));    
 
     gulp.task("test", ["e2e", "load-test", "unit-test", "server-integration", "server-unit"], function() {
         return console.log("done testing");

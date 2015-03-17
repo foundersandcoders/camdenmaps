@@ -35,6 +35,12 @@ To run acceptance tests, use command:
 gulp test
 ```
 
+To view performance metrics, start up a selenium server [webdriver-manager start] then use command: 
+
+```
+gulp performance
+```
+
 If you prefer to run all the tests individually, please use these commands:
 
 To run server tests:
