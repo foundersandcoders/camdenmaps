@@ -84,7 +84,7 @@
     ]));    
 
     gulp.task("performance", shell.task([
-        "node_modules/.bin/protractor-perf ./test/frontend/config/performance.conf.js"
+        "webriver-manager start | node_modules/.bin/protractor-perf ./test/frontend/config/performance.conf.js"
     ]));
 
     gulp.task("e2e", function() {
