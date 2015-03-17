@@ -45,7 +45,6 @@ function hasPollingStation (data) {
         function (apiSearch, httpq, localstorage, $stateParams, $location, markers, locationCheck, validate) {
 
             var resetActiveMarker = require("../lib/reset-active-marker.js");
-            var centreLocation;
             var path;
             var pollingStationCoordinates;
 
@@ -79,8 +78,6 @@ function hasPollingStation (data) {
 
                             resetActiveMarker(scope);
 
-                            centreLocation = data.location;
-
                             if ($location.path().indexOf("/streetworks") > -1) {
 
                                 path = "/home/streetworks/location/" + address;
@@ -95,6 +92,12 @@ function hasPollingStation (data) {
                                     $location.path(path);
                                 
                             }
+
+                            scope.update("centre", {
+                                lat: Number(data.location.Latitude),
+                                lng: Number(data.location.Longitude),
+                                zoom: markers.zoomCheck(scope)()
+                            });
                         }
                     })
                     .error(function () {
