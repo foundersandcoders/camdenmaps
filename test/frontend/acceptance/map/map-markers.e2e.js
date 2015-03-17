@@ -8,15 +8,12 @@ var Config,
 	baseUrl,
 	activeMarkerSrc,
 	inactiveMakerSrc,
-	leafletmarkers,
-	retry;
+	leafletmarkers;
 
 Config = require("../config.js");
 baseUrl = Config.path.main;
 activeMarkerSrc = Config.markers.active;
 inactiveMarkerSrc = Config.markers.inactive;
-
-retry = require('webdriverjs-retry');
 
 
 (function () {
@@ -57,17 +54,14 @@ retry = require('webdriverjs-retry');
 
 	        	var firstMarker = leafletmarkers.get(0);
 
-	        	retry.run(function(){
-
-	        		firstMarker.click().then(function(){
-		        		var singleView = element.all(by.css('.single-view-info')).get(0);
-		        		var icon = firstMarker.getAttribute("src");
+        		firstMarker.click().then(function(){
+	        		var singleView = element.all(by.css('.single-view-info')).get(0);
+	        		var icon = firstMarker.getAttribute("src");
 
 
-		        		expect(icon).toEqual(baseUrl + activeMarkerSrc); 
-		        		expect(singleView.isDisplayed()).toBe(true);
-		        	});
-		        }, 5000); 	
+	        		expect(icon).toEqual(baseUrl + activeMarkerSrc); 
+	        		expect(singleView.isDisplayed()).toBe(true);
+	        	});	
 	        });
 
 

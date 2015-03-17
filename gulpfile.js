@@ -73,7 +73,6 @@
         "./node_modules/tape/bin/tape ./test/frontend/unit/*.js | ./node_modules/.bin/tap-spec"
     ]));
 
-    //task for lab test
     gulp.task("server-integration", shell.task([
         "./node_modules/tape/bin/tape ./test/api/integration/*.js | ./node_modules/.bin/tap-spec"
     ]));
