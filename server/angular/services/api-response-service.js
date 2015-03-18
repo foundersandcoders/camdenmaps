@@ -53,6 +53,11 @@ function hasPollingStation (data) {
 
                 apiSearch.search(service, address, lat, lng)
                     .success(function success (data) {
+                        console.log('address', address);
+
+                        console.log(validate.checkValidAddress(address));
+                        
+
                         if(data.hasOwnProperty("error")) {
                             return scope.updateError(data.message);
                         } else {

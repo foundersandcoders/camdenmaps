@@ -8,7 +8,8 @@ var menu = require("../menu.json");
     "use strict";
 
     module.exports = [
-        function () {
+        "$http",
+        function ($http) {
 
             this.service = function (service) {
 
@@ -17,6 +18,17 @@ var menu = require("../menu.json");
                 });
                 return (match.length >= 1);
             };
+
+            this.checkValidAddress = function (address) {
+                $http.get("/uprn/" + address).success(function (res) {
+
+                    if((/\d{7}$/).test(res)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+            }
 
             this.isWithinCamden = function (latitude, longitude) {
                 //coordinates represent a square around Camden to roughly test if location is inside boundary
