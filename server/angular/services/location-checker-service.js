@@ -30,6 +30,8 @@
                 if (($location.path().indexOf("/streetworks") > -1)||
                     (($location.path().indexOf("/neighbourhood") === -1) && 
                     ($location.path().indexOf("/location") > -1)) || 
+                    ($location.path().indexOf("neighbourhood") === -1) &&
+                    ($location.path().indexOf("neighbourhood-found") === -1) ||
                     ($location.path().indexOf("/search") > -1)) {
             
                      return true;

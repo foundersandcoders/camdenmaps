@@ -217,8 +217,10 @@ function getObject (array, selected) {
                 } else if ($location.path().indexOf("neighbourhood") > -1) {
 
                     var uprn = $stateParams.uprn || address;
-                    if (!$stateParams.uprn) {
-                        $http.get("/uprn/" + uprn).success(function(res) {
+
+                    if (!$stateParams.uprn || $stateParams.uprn !== address) {
+                        $http.get("/uprn/" + address).success(function(res) {
+
                             if((/\d{7}$/).test(res)) {
                                 var path = "/home/neighbourhood-found/" + res;
                                 $location.path(path);

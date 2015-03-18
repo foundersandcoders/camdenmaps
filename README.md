@@ -1,6 +1,6 @@
 camdenmaps
 ==========
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/foundersandcoders/camdenmaps?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/foundersandcoders/camdenmaps.svg?branch=master)](https://travis-ci.org/foundersandcoders/camdenmaps) [![Code Climate](https://codeclimate.com/github/foundersandcoders/camdenmaps/badges/gpa.svg)](https://codeclimate.com/github/foundersandcoders/camdenmaps)[![Test Coverage](https://codeclimate.com/github/foundersandcoders/camdenmaps/badges/coverage.svg)](https://codeclimate.com/github/foundersandcoders/camdenmaps)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/foundersandcoders/camdenmaps?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/foundersandcoders/camdenmaps.svg?branch=master)](https://travis-ci.org/foundersandcoders/camdenmaps) [![Code Climate](https://codeclimate.com/github/foundersandcoders/camdenmaps/badges/gpa.svg)](https://codeclimate.com/github/foundersandcoders/camdenmaps)
 
  
 maps.camden.gov.uk site
@@ -16,6 +16,14 @@ install:
 ```
 npm install gulp -g
 npm install
+```
+
+Inside ```test/frontend/config```, create a file named ```sauce.conf.json``` containing:
+```
+{
+    "uname": "<your saucelabs username>",
+    "akey": "<your saucelabs accesskey>"
+}
 ```
 
 and use command:
@@ -36,12 +44,22 @@ To run acceptance tests, use command:
 gulp test
 ```
 
+To view performance metrics, start up a selenium server [webdriver-manager start] then use command: 
+
+```
+gulp performance
+```
+
 If you prefer to run all the tests individually, please use these commands:
 
 To run server tests:
 
 ```
-gulp server-test
+gulp server-unit
+```
+and
+```
+gulp server-integration
 ```
 
 To run unit tests, use command: 
@@ -80,11 +98,4 @@ gulp sass-dev
 
 ### Travis
 
-Before deploying to Travis, make sure to run `gulp build`. Travis is set up so that it runs
-
-```
-gulp travis
-```
-
-
-before deploying. 
+Before deploying to Travis, make sure to run `gulp build`. This compiles the sass, html, and angular files and minifies them before deploying.

@@ -2,17 +2,79 @@
 
 var browserPerf = require('browser-perf');
 
-// Command line usage to geneate tmp config file
-if (process.argv.length >= 2 && process.argv[2] === '--config') {
-	var fs = require('fs'),
-		path = require('path');
+var ProtractorPerf = function(protractor, browser) {
+	this.sessionId = null;
+	this.protractor = protractor;
+	this.browser = browser;
 
-	var configFile = process.argv[3];
-	if (!configFile) {
-		throw 'Specify Protractor Configuration file';
+	var conf = browser.params;
+	if (conf.perf) {
+		this.isEnabled = true;
+		this.browserPerfRunner = new browserPerf.runner(conf.perf);
 	}
-	var cfg = require('./' + configFile).config;
+};
 
+ProtractorPerf.prototype.callBrowserPerfRunner_ = function(method, sessionId) {
+	var d = this.protractor.promise.defer();
+	if (typeof this.browserPerfRunner === 'undefined') {
+		d.fulfill();
+	} else {
+		var cb = function(err, data) {
+			if (err) {
+				d.reject(err);
+			} else {
+				d.fulfill(data);
+			}
+		};
+		if (typeof sessionId === 'undefined') { // for stop
+			sessionId = cb;
+			cb = undefined;
+		}
+		this.browserPerfRunner[method](sessionId, cb);
+	}
+	return d.promise;
+};
+
+ProtractorPerf.prototype.getSession_ = function() {
+	if (this.sessionId) {
+		return this.protractor.promise.fulfilled(this.sessionId);
+	} else {
+		return this.browser.driver.getSession().then(function(session) {
+			this.sessionId = session.getId();
+			return this.protractor.promise.fulfilled(this.sessionId);
+		}.bind(this));
+	}
+};
+
+function insideControlFlow(fn) {
+	return function() {
+		var args = arguments;
+		return this.browser.controlFlow().execute(function() {
+			return fn.apply(this, args);
+		}.bind(this));
+	}
+}
+
+ProtractorPerf.prototype.start = insideControlFlow(function() {
+	return this.getSession_().then(function(sessionId) {
+		return this.callBrowserPerfRunner_('start', sessionId);
+	}.bind(this));
+});
+
+ProtractorPerf.prototype.stop = insideControlFlow(function() {
+	return this.callBrowserPerfRunner_('stop').then(function(data) {
+		this.stats_ = data || {};
+		return this.protractor.promise.fulfilled(data);
+	}.bind(this));
+});
+
+ProtractorPerf.prototype.getStats = insideControlFlow(function(metric) {
+	return this.protractor.promise.fulfilled(typeof metric === 'undefined' ? this.stats_ : this.stats_[metric]);
+});
+
+
+module.exports = ProtractorPerf;
+module.exports.getConfig = function(cfg, cb) {
 	var runner = new browserPerf.runner({
 		selenium: cfg.seleniumAddress,
 		browsers: [cfg.capabilities]
@@ -22,61 +84,8 @@ if (process.argv.length >= 2 && process.argv[2] === '--config') {
 		cfg.capabilities = data.browsers[0];
 		cfg.params = cfg.params || {};
 		cfg.params.perf = data;
-		console.log('Configuration written to', path.basename(configFile) + '.tmp', 'Run protractor with this new file now');
-		require('fs').writeFileSync(path.basename(configFile) + '.tmp', 'exports.config=' + JSON.stringify(cfg));
-	});
-}
-
-// Exported code used inside the test cases
-
-var PerfRunner = function(cfg) {
-	this.browserPerfRunner = new browserPerf.runner(cfg);
-	this.sessionId = null;
-}
-
-PerfRunner.prototype.start = function() {
-	var me = this,
-		flow = protractor.promise.controlFlow();
-
-	return flow.execute(function() {
-		var d = protractor.promise.defer();
-		(function() {
-			if (me.sessionId === null) {
-				return browser.getSession().then(function(session) {
-					return protractor.promise.fulfilled(session.getId());
-				});
-			} else {
-				return protractor.promise.fulfilled(me.sessionId);
-			}
-		}()).then(function(sessionId) {
-			me.sessionId = sessionId;
-			me.browserPerfRunner.start(me.sessionId, function(err, data) {
-				if (err) {
-					d.reject();
-				} else {
-					d.fulfill();
-				}
-			});
-		});
-		return d.promise
+		if (typeof cb === 'function') {
+			cb(cfg);
+		}
 	});
 };
-
-PerfRunner.prototype.stop = function() {
-	var me = this,
-		flow = protractor.promise.controlFlow();
-	return flow.execute(function() {
-		var d = protractor.promise.defer(),
-			flow = protractor.promise.controlFlow();
-		me.browserPerfRunner.stop(function(err, data) {
-			if (data) {
-				d.fulfill(data);
-			} else {
-				d.reject(err);
-			}
-		});
-		return d.promise;
-	});
-}
-
-module.exports = PerfRunner;
