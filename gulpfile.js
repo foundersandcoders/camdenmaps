@@ -2,7 +2,6 @@
     "use strict";
 
     var gulp = require("gulp"),
-        lab = require("gulp-lab"),
         protractor = require("gulp-protractor").protractor,
         webdriver_update = require("gulp-protractor").webdriver_update,
         sass = require("gulp-sass"),
@@ -64,7 +63,7 @@
             });
         });
     });
-    
+
     //Runs on SauceLabs
     gulp.task("e2e", function() {
         sauceConnectLauncher({
@@ -97,26 +96,22 @@
         "nab http://camdenmaps.herokuapp.com"
     ]));
 
-    //task for angular unit test
-    gulp.task("unit-test", shell.task([
-        "./node_modules/tape/bin/tape ./test/frontend/unit/*.js | ./node_modules/.bin/tap-spec"
-    ]));
-
     gulp.task("server-integration", shell.task([
-        "./node_modules/tape/bin/tape ./test/api/integration/*.js | ./node_modules/.bin/tap-spec"
+        "./node_modules/tape/bin/tape ./test/api/integration/*.test.js | ./node_modules/.bin/tap-spec"
     ]));
 
     gulp.task("server-unit", shell.task([
         "./node_modules/tape/bin/tape ./test/api/*.test.js | ./node_modules/.bin/tap-spec"
-    ]));    
+    ]));
 
     gulp.task("performance", shell.task([
         "node_modules/.bin/protractor-perf ./test/frontend/config/performance.conf.js"
-    ]));    
+    ]));
 
-    gulp.task("test", ["e2e", "load-test", "unit-test", "server-integration", "server-unit"], function() {
+    gulp.task("test", ["load-test", "unit-test", "server-integration", "server-unit"], function() {
         return console.log("done testing");
     });
+
 
 /*******************************
 *       COMPILING TASKS
