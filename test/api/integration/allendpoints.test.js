@@ -18,8 +18,6 @@ function whichArrays (service) {
 
 }
 
-console.log(whichArrays("lunch club"));
-
 function dataProperties () {
     var prop = {};
 
@@ -49,7 +47,6 @@ function checkService (service) {
 
         request(apiUrl + "/services/" + service, function(e, h, b) {
 
-            //console.log(b);
             var properties, location, firstProperty;
             b = JSON.parse(b);
 
@@ -150,11 +147,8 @@ function checkServiceAndStreetname (service, streetname) {
             });
 
             t.end();
-
         });
-
     });
-
 }
 
 server.start(function(){
@@ -168,7 +162,6 @@ server.start(function(){
             t.end();
 
         });
-
     });
 
 
