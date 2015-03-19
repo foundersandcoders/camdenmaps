@@ -41,6 +41,10 @@
 /*******************************
 *       TEST TASKS
 ********************************/
+    
+    gulp.task("wd-start", shell.task([
+        "./node_modules/.bin/webdriver-manager start"
+    ]));
 
     gulp.task("webdriver_update", webdriver_update);
 

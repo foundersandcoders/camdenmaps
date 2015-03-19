@@ -169,12 +169,6 @@ function getObject (array, selected) {
                                 } else {
 
                                     return response.data.map(function (item){
-                                        item.title = item.Unit + " " +
-                                            item.BuildingName + " " +
-                                            item.BuildingNumber + " " +
-                                            item.Street + " " +
-                                            item.Postcode;
-
                                         uprnArray.push(item);
                                         return item;
                                     });

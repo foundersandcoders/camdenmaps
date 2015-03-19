@@ -45,7 +45,7 @@ To view performance metrics, start up a selenium server:
 gulp wd-start
 ```
 
-and then use command:
+and then in another terminal, use command:
 
 ```
 gulp performance
