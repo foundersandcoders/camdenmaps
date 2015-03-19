@@ -108,7 +108,7 @@
         "node_modules/.bin/protractor-perf ./test/frontend/config/performance.conf.js"
     ]));
 
-    gulp.task("test", ["load-test", "unit-test", "server-integration", "server-unit"], function() {
+    gulp.task("test", ["load-test", "server-integration", "server-unit"], function() {
         return console.log("done testing");
     });
 
