@@ -27,7 +27,7 @@
             "./test/frontend/acceptance/desktop/streetworks/streetworks.e2e.js",
             "./test/frontend/acceptance/desktop/neighbourhood/neighbourhood.e2e.js"
         ],
-        performanceFile = ["./test/frontend/Performance/performance.all.js"],
+        performanceFile = ["./test/frontend/performance/performance.all.js"],
         sassFiles = ["./server/public/css/*.scss", "./server/public/css/*/*.scss"],
         allFiles = serverFiles.concat(angularFiles, htmlFiles, sassFiles);
 
