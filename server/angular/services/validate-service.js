@@ -20,14 +20,13 @@ var menu = require("../menu.json");
             };
 
             this.checkValidAddress = function (address) {
-                $http.get("/uprn/" + address).success(function (res) {
+                $http.get("/uprn/" + address)
+                    .success(function (res) {
 
-                    if((/\d{7}$/).test(res)) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                });
+                        $scope.validatedAddress;
+                    })
+
+                console.log(val);
             }
 
             this.isWithinCamden = function (latitude, longitude) {

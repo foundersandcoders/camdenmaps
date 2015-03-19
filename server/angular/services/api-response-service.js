@@ -55,7 +55,7 @@ function hasPollingStation (data) {
                     .success(function success (data) {
                         console.log('address', address);
 
-                        console.log(validate.checkValidAddress(address));
+                        console.log("state", validate.checkValidAddress(address));
                         
 
                         if(data.hasOwnProperty("error")) {
