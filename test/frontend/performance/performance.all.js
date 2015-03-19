@@ -92,7 +92,6 @@
 
 var ProtractorPerf,
 	Config,
-	homeUrl,
 	buttons,
 	camdenServices,
 	categoriesRepeater,
@@ -101,7 +100,6 @@ var ProtractorPerf,
 	input,
 	searchButton,
 	listResults,
-	baseUrl,
 	neighbourhood,
 	streetworks;
 
@@ -109,7 +107,6 @@ var ProtractorPerf,
 
 ProtractorPerf = require('protractor-perf');
 Config = require('../acceptance/config.js');
-homeUrl = Config.path.home;
 button = element.all(by.repeater('button in buttons')).get(0);
 camdenServices = button.element(by.tagName('h4'));
 categoriesRepeater = element.all(by.repeater('category in serviceCategories'));
@@ -118,7 +115,6 @@ lunchClub = element.all(by.repeater('service in services')).get(0);
 input = element(by.tagName('input'));
 searchButton = element.all(by.tagName('button')).get(0);
 listResults = element.all(by.repeater('result in results'));
-baseUrl = Config.path.main;
 neighbourhood = neighbourhood = element.all(by.repeater('button in buttons')).get(1);
 streetworks = streetworks = element.all(by.repeater('button in buttons')).get(2);
 
@@ -139,7 +135,7 @@ function metrics(Program, domContentLoadedEventEnd, domContentLoadedEventStart){
 		var perf = new ProtractorPerf(protractor, browser);
 
 		beforeEach(function(){
-			browser.get(Config.path.home);
+			browser.get("http://camdenmaps.herokuapp.com/#/home");
 		});
 
 		afterEach(function () {
@@ -163,7 +159,7 @@ function metrics(Program, domContentLoadedEventEnd, domContentLoadedEventStart){
 			});
 
 			browser.getCurrentUrl().then(function (url) {
-				expect(url).toEqual(baseUrl + "#/home/Lunch%20club/location/NW1%200NE");
+				expect(url).toEqual("http://camdenmaps.herokuapp.com/#/home/Lunch%20club/location/NW1%200NE");
             });
 
 
@@ -183,7 +179,7 @@ function metrics(Program, domContentLoadedEventEnd, domContentLoadedEventStart){
 			});
 
 			browser.getCurrentUrl().then(function (url) {
-				expect(url).toEqual(baseUrl + "#/home/neighbourhood-found/5048636");
+				expect(url).toEqual("http://camdenmaps.herokuapp.com/#/home/neighbourhood-found/5048636");
             });
 		});
 
@@ -201,7 +197,7 @@ function metrics(Program, domContentLoadedEventEnd, domContentLoadedEventStart){
 			});
 
 			browser.getCurrentUrl().then(function (url) {
-				expect(url).toEqual(baseUrl + "#/home/streetworks/location/NW1%200NE");
+				expect(url).toEqual("http://camdenmaps.herokuapp.com/#/home/streetworks/location/NW1%200NE");
             });
 
 		});
