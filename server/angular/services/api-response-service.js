@@ -59,7 +59,11 @@ function hasPollingStation (data) {
                         
 
                         if(data.hasOwnProperty("error")) {
-                            return scope.updateError(data.message);
+                            
+                            console.log(scope.markers.m0);
+                            if(scope.markers.m0.message !== "Your Location"){
+                                return scope.updateError(data.message);
+                            }
                         } else {
 
                             localstorage.checkAndSave(address);
