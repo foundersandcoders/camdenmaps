@@ -27,7 +27,7 @@
             "./test/frontend/acceptance/desktop/streetworks/streetworks.e2e.js",
             "./test/frontend/acceptance/desktop/neighbourhood/neighbourhood.e2e.js"
         ],
-        performanceFile = ["./test/frontend/performance/performance.all.js"],
+        performanceFile = ["./test/frontend/Performance/performance.all.js"],
         sassFiles = ["./server/public/css/*.scss", "./server/public/css/*/*.scss"],
         allFiles = serverFiles.concat(angularFiles, htmlFiles, sassFiles);
 
@@ -108,7 +108,7 @@
         "node_modules/.bin/protractor-perf ./test/frontend/config/performance.conf.js"
     ]));
 
-    gulp.task("test", ["load-test", "unit-test", "server-integration", "server-unit"], function() {
+    gulp.task("test", ["load-test", "server-integration", "server-unit"], function() {
         return console.log("done testing");
     });
 
