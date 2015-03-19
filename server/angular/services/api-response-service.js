@@ -35,14 +35,13 @@ function hasPollingStation (data) {
 
     module.exports = [
         "apiSearch",
-        "httpq",
         "localstorage",
         "$stateParams",
         "$location",
         "markers",
         "locationCheck",
         "validate",
-        function (apiSearch, httpq, localstorage, $stateParams, $location, markers, locationCheck, validate) {
+        function (apiSearch, localstorage, $stateParams, $location, markers, locationCheck, validate) {
 
             var resetActiveMarker = require("../lib/reset-active-marker.js");
             var path;
@@ -53,8 +52,17 @@ function hasPollingStation (data) {
 
                 apiSearch.search(service, address, lat, lng)
                     .success(function success (data) {
+                        
                         if(data.hasOwnProperty("error")) {
-                            return scope.updateError(data.message);
+
+                            validate.checkValidAddress(address, function (res) {
+                                if (res) {
+                                    return scope.updateError("Sorry, this is a new Postcode, please search another address to find results")
+                                } else {
+                                    return scope.updateError(data.message);
+                                }
+                            });
+                            
                         } else {
 
                             localstorage.checkAndSave(address);
