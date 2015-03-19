@@ -40,13 +40,9 @@
     "chromedriver": "^2.12.0",
     "code": "^1.2.1",
     "connect": "^3.3.4",
-    "csvtojson": "^0.3.18",
-    "govuk_frontend_toolkit": "^3.1.0",
     "gulp": "^3.8.10",
     "gulp-connect": "^2.2.0",
     "gulp-htmlmin": "^1.1.1",
-    "gulp-karma": "0.0.4",
-    "gulp-lab": "^1.0.4",
     "gulp-ng-annotate": "^0.4.3",
     "gulp-nodemon": "^1.0.5",
     "gulp-protractor": "0.0.12",
@@ -60,10 +56,6 @@
     "jasmine-core": "^2.1.3",
     "js-yaml": "~3.0",
     "json2yaml": "~1.0",
-    "karma-browserify": "^2.0.0",
-    "karma-jasmine": "^0.3.2",
-    "karma-phantomjs-launcher": "^0.1.4",
-    "lab": "^5.1.0",
     "node-ab": "0.0.1",
     "nodemon": "^1.3.7",
     "protractor": "^1.5.0",
@@ -74,8 +66,7 @@
     "underscore": "^1.8.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0",
-    "watchify": "^2.2.1",
-    "webdriverjs-retry": "^0.2.0"
+    "watchify": "^2.2.1"
   },
   "browserify": {
     "transform": [
