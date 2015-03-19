@@ -97,10 +97,5 @@ gulp sass-dev
 
 ### Travis
 
-Travis is set up so that it runs
 
-```
-gulp travis
-```
-
-before deploying. This compiles the sass, html, and angular files and minifies them before deploying.
+Please run `gulp build` before pushing up to master. Travis will deploy master to heroku, given the tests pass.
