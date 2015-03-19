@@ -19,14 +19,12 @@ var menu = require("../menu.json");
                 return (match.length >= 1);
             };
 
-            this.checkValidAddress = function (address) {
-                $http.get("/uprn/" + address)
+            this.checkValidAddress = function (address, cb) {
+
+               return $http.get("/uprn/" + address)
                     .success(function (res) {
-
-                        $scope.validatedAddress;
+                        return cb(!!res);
                     })
-
-                console.log(val);
             }
 
             this.isWithinCamden = function (latitude, longitude) {
