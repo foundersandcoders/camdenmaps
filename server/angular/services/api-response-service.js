@@ -56,13 +56,7 @@ function hasPollingStation (data) {
                         if(data.hasOwnProperty("error")) {
 
                             if(scope.markers.m0.message !== "Your Location"){
-                                validate.checkValidAddress(address, function (res) {
-                                    if (res) {
-                                        return scope.updateError("Sorry, this is a new Postcode, please search another address to find results")
-                                    } else {
-                                        return scope.updateError(data.message);
-                                    }
-                                });
+                                return scope.updateError(data.message);
                             }
 
                         } else {
