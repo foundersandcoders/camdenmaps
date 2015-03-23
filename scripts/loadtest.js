@@ -1,5 +1,6 @@
 var benchrest = require("bench-rest");
 var incrementAmount = 10;
+var colors = require("colors");
 
 function returnsAcceptableNumberOfResponses (numberOfErrors, speedStatistic) {
     var acceptableSpeed = 5000;
@@ -9,14 +10,18 @@ function returnsAcceptableNumberOfResponses (numberOfErrors, speedStatistic) {
 
 }
 
+var paths = ["/", "/services/Library", /*"/services/Library/locations/well%20road"*/];
+var base = "http://camdenmaps.herokuapp.com";
+
 var flow = {
-    main: [
-        {get: "http://camdenmaps.herokuapp.com/"},
-        {get: "http://camdenmaps.herokuapp.com/services/Lunch club"},
-        {get: "http://camdenmaps.herokuapp.com/services/Lunch club/locations/nw1 0ne"},
-        {get: "http://camdenmaps.herokuapp.com/services/Lunch club/locations/well road"}
-    ]
+    main: paths.map(function(p) {
+        return {
+            get: base + p
+        }
+    })
 }
+
+console.log(flow.main);
 
 var runOpts = {
 
@@ -32,16 +37,17 @@ function runTests(){
         console.log("Failed in %s with err:", ctxName, err);
     })
     .on("end", function(stats, errCount) {
-        console.log("requests:", runOpts.limit);
-        console.log("number of errors: ", errCount);
-        console.log("95% returned within: ", stats.main.histogram.p95);
+        console.log(("requests: " + runOpts.limit).yellow);
+        console.log(("number of errors: " + errCount).red);
+        console.log(("95% returned within: " + stats.main.histogram.p95).green);
+        console.log("\n----------------------------------------------\n");
         if (returnsAcceptableNumberOfResponses(errCount, stats.main.histogram.p95)) {
             runOpts.limit += incrementAmount;
             runOpts.iterations += incrementAmount;
             runTests();
         } else {
             console.log("responses outside acceptable threshold");
-            console.log("failed at", runOpts.limit-10, "requests");
+            console.log(("failed at " + (runOpts.limit-10) + " requests").bgGreen.black);
         }
     });
 }
