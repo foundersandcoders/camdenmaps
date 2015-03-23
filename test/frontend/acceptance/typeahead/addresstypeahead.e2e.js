@@ -72,6 +72,7 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 			        	var input = element(by.tagName('input'));
 						input.sendKeys('bytctrdvre');
 						input.sendKeys(protractor.Key.ENTER);
+						input.sendKeys(protractor.Key.ENTER);
 
 						var errorMessage = element(by.css('.errormessage'));
 
@@ -81,6 +82,7 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 		        	it("with the correct text", function() {
 		        		var input = element(by.tagName('input'));
 						input.sendKeys('gtydresewst');
+						input.sendKeys(protractor.Key.ENTER);
 						input.sendKeys(protractor.Key.ENTER);
 
 		        		var errorMessageText = element(by.css('.errormessage')).getText();
@@ -118,6 +120,17 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 			        	expect(currentUrl).toContain("location/NW1%200NE");
 			        });
 
+			        it("If postcode is new, search by streetname instead", function() {
+			        	var input = element(by.tagName('input'));
+						input.sendKeys('N1C 4BT');
+						input.sendKeys(protractor.Key.ENTER);
+						input.sendKeys(protractor.Key.ENTER);
+
+						var currentUrl = browser.getCurrentUrl();
+
+						expect(currentUrl).toContain("location/Handyside%20Street");
+			        })
+
 			        addressFoundListTests();
 		        });
 
@@ -147,7 +160,7 @@ addressFoundListTests = require('../list/address-found-list.e2e.js');
 
 						var currentUrl = browser.getCurrentUrl();
 
-			        	expect(currentUrl).toContain("location/NW6%201QU");
+			        	expect(currentUrl).toContain("location/NW6%201PH");
 			        });
 		        });
 
