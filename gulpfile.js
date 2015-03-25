@@ -41,7 +41,7 @@
 /*******************************
 *       TEST TASKS
 ********************************/
-    
+
     gulp.task("wd-start", shell.task([
         "./node_modules/.bin/webdriver-manager start"
     ]));
@@ -97,7 +97,7 @@
     });
 
     gulp.task("load-test", shell.task([
-        "nab http://camdenmaps.herokuapp.com"
+        "node ./scripts/loadtest.js"
     ]));
 
     gulp.task("server-integration", shell.task([
