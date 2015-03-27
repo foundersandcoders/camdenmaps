@@ -56,7 +56,7 @@ var category = menu.filter(function (item) {
         markers: {
             inactive: "img/icons/marker-hi.png",
             active: "img/icons/yellow-marker.png"
-        }
+        }       
     };
 
 }());

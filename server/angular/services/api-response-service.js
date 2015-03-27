@@ -35,14 +35,14 @@ function hasPollingStation (data) {
 
     module.exports = [
         "apiSearch",
-        "httpq",
         "localstorage",
         "$stateParams",
         "$location",
         "markers",
         "locationCheck",
         "validate",
-        function (apiSearch, httpq, localstorage, $stateParams, $location, markers, locationCheck, validate) {
+        "$timeout",
+        function (apiSearch, localstorage, $stateParams, $location, markers, locationCheck, validate, $timeout) {
 
             var resetActiveMarker = require("../lib/reset-active-marker.js");
             var path;
@@ -53,8 +53,13 @@ function hasPollingStation (data) {
 
                 apiSearch.search(service, address, lat, lng)
                     .success(function success (data) {
+                        
                         if(data.hasOwnProperty("error")) {
-                            return scope.updateError(data.message);
+
+                            if(scope.markers.m0.message !== "Your Location"){
+                                return scope.updateError(data.message);
+                            }
+
                         } else {
 
                             localstorage.checkAndSave(address);
@@ -87,7 +92,6 @@ function hasPollingStation (data) {
                             } else {
 
                                 path = "/home/" + $stateParams.service + "/location/" + address;
-                                //redirects to new path and runs location controller
                             }
 
                             if ($stateParams.service || $location.path().indexOf("/streetworks") > -1) {
@@ -95,17 +99,18 @@ function hasPollingStation (data) {
                                 
                             }
 
-                            scope.update("centre", {
-                                lat: Number(data.location.Latitude),
-                                lng: Number(data.location.Longitude),
-                                zoom: markers.zoomCheck(scope)()
-                            });
+                            $timeout(function() {
+                                 scope.update("centre", {
+                                    lat: Number(data.location.Latitude),
+                                    lng: Number(data.location.Longitude),
+                                    zoom: markers.zoomCheck(scope)()
+                                });
+                            }, 25);
                         }
                     })
                     .error(function () {
                         return scope.updateError("Sorry, that does not appear to be a valid camden address.");
                     });
-
             };
 
             this.service = function (scope) {

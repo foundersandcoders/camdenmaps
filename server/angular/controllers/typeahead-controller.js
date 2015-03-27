@@ -145,8 +145,13 @@ function getObject (array, selected) {
                     localstorage.save(address);
 
                     if (locationCheck.postcodeSearch()) {
-                        $scope.update("locationSelected", address[0].Postcode);
-                        searchApi(address[0].Postcode);
+                        if (validate.isNewPostcode(address[0].Postcode)) {
+                            $scope.update("locationSelected", address[0].Street);
+                            searchApi(address[0].Street);
+                        } else {
+                            $scope.update("locationSelected", address[0].Postcode);
+                            searchApi(address[0].Postcode);
+                        }
                     } else {
                         $scope.update("locationSelected", address[0].UPRN);
                         searchApi(address[0].UPRN);
@@ -170,12 +175,6 @@ function getObject (array, selected) {
                                 } else {
 
                                     return response.data.map(function (item){
-                                        item.title = item.Unit + " " +
-                                            item.BuildingName + " " +
-                                            item.BuildingNumber + " " +
-                                            item.Street + " " +
-                                            item.Postcode;
-
                                         uprnArray.push(item);
                                         return item;
                                     });

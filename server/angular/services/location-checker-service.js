@@ -10,7 +10,8 @@
         "$location",
         "$stateParams",
         "apiSearch",
-        function ($location, $stateParams, apiSearch) {
+        "validate",
+        function ($location, $stateParams, apiSearch, validate) {
 
             this.addressSearch = function () {
                 
@@ -76,11 +77,19 @@
             };
 
             this.destination = function (address) {
-                return ($location.path().indexOf("/neighbourhood") > -1)
+                if (validate.isNewPostcode(address[0].Postcode)) {
+                    return ($location.path().indexOf("/neighbourhood") > -1)
+                        ? "/home/neighbourhood-found/" + address[0].UPRN
+                        : ($location.path().indexOf("/streetworks") > -1)
+                        ? "/home/streetworks/location/" + address[0].Street
+                        : "/home/" + $stateParams.service + "/location/" + address[0].Street;
+                } else {
+                    return ($location.path().indexOf("/neighbourhood") > -1)
                         ? "/home/neighbourhood-found/" + address[0].UPRN
                         : ($location.path().indexOf("/streetworks") > -1)
                         ? "/home/streetworks/location/" + address[0].Postcode
                         : "/home/" + $stateParams.service + "/location/" + address[0].Postcode;
+                }
             };
 
             this.stringDestination = function (address) {

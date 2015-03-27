@@ -42,6 +42,10 @@
 *       TEST TASKS
 ********************************/
 
+    gulp.task("wd-start", shell.task([
+        "./node_modules/.bin/webdriver-manager start"
+    ]));
+
     gulp.task("webdriver_update", webdriver_update);
 
     gulp.task("e2e-local", ["webdriver_update"],function () {
@@ -63,7 +67,7 @@
             });
         });
     });
-    
+
     //Runs on SauceLabs
     gulp.task("e2e", function() {
         sauceConnectLauncher({
@@ -93,24 +97,25 @@
     });
 
     gulp.task("load-test", shell.task([
-        "nab http://camdenmaps.herokuapp.com"
+        "node ./scripts/loadtest.js"
     ]));
 
     gulp.task("server-integration", shell.task([
-        "./node_modules/tape/bin/tape ./test/api/integration/*.js | ./node_modules/.bin/tap-spec"
+        "./node_modules/tape/bin/tape ./test/api/integration/*.test.js | ./node_modules/.bin/tap-spec"
     ]));
 
     gulp.task("server-unit", shell.task([
         "./node_modules/tape/bin/tape ./test/api/*.test.js | ./node_modules/.bin/tap-spec"
-    ]));    
+    ]));
 
     gulp.task("performance", shell.task([
         "node_modules/.bin/protractor-perf ./test/frontend/config/performance.conf.js"
-    ]));    
+    ]));
 
-    gulp.task("test", ["e2e", "load-test", "unit-test", "server-integration", "server-unit"], function() {
+    gulp.task("test", ["load-test", "server-integration", "server-unit"], function() {
         return console.log("done testing");
     });
+
 
 /*******************************
 *       COMPILING TASKS
@@ -174,7 +179,7 @@
         ]);
     });
 
-    gulp.task("build", ["dependencies", "html", "sass-dev", "browserify"] , function() {
+    gulp.task("build", ["dependencies", "html", "sass-production", "browserify"] , function() {
         return console.log("done building");
     });
 

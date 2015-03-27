@@ -176,7 +176,7 @@ geolocationTests = require('../../geolocation/geolocation.e2e.js');
 
 						mapMarkerTests();
 	        			addressTypeaheadTests();
-		            	ddressSearchListTests();
+		            	addressSearchListTests();
 		            	geolocationTests();
 		            });
             	}

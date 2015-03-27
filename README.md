@@ -2,53 +2,55 @@ camdenmaps
 ==========
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/foundersandcoders/camdenmaps?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/foundersandcoders/camdenmaps.svg?branch=master)](https://travis-ci.org/foundersandcoders/camdenmaps) [![Code Climate](https://codeclimate.com/github/foundersandcoders/camdenmaps/badges/gpa.svg)](https://codeclimate.com/github/foundersandcoders/camdenmaps)
 
- 
-maps.camden.gov.uk site
+
+This is a repository for Camden Council's ["Where's My Nearest" service.](http://maps.camden.gov.uk)
 
 # Developing
+
+### Pre-installation
+1. If you haven't already, install [Node.js and npm](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager).
+2. Clone the project from git with:
+```git clone https://github.com/foundersandcoders/camdenmaps.git && cd camdenmaps"```
+
 
 ### Installation
 
 Once you have cloned with git, run:
 
-install:
 
 ```
 npm install gulp -g
 npm install
 ```
 
-Inside ```test/frontend/config```, create a file named ```sauce.conf.json``` containing:
-```
-{
-    "uname": "<your saucelabs username>",
-    "akey": "<your saucelabs accesskey>"
-}
-```
-
 and use command:
 
 ```
-gulp 
+gulp
 ```
 
 This will minify the html, and compile the sass and js files (browserify).
 
 
-
 ### Tests
 
-To run acceptance tests, use command: 
+To run acceptance tests, use command:
 
 ```
 gulp test
 ```
 
-To view performance metrics, start up a selenium server [webdriver-manager start] then use command: 
+To view performance metrics, start up a selenium server:
+```
+gulp wd-start
+```
+
+and then in another terminal, use command:
 
 ```
 gulp performance
 ```
+
 
 If you prefer to run all the tests individually, please use these commands:
 
@@ -61,20 +63,20 @@ and
 ```
 gulp server-integration
 ```
-
-To run unit tests, use command: 
-
+To run end-to-end tests on Saucelabs, edit ```test/frontend/config/sauce.conf.json``` to contain your SauceLabs account details:
 ```
-gulp unit-test
+{
+    "uname": "<your saucelabs username>",
+    "akey": "<your saucelabs accesskey>"
+}
 ```
-
-E2E on saucelabs:
+and run:
 
 ```
 gulp e2e
-````
+```
 
-E2E locally (with chrome):
+To run end-to-end tests on a local installation of chrome:
 
 ```
 gulp e2e-local
@@ -82,7 +84,7 @@ gulp e2e-local
 
 ### Building while developing
 
-Browserify must be run when altering the angular files. 
+Browserify must be run when altering the angular files.
 
 ```
 gulp watchify
