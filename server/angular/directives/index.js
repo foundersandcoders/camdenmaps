@@ -1,8 +1,8 @@
-/******************************************************************************  
+/******************************************************************************
 *   DIRECTIVE/INDEX.JS
 *   Description: Defines angular directives
 *   Use: Registers directives with directives module and injects to core module
-*    
+*
 *******************************************************************************/
 
 ;(function () {
@@ -11,5 +11,6 @@
     angular.module("maps")
         .directive("typeaheadsearch", require("./typeahead-directive.js"))
         .directive("errormessage", require("./error-messages-directive.js"))
-		.directive("collapseWidth", require("./collapse-width-directive.js"));
+        .directive("collapseWidth", require("./collapse-width-directive.js"))
+        .directive("betabanner", require("./beta-banner-directive.js"));
 }());
